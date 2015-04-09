@@ -6,3 +6,5 @@ Main project in the course "Programutvikling" spring 2015.
 * Martin Mellum Jackson
 * Baljit Singh Sarai
 * Adrian Siim Melsom
+
+I hope this works
