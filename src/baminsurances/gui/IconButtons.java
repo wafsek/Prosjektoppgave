@@ -1,3 +1,5 @@
+package baminsurances.gui;
+
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,25 +32,25 @@ public class IconButtons {
     public IconButtons(){
         button = new Button();
 
-        addImage = new Image(this.getClass().getResourceAsStream("images/add.png"));
+        addImage = new Image(this.getClass().getResourceAsStream("/add.png"));
         addImageView = new ImageView(addImage);
 
-        statisticImage = new Image(this.getClass().getResourceAsStream("images/statistics.png"));
+        statisticImage = new Image(this.getClass().getResourceAsStream("/statistics.png"));
         statisticImageView = new ImageView(statisticImage);
 
-        searchImage = new Image(this.getClass().getResourceAsStream("images/search.png"));
+        searchImage = new Image(this.getClass().getResourceAsStream("/search.png"));
         searchImageView = new ImageView(searchImage);
 
-        houseImage = new Image(this.getClass().getResourceAsStream("images/house_icon.png"));
+        houseImage = new Image(this.getClass().getResourceAsStream("/house_icon.png"));
         houseImageView = new ImageView(houseImage);
 
-        carImage = new Image(this.getClass().getResourceAsStream("images/car_icon.png"));
+        carImage = new Image(this.getClass().getResourceAsStream("/car_icon.png"));
         carImageView = new ImageView(carImage);
 
-        personImage = new Image(this.getClass().getResourceAsStream("images/insure_person_icon.png"));
+        personImage = new Image(this.getClass().getResourceAsStream("/insure_person_icon.png"));
         personImageView = new ImageView(personImage);
 
-        boatImage = new Image(this.getClass().getResourceAsStream("images/boat_icon.png"));
+        boatImage = new Image(this.getClass().getResourceAsStream("/boat_icon.png"));
         boatImageView = new ImageView(boatImage);
     }
 
