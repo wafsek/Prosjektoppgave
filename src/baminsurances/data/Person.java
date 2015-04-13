@@ -99,9 +99,13 @@ public class Person {
         int controllNo1 = Character.getNumericValue(birthNo.charAt(9));
         int controllNo2 = Character.getNumericValue(birthNo.charAt(10));
         
-        // Norwegian birth numbers are on the following format:
-        // d1 d2 m1 m2 y1 y2 i1 i2 i3 controllNo1 controllNo2
-        // (spaces for visibility)
+        /* Norwegian birth numbers are on the following format:
+         * 
+         * d1 d2 m1 m2 y1 y2 i1 i2 i3 controllNo1 controllNo2
+         * (spaces for visibility)
+         * 
+         * d = day, m = month, y = year, i = individual number
+         */
         int d1 = Character.getNumericValue(birthNo.charAt(0));
         int d2 = Character.getNumericValue(birthNo.charAt(1));
         int m1 = Character.getNumericValue(birthNo.charAt(2));
@@ -133,7 +137,7 @@ public class Person {
     /**
      * Sets this person's first name to the given value, which should be a
      * string at least 2 characters long, and consisting solely of spaces,
-     * yphens and letters from the Norwegian alphabet. 
+     * hyphens and letters from the Norwegian alphabet. 
      * 
      * @param firstName new first name
      * @throws IllegalArgumentException if argument is not on right format
