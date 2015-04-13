@@ -79,9 +79,9 @@ public class LoginWindow {
         scene = new Scene(vBox);
         stage.setScene(scene);
         stage.show();
-        stage.setMinWidth(250);
+        stage.setMinWidth(300);
         stage.setMinHeight(400);
-        stage.setMaxWidth(250);
+        stage.setMaxWidth(300);
         stage.setMaxHeight(400);
     }
 }
