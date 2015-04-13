@@ -82,9 +82,9 @@ public class Person {
      * one
      */
     public void setBirthNo(String birthNo) {
-        if (birthNo.length() != 11) {
+        if (!birthNo.matches("[0-9]{11}")) {
             throw new IllegalArgumentException("Birth number should " +
-                    "be 11 digits long. Found: " + birthNo.length());
+                    "be 11 digits long. Found: " + birthNo);
         }
         
         if (!hasValidControllNos(birthNo)) {
@@ -116,7 +116,7 @@ public class Person {
                 1*m2 + 8*y1 + 9*y2 + 4*i1 + 5*i2 + 2*i3) % 11;
         
         boolean validControllNo2 = controllNo2 == 11 - (5*d1 + 4*d2 + 3*m1 +
-                2*m2 + 7*y1 + 6*y2 + 5*i1 + 4*i2 + 3*i3) % 11;
+                2*m2 + 7*y1 + 6*y2 + 5*i1 + 4*i2 + 3*i3 + 2*controllNo1) % 11;
         
         return validControllNo1 && validControllNo2;
     }
