@@ -1,5 +1,8 @@
 package baminsurances.gui.window;
 
+import com.sun.glass.ui.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,12 +16,13 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 
 
 /**
  * Created by Adrian on 13/04/2015.
  */
-public class LoginWindow {
+public class LoginWindow implements EventHandler<ActionEvent>{
 
     private Stage stage;
     private Scene scene;
@@ -37,12 +41,14 @@ public class LoginWindow {
     VBox vBox;
 
     public LoginWindow(){
-        stage = new Stage();
-
         companyLogo = new Image(this.getClass().getResourceAsStream("../images/temp_logo.png"));
+        stage = new Stage();
+        stage.setTitle("Bam Forsikring");
+        stage.getIcons().add(companyLogo);
+
         companyLogoImageView = new ImageView(companyLogo);
-        companyLogoImageView.setFitHeight(100);
-        companyLogoImageView.setFitWidth(100);
+        companyLogoImageView.setFitHeight(120);
+        companyLogoImageView.setFitWidth(120);
 
         usernameLabel = new Label("Brukernavn:");
         passwordLabel = new Label("Passord:");
@@ -53,12 +59,12 @@ public class LoginWindow {
 
         logo = new HBox();
         logo.getChildren().addAll(companyLogoImageView);
-        logo.setPadding(new Insets(10, 0, 10, 0));
+        logo.setPadding(new Insets(10, 10, 30, 10));
         logo.setAlignment(Pos.CENTER);
 
         login = new HBox();
         login.getChildren().addAll(loginButton);
-        login.setPadding(new Insets(10, 0, 10, 0));
+        login.setPadding(new Insets(10, 10, 10, 10));
         login.setAlignment(Pos.CENTER);
 
         vBox = new VBox();
@@ -79,9 +85,23 @@ public class LoginWindow {
         scene = new Scene(vBox);
         stage.setScene(scene);
         stage.show();
-        stage.setMinWidth(300);
-        stage.setMinHeight(400);
-        stage.setMaxWidth(300);
-        stage.setMaxHeight(400);
+        stage.setResizable(false);
+        stage.setMinHeight(325);
+        stage.setMinWidth(275);
+
+        loginButton.setOnAction(this);
+    }
+
+    public void handle(ActionEvent e) {
+        if(e.getSource() == loginButton){
+            if(usernameField.getText().equals("admin") && passwordField.getText().equals("admin")){
+                stage.close();
+                new RegistrationWindow();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Feil", "Feil passord eller brukernavn.", 0);
+            }
+
+        }
     }
 }

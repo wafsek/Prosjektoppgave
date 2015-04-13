@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 /**
  * Created by Adrian PC on 12/04/2015.
  */
-public class IconButtons {
+public class IconButton {
 
     public static final int ADD_BUTTON = 1;
     public static final int STATISTIC_BUTTON = 2;
@@ -26,9 +26,9 @@ public class IconButtons {
     private Button button;
     private ImageView imageViewToBeUsed;
 
-    private String imagePath = "baminsurances/gui/images/";
+    private String imagePath = "../images/";
 
-    public IconButtons(){
+    public IconButton(){
         button = new Button();
 
         addImage = new Image(this.getClass().getResourceAsStream(imagePath + "add.png"));
