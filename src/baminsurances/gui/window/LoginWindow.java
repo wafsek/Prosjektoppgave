@@ -34,11 +34,11 @@ public class LoginWindow {
 
     public LoginWindow(){
         stage = new Stage();
-        scene = new Scene(vBox);
+
 
         usernameLabel = new Label("Brukernavn:");
         passwordLabel = new Label("Passord:");
-        logoLabel = new Label("", new ImageView(new Image(this.getClass().getResourceAsStream("img/add.png"))));
+        logoLabel = new Label("", new ImageView(new Image(this.getClass().getResourceAsStream("../images/add.png"))));
         usernameField = new TextField();
         passwordField = new PasswordField();
         loginButton = new Button("Logg inn");
@@ -53,6 +53,7 @@ public class LoginWindow {
 
         vBox.getChildren().addAll(logoLabel, usernameHBox, passwordHBox, loginButton);
 
+        scene = new Scene(vBox);
         stage.setScene(scene);
         stage.show();
         stage.setMinWidth(200);
