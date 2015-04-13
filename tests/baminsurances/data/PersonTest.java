@@ -18,6 +18,11 @@ public class PersonTest {
     }
     
     @Test
+    public void testConstructor() {
+        new Person("13041599116", "Ole", "Hansen", "12345678", "0166", "Pilestredet 35");
+    }
+    
+    @Test
     public void oneDigitBirthNoThrowsIllegalArgumentException() {
         exception.expect(IllegalArgumentException.class);
         p.setBirthNo("1");

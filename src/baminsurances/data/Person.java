@@ -17,12 +17,12 @@ public class Person {
     /**
      * Creates a new person with the given values.
      * 
-     * @param birthNo
-     * @param firstName
-     * @param lastName
-     * @param telephoneNo
-     * @param zipCode
-     * @param streetAdress
+     * @param birthNo birth number
+     * @param firstName first name
+     * @param lastName last name
+     * @param telephoneNo telephone number
+     * @param zipCode zip code
+     * @param streetAdress street adress
      * @throws IllegalArgumentException if any of the fields are not on the
      * right format, see setter-methods for more info on this
      */
