@@ -7,7 +7,7 @@ package baminsurances.data;
  *
  */
 public class Person {
-    private int birthNo;
+    private String birthNo;
     private String firstName;
     private String lastName;
     private String telephoneNo;
@@ -26,7 +26,7 @@ public class Person {
      * @throws IllegalArgumentException if any of the fields are not on the
      * right format, see setter-methods for more info on this
      */
-    public Person(int birthNo, String firstName, String lastName,
+    public Person(String birthNo, String firstName, String lastName,
             String telephoneNo, String zipCode, String streetAdress) {
         setBirthNo(birthNo);
         setFirstName(firstName);
@@ -34,6 +34,9 @@ public class Person {
         setTelephoneNo(telephoneNo);
         setZipCode(zipCode);
         setStreetAdress(streetAdress);
+    }
+    
+    protected Person() {
     }
     
     /**
@@ -50,7 +53,7 @@ public class Person {
          * true or false, so that in the case a third gender is
          * recognized in the future, it will be easier to adapt to.
          */
-        if (birthNo / 100 % 2 == 0) {
+        if (Character.getNumericValue(birthNo.charAt(8)) % 2 == 0) {
             return 'F';
         } else {
             return 'M';
@@ -62,7 +65,7 @@ public class Person {
      * 
      * @return this person's birth number
      */
-    public int getBirthNo() {
+    public String getBirthNo() {
         return birthNo;
     }
 
@@ -78,11 +81,10 @@ public class Person {
      * @throws IllegalArgumentException if given birth number is not a valid
      * one
      */
-    public void setBirthNo(int birthNo) {
-        int len = String.valueOf(birthNo).length();
-        if (len != 11) {
+    public void setBirthNo(String birthNo) {
+        if (birthNo.length() != 11) {
             throw new IllegalArgumentException("Birth number should " +
-                    "be 11 digits long. Found: " + len);
+                    "be 11 digits long. Found: " + birthNo.length());
         }
         
         if (!hasValidControllNos(birthNo)) {
@@ -93,22 +95,22 @@ public class Person {
         this.birthNo = birthNo;
     }
     
-    private boolean hasValidControllNos(int birthNo) {
-        int controllNo1 = birthNo / 10 % 10;
-        int controllNo2 = birthNo % 10;
+    private boolean hasValidControllNos(String birthNo) {
+        int controllNo1 = Character.getNumericValue(birthNo.charAt(9));
+        int controllNo2 = Character.getNumericValue(birthNo.charAt(10));
         
         // Norwegian birth numbers are on the following format:
         // d1 d2 m1 m2 y1 y2 i1 i2 i3 controllNo1 controllNo2
         // (spaces for visibility)
-        int d1 = (int) (birthNo / 10000000000L);
-        int d2 = birthNo / 1000000000 % 10;
-        int m1 = birthNo / 100000000 % 10;
-        int m2 = birthNo / 10000000 % 10;
-        int y1 = birthNo / 1000000 % 10;
-        int y2 = birthNo / 100000 % 10;
-        int i1 = birthNo / 10000 % 10;
-        int i2 = birthNo / 1000 % 10;
-        int i3 = birthNo / 100 % 10;
+        int d1 = Character.getNumericValue(birthNo.charAt(0));
+        int d2 = Character.getNumericValue(birthNo.charAt(1));
+        int m1 = Character.getNumericValue(birthNo.charAt(2));
+        int m2 = Character.getNumericValue(birthNo.charAt(3));
+        int y1 = Character.getNumericValue(birthNo.charAt(4));
+        int y2 = Character.getNumericValue(birthNo.charAt(5));
+        int i1 = Character.getNumericValue(birthNo.charAt(6));
+        int i2 = Character.getNumericValue(birthNo.charAt(7));
+        int i3 = Character.getNumericValue(birthNo.charAt(8));
         
         boolean validControllNo1 = controllNo1 == 11 - (3*d1 + 7*d2 + 6*m1 +
                 1*m2 + 8*y1 + 9*y2 + 4*i1 + 5*i2 + 2*i3) % 11;

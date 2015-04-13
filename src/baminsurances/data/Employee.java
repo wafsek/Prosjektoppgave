@@ -7,7 +7,7 @@ package baminsurances.data;
  *
  */
 public class Employee extends Person {
-    public Employee(int socialSecNo, String firstName, String lastName,
+    public Employee(String socialSecNo, String firstName, String lastName,
             String telephoneNo, String postalCode, String streetAdress) {
         super(socialSecNo, firstName, lastName, telephoneNo, postalCode,
                 streetAdress);
