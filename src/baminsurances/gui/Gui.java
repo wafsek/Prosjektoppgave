@@ -1,5 +1,6 @@
 package baminsurances.gui;
 
+import baminsurances.gui.window.RegistrationWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -16,6 +17,6 @@ public class Gui extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        new MainWindow();
+        new RegistrationWindow();
     }
 }
