@@ -1,4 +1,5 @@
 package baminsurances.gui;
+import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.window.LoginWindow;
 import baminsurances.gui.window.RegistrationWindow;
 import javafx.application.Application;
@@ -17,6 +18,6 @@ public class Gui extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        new LoginWindow();
+        new GuiEventHandler();
     }
 }

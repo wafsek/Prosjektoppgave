@@ -1,8 +1,6 @@
 package baminsurances.gui.window;
 
-import com.sun.glass.ui.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import baminsurances.gui.eventhandler.GuiEventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,13 +14,11 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-
 
 /**
  * Created by Adrian on 13/04/2015.
  */
-public class LoginWindow implements EventHandler<ActionEvent>{
+public class LoginWindow {
 
     private Stage stage;
     private Scene scene;
@@ -40,7 +36,11 @@ public class LoginWindow implements EventHandler<ActionEvent>{
     HBox logo, login;
     VBox vBox;
 
-    public LoginWindow(){
+    private GuiEventHandler handler;
+
+    private static LoginWindow loginWindow = new LoginWindow();
+
+    private LoginWindow(){
         companyLogo = new Image(this.getClass().getResourceAsStream("../images/temp_logo.png"));
         stage = new Stage();
         stage.setTitle("Bam Forsikring");
@@ -89,19 +89,22 @@ public class LoginWindow implements EventHandler<ActionEvent>{
         stage.setMinHeight(325);
         stage.setMinWidth(275);
 
-        loginButton.setOnAction(this);
     }
 
-    public void handle(ActionEvent e) {
-        if(e.getSource() == loginButton){
-            if(usernameField.getText().equals("admin") && passwordField.getText().equals("admin")){
-                stage.close();
-                new RegistrationWindow();
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Feil", "Feil passord eller brukernavn.", 0);
-            }
+    public Button getLoginButton() {
+        return loginButton;
+    }
 
-        }
+    public void close() {
+        stage.close();
+    }
+
+    public static LoginWindow getLoginWindow() {
+        return loginWindow;
+    }
+
+    public void setGuiEventHandler(GuiEventHandler geh) {
+        handler = geh;
+        loginButton.setOnAction(handler);
     }
 }
