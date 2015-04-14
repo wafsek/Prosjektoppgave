@@ -5,7 +5,7 @@ package baminsurances.api;
  */
 public class InsuranceServiceManager {
     
-    private PersonRegister()
+    //private CustomerRegister()
     
     private static final InsuranceServiceManager manager = new InsuranceServiceManager();
     
@@ -15,6 +15,6 @@ public class InsuranceServiceManager {
         
     }
     
-    public 
+    //public 
     
 }
