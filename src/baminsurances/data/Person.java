@@ -3,7 +3,7 @@ package baminsurances.data;
 /**
  * The root class in the Person hierarchy.
  * 
- * @author martin
+ * @author martin melsum
  *
  */
 public class Person {
