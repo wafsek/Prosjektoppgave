@@ -12,7 +12,7 @@ public class Person {
     private String lastName;
     private String telephoneNo;
     private String zipCode;
-    private String streetAdress;
+    private String streetAddress;
     
     /**
      * Creates a new person with the given values.
@@ -22,18 +22,18 @@ public class Person {
      * @param lastName last name
      * @param telephoneNo telephone number
      * @param zipCode zip code
-     * @param streetAdress street adress
+     * @param streetAddress street address
      * @throws IllegalArgumentException if any of the fields are not on the
      * right format, see setter-methods for more info on this
      */
     public Person(String birthNo, String firstName, String lastName,
-            String telephoneNo, String zipCode, String streetAdress) {
+            String telephoneNo, String zipCode, String streetAddress) {
         setBirthNo(birthNo);
         setFirstName(firstName);
         setLastName(lastName);
         setTelephoneNo(telephoneNo);
         setZipCode(zipCode);
-        setStreetAdress(streetAdress);
+        setStreetAddress(streetAddress);
     }
     
     protected Person() {
@@ -82,6 +82,10 @@ public class Person {
      * one
      */
     public void setBirthNo(String birthNo) {
+        if (birthNo == null) {
+            throw new NullPointerException("Cannot set birth number to null.");
+        }
+        
         if (!birthNo.matches("[0-9]{11}")) {
             throw new IllegalArgumentException("Birth number should " +
                     "be 11 digits long. Found: " + birthNo);
@@ -143,6 +147,10 @@ public class Person {
      * @throws IllegalArgumentException if argument is not on right format
      */
     public void setFirstName(String firstName) {
+        if (firstName == null) {
+            throw new NullPointerException("First name cannot be null.");
+        }
+        
         if (!firstName.matches("[a-zæøåA-ZÆØÅ -]{2,}")) {
             throw new IllegalArgumentException("First name should only " +
                     "consist of letters and spaces in case of more than " +
@@ -169,6 +177,10 @@ public class Person {
      * format
      */
     public void setLastName(String lastName) {
+        if (lastName == null) {
+            throw new NullPointerException("Last name cannot be null.");
+        }
+        
         if(!lastName.matches("[a-zæøåA-ZÆØÅ]{2,}")) {
             throw new IllegalArgumentException("First name should only " +
                     "consist of letters. Found: " + lastName);
@@ -194,6 +206,10 @@ public class Person {
      * right format
      */
     public void setTelephoneNo(String telephoneNo) {
+        if (telephoneNo == null) {
+            throw new NullPointerException("Telephone number cannot be null.");
+        }
+        
         if (!telephoneNo.matches("[0-9]{8}")) {
             throw new IllegalArgumentException("Telephone number " +
                     "should be a number of length 8. Found: " + telephoneNo);
@@ -219,6 +235,10 @@ public class Person {
      * format
      */
     public void setZipCode(String zipCode) {
+        if (zipCode == null) {
+            throw new NullPointerException("Zip code cannot be null.");
+        }
+        
         if (!zipCode.matches("[0-9]{4}")) {
             throw new IllegalArgumentException("Zip code should " +
                     "be a number of length 4. Found: " + zipCode);
@@ -227,21 +247,24 @@ public class Person {
     }
 
     /**
-     * Returns this person's street adress.
+     * Returns this person's street address.
      * 
-     * @return this person's street adress.
+     * @return this person's street address.
      */
-    public String getStreetAdress() {
-        return streetAdress;
+    public String getStreetAddress() {
+        return streetAddress;
     }
 
     /**
-     * Sets this person's street adress to the given value.
+     * Sets this person's street address to the given value.
      * 
-     * @param streetAdress new street adress
+     * @param streetAddress new street address
      */
-    public void setStreetAdress(String streetAdress) {
+    public void setStreetAddress(String streetAddress) {
         //TODO handle wrong input
-        this.streetAdress = streetAdress;
+        if (streetAddress == null) {
+            throw new NullPointerException("Street address cannot be null.");
+        }
+        this.streetAddress = streetAddress;
     }
 }
