@@ -40,6 +40,11 @@ public class Person {
     protected Person() {
     }
     
+    @Override
+    public boolean equals(Object obj) {
+        return this.birthNo.equals(((Person) obj).getBirthNo());
+    }
+    
     /**
      * Returns a char indicating what gender this person is.
      * 

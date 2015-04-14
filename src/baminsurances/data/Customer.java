@@ -1,9 +1,12 @@
 package baminsurances.data;
 
+import java.util.Date;
+
 /**
- * Created by baljit on 14.04.2015.
+ * The class representing the company's customers.
+ * 
+ * @author martin
  */
 public class Customer extends Person {
-    
     
 }
