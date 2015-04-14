@@ -23,8 +23,9 @@ public class Person {
      * @param telephoneNo telephone number
      * @param zipCode zip code
      * @param streetAddress street address
-     * @throws IllegalArgumentException if any of the fields are not on the
+     * @throws IllegalArgumentException if any of the arguments are not on the
      * right format, see setter-methods for more info on this
+     * @throws NullPointerException if any of the arguments are null
      */
     public Person(String birthNo, String firstName, String lastName,
             String telephoneNo, String zipCode, String streetAddress) {
@@ -80,6 +81,7 @@ public class Person {
      * @param birthNo new birth number
      * @throws IllegalArgumentException if given birth number is not a valid
      * one
+     * @throws NullPointerException if argument is null
      */
     public void setBirthNo(String birthNo) {
         if (birthNo == null) {
@@ -145,6 +147,7 @@ public class Person {
      * 
      * @param firstName new first name
      * @throws IllegalArgumentException if argument is not on right format
+     * @throws NullPointerException if argument is null
      */
     public void setFirstName(String firstName) {
         if (firstName == null) {
@@ -175,6 +178,7 @@ public class Person {
      * @param lastName new last name
      * @throws IllegalArgumentException if given last name is not on right
      * format
+     * @throws NullPointerException if argument is null
      */
     public void setLastName(String lastName) {
         if (lastName == null) {
@@ -204,6 +208,7 @@ public class Person {
      * @param telephoneNo new telephone number.
      * @throws IllegalArgumentException if given telephone number is not on
      * right format
+     * @throws NullPointerException if argument is null
      */
     public void setTelephoneNo(String telephoneNo) {
         if (telephoneNo == null) {
@@ -233,6 +238,7 @@ public class Person {
      * @param zipCode new zip code
      * @throws IllegalArgumentException if given zip code is not on right
      * format
+     * @throws NullPointerException if argument is null
      */
     public void setZipCode(String zipCode) {
         if (zipCode == null) {
@@ -259,6 +265,7 @@ public class Person {
      * Sets this person's street address to the given value.
      * 
      * @param streetAddress new street address
+     * @throws NullPointerException if argument is null
      */
     public void setStreetAddress(String streetAddress) {
         //TODO handle wrong input
