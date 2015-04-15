@@ -13,7 +13,6 @@ public class Customer extends Person {
     private Calendar registrationDate;
     private String billingZipCode;
     private String billingStreetAddress;
-    private List<Insurance> insuranceList = new ArrayList<>();
     
     /**
      * Creates a new customer with the given values.
@@ -26,6 +25,8 @@ public class Customer extends Person {
      * @param streetAddress street address
      * @param billingZipCode billing zip code
      * @param billingStreetAddress billing street address
+     * @throws NullPointerException if any of the arguments are null
+     * @throws IllegalArgumentException if birthNo is not a number of length 11
      */
     public Customer(String birthNo, String firstName, String lastName,
             String telephoneNo, String zipCode, String streetAddress,
@@ -59,8 +60,12 @@ public class Customer extends Person {
      * Sets this customer's billing zip code to the given value.
      * 
      * @param billingZipCode new billing zip code
+     * @throws NullPointerException if argument is null
      */
     public void setBillingZipCode(String billingZipCode) {
+        if (billingZipCode == null) {
+            throw new NullPointerException("Billing zip code cannot be null.");
+        }
         this.billingZipCode = billingZipCode;
     }
 
@@ -77,52 +82,13 @@ public class Customer extends Person {
      * Sets this customer's billing street address to the given value.
      * 
      * @param billingStreetAddress
+     * @throws NullPointerException if argument is null
      */
     public void setBillingStreetAddress(String billingStreetAddress) {
+        if (billingStreetAddress == null) {
+            throw new NullPointerException("Billing street address cannot " +
+                    "be null.");
+        }
         this.billingStreetAddress = billingStreetAddress;
     }
-    
-    /**
-     * Returns a List of this customer's insurances.
-     * 
-     * @return a list of this customer's insurances
-     */
-    public List<Insurance> getInsuranceList() {
-        return insuranceList;
-    }
-    
-    /**
-     * Adds the given insurance to this customer's list of insurances.
-     * 
-     * @param insurance the insurance to be added
-     */
-    public void addInsurance(Insurance insurance) {
-        insuranceList.add(insurance);
-    }
-    
-    /**
-     * Returns the yearly sum of insurance premiums being paid by this
-     * customer.
-     * 
-     * @return the yearly sum of insurance premiums being paid by this
-     * customer
-     */
-    public long getSumOfInsurancePremiums() {
-        return insuranceList.stream()
-                            .mapToLong(i -> i.getPremium())
-                            .sum();
-    }
-    
-    /**
-     * Returns <code>true</code> if this customer pays for every insurance
-     * type offered by this company.
-     * 
-     * @return <code>true</code> if the customer pays for every insurance
-     * type offered by the company
-     */
-    public boolean isTotalCustomer() {
-        return false;
-    }
-    
-    //TODO get utbetalte erstatninger
 }
