@@ -33,6 +33,10 @@ public class GuiEventHandler implements EventHandler<ActionEvent> {
             registrationWindow.displayWelcomeScene();
         }else if (e.getSource() == registrationWindow.getAdd()){
             registrationWindow.displayAddScene();
+        }else if (e.getSource() == registrationWindow.getPerson()){
+            registrationWindow.displayInsurePersonScene(1);
+        }else if (e.getSource() == registrationWindow.getInsurePersonScene().getRequestRegistration()){
+            registrationWindow.displayInsurePersonScene(2);
         }
     }
 }

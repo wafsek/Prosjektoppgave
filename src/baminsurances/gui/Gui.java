@@ -14,7 +14,7 @@ public class Gui extends Application {
     public static void main(String[] args){
         Config.setProperties();
         System.out.println("Welkommen til " +Config.getApplicationName());
-        //launch(args);
+        launch(args);
     }
 
     @Override

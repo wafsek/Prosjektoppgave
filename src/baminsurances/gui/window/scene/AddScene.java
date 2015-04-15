@@ -1,13 +1,17 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.gui.eventhandler.GuiEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+
+import java.util.logging.Handler;
 
 /**
  * Created by Adrian on 15/04/2015.
@@ -20,8 +24,9 @@ public class AddScene {
     private GridPane fieldBox;
     private TextArea printArea;
     private ScrollPane scrollPane;
+    private Button register;
 
-    public AddScene(GridPane gridPane) {
+    public AddScene(HBox rowBox, GuiEventHandler handler) {
         name = new TextField();
         name.setPromptText("Fornavn");
         surname = new TextField();
@@ -35,16 +40,21 @@ public class AddScene {
         zipCode = new TextField();
         zipCode.setPromptText("Postnummer");
 
+        register = new Button("Registrer");
+        //register.setOnAction(controller);
+
         fieldBox = new GridPane();
-        fieldBox.addColumn(0, name, surname, birthNr, tlfNr, adress, zipCode);
+        fieldBox.addColumn(0, name, surname, birthNr, tlfNr, adress, zipCode, register);
         fieldBox.setAlignment(Pos.CENTER);
         fieldBox.setVgap(30);
         printArea = new TextArea();
+        printArea.setEditable(false);
         scrollPane = new ScrollPane(printArea);
-        scrollPane.setPrefWidth(400);
+        scrollPane.setPrefWidth(600);
         scrollPane.setFitToHeight(true);
+        scrollPane.setFitToWidth(true);
 
-        borderPane = new BorderPane(fieldBox, gridPane, scrollPane, null, null);
+        borderPane = new BorderPane(fieldBox, rowBox, scrollPane, null, null);
 
         scene = new Scene(borderPane);
     }

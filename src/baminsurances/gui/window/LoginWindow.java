@@ -1,5 +1,6 @@
 package baminsurances.gui.window;
 
+import baminsurances.api.Config;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 
 
 /**
@@ -32,9 +34,9 @@ public class LoginWindow {
 
     private Button loginButton;
 
-    GridPane gridPane;
-    HBox logo, login;
-    VBox vBox;
+    private GridPane gridPane;
+    private HBox logo, login;
+    private VBox vBox;
 
     private GuiEventHandler handler;
 
@@ -43,7 +45,7 @@ public class LoginWindow {
     private LoginWindow(){
         companyLogo = new Image(this.getClass().getResourceAsStream("../images/temp_logo.png"));
         stage = new Stage();
-        stage.setTitle("Bam Forsikring");
+        stage.setTitle("");
         stage.getIcons().add(companyLogo);
 
         companyLogoImageView = new ImageView(companyLogo);
@@ -84,10 +86,10 @@ public class LoginWindow {
 
         scene = new Scene(vBox);
         stage.setScene(scene);
-        stage.show();
+        stage.setHeight(325);
+        stage.setWidth(275);
         stage.setResizable(false);
-        stage.setMinHeight(325);
-        stage.setMinWidth(275);
+        stage.show();
 
     }
 

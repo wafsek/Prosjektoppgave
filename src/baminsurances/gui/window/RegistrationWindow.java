@@ -3,15 +3,10 @@ package baminsurances.gui.window;
 import baminsurances.gui.button.IconButton;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.window.scene.AddScene;
+import baminsurances.gui.window.scene.InsurePersonScene;
 import baminsurances.gui.window.scene.WelcomeScene;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -21,21 +16,25 @@ import javafx.stage.Stage;
 public class RegistrationWindow{
 
     private Stage stage;
-    private Scene scene;
-    private GridPane buttonPane;
+    private HBox buttonPane;
 
-    BorderPane borderPane;
+    private int width;
+    private int height;
 
     private Button search, add, stats, house, car, person, boat;
 
     private static RegistrationWindow registrationWindow = new RegistrationWindow();
 
-    private WelcomeScene welcomeScene;
-    private AddScene addScene;
-
     GuiEventHandler handler;
 
+    WelcomeScene welcomeScene;
+    AddScene addScene;
+    InsurePersonScene insurePersonScene;
+
     private RegistrationWindow() {
+
+        height = 600;
+        width = (height*16)/9;
 
         stage = new Stage();
         search = new IconButton().iconButton(100, 100, IconButton.SEARCH_BUTTON);
@@ -46,23 +45,20 @@ public class RegistrationWindow{
         person = new IconButton().iconButton(100, 100, IconButton.INSURE_PERSON_BUTTON);
         boat = new IconButton().iconButton(100, 100, IconButton.INSURE_BOAT_BUTTON);
 
-
-
-        buttonPane = new GridPane();
-        buttonPane.add(search, 0, 0);
-        buttonPane.add(add, 1, 0);
-        buttonPane.add(stats, 2, 0);
-        buttonPane.add(house, 3, 0);
-        buttonPane.add(car, 4, 0);
-        buttonPane.add(person, 5, 0);
-        buttonPane.add(boat, 6, 0);
-        buttonPane.setHgap(10);
+        buttonPane = new HBox(30, search, add, person, house, car, boat, stats);
         buttonPane.setAlignment(Pos.CENTER);
 
+        stage.setWidth(width);
+        stage.setHeight(height);
+        stage.setResizable(false);
 
-        stage.setMinHeight(600);
-        stage.setMinWidth(900);
+    }
 
+    public void clearScene()
+    {
+        welcomeScene = null;
+        addScene = null;
+        insurePersonScene = null;
     }
 
     public Button getSearch() {
@@ -93,6 +89,18 @@ public class RegistrationWindow{
         return boat;
     }
 
+    public WelcomeScene getWelcomeScene() {
+        return welcomeScene;
+    }
+
+    public AddScene getAddScene() {
+        return addScene;
+    }
+
+    public InsurePersonScene getInsurePersonScene() {
+        return insurePersonScene;
+    }
+
     public static RegistrationWindow getRegistrationWindow() {
         return registrationWindow;
     }
@@ -108,21 +116,27 @@ public class RegistrationWindow{
         boat.setOnAction(handler);
     }
 
-    public void clearScene(){
-        addScene = null;
-        welcomeScene = null;
-    }
-
     public void displayWelcomeScene(){
         clearScene();
-        welcomeScene = new WelcomeScene(buttonPane);
+        welcomeScene = new WelcomeScene(buttonPane, handler);
         stage.setScene(welcomeScene.getScene());
         stage.show();
     }
 
     public void displayAddScene(){
         clearScene();
-        addScene = new AddScene(buttonPane);
+        addScene = new AddScene(buttonPane, handler);
         stage.setScene(addScene.getScene());
+    }
+
+    public void displayInsurePersonScene(int sceneNumber) {
+        if(sceneNumber == 1) {
+            clearScene();
+            insurePersonScene = new InsurePersonScene(buttonPane, handler);
+            stage.setScene(insurePersonScene.getScene());
+        } else{
+          stage.setScene(insurePersonScene.requestAccepted());
+        }
+
     }
 }
