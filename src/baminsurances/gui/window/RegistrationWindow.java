@@ -1,6 +1,9 @@
 package baminsurances.gui.window;
 
 import baminsurances.gui.button.IconButton;
+import baminsurances.gui.eventhandler.GuiEventHandler;
+import baminsurances.gui.window.scene.AddScene;
+import baminsurances.gui.window.scene.WelcomeScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -27,6 +30,11 @@ public class RegistrationWindow{
 
     private static RegistrationWindow registrationWindow = new RegistrationWindow();
 
+    private WelcomeScene welcomeScene;
+    private AddScene addScene;
+
+    GuiEventHandler handler;
+
     private RegistrationWindow() {
 
         stage = new Stage();
@@ -37,6 +45,7 @@ public class RegistrationWindow{
         car = new IconButton().iconButton(100, 100, IconButton.INSURE_CAR_BUTTON);
         person = new IconButton().iconButton(100, 100, IconButton.INSURE_PERSON_BUTTON);
         boat = new IconButton().iconButton(100, 100, IconButton.INSURE_BOAT_BUTTON);
+
 
 
         buttonPane = new GridPane();
@@ -50,18 +59,70 @@ public class RegistrationWindow{
         buttonPane.setHgap(10);
         buttonPane.setAlignment(Pos.CENTER);
 
-        borderPane = new BorderPane(null, buttonPane, null, null, null);
-        borderPane.setPadding(new Insets(5, 0, 0, 0));
 
-        scene = new Scene(borderPane);
-        stage.setScene(scene);
         stage.setMinHeight(600);
         stage.setMinWidth(900);
-        stage.show();
 
+    }
+
+    public Button getSearch() {
+        return search;
+    }
+
+    public Button getAdd() {
+        return add;
+    }
+
+    public Button getStats() {
+        return stats;
+    }
+
+    public Button getHouse() {
+        return house;
+    }
+
+    public Button getCar() {
+        return car;
+    }
+
+    public Button getPerson() {
+        return person;
+    }
+
+    public Button getBoat() {
+        return boat;
     }
 
     public static RegistrationWindow getRegistrationWindow() {
         return registrationWindow;
+    }
+
+    public void setGuiEventHandler(GuiEventHandler geh){
+        handler = geh;
+        search.setOnAction(handler);
+        add.setOnAction(handler);
+        stats.setOnAction(handler);
+        house.setOnAction(handler);
+        car.setOnAction(handler);
+        person.setOnAction(handler);
+        boat.setOnAction(handler);
+    }
+
+    public void clearScene(){
+        addScene = null;
+        welcomeScene = null;
+    }
+
+    public void displayWelcomeScene(){
+        clearScene();
+        welcomeScene = new WelcomeScene(buttonPane);
+        stage.setScene(welcomeScene.getScene());
+        stage.show();
+    }
+
+    public void displayAddScene(){
+        clearScene();
+        addScene = new AddScene(buttonPane);
+        stage.setScene(addScene.getScene());
     }
 }
