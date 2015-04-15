@@ -15,12 +15,14 @@ public class GuiEventHandler implements EventHandler<ActionEvent> {
 
     public GuiEventHandler() {
         loginWindow = LoginWindow.getLoginWindow();
+        registrationWindow = RegistrationWindow.getRegistrationWindow();
         setGuiEventHandler();
     }
 
     public void setGuiEventHandler()
     {
         loginWindow.setGuiEventHandler(this);
+        registrationWindow.setGuiEventHandler(this);
     }
 
 
@@ -28,7 +30,9 @@ public class GuiEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent e) {
         if(e.getSource() == loginWindow.getLoginButton()){
             loginWindow.close();
-            registrationWindow = RegistrationWindow.getRegistrationWindow();
+            registrationWindow.displayWelcomeScene();
+        }else if (e.getSource() == registrationWindow.getAdd()){
+            registrationWindow.displayAddScene();
         }
     }
 }
