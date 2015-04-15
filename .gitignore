@@ -72,3 +72,6 @@ local.properties
 
 # Data
 *.dta
+
+# JavaFX
+.idea/workspace.xml
