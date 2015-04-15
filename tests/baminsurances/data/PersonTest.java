@@ -51,12 +51,6 @@ public class PersonTest {
     }
     
     @Test
-    public void illegalBirthNoThrowsIllegalArgumentException() {
-        exception.expect(IllegalArgumentException.class);
-        p.setBirthNo("11111111111");
-    }
-    
-    @Test
     public void nonDigitBirthNoThrowsIllegalArgumentException() {
         exception.expect(IllegalArgumentException.class);
         p.setBirthNo("abcdefghijk");
@@ -88,12 +82,6 @@ public class PersonTest {
         p.setFirstName(firstName);
         assertEquals(firstName, p.getFirstName());
     }
-
-    @Test
-    public void testFirstNameContainingHyphen() {
-        String firstName = "Ole-Martin";
-        p.setFirstName(firstName);
-    }
     
     @Test
     public void nullFirstNameThrowsNullPointerException() {
@@ -106,9 +94,6 @@ public class PersonTest {
         String lastName = "Hansen";
         p.setLastName(lastName);
         assertEquals(lastName, p.getLastName());
-        lastName += " Bjerke";
-        exception.expect(IllegalArgumentException.class);
-        p.setLastName(lastName);
     }
     
     @Test
@@ -118,48 +103,14 @@ public class PersonTest {
     }
     
     @Test
-    public void tooShortTelephoneNoThrowsIllegalArgumentException() {
-        exception.expect(IllegalArgumentException.class);
-        p.setTelephoneNo("1234567");
-    }
-    
-    @Test
-    public void nonDigitTelephoneNoThrowsIllegalArgumentException() {
-        exception.expect(IllegalArgumentException.class);
-        p.setTelephoneNo("abcdefgh");
-    }
-    
-    @Test
     public void nullTelephoneThrowsNullPointerException() {
         exception.expect(NullPointerException.class);
         p.setTelephoneNo(null);
     }
     
     @Test
-    public void legalTelephoneNoDoesntThrowIllegalArgumentException() {
-        p.setTelephoneNo("12345678");
-    }
-    
-    @Test
-    public void tooShortZipCodeThrowsIllegalArgumentException() {
-        exception.expect(IllegalArgumentException.class);
-        p.setZipCode("135");
-    }
-    
-    @Test
-    public void nonDigitZipCodeThrowsIllegalArgumentException() {
-        exception.expect(IllegalArgumentException.class);
-        p.setZipCode("abcd");
-    }
-    
-    @Test
     public void nullZipCodeThrowsNullPointerException() {
         exception.expect(NullPointerException.class);
         p.setZipCode(null);
-    }
-    
-    @Test
-    public void legalZipCodeDoesntThrowIllegalArgumentException() {
-        p.setZipCode("1357");
     }
 }
