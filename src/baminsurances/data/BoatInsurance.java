@@ -6,6 +6,23 @@ public class BoatInsurance extends VehicleInsurance {
     private String motorType;
     private int horsePower;
     
+    /**
+     * Creates a new boat insurance with the given values.
+     * 
+     * @param employee
+     * @param premium
+     * @param amount
+     * @param terms
+     * @param vehicleOwner
+     * @param registrationNo
+     * @param type
+     * @param model
+     * @param lengthInFeet
+     * @param productionYear
+     * @param motorType
+     * @param horsePower
+     * @throws NullPointerException if any of the given arguments are null
+     */
     public BoatInsurance(Employee employee, long premium, long amount,
             String terms, Person vehicleOwner, String registrationNo,
             String type, String model, int lengthInFeet, int productionYear,
