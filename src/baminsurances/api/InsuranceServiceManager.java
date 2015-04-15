@@ -1,20 +1,33 @@
 package baminsurances.api;
 
+import baminsurances.data.InsuranceDataBank;
+
 /**
  * Created by baljit on 14.04.2015.
+ * @author baljit sarai
  */
 public class InsuranceServiceManager {
     
-    //private CustomerRegister()
+    private InsuranceDataBank dataBank;
     
-    private static final InsuranceServiceManager manager = new InsuranceServiceManager();
+    //private static final InsuranceServiceManager manager = new InsuranceServiceManager();
     
     
-    public InsuranceServiceManager()
-    {
-        
+    private InsuranceServiceManager(){
     }
     
-    //public 
+    private void setInsuranceDataBank(InsuranceDataBank dataBank){
+        this.dataBank = dataBank;
+    }
     
+    public InsuranceDataBank getInsuranceDataBank(){
+        return this.dataBank;
+    }
+    
+    public InsuranceServiceManager(InsuranceDataBank dataBank){
+        if(dataBank == null){
+            throw new NullPointerException();
+        }
+        this.setInsuranceDataBank(dataBank);
+    }
 }

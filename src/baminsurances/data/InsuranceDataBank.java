@@ -5,49 +5,53 @@ import java.util.List;
 import java.util.Iterator;
 
 /**
- * Created by baljit on 14.04.2015.
+ * 
+ * @author baljit sarai
  */
 public class InsuranceDataBank {
     
-    private List<Customer> customerList = new ArrayList<Customer>();
+    private List<CustomerInsurance> customerInsuranceList = new ArrayList<CustomerInsurance>();
     private List<Employee> employeeList = new ArrayList<Employee>();
     private static final InsuranceDataBank dataBank = new InsuranceDataBank();
-    
     private InsuranceDataBank(){
-        
     }
     
     public static InsuranceDataBank getInstance(){
         return dataBank;
     }
-
+    
     /**
-     * This method adds a Customer object to the customerList. 
-     * @param customer - Object of type Person. 
+     * This method adds a Customer object to the customerInsuranceList. 
+     * @param customerInsurance - Object of type CustomerInsurance. 
      */
-    public void addCustomer(Customer customer){
-        this.customerList.add(customer);
+    public void addCustomerInsurance(CustomerInsurance customerInsurance){
+        if(customerInsurance == null){
+            throw new NullPointerException("CustomerInsurance object expected; Null receive");
+        }else{
+
+            this.customerInsuranceList.add(customerInsurance);
+        }
     }
     
     
     /**
-     * This method removes a Customer object (With the same  birthNo) from the customerList. 
-     * @param customer - Object of type Person. 
+     * This method removes a CustomerInsurance object (With the same  birthNo) from the customerInsuranceList. 
+     * @param customerInsurance - Object of type CustomerInsurance. 
      */
-    public void removeCustomer(Customer customer){
-        if(customer == null){
-            throw new NullPointerException("Customer object expected; Null receive");
+    public void removeCustomerInsurance(CustomerInsurance customerInsurance){
+        if(customerInsurance == null){
+            throw new NullPointerException("CustomerInsurance object expected; Null receive");
         }else{
-            this.customerList.remove(customer);
+            this.customerInsuranceList.remove(customerInsurance);
         }
     }
 
     /**
-     * Returns customerList
-     * @return customerList - List of Customers objects.
+     * Returns customerInsuranceList
+     * @return customerInsuranceList - List of CustomersInsurance objects.
      */
-    public List<Customer> getCustomerList(){
-        return customerList;
+    public List<CustomerInsurance> getCustomerInsuranceList(){
+        return customerInsuranceList;
     }
 
     /**
@@ -55,12 +59,16 @@ public class InsuranceDataBank {
      * @param employee - Employee object.
      */
     public void addEmployee(Employee employee){
-        this.employeeList.add(employee);
+        if (employee == null){
+            throw new NullPointerException("Employee object expected; null received");
+        }else{
+            this.employeeList.add(employee);
+        }
     }
 
     /**
      * This method removes a Employee object (With the same birthNo) from the employeeList.
-     * @param
+     * @param employee -Employee object.
      */
     public void removeEmployee(Employee employee){
         if (employee == null){
@@ -77,11 +85,5 @@ public class InsuranceDataBank {
     public List<Employee> getEmployeeList(){
         return employeeList;
     }
-    
-    
-    
-    
-    
-    
     
 }

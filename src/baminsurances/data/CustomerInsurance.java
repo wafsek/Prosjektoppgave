@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class CustomerInsurance {
     private Customer customer;
-    private List<Insurance> insuranceList = new ArrayList<>();
+    private List<Insurance> insuranceList = new ArrayList<Insurance>();
     
     public CustomerInsurance(Customer customer, Insurance firstInsurance) {
         this.customer = customer;

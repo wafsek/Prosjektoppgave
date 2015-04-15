@@ -1,4 +1,5 @@
 package baminsurances.gui;
+import baminsurances.api.Config;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.window.LoginWindow;
 import baminsurances.gui.window.RegistrationWindow;
@@ -11,8 +12,9 @@ import javafx.stage.Stage;
 public class Gui extends Application {
 
     public static void main(String[] args){
-
-        launch(args);
+        Config.setProperties();
+        System.out.println("Welkommen til " +Config.getApplicationName());
+        //launch(args);
     }
 
     @Override
