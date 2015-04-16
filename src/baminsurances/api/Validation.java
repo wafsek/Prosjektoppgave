@@ -34,7 +34,7 @@ public class Validation {
      * @param gender the gender to validate
      * @return <code>true</code> if the given gender is a valid one
      */
-    public boolean isValidGender(char gender) {
+    public static boolean isValidGender(char gender) {
         return gender == 'M' || gender == 'F';
     }
     
@@ -43,7 +43,7 @@ public class Validation {
      * @param birthNo the birth number to validate
      * @return <code>true</code> if the given birth number is a valid one
      */
-    public boolean isValidBirthNo(String birthNo) {
+    public static boolean isValidBirthNo(String birthNo) {
         return birthNoIsOnValidFormat(birthNo) &&
                 birthNoHasValidControllNos(birthNo);
     }
@@ -55,7 +55,7 @@ public class Validation {
      * @return <code>true</code> if the given birth number is on the right
      * format
      */
-    public boolean birthNoIsOnValidFormat(String birthNo) {
+    public static boolean birthNoIsOnValidFormat(String birthNo) {
         return birthNo.matches("[0-9]{11}");
     }
     
@@ -76,7 +76,7 @@ public class Validation {
      * @return <code>true</code> if the given birth number's controll numbers
      * are valid ones
      */
-    public boolean birthNoHasValidControllNos(String birthNo) {
+    public static boolean birthNoHasValidControllNos(String birthNo) {
         int controllNo1 = Character.getNumericValue(birthNo.charAt(9));
         int controllNo2 = Character.getNumericValue(birthNo.charAt(10));
         
@@ -112,7 +112,7 @@ public class Validation {
      * @param firstName
      * @return <code>true</code> if the given first name is valid one
      */
-    public boolean isValidFirstName(String firstName) {
+    public static boolean isValidFirstName(String firstName) {
         return firstName.matches("[A-ZÆØÅ][a-zæøå]+([ -][A-ZÆØÅ][a-zæøå]+)?");
     }
     
@@ -125,7 +125,7 @@ public class Validation {
      * @param lastName the last name to validate
      * @return <code>true</code> if the given last name is a valid one
      */
-    public boolean isValidLastName(String lastName) {
+    public static boolean isValidLastName(String lastName) {
         return lastName.matches("[A-ZÆØÅ][a-zæøå]+");
     }
     
@@ -136,7 +136,7 @@ public class Validation {
      * @param zipCode the zip code to validate
      * @return <code>true</code> if the given zip code is a valid one
      */
-    public boolean isValidZipCode(String zipCode) {
+    public static boolean isValidZipCode(String zipCode) {
         return isNumber(zipCode) && isOfLength(zipCode, 4);
     }
     
@@ -147,7 +147,7 @@ public class Validation {
      * @param telephoneNo the telephone number to validate
      * @return <code>true</code> if the given telephone number is a valid one
      */
-    public boolean isValidTelephoneNo(String telephoneNo) {
+    public static boolean isValidTelephoneNo(String telephoneNo) {
         return isNumber(telephoneNo) && isOfLength(telephoneNo, 8);
     }
     
@@ -157,7 +157,7 @@ public class Validation {
      * @param value the value to validate
      * @return <code>true</code> if the given value is a number
      */
-    public boolean isNumber(String value) {
+    public static boolean isNumber(String value) {
         return value.chars()
                     .mapToObj(i -> (char) i)
                     .anyMatch(ch -> !Character.isDigit(ch));
@@ -176,7 +176,7 @@ public class Validation {
      * @param length the length to check for
      * @return <code>true</code> if the given string is of the given length
      */
-    public boolean isOfLength(String text, int length) {
+    public static boolean isOfLength(String text, int length) {
         return text.length() == length;
     }
     
@@ -189,7 +189,7 @@ public class Validation {
      * @param address the address to validate
      * @return <code>true</code> if the given address is a valid one
      */
-    public boolean isValidAddress(String address) {
+    public static boolean isValidAddress(String address) {
         return address.matches("[A-ZÆØÅ][a-zæøå0-9 -]");
     }
     
@@ -200,7 +200,7 @@ public class Validation {
      * @param text the string to check
      * @return <code>true</code> if the given string consists solely of letters
      */
-    public boolean consistsOnlyOfLetters(String text) {
+    public static boolean consistsOnlyOfLetters(String text) {
         return text.chars()
                    .mapToObj(i -> (char) i)
                    .anyMatch(ch -> !Character.isLetter(ch));
