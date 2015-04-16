@@ -43,7 +43,7 @@ public class LoginWindow {
     private static LoginWindow loginWindow = new LoginWindow();
 
     private LoginWindow(){
-        companyLogo = new Image(this.getClass().getResourceAsStream("../images/temp_logo.png"));
+        companyLogo = new Image(this.getClass().getResourceAsStream("../img/temp_logo.png"));
         stage = new Stage();
         stage.setTitle("");
         stage.getIcons().add(companyLogo);

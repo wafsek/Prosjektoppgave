@@ -1,10 +1,11 @@
 package baminsurances.gui;
 import baminsurances.api.Config;
 import baminsurances.gui.eventhandler.GuiEventHandler;
-import baminsurances.gui.window.LoginWindow;
-import baminsurances.gui.window.RegistrationWindow;
+import baminsurances.gui.window.MessageDialog;
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import javax.swing.*;
 
 /**
  * Created by Adrian PC on 10/04/2015.

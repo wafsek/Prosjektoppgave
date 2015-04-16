@@ -1,7 +1,15 @@
 package baminsurances.gui.window.scene;
 
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 /**
  * Created by Adrian on 15/04/2015.
  */
 public class InsureCar {
+
+    private Stage stage;
+    private Scene scene;
+
+
 }

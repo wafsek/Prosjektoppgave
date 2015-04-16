@@ -55,7 +55,8 @@ public class InsurePersonScene {
 
         requestRegistration.setOnAction(handler);
         register = new Button("Registrer forsikring");
-        register.setOnAction(handler);
+        //register.setOnAction(e -> System.out.println(kids.getSelectionModel().getSelectedItem().toString()));
+        //Code to get the selected value in a ComboBox
         birthNo = new TextField();
         birthNo.setPromptText("Skriv inn personnummer");
         printArea = new TextArea();
@@ -80,7 +81,7 @@ public class InsurePersonScene {
 
     public Scene requestAccepted(){
         itemContainer.getChildren().removeAll(birthNo, requestRegistration);
-        itemContainer.addColumn(0, income, dept, kids, relationship);
+        itemContainer.addColumn(0, income, dept, kids, relationship, register);
         borderPane = new BorderPane(itemContainer, rowBox, scrollPane, null, null);
         return new Scene(borderPane);
 

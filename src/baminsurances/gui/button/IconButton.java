@@ -26,7 +26,7 @@ public class IconButton {
     private Button button;
     private ImageView imageViewToBeUsed;
 
-    private String imagePath = "../images/";
+    private String imagePath = "../img/";
 
     public IconButton(){
         button = new Button();
