@@ -7,7 +7,7 @@ import java.util.Calendar;
  * 
  * @author martin
  */
-public class Insurance {
+public abstract class Insurance {
     private static int nextInsuranceNo = 1;
     private int insuranceNo;
     private Employee employee;

@@ -5,7 +5,7 @@ package baminsurances.data;
  * 
  * @author martin
  */
-public class VehicleInsurance extends Insurance {
+public abstract class VehicleInsurance extends Insurance {
     private Person vehicleOwner;
     private String registrationNo;
     private String type;
