@@ -1,11 +1,33 @@
 package baminsurances.data;
 
+/**
+ * A class representing a car insurance in the company's data bank.
+ * 
+ * @author martin
+ */
 public class CarInsurance extends VehicleInsurance {
         private int registrationYear;
         private int yearlyMileage;
         private int pricePerKilometer;
         private int bonus;
         
+        /**
+         * Creates a new car insurance with the given values.
+         * 
+         * @param employee
+         * @param premium
+         * @param amount
+         * @param terms
+         * @param vehicleOwner
+         * @param registrationNo
+         * @param type
+         * @param model
+         * @param registrationYear
+         * @param yearlyMileage
+         * @param pricePerKilometer
+         * @param bonus
+         * @throws NullPointerException if any of the arguments are null
+         */
         public CarInsurance(Employee employee, long premium, long amount,
                 String terms, Person vehicleOwner, String registrationNo,
                 String type, String model, int registrationYear,
