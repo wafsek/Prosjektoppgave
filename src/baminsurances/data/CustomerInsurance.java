@@ -28,9 +28,9 @@ public class CustomerInsurance {
     }
     
     /**
-     * Returns a list containing the insurances that belong to this customer.
+     * Returns a list containing the insurances that belong to the customer.
      * 
-     * @return a list containing the insurances that belong to this customer
+     * @return a list containing the insurances that belong to the customer
      */
     public List<Insurance> getInsurances() {
         return insuranceList;

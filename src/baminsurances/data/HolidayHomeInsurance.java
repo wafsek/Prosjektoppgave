@@ -49,8 +49,10 @@ public class HolidayHomeInsurance extends HomeInsurance {
     }
 
     /**
+     * Sets the insured holiday home to be rented out or not.
      * 
-     * @param rentedOut
+     * @param rentedOut <code>true</code>, if the insured holiday home is being
+     * rented out
      */
     public void setRentedOut(boolean rentedOut) {
         this.rentedOut = rentedOut;
