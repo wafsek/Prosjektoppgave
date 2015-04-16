@@ -1,8 +1,6 @@
 package baminsurances.data;
 
 import java.util.Calendar;
-import java.util.List;
-import java.util.ArrayList;
 
 /**
  * The class representing the company's customers.
