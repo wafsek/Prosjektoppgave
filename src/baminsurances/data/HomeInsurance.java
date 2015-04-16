@@ -18,18 +18,19 @@ public class HomeInsurance extends Insurance {
     
     /**
      * Creates a new home insurance with the given values.
-     * @param employee
-     * @param premium
-     * @param amount
-     * @param terms
-     * @param streetAddress
-     * @param zipCode
-     * @param homeType
-     * @param buildingMaterial
-     * @param standard
-     * @param squareMetres
-     * @param homeAmount
-     * @param contentsAmount
+     * 
+     * @param employee the employee who registered the insurance
+     * @param premium the yearly premium of the insurance
+     * @param amount how much the insurance may cover
+     * @param terms the terms of the insurance
+     * @param streetAddress street address of the insured home
+     * @param zipCode zip code of the insured home
+     * @param homeType type of home
+     * @param buildingMaterial building material used
+     * @param standard standard of the home
+     * @param squareMetres area of the home in square metres
+     * @param homeAmount how much the home itself is insured for
+     * @param contentsAmount how much the contents of the home are insured for
      * @throws NullPointerException if any of the arguments are null
      */
     public HomeInsurance(Employee employee, long premium, long amount,

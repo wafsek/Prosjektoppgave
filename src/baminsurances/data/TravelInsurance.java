@@ -1,5 +1,10 @@
 package baminsurances.data;
 
+/**
+ * A class that represents a travel insurance in the company's data bank.
+ * 
+ * @author martin
+ */
 public class TravelInsurance extends Insurance {
     private String area;
 
