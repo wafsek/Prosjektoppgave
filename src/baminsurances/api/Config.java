@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.io.File;
 
 /**
  * Created by baljit  on 15.04.2015.
@@ -17,25 +18,13 @@ public class Config{
     
     
     private static Properties getProperties(){
-        
         Properties prop = new Properties();
-        InputStream input = null;
-
-        try{
-
-            input = new FileInputStream("C:\\workspace\\git-projects\\prosjektoppgave-programutvikling-2015\\src\\baminsurances\\api\\config.properties");
-            prop.load(input);
+        try(InputStream inputStream = Config.class.getResourceAsStream("config.properties")){
+            prop.load(inputStream);
         } catch (IOException ex) {
             ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-            }
         }
+        
         return prop;
     }
     
@@ -52,4 +41,8 @@ public class Config{
     public static String getDataBankFilePath(){
         return dataBankFilePath;
     }
+    
+    
+    
+    
 }
