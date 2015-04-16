@@ -3,11 +3,8 @@ package baminsurances.api;
 import baminsurances.data.Customer;
 import baminsurances.data.CustomerInsurance;
 import baminsurances.data.InsuranceDataBank;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by baljit on 14.04.2015.
@@ -127,6 +124,10 @@ public class CustomerServiceManager {
             throw new NullPointerException("String Object expected; Null received");
         }
         ArrayList<CustomerInsurance> result = new ArrayList<>();
+        List<CustomerInsurance> customerInsuranceList = dataBank.getCustomerInsuranceList();
+        //customerInsuranceList.stream()
+        //        .filter(s -> s.getCustomer().getFirstName().equals(firstName))
+        //        .forEach( s-> result.add(s));
         for(CustomerInsurance customerInsurance : dataBank.getCustomerInsuranceList()){
             if(customerInsurance.getCustomer().getFirstName().equals(firstName)){
                 result.add(customerInsurance);
@@ -327,60 +328,145 @@ public class CustomerServiceManager {
 
 
     /**
+     * Returns List  of CustomersInsurance who pay less premium  given int value
+     * @param upperLimit The upper limit to compare to 
+     * @return List of CustomerInsurance
+     */
+    public List<CustomerInsurance> getCustomerInsuranceWithPremiumLowerThan(int upperLimit){
+        ArrayList<CustomerInsurance> result = new ArrayList<>();
+        for(CustomerInsurance customerInsurance : dataBank.getCustomerInsuranceList()){
+            if(customerInsurance.getSumOfActivePremiums() < upperLimit){
+                result.add(customerInsurance);
+            }
+        }
+        return result;
+    }
+
+    /**
      * Returns List  of Customers who pay less premium  given int value
      * @param upperLimit The upper limit to compare to 
-     * @return customer - Object of type Customer
+     * @return List of Customers
      */
     public List<Customer> getCustomersWithPremiumLowerThan(int upperLimit){
         ArrayList<Customer> result = new ArrayList<>();
-        for(CustomerInsurance customerInsurance : dataBank.getCustomerInsuranceList()){
-            if(customerInsurance.getSumOfActivePremiums() < upperLimit){
+        for(CustomerInsurance customerInsurance : this.getCustomerInsuranceWithPremiumLowerThan(upperLimit)){
                 result.add(customerInsurance.getCustomer());
+        }
+        return result;
+    }
+
+    /**
+     * Returns List  of CustomerInsurances who pay premium  within given limits (Lower limit is inclusive, upper limit exclusive)
+     * @param upperLimit The upper limit to compare to.
+     * @param lowerLimit The lower limit to compare to.
+     * @return List of CustomerInsurances
+     */
+    public List<CustomerInsurance> getCustomerInsurancesWithPremiumBetweenLimits(int upperLimit , int lowerLimit){
+        ArrayList<CustomerInsurance> result = new ArrayList<>();
+        for(CustomerInsurance customerInsurance : dataBank.getCustomerInsuranceList()){
+            if(customerInsurance.getSumOfActivePremiums() < upperLimit &&
+                    customerInsurance.getSumOfActivePremiums() >= lowerLimit){
+                result.add(customerInsurance);
             }
         }
         return result;
     }
 
-
     /**
-     *Find and returns List  of Customers who pay premium  within given limits (Lower limit is inclusive, upper limit exclusive)
-     * @param upperLimit - int
-     * @param lowerLimit -int
-     * @return customer - Object of type Customer
+     * Returns List  of Customers who pay premium  within given limits (Lower limit is inclusive, upper limit exclusive)
+     * @param upperLimit The upper limit to compare to.
+     * @param lowerLimit The lower limit to compare to.
+     * @return List of Customers
      */
     public List<Customer> getCustomersWithPremiumBetweenLimits(int upperLimit , int lowerLimit){
         ArrayList<Customer> result = new ArrayList<>();
-        for(CustomerInsurance customerInsurance : dataBank.getCustomerInsuranceList()){
-            if(customerInsurance.getSumOfActivePremiums() < upperLimit &&
-                    customerInsurance.getSumOfActivePremiums() >= lowerLimit){
+        for(CustomerInsurance customerInsurance : this.getCustomerInsurancesWithPremiumBetweenLimits(upperLimit, lowerLimit)){
                 result.add(customerInsurance.getCustomer());
+        }
+        return result;
+    }
+    
+    /**
+     * Returns List  of CustomerInsurances who have been registered between given dates
+     * @param startDate The Start date to compare to.
+     * @param endDate The End date to compare to.
+     * @return List of CustomerInsurances
+     */
+    public List<CustomerInsurance> getCustomerInsurancesRegisteredBetweenDate(Calendar startDate, Calendar endDate){
+        if(startDate == null || endDate == null){
+            throw new NullPointerException("Both startDate and endDate expected to be Calendar Objects; one or both Null Received");
+        }
+        ArrayList<CustomerInsurance> result = new ArrayList<>();
+        for(CustomerInsurance customerInsurance : dataBank.getCustomerInsuranceList()){
+            if(customerInsurance.getCustomer().getRegistrationDate().after(startDate) &&
+                    customerInsurance.getCustomer().getRegistrationDate().before(endDate)){
+                result.add(customerInsurance);
             }
         }
         return result;
     }
 
+    /**
+     * Returns List  of Customers who have been registered between given dates
+     * @param startDate The Start date to compare to.
+     * @param endDate The End date to compare to.
+     * @return List of Customers
+     */
+    public List<Customer> getCustomerRegisteredBetweenDate(Calendar startDate, Calendar endDate){
+        if(startDate == null || endDate == null){
+            throw new NullPointerException("Both startDate and endDate expected to be Calendar Objects; one or both Null Received");
+        }
+        ArrayList<Customer> result = new ArrayList<>();
+        for(CustomerInsurance customerInsurance : this.getCustomerInsurancesRegisteredBetweenDate(startDate, endDate)){
+                result.add(customerInsurance.getCustomer());
+        }
+        return result;
+    }
 
     /**
-     *Find and returns List  of Customers who have been registered between given dates
-     * @param startDate - Calender
-     * @param endDate - 
-     * @return customer - Object of type Customer
+     * Returns List of CustomerInsurances who have been registered less then given days
+     * @param days The number to days to compare to.
+     * @return List of CustomerInsurances
      */
-    public List<Customer> getCustomersWithPremiumBetweenLimits(Date startDate, Date endDate){
-        ArrayList<Customer> result = new ArrayList<>();
+    public List<CustomerInsurance> getCustomerInsurancesRegisteredLessThanDaysAgo(int days){
+        ArrayList<CustomerInsurance> result = new ArrayList<>();
+        long diff;
+        GregorianCalendar now = new GregorianCalendar();
         for(CustomerInsurance customerInsurance : dataBank.getCustomerInsuranceList()){
-            if(customerInsurance.getSumOfActivePremiums() < upperLimit &&
-                    customerInsurance.getSumOfActivePremiums() >= lowerLimit){
+            diff = now.getTimeInMillis() - customerInsurance.getCustomer().getRegistrationDate().getTimeInMillis();
+            if(days > TimeCalculator.millisecondsToDays(diff)){
+                result.add(customerInsurance);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns List of Customers who have been registered less then given days
+     * @param days The number to days to compare to.
+     * @return List of Customers
+     */
+    public List<Customer> getCustomersRegisteredLessThanDaysAgo(int days){
+        ArrayList<Customer> result = new ArrayList<>();
+        long diff;
+        GregorianCalendar now = new GregorianCalendar();
+        for(CustomerInsurance customerInsurance : dataBank.getCustomerInsuranceList()){
+            diff = now.getTimeInMillis() - customerInsurance.getCustomer().getRegistrationDate().getTimeInMillis();
+            if(days > TimeCalculator.millisecondsToDays(diff)){
                 result.add(customerInsurance.getCustomer());
             }
         }
         return result;
     }
     
+    
     /**
      *
      *
      * @
      */
+    
+    
+    
     
 }
