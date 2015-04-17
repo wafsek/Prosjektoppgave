@@ -15,5 +15,5 @@ public class InsureCar {
     private Scene scene;
 
     private ComboBox<String> yearOfProduction, carBrand, carType, bonus;
-    private TextArea
+    private TextArea printArea;
 }
