@@ -1,21 +1,18 @@
 package baminsurances.gui.window.scene;
 
 import baminsurances.gui.eventhandler.GuiEventHandler;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import javafx.scene.layout.VBox;
 
 /**
  * Created by Adrian on 15/04/2015.
@@ -29,9 +26,16 @@ public class InsureCar {
     private ComboBox yearOfProduction, carBrand, carType, bonus;
     private TextArea printArea;
 
-    GuiEventHandler handler;
+    private Button register;
 
-    public InsureCar(HBox rowBox, GuiEventHandler handler){
+    private BorderPane borderPane;
+    private VBox vBox;
+    private ScrollPane scrollPane;
+    private GridPane itemContainer;
+
+    private GuiEventHandler handler;
+
+    public InsureCar(HBox rowBox, HBox footer, GuiEventHandler handler){
         this.handler = handler;
 
         yearOfProductionList = FXCollections.observableArrayList("1960 eller ti" +
@@ -57,9 +61,32 @@ public class InsureCar {
                 "-10%", "-20%", "-30%", "-40%", "-50%");
 
         yearOfProduction = new ComboBox(yearOfProductionList);
+        yearOfProduction.setPromptText("Velg produksjonsår");
         carBrand = new ComboBox(carBrandList);
+        carBrand.setPromptText("Velg bilmerke");
         carType = new ComboBox(carTypeList);
+        carType.setPromptText("Velg forsikringsgrunnlag");
         bonus = new ComboBox(bonusList);
+        bonus.setPromptText("Velg bonus");
+        printArea = new TextArea();
+        printArea.setEditable(false);
 
+        register = new Button("Registrer");
+
+        itemContainer = new GridPane();
+        itemContainer.addColumn(0, yearOfProduction, carBrand, carType, bonus, register);
+        itemContainer.setAlignment(Pos.CENTER);
+        itemContainer.setVgap(30);
+        scrollPane = new ScrollPane(printArea);
+        scrollPane.setPrefWidth(600);
+        scrollPane.setFitToHeight(true);
+        scrollPane.setFitToWidth(true);
+        borderPane = new BorderPane(itemContainer, rowBox, scrollPane, footer, null);
+
+        scene = new Scene(borderPane);
+    }
+
+    public Scene getScene(){
+        return scene;
     }
 }

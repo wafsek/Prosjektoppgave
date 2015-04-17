@@ -109,4 +109,8 @@ public class LoginWindow {
         handler = geh;
         loginButton.setOnAction(handler);
     }
+
+    public void show(){
+        loginWindow = new LoginWindow();
+    }
 }

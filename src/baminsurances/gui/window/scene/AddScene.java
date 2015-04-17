@@ -26,7 +26,7 @@ public class AddScene {
     private ScrollPane scrollPane;
     private Button register;
 
-    public AddScene(HBox rowBox, GuiEventHandler handler) {
+    public AddScene(HBox rowBox, HBox footer, GuiEventHandler handler) {
         name = new TextField();
         name.setPromptText("Fornavn");
         surname = new TextField();
@@ -54,7 +54,7 @@ public class AddScene {
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
 
-        borderPane = new BorderPane(fieldBox, rowBox, scrollPane, null, null);
+        borderPane = new BorderPane(fieldBox, rowBox, scrollPane, footer, null);
 
         scene = new Scene(borderPane);
     }

@@ -30,11 +30,12 @@ public class InsurePersonScene {
 
     private GuiEventHandler handler;
 
-    private HBox rowBox;
+    private HBox rowBox, footer;
 
-    public InsurePersonScene(HBox rowBox, GuiEventHandler handler)
+    public InsurePersonScene(HBox rowBox, HBox footer, GuiEventHandler handler)
     {
         this.rowBox = rowBox;
+        this.footer = footer;
         this.handler = handler;
         birthNo = new TextField();
         incomeArray = FXCollections.observableArrayList("150.000 eller minde.", "150.000 - 250.000",
@@ -70,7 +71,7 @@ public class InsurePersonScene {
         itemContainer.addColumn(0, birthNo, requestRegistration);
         itemContainer.setAlignment(Pos.CENTER);
         itemContainer.setVgap(30);
-        borderPane = new BorderPane(itemContainer, rowBox, null, null, null);
+        borderPane = new BorderPane(itemContainer, rowBox, null, footer, null);
 
         scene = new Scene(borderPane);
     }
@@ -82,7 +83,7 @@ public class InsurePersonScene {
     public Scene requestAccepted(){
         itemContainer.getChildren().removeAll(birthNo, requestRegistration);
         itemContainer.addColumn(0, income, dept, kids, relationship, register);
-        borderPane = new BorderPane(itemContainer, rowBox, scrollPane, null, null);
+        borderPane = new BorderPane(itemContainer, rowBox, scrollPane, footer, null);
         return new Scene(borderPane);
 
     }
