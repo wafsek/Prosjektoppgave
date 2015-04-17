@@ -45,7 +45,7 @@ public class LoginWindow {
     private LoginWindow(){
         companyLogo = new Image(this.getClass().getResourceAsStream("../img/temp_logo.png"));
         stage = new Stage();
-        stage.setTitle("");
+        stage.setTitle(Config.getApplicationName());
         stage.getIcons().add(companyLogo);
 
         companyLogoImageView = new ImageView(companyLogo);

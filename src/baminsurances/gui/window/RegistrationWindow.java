@@ -1,5 +1,6 @@
 package baminsurances.gui.window;
 
+import baminsurances.api.Config;
 import baminsurances.gui.button.IconButton;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.window.scene.AddScene;
@@ -7,6 +8,7 @@ import baminsurances.gui.window.scene.InsurePersonScene;
 import baminsurances.gui.window.scene.WelcomeScene;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -51,6 +53,8 @@ public class RegistrationWindow{
         stage.setWidth(width);
         stage.setHeight(height);
         stage.setResizable(false);
+        stage.setTitle(Config.getApplicationName());
+        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../img/temp_logo.png")));
 
     }
 
