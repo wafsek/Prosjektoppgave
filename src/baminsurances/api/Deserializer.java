@@ -24,7 +24,6 @@ public class Deserializer {
             ObjectInputStream ois = new ObjectInputStream(fin);
             bokRegister = (InsuranceDataBank) ois.readObject();
             ois.close();
-
             return bokRegister;
 
         }catch(EOFException ex)
