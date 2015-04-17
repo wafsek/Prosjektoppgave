@@ -1,6 +1,9 @@
 package baminsurances.gui.window.scene;
 
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 /**
@@ -11,5 +14,6 @@ public class InsureCar {
     private Stage stage;
     private Scene scene;
 
-
+    private ComboBox<String> yearOfProduction, carBrand, carType, bonus;
+    private TextArea
 }
