@@ -137,7 +137,7 @@ public class Validation {
      * @return <code>true</code> if the given zip code is a valid one
      */
     public static boolean isValidZipCode(String zipCode) {
-        return isNumber(zipCode) && isOfLength(zipCode, 4);
+        return consistsOnlyOfNumbers(zipCode) && isOfLength(zipCode, 4);
     }
     
     /**
@@ -148,7 +148,7 @@ public class Validation {
      * @return <code>true</code> if the given telephone number is a valid one
      */
     public static boolean isValidTelephoneNo(String telephoneNo) {
-        return isNumber(telephoneNo) && isOfLength(telephoneNo, 8);
+        return consistsOnlyOfNumbers(telephoneNo) && isOfLength(telephoneNo, 8);
     }
     
     /**
@@ -157,16 +157,10 @@ public class Validation {
      * @param value the value to validate
      * @return <code>true</code> if the given value is a number
      */
-    public static boolean isNumber(String value) {
-        return value.chars()
-                    .mapToObj(i -> (char) i)
-                    .anyMatch(ch -> !Character.isDigit(ch));
-        /*for (char ch : value.toCharArray()) {
-            if (!Character.isDigit(ch)) {
-                return false;
-            }
-        }
-        return false;*/
+    public static boolean consistsOnlyOfNumbers(String value) {
+        return value.length() > 0 && value.chars()
+                                          .mapToObj(i -> (char) i)
+                                          .allMatch(Character::isDigit);
     }
     
     /**
@@ -203,6 +197,6 @@ public class Validation {
     public static boolean consistsOnlyOfLetters(String text) {
         return text.chars()
                    .mapToObj(i -> (char) i)
-                   .anyMatch(ch -> !Character.isLetter(ch));
+                   .allMatch(Character::isLetter);
     }
 }
