@@ -98,7 +98,7 @@ public class LoginWindow {
     }
 
     public void close() {
-        stage.close();
+        stage.hide();
     }
 
     public static LoginWindow getLoginWindow() {
@@ -111,6 +111,6 @@ public class LoginWindow {
     }
 
     public void show(){
-        loginWindow = new LoginWindow();
+        stage.show();
     }
 }

@@ -2,11 +2,10 @@ package baminsurances.gui.window;
 
 import baminsurances.api.Config;
 import baminsurances.gui.button.IconButton;
+import baminsurances.gui.eventhandler.Controller;
 import baminsurances.gui.eventhandler.GuiEventHandler;
-import baminsurances.gui.window.scene.AddScene;
-import baminsurances.gui.window.scene.InsureCar;
-import baminsurances.gui.window.scene.InsurePersonScene;
-import baminsurances.gui.window.scene.WelcomeScene;
+import baminsurances.gui.eventhandler.KeyPressHandler;
+import baminsurances.gui.window.scene.*;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -16,7 +15,7 @@ import javafx.stage.Stage;
 /**
  * Created by Adrian PC on 10/04/2015.
  */
-public class RegistrationWindow{
+public class OperationWindow {
 
     private Stage stage;
     private HBox buttonPane, footer;
@@ -26,18 +25,19 @@ public class RegistrationWindow{
 
     private Button search, add, stats, house, car, person, boat, logOut;
 
-    private static RegistrationWindow registrationWindow = new RegistrationWindow();
+    private static OperationWindow operationWindow = new OperationWindow();
 
     private GuiEventHandler handler;
 
     private WelcomeScene welcomeScene;
     private AddScene addScene;
     private InsurePersonScene insurePersonScene;
-    private InsureCar insureCarScene;
+    private InsureCarScene insureCarScene;
+    private StatisticsScene statisticsScene;
 
 
-    private RegistrationWindow() {
 
+    private OperationWindow() {
         height = 600;
         width = (height*16)/9;
 
@@ -62,13 +62,6 @@ public class RegistrationWindow{
         stage.setTitle(Config.getApplicationName());
         stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../img/temp_logo.png")));
 
-    }
-
-    public void clearScene()
-    {
-        welcomeScene = null;
-        addScene = null;
-        insurePersonScene = null;
     }
 
     public Button getSearch() {
@@ -115,8 +108,16 @@ public class RegistrationWindow{
         return insurePersonScene;
     }
 
-    public static RegistrationWindow getRegistrationWindow() {
-        return registrationWindow;
+    public InsureCarScene getInsureCarScene(){
+        return insureCarScene;
+    }
+
+    public StatisticsScene getStatisticsScene(){
+        return statisticsScene;
+    }
+
+    public static OperationWindow getOperationWindow() {
+        return operationWindow;
     }
 
     public void setGuiEventHandler(GuiEventHandler geh){
@@ -132,33 +133,42 @@ public class RegistrationWindow{
     }
 
     public void displayWelcomeScene(){
-        clearScene();
+
         welcomeScene = new WelcomeScene(buttonPane, footer, handler);
         stage.setScene(welcomeScene.getScene());
         stage.show();
     }
 
     public void displayAddScene(){
-        clearScene();
+
         addScene = new AddScene(buttonPane, footer, handler);
         stage.setScene(addScene.getScene());
     }
 
     public void displayInsurePersonScene(int sceneNumber) {
         if(sceneNumber == 1) {
-            clearScene();
+
             insurePersonScene = new InsurePersonScene(buttonPane, footer, handler);
             stage.setScene(insurePersonScene.getScene());
         } else{
-          stage.setScene(insurePersonScene.requestAccepted());
+            stage.setScene(insurePersonScene.requestApproved());
         }
 
     }
 
-    public void displayInsureCarScene(){
-        clearScene();
-        insureCarScene = new InsureCar(buttonPane, footer, handler);
-        stage.setScene(insureCarScene.getScene());
+    public void displayInsureCarScene(int sceneNumber){
+        if (sceneNumber == 1) {
+
+            insureCarScene = new InsureCarScene(buttonPane, footer, handler);
+            stage.setScene(insureCarScene.getScene());
+        }else{
+            stage.setScene(insureCarScene.requestApproved());
+        }
+    }
+
+    public void displayStatsScene(){
+        statisticsScene = new StatisticsScene(footer, new KeyPressHandler(), new Controller(), handler);
+        stage.setScene(statisticsScene.getScene());
     }
 
     public void close(){

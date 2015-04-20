@@ -44,7 +44,6 @@ public class InsurePersonScene {
                 "250.000 - 500.000", "500.000 - 1.500.000", "1.500.000 eller mer");
         kidsArray = FXCollections.observableArrayList("0", "1", "2", "3", "4", "5 eller fler");
         relationshipArray = FXCollections.observableArrayList("Singel", "I et forhold", "Gift");
-        requestRegistration = new Button("Finn person");
         kids = new ComboBox(kidsArray);
         kids.setPromptText("Barn");
         relationship = new ComboBox(relationshipArray);
@@ -54,9 +53,11 @@ public class InsurePersonScene {
         dept = new ComboBox(deptArray);
         dept.setPromptText("Gjeld");
 
+        requestRegistration = new Button("Finn person");
         requestRegistration.setOnAction(handler);
         register = new Button("Registrer forsikring");
-        //register.setOnAction(e -> System.out.println(kids.getSelectionModel().getSelectedItem().toString()));
+        //register.setOnAction(e -> System.out.println(kids.getSelectionModel().getSelectedItem().toString()))
+        //kids.getValue()
         //Code to get the selected value in a ComboBox
         birthNo = new TextField();
         birthNo.setPromptText("Skriv inn personnummer");
@@ -80,7 +81,7 @@ public class InsurePersonScene {
         return scene;
     }
 
-    public Scene requestAccepted(){
+    public Scene requestApproved(){
         itemContainer.getChildren().removeAll(birthNo, requestRegistration);
         itemContainer.addColumn(0, income, dept, kids, relationship, register);
         borderPane = new BorderPane(itemContainer, rowBox, scrollPane, footer, null);

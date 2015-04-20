@@ -2,7 +2,7 @@ package baminsurances.gui.eventhandler;
 
 import baminsurances.gui.window.LoginWindow;
 import baminsurances.gui.window.MessageDialog;
-import baminsurances.gui.window.RegistrationWindow;
+import baminsurances.gui.window.OperationWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -12,18 +12,18 @@ import javafx.event.EventHandler;
 public class GuiEventHandler implements EventHandler<ActionEvent> {
 
     private LoginWindow loginWindow;
-    private RegistrationWindow registrationWindow;
+    private OperationWindow operationWindow;
 
     public GuiEventHandler() {
         loginWindow = LoginWindow.getLoginWindow();
-        registrationWindow = RegistrationWindow.getRegistrationWindow();
+        operationWindow = OperationWindow.getOperationWindow();
         setGuiEventHandler();
     }
 
     public void setGuiEventHandler()
     {
         loginWindow.setGuiEventHandler(this);
-        registrationWindow.setGuiEventHandler(this);
+        operationWindow.setGuiEventHandler(this);
     }
 
 
@@ -31,23 +31,30 @@ public class GuiEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent e) {
         if(e.getSource() == loginWindow.getLoginButton()){
             loginWindow.close();
-            registrationWindow.displayWelcomeScene();
-        }else if (e.getSource() == registrationWindow.getAdd()){
-            registrationWindow.displayAddScene();
-        }else if (e.getSource() == registrationWindow.getPerson()){
-            registrationWindow.displayInsurePersonScene(1);
-        }else if (registrationWindow.getInsurePersonScene() != null &&
-                e.getSource() == registrationWindow.getInsurePersonScene().getRequestRegistration()){
-            registrationWindow.displayInsurePersonScene(2);
-        }else if (e.getSource() == registrationWindow.getCar()){
-            registrationWindow.displayInsureCarScene();
-        }else if (e.getSource() == registrationWindow.getLogOut()){
+            operationWindow.displayWelcomeScene();
+        }else if (e.getSource() == operationWindow.getAdd()){
+            operationWindow.displayAddScene();
+        }else if (e.getSource() == operationWindow.getPerson()){
+            operationWindow.displayInsurePersonScene(1);
+        }else if (operationWindow.getInsurePersonScene() != null &&
+                e.getSource() == operationWindow.getInsurePersonScene().getRequestRegistration()){
+            operationWindow.displayInsurePersonScene(2);
+        }else if (e.getSource() == operationWindow.getLogOut()){
             if (new MessageDialog().showMessageDialog("Logg ut", "Er du sikke" +
                     "r på at du vil logge ut?", MessageDialog.QUESTION_ICON,
                     MessageDialog.YES__NO_OPTION)==MessageDialog.YES_OPTION){
-                registrationWindow.close();
+                operationWindow.close();
                 loginWindow.show();
             }
+        }else if (e.getSource() == operationWindow.getCar()){
+            operationWindow.displayInsureCarScene(1);
+        }else if (operationWindow.getInsurePersonScene() != null &&
+                e.getSource() == operationWindow.getInsureCarScene().getRequestRegistration()) {
+            operationWindow.displayInsureCarScene(2);
+        }else if (e.getSource() == operationWindow.getStats()){
+            operationWindow.displayStatsScene();
+        }else if(e.getSource() == operationWindow.getStatisticsScene().getBackToRegistration()){
+            operationWindow.displayWelcomeScene();
         }
     }
 }

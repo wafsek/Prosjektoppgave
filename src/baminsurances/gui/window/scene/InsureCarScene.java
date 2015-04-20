@@ -5,19 +5,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+
 
 /**
  * Created by Adrian on 15/04/2015.
  */
-public class InsureCar {
+public class InsureCarScene {
 
     private Scene scene;
 
@@ -26,17 +23,20 @@ public class InsureCar {
     private ComboBox yearOfProduction, carBrand, carType, bonus;
     private TextArea printArea;
 
-    private Button register;
+    private Button register, requestRegistration;
+    private TextField birthnumber;
 
     private BorderPane borderPane;
-    private VBox vBox;
     private ScrollPane scrollPane;
     private GridPane itemContainer;
 
     private GuiEventHandler handler;
+    private HBox rowBox, footer;
 
-    public InsureCar(HBox rowBox, HBox footer, GuiEventHandler handler){
+    public InsureCarScene(HBox rowBox, HBox footer, GuiEventHandler handler){
         this.handler = handler;
+        this.rowBox = rowBox;
+        this.footer = footer;
 
         yearOfProductionList = FXCollections.observableArrayList("1960 eller ti" +
                 "dligere", "1961 - 1970", "1971 - 1980", "1981 - 1990", "1991 - 2000",
@@ -72,21 +72,41 @@ public class InsureCar {
         printArea.setEditable(false);
 
         register = new Button("Registrer");
+        register.setOnAction(handler);
+        requestRegistration = new Button("Finn person");
+        requestRegistration.setOnAction(handler);
+
+        birthnumber = new TextField();
+        birthnumber.setPromptText("Skriv inn personnummer");
 
         itemContainer = new GridPane();
-        itemContainer.addColumn(0, yearOfProduction, carBrand, carType, bonus, register);
+        itemContainer.addColumn(0, birthnumber, requestRegistration);
         itemContainer.setAlignment(Pos.CENTER);
         itemContainer.setVgap(30);
         scrollPane = new ScrollPane(printArea);
         scrollPane.setPrefWidth(600);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
-        borderPane = new BorderPane(itemContainer, rowBox, scrollPane, footer, null);
+
+        borderPane = new BorderPane(itemContainer, rowBox, null, footer, null);
 
         scene = new Scene(borderPane);
+
     }
 
     public Scene getScene(){
         return scene;
+    }
+
+    public Scene requestApproved(){
+        itemContainer.getChildren().removeAll(birthnumber, requestRegistration);
+        itemContainer.addColumn(0, yearOfProduction, carBrand, carType, bonus, register);
+        borderPane = new BorderPane(itemContainer, rowBox, scrollPane, footer, null);
+        return new Scene(borderPane);
+    }
+
+    public Button getRequestRegistration(){
+        System.out.println("Jeg blir kalt");
+        return requestRegistration;
     }
 }
