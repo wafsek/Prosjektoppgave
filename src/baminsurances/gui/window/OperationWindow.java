@@ -167,7 +167,7 @@ public class OperationWindow {
     }
 
     public void displayStatsScene(){
-        statisticsScene = new StatisticsScene(footer, new KeyPressHandler(), new Controller(), handler);
+        statisticsScene = new StatisticsScene(footer, new KeyPressHandler(this), new Controller(), handler);
         stage.setScene(statisticsScene.getScene());
     }
 

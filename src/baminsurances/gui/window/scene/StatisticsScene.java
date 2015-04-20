@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Created by Adrian PC on 19/04/2015.
@@ -28,7 +29,7 @@ public class StatisticsScene {
 
     private TextField employeeNmbr, birthNmbr, firstName, lastName,
             carBrand, carType, adress;
-    private TextField[] textFields;
+    private ArrayList<TextField> textFields;
     private Text from, to;
     private DatePicker fromDate, toDate;
 
@@ -69,8 +70,14 @@ public class StatisticsScene {
         adress = new TextField();
         adress.setPromptText("Adresse");
         adress.setOnKeyReleased(keyHandler);
-        textFields = new Button[employeeNmbr, birthNmbr, firstName,
-                lastName, carBrand, carType, adress];
+        textFields = new ArrayList<TextField>();
+        textFields.add(employeeNmbr);
+        textFields.add(birthNmbr);
+        textFields.add(firstName);
+        textFields.add(lastName);
+        textFields.add(carBrand);
+        textFields.add(carType);
+        textFields.add(adress);
 
         fieldContainer = new GridPane();
         fieldContainer.addColumn(0, employeeNmbr, birthNmbr, firstName,
@@ -122,7 +129,7 @@ public class StatisticsScene {
         return backToRegistration;
     }
 
-    public TextField[] getTextFields(){
+    public ArrayList getTextFields(){
         return textFields;
     }
 
