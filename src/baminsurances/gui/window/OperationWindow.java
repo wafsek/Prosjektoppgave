@@ -34,8 +34,8 @@ public class OperationWindow {
     private InsurePersonScene insurePersonScene;
     private InsureCarScene insureCarScene;
     private StatisticsScene statisticsScene;
-
-
+    private InsureHouseScene insureHouseScene;
+    private InsureBoatScene insureBoatScene;
 
     private OperationWindow() {
         height = 600;
@@ -62,6 +62,13 @@ public class OperationWindow {
         stage.setTitle(Config.getApplicationName());
         stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../img/temp_logo.png")));
 
+        welcomeScene = new WelcomeScene(buttonPane, footer, handler);
+        addScene = new AddScene(buttonPane, footer, handler);
+        insurePersonScene = new InsurePersonScene(buttonPane, footer, handler);
+        insureHouseScene = new InsureHouseScene(buttonPane, footer, handler);
+        insureCarScene = new InsureCarScene(buttonPane, footer, handler);
+        insureBoatScene = new InsureBoatScene(buttonPane, footer, handler);
+        statisticsScene = new StatisticsScene(footer, new KeyPressHandler(this), new Controller(), handler);
     }
 
     public Button getSearch() {
@@ -116,6 +123,14 @@ public class OperationWindow {
         return statisticsScene;
     }
 
+    public InsureHouseScene getInsureHouseScene(){
+        return insureHouseScene;
+    }
+
+    public InsureBoatScene getInsureBoatScene(){
+        return insureBoatScene;
+    }
+
     public static OperationWindow getOperationWindow() {
         return operationWindow;
     }
@@ -133,21 +148,19 @@ public class OperationWindow {
     }
 
     public void displayWelcomeScene(){
-
         welcomeScene = new WelcomeScene(buttonPane, footer, handler);
+        statisticsScene = new StatisticsScene(footer, new KeyPressHandler(this), new Controller(), handler);
         stage.setScene(welcomeScene.getScene());
         stage.show();
     }
 
     public void displayAddScene(){
-
         addScene = new AddScene(buttonPane, footer, handler);
         stage.setScene(addScene.getScene());
     }
 
     public void displayInsurePersonScene(int sceneNumber) {
         if(sceneNumber == 1) {
-
             insurePersonScene = new InsurePersonScene(buttonPane, footer, handler);
             stage.setScene(insurePersonScene.getScene());
         } else{
@@ -158,7 +171,6 @@ public class OperationWindow {
 
     public void displayInsureCarScene(int sceneNumber){
         if (sceneNumber == 1) {
-
             insureCarScene = new InsureCarScene(buttonPane, footer, handler);
             stage.setScene(insureCarScene.getScene());
         }else{
@@ -169,6 +181,24 @@ public class OperationWindow {
     public void displayStatsScene(){
         statisticsScene = new StatisticsScene(footer, new KeyPressHandler(this), new Controller(), handler);
         stage.setScene(statisticsScene.getScene());
+    }
+
+    public void displayInsureHouseScene(int sceneNumber){
+        if(sceneNumber == 1){
+            insureHouseScene = new InsureHouseScene(buttonPane, footer, handler);
+            stage.setScene(insureHouseScene.getScene());
+        }else{
+            stage.setScene(insureHouseScene.requestApproved());
+        }
+    }
+
+    public void displayInsureBoatScene(int sceneNumber){
+        if(sceneNumber == 1){
+            insureBoatScene = new InsureBoatScene(buttonPane, footer, handler);
+            stage.setScene(insureBoatScene.getScene());
+        }else{
+            stage.setScene(insureBoatScene.requestApproved());
+        }
     }
 
     public void close(){

@@ -82,7 +82,7 @@ public class LoginWindow {
         gridPane.setAlignment(Pos.CENTER);
 
         vBox.getChildren().addAll(logo, gridPane, login);
-        vBox.backgroundProperty().setValue(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+        vBox.backgroundProperty().setValue(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY) ));
 
         scene = new Scene(vBox);
         stage.setScene(scene);
@@ -90,7 +90,6 @@ public class LoginWindow {
         stage.setWidth(275);
         stage.setResizable(false);
         stage.show();
-
     }
 
     public Button getLoginButton() {

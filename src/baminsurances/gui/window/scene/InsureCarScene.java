@@ -106,7 +106,6 @@ public class InsureCarScene {
     }
 
     public Button getRequestRegistration(){
-        System.out.println("Jeg blir kalt");
         return requestRegistration;
     }
 }

@@ -43,7 +43,7 @@ public class InsurePersonScene {
         deptArray = FXCollections.observableArrayList("150.000 eller minde.", "150.000 - 250.000",
                 "250.000 - 500.000", "500.000 - 1.500.000", "1.500.000 eller mer");
         kidsArray = FXCollections.observableArrayList("0", "1", "2", "3", "4", "5 eller fler");
-        relationshipArray = FXCollections.observableArrayList("Singel", "I et forhold", "Gift");
+        relationshipArray = FXCollections.observableArrayList("Har samboer", "Har ikke samboer");
         kids = new ComboBox(kidsArray);
         kids.setPromptText("Barn");
         relationship = new ComboBox(relationshipArray);
@@ -86,7 +86,6 @@ public class InsurePersonScene {
         itemContainer.addColumn(0, income, dept, kids, relationship, register);
         borderPane = new BorderPane(itemContainer, rowBox, scrollPane, footer, null);
         return new Scene(borderPane);
-
     }
 
     public Button getRequestRegistration(){

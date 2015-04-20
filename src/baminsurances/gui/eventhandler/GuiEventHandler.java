@@ -36,8 +36,7 @@ public class GuiEventHandler implements EventHandler<ActionEvent> {
             operationWindow.displayAddScene();
         }else if (e.getSource() == operationWindow.getPerson()){
             operationWindow.displayInsurePersonScene(1);
-        }else if (operationWindow.getInsurePersonScene() != null &&
-                e.getSource() == operationWindow.getInsurePersonScene().getRequestRegistration()){
+        }else if (e.getSource() == operationWindow.getInsurePersonScene().getRequestRegistration()){
             operationWindow.displayInsurePersonScene(2);
         }else if (e.getSource() == operationWindow.getLogOut()){
             if (new MessageDialog().showMessageDialog("Logg ut", "Er du sikke" +
@@ -48,13 +47,20 @@ public class GuiEventHandler implements EventHandler<ActionEvent> {
             }
         }else if (e.getSource() == operationWindow.getCar()){
             operationWindow.displayInsureCarScene(1);
-        }else if (operationWindow.getInsurePersonScene() != null &&
-                e.getSource() == operationWindow.getInsureCarScene().getRequestRegistration()) {
+        }else if (e.getSource() == operationWindow.getInsureCarScene().getRequestRegistration()) {
             operationWindow.displayInsureCarScene(2);
         }else if (e.getSource() == operationWindow.getStats()){
             operationWindow.displayStatsScene();
         }else if(e.getSource() == operationWindow.getStatisticsScene().getBackToRegistration()){
             operationWindow.displayWelcomeScene();
+        }else if (e.getSource() == operationWindow.getHouse()){
+            operationWindow.displayInsureHouseScene(1);
+        }else if (e.getSource() == operationWindow.getInsureHouseScene().getRequestRegistration()){
+            operationWindow.displayInsureHouseScene(2);
+        }else if (e.getSource() == operationWindow.getBoat()){
+            operationWindow.displayInsureBoatScene(1);
+        }else if (e.getSource() == operationWindow.getInsureBoatScene().getRequestRegistration()){
+            operationWindow.displayInsureBoatScene(2);
         }
     }
 }
