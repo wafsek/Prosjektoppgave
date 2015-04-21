@@ -33,17 +33,15 @@ public class ClaimAdvice {
      * @param witnesses witnesses of the damage
      * @param assessmentAmount the assessment amount
      * @param compensationAmount the compensation amount
+     * @throws NullPointerException if any of the arguments are null
      */
     public ClaimAdvice(Calendar dateOfDamage, String damageType,
-            String damageDescription, List<BufferedImage> picturesOfDamage,
-            List<Person> witnesses, long assessmentAmount,
+            String damageDescription, long assessmentAmount,
             long compensationAmount) {
         damageNo = nextDamageNo++;
-        this.dateOfDamage = dateOfDamage;
-        this.damageType = damageType;
-        this.damageDescription = damageDescription;
-        this.picturesOfDamage = picturesOfDamage;
-        this.witnesses = witnesses;
+        setDateOfDamage(dateOfDamage);
+        setDamageType(damageType);
+        setDamageDescription(damageDescription);
         this.assessmentAmount = assessmentAmount;
         this.compensationAmount = compensationAmount;
     }
