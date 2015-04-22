@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import java.io.File;
+import java.util.logging.Level;
 
 /**
  * Created by baljit  on 15.04.2015.
@@ -15,7 +16,7 @@ public class Config{
     
     private static String applicationName;
     private static String dataBankFilePath;
-    
+    private static int number;
     
     private static Properties getProperties(){
         Properties prop = new Properties();
@@ -31,7 +32,7 @@ public class Config{
     public static void setProperties(){
         applicationName = getProperties().getProperty("applicationName");
         dataBankFilePath = getProperties().getProperty("dataBankFilePath");
-        
+        System.out.print(number);
     }
 
     public static String getApplicationName(){

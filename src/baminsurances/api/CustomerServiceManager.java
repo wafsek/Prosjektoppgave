@@ -2,8 +2,10 @@ package baminsurances.api;
 
 import baminsurances.data.Customer;
 import baminsurances.data.CustomerInsurance;
+import baminsurances.data.Insurance;
 import baminsurances.data.InsuranceDataBank;
 import java.util.*;
+import java.util.function.Predicate;
 
 
 /**
@@ -30,17 +32,68 @@ public class CustomerServiceManager {
     }
     
     /**
-     *
+     * Calls the setInsuranceDataBank method 
+     * @param dataBank InsuranceDataBank object that needs to be assigned to this class.
      * 
-     * @
      */
     public CustomerServiceManager(InsuranceDataBank dataBank){
         if(dataBank == null){
-            throw new NullPointerException();
+            throw new NullPointerException("InsuranceDataBank object expected; Null received");
         }
         this.setInsuranceDataBank(dataBank);
     }
 
+
+    /**
+     * Creates and adds new CustomerInsurance
+     * @param insurance The first Insurance to be set. 
+     * @param customer The Customer object to be set to the field. 
+     */
+    public void registerCustomerInsurance(Insurance insurance, Customer customer)
+    {
+        CustomerInsurance customerInsurance = new CustomerInsurance(customer,insurance);
+        dataBank.addCustomerInsurance(customerInsurance);
+    }
+
+    /**
+     * Adds an Insurance to the CustomerInsurance by birthNo
+     * @param insurance The Insurance to be added.
+     * @param birthNo String 
+     */
+    public void addInsurance(Insurance insurance, String birthNo){
+        this.getCustomerInsurance(birthNo).getInsurances().add(insurance);
+    }
+
+
+    /**
+     * Cancel an Insurance for a CustomerInsurance by birthNo
+     * @param insuranceNo The Insurance Number to cancel
+     */
+    //public void cancelInsurance(String insuranceNo){
+    //    this.getActiveCustomerInsurances().stream().filter(ci -> ci.insuranceNo)
+    //}
+
+    /**
+     * Cancel an Insurance for a CustomerInsurance by birthNo
+     * @param insuranceNo
+     * @param birthNo
+     */
+
+
+
+
+
+    /****************************************************************************
+    * The section of the class deals with all types of search                   * 
+    *                                                                           *
+    *                                                                           *
+    *                                                                           *
+    * ***************************************************************************/
+    
+    Predicate<CustomerInsurance> activeCustomerInsurances = ci -> ci.isActive();
+    //Predicate<CustomerInsurance> isTotalCustomer = ci -> ci.isTotalCustomer();
+    Predicate<Insurance> isActiveInsurance = i -> i.getCancellationDate() != null;
+    
     /**
      * Returns CustomerInsurance object with given Customer object
      * @param customer - Customer object that you want find the CustomerInsurance for.
@@ -57,7 +110,6 @@ public class CustomerServiceManager {
         }
         return null;
     }
-
 
     /**
      * Returns Customer object with given Customer object
@@ -112,7 +164,56 @@ public class CustomerServiceManager {
         return null;
     }
 
-    
+
+    /**
+     * Returns List of all Active CustomerInsurances
+     * @return List of CustomerInsurance
+     */
+    public List<CustomerInsurance> getActiveCustomerInsurances(){
+        ArrayList<CustomerInsurance> result = new ArrayList<>();
+        dataBank.getCustomerInsuranceList().stream()
+                .filter(ci -> ci.isActive())
+                .forEach(ci -> result.add(ci));
+        return result;
+    }
+
+    /**
+     * Returns List of all Active Customer
+     * @return List of Customer
+     */
+    public List<Customer> getActiveCustomers(){
+        ArrayList<Customer> result = new ArrayList<>();
+        dataBank.getCustomerInsuranceList().stream()
+                .filter(ci -> ci.isActive())
+                .forEach(ci -> result.add(ci.getCustomer()));
+        return result;
+    }
+
+    /**
+     * Return List of all active Insurances 
+     * @return List of Insurances
+     */
+    public List<Insurance> getActiveInsurances(){
+        ArrayList<Insurance> result = new ArrayList<>();
+        for(CustomerInsurance customerInsurance : this.getActiveCustomerInsurances()){
+           customerInsurance.getInsurances().stream()
+                   .filter(isActiveInsurance)
+                   .forEach(i -> result.add(i));
+        }
+        return result;
+    }
+
+    /**
+     * Return List of all Insurances 
+     * @return List of Insurances
+     */
+    public List<Insurance> getInsurances(){
+        ArrayList<Insurance> result = new ArrayList<>();
+        for(CustomerInsurance customerInsurance : this.getActiveCustomerInsurances()){
+            result.addAll(customerInsurance.getInsurances());
+        }
+        return result;
+    }
     
     /**
      * Returns List  of CustomersInsurances with given FirstName
@@ -458,15 +559,4 @@ public class CustomerServiceManager {
         }
         return result;
     }
-    
-    
-    /**
-     *
-     *
-     * @
-     */
-    
-    
-    
-    
 }
