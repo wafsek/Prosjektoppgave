@@ -8,7 +8,7 @@
 * Street address
 * Phone number
 * Gender
-* Register date (specific and interval)
+* Registration date (specific and interval)
 * Is active
 * Has at least one insurance of each type
 * Has given insurance type(s)
