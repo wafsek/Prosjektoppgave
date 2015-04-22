@@ -28,6 +28,8 @@ public class OperationWindow {
     private static OperationWindow operationWindow = new OperationWindow();
 
     private GuiEventHandler handler;
+    private KeyPressHandler keyHandler;
+    private Controller controller;
 
     private WelcomeScene welcomeScene;
     private AddScene addScene;
@@ -69,6 +71,8 @@ public class OperationWindow {
         insureCarScene = new InsureCarScene(buttonPane, footer, handler);
         insureBoatScene = new InsureBoatScene(buttonPane, footer, handler);
         statisticsScene = new StatisticsScene(footer, new KeyPressHandler(this), new Controller(), handler);
+        keyHandler = new KeyPressHandler(this);
+        controller = new Controller();
     }
 
     public Button getSearch() {
@@ -179,8 +183,10 @@ public class OperationWindow {
     }
 
     public void displayStatsScene(){
-        statisticsScene = new StatisticsScene(footer, new KeyPressHandler(this), new Controller(), handler);
+        statisticsScene = new StatisticsScene(footer, keyHandler, controller, handler);
         stage.setScene(statisticsScene.getScene());
+        keyHandler.setStatisticsScene(statisticsScene, statisticsScene.getTextFields());
+
     }
 
     public void displayInsureHouseScene(int sceneNumber){

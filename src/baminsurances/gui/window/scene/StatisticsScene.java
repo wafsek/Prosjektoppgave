@@ -18,6 +18,7 @@ import javafx.scene.text.Text;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Adrian PC on 19/04/2015.
@@ -30,6 +31,7 @@ public class StatisticsScene {
     private TextField employeeNmbr, birthNmbr, firstName, lastName,
             carBrand, carType, adress;
     private ArrayList<TextField> textFields;
+    private Iterator textFieldsIterator;
     private Text from, to;
     private DatePicker fromDate, toDate;
 
@@ -78,6 +80,7 @@ public class StatisticsScene {
         textFields.add(carBrand);
         textFields.add(carType);
         textFields.add(adress);
+        textFieldsIterator = textFields.iterator();
 
         fieldContainer = new GridPane();
         fieldContainer.addColumn(0, employeeNmbr, birthNmbr, firstName,
@@ -138,11 +141,41 @@ public class StatisticsScene {
         carBrand.setEditable(false);
     }
 
-    public void notEmployee(){
-        employeeNmbr.setEditable(false);
+    public void setEditableEmployeeFields(){
+        if (employeeNmbr.getText().trim().isEmpty()){
+            birthNmbr.setEditable(true);
+            carBrand.setEditable(true);
+            adress.setEditable(true);
+            birthNmbr.setPromptText("Personnummer");
+            carBrand.setPromptText("Bilmerke");
+            adress.setPromptText("Adresse");
+        }else {
+            birthNmbr.setEditable(false);
+            carBrand.setEditable(false);
+            adress.setEditable(false);
+            birthNmbr.setPromptText("irrelevant felt.");
+            carBrand.setPromptText("irrelevant felt.");
+            adress.setPromptText("irrelevant felt.");
+        }
     }
 
-    public void setEditability(TextField textField){
+    public void setEditableCustomerFields(){
+        if (birthNmbr.getText().trim().isEmpty() &&
+                carBrand.getText().trim().isEmpty() &&
+                adress.getText().trim().isEmpty()){
+            employeeNmbr.setEditable(true);
+            employeeNmbr.setPromptText("Ansattnummer");
+        }else {
+            employeeNmbr.setEditable(false);
+            employeeNmbr.setPromptText("Irrelevant felt");
+        }
+    }
 
+    public Iterator getTextFieldsIterator(){
+        return textFieldsIterator;
+    }
+
+    public void resetIterator(){
+        textFieldsIterator = textFields.iterator();
     }
 }
