@@ -1,5 +1,6 @@
 package baminsurances.gui.eventhandler;
 
+import baminsurances.gui.window.OperationWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -9,12 +10,16 @@ import javafx.event.EventHandler;
  */
 public class Controller implements EventHandler<ActionEvent> {
 
-    public Controller(){
+    OperationWindow operationWindow;
 
+    public Controller(OperationWindow operationWindow){
+        this.operationWindow = operationWindow;
     }
 
     @Override
     public void handle(ActionEvent e) {
-
+        if(e.getSource() == operationWindow.getAddScene().getRegister()){
+            operationWindow.getAddScene().requestRegistration();
+        }
     }
 }

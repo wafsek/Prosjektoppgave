@@ -12,7 +12,7 @@ import java.util.logging.Level;
 
 /**
  * Created by Adrian PC on 10/04/2015.
- * @author baljit 
+ * @author Baljit
  * @author Adrian
  */
 public class Gui extends Application {

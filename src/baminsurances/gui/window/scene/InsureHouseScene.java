@@ -10,34 +10,49 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
+import javax.print.DocFlavor;
+
 /**
  * Created by Adrian on 15/04/2015.
  */
-public class InsureHouseScene {
+public class InsureHouseScene extends PersonSearchScene{
 
-    private Scene scene;
+    private final int PREFERRED_TEXTFIELD_COMBOBOX_WIDTH = 175;
 
-    private TextField birthNo;
     private TextArea printArea;
     private ScrollPane scrollPane;
-    private TextField zipCode, adress;
-    private ObservableList<String> yearOfConstruction, area, horsePower;
+    private TextField houseZipCode, houseAdress;
+    private ObservableList<String> yearOfConstruction, area;
     private ComboBox yearOfConstructionBox, areaBox;
 
-    private Button requestRegistration, register;
+    private Button register;
 
-    private GridPane itemContainer;
-    private BorderPane borderPane;
+    /**
+     * creates a new Scene based on the given values.
+     *
+     * @param header
+     * @param footer
+     * @param handler
+     */
+    public InsureHouseScene(HBox header, HBox footer, GuiEventHandler handler) {
+        super(header, footer, handler);
+    }
 
-    private GuiEventHandler handler;
+    /**
+     * return the Scene created by this class
+     *
+     * @return the Scene created by this class
+     */
+    public Scene getScene(){
+        return scene;
+    }
 
-    private HBox rowBox, footer;
-
-    public InsureHouseScene(HBox rowBox, HBox footer, GuiEventHandler handler) {
-        this.rowBox = rowBox;
-        this.footer = footer;
-        this.handler = handler;
-        birthNo = new TextField();
+    /**
+     * recreates the Scene and adds -FX components and returns it.
+     *
+     * @return the recreated initial Scene.
+     */
+    public Scene requestApproved(){
         yearOfConstruction = FXCollections.observableArrayList("1900 eller tidligere",
                 "1901 - 1920", "1921 - 1950", "1951 - 1970", "1971 - 1990",
                 "1991 - nå");
@@ -45,49 +60,33 @@ public class InsureHouseScene {
                 "51 - 75", "76 - 125", "126 - 175", "176 - 250", "251 eller mer");
         yearOfConstructionBox = new ComboBox(yearOfConstruction);
         yearOfConstructionBox.setPromptText("Konstruksjonsår");
-        yearOfConstructionBox.setPrefWidth(200);
+        yearOfConstructionBox.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
         areaBox = new ComboBox(area);
         areaBox.setPromptText("Areal (m^2)");
-        areaBox.setPrefWidth(200);
+        areaBox.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
 
-        zipCode = new TextField();
-        zipCode.setPrefWidth(200);
-        zipCode.setPromptText("Postnummer");
-        adress = new TextField();
-        adress.setPromptText("Adresse");
+        houseZipCode = new TextField();
+        houseZipCode.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
+        houseAdress = new TextField();
 
-        requestRegistration = new Button("Finn person");
-        requestRegistration.setOnAction(handler);
         register = new Button("Registrer forsikring");
-        //register.setOnAction(e -> System.out.println(kids.getSelectionModel().getSelectedItem().toString()))
-        //kids.getValue()
-        //Code to get the selected value in a ComboBox
-        birthNo = new TextField();
-        birthNo.setPromptText("Skriv inn personnummer");
+        register.setOnAction(handler);
+
         printArea = new TextArea();
         printArea.setEditable(false);
         scrollPane = new ScrollPane(printArea);
         scrollPane.setPrefWidth(600);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
+        scrollPane.setStyle("-fx-border-color: gray;");
 
-        itemContainer = new GridPane();
-        itemContainer.addColumn(0, birthNo, requestRegistration);
-        itemContainer.setAlignment(Pos.CENTER);
-        itemContainer.setVgap(30);
-        borderPane = new BorderPane(itemContainer, rowBox, null, footer, null);
-
-        scene = new Scene(borderPane);
-    }
-
-    public Scene getScene(){
-        return scene;
-    }
-
-    public Scene requestApproved(){
-        itemContainer.getChildren().removeAll(birthNo, requestRegistration);
-        itemContainer.addColumn(0, zipCode, adress, yearOfConstructionBox, areaBox, register);
-        borderPane = new BorderPane(itemContainer, rowBox, scrollPane, footer, null);
+        itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel, birthNoLabel,
+                adressLabel, zipCodeLabel, firstName, lastName, birthNo, adress, zipCode,
+                requestRegistration);
+        itemContainer.addColumn(0, zipCodeLabel, adressLabel);
+        itemContainer.addColumn(1, zipCode, adress, yearOfConstructionBox, areaBox, register);
+        itemContainer.setHgap(20);
+        borderPane = new BorderPane(itemContainer, header, scrollPane, footer, null);
         return new Scene(borderPane);
     }
 

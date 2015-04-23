@@ -14,32 +14,39 @@ import javafx.scene.layout.HBox;
 /**
  * Created by Adrian on 15/04/2015.
  */
-public class InsureCarScene {
+public class InsureCarScene extends PersonSearchScene{
 
-    private Scene scene;
-
+    private final int PREFERRED_TEXTFIELD_COMBOBOX_WIDTH = 175;
     private ObservableList<String> yearOfProductionList, carBrandList,
     carTypeList, bonusList;
     private ComboBox yearOfProduction, carBrand, carType, bonus;
     private TextArea printArea;
+    private Button register;
 
-    private Button register, requestRegistration;
-    private TextField birthnumber;
 
-    private BorderPane borderPane;
     private ScrollPane scrollPane;
-    private GridPane itemContainer;
 
-    private GuiEventHandler handler;
-    private HBox rowBox, footer;
+    /**
+     * creates a new Scene based on the given values.
+     *
+     * @param header
+     * @param footer
+     * @param handler
+     */
+    public InsureCarScene(HBox header, HBox footer, GuiEventHandler handler){
+        super(header, footer, handler);
 
-    public InsureCarScene(HBox rowBox, HBox footer, GuiEventHandler handler){
-        this.handler = handler;
-        this.rowBox = rowBox;
-        this.footer = footer;
+    }
+
+    /**
+     * recreates and adds -FX components to the initial Scene.
+     *
+     * @return the recreated Scene.
+     */
+    public Scene requestApproved(){
 
         yearOfProductionList = FXCollections.observableArrayList("1960 eller ti" +
-                "dligere", "1961 - 1970", "1971 - 1980", "1981 - 1990", "1991 - 2000",
+                        "dligere", "1961 - 1970", "1971 - 1980", "1981 - 1990", "1991 - 2000",
                 "2001 - 2010", "2011 - 2015");
         carBrandList = FXCollections.observableArrayList("Alfa Romeo", "Aston Martin",
                 "Audi", "Austin", "Bentley", "BMW", "Buddy", "Buick", "Cadillac",
@@ -62,50 +69,32 @@ public class InsureCarScene {
 
         yearOfProduction = new ComboBox(yearOfProductionList);
         yearOfProduction.setPromptText("Velg produksjonsår");
+        yearOfProduction.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
         carBrand = new ComboBox(carBrandList);
         carBrand.setPromptText("Velg bilmerke");
+        carBrand.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
         carType = new ComboBox(carTypeList);
         carType.setPromptText("Velg forsikringsgrunnlag");
+        carType.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
         bonus = new ComboBox(bonusList);
         bonus.setPromptText("Velg bonus");
+        bonus.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
         printArea = new TextArea();
         printArea.setEditable(false);
 
         register = new Button("Registrer");
         register.setOnAction(handler);
-        requestRegistration = new Button("Finn person");
-        requestRegistration.setOnAction(handler);
 
-        birthnumber = new TextField();
-        birthnumber.setPromptText("Skriv inn personnummer");
-
-        itemContainer = new GridPane();
-        itemContainer.addColumn(0, birthnumber, requestRegistration);
-        itemContainer.setAlignment(Pos.CENTER);
-        itemContainer.setVgap(30);
         scrollPane = new ScrollPane(printArea);
         scrollPane.setPrefWidth(600);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
 
-        borderPane = new BorderPane(itemContainer, rowBox, null, footer, null);
-
-        scene = new Scene(borderPane);
-
-    }
-
-    public Scene getScene(){
-        return scene;
-    }
-
-    public Scene requestApproved(){
-        itemContainer.getChildren().removeAll(birthnumber, requestRegistration);
+        itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel, birthNoLabel,
+                adressLabel, zipCodeLabel, firstName, lastName, birthNo, adress, zipCode,
+                requestRegistration);
         itemContainer.addColumn(0, yearOfProduction, carBrand, carType, bonus, register);
-        borderPane = new BorderPane(itemContainer, rowBox, scrollPane, footer, null);
+        borderPane = new BorderPane(itemContainer, header, scrollPane, footer, null);
         return new Scene(borderPane);
-    }
-
-    public Button getRequestRegistration(){
-        return requestRegistration;
     }
 }

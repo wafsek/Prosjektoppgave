@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -36,7 +37,7 @@ public class MessageDialog {
     private static Button yes, no, ok, cancel;
     private static Image warning, information, error, question, logo;
     private static ImageView warningImageView, informationImageView, errorImageView, questionImageView;
-    private static Text message;
+    private static Label message;
     private static GridPane gridPane;
     private static BorderPane borderPane;
     private static HBox contentHBox, buttonHBox;
@@ -108,7 +109,7 @@ public class MessageDialog {
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setVgap(30);
 
-        message = new Text(object_message);
+        message = new Label(object_message);
         gridPane.addColumn(0, message, buttonHBox);
         scene = new Scene(gridPane);
         stage.setScene(scene);
@@ -125,7 +126,7 @@ public class MessageDialog {
         stage.setTitle(title);
         stage.initModality(Modality.APPLICATION_MODAL);
 
-        message = new Text(fitText(object_message));
+        message = new Label(fitText(object_message));
 
         ImageView iconToBeUsed;
         if (magical_constant_icon == ERROR_ICON){
@@ -161,7 +162,7 @@ public class MessageDialog {
         return returnCode.get();
     }
 
-    public static int showMessageDialog(String title, String object_message, int magical_constant) {
+    public static int showMessageDialog(String title, String object_message, int magical_icon_constant) {
         stage = new Stage();
         stage.setMinHeight(150);
         stage.setMinWidth(250);
@@ -169,21 +170,19 @@ public class MessageDialog {
         stage.setTitle(title);
         stage.initModality(Modality.APPLICATION_MODAL);
 
-        message = new Text(fitText(object_message));
-
-
+        message = new Label(fitText(object_message));
 
         ImageView iconToBeUsed;
-        if (magical_constant == ERROR_ICON){
+        if (magical_icon_constant == ERROR_ICON){
             iconToBeUsed = errorImageView;
-        }else if (magical_constant == WARNING_ICON){
+        }else if (magical_icon_constant == WARNING_ICON){
             iconToBeUsed = warningImageView;
-        }else if (magical_constant == QUESTION_ICON){
+        }else if (magical_icon_constant == QUESTION_ICON){
             iconToBeUsed = questionImageView;
         }else{
             iconToBeUsed = informationImageView;
         }
-        iconToBeUsed.setFitHeight(50);
+        iconToBeUsed.setFitWidth(50);
         iconToBeUsed.setFitWidth(50);
 
         IntegerProperty returnCode = new SimpleIntegerProperty(-1);

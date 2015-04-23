@@ -46,6 +46,14 @@ public class StatisticsScene {
     private Controller controller;
     private GuiEventHandler handler;
 
+    /**
+     * creates a new Scene based on the given values.
+     *
+     * @param footer
+     * @param keyHandler
+     * @param controller
+     * @param handler
+     */
     public StatisticsScene(HBox footer, KeyPressHandler keyHandler, Controller controller, GuiEventHandler handler){
         this.handler = handler;
         this.keyHandler = keyHandler;
@@ -121,13 +129,24 @@ public class StatisticsScene {
         borderPane = new BorderPane(fieldContainer, menu, checkBoxContainer, footer, null);
 
         scene = new Scene(borderPane);
-
     }
 
+    /**
+     * returns the Scene defined in this class.
+     *
+     * @return the Scene defined in this class.
+     */
     public Scene getScene(){
         return scene;
     }
 
+    /**
+     * returns the Button that requests the Scene change between the
+     * two stages defined in this class
+     *
+     * @return the Button that requests the Scene change between the
+     * two stages defined in this class
+     */
     public Button getBackToRegistration(){
         return backToRegistration;
     }

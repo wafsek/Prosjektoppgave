@@ -1,7 +1,7 @@
 package baminsurances.gui.eventhandler;
 
 import baminsurances.gui.window.OperationWindow;
-import baminsurances.gui.window.scene.StatisticsScene;
+import baminsurances.gui.window.scene.*;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -15,8 +15,11 @@ import java.util.Iterator;
 public class KeyPressHandler implements EventHandler<KeyEvent> {
 
     private OperationWindow operationWindow;
-    private ArrayList<TextField> textFields;
     private StatisticsScene statisticsScene;
+    private InsurePersonScene insurePersonScene;
+    private InsureHouseScene insureHouseScene;
+    private InsureBoatScene insureBoatScene;
+    private InsureCarScene insureCarScene;
     private Iterator txtFieldsIterator;
 
     public KeyPressHandler(OperationWindow operationWindow){
@@ -25,19 +28,47 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent e) {
-        while(statisticsScene.getTextFieldsIterator().hasNext()){
-            if(e.getSource() == statisticsScene.getTextFieldsIterator().next()){
+        while(txtFieldsIterator.hasNext()){
+            if(statisticsScene.getTextFieldsIterator().next() != null &&
+                    e.getSource() == statisticsScene.getTextFieldsIterator().next()){
                 statisticsScene.setEditableEmployeeFields();
                 statisticsScene.setEditableCustomerFields();
-                statisticsScene.resetIterator();
+                resetIterators();
                 break;
+            }if(insurePersonScene.getTextFieldsIterator().next() != null &&
+                    e.getSource() == insurePersonScene.getTextFieldsIterator().next()){
+
             }
         }
     }
 
     public void setStatisticsScene(StatisticsScene statisticsScene, ArrayList<TextField> textfields){
         this.statisticsScene = statisticsScene;
-        this.textFields = textfields;
         txtFieldsIterator = textfields.iterator();
+    }
+
+    public void setInsurePersonScene(InsurePersonScene insurePersonScene, ArrayList<TextField> textFields){
+        this.insurePersonScene = insurePersonScene;
+        txtFieldsIterator = textFields.iterator();
+    }
+
+    public void setInsureHouseScene(InsureHouseScene insureHouseScene, ArrayList<TextField> textFields){
+        this.insureHouseScene = insureHouseScene;
+        txtFieldsIterator = textFields.iterator();
+    }
+
+    public void setInsureBoatScene(InsureBoatScene insureBoatScene, ArrayList<TextField> textFields){
+        this.insureBoatScene = insureBoatScene;
+        txtFieldsIterator = textFields.iterator();
+    }
+
+    public void setInsureCarScene(InsureCarScene insureCarScene, ArrayList<TextField> textFields){
+        this.insureCarScene = insureCarScene;
+        txtFieldsIterator = textFields.iterator();
+    }
+
+    public void resetIterators(){
+        statisticsScene.resetIterator();
+        insurePersonScene.resetIterator();
     }
 }
