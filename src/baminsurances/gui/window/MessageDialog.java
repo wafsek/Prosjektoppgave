@@ -214,11 +214,12 @@ public class MessageDialog {
 
         for(int i = 0; i < chars.length; i++){
             if(i != 0 && i % 20 == 0 && chars[i] != ' ' ){
-                output = (output + "-\n");
+                output = (output + chars[i] + "-\n");
             }else if (i != 0 && i % 20 == 0){
-                output = (output + "\n");
+                output = (output + chars[i] + "\n");
+            }else{
+                output = (output + chars[i]);
             }
-            output = (output + chars[i]);
         }
         return output;
     }
