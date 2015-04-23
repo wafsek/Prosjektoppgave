@@ -1,5 +1,6 @@
 package baminsurances.data;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -49,14 +50,58 @@ public class CustomerInsurance {
     }
     
     /**
+     * Returns <code>true</code>, if the customer is currently paying for at
+     * least three different insurance types.
+     * 
+     * @return <code>true</code>, if the customer is currently paying for at
+     * least three different insurance types
+     */
+    public boolean isTotalCustomer() {
+        List<Class<? extends Insurance>> insuranceTypes = Arrays.asList(
+                    CarInsurance.class,
+                    BoatInsurance.class,
+                    HomeInsurance.class,
+                    HolidayHomeInsurance.class,
+                    TravelInsurance.class
+                );
+
+        int numRequiredForTotalCustomer = 3;
+        int numDifferentInsuranceTypes = 0;
+        for (Class<? extends Insurance> insuranceType : insuranceTypes) {
+            if (hasActiveInsuranceType(insuranceType)) {
+                numDifferentInsuranceTypes++;
+            }
+        }
+        return numDifferentInsuranceTypes >= numRequiredForTotalCustomer;
+    }
+    
+    /**
+     * Returns <code>true</code>, if the list of insurances in this customer
+     * insurance contains at least one active instance of the given
+     * {@link Insurance} subclass.
+     * 
+     * @param insuranceType the subclass of {@link Insurance} that you want to search
+     * for
+     * @return <code>true</code>, if the list of insurances in this customer
+     * insurance contains at least one active instance of the given
+     * {@link Insurance} subclass
+     */
+    private boolean hasActiveInsuranceType(Class<? extends Insurance>
+            insuranceType) {
+        return insuranceList.stream()
+                            .filter(Insurance::isActive)
+                            .anyMatch(ins -> insuranceType.isInstance(ins));
+    }
+    
+    /**
      * Returns the sum of all premiums currently being paid by the customer.
      * 
      * @return the sum of all premiums currently being paid by the customer
      */
     public long getSumOfActivePremiums() {
         return insuranceList.stream()
-                            .filter(ins -> ins.isActive())
-                            .mapToLong(ins -> ins.getPremium())
+                            .filter(Insurance::isActive)
+                            .mapToLong(Insurance::getPremium)
                             .sum();
     }
     
