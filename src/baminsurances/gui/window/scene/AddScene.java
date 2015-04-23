@@ -58,12 +58,14 @@ public class AddScene {
         fieldBox.setAlignment(Pos.CENTER);
         fieldBox.setVgap(30);
         fieldBox.setHgap(20);
+        fieldBox.setStyle("-fx-border-color: gray;");
         printArea = new TextArea();
         printArea.setEditable(false);
         scrollPane = new ScrollPane(printArea);
         scrollPane.setPrefWidth(600);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
+        scrollPane.setStyle("-fx-border-color: gray;");
 
         borderPane = new BorderPane(fieldBox, header, scrollPane, footer, null);
 
