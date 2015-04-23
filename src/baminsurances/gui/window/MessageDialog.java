@@ -213,7 +213,9 @@ public class MessageDialog {
         char[] chars = inputString.toCharArray();
 
         for(int i = 0; i < chars.length; i++){
-            if(i % 20 == 0){
+            if(i != 0 && i % 20 == 0 && chars[i] != ' ' ){
+                output = (output + "-\n");
+            }else if (i != 0 && i % 20 == 0){
                 output = (output + "\n");
             }
             output = (output + chars[i]);

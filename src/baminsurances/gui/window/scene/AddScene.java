@@ -85,7 +85,7 @@ public class AddScene {
         if (name.getText().trim().isEmpty() || lastName.getText().trim().isEmpty() ||
                 birthNmbr.getText().trim().isEmpty()){
             new MessageDialog().showMessageDialog("Ugyldig informasjon!",
-                    "Feltene markert med * må være utfylt.", MessageDialog.WARNING_ICON);
+                    "Feltene markert med * må være utfylt.", MessageDialog.WARNING_ICON, MessageDialog.OK_OPTION);
         }else {
             /*(MethodForRegistrationOfACustomers())? MessageDialog.showMessageDialog("Godkjent",
             name.getText() + "\s" + lastName.getText() + " er nå registrert.",
