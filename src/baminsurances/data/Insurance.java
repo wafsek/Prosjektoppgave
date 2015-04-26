@@ -37,6 +37,30 @@ public abstract class Insurance {
     }
     
     /**
+     * Returns <code>true</code>, if the given insurance has the same insurance
+     * number as this insurance.
+     * 
+     * @return <code>true</code>, if the given insurance has the same insurance
+     * number as this insurance
+     */
+    @Override
+    public boolean equals(Object o) {
+        return this.insuranceNo == ((Insurance) o).insuranceNo;
+    }
+    
+    /**
+     * Returns a hash code value for this insurance, equal to the insurance's
+     * insurance number.
+     * 
+     * @return a hash code value for this insurance, equal to the insurance's
+     * insurance number
+     */
+    @Override
+    public int hashCode() {
+        return insuranceNo;
+    }
+    
+    /**
      * Returns the next insurance number for the Insurance class.
      * 
      * @return the next insurance number for the Insurance class.
