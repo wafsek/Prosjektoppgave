@@ -18,6 +18,7 @@ public class Config{
     private static String dataBankFilePath;
     private static int number;
     
+    
     private static Properties getProperties(){
         Properties prop = new Properties();
         try(InputStream inputStream = Config.class.getResourceAsStream("config.properties")){
@@ -25,25 +26,23 @@ public class Config{
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
         return prop;
     }
+    
     
     public static void setProperties(){
         applicationName = getProperties().getProperty("applicationName");
         dataBankFilePath = getProperties().getProperty("dataBankFilePath");
         System.out.print(number);
     }
-
+    
+    
     public static String getApplicationName(){
         return applicationName;
     }
-
+    
+    
     public static String getDataBankFilePath(){
         return dataBankFilePath;
     }
-    
-    
-    
-    
 }

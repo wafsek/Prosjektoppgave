@@ -1,18 +1,15 @@
 package baminsurances.gui;
 import baminsurances.api.Config;
-import baminsurances.api.CustomLogger;
+import baminsurances.logging.CustomLogger;
 import baminsurances.gui.eventhandler.GuiEventHandler;
-import baminsurances.gui.window.MessageDialog;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import javax.lang.model.element.Name;
-import javax.swing.*;
 import java.util.logging.Level;
 
 /**
  * Created by Adrian PC on 10/04/2015.
- * @author baljit 
+ * @author baljit sarai
  * @author Adrian
  */
 public class Gui extends Application {
@@ -37,6 +34,8 @@ public class Gui extends Application {
      * that is in the run() method before the program shuts down.
      * Should have as little code as possible.
      * That is why it contains just one logging line.
+     * After a lot of testing, i have observed that the result is 
+     * a bit unpredictable.
      */
     public static void addHook(){
         logger = new CustomLogger(Gui.class.getName());

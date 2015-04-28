@@ -1,6 +1,6 @@
 package baminsurances.gui.eventhandler;
 
-import baminsurances.api.CustomLogger;
+import baminsurances.logging.CustomLogger;
 import baminsurances.gui.window.LoginWindow;
 import baminsurances.gui.window.MessageDialog;
 import baminsurances.gui.window.OperationWindow;
@@ -33,7 +33,7 @@ public class GuiEventHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent e) {
         if(e.getSource() == loginWindow.getLoginButton()){
-            logger.log("Logged in", Level.INFO);
+            logger.log("Logged in", Level.SEVERE);
             loginWindow.close();
             operationWindow.displayWelcomeScene();
         }else if (e.getSource() == operationWindow.getAdd()){

@@ -78,13 +78,15 @@ public class CustomerServiceManager {
      * @param insuranceNo
      * @param birthNo
      */
-
+    public void cancelInsurance(int insuranceNo, String birthNo){
+        
+    }
 
 
 
 
     /****************************************************************************
-    * The section of the class deals with all types of search                   * 
+    * This section of the class deals with all types of search                  * 
     *                                                                           *
     *                                                                           *
     *                                                                           *
