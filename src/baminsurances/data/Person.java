@@ -38,9 +38,28 @@ public class Person {
     protected Person() {
     }
     
+    /**
+     * Returns <code>true</code>, if the given person has the same birth number
+     * as this one.
+     * 
+     * @return <code>true</code>, if the given person has the same birth number
+     * as this one
+     */
     @Override
     public boolean equals(Object obj) {
         return this.birthNo.equals(((Person) obj).getBirthNo());
+    }
+    
+    /**
+     * Returns a hash code value for this person, equal to the person's birth
+     * number.
+     * 
+     * @return a hash code value for this person, equal to the person's birth
+     * number 
+     */
+    @Override
+    public int hashCode() {
+        return Integer.parseInt(birthNo);
     }
     
     /**

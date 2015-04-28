@@ -1,9 +1,14 @@
 package baminsurances.data;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 /**
  * A class representing a claim advice in the company's data bank. It contains
@@ -18,8 +23,8 @@ public class ClaimAdvice {
     private Calendar dateOfDamage;
     private String damageType;
     private String damageDescription;
-    private List<BufferedImage> picturesOfDamage = new ArrayList<>();
     private List<Person> witnesses = new ArrayList<>();
+    private int numPictures;
     private long assessmentAmount;
     private long compensationAmount;
     
@@ -38,6 +43,7 @@ public class ClaimAdvice {
     public ClaimAdvice(Calendar dateOfDamage, String damageType,
             String damageDescription, long assessmentAmount,
             long compensationAmount) {
+        //TODO add witnesses and images to constructor?
         damageNo = nextDamageNo++;
         setDateOfDamage(dateOfDamage);
         setDamageType(damageType);
@@ -142,7 +148,31 @@ public class ClaimAdvice {
      * @return a list containing pictures of the damage
      */
     public List<BufferedImage> getPicturesOfDamage() {
-        return picturesOfDamage;
+        //TODO review below code with Sarai
+        
+        if (numPictures == 0) {
+            return null;
+        }
+        // Getting a list of all files in /claimadvice
+        // with name matching 'damageNo_xxx'
+        File dir = new File(this.getClass().getResource("img/claimadvices/").getFile());
+        File[] files = dir.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.matches(
+                        String.valueOf(damageNo) + "_[0-9]+");
+            }
+        });
+        
+        List<BufferedImage> pictures = new ArrayList<>();
+        try {
+            for (File img : files) {
+                pictures.add(ImageIO.read(img));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return pictures;
     }
 
     /**
@@ -152,10 +182,18 @@ public class ClaimAdvice {
      * @throws NullPointerException if argument is null
      */
     public void addPictureOfDamage(BufferedImage picture) {
-        if (picture == null) {
-            throw new NullPointerException("Damage picture cannot be null.");
+        //TODO IllegalArgumentException ?
+        //TODO review below code with Sarai
+        String filename = String.valueOf(damageNo) + "_" + String.valueOf(
+                ++numPictures);
+        String filepath = this.getClass().getResource("img/claimadvice/").getFile()
+                + filename;
+        
+        try {
+            ImageIO.write(picture, "png", new File(filepath));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        picturesOfDamage.add(picture);
     }
 
     /**
@@ -177,7 +215,7 @@ public class ClaimAdvice {
         if (witness == null) {
             throw new NullPointerException("Witness cannot be null.");
         }
-        this.witnesses = witnesses;
+        witnesses.add(witness);
     }
 
     /**

@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class OperationWindow {
 
     private Stage stage;
-    private HBox buttonPane, footer;
+    private HBox header, footer;
 
     private int width;
     private int height;
@@ -43,6 +43,9 @@ public class OperationWindow {
         height = 600;
         width = (height*16)/9;
 
+        keyHandler = new KeyPressHandler(this);
+        controller = new Controller(this);
+
         stage = new Stage();
         search = new IconButton().iconButton(100, 100, IconButton.SEARCH_BUTTON);
         add = new IconButton().iconButton(100, 100, IconButton.ADD_BUTTON);
@@ -53,10 +56,14 @@ public class OperationWindow {
         boat = new IconButton().iconButton(100, 100, IconButton.INSURE_BOAT_BUTTON);
         logOut = new Button("Logg ut");
 
-        buttonPane = new HBox(30, search, add, person, house, car, boat, stats);
-        buttonPane.setAlignment(Pos.CENTER);
+        header = new HBox(30, search, add, person, house, car, boat, stats);
+        header.setAlignment(Pos.CENTER);
         footer = new HBox(40, logOut);
         footer.setAlignment(Pos.BASELINE_RIGHT);
+        footer.setStyle("-fx-border-color: gray;");
+
+        header.setStyle("-fx-border-color: gray;" +
+                "-fx-padding: 5;");
 
         stage.setWidth(width);
         stage.setHeight(height);
@@ -64,15 +71,13 @@ public class OperationWindow {
         stage.setTitle(Config.getApplicationName());
         stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../img/temp_logo.png")));
 
-        welcomeScene = new WelcomeScene(buttonPane, footer, handler);
-        addScene = new AddScene(buttonPane, footer, handler);
-        insurePersonScene = new InsurePersonScene(buttonPane, footer, handler);
-        insureHouseScene = new InsureHouseScene(buttonPane, footer, handler);
-        insureCarScene = new InsureCarScene(buttonPane, footer, handler);
-        insureBoatScene = new InsureBoatScene(buttonPane, footer, handler);
-        statisticsScene = new StatisticsScene(footer, new KeyPressHandler(this), new Controller(), handler);
-        keyHandler = new KeyPressHandler(this);
-        controller = new Controller();
+        welcomeScene = new WelcomeScene(header, footer, handler);
+        addScene = new AddScene(header, footer, handler, controller);
+        insurePersonScene = new InsurePersonScene(header, footer, handler);
+        insureHouseScene = new InsureHouseScene(header, footer, handler);
+        insureCarScene = new InsureCarScene(header, footer, handler);
+        insureBoatScene = new InsureBoatScene(header, footer, handler);
+        statisticsScene = new StatisticsScene(footer, keyHandler, controller, handler);
     }
 
     public Button getSearch() {
@@ -152,20 +157,19 @@ public class OperationWindow {
     }
 
     public void displayWelcomeScene(){
-        welcomeScene = new WelcomeScene(buttonPane, footer, handler);
-        statisticsScene = new StatisticsScene(footer, new KeyPressHandler(this), new Controller(), handler);
+        welcomeScene = new WelcomeScene(header, footer, handler);
         stage.setScene(welcomeScene.getScene());
         stage.show();
     }
 
     public void displayAddScene(){
-        addScene = new AddScene(buttonPane, footer, handler);
+        addScene = new AddScene(header, footer, handler, controller);
         stage.setScene(addScene.getScene());
     }
 
     public void displayInsurePersonScene(int sceneNumber) {
         if(sceneNumber == 1) {
-            insurePersonScene = new InsurePersonScene(buttonPane, footer, handler);
+            insurePersonScene = new InsurePersonScene(header, footer, handler);
             stage.setScene(insurePersonScene.getScene());
         } else{
             stage.setScene(insurePersonScene.requestApproved());
@@ -175,7 +179,7 @@ public class OperationWindow {
 
     public void displayInsureCarScene(int sceneNumber){
         if (sceneNumber == 1) {
-            insureCarScene = new InsureCarScene(buttonPane, footer, handler);
+            insureCarScene = new InsureCarScene(header, footer, handler);
             stage.setScene(insureCarScene.getScene());
         }else{
             stage.setScene(insureCarScene.requestApproved());
@@ -191,7 +195,7 @@ public class OperationWindow {
 
     public void displayInsureHouseScene(int sceneNumber){
         if(sceneNumber == 1){
-            insureHouseScene = new InsureHouseScene(buttonPane, footer, handler);
+            insureHouseScene = new InsureHouseScene(header, footer, handler);
             stage.setScene(insureHouseScene.getScene());
         }else{
             stage.setScene(insureHouseScene.requestApproved());
@@ -200,7 +204,7 @@ public class OperationWindow {
 
     public void displayInsureBoatScene(int sceneNumber){
         if(sceneNumber == 1){
-            insureBoatScene = new InsureBoatScene(buttonPane, footer, handler);
+            insureBoatScene = new InsureBoatScene(header, footer, handler);
             stage.setScene(insureBoatScene.getScene());
         }else{
             stage.setScene(insureBoatScene.requestApproved());

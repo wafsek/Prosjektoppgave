@@ -261,7 +261,7 @@ public class CustomerServiceManager {
      * @param lastName The last name to search for.
      * @return List of CustomerInsurances
      */
-    public List<CustomerInsurance> getCustomersInsurancesWithLastName(String lastName){
+     public List<CustomerInsurance> getCustomersInsurancesWithLastName(String lastName){
         if(lastName == null){
             throw new NullPointerException("String Object expected; Null received");
         }

@@ -31,7 +31,6 @@ public class WelcomeScene {
     public WelcomeScene(HBox rowBox, HBox footer, GuiEventHandler handler){
         welcomeImage = new Image(this.getClass().getResourceAsStream("../../img/add.png"));
         welcomeImageView = new ImageView(welcomeImage);
-
         borderPane = new BorderPane(welcomeImageView, rowBox, null, footer, null);
 
         scene = new Scene(borderPane);

@@ -1,17 +1,15 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.gui.eventhandler.Controller;
 import baminsurances.gui.eventhandler.GuiEventHandler;
+import baminsurances.gui.window.MessageDialog;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-
-import java.util.logging.Handler;
 
 /**
  * Created by Adrian on 15/04/2015.
@@ -19,47 +17,84 @@ import java.util.logging.Handler;
 public class AddScene {
 
     private Scene scene;
-    private TextField name, surname, birthNr, tlfNr, adress, zipCode;
+    private TextField name, lastName, birthNmbr, tlfNmbr, adress, zipCode;
+    private Label nameLabel, lastNameLabel, birthNmbrLabel, tlfNmbrLabel,
+            adressLabel, zipCodeLabel;
     private BorderPane borderPane;
     private GridPane fieldBox;
     private TextArea printArea;
     private ScrollPane scrollPane;
     private Button register;
 
-    public AddScene(HBox rowBox, HBox footer, GuiEventHandler handler) {
+    private Controller controller;
+
+    /**
+     * Creates a new Scene with the given values.
+     * @param header
+     * @param footer
+     * @param handler
+     */
+    public AddScene(HBox header, HBox footer, GuiEventHandler handler, Controller controller) {
+        this.controller = controller;
         name = new TextField();
-        name.setPromptText("Fornavn");
-        surname = new TextField();
-        surname.setPromptText("Etternavn");
-        birthNr = new TextField();
-        birthNr.setPromptText("Personnummer");
-        tlfNr = new TextField();
-        tlfNr.setPromptText("Telefonnummer");
+        nameLabel = new Label("Fornavn:");
+        lastName = new TextField();
+        lastNameLabel = new Label("Etternavn:");
+        birthNmbr = new TextField();
+        birthNmbrLabel = new Label("Fødselsnummer:");
+        tlfNmbr = new TextField();
+        tlfNmbrLabel = new Label("Telefonnummer:");
         adress = new TextField();
-        adress.setPromptText("Adresse");
+        adressLabel = new Label("Adresse:");
         zipCode = new TextField();
-        zipCode.setPromptText("Postnummer");
+        zipCodeLabel = new Label("Postnummer:");
 
         register = new Button("Registrer");
-        //register.setOnAction(controller);
+        register.setOnAction(controller);
 
         fieldBox = new GridPane();
-        fieldBox.addColumn(0, name, surname, birthNr, tlfNr, adress, zipCode, register);
+        fieldBox.addColumn(0, nameLabel, lastNameLabel, birthNmbrLabel, tlfNmbrLabel, adressLabel, zipCodeLabel);
+        fieldBox.addColumn(1, name, lastName, birthNmbr, tlfNmbr, adress, zipCode, register);
         fieldBox.setAlignment(Pos.CENTER);
         fieldBox.setVgap(30);
+        fieldBox.setHgap(20);
+        fieldBox.setStyle("-fx-border-color: gray;");
         printArea = new TextArea();
         printArea.setEditable(false);
         scrollPane = new ScrollPane(printArea);
         scrollPane.setPrefWidth(600);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
+        scrollPane.setStyle("-fx-border-color: gray;");
 
-        borderPane = new BorderPane(fieldBox, rowBox, scrollPane, footer, null);
+        borderPane = new BorderPane(fieldBox, header, scrollPane, footer, null);
 
         scene = new Scene(borderPane);
     }
 
+    /**
+     * returns the scene made by this class.
+     *
+     * @return the scene made by this class.
+     */
     public Scene getScene(){
         return scene;
+    }
+
+    public void requestRegistration(){
+        if (name.getText().trim().isEmpty() || lastName.getText().trim().isEmpty() ||
+                birthNmbr.getText().trim().isEmpty()){
+            new MessageDialog().showMessageDialog("Ugyldig informasjon!",
+                    "Feltene markert med stjerne må være utfylt.", MessageDialog.WARNING_ICON, MessageDialog.OK_OPTION);
+        }else {
+            /*(MethodForRegistrationOfACustomers())? MessageDialog.showMessageDialog("Godkjent",
+            name.getText() + "\s" + lastName.getText() + " er nå registrert.",
+             MessageDialog.INFORMATION_ICON): MessageDialog.showMessageDialog(
+             "Error", "Noe gikk galt under registreingen.", MessageDialog.ERROR_ICON);*/
+        }
+    }
+
+    public Button getRegister(){
+        return register;
     }
 }
