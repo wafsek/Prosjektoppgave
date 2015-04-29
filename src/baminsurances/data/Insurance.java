@@ -7,7 +7,7 @@ import java.util.Calendar;
  * 
  * @author martin
  */
-public abstract class Insurance {
+public abstract class Insurance implements Comparable<Insurance> {
     private static int nextInsuranceNo = 1;
     private int insuranceNo;
     private Employee employee;
@@ -58,6 +58,19 @@ public abstract class Insurance {
     @Override
     public int hashCode() {
         return insuranceNo;
+    }
+    
+    /**
+     * Compares this insurance with the given insurance, by comparing their
+     * insurance numbers. Returns a negative number if this insurance is less
+     * than the given one, zero if it is equal, and positive if is greater.
+     * 
+     * @return a negative number if this insurance is less than the given one,
+     * zero if it is equal, and positive if is greater 
+     */
+    @Override
+    public int compareTo(Insurance i) {
+        return this.insuranceNo - i.insuranceNo;
     }
     
     /**

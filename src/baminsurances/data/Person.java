@@ -5,7 +5,7 @@ package baminsurances.data;
  * 
  * @author martin
  */
-public class Person {
+public class Person implements Comparable<Person> {
     private String birthNo;
     private String firstName;
     private String lastName;
@@ -60,6 +60,19 @@ public class Person {
     @Override
     public int hashCode() {
         return Integer.parseInt(birthNo);
+    }
+    
+    /**
+     * Compares this person with the give person, by comparing their birth
+     * numbers. Returns a negative number if this person is less than the
+     * given one, zero if it is equal, and positive if is greater.
+     * 
+     * @return a negative number if this person is less than the given one,
+     * zero if it is equal, and positive if is greater
+     */
+    @Override
+    public int compareTo(Person p) {
+        return Integer.parseInt(this.birthNo) - Integer.parseInt(p.birthNo);
     }
     
     /**
