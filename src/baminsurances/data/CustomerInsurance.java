@@ -1,8 +1,10 @@
 package baminsurances.data;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * A class to connect a Customer-object to a collection of Insurance-objects.
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 public class CustomerInsurance {
     private Customer customer;
     private List<Insurance> insuranceList = new ArrayList<Insurance>();
+    public static final int NUM_REQUIRED_FOR_TOTAL_CUSTOMER = 3;
     
     public CustomerInsurance(Customer customer, Insurance firstInsurance) {
         this.customer = customer;
@@ -65,14 +68,13 @@ public class CustomerInsurance {
                     TravelInsurance.class
                 );
 
-        int numRequiredForTotalCustomer = 3;
         int numDifferentInsuranceTypes = 0;
         for (Class<? extends Insurance> insuranceType : insuranceTypes) {
             if (hasActiveInsuranceType(insuranceType)) {
                 numDifferentInsuranceTypes++;
             }
         }
-        return numDifferentInsuranceTypes >= numRequiredForTotalCustomer;
+        return numDifferentInsuranceTypes >= NUM_REQUIRED_FOR_TOTAL_CUSTOMER;
     }
     
     /**
@@ -88,9 +90,51 @@ public class CustomerInsurance {
      */
     private boolean hasActiveInsuranceType(Class<? extends Insurance>
             insuranceType) {
-        return insuranceList.stream()
-                            .filter(Insurance::isActive)
-                            .anyMatch(ins -> insuranceType.isInstance(ins));
+        return getActiveInsuranceTypes().contains(insuranceType);
+    }
+    
+    /**
+     * Returns <code>true</code>, if the customer has an insurance (either
+     * active or inactive) of the given {@link Insurance} subclass. 
+     * 
+     * @param insuranceType the {@link Insurance} subclass to search for
+     * @return <code>true</code>, if the customer has an insurance (either
+     * active or inactive) of the given {@link Insurance} subclass
+     */
+    public boolean hasInsuranceType(Class<? extends Insurance> insuranceType) {
+        return getInsuranceTypes().contains(insuranceType);
+    }
+    
+    /**
+     * Returns a set with the different active insurance subclasses present in
+     * the list of insurances.
+     * 
+     * @return a set with the different active insurance subclasses present in
+     * the list of insurances
+     */
+    public Set<Class<? extends Insurance>> getActiveInsuranceTypes() {
+        Set<Class<? extends Insurance>> insuranceTypes = new HashSet<>();
+        for (Insurance i : insuranceList) {
+            if (i.isActive()) {
+                insuranceTypes.add(i.getClass());
+            }
+        }
+        return insuranceTypes;
+    }
+    
+    /**
+     * Returns a set with the different insurance subclasses (both active and
+     * inactive) present in the list of insurances.
+     * 
+     * @return a set with the different insurance subclasses present in the list of
+     * insurances
+     */
+    public Set<Class<? extends Insurance>> getInsuranceTypes() {
+        Set<Class<? extends Insurance>> insuranceTypes = new HashSet<>();
+        for (Insurance i : insuranceList) {
+            insuranceTypes.add(i.getClass());
+        }
+        return insuranceTypes;
     }
     
     /**
