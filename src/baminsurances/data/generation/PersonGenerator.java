@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import baminsurances.data.*;
+import baminsurances.util.CvsReader;
 
 public class PersonGenerator {
     
