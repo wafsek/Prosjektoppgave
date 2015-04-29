@@ -42,6 +42,10 @@ public class Validation {
      * Returns <code>true</code> if the given birth number is a valid one.
      * @param birthNo the birth number to validate
      * @return <code>true</code> if the given birth number is a valid one
+     * @see <a href="http://no.wikipedia.org/wiki/F%C3%B8dselsnummer">Norwegian
+     * Wikipedia</a> page for Norwegian birth numbers
+     * @see <a href=http://en.wikipedia.org/wiki/National_identification_number#Norway>
+     * English Wikipedia</a> page for Norwegian birth numbers (less detailed)
      */
     public static boolean isValidBirthNo(String birthNo) {
         return birthNoIsOnValidFormat(birthNo) &&
@@ -54,6 +58,10 @@ public class Validation {
      * @param birthNo the birth number to validate
      * @return <code>true</code> if the given birth number is on the right
      * format
+     * @see <a href="http://no.wikipedia.org/wiki/F%C3%B8dselsnummer">Norwegian
+     * Wikipedia</a> page for Norwegian birth numbers
+     * @see <a href=http://en.wikipedia.org/wiki/National_identification_number#Norway>
+     * English Wikipedia</a> page for Norwegian birth numbers (less detailed)
      */
     public static boolean birthNoIsOnValidFormat(String birthNo) {
         return birthNo.matches("[0-9]{11}");
@@ -65,16 +73,20 @@ public class Validation {
      * <p>
      * A given birth number has valid controll numbers if:<br>
      *
-     * controll number 1 = 11 - ((3 × d1 + 7 × d2 + 6 × m1 + 1 × m2 + 8 × å1 +
+     * Controll number 1 = 11 - ((3 × d1 + 7 × d2 + 6 × m1 + 1 × m2 + 8 × å1 +
      *                     9 × å2 + 4 × i1 + 5 × i2 + 2 × i3) mod 11)<br>
      *                     
-     * controll number 2 = 11 - ((5 × d1 + 4 × d2 + 3 × m1 + 2 × m2 + 7 × å1 +
-     *                     6 × å2 + 5 × i1 + 4 × i2 + 3 × i3 + 2 × k1) mod 11). 
+     * Controll number 2 = 11 - ((5 × d1 + 4 × d2 + 3 × m1 + 2 × m2 + 7 × å1 +
+     *                     6 × å2 + 5 × i1 + 4 × i2 + 3 × i3 + 2 × k1) mod 11).
      * 
      * 
      * @param birthNo the birth number to validate
      * @return <code>true</code> if the given birth number's controll numbers
      * are valid ones
+     * @see <a href="http://no.wikipedia.org/wiki/F%C3%B8dselsnummer">Norwegian
+     * Wikipedia</a> page for Norwegian birth numbers
+     * @see <a href=http://en.wikipedia.org/wiki/National_identification_number#Norway>
+     * English Wikipedia</a> page for Norwegian birth numbers (less detailed)
      */
     public static boolean birthNoHasValidControllNos(String birthNo) {
         int controllNo1 = Character.getNumericValue(birthNo.charAt(9));
@@ -85,7 +97,7 @@ public class Validation {
          * d1 d2 m1 m2 y1 y2 i1 i2 i3 controllNo1 controllNo2
          * (spaces for visibility)
          * 
-         * d = day, m = month, y = year, i = individual number
+         * d = day, m = month, y = year, i = individdual number
          */
         int d1 = Character.getNumericValue(birthNo.charAt(0));
         int d2 = Character.getNumericValue(birthNo.charAt(1));
@@ -97,13 +109,23 @@ public class Validation {
         int i2 = Character.getNumericValue(birthNo.charAt(7));
         int i3 = Character.getNumericValue(birthNo.charAt(8));
         
-        boolean validControllNo1 = controllNo1 == 11 - (3*d1 + 7*d2 + 6*m1 +
-                1*m2 + 8*y1 + 9*y2 + 4*i1 + 5*i2 + 2*i3) % 11;
+        int controllNo1Result = 11 - (3*d1 + 7*d2 + 6*m1 + 1*m2 + 8*y1 + 9*y2 +
+                4*i1 + 5*i2 + 2*i3) % 11;
+        if (controllNo1Result == 11) {
+            controllNo1Result = 0;
+        } else if (controllNo1Result == 10) {
+            return false;
+        }
         
-        boolean validControllNo2 = controllNo2 == 11 - (5*d1 + 4*d2 + 3*m1 +
-                2*m2 + 7*y1 + 6*y2 + 5*i1 + 4*i2 + 3*i3 + 2*controllNo1) % 11;
+        int controllNo2Result = 11 - (5*d1 + 4*d2 + 3*m1 + 2*m2 + 7*y1 + 6*y2 +
+                5*i1 + 4*i2 + 3*i3 + 2*controllNo1Result) % 11;
+        if (controllNo2Result == 11) {
+            controllNo2Result = 0;
+        } else if (controllNo2Result == 10) {
+            return false;
+        }
         
-        return validControllNo1 && validControllNo2;
+        return controllNo1Result == controllNo1 && controllNo2Result == controllNo2;
     }
     
     /**

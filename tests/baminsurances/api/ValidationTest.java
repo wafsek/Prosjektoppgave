@@ -15,6 +15,8 @@ public class ValidationTest {
     @Test
     public void testIsValidBirthNo() {
         assertTrue(Validation.isValidBirthNo("16041599395"));
+        assertTrue(Validation.isValidBirthNo("27023521208"));
+        assertTrue(Validation.isValidBirthNo("08088072503"));
         assertFalse(Validation.isValidBirthNo("16041599391"));
     }
     
@@ -30,6 +32,9 @@ public class ValidationTest {
     public void testBirthNoHasValidControllNos() {
         assertTrue(Validation.birthNoHasValidControllNos("16041599395"));
         assertFalse(Validation.birthNoHasValidControllNos("16041599391"));
+        assertTrue(Validation.birthNoHasValidControllNos("08088072503"));
+        assertTrue(Validation.birthNoHasValidControllNos("12074199400"));
+        assertTrue(Validation.birthNoHasValidControllNos("04109310730"));
     }
     
     @Test
