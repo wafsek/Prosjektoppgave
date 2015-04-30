@@ -27,8 +27,7 @@ public class Gui extends Application {
         logger.log("Staring the Program", Level.INFO);
         new GuiEventHandler();
     }
-    
-    
+
     /**
      * Adds a shutdown hook to the program that lets you run any code 
      * that is in the run() method before the program shuts down.

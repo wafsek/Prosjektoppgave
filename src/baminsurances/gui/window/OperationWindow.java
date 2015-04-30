@@ -75,39 +75,39 @@ public class OperationWindow {
         searchScene = new SearchScene(header, footer, handler);
     }
 
-    public Button getSearch() {
+    public Button getSearchSceneButton() {
         return search;
     }
 
-    public Button getAdd() {
+    public Button getAddSceneButton() {
         return add;
     }
 
-    public Button getStats() {
+    public Button getStatsSceneButton() {
         return stats;
     }
 
-    public Button getHouse() {
+    public Button getHouseSceneButton() {
         return house;
     }
 
-    public Button getCar() {
+    public Button getCarSceneButton() {
         return car;
     }
 
-    public Button getPerson() {
+    public Button getPersonSceneButton() {
         return person;
     }
 
-    public Button getBoat() {
+    public Button getBoatSceneButton() {
         return boat;
     }
 
-    public Button getLogOut(){
+    public Button getLogOutSceneButton(){
         return logOut;
     }
 
-    public WelcomeScene getWelcomeScene() {
+    public WelcomeScene getWelcomeSceneButton() {
         return welcomeScene;
     }
 
