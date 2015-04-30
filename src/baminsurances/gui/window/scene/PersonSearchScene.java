@@ -1,6 +1,9 @@
 package baminsurances.gui.window.scene;
 
 import baminsurances.gui.eventhandler.GuiEventHandler;
+import baminsurances.gui.window.OperationWindow;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -33,11 +36,7 @@ public abstract class PersonSearchScene {
     protected BorderPane borderPane;
     protected GuiEventHandler handler;
 
-    protected HBox header, footer;
-
-    public PersonSearchScene(HBox header, HBox footer, GuiEventHandler handler){
-        this.header = header;
-        this.footer = footer;
+    public PersonSearchScene(GuiEventHandler handler){
         this.handler = handler;
 
         personList = new TableView();
@@ -49,7 +48,7 @@ public abstract class PersonSearchScene {
         personList.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         personList.setEditable(false);
         personList.setStyle("-fx-border-color: gray;");
-        personList.setPrefWidth(500);
+        personList.setPrefWidth(OperationWindow.STAGE_WIDTH * 2/4);
 
         birthNo = new TextField();
         birthNoLabel = new Label("Fødselsnummer:");
@@ -80,9 +79,6 @@ public abstract class PersonSearchScene {
         itemContainer.setVgap(30);
         itemContainer.setHgap(20);
         itemContainer.setStyle("-fx-border-color: gray;");
-        borderPane = new BorderPane(itemContainer, header, personList, footer, null);
-
-        scene = new Scene(borderPane);
     }
 
     /**
@@ -110,5 +106,9 @@ public abstract class PersonSearchScene {
 
     public void resetIterator(){
         textFieldsIterator = textFields.iterator();
+    }
+
+    public void displayPossiblePeople(){
+        /*ObservableList = getAllPossibleCustomers()*/
     }
 }

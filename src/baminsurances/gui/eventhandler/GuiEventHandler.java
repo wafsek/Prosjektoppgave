@@ -65,6 +65,10 @@ public class GuiEventHandler implements EventHandler<ActionEvent> {
             operationWindow.displayInsureBoatScene(1);
         }else if (e.getSource() == operationWindow.getInsureBoatScene().getRequestRegistration()){
             operationWindow.displayInsureBoatScene(2);
+        }else if (e.getSource() == operationWindow.getAddScene().getRegister()) {
+            operationWindow.getAddScene().requestRegistration();
+        }else if (e.getSource() == operationWindow.getSearch()){
+            operationWindow.displaySearchScene();
         }
     }
 }

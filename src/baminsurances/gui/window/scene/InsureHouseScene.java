@@ -1,6 +1,7 @@
 package baminsurances.gui.window.scene;
 
 import baminsurances.gui.eventhandler.GuiEventHandler;
+import baminsurances.gui.window.OperationWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -24,6 +25,7 @@ public class InsureHouseScene extends PersonSearchScene{
     private TextField houseZipCode, houseAdress;
     private ObservableList<String> yearOfConstruction, area;
     private ComboBox yearOfConstructionBox, areaBox;
+    private HBox footer, header;
 
     private Button register;
 
@@ -35,7 +37,11 @@ public class InsureHouseScene extends PersonSearchScene{
      * @param handler
      */
     public InsureHouseScene(HBox header, HBox footer, GuiEventHandler handler) {
-        super(header, footer, handler);
+        super(handler);
+        this.header = header;
+        this.footer = footer;
+        borderPane = new BorderPane(itemContainer, header, personList, footer, null);
+        scene = new Scene(borderPane);
     }
 
     /**
@@ -75,7 +81,7 @@ public class InsureHouseScene extends PersonSearchScene{
         printArea = new TextArea();
         printArea.setEditable(false);
         scrollPane = new ScrollPane(printArea);
-        scrollPane.setPrefWidth(600);
+        scrollPane.setPrefWidth(OperationWindow.STAGE_WIDTH * 3/5);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
         scrollPane.setStyle("-fx-border-color: gray;");

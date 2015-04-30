@@ -2,7 +2,6 @@ package baminsurances.gui.window;
 
 import baminsurances.api.Config;
 import baminsurances.gui.button.IconButton;
-import baminsurances.gui.eventhandler.Controller;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.scene.*;
@@ -17,11 +16,9 @@ import javafx.stage.Stage;
  */
 public class OperationWindow {
 
+    public static final int STAGE_HEIGHT = 700, STAGE_WIDTH = (STAGE_HEIGHT*16)/9;
     private Stage stage;
     private HBox header, footer;
-
-    private int width;
-    private int height;
 
     private Button search, add, stats, house, car, person, boat, logOut;
 
@@ -29,7 +26,6 @@ public class OperationWindow {
 
     private GuiEventHandler handler;
     private KeyPressHandler keyHandler;
-    private Controller controller;
 
     private WelcomeScene welcomeScene;
     private AddScene addScene;
@@ -38,13 +34,11 @@ public class OperationWindow {
     private StatisticsScene statisticsScene;
     private InsureHouseScene insureHouseScene;
     private InsureBoatScene insureBoatScene;
+    private SearchScene searchScene;
 
     private OperationWindow() {
-        height = 600;
-        width = (height*16)/9;
 
         keyHandler = new KeyPressHandler(this);
-        controller = new Controller(this);
 
         stage = new Stage();
         search = new IconButton().iconButton(100, 100, IconButton.SEARCH_BUTTON);
@@ -65,19 +59,20 @@ public class OperationWindow {
         header.setStyle("-fx-border-color: gray;" +
                 "-fx-padding: 5;");
 
-        stage.setWidth(width);
-        stage.setHeight(height);
+        stage.setWidth(STAGE_WIDTH);
+        stage.setHeight(STAGE_HEIGHT);
         stage.setResizable(false);
         stage.setTitle(Config.getApplicationName());
         stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../img/temp_logo.png")));
 
         welcomeScene = new WelcomeScene(header, footer, handler);
-        addScene = new AddScene(header, footer, handler, controller);
+        addScene = new AddScene(header, footer, handler);
         insurePersonScene = new InsurePersonScene(header, footer, handler);
         insureHouseScene = new InsureHouseScene(header, footer, handler);
         insureCarScene = new InsureCarScene(header, footer, handler);
         insureBoatScene = new InsureBoatScene(header, footer, handler);
-        statisticsScene = new StatisticsScene(footer, keyHandler, controller, handler);
+        statisticsScene = new StatisticsScene(footer, keyHandler, handler);
+        searchScene = new SearchScene(header, footer, handler);
     }
 
     public Button getSearch() {
@@ -140,6 +135,10 @@ public class OperationWindow {
         return insureBoatScene;
     }
 
+    public SearchScene getSearchScene(){
+        return searchScene;
+    }
+
     public static OperationWindow getOperationWindow() {
         return operationWindow;
     }
@@ -163,7 +162,7 @@ public class OperationWindow {
     }
 
     public void displayAddScene(){
-        addScene = new AddScene(header, footer, handler, controller);
+        addScene = new AddScene(header, footer, handler);
         stage.setScene(addScene.getScene());
     }
 
@@ -187,7 +186,7 @@ public class OperationWindow {
     }
 
     public void displayStatsScene(){
-        statisticsScene = new StatisticsScene(footer, keyHandler, controller, handler);
+        statisticsScene = new StatisticsScene(footer, keyHandler, handler);
         stage.setScene(statisticsScene.getScene());
         keyHandler.setStatisticsScene(statisticsScene, statisticsScene.getTextFields());
 
@@ -209,6 +208,11 @@ public class OperationWindow {
         }else{
             stage.setScene(insureBoatScene.requestApproved());
         }
+    }
+
+    public void displaySearchScene(){
+        searchScene = new SearchScene(header, footer, handler);
+        stage.setScene(searchScene.getScene());
     }
 
     public void close(){

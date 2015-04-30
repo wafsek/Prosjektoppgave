@@ -1,19 +1,14 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.data.Person;
 import baminsurances.gui.button.IconButton;
-import baminsurances.gui.eventhandler.Controller;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
+import baminsurances.gui.window.OperationWindow;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
 import java.time.LocalDate;
@@ -31,19 +26,20 @@ public class StatisticsScene {
     private TextField employeeNmbr, birthNmbr, firstName, lastName,
             carBrand, carType, adress;
     private ArrayList<TextField> textFields;
-    private Iterator textFieldsIterator;
+    private Iterator<TextField> textFieldsIterator;
     private Text from, to;
     private DatePicker fromDate, toDate;
-
     private CheckBox dummy1, dummy2, dummy3, dummy4, dummy5, dummy6, dummy7,
             dummy8, dummy9, dummy10;
+    private TableView possiblePeople;
+    private TableColumn<String, Person> fname, lname, bnmbr;
 
     private BorderPane borderPane;
     private GridPane checkBoxContainer, fieldContainer;
-    private VBox menu;
+    private VBox menu, tableContainer;
+    private HBox container;
 
     private KeyPressHandler keyHandler;
-    private Controller controller;
     private GuiEventHandler handler;
 
     /**
@@ -51,13 +47,11 @@ public class StatisticsScene {
      *
      * @param footer
      * @param keyHandler
-     * @param controller
      * @param handler
      */
-    public StatisticsScene(HBox footer, KeyPressHandler keyHandler, Controller controller, GuiEventHandler handler){
+    public StatisticsScene(HBox footer, KeyPressHandler keyHandler, GuiEventHandler handler){
         this.handler = handler;
         this.keyHandler = keyHandler;
-        this.controller = controller;
 
         employeeNmbr = new TextField();
         employeeNmbr.setPromptText("Ansattnummer");
@@ -95,6 +89,18 @@ public class StatisticsScene {
                 lastName, carBrand, carType, adress);
         fieldContainer.setVgap(20);
         fieldContainer.setAlignment(Pos.CENTER);
+        fieldContainer.setPrefWidth(OperationWindow.STAGE_WIDTH * 1 / 4);
+        fieldContainer.setStyle("-fx-border-color: gray;");
+
+        possiblePeople = new TableView();
+        fname = new TableColumn("Fornavn");
+        lname = new TableColumn("Etternavn");
+        bnmbr = new TableColumn("Fødselsnummer");
+        possiblePeople.getColumns().addAll(fname, lname, bnmbr);
+        possiblePeople.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tableContainer = new VBox(20, possiblePeople);
+        tableContainer.setPrefWidth(OperationWindow.STAGE_WIDTH * 2/4);
+        tableContainer.setStyle("-fx-border-color: gray;");
 
         fromDate = new DatePicker();
         from = new Text("Fra:");
@@ -117,16 +123,20 @@ public class StatisticsScene {
         checkBoxContainer.addColumn(1, to, toDate, dummy2, dummy4, dummy6, dummy8, dummy10);
         checkBoxContainer.setVgap(20);
         checkBoxContainer.setHgap(20);
-        checkBoxContainer.setPrefWidth(800);
+        checkBoxContainer.setPrefWidth(OperationWindow.STAGE_WIDTH * 1 / 4);
         checkBoxContainer.setAlignment(Pos.CENTER);
+        checkBoxContainer.setStyle("-fx-border-color: gray;");
 
         backToRegistration = new IconButton().iconButton(100, 100, IconButton.ADD_BUTTON);
         backToRegistration.setOnAction(handler);
 
+        container = new HBox(0, fieldContainer, tableContainer, checkBoxContainer);
         menu = new VBox(0, backToRegistration);
         menu.setAlignment(Pos.CENTER);
+        menu.setPrefHeight(120);
+        menu.setStyle("-fx-border-color: gray;");
 
-        borderPane = new BorderPane(fieldContainer, menu, checkBoxContainer, footer, null);
+        borderPane = new BorderPane(container, menu, null, footer, null);
 
         scene = new Scene(borderPane);
     }

@@ -1,6 +1,7 @@
 package baminsurances.gui.window.scene;
 
 import baminsurances.gui.eventhandler.GuiEventHandler;
+import baminsurances.gui.window.OperationWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -22,19 +23,21 @@ public class InsureCarScene extends PersonSearchScene{
     private ComboBox yearOfProduction, carBrand, carType, bonus;
     private TextArea printArea;
     private Button register;
+    private HBox footer, header;
 
 
     private ScrollPane scrollPane;
 
     /**
      * creates a new Scene based on the given values.
-     *
-     * @param header
-     * @param footer
      * @param handler
      */
     public InsureCarScene(HBox header, HBox footer, GuiEventHandler handler){
-        super(header, footer, handler);
+        super(handler);
+        this.header = header;
+        this.footer = footer;
+        borderPane = new BorderPane(itemContainer, header, personList, footer, null);
+        scene = new Scene(borderPane);
 
     }
 
@@ -86,7 +89,7 @@ public class InsureCarScene extends PersonSearchScene{
         register.setOnAction(handler);
 
         scrollPane = new ScrollPane(printArea);
-        scrollPane.setPrefWidth(600);
+        scrollPane.setPrefWidth(OperationWindow.STAGE_WIDTH * 3/5);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
 
