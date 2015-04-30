@@ -106,7 +106,6 @@ public class AddScene {
         scrollPane.setStyle("-fx-border-color: gray;");
 
         borderPane = new BorderPane(fieldBox, header, scrollPane, footer, null);
-
         scene = new Scene(borderPane);
     }
 

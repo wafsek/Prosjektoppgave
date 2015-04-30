@@ -26,6 +26,7 @@ public class InsurePersonScene extends PersonSearchScene{
     private ScrollPane scrollPane;
     private ObservableList<String> kidsArray, relationshipArray, incomeArray, deptArray;
     private ComboBox kids, relationship, income, dept;
+    private HBox header, footer;
 
     /**
      * creates a new Scene based on the values given.
@@ -34,9 +35,10 @@ public class InsurePersonScene extends PersonSearchScene{
      * @param footer
      * @param handler
      */
-    public InsurePersonScene(HBox header, HBox footer, GuiEventHandler handler)
-    {
-        super(header, footer, handler);
+    public InsurePersonScene(HBox header, HBox footer, GuiEventHandler handler) {
+        super(handler);
+        this.header = header;
+        this.footer = footer;
         borderPane = new BorderPane(itemContainer, header, personList, footer, null);
         scene = new Scene(borderPane);
     }

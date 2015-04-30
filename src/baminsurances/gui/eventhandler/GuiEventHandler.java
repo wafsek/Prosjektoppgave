@@ -7,7 +7,6 @@ import baminsurances.gui.window.OperationWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-import javafx.scene.control.Control;
 import java.util.logging.Level;
 
 /**
@@ -17,11 +16,10 @@ public class GuiEventHandler implements EventHandler<ActionEvent> {
     private CustomLogger logger = new CustomLogger(GuiEventHandler.class.getName());
     private LoginWindow loginWindow;
     private OperationWindow operationWindow;
-    private baminsurances.controller.Controller controller;
-    public GuiEventHandler(LoginWindow loginWindow,OperationWindow operationWindow,baminsurances.controller.Controller controller) {
-        this.loginWindow = loginWindow;
-        this.operationWindow = operationWindow;
-        this.controller = controller;
+
+    public GuiEventHandler() {
+        loginWindow = LoginWindow.getLoginWindow();
+        operationWindow = OperationWindow.getOperationWindow();
         setGuiEventHandler();
     }
 
@@ -34,11 +32,10 @@ public class GuiEventHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent e) {
-            controller.handle((Control) e.getSource());
-        
-        
-        /*if(e.getSource() == loginWindow.getLoginButton()){
-            controller.login();
+        if(e.getSource() == loginWindow.getLoginButton()){
+            logger.log("Logged in", Level.SEVERE);
+            loginWindow.close();
+            operationWindow.displayWelcomeScene();
         }else if (e.getSource() == operationWindow.getAdd()){
             operationWindow.displayAddScene();
         }else if (e.getSource() == operationWindow.getPerson()){
@@ -68,6 +65,10 @@ public class GuiEventHandler implements EventHandler<ActionEvent> {
             operationWindow.displayInsureBoatScene(1);
         }else if (e.getSource() == operationWindow.getInsureBoatScene().getRequestRegistration()){
             operationWindow.displayInsureBoatScene(2);
-        }*/
+        }else if (e.getSource() == operationWindow.getAddScene().getRegister()) {
+            operationWindow.getAddScene().requestRegistration();
+        }else if (e.getSource() == operationWindow.getSearch()){
+            operationWindow.displaySearchScene();
+        }
     }
 }

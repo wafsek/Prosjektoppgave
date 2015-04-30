@@ -6,25 +6,29 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 /**
  * Created by Adrian on 30/04/2015.
  */
 public class SearchScene extends PersonSearchScene{
 
-    private HBox header, footer;
     private TextArea printArea;
+    private VBox rightSideContainer;
+    private HBox footer, header;
 
     public SearchScene(HBox header, HBox footer, GuiEventHandler handler){
-        super(header, footer, handler);
+        super(handler);
         this.header = header;
         this.footer = footer;
 
         printArea = new TextArea();
-        printArea.setPrefWidth(OperationWindow.STAGE_WIDTH * 2/4);
+        printArea.setPrefHeight(OperationWindow.STAGE_HEIGHT * 2/3);
         printArea.setEditable(false);
 
-        borderPane = new BorderPane(itemContainer, header, personList, footer, null);
+        rightSideContainer = new VBox(0, personList, printArea);
+
+        borderPane = new BorderPane(itemContainer, header, rightSideContainer, footer, null);
         scene = new Scene(borderPane);
     }
 

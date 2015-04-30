@@ -36,11 +36,7 @@ public abstract class PersonSearchScene {
     protected BorderPane borderPane;
     protected GuiEventHandler handler;
 
-    protected HBox header, footer;
-
-    public PersonSearchScene(HBox header, HBox footer, GuiEventHandler handler){
-        this.header = header;
-        this.footer = footer;
+    public PersonSearchScene(GuiEventHandler handler){
         this.handler = handler;
 
         personList = new TableView();
