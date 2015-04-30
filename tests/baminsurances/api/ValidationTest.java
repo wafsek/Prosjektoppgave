@@ -79,6 +79,16 @@ public class ValidationTest {
     }
     
     @Test
+    public void testIsValidStreetAddress() {
+        assertTrue(Validation.isValidStreetAddress("Pilestredet 35"));
+        assertTrue(Validation.isValidStreetAddress("Ørneveien 12B"));
+        assertTrue(Validation.isValidStreetAddress("Heer terrasse 3"));
+        assertTrue(Validation.isValidStreetAddress("Heer terrasse 3A"));
+        assertFalse(Validation.isValidStreetAddress("Pilestredet"));
+        assertFalse(Validation.isValidStreetAddress("Ørneveien 12BA"));
+    }
+    
+    @Test
     public void testConsistsOnlyOfNumbers() {
         assertTrue(Validation.consistsOnlyOfNumbers("0166"));
         assertTrue(Validation.consistsOnlyOfNumbers("0000"));
@@ -94,5 +104,13 @@ public class ValidationTest {
         assertTrue(Validation.isOfLength("0166", 4));
         assertFalse(Validation.isOfLength("016", 4));
         assertFalse(Validation.isOfLength("Ole", 2));
+    }
+    
+    @Test
+    public void consistsOnlyOfLetters() {
+        assertTrue(Validation.consistsOnlyOfLetters("Apple"));
+        assertTrue(Validation.consistsOnlyOfLetters("A"));
+        assertFalse(Validation.consistsOnlyOfLetters("Appl3"));
+        assertFalse(Validation.consistsOnlyOfLetters(""));
     }
 }

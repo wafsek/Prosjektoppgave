@@ -40,6 +40,10 @@ public class Validation {
     
     /**
      * Returns <code>true</code> if the given birth number is a valid one.
+     * <p>
+     * The return value of this function is the same as calling <code>
+     * isValidBirthNo(birthNo) && birthNoHasValidControllNos(birthNo)</code>.
+     * 
      * @param birthNo the birth number to validate
      * @return <code>true</code> if the given birth number is a valid one
      * @see <a href="http://no.wikipedia.org/wiki/F%C3%B8dselsnummer">Norwegian
@@ -55,6 +59,7 @@ public class Validation {
     /**
      * Returns <code>true</code> if the given birth number is on the right
      * format, which is a number of 11 digits.
+     * 
      * @param birthNo the birth number to validate
      * @return <code>true</code> if the given birth number is on the right
      * format
@@ -174,6 +179,20 @@ public class Validation {
     }
     
     /**
+     * Returns <code>true</code> if the given street address is a valid one.
+     * For it to be valid, it has to start with a capital letters, and can be
+     * followed by numbers, hyphens, spaces and letters from the Norwegian
+     * alphabet.
+     * 
+     * @param streetAddress the address to validate
+     * @return <code>true</code> if the given address is a valid one
+     */
+    public static boolean isValidStreetAddress(String streetAddress) {
+        return streetAddress.matches(
+                "[A-ZÆØÅ][a-zæøå]+([ -][a-zæøå]*)?[ ][0-9]{1,2}[A-ZÆØÅ]?");
+    }
+    
+    /**
      * Returns <code>true</code> if the given value is a number.
      * 
      * @param value the value to validate
@@ -197,19 +216,6 @@ public class Validation {
     }
     
     /**
-     * Returns <code>true</code> if the given street address is a valid one.
-     * For it to be valid, it has to start with a capital letters, and can be
-     * followed by numbers, hyphens, spaces and letters from the Norwegian
-     * alphabet.
-     * 
-     * @param address the address to validate
-     * @return <code>true</code> if the given address is a valid one
-     */
-    public static boolean isValidAddress(String address) {
-        return address.matches("[A-ZÆØÅ][a-zæøå0-9 -]");
-    }
-    
-    /**
      * Returns <code>true</code> if the given string consists solely of
      * letters.
      * 
@@ -217,8 +223,8 @@ public class Validation {
      * @return <code>true</code> if the given string consists solely of letters
      */
     public static boolean consistsOnlyOfLetters(String text) {
-        return text.chars()
-                   .mapToObj(i -> (char) i)
-                   .allMatch(Character::isLetter);
+        return text.length() > 0 && text.chars()
+                                        .mapToObj(i -> (char) i)
+                                        .allMatch(Character::isLetter);
     }
 }
