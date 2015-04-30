@@ -15,7 +15,7 @@ import java.util.List;
  * 
  * @author martin
  */
-public class CvsReader {
+public class CsvReader {
     private File cvsFile;
     private String splitter;
     
@@ -26,7 +26,7 @@ public class CvsReader {
      * @param cvsFile the .cvs file
      * @param splitter used to split words on a line in the file
      */
-    public CvsReader(File cvsFile, String splitter) {
+    public CsvReader(File cvsFile, String splitter) {
         this.cvsFile = cvsFile;
         this.splitter = splitter;
     }
