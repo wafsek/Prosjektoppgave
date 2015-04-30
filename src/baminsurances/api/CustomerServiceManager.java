@@ -1,11 +1,11 @@
 package baminsurances.api;
 
-import baminsurances.data.Customer;
-import baminsurances.data.CustomerInsurance;
-import baminsurances.data.Insurance;
-import baminsurances.data.InsuranceDataBank;
+import baminsurances.data.*;
+import baminsurances.logging.CustomLogger;
+
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.logging.Level;
 
 
 /**
@@ -13,9 +13,13 @@ import java.util.function.Predicate;
  * @author baljit sarai
  */
 public class CustomerServiceManager {
+    public static final int SUCCESS = 0;
+    public static final int CUSTOMER_NOT_FOUND = 1;
+    public static final int INSURANCE_NOT_FOUND = 2;
+    public static final int ALREADY_CANCELED = 3;
     
     private InsuranceDataBank dataBank;
-    
+    private CustomLogger logger = new CustomLogger(CustomerServiceManager.class.getName());
     //private static final InsuranceServiceManager manager = new InsuranceServiceManager();
     
     
@@ -42,8 +46,7 @@ public class CustomerServiceManager {
         }
         this.setInsuranceDataBank(dataBank);
     }
-
-
+    
     /**
      * Creates and adds new CustomerInsurance
      * @param insurance The first Insurance to be set. 
@@ -51,38 +54,50 @@ public class CustomerServiceManager {
      */
     public void registerCustomerInsurance(Insurance insurance, Customer customer)
     {
+        if(insurance ==null || customer == null){
+            throw new NullPointerException("insurance and customer parameter cannot be null");
+        }
         CustomerInsurance customerInsurance = new CustomerInsurance(customer,insurance);
         dataBank.addCustomerInsurance(customerInsurance);
+        logger.log("|"+"CustomerInsurance registered.", Level.INFO);
     }
 
+    
+    
     /**
      * Adds an Insurance to the CustomerInsurance by birthNo
      * @param insurance The Insurance to be added.
      * @param birthNo String 
      */
-    public void addInsurance(Insurance insurance, String birthNo){
-        this.getCustomerInsurance(birthNo).getInsurances().add(insurance);
+    public int addInsurance(Insurance insurance, String birthNo){
+        if(birthNo == null){
+            throw new NullPointerException("String expected; Null received");
+        }
+        CustomerInsurance customerInsurance = this.getCustomerInsurance(birthNo);
+        if(customerInsurance==null){
+            return CUSTOMER_NOT_FOUND;
+        }else{
+            customerInsurance.getInsurances().add(insurance);
+            return SUCCESS;
+        }
     }
-
-
+    
     /**
      * Cancel an Insurance for a CustomerInsurance by birthNo
-     * @param insuranceNo The Insurance Number to cancel
+     * @param insuranceNo The InsuranceNo to use to get the right Insurance
      */
-    //public void cancelInsurance(String insuranceNo){
-    //    this.getActiveCustomerInsurances().stream().filter(ci -> ci.insuranceNo)
-    //}
-
-    /**
-     * Cancel an Insurance for a CustomerInsurance by birthNo
-     * @param insuranceNo
-     * @param birthNo
-     */
-    public void cancelInsurance(int insuranceNo, String birthNo){
-        
+    public int cancelInsurance(int insuranceNo){
+        Insurance insurance = this.getInsurance(insuranceNo);
+        if(insurance==null){
+            return INSURANCE_NOT_FOUND;
+        }else if(insurance.cancel()){
+            return SUCCESS;
+        }else{
+            return ALREADY_CANCELED;
+        }
     }
 
-
+    
 
 
     /****************************************************************************
@@ -94,7 +109,7 @@ public class CustomerServiceManager {
     
     Predicate<CustomerInsurance> activeCustomerInsurances = ci -> ci.isActive();
     //Predicate<CustomerInsurance> isTotalCustomer = ci -> ci.isTotalCustomer();
-    Predicate<Insurance> isActiveInsurance = i -> i.getCancellationDate() != null;
+    Predicate<Insurance> isActiveInsurance = i -> i.isActive();
     
     /**
      * Returns CustomerInsurance object with given Customer object
@@ -561,4 +576,20 @@ public class CustomerServiceManager {
         }
         return result;
     }
+   
+    
+    /**
+     * Return Insurance by InsuranceNo given
+     * @param insuranceNo
+     */
+    public Insurance getInsurance(int insuranceNo){
+        for(Insurance insurance: this.getInsurances()){
+            if(insurance.getInsuranceNo() == insuranceNo){
+                return insurance;
+            }
+        }
+        return null;
+    }
+
+    
 }

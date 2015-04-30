@@ -1,5 +1,6 @@
 package baminsurances.gui;
 import baminsurances.api.Config;
+import baminsurances.controller.Controller;
 import baminsurances.logging.CustomLogger;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import javafx.application.Application;
@@ -19,13 +20,16 @@ public class Gui extends Application {
         CustomLogger.setUp();
         System.out.println("Welkommen til " + Config.getApplicationName());
         addHook();
+        
+        
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         logger.log("Staring the Program", Level.INFO);
-        new GuiEventHandler();
+        Controller controller = new Controller();
+        controller.start();
     }
     
     

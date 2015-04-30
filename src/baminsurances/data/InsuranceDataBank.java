@@ -1,5 +1,7 @@
 package baminsurances.data;
 
+import baminsurances.security.User;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
@@ -12,6 +14,7 @@ public class InsuranceDataBank {
     
     private List<CustomerInsurance> customerInsuranceList = new ArrayList<CustomerInsurance>();
     private List<Employee> employeeList = new ArrayList<Employee>();
+    private List<User> userList = new ArrayList<User>();
     private static final InsuranceDataBank dataBank = new InsuranceDataBank();
     private InsuranceDataBank(){
     }
@@ -85,5 +88,8 @@ public class InsuranceDataBank {
     public List<Employee> getEmployeeList(){
         return employeeList;
     }
-    
+
+    public List<User> getUserList() {
+        return userList;
+    }
 }
