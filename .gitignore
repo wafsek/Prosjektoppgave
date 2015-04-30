@@ -75,6 +75,7 @@ local.properties
 
 # JavaFX
 .idea/workspace.xml
+workspace.xml
 
 # Log
 *.log
