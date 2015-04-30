@@ -29,15 +29,12 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent e) {
         while(txtFieldsIterator.hasNext()){
-            if(statisticsScene.getTextFieldsIterator().next() != null &&
-                    e.getSource() == statisticsScene.getTextFieldsIterator().next()){
+            if(e.getSource() == statisticsScene.getTextFieldsIterator().next()){
                 statisticsScene.setEditableEmployeeFields();
                 statisticsScene.setEditableCustomerFields();
-                resetIterators();
+                statisticsScene.resetIterator();
+                txtFieldsIterator = statisticsScene.getTextFieldsIterator();
                 break;
-            }if(insurePersonScene.getTextFieldsIterator().next() != null &&
-                    e.getSource() == insurePersonScene.getTextFieldsIterator().next()){
-
             }
         }
     }
@@ -65,10 +62,5 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
     public void setInsureCarScene(InsureCarScene insureCarScene, ArrayList<TextField> textFields){
         this.insureCarScene = insureCarScene;
         txtFieldsIterator = textFields.iterator();
-    }
-
-    public void resetIterators(){
-        statisticsScene.resetIterator();
-        insurePersonScene.resetIterator();
     }
 }

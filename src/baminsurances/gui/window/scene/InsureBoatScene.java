@@ -1,6 +1,7 @@
 package baminsurances.gui.window.scene;
 
 import baminsurances.gui.eventhandler.GuiEventHandler;
+import baminsurances.gui.window.OperationWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -32,6 +33,8 @@ public class InsureBoatScene extends PersonSearchScene{
      */
     public InsureBoatScene(HBox header, HBox footer, GuiEventHandler handler) {
         super(header, footer, handler);
+        borderPane = new BorderPane(itemContainer, header, personList, footer, null);
+        scene = new Scene(borderPane);
     }
 
     /**
@@ -61,23 +64,23 @@ public class InsureBoatScene extends PersonSearchScene{
         harbor = FXCollections.observableArrayList("Åpen havn", "Lukket havn");
         yearOfConstructionBox = new ComboBox(yearOfConstruction);
         yearOfConstructionBox.setPromptText("Konstruksjonsår");
-        yearOfConstructionBox.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
+        yearOfConstructionBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1/6);
         boatTypeBox = new ComboBox(boatType);
         boatTypeBox.setPromptText("Båttype");
-        boatTypeBox.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
+        boatTypeBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1/6);
         lengthInFeetBox = new ComboBox(lengthInFeet);
         lengthInFeetBox.setPromptText("Lengde (fot)");
-        lengthInFeetBox.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
+        lengthInFeetBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1/6);
         harborBox = new ComboBox(harbor);
         harborBox.setPromptText("Havntype");
-        harborBox.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
+        harborBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1/6);
 
         register = new Button("Registrer forsikring");
 
         printArea = new TextArea();
         printArea.setEditable(false);
         scrollPane = new ScrollPane(printArea);
-        scrollPane.setPrefWidth(600);
+        scrollPane.setPrefWidth(OperationWindow.STAGE_WIDTH * 3/5);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
         scrollPane.setStyle("-fx-border-color: gray;");
