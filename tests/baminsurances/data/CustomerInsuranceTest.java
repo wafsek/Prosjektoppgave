@@ -46,4 +46,11 @@ public class CustomerInsuranceTest {
                                          .forEach(Insurance::cancel);
         assertFalse(customerInsurance.isActive());
     }
+    
+    @Test
+    public void testGetInsuranceTypes() {
+        BoatInsurance boa = new BoatInsurance(emp, 2000, 10000, "All skade",
+                customerInsurance.getCustomer(), "B080", "Jolle", "FX2", 4,
+                2010, "Gx", 2);
+    }
 }

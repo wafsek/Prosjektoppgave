@@ -7,12 +7,85 @@ import baminsurances.data.*;
 import baminsurances.util.CsvReader;
 import baminsurances.util.TxtReader;
 
+/**
+ * Provides methods for generating complete Person objects and its data fields.
+ * The class uses external resources to generate these data, and they are
+ * loaded in the constructor. 
+ * 
+ * @author martin
+ */
 public class PersonGenerator {
+    private List<String> boysNames;
+    private List<String> girlsNames;
+    private List<String> lastNames;
+    private List<String> zipCodes;
+    private List<String> streetAddressStarts;
+    private List<String> streetAddressEndings;
+    
+    /**
+     * Creates a new Person object generator.
+     */
+    public PersonGenerator() {
+        boysNames = loadBoysNames();
+        girlsNames = loadGirlsNames();
+        lastNames = loadLastNames();
+        zipCodes = loadZipCodes();
+        streetAddressStarts = loadStreetAddressStarts();
+        streetAddressEndings = loadStreetAddressEndings();
+    }
+    
+    private List<String> loadBoysNames() {
+        String filepath =
+                PersonGenerator.class.getClassLoader().getResource(
+                        "guttenavn.csv").getPath();
+        CsvReader reader = new CsvReader(new File(filepath), ";");
+        return reader.getValuesInColumn(0);
+    }
+    
+    private List<String> loadGirlsNames() {
+        String filepath =
+                PersonGenerator.class.getClassLoader().getResource(
+                        "jentenavn.csv").getPath();
+        CsvReader reader = new CsvReader(new File(filepath), ";");
+        return reader.getValuesInColumn(0);
+    }
+    
+    private List<String> loadLastNames() {
+        String filepath =
+                PersonGenerator.class.getClassLoader().getResource(
+                        "etternavn.csv").getPath();
+        CsvReader reader = new CsvReader(new File(filepath), ";");
+        return reader.getValuesInColumn(1);
+    }
+    
+    private List<String> loadZipCodes() {
+        String filepath =
+                PersonGenerator.class.getClassLoader().getResource(
+                        "postnummer.csv").getPath();
+        CsvReader reader = new CsvReader(new File(filepath), ";");
+        return reader.getValuesInColumn(0);        
+    }
+    
+    private List<String> loadStreetAddressStarts() {
+        String startsFilepath =
+                PersonGenerator.class.getClassLoader().getResource(
+                        "gateadresse1.txt").getPath();
+        TxtReader reader = new TxtReader(new File(startsFilepath));
+        return reader.getLines();
+    }
+    
+    private List<String> loadStreetAddressEndings() {
+        String endingsFilepath =
+                PersonGenerator.class.getClassLoader().getResource(
+                        "gateadresse2.txt").getPath();
+        TxtReader reader = new TxtReader(new File(endingsFilepath));
+        return reader.getLines();
+    }
     
     /**
      * Generates and returns a Person object.
      * 
-     * @returna a Person object
+     * @return a Person object
      */
     public Person generate() {
         return new Person(
@@ -29,7 +102,7 @@ public class PersonGenerator {
      * 
      * @return a valid Norwegian birth number
      */
-    public static String generateBirthNo() {
+    public String generateBirthNo() {
         int day = (int) (Math.random() * 28) + 1;
         String dayString = day < 10 ? "0" + String.valueOf(day) : String.valueOf(day);
         int month = (int) (Math.random() * 12) + 1;
@@ -75,7 +148,7 @@ public class PersonGenerator {
      * @param birthNo the first 9 digits of a Norwegian birth number
      * @return the first controll number (the 10th digit)
      */
-    private static int generateControllNo1(String birthNo) {
+    private int generateControllNo1(String birthNo) {
         int d1 = Character.getNumericValue(birthNo.charAt(0));
         int d2 = Character.getNumericValue(birthNo.charAt(1));
         int m1 = Character.getNumericValue(birthNo.charAt(2));
@@ -99,7 +172,7 @@ public class PersonGenerator {
      * Norwegian number
      * @return the last controll number (the 11th digit)
      */
-    private static int generateControllNo2(String birthNo, int controllNo1) {
+    private int generateControllNo2(String birthNo, int controllNo1) {
         int d1 = Character.getNumericValue(birthNo.charAt(0));
         int d2 = Character.getNumericValue(birthNo.charAt(1));
         int m1 = Character.getNumericValue(birthNo.charAt(2));
@@ -120,7 +193,7 @@ public class PersonGenerator {
      * 
      * @return a first name
      */
-    public static String generateFirstName() {
+    public String generateFirstName() {
         if (Math.random() < 0.5) {
             return generateBoysName();
         } else {
@@ -133,13 +206,8 @@ public class PersonGenerator {
      * 
      * @return a boys name
      */
-    public static String generateBoysName() {
-        String filepath =
-                PersonGenerator.class.getClassLoader().getResource("guttenavn.csv").getPath();
-        CsvReader reader = new CsvReader(new File(filepath), ";");
-        List<String> boysNames = reader.getValuesInColumn(0);
-        int index = (int) (Math.random() * boysNames.size());
-        return boysNames.get(index);
+    public String generateBoysName() {
+        return boysNames.get((int) (Math.random() * boysNames.size()));
     }
     
     /**
@@ -147,11 +215,7 @@ public class PersonGenerator {
      * 
      * @return a girls name
      */
-    public static String generateGirlsName() {
-        String filepath =
-                PersonGenerator.class.getClassLoader().getResource("jentenavn.csv").getPath();
-        CsvReader reader = new CsvReader(new File(filepath), ";");
-        List<String> girlsNames = reader.getValuesInColumn(0);
+    public String generateGirlsName() {
         return girlsNames.get((int) (Math.random() * girlsNames.size()));
     }
     
@@ -160,11 +224,7 @@ public class PersonGenerator {
      * 
      * @return a last name
      */
-    public static String generateLastName() {
-        String filepath =
-                PersonGenerator.class.getClassLoader().getResource("etternavn.csv").getPath();
-        CsvReader reader = new CsvReader(new File(filepath), ";");
-        List<String> lastNames = reader.getValuesInColumn(1);
+    public String generateLastName() {
         return lastNames.get((int) (Math.random() * lastNames.size()));
     }
     
@@ -173,7 +233,7 @@ public class PersonGenerator {
      * 
      * @return a Norwegian telephone number
      */
-    public static String generateTelephoneNo() {
+    public String generateTelephoneNo() {
         String telephoneNo = "";
         for (int i = 0; i < 8; i++) {
             telephoneNo += String.valueOf((int) (Math.random() * 10));
@@ -186,14 +246,8 @@ public class PersonGenerator {
      * 
      * @return a Norwegian zip code
      */
-    public static String generateZipCode() {
-        String filepath =
-                PersonGenerator.class.getClassLoader().getResource(
-                        "postnummer.csv").getPath();
-        CsvReader reader = new CsvReader(new File(filepath), "\t");
-        List<String> zipCodes = reader.getValuesInColumn(0);
-        int index = (int) (Math.random() * zipCodes.size());
-        return zipCodes.get(index);
+    public String generateZipCode() {
+        return zipCodes.get((int) (Math.random() * zipCodes.size()));
     }
     
     /**
@@ -201,25 +255,21 @@ public class PersonGenerator {
      * 
      * @return a Norwegian street address
      */
-    public static String generateStreetAddress() {
-        String startFilepath =
-                PersonGenerator.class.getClassLoader().getResource(
-                        "gateadresse1.txt").getPath();
-        TxtReader reader = new TxtReader(new File(startFilepath));
-        List<String> start = reader.getLines();
-        
-        String endFilepath =
-                PersonGenerator.class.getClassLoader().getResource(
-                        "gateadresse2.txt").getPath();
-        reader.setFile(new File(endFilepath));
-        List<String> end = reader.getLines();
-        
-        char[] letters = "ABCDEFGHI".toCharArray();
+    public String generateStreetAddress() {
         int number = (int) (Math.random() * 99) + 1;
+        String letter = ""; // has to be a String because chars cant be empty
         
-        return start.get((int) (Math.random() * start.size())) +
-               end.get((int) (Math.random() * end.size())) + " " +
-               String.valueOf(number) +
-               String.valueOf(letters[(int) (Math.random() * letters.length)]);
+        // 20% chance of not containing a letter after number
+        if (Math.random() > 0.2) {
+            char[] letters = "ABCDEFGHI".toCharArray();
+            letter = String.valueOf(
+                    letters[(int) (Math.random() * letters.length)]);
+        }
+        
+        return streetAddressStarts.get(
+                   (int) (Math.random() * streetAddressStarts.size())) +
+               streetAddressEndings.get(
+                   (int) (Math.random() * streetAddressEndings.size())) + " " +
+               String.valueOf(number) + letter;
     }
 }

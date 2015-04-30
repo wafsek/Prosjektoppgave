@@ -5,14 +5,22 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import baminsurances.api.Validation;
+import baminsurances.data.Person;
 
 public class PersonGeneratorTest {
-    private int numTests = 10000;
+    private PersonGenerator generator = new PersonGenerator();
+    private int numTests = 100000;
+    
+    @Test
+    public void testGeneratePerson() {
+        Person p = generator.generate();
+        p.getBirthNo();
+    }
     
     @Test
     public void testGenerateBirthNo() {
         for (int i = 0; i < numTests; i++) {
-            String birthNo = PersonGenerator.generateBirthNo();
+            String birthNo = generator.generateBirthNo();
             assertTrue("Found: '" + birthNo + "'",
                     Validation.isOfLength(birthNo, 11));
             assertTrue("Found: '" + birthNo + "'",
@@ -25,7 +33,7 @@ public class PersonGeneratorTest {
     @Test
     public void testGenerateFirstName() {
         for (int i = 0; i < numTests; i++) {
-            String firstName = PersonGenerator.generateFirstName();
+            String firstName = generator.generateFirstName();
             assertTrue("Found: '" + firstName + "'",
                     Validation.isValidFirstName(firstName));
         }
@@ -34,7 +42,7 @@ public class PersonGeneratorTest {
     @Test
     public void testGenerateLastName() {
         for (int i = 0; i < numTests; i++) {
-            String lastName = PersonGenerator.generateLastName();
+            String lastName = generator.generateLastName();
             assertTrue("Found: '" + lastName + "'",
                     Validation.isValidLastName(lastName));   
         }
@@ -43,7 +51,7 @@ public class PersonGeneratorTest {
     @Test
     public void testGenerateTelephoneNo() {
         for (int i = 0; i < numTests; i++) {
-            String telephoneNo = PersonGenerator.generateTelephoneNo();
+            String telephoneNo = generator.generateTelephoneNo();
             assertTrue("Found: '" + telephoneNo + "'",
                     Validation.isValidTelephoneNo(telephoneNo));
         }
@@ -52,7 +60,7 @@ public class PersonGeneratorTest {
     @Test
     public void testGenerateZipCode() {
         for (int i = 0; i < numTests; i++) {
-            String zipCode = PersonGenerator.generateZipCode();
+            String zipCode = generator.generateZipCode();
             assertTrue("Found: '" + zipCode + "'",
                     Validation.isValidZipCode(zipCode));
         }
@@ -61,8 +69,7 @@ public class PersonGeneratorTest {
     @Test
     public void testGenerateStreetAddress() {
         for (int i = 0; i < numTests; i++) {
-            String streetAddress = PersonGenerator.generateStreetAddress();
-            System.out.println(streetAddress);
+            String streetAddress = generator.generateStreetAddress();
             assertTrue("Found: '" + streetAddress + "'",
                     Validation.isValidStreetAddress(streetAddress));
         }

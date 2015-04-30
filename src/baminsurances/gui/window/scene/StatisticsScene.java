@@ -56,6 +56,7 @@ public class StatisticsScene {
         employeeNmbr = new TextField();
         employeeNmbr.setPromptText("Ansattnummer");
         employeeNmbr.setOnKeyReleased(keyHandler);
+        employeeNmbr.setPrefWidth(OperationWindow.STAGE_WIDTH * 1/6);
         birthNmbr = new TextField();
         birthNmbr.setPromptText("Personnummer");
         birthNmbr.setOnKeyReleased(keyHandler);
@@ -83,6 +84,7 @@ public class StatisticsScene {
         textFields.add(carType);
         textFields.add(adress);
         textFieldsIterator = textFields.iterator();
+
 
         fieldContainer = new GridPane();
         fieldContainer.addColumn(0, employeeNmbr, birthNmbr, firstName,
