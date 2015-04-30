@@ -9,57 +9,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A utility class that provides methods for reading files with the .cvs
+ * A utility class that provides methods for reading files with the .csv
  * extension. The methods are ones we implement as we find the need for them,
  * and so they might seem somewhat sparse.
  * 
  * @author martin
  */
 public class CsvReader {
-    private File cvsFile;
+    private File csvFile;
     private String splitter;
     
     /**
-     * Creates a CvsReader that will operate on given file, and use the
+     * Creates a CsvReader that will operate on given file, and use the
      * given splitter to split values on a line.
      * 
-     * @param cvsFile the .cvs file
+     * @param csvFile the .csv file
      * @param splitter used to split words on a line in the file
      */
-    public CsvReader(File cvsFile, String splitter) {
-        this.cvsFile = cvsFile;
+    public CsvReader(File csvFile, String splitter) {
+        this.csvFile = csvFile;
         this.splitter = splitter;
     }
     
     /**
-     * Returns the file currently set to this CvsReader.
+     * Returns the file currently set to this CsvReader.
      * 
-     * @return the file currently set to this CvsReader
+     * @return the file currently set to this CsvReader
      */
     public File getFile() {
-        return cvsFile;
+        return csvFile;
     }
     
     /**
-     * Sets the file that the CvsReader will operate on to the given file.
+     * Sets the file that the CsvReader will operate on to the given file.
      * 
-     * @param cvsFile the new .cvs file
+     * @param csvFile the new .csv file
      */
-    public void setFile(File cvsFile) {
-        this.cvsFile = cvsFile;
+    public void setFile(File csvFile) {
+        this.csvFile = csvFile;
     }
     
     /**
-     * Returns the splitter used by this CvsReader.
+     * Returns the splitter used by this CsvReader.
      * 
-     * @return the splitter used by this CvsReader
+     * @return the splitter used by this CsvReader
      */
     public String getSplitter() {
         return splitter;
     }
     
     /**
-     * Sets this CvsReader's splitter to the given string.
+     * Sets this CsvReader's splitter to the given string.
      * 
      * @param splitter the new splitter
      */
@@ -76,7 +76,7 @@ public class CsvReader {
      * index
      */
     public List<String> getValuesInColumn(int col) {
-        try (BufferedReader in = new BufferedReader(new FileReader(cvsFile))) {
+        try (BufferedReader in = new BufferedReader(new FileReader(csvFile))) {
             List<String> list = new ArrayList<>();
             
             // The first line is always skipped, because
