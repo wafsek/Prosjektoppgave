@@ -25,6 +25,7 @@ public class InsureHouseScene extends PersonSearchScene{
     private TextField houseZipCode, houseAdress;
     private ObservableList<String> yearOfConstruction, area;
     private ComboBox yearOfConstructionBox, areaBox;
+    private HBox footer, header;
 
     private Button register;
 
@@ -36,7 +37,9 @@ public class InsureHouseScene extends PersonSearchScene{
      * @param handler
      */
     public InsureHouseScene(HBox header, HBox footer, GuiEventHandler handler) {
-        super(header, footer, handler);
+        super(handler);
+        this.header = header;
+        this.footer = footer;
         borderPane = new BorderPane(itemContainer, header, personList, footer, null);
         scene = new Scene(borderPane);
     }

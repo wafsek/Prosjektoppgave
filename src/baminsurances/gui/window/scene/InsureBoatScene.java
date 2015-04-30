@@ -16,11 +16,11 @@ import javafx.scene.layout.HBox;
  */
 public class InsureBoatScene extends PersonSearchScene{
 
-    private final int PREFERRED_TEXTFIELD_COMBOBOX_WIDTH = 210;
     private TextArea printArea;
     private ScrollPane scrollPane;
     private ObservableList<String> boatType, yearOfConstruction, lengthInFeet, harbor;
     private ComboBox yearOfConstructionBox, boatTypeBox, lengthInFeetBox, harborBox;
+    private HBox footer, header;
 
     private Button register;
 
@@ -32,7 +32,9 @@ public class InsureBoatScene extends PersonSearchScene{
      * @param handler
      */
     public InsureBoatScene(HBox header, HBox footer, GuiEventHandler handler) {
-        super(header, footer, handler);
+        super(handler);
+        this.footer = footer;
+        this.header = header;
         borderPane = new BorderPane(itemContainer, header, personList, footer, null);
         scene = new Scene(borderPane);
     }

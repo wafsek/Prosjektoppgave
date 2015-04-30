@@ -34,6 +34,7 @@ public class OperationWindow {
     private StatisticsScene statisticsScene;
     private InsureHouseScene insureHouseScene;
     private InsureBoatScene insureBoatScene;
+    private SearchScene searchScene;
 
     private OperationWindow() {
 
@@ -71,6 +72,7 @@ public class OperationWindow {
         insureCarScene = new InsureCarScene(header, footer, handler);
         insureBoatScene = new InsureBoatScene(header, footer, handler);
         statisticsScene = new StatisticsScene(footer, keyHandler, handler);
+        searchScene = new SearchScene(header, footer, handler);
     }
 
     public Button getSearch() {
@@ -131,6 +133,10 @@ public class OperationWindow {
 
     public InsureBoatScene getInsureBoatScene(){
         return insureBoatScene;
+    }
+
+    public SearchScene getSearchScene(){
+        return searchScene;
     }
 
     public static OperationWindow getOperationWindow() {
@@ -202,6 +208,11 @@ public class OperationWindow {
         }else{
             stage.setScene(insureBoatScene.requestApproved());
         }
+    }
+
+    public void displaySearchScene(){
+        searchScene = new SearchScene(header, footer, handler);
+        stage.setScene(searchScene.getScene());
     }
 
     public void close(){
