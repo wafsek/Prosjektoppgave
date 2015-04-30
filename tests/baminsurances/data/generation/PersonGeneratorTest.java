@@ -25,32 +25,46 @@ public class PersonGeneratorTest {
     @Test
     public void testGenerateFirstName() {
         for (int i = 0; i < numTests; i++) {
-            assertTrue(Validation.isValidFirstName(
-                    PersonGenerator.generateFirstName()));
+            String firstName = PersonGenerator.generateFirstName();
+            assertTrue("Found: '" + firstName + "'",
+                    Validation.isValidFirstName(firstName));
         }
     }
     
     @Test
     public void testGenerateLastName() {
         for (int i = 0; i < numTests; i++) {
-            assertTrue(Validation.isValidLastName(
-                    PersonGenerator.generateLastName()));   
+            String lastName = PersonGenerator.generateLastName();
+            assertTrue("Found: '" + lastName + "'",
+                    Validation.isValidLastName(lastName));   
         }
     }
     
     @Test
     public void testGenerateTelephoneNo() {
         for (int i = 0; i < numTests; i++) {
-            assertTrue(Validation.isValidTelephoneNo(
-                    PersonGenerator.generateTelephoneNo()));
+            String telephoneNo = PersonGenerator.generateTelephoneNo();
+            assertTrue("Found: '" + telephoneNo + "'",
+                    Validation.isValidTelephoneNo(telephoneNo));
         }
     }
     
     @Test
     public void testGenerateZipCode() {
         for (int i = 0; i < numTests; i++) {
-            assertTrue(Validation.isValidZipCode(
-                    PersonGenerator.generateZipCode()));
+            String zipCode = PersonGenerator.generateZipCode();
+            assertTrue("Found: '" + zipCode + "'",
+                    Validation.isValidZipCode(zipCode));
+        }
+    }
+    
+    @Test
+    public void testGenerateStreetAddress() {
+        for (int i = 0; i < numTests; i++) {
+            String streetAddress = PersonGenerator.generateStreetAddress();
+            System.out.println(streetAddress);
+            assertTrue("Found: '" + streetAddress + "'",
+                    Validation.isValidStreetAddress(streetAddress));
         }
     }
 }

@@ -4,10 +4,16 @@ import java.io.File;
 import java.util.List;
 
 import baminsurances.data.*;
-import baminsurances.util.CvsReader;
+import baminsurances.util.CsvReader;
+import baminsurances.util.TxtReader;
 
 public class PersonGenerator {
     
+    /**
+     * Generates and returns a Person object.
+     * 
+     * @returna a Person object
+     */
     public Person generate() {
         return new Person(
                 generateBirthNo(),
@@ -15,7 +21,7 @@ public class PersonGenerator {
                 generateLastName(),
                 generateTelephoneNo(),
                 generateZipCode(),
-                "");
+                generateStreetAddress());
     }
     
     /**
@@ -130,10 +136,9 @@ public class PersonGenerator {
     public static String generateBoysName() {
         String filepath =
                 PersonGenerator.class.getClassLoader().getResource("guttenavn.csv").getPath();
-        CvsReader reader = new CvsReader(new File(filepath), ";");
+        CsvReader reader = new CsvReader(new File(filepath), ";");
         List<String> boysNames = reader.getValuesInColumn(0);
         int index = (int) (Math.random() * boysNames.size());
-        System.out.println("Guttenavn: " + boysNames.get(index));
         return boysNames.get(index);
     }
     
@@ -145,11 +150,9 @@ public class PersonGenerator {
     public static String generateGirlsName() {
         String filepath =
                 PersonGenerator.class.getClassLoader().getResource("jentenavn.csv").getPath();
-        CvsReader reader = new CvsReader(new File(filepath), ";");
+        CsvReader reader = new CsvReader(new File(filepath), ";");
         List<String> girlsNames = reader.getValuesInColumn(0);
-        int index = (int) (Math.random() * girlsNames.size());
-        System.out.println("Jentenavn: " + girlsNames.get(index));
-        return girlsNames.get(index);
+        return girlsNames.get((int) (Math.random() * girlsNames.size()));
     }
     
     /**
@@ -160,29 +163,63 @@ public class PersonGenerator {
     public static String generateLastName() {
         String filepath =
                 PersonGenerator.class.getClassLoader().getResource("etternavn.csv").getPath();
-        CvsReader reader = new CvsReader(new File(filepath), ";");
+        CsvReader reader = new CsvReader(new File(filepath), ";");
         List<String> lastNames = reader.getValuesInColumn(1);
-        int index = (int) (Math.random() * lastNames.size());
-        System.out.println("Etternavn: " + lastNames.get(index));
-        return lastNames.get(index);
+        return lastNames.get((int) (Math.random() * lastNames.size()));
     }
     
+    /**
+     * Generates and returns a Norwegian telephone number.
+     * 
+     * @return a Norwegian telephone number
+     */
     public static String generateTelephoneNo() {
         String telephoneNo = "";
         for (int i = 0; i < 8; i++) {
             telephoneNo += String.valueOf((int) (Math.random() * 10));
         }
-        System.out.println(telephoneNo);
         return telephoneNo;
     }
     
+    /**
+     * Generates and returns a Norwegian zip code.
+     * 
+     * @return a Norwegian zip code
+     */
     public static String generateZipCode() {
         String filepath =
-                PersonGenerator.class.getClassLoader().getResource("postnummer.csv").getPath();
-        CvsReader reader = new CvsReader(new File(filepath), "\t");
+                PersonGenerator.class.getClassLoader().getResource(
+                        "postnummer.csv").getPath();
+        CsvReader reader = new CsvReader(new File(filepath), "\t");
         List<String> zipCodes = reader.getValuesInColumn(0);
         int index = (int) (Math.random() * zipCodes.size());
-        System.out.println(zipCodes.get(index));
         return zipCodes.get(index);
+    }
+    
+    /**
+     * Generates and returns a Norwegian street address.
+     * 
+     * @return a Norwegian street address
+     */
+    public static String generateStreetAddress() {
+        String startFilepath =
+                PersonGenerator.class.getClassLoader().getResource(
+                        "gateadresse1.txt").getPath();
+        TxtReader reader = new TxtReader(new File(startFilepath));
+        List<String> start = reader.getLines();
+        
+        String endFilepath =
+                PersonGenerator.class.getClassLoader().getResource(
+                        "gateadresse2.txt").getPath();
+        reader.setFile(new File(endFilepath));
+        List<String> end = reader.getLines();
+        
+        char[] letters = "ABCDEFGHI".toCharArray();
+        int number = (int) (Math.random() * 99) + 1;
+        
+        return start.get((int) (Math.random() * start.size())) +
+               end.get((int) (Math.random() * end.size())) + " " +
+               String.valueOf(number) +
+               String.valueOf(letters[(int) (Math.random() * letters.length)]);
     }
 }
