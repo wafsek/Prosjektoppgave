@@ -89,7 +89,7 @@ public class LoginWindow {
         stage.setHeight(325);
         stage.setWidth(275);
         stage.setResizable(false);
-        stage.show();
+        
     }
 
     public Button getLoginButton() {

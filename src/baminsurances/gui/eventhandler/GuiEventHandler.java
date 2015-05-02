@@ -1,11 +1,13 @@
 package baminsurances.gui.eventhandler;
 
+import baminsurances.controller.Controller;
 import baminsurances.logging.CustomLogger;
 import baminsurances.gui.window.LoginWindow;
 import baminsurances.gui.window.MessageDialog;
 import baminsurances.gui.window.OperationWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Control;
 
 import java.util.logging.Level;
 
@@ -14,25 +16,22 @@ import java.util.logging.Level;
  */
 public class GuiEventHandler implements EventHandler<ActionEvent> {
     private CustomLogger logger = new CustomLogger(GuiEventHandler.class.getName());
-    private LoginWindow loginWindow;
-    private OperationWindow operationWindow;
-
-    public GuiEventHandler() {
-        loginWindow = LoginWindow.getLoginWindow();
-        operationWindow = OperationWindow.getOperationWindow();
+    private Controller controller;
+    public GuiEventHandler(Controller controller) {
+        this.controller = controller;
         setGuiEventHandler();
     }
 
     public void setGuiEventHandler()
     {
-        loginWindow.setGuiEventHandler(this);
-        operationWindow.setGuiEventHandler(this);
+        
     }
 
 
     @Override
     public void handle(ActionEvent e) {
-        if(e.getSource() == loginWindow.getLoginButton()){
+        controller.handle((Control)(e.getSource()));
+        /*if(e.getSource() == loginWindow.getLoginButton()){
             logger.log("Logged in", Level.SEVERE);
             loginWindow.close();
             operationWindow.displayWelcomeScene();
@@ -69,6 +68,6 @@ public class GuiEventHandler implements EventHandler<ActionEvent> {
             operationWindow.getAddScene().requestRegistration();
         }else if (e.getSource() == operationWindow.getSearchSceneButton()){
             operationWindow.displaySearchScene();
-        }
+        }*/
     }
 }

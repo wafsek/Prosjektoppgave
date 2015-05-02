@@ -38,7 +38,7 @@ public class OperationWindow {
 
     private OperationWindow() {
 
-        keyHandler = new KeyPressHandler(this);
+        
 
         stage = new Stage();
         search = new IconButton().iconButton(100, 100, IconButton.SEARCH_BUTTON);
@@ -103,7 +103,7 @@ public class OperationWindow {
         return boat;
     }
 
-    public Button getLogOutSceneButton(){
+    public Button getLogOutButton(){
         return logOut;
     }
 
@@ -153,6 +153,10 @@ public class OperationWindow {
         person.setOnAction(handler);
         boat.setOnAction(handler);
         logOut.setOnAction(handler);
+    }
+    
+    public void setKeyHandler(KeyPressHandler keyHandler){
+        this.keyHandler = keyHandler;
     }
 
     public void displayWelcomeScene(){

@@ -1,5 +1,6 @@
 package baminsurances.gui.eventhandler;
 
+import baminsurances.controller.Controller;
 import baminsurances.gui.window.OperationWindow;
 import baminsurances.gui.window.scene.*;
 import javafx.collections.ObservableList;
@@ -22,9 +23,11 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
     private InsureBoatScene insureBoatScene;
     private InsureCarScene insureCarScene;
     private Iterator txtFieldsIterator;
+    private Controller controller;
 
-    public KeyPressHandler(OperationWindow operationWindow){
+    public KeyPressHandler(OperationWindow operationWindow,Controller controller){
         this.operationWindow = operationWindow;
+        this.controller = controller;
     }
 
     @Override

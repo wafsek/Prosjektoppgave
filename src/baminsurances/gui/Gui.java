@@ -20,8 +20,6 @@ public class Gui extends Application {
         CustomLogger.setUp();
         System.out.println("Welkommen til " + Config.getApplicationName());
         addHook();
-        
-        
         launch(args);
     }
 
