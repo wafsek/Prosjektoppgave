@@ -97,7 +97,7 @@ public abstract class Insurance implements Comparable<Insurance> {
      * 
      * @return this insurance's annual premium
      */
-    public long getPremium() {
+    public int getPremium() {
         return premium;
     }
     
@@ -115,7 +115,7 @@ public abstract class Insurance implements Comparable<Insurance> {
      * 
      * @return the amount this insurance will cover.
      */
-    public long getAmount() {
+    public int getAmount() {
         return amount;
     }
     
