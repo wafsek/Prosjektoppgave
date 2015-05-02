@@ -25,13 +25,14 @@ public class WelcomeScene {
     * creates a new scene of the type defines as WelcomeScene
     * by this class.
     *
-    *@param rowBox horizontal array of components
-    *
+    *@param header horizontal array of components
+    *@param footer horizontal array of components
+     *@param handler handler that listens for actions
      */
-    public WelcomeScene(HBox rowBox, HBox footer, GuiEventHandler handler){
+    public WelcomeScene(HBox header, HBox footer, GuiEventHandler handler){
         welcomeImage = new Image(this.getClass().getResourceAsStream("../../img/add.png"));
         welcomeImageView = new ImageView(welcomeImage);
-        borderPane = new BorderPane(welcomeImageView, rowBox, null, footer, null);
+        borderPane = new BorderPane(welcomeImageView, header, null, footer, null);
 
         scene = new Scene(borderPane);
     }

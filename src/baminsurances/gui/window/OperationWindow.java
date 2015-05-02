@@ -6,6 +6,7 @@ import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.scene.*;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
@@ -20,39 +21,30 @@ public class OperationWindow {
     private Stage stage;
     private HBox header, footer;
 
-    private Button search, add, stats, house, car, person, boat, logOut;
+    private Button searchButton, addButton, statsButton, houseButton, carButton, personButton, boatButton, logOutButton;
 
     private static OperationWindow operationWindow = new OperationWindow();
 
     private GuiEventHandler handler;
     private KeyPressHandler keyHandler;
 
-    private WelcomeScene welcomeScene;
-    private AddScene addScene;
-    private InsurePersonScene insurePersonScene;
-    private InsureCarScene insureCarScene;
-    private StatisticsScene statisticsScene;
-    private InsureHouseScene insureHouseScene;
-    private InsureBoatScene insureBoatScene;
-    private SearchScene searchScene;
-
     private OperationWindow() {
 
         
 
         stage = new Stage();
-        search = new IconButton().iconButton(100, 100, IconButton.SEARCH_BUTTON);
-        add = new IconButton().iconButton(100, 100, IconButton.ADD_BUTTON);
-        stats = new IconButton().iconButton(100, 100, IconButton.STATISTIC_BUTTON);
-        house = new IconButton().iconButton(100, 100, IconButton.INSURE_HOUSE_BUTTON);
-        car = new IconButton().iconButton(100, 100, IconButton.INSURE_CAR_BUTTON);
-        person = new IconButton().iconButton(100, 100, IconButton.INSURE_PERSON_BUTTON);
-        boat = new IconButton().iconButton(100, 100, IconButton.INSURE_BOAT_BUTTON);
-        logOut = new Button("Logg ut");
+        searchButton = new IconButton().iconButton(100, 100, IconButton.SEARCH_BUTTON);
+        addButton = new IconButton().iconButton(100, 100, IconButton.ADD_BUTTON);
+        statsButton = new IconButton().iconButton(100, 100, IconButton.STATISTIC_BUTTON);
+        houseButton = new IconButton().iconButton(100, 100, IconButton.INSURE_HOUSE_BUTTON);
+        carButton = new IconButton().iconButton(100, 100, IconButton.INSURE_CAR_BUTTON);
+        personButton = new IconButton().iconButton(100, 100, IconButton.INSURE_PERSON_BUTTON);
+        boatButton = new IconButton().iconButton(100, 100, IconButton.INSURE_BOAT_BUTTON);
+        logOutButton = new Button("Logg ut");
 
-        header = new HBox(30, search, add, person, house, car, boat, stats);
+        header = new HBox(30, searchButton, addButton, personButton, houseButton, carButton, boatButton, statsButton);
         header.setAlignment(Pos.CENTER);
-        footer = new HBox(40, logOut);
+        footer = new HBox(40, logOutButton);
         footer.setAlignment(Pos.BASELINE_RIGHT);
         footer.setStyle("-fx-border-color: gray;");
 
@@ -64,159 +56,75 @@ public class OperationWindow {
         stage.setResizable(false);
         stage.setTitle(Config.getApplicationName());
         stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../img/temp_logo.png")));
-
-        welcomeScene = new WelcomeScene(header, footer, handler);
-        addScene = new AddScene(header, footer, handler);
-        insurePersonScene = new InsurePersonScene(header, footer, handler);
-        insureHouseScene = new InsureHouseScene(header, footer, handler);
-        insureCarScene = new InsureCarScene(header, footer, handler);
-        insureBoatScene = new InsureBoatScene(header, footer, handler);
-        statisticsScene = new StatisticsScene(footer, keyHandler, handler);
-        searchScene = new SearchScene(header, footer, handler);
     }
 
     public Button getSearchSceneButton() {
-        return search;
+        return searchButton;
     }
 
     public Button getAddSceneButton() {
-        return add;
+        return addButton;
     }
 
     public Button getStatsSceneButton() {
-        return stats;
+        return statsButton;
     }
 
     public Button getHouseSceneButton() {
-        return house;
+        return houseButton;
     }
 
     public Button getCarSceneButton() {
-        return car;
+        return carButton;
     }
 
     public Button getPersonSceneButton() {
-        return person;
+        return personButton;
     }
 
     public Button getBoatSceneButton() {
-        return boat;
+        return boatButton;
     }
 
     public Button getLogOutButton(){
-        return logOut;
-    }
-
-    public WelcomeScene getWelcomeSceneButton() {
-        return welcomeScene;
-    }
-
-    public AddScene getAddScene() {
-        return addScene;
-    }
-
-    public InsurePersonScene getInsurePersonScene() {
-        return insurePersonScene;
-    }
-
-    public InsureCarScene getInsureCarScene(){
-        return insureCarScene;
-    }
-
-    public StatisticsScene getStatisticsScene(){
-        return statisticsScene;
-    }
-
-    public InsureHouseScene getInsureHouseScene(){
-        return insureHouseScene;
-    }
-
-    public InsureBoatScene getInsureBoatScene(){
-        return insureBoatScene;
-    }
-
-    public SearchScene getSearchScene(){
-        return searchScene;
+        return logOutButton;
     }
 
     public static OperationWindow getOperationWindow() {
         return operationWindow;
     }
 
+    public HBox getHeader() {
+        return header;
+    }
+
+    public HBox getFooter() {
+        return footer;
+    }
+
     public void setGuiEventHandler(GuiEventHandler geh){
         handler = geh;
-        search.setOnAction(handler);
-        add.setOnAction(handler);
-        stats.setOnAction(handler);
-        house.setOnAction(handler);
-        car.setOnAction(handler);
-        person.setOnAction(handler);
-        boat.setOnAction(handler);
-        logOut.setOnAction(handler);
+        searchButton.setOnAction(handler);
+        addButton.setOnAction(handler);
+        statsButton.setOnAction(handler);
+        houseButton.setOnAction(handler);
+        carButton.setOnAction(handler);
+        personButton.setOnAction(handler);
+        boatButton.setOnAction(handler);
+        logOutButton.setOnAction(handler);
     }
     
     public void setKeyHandler(KeyPressHandler keyHandler){
         this.keyHandler = keyHandler;
     }
 
-    public void displayWelcomeScene(){
-        welcomeScene = new WelcomeScene(header, footer, handler);
-        stage.setScene(welcomeScene.getScene());
+    public void initioalize(Scene scene){
+        stage.setScene(scene);
         stage.show();
     }
 
-    public void displayAddScene(){
-        addScene = new AddScene(header, footer, handler);
-        stage.setScene(addScene.getScene());
-    }
-
-    public void displayInsurePersonScene(int sceneNumber) {
-        if(sceneNumber == 1) {
-            insurePersonScene = new InsurePersonScene(header, footer, handler);
-            stage.setScene(insurePersonScene.getScene());
-        } else{
-            stage.setScene(insurePersonScene.requestApproved());
-        }
-
-    }
-
-    public void displayInsureCarScene(int sceneNumber){
-        if (sceneNumber == 1) {
-            insureCarScene = new InsureCarScene(header, footer, handler);
-            stage.setScene(insureCarScene.getScene());
-        }else{
-            stage.setScene(insureCarScene.requestApproved());
-        }
-    }
-
-    public void displayStatsScene(){
-        statisticsScene = new StatisticsScene(footer, keyHandler, handler);
-        stage.setScene(statisticsScene.getScene());
-        keyHandler.setStatisticsScene(statisticsScene, statisticsScene.getTextFields());
-
-    }
-
-    public void displayInsureHouseScene(int sceneNumber){
-        if(sceneNumber == 1){
-            insureHouseScene = new InsureHouseScene(header, footer, handler);
-            stage.setScene(insureHouseScene.getScene());
-        }else{
-            stage.setScene(insureHouseScene.requestApproved());
-        }
-    }
-
-    public void displayInsureBoatScene(int sceneNumber){
-        if(sceneNumber == 1){
-            insureBoatScene = new InsureBoatScene(header, footer, handler);
-            stage.setScene(insureBoatScene.getScene());
-        }else{
-            stage.setScene(insureBoatScene.requestApproved());
-        }
-    }
-
-    public void displaySearchScene(){
-        searchScene = new SearchScene(header, footer, handler);
-        stage.setScene(searchScene.getScene());
+    public void displayScene(Scene scene){
+        stage.setScene(scene);
     }
 
     public void close(){
