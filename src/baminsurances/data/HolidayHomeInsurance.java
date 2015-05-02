@@ -26,7 +26,7 @@ public class HolidayHomeInsurance extends HomeInsurance {
      * @param rentedOut
      * @throws NullPointerException if any of the arguments are null
      */
-    public HolidayHomeInsurance(Employee employee, long premium, long amount,
+    public HolidayHomeInsurance(Employee employee, int premium, int amount,
             String terms, String streetAddress, String zipCode,
             String homeType, String buildingMaterial, String standard,
             int squareMetres, long homeAmount, long contentsAmount,

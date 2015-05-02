@@ -18,7 +18,7 @@ public class TravelInsurance extends Insurance {
      * @param area where the insurance applies
      * @throws NullPointerException if any of the arguments are null
      */
-    public TravelInsurance(Employee employee, long premium, long amount,
+    public TravelInsurance(Employee employee, int premium, int amount,
             String terms, String area) {
         super(employee, premium, amount, terms);
         setArea(area);

@@ -28,7 +28,7 @@ public class BoatInsurance extends VehicleInsurance {
      * @param horsePower
      * @throws NullPointerException if any of the given arguments are null
      */
-    public BoatInsurance(Employee employee, long premium, long amount,
+    public BoatInsurance(Employee employee, int premium, int amount,
             String terms, Person vehicleOwner, String registrationNo,
             String type, String model, int lengthInFeet, int productionYear,
             String motorType, int horsePower) {
