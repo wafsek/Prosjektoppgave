@@ -11,8 +11,8 @@ public abstract class Insurance implements Comparable<Insurance> {
     private static int nextInsuranceNo = 1;
     private int insuranceNo;
     private Employee employee;
-    private long premium;
-    private long amount;
+    private int premium;
+    private int amount;
     private Calendar creationDate;
     private Calendar cancellationDate = null;
     private String terms;
@@ -26,7 +26,7 @@ public abstract class Insurance implements Comparable<Insurance> {
      * @param amount
      * @param terms
      */
-    public Insurance(Employee employee, long premium, long amount,
+    public Insurance(Employee employee, int premium, int amount,
             String terms) {
         insuranceNo = nextInsuranceNo++;
         this.employee = employee;
@@ -97,7 +97,7 @@ public abstract class Insurance implements Comparable<Insurance> {
      * 
      * @return this insurance's annual premium
      */
-    public long getPremium() {
+    public int getPremium() {
         return premium;
     }
     
@@ -106,7 +106,7 @@ public abstract class Insurance implements Comparable<Insurance> {
      * 
      * @param premium the new premium
      */
-    public void setPremium(long premium) {
+    public void setPremium(int premium) {
         this.premium = premium;
     }
     
@@ -115,7 +115,7 @@ public abstract class Insurance implements Comparable<Insurance> {
      * 
      * @return the amount this insurance will cover.
      */
-    public long getAmount() {
+    public int getAmount() {
         return amount;
     }
     
@@ -124,7 +124,7 @@ public abstract class Insurance implements Comparable<Insurance> {
      * 
      * @param amount the new amount
      */
-    public void setAmount(long amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
     

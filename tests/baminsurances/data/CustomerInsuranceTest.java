@@ -49,8 +49,18 @@ public class CustomerInsuranceTest {
     
     @Test
     public void testGetInsuranceTypes() {
+        for (Insurance i : customerInsurance.getInsurances()) {
+            i.cancel();
+        }
         BoatInsurance boa = new BoatInsurance(emp, 2000, 10000, "All skade",
                 customerInsurance.getCustomer(), "B080", "Jolle", "FX2", 4,
                 2010, "Gx", 2);
+        HomeInsurance hi = new HomeInsurance(emp, 5000, 500000, "All skade",
+                "Pilestredet 35", "0166", "Leilighet", "Betong",
+                "God", 50, 2500, 2500);
+        for (Class<? extends Insurance> type :
+                customerInsurance.getActiveInsuranceTypes()) {
+            assertTrue(type.equals(boa) || type.equals(hi));
+        }
     }
 }

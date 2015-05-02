@@ -24,7 +24,7 @@ public abstract class VehicleInsurance extends Insurance {
      * @param model model of the insured vehicle
      * @throws NullPointerException if any of the arguments are null
      */
-    public VehicleInsurance(Employee employee, long premium, long amount,
+    public VehicleInsurance(Employee employee, int premium, int amount,
             String terms, Person vehicleOwner, String registrationNo,
             String type, String model) {
         super(employee, premium, amount, terms);

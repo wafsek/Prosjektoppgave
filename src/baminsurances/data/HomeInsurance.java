@@ -33,7 +33,7 @@ public class HomeInsurance extends Insurance {
      * @param contentsAmount how much the contents of the home are insured for
      * @throws NullPointerException if any of the arguments are null
      */
-    public HomeInsurance(Employee employee, long premium, long amount,
+    public HomeInsurance(Employee employee, int premium, int amount,
             String terms, String streetAddress, String zipCode,
             String homeType, String buildingMaterial, String standard,
             int squareMetres, long homeAmount, long contentsAmount) {
