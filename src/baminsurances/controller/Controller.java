@@ -98,5 +98,6 @@ public class Controller {
         }else if (control == operationWindow.getSearchSceneButton()){
             operationWindow.displaySearchScene();
         }
+        
     }
 }
