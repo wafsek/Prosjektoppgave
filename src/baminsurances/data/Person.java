@@ -12,6 +12,7 @@ public class Person implements Comparable<Person> {
     private String telephoneNo;
     private String zipCode;
     private String streetAddress;
+    //TODO add mail
     
     /**
      * Creates a new person with the given values.

@@ -13,7 +13,7 @@ public class PersonGeneratorTest {
     
     @Test
     public void testGeneratePerson() {
-        Person p = generator.generate();
+        Person p = generator.generatePerson();
         p.getBirthNo();
     }
     

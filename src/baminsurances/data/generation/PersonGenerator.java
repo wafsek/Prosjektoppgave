@@ -87,7 +87,7 @@ public class PersonGenerator {
      * 
      * @return a Person object
      */
-    public Person generate() {
+    public Person generatePerson() {
         return new Person(
                 generateBirthNo(),
                 generateFirstName(),
