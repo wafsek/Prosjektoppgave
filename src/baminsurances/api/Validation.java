@@ -193,6 +193,19 @@ public class Validation {
     }
     
     /**
+     * Returns <code>true</code> if the given registration number is a valid
+     * one. For it to be valid, it has to consist of 2 letters from the
+     * English alphabet, followed by 5 digits.
+     * 
+     * @param registrationNo the registration number to validate
+     * @return <code>true</code> if the given registration number is a valid
+     * one
+     */
+    public static boolean isValidCarRegistrationNo(String registrationNo) {
+        return registrationNo.matches("[A-Z]{2}[0-9]{5}");
+    }
+    
+    /**
      * Returns <code>true</code> if the given value is a number.
      * 
      * @param value the value to validate

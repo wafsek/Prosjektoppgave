@@ -89,6 +89,16 @@ public class ValidationTest {
     }
     
     @Test
+    public void testIsValidRegistrationNo() {
+        assertTrue(Validation.isValidCarRegistrationNo("AA11111"));
+        assertTrue(Validation.isValidCarRegistrationNo("XE58123"));
+        assertFalse(Validation.isValidCarRegistrationNo("XÆ58123"));
+        assertFalse(Validation.isValidCarRegistrationNo("XE1341"));
+        assertFalse(Validation.isValidCarRegistrationNo("XEE1341"));
+        assertFalse(Validation.isValidCarRegistrationNo("X131341"));
+    }
+    
+    @Test
     public void testConsistsOnlyOfNumbers() {
         assertTrue(Validation.consistsOnlyOfNumbers("0166"));
         assertTrue(Validation.consistsOnlyOfNumbers("0000"));
