@@ -30,8 +30,8 @@ public class CustomerInsuranceTest {
         assertFalse(customerInsurance.isTotalCustomer());
         
         BoatInsurance boa = new BoatInsurance(emp, 2000, 10000, "All skade",
-                customerInsurance.getCustomer(), "B080", "Jolle", "FX2", 4,
-                2010, "Gx", 2);
+                customerInsurance.getCustomer(), "B080", BoatType.DINGHY,
+                "Yamaha","FX2", 4, 2010, "Gx", 2);
         customerInsurance.getInsurances().add(boa);
         assertTrue(customerInsurance.isTotalCustomer());
         
@@ -53,8 +53,8 @@ public class CustomerInsuranceTest {
             i.cancel();
         }
         BoatInsurance boa = new BoatInsurance(emp, 2000, 10000, "All skade",
-                customerInsurance.getCustomer(), "B080", "Jolle", "FX2", 4,
-                2010, "Gx", 2);
+                customerInsurance.getCustomer(), "B080", BoatType.DINGHY,
+                "Yamaha","FX2", 4, 2010, "Gx", 2);
         HomeInsurance hi = new HomeInsurance(emp, 5000, 500000, "All skade",
                 "Pilestredet 35", "0166", "Leilighet", "Betong",
                 "God", 50, 2500, 2500);
