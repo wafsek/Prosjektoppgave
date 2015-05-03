@@ -2,14 +2,9 @@ package baminsurances.gui.eventhandler;
 
 import baminsurances.controller.Controller;
 import baminsurances.logging.CustomLogger;
-import baminsurances.gui.window.LoginWindow;
-import baminsurances.gui.window.MessageDialog;
-import baminsurances.gui.window.OperationWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Control;
-
-import java.util.logging.Level;
 
 /**
  * Created by Adrian on 14/04/2015.
@@ -30,7 +25,9 @@ public class GuiEventHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent e) {
-        controller.handle((Control)(e.getSource()));
+        System.out.println(e.getEventType().getSuperType().getSuperType());
+        controller.handleControl((Control) (e.getSource()));
+        
         /*if(e.getSource() == loginWindow.getLoginButton()){
             logger.log("Logged in", Level.SEVERE);
             loginWindow.close();

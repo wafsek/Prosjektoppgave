@@ -108,7 +108,15 @@ public class LoginWindow {
         handler = geh;
         loginButton.setOnAction(handler);
     }
-
+    
+    public String getUsernameFieldText(){
+        return usernameField.getText();    
+    }
+    
+    public String getPasswordFieldText(){
+        return passwordField.getText();
+    }
+    
     public void show(){
         stage.show();
     }

@@ -118,7 +118,7 @@ public class OperationWindow {
         this.keyHandler = keyHandler;
     }
 
-    public void initioalize(Scene scene){
+    public void initialize(Scene scene){
         stage.setScene(scene);
         stage.show();
     }
