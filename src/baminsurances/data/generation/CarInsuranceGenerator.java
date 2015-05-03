@@ -52,7 +52,7 @@ public class CarInsuranceGenerator {
         }
         
         return String.valueOf(alphabet[index1]) +
-               String.valueOf(alphabet[index2]) +
+               String.valueOf(alphabet[index2]) + " " +
                digits;
     }
     
@@ -81,7 +81,7 @@ public class CarInsuranceGenerator {
      * @return a car model
      */
     public String generateModel() {
-        // may not be actual models
+        // may not be actual models that match a car brand
         String[] models = {"GT-R", "Leaf", "Skyline", "200SX", "Pixo",
                 "Primera", "BX", "LN", "CX", "Berlingo", "2CV", "DS3",
                 "Xantia", "Escort", "Fiesta", "Focus", "Cosworth", "Fairlane",
