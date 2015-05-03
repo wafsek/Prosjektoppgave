@@ -8,7 +8,7 @@ package baminsurances.data;
 public class CarInsurance extends VehicleInsurance {
         private int registrationYear;
         private int yearlyMileage;
-        private int pricePerKilometer;
+        private double pricePerKilometer;
         private int bonus;
         
         /**
@@ -31,7 +31,7 @@ public class CarInsurance extends VehicleInsurance {
         public CarInsurance(Employee employee, int premium, int amount,
                 String terms, Person vehicleOwner, String registrationNo,
                 String type, String model, int registrationYear,
-                int yearlyMileage, int pricePerKilometer, int bonus) {
+                int yearlyMileage, double pricePerKilometer, int bonus) {
             super(employee, premium, amount, terms, vehicleOwner,
                     registrationNo, type, model);
             this.registrationYear = registrationYear;
@@ -63,7 +63,7 @@ public class CarInsurance extends VehicleInsurance {
          *  
          * @return the price per kilometer for the insured car
          */
-        public int getPricePerKilometer() {
+        public double getPricePerKilometer() {
             return pricePerKilometer;
         }
 
