@@ -30,6 +30,7 @@ public class Authenticator {
         return authenticator;
     }
     
+    
     public String getDisplayName(){
         return this.displayName;
     }
