@@ -8,6 +8,7 @@ import baminsurances.gui.window.scene.*;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -22,6 +23,7 @@ public class OperationWindow {
     private HBox header, footer;
 
     private Button searchButton, addButton, statsButton, houseButton, carButton, personButton, boatButton, logOutButton;
+    private Label displaNameLabel;
 
     private static OperationWindow operationWindow = new OperationWindow();
 
@@ -30,7 +32,7 @@ public class OperationWindow {
 
     private OperationWindow() {
 
-        
+
 
         stage = new Stage();
         searchButton = new IconButton().iconButton(100, 100, IconButton.SEARCH_BUTTON);
@@ -44,10 +46,6 @@ public class OperationWindow {
 
         header = new HBox(30, searchButton, addButton, personButton, houseButton, carButton, boatButton, statsButton);
         header.setAlignment(Pos.CENTER);
-        footer = new HBox(40, logOutButton);
-        footer.setAlignment(Pos.BASELINE_RIGHT);
-        footer.setStyle("-fx-border-color: gray;");
-
         header.setStyle("-fx-border-color: gray;" +
                 "-fx-padding: 5;");
 
@@ -112,6 +110,13 @@ public class OperationWindow {
         personButton.setOnAction(handler);
         boatButton.setOnAction(handler);
         logOutButton.setOnAction(handler);
+    }
+
+    public void createFooter(String displayName){
+        displaNameLabel = new Label(displayName);
+        footer = new HBox(STAGE_WIDTH*5/6, displaNameLabel, logOutButton);
+        footer.setAlignment(Pos.BASELINE_RIGHT);
+        footer.setStyle("-fx-border-color: gray;");
     }
     
     public void setKeyHandler(KeyPressHandler keyHandler){

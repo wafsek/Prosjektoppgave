@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Control;
 
+import java.util.logging.Level;
+
 /**
  * Created by Adrian on 14/04/2015.
  */
@@ -25,7 +27,7 @@ public class GuiEventHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent e) {
-        System.out.println(e.getEventType().getSuperType().getSuperType());
+        logger.log("Gui event", Level.INFO);
         controller.handleControl((Control) (e.getSource()));
         
         /*if(e.getSource() == loginWindow.getLoginButton()){

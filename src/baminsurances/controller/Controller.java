@@ -25,7 +25,7 @@ public class Controller {
      * The fields
      * 
      */
-    private Authenticator authenticator;
+    private Authenticator authenticator = Authenticator.getAuthenticator();
     
     
     /**
@@ -88,6 +88,7 @@ public class Controller {
     private void login(){
         
         loginWindow.close();
+        operationWindow.createFooter(getDisplayName());
         welcomeScene = new WelcomeScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
         operationWindow.initialize(welcomeScene.getScene());
         logger.log("Logged in", Level.INFO);
