@@ -9,7 +9,7 @@ public class CarInsurance extends VehicleInsurance {
         private int registrationYear;
         private int yearlyMileage;
         private double pricePerKilometer;
-        private int bonus;
+        private int bonusPercentage;
         
         /**
          * Creates a new car insurance with the given values.
@@ -25,19 +25,20 @@ public class CarInsurance extends VehicleInsurance {
          * @param registrationYear
          * @param yearlyMileage
          * @param pricePerKilometer
-         * @param bonus
+         * @param bonusPercentage
          * @throws NullPointerException if any of the arguments are null
          */
         public CarInsurance(Employee employee, int premium, int amount,
                 String terms, Person vehicleOwner, String registrationNo,
                 String type, String model, int registrationYear,
-                int yearlyMileage, double pricePerKilometer, int bonus) {
+                int yearlyMileage, double pricePerKilometer,
+                int bonusPercentage) {
             super(employee, premium, amount, terms, vehicleOwner,
                     registrationNo, type, model);
             this.registrationYear = registrationYear;
             this.yearlyMileage = yearlyMileage;
             this.pricePerKilometer = pricePerKilometer;
-            this.bonus = bonus;
+            this.bonusPercentage = bonusPercentage;
         }
 
         /**
@@ -68,20 +69,20 @@ public class CarInsurance extends VehicleInsurance {
         }
 
         /**
-         * Returns the bonus for the insured car.
+         * Returns the bonus percentage for the insured car.
          * 
-         * @return the bonus for the insured car
+         * @return the bonus percentage for the insured car
          */
-        public int getBonus() {
-            return bonus;
+        public int getBonusPercentage() {
+            return bonusPercentage;
         }
 
         /**
-         * Sets the bonus for the insured car to be the given value.
+         * Sets the bonus percentage for the insured car to be the given value.
          * 
-         * @param bonus the new bonus
+         * @param bonusPercentage the new bonus percentage
          */
-        public void setBonus(int bonus) {
-            this.bonus = bonus;
+        public void setBonusPercentage(int bonusPercentage) {
+            this.bonusPercentage = bonusPercentage;
         }
 }
