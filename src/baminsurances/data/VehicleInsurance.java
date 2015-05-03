@@ -9,6 +9,7 @@ public abstract class VehicleInsurance extends Insurance {
     private Person vehicleOwner;
     private String registrationNo;
     private VehicleType type;
+    private String brand;
     private String model;
     
     /**
@@ -26,11 +27,12 @@ public abstract class VehicleInsurance extends Insurance {
      */
     public VehicleInsurance(Employee employee, int premium, int amount,
             String terms, Person vehicleOwner, String registrationNo,
-            VehicleType type, String model) {
+            VehicleType type, String brand, String model) {
         super(employee, premium, amount, terms);
         setVehicleOwner(vehicleOwner);
         setRegistrationNo(registrationNo);
         setType(type);
+        setBrand(brand);
         setModel(model);
     }
     
@@ -99,6 +101,29 @@ public abstract class VehicleInsurance extends Insurance {
             throw new NullPointerException("Vehicle type cannot be null.");
         }
         this.type = type;
+    }
+    
+    /**
+     * Returns the insured vehicle's brand.
+     * 
+     * @return the insured vehicle's brand
+     */
+    public String getBrand() {
+        return brand;
+    }
+    
+    /**
+     * Sets the vehicle's brand to the given value. Private method because it
+     * should only be called in the constructor.
+     * 
+     * @param brand the new brand
+     * @throws NullPointerException if argument is null
+     */
+    private void setBrand(String brand) {
+        if (brand == null) {
+            throw new NullPointerException("Brand cannot be null.");
+        }
+        this.brand = brand;
     }
     
     /**

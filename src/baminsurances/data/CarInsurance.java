@@ -21,6 +21,7 @@ public class CarInsurance extends VehicleInsurance {
      * @param vehicleOwner the owner of the car
      * @param registrationNo the car's registration number
      * @param type the type of car
+     * @param brand the car's brand
      * @param model the car's model
      * @param registrationYear the registration year of the car
      * @param yearlyMileage the car's yearly mileage
@@ -30,11 +31,11 @@ public class CarInsurance extends VehicleInsurance {
      */
     public CarInsurance(Employee employee, int premium, int amount,
             String terms, Person vehicleOwner, String registrationNo,
-            CarType type, String model, int registrationYear,
+            CarType type, String brand, String model, int registrationYear,
             int yearlyMileage, double pricePerKilometer,
             int bonusPercentage) {
         super(employee, premium, amount, terms, vehicleOwner,
-                registrationNo, type, model);
+                registrationNo, type, brand, model);
         this.registrationYear = registrationYear;
         this.yearlyMileage = yearlyMileage;
         this.pricePerKilometer = pricePerKilometer;

@@ -30,10 +30,10 @@ public class BoatInsurance extends VehicleInsurance {
      */
     public BoatInsurance(Employee employee, int premium, int amount,
             String terms, Person vehicleOwner, String registrationNo,
-            BoatType type, String model, int lengthInFeet, int productionYear,
-            String motorType, int horsePower) {
+            BoatType type, String brand, String model, int lengthInFeet,
+            int productionYear, String motorType, int horsePower) {
         super(employee, premium, amount, terms, vehicleOwner, registrationNo,
-                type, model);
+                type, brand, model);
         this.lengthInFeet = lengthInFeet;
         this.productionYear = productionYear;
         setMotorType(motorType);
