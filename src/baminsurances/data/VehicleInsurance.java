@@ -8,7 +8,7 @@ package baminsurances.data;
 public abstract class VehicleInsurance extends Insurance {
     private Person vehicleOwner;
     private String registrationNo;
-    private String type;
+    private VehicleType type;
     private String model;
     
     /**
@@ -26,7 +26,7 @@ public abstract class VehicleInsurance extends Insurance {
      */
     public VehicleInsurance(Employee employee, int premium, int amount,
             String terms, Person vehicleOwner, String registrationNo,
-            String type, String model) {
+            VehicleType type, String model) {
         super(employee, premium, amount, terms);
         setVehicleOwner(vehicleOwner);
         setRegistrationNo(registrationNo);
@@ -82,7 +82,7 @@ public abstract class VehicleInsurance extends Insurance {
      * 
      * @return the type of the insured vehicle
      */
-    public String getType() {
+    public VehicleType getType() {
         return type;
     }
     
@@ -94,7 +94,7 @@ public abstract class VehicleInsurance extends Insurance {
      * @param type the type
      * @throws NullPointerException if argument is null
      */
-    private void setType(String type) {
+    private void setType(VehicleType type) {
         if (type == null) {
             throw new NullPointerException("Vehicle type cannot be null.");
         }
