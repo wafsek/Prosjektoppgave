@@ -17,9 +17,8 @@ public class CustomerInsurance {
     private List<Insurance> insuranceList = new ArrayList<Insurance>();
     public static final int NUM_REQUIRED_FOR_TOTAL_CUSTOMER = 3;
     
-    public CustomerInsurance(Customer customer, Insurance firstInsurance) {
+    public CustomerInsurance(Customer customer) {
         this.customer = customer;
-        insuranceList.add(firstInsurance);
     }
     
     /**

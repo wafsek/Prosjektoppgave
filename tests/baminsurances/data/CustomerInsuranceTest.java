@@ -16,7 +16,8 @@ public class CustomerInsuranceTest {
                 "87651234", "0166", "Pilestredet 35", "0166", "Pilestredet 35");
         Insurance ins = new TravelInsurance(emp, 1000, 10000,
                 "Alle barn under 20.", "Europa");
-        customerInsurance = new CustomerInsurance(cus, ins);
+        customerInsurance = new CustomerInsurance(cus);
+        customerInsurance.getInsurances().add(ins);
     }
     
     @Test
