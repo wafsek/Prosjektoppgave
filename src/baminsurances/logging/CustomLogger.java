@@ -1,5 +1,7 @@
 package baminsurances.logging;
 
+import baminsurances.api.Config;
+
 import java.io.IOException;
 import java.util.logging.*;
 
@@ -10,7 +12,6 @@ import java.util.logging.*;
  */
 public class CustomLogger extends Thread{
     private Logger logger = null;
-    private static FileHandler logFileHandler ;
     private static FileHandler txtFileHandler;
     private static ConsoleHandler consoleHandler;
     
@@ -20,7 +21,7 @@ public class CustomLogger extends Thread{
     public static void setUp() {
     try{
        
-        logFileHandler = new FileHandler("log.log",true);
+        
         CustomFormatter customFormatter = new CustomFormatter();
         txtFileHandler = new FileHandler("log.txt",true);
         txtFileHandler.setFormatter(customFormatter);
@@ -34,13 +35,14 @@ public class CustomLogger extends Thread{
     
     
     public CustomLogger(String className) {
+            
             this.className = className;
             this.logger = Logger.getLogger(this.className);
-            this.logger.addHandler(CustomLogger.logFileHandler);
+            this.logToConsole(false);
+            this.setLoggerLevel();
             this.logger.addHandler(CustomLogger.txtFileHandler);
             logger.setUseParentHandlers(false);
             this.logger.addHandler(consoleHandler);
-           
     }
     
    
@@ -56,5 +58,9 @@ public class CustomLogger extends Thread{
     
     public void logToConsole(Boolean b) {
         logger.setUseParentHandlers(b);
+    }
+    
+    private void setLoggerLevel(){
+        this.logger.setLevel(Level.INFO);
     }
 }

@@ -49,17 +49,16 @@ public class CustomerServiceManager {
     
     /**
      * Creates and adds new CustomerInsurance
-     * @param insurance The first Insurance to be set. 
      * @param customer The Customer object to be set to the field. 
      */
-    public void registerCustomerInsurance(Insurance insurance, Customer customer)
+    public void registerCustomerInsurance(Customer customer)
     {
-        if(insurance ==null || customer == null){
+        /*if(insurance ==null || customer == null){
             throw new NullPointerException("insurance and customer parameter cannot be null");
         }
         CustomerInsurance customerInsurance = new CustomerInsurance(customer,insurance);
         dataBank.addCustomerInsurance(customerInsurance);
-        logger.log("|"+"CustomerInsurance registered.", Level.INFO);
+        logger.log("|"+"CustomerInsurance registered.", Level.INFO);*/
     }
 
     

@@ -1,5 +1,9 @@
 package baminsurances.controller;
 
+import baminsurances.api.CustomerServiceManager;
+import baminsurances.api.Validation;
+import baminsurances.data.Customer;
+import baminsurances.data.InsuranceDataBank;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.LoginWindow;
@@ -26,7 +30,7 @@ public class Controller {
      * 
      */
     private Authenticator authenticator = Authenticator.getAuthenticator();
-    
+    private CustomerServiceManager manager;    
     
     /**
      * The Gui type fields
@@ -51,20 +55,9 @@ public class Controller {
     
     
     public Controller(){
-        
+        manager = new CustomerServiceManager(InsuranceDataBank.getInstance());    
     }
-    /*
-    /**
-     * This method registers a Customer and adds a new CustomerInsurance Object
-     * @param birthNo
-     * @param firstName
-     * @param lastName
-     * @param telephoneNo
-     * @param zipCode
-     * @param streetAddress
-     * @param billingZipCode
-     * @param billingStreetAddress
-     */
+    
     
     public void start(){
         loginWindow = LoginWindow.getLoginWindow();
@@ -85,14 +78,7 @@ public class Controller {
         searchScene = new SearchScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
     }
     
-    private void login(){
-        
-        loginWindow.close();
-        operationWindow.createFooter(getDisplayName());
-        welcomeScene = new WelcomeScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
-        operationWindow.initialize(welcomeScene.getScene());
-        logger.log("Logged in", Level.INFO);
-    }
+    
     
     public String getDisplayName(){
         return "Brukernavn: "+authenticator.getDisplayName();
@@ -112,6 +98,7 @@ public class Controller {
             insurePersonScene = new InsurePersonScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
             operationWindow.displayScene(insurePersonScene.getScene());
             }else if (control == insurePersonScene.getRequestRegistration()) {
+                String result = this.registerPerson();//Note by sarai. Person registered.
                 operationWindow.displayScene(insurePersonScene.requestApproved());
         } else if (control == operationWindow.getLogOutButton()){
             if (new MessageDialog().showMessageDialog("Logg ut", "Er du sikke" +
@@ -151,12 +138,54 @@ public class Controller {
     }
 
 
-    /**
-     * This method takes a Control object
-     * @param 
-     */
-    public void handleKey(Control control) {
+    private void login(){
+
+        loginWindow.close();
+        operationWindow.createFooter(getDisplayName());
+        welcomeScene = new WelcomeScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
+        operationWindow.initialize(welcomeScene.getScene());
+        logger.log("Logged in", Level.INFO);
+    }
     
+    private String registerPerson(){
+        /*Note by baljit sarai: After thinking about it for a while,
+        i have come to the conclusion that this method needs to put the 
+        data from the fields into local variables for security reasons.
+        Marking this place so i can change it after talking to rest of the group.
+       */
+        if(this.validatePersonData() != DataControl.SUCCESS){
+            return this.validatePersonData().getDescription();
+        }else{
+            manager.registerCustomerInsurance(new Customer(addScene.getBirthNmbr(),
+                    addScene.getName(),addScene.getLastName(),addScene.getTlfNmbr(),
+                    addScene.getZipCode(),addScene.getAdress(),
+                    addScene.getBillingZipCode(),addScene.getBillingAdress()));
+            return "person registered";
+        }
+    }
+    
+    private DataControl validatePersonData(){
+        if(!Validation.isValidFirstName(addScene.getName())){
+            return DataControl.INVALID_FIRST_NAME;
+        }else if(!Validation.isValidFirstName(addScene.getLastName())){
+            return DataControl.INVALID_LAST_NAME;
+        }else if(!Validation.isValidFirstName(addScene.getBirthNmbr())){
+            return DataControl.INVALID_BIRTHNO;
+        }else if(!Validation.isValidFirstName(addScene.getEmail())){
+            return DataControl.INVALID_EMAIL;
+        }else if(!Validation.isValidFirstName(addScene.getTlfNmbr())){
+            return DataControl.INVALID_TLF;
+        }else if(!Validation.isValidFirstName(addScene.getAdress())){
+            return DataControl.INVALID_ADRESSE;
+        }else if(!Validation.isValidFirstName(addScene.getZipCode())){
+            return DataControl.INVALID_ZIPCODE;
+        }else if(!Validation.isValidFirstName(addScene.getBillingAdress())){
+            return DataControl.INVALID_BILLING_ADRESSE;
+        }else if(!Validation.isValidFirstName(addScene.getBillingZipCode())){
+            return DataControl.INVALID_BILLING_ZIPCODE;
+        }else{
+            return DataControl.SUCCESS;
+        }
     }
     
 }

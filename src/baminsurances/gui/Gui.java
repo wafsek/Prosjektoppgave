@@ -16,7 +16,7 @@ import java.util.logging.Level;
 public class Gui extends Application {
     private static CustomLogger logger; 
     public static void main(String[] args){
-        Config.setProperties();
+        //Config.setProperties();
         CustomLogger.setUp();
         System.out.println("Welkommen til " + Config.getApplicationName());
         addHook();
@@ -25,7 +25,7 @@ public class Gui extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        logger.log("Staring the Program", Level.INFO);
+        logger.log("Starting the Program", Level.INFO);
         Controller controller = new Controller();
         controller.start();
     }

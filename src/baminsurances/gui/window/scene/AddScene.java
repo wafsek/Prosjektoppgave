@@ -28,7 +28,6 @@ public class AddScene {
     private TextArea printArea;
     private ScrollPane scrollPane;
     private Button register;
-
     private GuiEventHandler handler;
     private int checkCounter = 0;
 
@@ -133,5 +132,41 @@ public class AddScene {
 
     public Button getRegister(){
         return register;
+    }
+
+    public String getName() {
+        return name.getText();
+    }
+    
+    public String getLastName(){
+        return lastName.getText();
+    }
+
+    public String getBirthNmbr() {
+        return birthNmbr.getText();
+    }
+
+    public String getEmail() {
+        return email.getText();
+    }
+
+    public String getTlfNmbr() {
+        return tlfNmbr.getText();
+    }
+
+    public String getAdress() {
+        return adress.getText();
+    }
+
+    public String getZipCode() {
+        return zipCode.getText();
+    }
+
+    public String getBillingZipCode() {
+        return billingZipCode.getText();
+    }
+
+    public String getBillingAdress() {
+        return billingAdress.getText();
     }
 }

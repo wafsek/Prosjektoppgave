@@ -1,7 +1,6 @@
 package baminsurances.security;
 
 import baminsurances.data.InsuranceDataBank;
-import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.logging.CustomLogger;
 
 import java.util.List;
@@ -51,7 +50,7 @@ public class Authenticator {
         for(User user: userList){
             if(user.getUsername().equals(username)){
                 logger.log("User Found. Name given: "+username, Level.FINE);
-                return user;    
+                return user;
             }
         }
         logger.log("User NOT Found. Name given: "+username, Level.FINE);
@@ -72,9 +71,9 @@ public class Authenticator {
 
     public boolean loginUser(String username,String password){
         User user = this.getUserByUserName(username);
-        if(this.Authenticate(user,password)){
+        if(this.authenticate(user, password)){
             this.setDisplayName(user.getUsername());
-            logger.log(this.user.getUsername()+": Logged in.", Level.INFO);
+            logger.log(this.user.getUsername()+": Logged in.", Level.FINE);
             return true;
         }        
         /*This method logs a person in to the system 
@@ -85,7 +84,7 @@ public class Authenticator {
         return false;
     }
     
-    public boolean Authenticate(User user,String password){
+    public boolean authenticate(User user, String password){
         return this.getPassword(user).equals(password);
     }
 }
