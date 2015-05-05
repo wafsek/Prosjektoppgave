@@ -11,10 +11,13 @@ public class EmployeeGenerator {
     private PersonGenerator gen = new PersonGenerator();
     
     public Employee generateEmployee() {
+        String firstName = gen.generateFirstName();
+        String lastName = gen.generateLastName(); 
         return new Employee(
                 gen.generateBirthNo(),
-                gen.generateFirstName(),
-                gen.generateLastName(),
+                firstName,
+                lastName,
+                gen.generateEmail(firstName, lastName),
                 gen.generateTelephoneNo(),
                 gen.generateZipCode(),
                 gen.generateStreetAddress());

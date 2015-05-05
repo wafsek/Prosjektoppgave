@@ -25,11 +25,14 @@ public class CustomerGenerator {
             }
         }
         
+        String firstName = gen.generateFirstName();
+        String lastName = gen.generateLastName();
         return new Customer(
                 gen.generateBirthNo(),
-                gen.generateFirstName(),
-                gen.generateLastName(),
+                firstName,
+                lastName,
                 gen.generateTelephoneNo(),
+                gen.generateEmail(firstName, lastName),
                 zipCode,
                 streetAddress,
                 billingZipCode,

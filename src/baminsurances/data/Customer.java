@@ -19,6 +19,7 @@ public class Customer extends Person {
      * @param firstName first name
      * @param lastName last name
      * @param telephoneNo telephone number
+     * @param email the email
      * @param zipCode zip code
      * @param streetAddress street address
      * @param billingZipCode billing zip code

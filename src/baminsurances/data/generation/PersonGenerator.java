@@ -83,21 +83,6 @@ public class PersonGenerator {
     }
     
     /**
-     * Generates and returns a Person object.
-     * 
-     * @return a Person object
-     */
-    public Person generatePerson() {
-        return new Person(
-                generateBirthNo(),
-                generateFirstName(),
-                generateLastName(),
-                generateTelephoneNo(),
-                generateZipCode(),
-                generateStreetAddress());
-    }
-    
-    /**
      * Generates and returns a valid Norwegian birth number.
      * 
      * @return a valid Norwegian birth number
@@ -239,6 +224,22 @@ public class PersonGenerator {
             telephoneNo += String.valueOf((int) (Math.random() * 10));
         }
         return telephoneNo;
+    }
+    
+    /**
+     * Uses a first name and last name to generate and return an email address.
+     * 
+     * @param firstName the first name
+     * @param lastName the last name
+     * @return an email address
+     */
+    public String generateEmail(String firstName, String lastName) {
+        String[] hosts = {"hotmail", "google", "start", "msn"};
+        String[] domains = {"no", "com"};
+        
+        String host = hosts[(int) (Math.random() * hosts.length)];
+        String domain = domains[(int) (Math.random() * domains.length)];
+        return firstName + "." + lastName + "@" + host + "." + domain;
     }
     
     /**

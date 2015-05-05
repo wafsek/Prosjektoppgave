@@ -64,7 +64,7 @@ public class CustomerServiceManager {
     
     
     /**
-     * Adds an Insurance to the CustomerInsurance by birthNumberField
+     * Adds an Insurance to the CustomerInsurance by birthNo
      * @param insurance The Insurance to be added.
      * @param birthNo String 
      */
@@ -82,7 +82,7 @@ public class CustomerServiceManager {
     }
     
     /**
-     * Cancel an Insurance for a CustomerInsurance by birthNumberField
+     * Cancel an Insurance for a CustomerInsurance by birthNo
      * @param insuranceNo The InsuranceNo to use to get the right Insurance
      */
     public int cancelInsurance(int insuranceNo){
@@ -243,7 +243,7 @@ public class CustomerServiceManager {
         ArrayList<CustomerInsurance> result = new ArrayList<>();
         List<CustomerInsurance> customerInsuranceList = dataBank.getCustomerInsuranceList();
         //customerInsuranceList.stream()
-        //        .filter(s -> s.getCustomer().getFirstName().equals(firstNameField))
+        //        .filter(s -> s.getCustomer().getFirstName().equals(firstName))
         //        .forEach( s-> result.add(s));
         for(CustomerInsurance customerInsurance : dataBank.getCustomerInsuranceList()){
             if(customerInsurance.getCustomer().getFirstName().equals(firstName)){
@@ -271,7 +271,7 @@ public class CustomerServiceManager {
     }
     
     /**
-     * Returns List  of CustomersInsurance with given lastNameField
+     * Returns List  of CustomersInsurance with given lastName
      * @param lastName The last name to search for.
      * @return List of CustomerInsurances
      */
@@ -290,7 +290,7 @@ public class CustomerServiceManager {
     }
 
     /**
-     * Returns List  of Customers with given lastNameField
+     * Returns List  of Customers with given lastName
      * @param lastName The last name to search for.
      * @return List of Customers
      */
@@ -307,7 +307,7 @@ public class CustomerServiceManager {
     }
     
     /**
-     * Returns List  of CustomerInsurances with given lastNameField AND firstNameField
+     * Returns List  of CustomerInsurances with given lastName AND firstName
      * @param lastName The last name to search for.
      * @param firstName The first name to search for.
      * @return List of CustomerInsurances
@@ -328,7 +328,7 @@ public class CustomerServiceManager {
     }
 
     /**
-     * Returns List  of Customers with given lastNameField AND firstNameField
+     * Returns List  of Customers with given lastName AND firstName
      * @param lastName The last name to search for.
      * @param firstName The first name to search for.
      * @return List of Customers

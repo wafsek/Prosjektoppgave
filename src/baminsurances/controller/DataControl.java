@@ -8,7 +8,7 @@ public enum DataControl {
     SUCCESS("Sucess"),
     INVALID_FIRST_NAME("Invalid first name"),
     INVALID_LAST_NAME("Invalid last name"),
-    INVALID_BIRTHNO("Invalid birthNumberField"),
+    INVALID_BIRTHNO("Invalid birthNo"),
     INVALID_EMAIL("Invalid Email"),
     INVALID_TLF("Invalid Telephone Number"),
     INVALID_ADRESSE("Invalid Adresse"),

@@ -42,7 +42,7 @@ public class Validation {
      * Returns <code>true</code> if the given birth number is a valid one.
      * <p>
      * The return value of this function is the same as calling <code>
-     * isValidBirthNo(birthNumberField) && birthNoHasValidControllNos(birthNumberField)</code>.
+     * isValidBirthNo(birthNo) && birthNoHasValidControllNos(birthNo)</code>.
      * 
      * @param birthNo the birth number to validate
      * @return <code>true</code> if the given birth number is a valid one
