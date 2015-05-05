@@ -6,7 +6,7 @@ package baminsurances.data;
  * @author martin
  */
 public class TravelInsurance extends Insurance {
-    private String area;
+    private TravelRegion region;
 
     /**
      * Creates a new travel insurance with the given values.
@@ -15,35 +15,33 @@ public class TravelInsurance extends Insurance {
      * @param premium the yearly premium of the insurance
      * @param amount how much the insurance may cover
      * @param terms the insurance's terms
-     * @param area where the insurance applies
+     * @param region where the insurance applies
      * @throws NullPointerException if any of the arguments are null
      */
     public TravelInsurance(Employee employee, int premium, int amount,
-            String terms, String area) {
+            String terms, TravelRegion region) {
         super(employee, premium, amount, terms);
-        setArea(area);
+        setRegion(region);
     }
     
     /**
-     * Sets this travel insurance's area to be the given string. This method is
-     * private, because if the area would change, a new travel insurance should
+     * Sets this travel insurance's region to be the given region. This method is
+     * private, because if the region would change, a new travel insurance should
      * be created.
      * 
-     * @param area the new area
+     * @param region the new region
      * @throws NullPointerException if argument is null
      */
-    private void setArea(String area) {
-        this.area = area;
+    private void setRegion(TravelRegion region) {
+        this.region = region;
     }
     
     /**
-     * Returns a string with information about where this travel insurance
-     * applies.
+     * Returns the region in which this insurance is valid.
      * 
-     * @return a string with information about where this travel insurance
-     * applies
+     * @return the region in which this insurance is valid
      */
-    public String getArea() {
-        return area;
+    public TravelRegion getRegion() {
+        return region;
     }
 }
