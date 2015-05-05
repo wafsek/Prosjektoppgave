@@ -6,7 +6,7 @@ import baminsurances.data.CarType;
 import baminsurances.util.CsvReader;
 
 /**
- * Provides methods for generating CarInsurance objects.
+ * Provides methods for generating {@link CarInsurance} objects.
  * 
  * @author martin
  */
