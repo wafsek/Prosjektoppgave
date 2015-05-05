@@ -5,7 +5,7 @@ package baminsurances.data;
  * 
  * @author martin
  */
-public enum HomeType {
+public enum HomeType implements HasNorwegianTranslation {
     APARTMENT("Leilighet"),
     DETACHED_HOUSE("Enebolig"),
     TOWNHOME("Rekkehus"),
@@ -18,6 +18,7 @@ public enum HomeType {
         this.norwegianTranslation = norwegianTranslation;
     }
     
+    @Override
     public String getNorwegianTranslation() {
         return norwegianTranslation;
     }

@@ -8,10 +8,11 @@ public enum BoatType implements VehicleType {
     
     private String norwegianTranslation;
     
-    BoatType (String norwegianTranslation) {
+    BoatType(String norwegianTranslation) {
         this.norwegianTranslation = norwegianTranslation;
     }
     
+    @Override
     public String getNorwegianTranslation() {
         return norwegianTranslation;
     }

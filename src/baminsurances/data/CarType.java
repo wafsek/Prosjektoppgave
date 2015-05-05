@@ -26,6 +26,7 @@ public enum CarType implements VehicleType {
      * 
      * @return the Norwegian translation for this car type
      */
+    @Override
     public String getNorwegianTranslation() {
         return norwegianTranslation;
     }

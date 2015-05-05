@@ -6,12 +6,5 @@ package baminsurances.data;
  * 
  * @author martin
  */
-public interface VehicleType {
-    
-    /**
-     * Returns the Norwegian translation for this vehicle type.
-     * 
-     * @return the Norwegian translation for this vehicle type
-     */
-    public String getNorwegianTranslation();
+public interface VehicleType extends HasNorwegianTranslation {
 }
