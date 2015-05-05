@@ -4,11 +4,9 @@ import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.window.OperationWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 /**
@@ -18,11 +16,11 @@ public class InsureBoatScene extends PersonSearchScene{
 
     private TextArea printArea;
     private ScrollPane scrollPane;
-    private ObservableList<String> boatType, yearOfConstruction, lengthInFeet, harbor;
-    private ComboBox yearOfConstructionBox, boatTypeBox, lengthInFeetBox, harborBox;
+    private ObservableList<String> boatTypeList, yearOfConstructionList, lengthInFeetList, harborTypeList;
+    private ComboBox yearOfConstructionBox, boatTypeBox, lengthInFeetBox, harborTypeBox;
     private HBox footer, header;
 
-    private Button register;
+    private Button registerBoatButton;
 
     /**
      * creates a new Scene based on the values.
@@ -35,7 +33,7 @@ public class InsureBoatScene extends PersonSearchScene{
         super(handler);
         this.footer = footer;
         this.header = header;
-        borderPane = new BorderPane(itemContainer, header, personList, footer, null);
+        borderPane = new BorderPane(itemContainer, header, personTable, footer, null);
         scene = new Scene(borderPane);
     }
 
@@ -54,30 +52,30 @@ public class InsureBoatScene extends PersonSearchScene{
      * @return the recreated Scene.
      */
     public Scene requestApproved(){
-        yearOfConstruction = FXCollections.observableArrayList("1900 eller tidligere",
+        yearOfConstructionList = FXCollections.observableArrayList("1900 eller tidligere",
                 "1901 - 1920", "1921 - 1950", "1951 - 1970", "1971 - 1990",
                 "1991 - nå");
-        lengthInFeet = FXCollections.observableArrayList("10 eller minde", "11 - 20",
+        lengthInFeetList = FXCollections.observableArrayList("10 eller minde", "11 - 20",
                 "21 - 50", "51 eller større");
-        boatType = FXCollections.observableArrayList("Cabincruiser", "Daycruiser",
+        boatTypeList = FXCollections.observableArrayList("Cabincruiser", "Daycruiser",
                 "Gummibåt/Jolle", "RIB", "Seilbåt/Motorseiler",
                 "Skjærgårdsjeep/Landstedsbåt", "Speedbåt", "Trebåt/Snekke",
                 "Vannscooter", "Yacht", "Yrkesbåt/Sjark/Skøyte", "Andre");
-        harbor = FXCollections.observableArrayList("Åpen havn", "Lukket havn");
-        yearOfConstructionBox = new ComboBox(yearOfConstruction);
+        harborTypeList = FXCollections.observableArrayList("Åpen havn", "Lukket havn");
+        yearOfConstructionBox = new ComboBox(yearOfConstructionList);
         yearOfConstructionBox.setPromptText("Konstruksjonsår");
         yearOfConstructionBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1/6);
-        boatTypeBox = new ComboBox(boatType);
+        boatTypeBox = new ComboBox(boatTypeList);
         boatTypeBox.setPromptText("Båttype");
         boatTypeBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1/6);
-        lengthInFeetBox = new ComboBox(lengthInFeet);
+        lengthInFeetBox = new ComboBox(lengthInFeetList);
         lengthInFeetBox.setPromptText("Lengde (fot)");
         lengthInFeetBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1/6);
-        harborBox = new ComboBox(harbor);
-        harborBox.setPromptText("Havntype");
-        harborBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1/6);
+        harborTypeBox = new ComboBox(harborTypeList);
+        harborTypeBox.setPromptText("Havntype");
+        harborTypeBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1 / 6);
 
-        register = new Button("Registrer forsikring");
+        registerBoatButton = new Button("Registrer forsikring");
 
         printArea = new TextArea();
         printArea.setEditable(false);
@@ -88,9 +86,9 @@ public class InsureBoatScene extends PersonSearchScene{
         scrollPane.setStyle("-fx-border-color: gray;");
 
         itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel, birthNoLabel,
-                adressLabel, zipCodeLabel, firstName, lastName, birthNo, adress, zipCode,
+                adressLabel, zipCodeLabel, firstNameField, lastNameField, birthNumberField, adressField, zipCodeField,
                 requestRegistration);
-        itemContainer.addColumn(0, boatTypeBox, yearOfConstructionBox, lengthInFeetBox, harborBox, register);
+        itemContainer.addColumn(0, boatTypeBox, yearOfConstructionBox, lengthInFeetBox, harborTypeBox, registerBoatButton);
         borderPane = new BorderPane(itemContainer, header, scrollPane, footer, null);
         return new Scene(borderPane);
     }

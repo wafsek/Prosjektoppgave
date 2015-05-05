@@ -38,7 +38,7 @@ public class InsuranceDataBank {
     
     
     /**
-     * This method removes a CustomerInsurance object (With the same  birthNo) from the customerInsuranceList. 
+     * This method removes a CustomerInsurance object (With the same  birthNumberField) from the customerInsuranceList.
      * @param customerInsurance - Object of type CustomerInsurance. 
      */
     public void removeCustomerInsurance(CustomerInsurance customerInsurance){
@@ -70,7 +70,7 @@ public class InsuranceDataBank {
     }
 
     /**
-     * This method removes a Employee object (With the same birthNo) from the employeeList.
+     * This method removes a Employee object (With the same birthNumberField) from the employeeList.
      * @param employee -Employee object.
      */
     public void removeEmployee(Employee employee){

@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,25 +19,21 @@ import java.util.Iterator;
  */
 public class StatisticsScene {
     private Scene scene;
-
     private Button backToRegistration;
-
-    private TextField employeeNmbr, birthNmbr, firstName, lastName,
-            carBrand, carType, adress;
-    private ArrayList<TextField> textFields;
+    private TextField employeeNumberField, birthNumberField, firstNameField, lastNameField,
+            carBrandField, carTypeField, adressField;
+    private ArrayList<TextField> textFieldList;
     private Iterator<TextField> textFieldsIterator;
-    private Text from, to;
+    private Label fromLabel, toLabel;
     private DatePicker fromDate, toDate;
     private CheckBox dummy1, dummy2, dummy3, dummy4, dummy5, dummy6, dummy7,
             dummy8, dummy9, dummy10;
     private TableView possiblePeople;
     private TableColumn<String, Person> fname, lname, bnmbr;
-
     private BorderPane borderPane;
     private GridPane checkBoxContainer, fieldContainer;
     private VBox menu, tableContainer;
     private HBox container;
-
     private KeyPressHandler keyHandler;
     private GuiEventHandler handler;
 
@@ -53,42 +48,42 @@ public class StatisticsScene {
         this.handler = handler;
         this.keyHandler = keyHandler;
 
-        employeeNmbr = new TextField();
-        employeeNmbr.setPromptText("Ansattnummer");
-        employeeNmbr.setOnKeyReleased(keyHandler);
-        employeeNmbr.setPrefWidth(OperationWindow.STAGE_WIDTH * 1/6);
-        birthNmbr = new TextField();
-        birthNmbr.setPromptText("Personnummer");
-        birthNmbr.setOnKeyReleased(keyHandler);
-        firstName = new TextField();
-        firstName.setPromptText("Fornavn");
-        firstName.setOnKeyReleased(keyHandler);
-        lastName = new TextField();
-        lastName.setPromptText("Etternavn");
-        lastName.setOnKeyReleased(keyHandler);
-        carBrand = new TextField();
-        carBrand.setPromptText("Bilmerke");
-        carBrand.setOnKeyReleased(keyHandler);
-        carType = new TextField();
-        carType.setPromptText("Type bil (SUV, personbil, etc)");
-        carType.setOnKeyReleased(keyHandler);
-        adress = new TextField();
-        adress.setPromptText("Adresse");
-        adress.setOnKeyReleased(keyHandler);
-        textFields = new ArrayList<TextField>();
-        textFields.add(employeeNmbr);
-        textFields.add(birthNmbr);
-        textFields.add(firstName);
-        textFields.add(lastName);
-        textFields.add(carBrand);
-        textFields.add(carType);
-        textFields.add(adress);
-        textFieldsIterator = textFields.iterator();
+        employeeNumberField = new TextField();
+        employeeNumberField.setPromptText("Ansattnummer");
+        employeeNumberField.setOnKeyReleased(keyHandler);
+        employeeNumberField.setPrefWidth(OperationWindow.STAGE_WIDTH * 1 / 6);
+        birthNumberField = new TextField();
+        birthNumberField.setPromptText("Personnummer");
+        birthNumberField.setOnKeyReleased(keyHandler);
+        firstNameField = new TextField();
+        firstNameField.setPromptText("Fornavn");
+        firstNameField.setOnKeyReleased(keyHandler);
+        lastNameField = new TextField();
+        lastNameField.setPromptText("Etternavn");
+        lastNameField.setOnKeyReleased(keyHandler);
+        carBrandField = new TextField();
+        carBrandField.setPromptText("Bilmerke");
+        carBrandField.setOnKeyReleased(keyHandler);
+        carTypeField = new TextField();
+        carTypeField.setPromptText("Type bil (SUV, personbil, etc)");
+        carTypeField.setOnKeyReleased(keyHandler);
+        adressField = new TextField();
+        adressField.setPromptText("Adresse");
+        adressField.setOnKeyReleased(keyHandler);
+        textFieldList = new ArrayList<TextField>();
+        textFieldList.add(employeeNumberField);
+        textFieldList.add(birthNumberField);
+        textFieldList.add(firstNameField);
+        textFieldList.add(lastNameField);
+        textFieldList.add(carBrandField);
+        textFieldList.add(carTypeField);
+        textFieldList.add(adressField);
+        textFieldsIterator = textFieldList.iterator();
 
 
         fieldContainer = new GridPane();
-        fieldContainer.addColumn(0, employeeNmbr, birthNmbr, firstName,
-                lastName, carBrand, carType, adress);
+        fieldContainer.addColumn(0, employeeNumberField, birthNumberField, firstNameField,
+                lastNameField, carBrandField, carTypeField, adressField);
         fieldContainer.setVgap(20);
         fieldContainer.setAlignment(Pos.CENTER);
         fieldContainer.setPrefWidth(OperationWindow.STAGE_WIDTH * 1 / 4);
@@ -101,13 +96,13 @@ public class StatisticsScene {
         possiblePeople.getColumns().addAll(fname, lname, bnmbr);
         possiblePeople.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tableContainer = new VBox(20, possiblePeople);
-        tableContainer.setPrefWidth(OperationWindow.STAGE_WIDTH * 2/4);
+        tableContainer.setPrefWidth(OperationWindow.STAGE_WIDTH * 2 / 4);
         tableContainer.setStyle("-fx-border-color: gray;");
 
         fromDate = new DatePicker();
-        from = new Text("Fra:");
+        fromLabel = new Label("Fra:");
         toDate = new DatePicker(LocalDate.now());
-        to = new Text("Til:");
+        toLabel = new Label("Til:");
 
         dummy1 = new CheckBox("Dummy1");
         dummy2 = new CheckBox("Dummy2");
@@ -121,8 +116,8 @@ public class StatisticsScene {
         dummy10 = new CheckBox("Dummy10");
 
         checkBoxContainer = new GridPane();
-        checkBoxContainer.addColumn(0, from, fromDate, dummy1, dummy3, dummy5, dummy7, dummy9);
-        checkBoxContainer.addColumn(1, to, toDate, dummy2, dummy4, dummy6, dummy8, dummy10);
+        checkBoxContainer.addColumn(0, fromLabel, fromDate, dummy1, dummy3, dummy5, dummy7, dummy9);
+        checkBoxContainer.addColumn(1, toLabel, toDate, dummy2, dummy4, dummy6, dummy8, dummy10);
         checkBoxContainer.setVgap(20);
         checkBoxContainer.setHgap(20);
         checkBoxContainer.setPrefWidth(OperationWindow.STAGE_WIDTH * 1 / 4);
@@ -141,6 +136,8 @@ public class StatisticsScene {
         borderPane = new BorderPane(container, menu, null, footer, null);
 
         scene = new Scene(borderPane);
+
+        keyHandler.setStatisticsScene(this, textFieldList);
     }
 
     /**
@@ -163,42 +160,42 @@ public class StatisticsScene {
         return backToRegistration;
     }
 
-    public ArrayList getTextFields(){
-        return textFields;
+    public ArrayList getTextFieldList(){
+        return textFieldList;
     }
 
     public void employeeStatistics(){
-        carType.setEditable(false);
-        carBrand.setEditable(false);
+        carTypeField.setEditable(false);
+        carBrandField.setEditable(false);
     }
 
     public void setEditableEmployeeFields(){
-        if (employeeNmbr.getText().trim().isEmpty()){
-            birthNmbr.setEditable(true);
-            carBrand.setEditable(true);
-            adress.setEditable(true);
-            birthNmbr.setPromptText("Personnummer");
-            carBrand.setPromptText("Bilmerke");
-            adress.setPromptText("Adresse");
+        if (employeeNumberField.getText().trim().isEmpty()){
+            birthNumberField.setEditable(true);
+            carBrandField.setEditable(true);
+            adressField.setEditable(true);
+            birthNumberField.setPromptText("Personnummer");
+            carBrandField.setPromptText("Bilmerke");
+            adressField.setPromptText("Adresse");
         }else {
-            birthNmbr.setEditable(false);
-            carBrand.setEditable(false);
-            adress.setEditable(false);
-            birthNmbr.setPromptText("irrelevant felt.");
-            carBrand.setPromptText("irrelevant felt.");
-            adress.setPromptText("irrelevant felt.");
+            birthNumberField.setEditable(false);
+            carBrandField.setEditable(false);
+            adressField.setEditable(false);
+            birthNumberField.setPromptText("irrelevant felt.");
+            carBrandField.setPromptText("irrelevant felt.");
+            adressField.setPromptText("irrelevant felt.");
         }
     }
 
     public void setEditableCustomerFields(){
-        if (birthNmbr.getText().trim().isEmpty() &&
-                carBrand.getText().trim().isEmpty() &&
-                adress.getText().trim().isEmpty()){
-            employeeNmbr.setEditable(true);
-            employeeNmbr.setPromptText("Ansattnummer");
+        if (birthNumberField.getText().trim().isEmpty() &&
+                carBrandField.getText().trim().isEmpty() &&
+                adressField.getText().trim().isEmpty()){
+            employeeNumberField.setEditable(true);
+            employeeNumberField.setPromptText("Ansattnummer");
         }else {
-            employeeNmbr.setEditable(false);
-            employeeNmbr.setPromptText("Irrelevant felt");
+            employeeNumberField.setEditable(false);
+            employeeNumberField.setPromptText("Irrelevant felt");
         }
     }
 
@@ -207,6 +204,6 @@ public class StatisticsScene {
     }
 
     public void resetIterator(){
-        textFieldsIterator = textFields.iterator();
+        textFieldsIterator = textFieldList.iterator();
     }
 }

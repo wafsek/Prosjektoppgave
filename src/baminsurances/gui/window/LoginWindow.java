@@ -34,9 +34,9 @@ public class LoginWindow {
 
     private Button loginButton;
 
-    private GridPane gridPane;
+    private GridPane fieldContainer;
     private HBox logo, login;
-    private VBox vBox;
+    private VBox itemContainer;
 
     private GuiEventHandler handler;
 
@@ -69,22 +69,22 @@ public class LoginWindow {
         login.setPadding(new Insets(10, 10, 10, 10));
         login.setAlignment(Pos.CENTER);
 
-        vBox = new VBox();
-        vBox.setAlignment(Pos.CENTER);
+        itemContainer = new VBox();
+        itemContainer.setAlignment(Pos.CENTER);
 
-        gridPane = new GridPane();
-        gridPane.setHgap(10);
-        gridPane.setVgap(10);
-        gridPane.add(usernameLabel, 0, 0);
-        gridPane.add(usernameField, 1, 0);
-        gridPane.add(passwordLabel, 0, 1);
-        gridPane.add(passwordField, 1, 1);
-        gridPane.setAlignment(Pos.CENTER);
+        fieldContainer = new GridPane();
+        fieldContainer.setHgap(10);
+        fieldContainer.setVgap(10);
+        fieldContainer.add(usernameLabel, 0, 0);
+        fieldContainer.add(usernameField, 1, 0);
+        fieldContainer.add(passwordLabel, 0, 1);
+        fieldContainer.add(passwordField, 1, 1);
+        fieldContainer.setAlignment(Pos.CENTER);
 
-        vBox.getChildren().addAll(logo, gridPane, login);
-        vBox.backgroundProperty().setValue(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY) ));
+        itemContainer.getChildren().addAll(logo, fieldContainer, login);
+        itemContainer.backgroundProperty().setValue(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY) ));
 
-        scene = new Scene(vBox);
+        scene = new Scene(itemContainer);
         stage.setScene(scene);
         stage.setHeight(325);
         stage.setWidth(275);

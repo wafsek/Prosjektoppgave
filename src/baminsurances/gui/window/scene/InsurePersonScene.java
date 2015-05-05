@@ -4,15 +4,10 @@ import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.window.OperationWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Created by Adrian on 15/04/2015.
@@ -21,11 +16,11 @@ public class InsurePersonScene extends PersonSearchScene{
 
     private final int COMBOBOX_WIDTH = 175;
 
-    private Button register;
+    private Button registerPersonInsurance;
     private TextArea printArea;
     private ScrollPane scrollPane;
-    private ObservableList<String> kidsArray, relationshipArray, incomeArray, deptArray;
-    private ComboBox kids, relationship, income, dept;
+    private ObservableList<String> kidsList, relationshipList, incomeList, deptList;
+    private ComboBox kidsBox, relationshipBox, incomeBox, deptBox;
     private HBox header, footer;
 
     /**
@@ -39,7 +34,7 @@ public class InsurePersonScene extends PersonSearchScene{
         super(handler);
         this.header = header;
         this.footer = footer;
-        borderPane = new BorderPane(itemContainer, header, personList, footer, null);
+        borderPane = new BorderPane(itemContainer, header, personTable, footer, null);
         scene = new Scene(borderPane);
     }
 
@@ -48,28 +43,28 @@ public class InsurePersonScene extends PersonSearchScene{
      * @return the Scene created.
      */
     public Scene requestApproved(){
-        incomeArray = FXCollections.observableArrayList("150.000 eller minde.", "150.000 - 250.000",
+        incomeList = FXCollections.observableArrayList("150.000 eller minde.", "150.000 - 250.000",
                 "250.000 - 500.000", "500.000 - 1.500.000", "1.500.000 eller mer");
-        deptArray = FXCollections.observableArrayList("150.000 eller minde.", "150.000 - 250.000",
+        deptList = FXCollections.observableArrayList("150.000 eller minde.", "150.000 - 250.000",
                 "250.000 - 500.000", "500.000 - 1.500.000", "1.500.000 eller mer");
-        kidsArray = FXCollections.observableArrayList("0", "1", "2", "3", "4", "5 eller fler");
-        relationshipArray = FXCollections.observableArrayList("Har samboer", "Har ikke samboer");
+        kidsList = FXCollections.observableArrayList("0", "1", "2", "3", "4", "5 eller fler");
+        relationshipList = FXCollections.observableArrayList("Har samboer", "Har ikke samboer");
 
-        kids = new ComboBox(kidsArray);
-        kids.setPromptText("Barn");
-        kids.setPrefWidth(COMBOBOX_WIDTH);
-        relationship = new ComboBox(relationshipArray);
-        relationship.setPromptText("Forholdsstatus");
-        relationship.setPrefWidth(COMBOBOX_WIDTH);
-        income = new ComboBox(incomeArray);
-        income.setPromptText("Inntekt");
-        income.setPrefWidth(COMBOBOX_WIDTH);
-        dept = new ComboBox(deptArray);
-        dept.setPromptText("Gjeld");
-        dept.setPrefWidth(COMBOBOX_WIDTH);
+        kidsBox = new ComboBox(kidsList);
+        kidsBox.setPromptText("Barn");
+        kidsBox.setPrefWidth(COMBOBOX_WIDTH);
+        relationshipBox = new ComboBox(relationshipList);
+        relationshipBox.setPromptText("Forholdsstatus");
+        relationshipBox.setPrefWidth(COMBOBOX_WIDTH);
+        incomeBox = new ComboBox(incomeList);
+        incomeBox.setPromptText("Inntekt");
+        incomeBox.setPrefWidth(COMBOBOX_WIDTH);
+        deptBox = new ComboBox(deptList);
+        deptBox.setPromptText("Gjeld");
+        deptBox.setPrefWidth(COMBOBOX_WIDTH);
 
-        register = new Button("Registrer forsikring");
-        register.setOnAction(handler);
+        registerPersonInsurance = new Button("Registrer forsikring");
+        registerPersonInsurance.setOnAction(handler);
 
         printArea = new TextArea();
         printArea.setEditable(false);
@@ -80,9 +75,9 @@ public class InsurePersonScene extends PersonSearchScene{
         scrollPane.setStyle("-fx-border-color: gray;");
 
         itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel, birthNoLabel,
-                adressLabel, zipCodeLabel, firstName, lastName, birthNo, adress, zipCode,
+                adressLabel, zipCodeLabel, firstNameField, lastNameField, birthNumberField, adressField, zipCodeField,
                 requestRegistration);
-        itemContainer.addColumn(0, income, dept, kids, relationship, register);
+        itemContainer.addColumn(0, incomeBox, deptBox, kidsBox, relationshipBox, registerPersonInsurance);
         borderPane = new BorderPane(itemContainer, header, scrollPane, footer, null);
         return new Scene(borderPane);
     }

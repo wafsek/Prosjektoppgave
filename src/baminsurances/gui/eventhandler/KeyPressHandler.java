@@ -22,6 +22,7 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
     private InsureHouseScene insureHouseScene;
     private InsureBoatScene insureBoatScene;
     private InsureCarScene insureCarScene;
+    private AddScene addScene;
     private Iterator txtFieldsIterator;
     private Controller controller;
 
@@ -33,7 +34,7 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent e) {
         while(txtFieldsIterator.hasNext()){
-            if(e.getSource() == statisticsScene.getTextFieldsIterator().next()){
+            if(e.getSource() == statisticsScene.getTextFieldsIterator().next()) {
                 statisticsScene.setEditableEmployeeFields();
                 statisticsScene.setEditableCustomerFields();
                 statisticsScene.resetIterator();
