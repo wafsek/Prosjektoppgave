@@ -19,16 +19,16 @@ public class PersonTest {
     
     @Test
     public void testConstructor() {
-        new Person("13041599116", "Ole", "Hansen", "12345678", "0166",
-                "Pilestredet 35");
+        new Person("13041599116", "Ole", "Hansen", "12345678",
+                "ole.hansen@gmail.no", "0166", "Pilestredet 35");
     }
     
     @Test
     public void testEquals() {
         Person q = new Person("13041599116", "Ole", "Hansen", "12345678",
-                "0166", "Pilestredet 35");
+                "ole.hansen@gmail.no", "0166", "Pilestredet 35");
         Person r = new Person("13041599116", "Per", "Nordmann", "87654321",
-                "1356", "Bærumsveien 12");
+                "per.nordmann@start.no", "1356", "Bærumsveien 12");
         assertTrue(q.equals(r));
     }
     
