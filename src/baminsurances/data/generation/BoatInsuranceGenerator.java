@@ -42,7 +42,7 @@ public class BoatInsuranceGenerator {
         
         return String.valueOf(legalLetters[index1]) +
                String.valueOf(legalLetters[index2]) +
-               String.valueOf(legalLetters[index3]) + " " +
+               String.valueOf(legalLetters[index3]) +
                digits;
     }
     

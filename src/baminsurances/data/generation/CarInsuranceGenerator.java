@@ -52,7 +52,7 @@ public class CarInsuranceGenerator {
         }
         
         return String.valueOf(alphabet[index1]) +
-               String.valueOf(alphabet[index2]) + " " +
+               String.valueOf(alphabet[index2]) +
                digits;
     }
     
