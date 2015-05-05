@@ -1,21 +1,12 @@
 package baminsurances.data.generation;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
-
 import baminsurances.api.Validation;
-import baminsurances.data.Person;
 
 public class PersonGeneratorTest {
     private PersonGenerator generator = new PersonGenerator();
     private int numTests = 100000;
-    
-    @Test
-    public void testGeneratePerson() {
-        Person p = generator.generatePerson();
-        p.getBirthNo();
-    }
     
     @Test
     public void testGenerateBirthNo() {
