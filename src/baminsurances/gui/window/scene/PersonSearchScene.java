@@ -108,4 +108,24 @@ public abstract class PersonSearchScene {
     public void displayPossiblePeople(){
         /*ObservableList = getAllPossibleCustomers()*/
     }
+
+    public String getFirstName() {
+        return firstNameField.getText();
+    }
+
+    public String getLastName() {
+        return lastNameField.getText();
+    }
+
+    public String getAdress() {
+        return adressField.getText();
+    }
+
+    public String getZipCode() {
+        return zipCodeField.getText();
+    }
+
+    public String getBirthNumber() {
+        return birthNumberField.getText();
+    }
 }
