@@ -34,6 +34,19 @@ public class PersonGenerator {
         streetAddressEndings = loadStreetAddressEndings();
     }
     
+    public Person generatePerson() {
+        String firstName = generateFirstName();
+        String lastName = generateLastName();
+        return new Person(
+                generateBirthNo(),
+                firstName,
+                lastName,
+                generateTelephoneNo(),
+                generateEmail(firstName, lastName),
+                generateZipCode(),
+                generateStreetAddress());
+    }
+    
     private List<String> loadBoysNames() {
         String filepath =
                 PersonGenerator.class.getClassLoader().getResource(

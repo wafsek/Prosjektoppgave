@@ -131,7 +131,7 @@ public class CarInsuranceGenerator {
      * 
      * @return a bonus percentage between 0 (inclusive) and 80 (inclusive)
      */
-    public int generateBonus() {
+    public int generateBonusPercentage() {
         // rounded down to closest 5 with integer division
         return (int) (Math.random() * 81) / 5 * 5;
     }

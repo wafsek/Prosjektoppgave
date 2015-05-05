@@ -23,6 +23,7 @@ public class HomeInsurance extends Insurance {
      * @param terms the terms of the insurance
      * @param streetAddress street address of the insured home
      * @param zipCode zip code of the insured home
+     * @param constructionYear the home's construction year
      * @param homeType type of home
      * @param buildingMaterial building material used
      * @param standard standard of the home
@@ -32,12 +33,13 @@ public class HomeInsurance extends Insurance {
      * @throws NullPointerException if any of the arguments are null
      */
     public HomeInsurance(Employee employee, int premium, String terms,
-            String streetAddress, String zipCode, HomeType homeType,
-            String buildingMaterial, String standard, int squareMetres,
-            int homeAmount, int contentsAmount) {
+            String streetAddress, String zipCode, int constructionYear,
+            HomeType homeType, String buildingMaterial, String standard,
+            int squareMetres, int homeAmount, int contentsAmount) {
         super(employee, premium, homeAmount, terms);
         setStreetAddress(streetAddress);
         setZipCode(zipCode);
+        this.constructionYear = constructionYear;
         setHomeType(homeType);
         setBuildingMaterial(buildingMaterial);
         setStandard(standard);
