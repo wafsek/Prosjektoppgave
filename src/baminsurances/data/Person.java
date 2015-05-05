@@ -25,7 +25,7 @@ public class Person implements Comparable<Person> {
      * @param email the email
      * @param zipCode zip code
      * @param streetAddress street address
-     * @throws IllegalArgumentException if birthNumberField is not a number of length 11
+     * @throws IllegalArgumentException if birthNo is not a number of length 11
      * @throws NullPointerException if any of the arguments are null
      */
     public Person(String birthNo, String firstName, String lastName,
