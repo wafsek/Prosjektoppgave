@@ -4,11 +4,9 @@ import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.window.OperationWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 
@@ -17,15 +15,12 @@ import javafx.scene.layout.HBox;
  */
 public class InsureCarScene extends PersonSearchScene{
 
-    private final int PREFERRED_TEXTFIELD_COMBOBOX_WIDTH = 175;
     private ObservableList<String> yearOfProductionList, carBrandList,
     carTypeList, bonusList;
-    private ComboBox yearOfProduction, carBrand, carType, bonus;
+    private ComboBox yearOfProductionBox, carBrandBox, carTypeBox, bonusBox;
     private TextArea printArea;
-    private Button register;
+    private Button registerCarScene;
     private HBox footer, header;
-
-
     private ScrollPane scrollPane;
 
     /**
@@ -36,7 +31,7 @@ public class InsureCarScene extends PersonSearchScene{
         super(handler);
         this.header = header;
         this.footer = footer;
-        borderPane = new BorderPane(itemContainer, header, personList, footer, null);
+        borderPane = new BorderPane(itemContainer, header, personTable, footer, null);
         scene = new Scene(borderPane);
 
     }
@@ -70,23 +65,23 @@ public class InsureCarScene extends PersonSearchScene{
                 "50%", "40%", "30%", "20%", "første bil", "10%", "0%",
                 "-10%", "-20%", "-30%", "-40%", "-50%");
 
-        yearOfProduction = new ComboBox(yearOfProductionList);
-        yearOfProduction.setPromptText("Velg produksjonsår");
-        yearOfProduction.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
-        carBrand = new ComboBox(carBrandList);
-        carBrand.setPromptText("Velg bilmerke");
-        carBrand.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
-        carType = new ComboBox(carTypeList);
-        carType.setPromptText("Velg forsikringsgrunnlag");
-        carType.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
-        bonus = new ComboBox(bonusList);
-        bonus.setPromptText("Velg bonus");
-        bonus.setPrefWidth(PREFERRED_TEXTFIELD_COMBOBOX_WIDTH);
+        yearOfProductionBox = new ComboBox(yearOfProductionList);
+        yearOfProductionBox.setPromptText("Velg produksjonsår");
+        yearOfProductionBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1 / 5);
+        carBrandBox = new ComboBox(carBrandList);
+        carBrandBox.setPromptText("Velg bilmerke");
+        carBrandBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1 / 5);
+        carTypeBox = new ComboBox(carTypeList);
+        carTypeBox.setPromptText("Velg forsikringsgrunnlag");
+        carTypeBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1 / 5);
+        bonusBox = new ComboBox(bonusList);
+        bonusBox.setPromptText("Velg bonus");
+        bonusBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1 / 5);
         printArea = new TextArea();
         printArea.setEditable(false);
 
-        register = new Button("Registrer");
-        register.setOnAction(handler);
+        registerCarScene = new Button("Registrer");
+        registerCarScene.setOnAction(handler);
 
         scrollPane = new ScrollPane(printArea);
         scrollPane.setPrefWidth(OperationWindow.STAGE_WIDTH * 3/5);
@@ -94,9 +89,9 @@ public class InsureCarScene extends PersonSearchScene{
         scrollPane.setFitToWidth(true);
 
         itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel, birthNoLabel,
-                adressLabel, zipCodeLabel, firstName, lastName, birthNo, adress, zipCode,
+                adressLabel, zipCodeLabel, firstNameField, lastNameField, birthNumberField, adressField, zipCodeField,
                 requestRegistration);
-        itemContainer.addColumn(0, yearOfProduction, carBrand, carType, bonus, register);
+        itemContainer.addColumn(0, yearOfProductionBox, carBrandBox, carTypeBox, bonusBox, registerCarScene);
         borderPane = new BorderPane(itemContainer, header, scrollPane, footer, null);
         return new Scene(borderPane);
     }

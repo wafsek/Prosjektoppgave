@@ -1,6 +1,7 @@
 package baminsurances.gui.window.scene;
 
 import baminsurances.gui.eventhandler.GuiEventHandler;
+import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.MessageDialog;
 import baminsurances.gui.window.OperationWindow;
 import javafx.geometry.*;
@@ -12,24 +13,33 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Adrian on 15/04/2015.
+ * @author Adrian
  */
 public class AddScene {
 
     private Scene scene;
-    private TextField name, lastName, birthNmbr, email, tlfNmbr, adress, zipCode, billingZipCode, billingAdress;
-    private Label nameLabel, lastNameLabel, birthNmbrLabel, emailLabel, tlfNmbrLabel,
+    private TextField firstNameField, lastNameField, birthNumberField, emailField,
+            telephoneNumberField, adressField, zipCodeField, billingZipCodeField, billingAdressField;
+    private Label firstNameLabel, lastNameLabel, birthNumberLabel, emailLabel, telephoneNumberLabel,
             adressLabel, zipCodeLabel, billingZipCodeLabel, billingAdressLabel;
+    private ArrayList<TextField> textFieldArrayList;
+    private Iterator<TextField> textFieldIterator;
     private CheckBox differentAdressCheck;
     private BorderPane borderPane;
     private GridPane fieldBox;
     private TextArea printArea;
     private ScrollPane scrollPane;
-    private Button register;
+    private Button registerPersonButton;
     private GuiEventHandler handler;
-    private int checkCounter = 0;
+    private int adressCheckCounter = 0;
+    private int test = 0;
 
     /**
      * Creates a new Scene with the given values.
@@ -37,61 +47,93 @@ public class AddScene {
      * @param footer
      * @param handler
      */
-    public AddScene(HBox header, HBox footer, GuiEventHandler handler) {
+    public AddScene(HBox header, HBox footer, GuiEventHandler handler, KeyPressHandler keyPressHandler) {
         this.handler = handler;
 
-        name = new TextField();
-        nameLabel = new Label("Fornavn:");
-        lastName = new TextField();
+        firstNameField = new TextField();
+        firstNameField.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
+        firstNameField.setOnKeyReleased(e -> {
+            if (firstNameField.getText().trim().isEmpty()) {
+                firstNameField.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
+                this.emptyFieldsCheck();
+            } else {
+                firstNameField.setStyle("");
+                this.emptyFieldsCheck();
+            }
+        });
+        firstNameLabel = new Label("Fornavn:");
+        lastNameField = new TextField();
+        lastNameField.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
         lastNameLabel = new Label("Etternavn:");
-        birthNmbr = new TextField();
-        birthNmbrLabel = new Label("Fødselsnummer:");
-        email = new TextField();
+        birthNumberField = new TextField();
+        birthNumberField.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
+        birthNumberLabel = new Label("Fødselsnummer:");
+        emailField = new TextField();
+        emailField.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
         emailLabel = new Label("Mailadresse:");
-        tlfNmbr = new TextField();
-        tlfNmbrLabel = new Label("Telefonnummer:");
-        adress = new TextField();
+        telephoneNumberField = new TextField();
+        telephoneNumberField.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
+        telephoneNumberLabel = new Label("Telefonnummer:");
+        adressField = new TextField();
+        adressField.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
         adressLabel = new Label("Adresse:");
-        zipCode = new TextField();
+        zipCodeField = new TextField();
+        zipCodeField.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
         zipCodeLabel = new Label("Postnummer:");
-        billingAdress = new TextField();
-        billingAdress.setEditable(false);
+        billingAdressField = new TextField();
+        billingAdressField.setEditable(false);
         billingAdressLabel = new Label("Betalingsadresse:");
-        billingZipCode = new TextField();
-        billingZipCode.setEditable(false);
+        billingZipCodeField = new TextField();
+        billingZipCodeField.setEditable(false);
         billingZipCodeLabel = new Label("Postnr. for betaling:");
-        adress.setOnKeyReleased(e -> billingAdress.setText(adress.getText()));
-        zipCode.setOnKeyReleased(e -> billingZipCode.setText(zipCode.getText()));
+        adressField.setOnKeyReleased(e -> billingAdressField.setText(adressField.getText()));
+        zipCodeField.setOnKeyReleased(e -> billingZipCodeField.setText(zipCodeField.getText()));
+
+        textFieldArrayList = new ArrayList<TextField>();
+        textFieldArrayList.add(firstNameField);
+        textFieldArrayList.add(lastNameField);
+        textFieldArrayList.add(birthNumberField);
+        textFieldArrayList.add(emailField);
+        textFieldArrayList.add(telephoneNumberField);
+        textFieldArrayList.add(adressField);
+        textFieldArrayList.add(zipCodeField);
+        textFieldArrayList.add(billingAdressField);
+        textFieldArrayList.add(billingZipCodeField);
+        textFieldIterator = textFieldArrayList.iterator();
 
         differentAdressCheck = new CheckBox("Forskjellig betalingsadresse?");
         differentAdressCheck.setOnAction(ev -> {
-            if(checkCounter == 0){
-                adress.setOnKeyReleased(null);
-                zipCode.setOnKeyReleased(null);
-                billingAdress.setText("");
-                billingAdress.setEditable(true);
-                billingZipCode.setText("");
-                billingZipCode.setEditable(true);
-                checkCounter++;
-            }
-            else{
-                adress.setOnKeyReleased(e -> billingAdress.setText(adress.getText()));
-                zipCode.setOnKeyReleased(e -> billingZipCode.setText(zipCode.getText()));
-                billingAdress.setText(adress.getText());
-                billingAdress.setEditable(false);
-                billingZipCode.setText(zipCode.getText());
-                billingZipCode.setEditable(false);
-                checkCounter--;
+            if (adressCheckCounter == 0) {
+                adressField.setOnKeyReleased(null);
+                zipCodeField.setOnKeyReleased(null);
+                billingAdressField.setText("");
+                billingAdressField.setEditable(true);
+                billingAdressField.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
+                billingZipCodeField.setText("");
+                billingZipCodeField.setEditable(true);
+                billingZipCodeField.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
+                adressCheckCounter++;
+            } else {
+                adressField.setOnKeyReleased(e -> billingAdressField.setText(adressField.getText()));
+                zipCodeField.setOnKeyReleased(e -> billingZipCodeField.setText(zipCodeField.getText()));
+                billingAdressField.setText(adressField.getText());
+                billingAdressField.setEditable(false);
+                billingAdressField.setStyle("");
+                billingZipCodeField.setText(zipCodeField.getText());
+                billingZipCodeField.setEditable(false);
+                billingZipCodeField.setStyle("");
+                adressCheckCounter--;
             }
         });
 
-        register = new Button("Registrer");
-        register.setOnAction(handler);
+        registerPersonButton = new Button("Registrer");
+        registerPersonButton.setOnAction(handler);
+        registerPersonButton.setDisable(true);
 
         fieldBox = new GridPane();
-        fieldBox.addColumn(0, nameLabel, lastNameLabel, birthNmbrLabel, emailLabel, tlfNmbrLabel,
+        fieldBox.addColumn(0, firstNameLabel, lastNameLabel, birthNumberLabel, emailLabel, telephoneNumberLabel,
                 adressLabel, zipCodeLabel, differentAdressCheck, billingAdressLabel, billingZipCodeLabel);
-        fieldBox.addColumn(1, name, lastName, birthNmbr, email, tlfNmbr, adress, zipCode, new Label(""), billingAdress, billingZipCode, register);
+        fieldBox.addColumn(1, firstNameField, lastNameField, birthNumberField, emailField, telephoneNumberField, adressField, zipCodeField, new Label(""), billingAdressField, billingZipCodeField, registerPersonButton);
         fieldBox.setAlignment(Pos.CENTER);
         fieldBox.setVgap(10);
         fieldBox.setHgap(20);
@@ -118,55 +160,81 @@ public class AddScene {
     }
 
     public void requestRegistration(){
-        if (name.getText().trim().isEmpty() || lastName.getText().trim().isEmpty() ||
-                birthNmbr.getText().trim().isEmpty()){
+        if (firstNameField.getText().trim().isEmpty() || lastNameField.getText().trim().isEmpty() ||
+                birthNumberField.getText().trim().isEmpty()){
             new MessageDialog().showMessageDialog("Ugyldig informasjon!",
                     "Feltene markert med stjerne må være utfylt.", MessageDialog.WARNING_ICON, MessageDialog.OK_OPTION);
         }else {
-            /*(MethodForRegistrationOfACustomers(birthNmbr.getText(), name.getText(), lastName.getText(), tlfNmbr.getText(), zipCode.getText(), adress.getText()))? MessageDialog.showMessageDialog("Godkjent",
-            name.getText() + "\s" + lastName.getText() + " er nå registrert.",
+            /*(MethodForRegistrationOfACustomers(birthNumberField.getText(), name.getText(), lastNameField.getText(), telephoneNumberField.getText(), zipCodeField.getText(), adressField.getText()))? MessageDialog.showMessageDialog("Godkjent",
+            name.getText() + "\s" + lastNameField.getText() + " er nå registrert.",
             MessageDialog.INFORMATION_ICON): MessageDialog.showMessageDialog(
             "Error", "Noe gikk galt under registreingen.", MessageDialog.ERROR_ICON);*/
         }
     }
 
-    public Button getRegister(){
-        return register;
+    public Button getRegisterPersonButton(){
+        return registerPersonButton;
     }
 
-    public String getName() {
-        return name.getText();
+    public String getFirstNameField() {
+        return firstNameField.getText();
     }
     
-    public String getLastName(){
-        return lastName.getText();
+    public String getLastNameField(){
+        return lastNameField.getText();
     }
 
-    public String getBirthNmbr() {
-        return birthNmbr.getText();
+    public String getBirthNumberField() {
+        return birthNumberField.getText();
     }
 
-    public String getEmail() {
-        return email.getText();
+    public String getEmailField() {
+        return emailField.getText();
     }
 
-    public String getTlfNmbr() {
-        return tlfNmbr.getText();
+    public String getTelephoneNumberField() {
+        return telephoneNumberField.getText();
     }
 
-    public String getAdress() {
-        return adress.getText();
+    public String getAdressField() {
+        return adressField.getText();
     }
 
-    public String getZipCode() {
-        return zipCode.getText();
+    public String getZipCodeField() {
+        return zipCodeField.getText();
     }
 
-    public String getBillingZipCode() {
-        return billingZipCode.getText();
+    public String getBillingZipCodeField() {
+        return billingZipCodeField.getText();
     }
 
-    public String getBillingAdress() {
-        return billingAdress.getText();
+    public String getBillingAdressField() {
+        return billingAdressField.getText();
     }
+
+    public void registerPerson(String text){
+        printArea.setText(text);
+    }
+
+    public Iterator getTextFieldIterator(){
+        return textFieldIterator;
+    }
+
+    public void resetIterator(){
+        textFieldIterator = textFieldArrayList.iterator();
+    }
+
+    public void emptyFieldsCheck(){
+        int i = 0;
+        while(textFieldIterator.hasNext()){
+            if(textFieldIterator.next().getText().trim().isEmpty()){
+                registerPersonButton.setDisable(true);
+                resetIterator();
+                return;
+            }
+            System.out.println(i++);
+        }
+        registerPersonButton.setDisable(false);
+    }
+
 }

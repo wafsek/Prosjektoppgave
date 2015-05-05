@@ -69,7 +69,7 @@ public class Controller {
         operationWindow.setGuiEventHandler(guiEventHandler);
         operationWindow.setKeyHandler(keyPressHandler);
         welcomeScene = new WelcomeScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
-        addScene = new AddScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
+        addScene = new AddScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
         insurePersonScene = new InsurePersonScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
         insureCarScene = new InsureCarScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
         statisticsScene = new StatisticsScene(operationWindow.getFooter(), keyPressHandler, guiEventHandler);
@@ -92,7 +92,7 @@ public class Controller {
         if(control == loginWindow.getLoginButton()){
                 this.login();
         }else if (control == operationWindow.getAddSceneButton()) {
-            addScene = new AddScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
+            addScene = new AddScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
         operationWindow.displayScene(addScene.getScene());
     } else if (control == operationWindow.getPersonSceneButton()){
             insurePersonScene = new InsurePersonScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
@@ -128,9 +128,9 @@ public class Controller {
             operationWindow.displayScene(insureBoatScene.getScene());
         }else if (control == insureBoatScene.getRequestRegistration()) {
                 operationWindow.displayScene(insureBoatScene.requestApproved());
-        }else if (control == addScene.getRegister()) {
-            addScene.requestRegistration();
-        }else if (control == operationWindow.getSearchSceneButton()){
+        }else if (control == addScene.getRegisterPersonButton()) {
+            addScene.registerPerson(this.registerPerson());
+        }else if (control == operationWindow.getSearchSceneButton()) {
             searchScene = new SearchScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
             operationWindow.displayScene(searchScene.getScene());
         }
@@ -156,32 +156,32 @@ public class Controller {
         if(this.validatePersonData() != DataControl.SUCCESS){
             return this.validatePersonData().getDescription();
         }else{
-            manager.registerCustomerInsurance(new Customer(addScene.getBirthNmbr(),
-                    addScene.getName(),addScene.getLastName(),addScene.getTlfNmbr(),
-                    addScene.getZipCode(),addScene.getAdress(),
-                    addScene.getBillingZipCode(),addScene.getBillingAdress()));
+            manager.registerCustomerInsurance(new Customer(addScene.getBirthNumberField(),
+                    addScene.getFirstNameField(),addScene.getLastNameField(),addScene.getTelephoneNumberField(),
+                    addScene.getZipCodeField(),addScene.getAdressField(),
+                    addScene.getBillingZipCodeField(),addScene.getBillingAdressField()));
             return "person registered";
         }
     }
     
     private DataControl validatePersonData(){
-        if(!Validation.isValidFirstName(addScene.getName())){
+        if(!Validation.isValidFirstName(addScene.getFirstNameField())){
             return DataControl.INVALID_FIRST_NAME;
-        }else if(!Validation.isValidFirstName(addScene.getLastName())){
+        }else if(!Validation.isValidFirstName(addScene.getLastNameField())){
             return DataControl.INVALID_LAST_NAME;
-        }else if(!Validation.isValidFirstName(addScene.getBirthNmbr())){
+        }else if(!Validation.isValidBirthNo(addScene.getBirthNumberField())){
             return DataControl.INVALID_BIRTHNO;
-        }else if(!Validation.isValidFirstName(addScene.getEmail())){
+        }/*else if(!Validation.isValidE(addScene.getEmailField())){
             return DataControl.INVALID_EMAIL;
-        }else if(!Validation.isValidFirstName(addScene.getTlfNmbr())){
+        }*/else if(!Validation.isValidTelephoneNo(addScene.getTelephoneNumberField())){
             return DataControl.INVALID_TLF;
-        }else if(!Validation.isValidFirstName(addScene.getAdress())){
+        }else if(!Validation.isValidStreetAddress(addScene.getAdressField())){
             return DataControl.INVALID_ADRESSE;
-        }else if(!Validation.isValidFirstName(addScene.getZipCode())){
+        }else if(!Validation.isValidZipCode(addScene.getZipCodeField())){
             return DataControl.INVALID_ZIPCODE;
-        }else if(!Validation.isValidFirstName(addScene.getBillingAdress())){
+        }else if(!Validation.isValidStreetAddress(addScene.getBillingAdressField())){
             return DataControl.INVALID_BILLING_ADRESSE;
-        }else if(!Validation.isValidFirstName(addScene.getBillingZipCode())){
+        }else if(!Validation.isValidZipCode(addScene.getBillingZipCodeField())){
             return DataControl.INVALID_BILLING_ZIPCODE;
         }else{
             return DataControl.SUCCESS;

@@ -2,14 +2,11 @@ package baminsurances.gui.window.scene;
 
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.window.OperationWindow;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,13 +18,13 @@ public abstract class PersonSearchScene {
 
     protected Scene scene;
 
-    protected TextField firstName, lastName, adress, zipCode, birthNo;
+    protected TextField firstNameField, lastNameField, adressField, zipCodeField, birthNumberField;
     protected Label firstNameLabel, lastNameLabel, adressLabel, zipCodeLabel,
             birthNoLabel;
-    protected TableView personList;
+    protected TableView personTable;
     protected TableColumn birthNoColumn, nameColumn, adressColumn, tlfNoColumn;
 
-    protected ArrayList<TextField> textFields;
+    protected ArrayList<TextField> textFieldArray;
     protected Iterator textFieldsIterator;
 
     protected Button requestRegistration;
@@ -39,42 +36,42 @@ public abstract class PersonSearchScene {
     public PersonSearchScene(GuiEventHandler handler){
         this.handler = handler;
 
-        personList = new TableView();
+        personTable = new TableView();
         birthNoColumn = new TableColumn("Fødselsnummer");
         nameColumn = new TableColumn("Navn");
         adressColumn = new TableColumn("Adresse");
         tlfNoColumn = new TableColumn("Telefonnummer");
-        personList.getColumns().addAll(birthNoColumn, nameColumn, adressColumn, tlfNoColumn);
-        personList.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        personList.setEditable(false);
-        personList.setStyle("-fx-border-color: gray;");
-        personList.setPrefWidth(OperationWindow.STAGE_WIDTH * 2/4);
+        personTable.getColumns().addAll(birthNoColumn, nameColumn, adressColumn, tlfNoColumn);
+        personTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        personTable.setEditable(false);
+        personTable.setStyle("-fx-border-color: gray;");
+        personTable.setPrefWidth(OperationWindow.STAGE_WIDTH * 2 / 4);
 
-        birthNo = new TextField();
+        birthNumberField = new TextField();
         birthNoLabel = new Label("Fødselsnummer:");
-        firstName = new TextField();
+        firstNameField = new TextField();
         firstNameLabel = new Label("Fornavn:");
-        lastName = new TextField();
+        lastNameField = new TextField();
         lastNameLabel = new Label("Etternavn:");
-        adress = new TextField();
+        adressField = new TextField();
         adressLabel = new Label("Adresse:");
-        zipCode = new TextField();
+        zipCodeField = new TextField();
         zipCodeLabel = new Label("Postnummer:");
 
-        textFields = new ArrayList<TextField>();
-        textFields.add(birthNo);
-        textFields.add(firstName);
-        textFields.add(lastName);
-        textFields.add(adress);
-        textFields.add(zipCode);
-        textFieldsIterator = textFields.iterator();
+        textFieldArray = new ArrayList<TextField>();
+        textFieldArray.add(birthNumberField);
+        textFieldArray.add(firstNameField);
+        textFieldArray.add(lastNameField);
+        textFieldArray.add(adressField);
+        textFieldArray.add(zipCodeField);
+        textFieldsIterator = textFieldArray.iterator();
 
         requestRegistration = new Button("Finn person");
         requestRegistration.setOnAction(handler);
 
         itemContainer = new GridPane();
         itemContainer.addColumn(0, firstNameLabel, lastNameLabel, birthNoLabel, adressLabel, zipCodeLabel);
-        itemContainer.addColumn(1, firstName, lastName, birthNo, adress, zipCode, requestRegistration);
+        itemContainer.addColumn(1, firstNameField, lastNameField, birthNumberField, adressField, zipCodeField, requestRegistration);
         itemContainer.setAlignment(Pos.CENTER);
         itemContainer.setVgap(30);
         itemContainer.setHgap(20);
@@ -105,7 +102,7 @@ public abstract class PersonSearchScene {
     }
 
     public void resetIterator(){
-        textFieldsIterator = textFields.iterator();
+        textFieldsIterator = textFieldArray.iterator();
     }
 
     public void displayPossiblePeople(){
