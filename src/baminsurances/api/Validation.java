@@ -206,6 +206,16 @@ public class Validation {
     }
     
     /**
+     * Returns <code>true</code> if the given boat registration number is a
+     * valid one. For it to be valid, it has to consist of 
+     * @param registrationNo
+     * @return
+     */
+    public static boolean isValidBoatRegistrationNo(String registrationNo) {
+        return registrationNo.matches("[A-Z]{3}[0-9]{3}");
+    }
+    
+    /**
      * Returns <code>true</code> if the given value is a number.
      * 
      * @param value the value to validate
