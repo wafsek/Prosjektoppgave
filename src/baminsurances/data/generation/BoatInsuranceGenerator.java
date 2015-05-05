@@ -3,7 +3,7 @@ package baminsurances.data.generation;
 import baminsurances.data.BoatType;
 
 /**
- * Provides methods for generating BoatInsurance objects.
+ * Provides methods for generating {@link BoatInsurance} objects.
  * 
  * @author martin
  */
@@ -42,7 +42,7 @@ public class BoatInsuranceGenerator {
         
         return String.valueOf(legalLetters[index1]) +
                String.valueOf(legalLetters[index2]) +
-               String.valueOf(legalLetters[index3]) + " " +
+               String.valueOf(legalLetters[index3]) +
                digits;
     }
     

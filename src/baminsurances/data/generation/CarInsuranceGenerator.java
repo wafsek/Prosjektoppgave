@@ -6,7 +6,7 @@ import baminsurances.data.CarType;
 import baminsurances.util.CsvReader;
 
 /**
- * Provides methods for generating CarInsurance objects.
+ * Provides methods for generating {@link CarInsurance} objects.
  * 
  * @author martin
  */
@@ -52,7 +52,7 @@ public class CarInsuranceGenerator {
         }
         
         return String.valueOf(alphabet[index1]) +
-               String.valueOf(alphabet[index2]) + " " +
+               String.valueOf(alphabet[index2]) +
                digits;
     }
     

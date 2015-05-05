@@ -8,7 +8,7 @@ import baminsurances.util.CsvReader;
 import baminsurances.util.TxtReader;
 
 /**
- * Provides methods for generating complete Person objects and its data fields.
+ * Provides methods for generating complete {@link Person} objects and its data fields.
  * The class uses external resources to generate these data, and they are
  * loaded in the constructor. 
  * 

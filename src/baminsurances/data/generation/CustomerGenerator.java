@@ -3,8 +3,8 @@ package baminsurances.data.generation;
 import baminsurances.data.Customer;
 
 /**
- * Provides methods for generating Customer objects. The class utilizes methods
- * found in {@link PersonGenerator}.
+ * Provides methods for generating {@link Customer} objects. The class utilizes
+ * methods found in {@link PersonGenerator}.
  * 
  * @author martin
  */

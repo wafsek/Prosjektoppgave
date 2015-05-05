@@ -1,17 +1,7 @@
 package baminsurances.data.generation;
 
-import java.util.List;
-import baminsurances.data.BoatInsurance;
-import baminsurances.data.CarInsurance;
-import baminsurances.data.Customer;
-import baminsurances.data.Employee;
-import baminsurances.data.HolidayHomeInsurance;
-import baminsurances.data.HomeInsurance;
-import baminsurances.data.Insurance;
-import baminsurances.data.TravelInsurance;
-
 /**
- * Provides methods for generating Insurance objects.
+ * Provides methods for generating {@link Insurance} objects.
  * 
  * @author martin
  */
