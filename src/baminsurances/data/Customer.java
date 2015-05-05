@@ -27,9 +27,10 @@ public class Customer extends Person {
      * @throws IllegalArgumentException if birthNo is not a number of length 11
      */
     public Customer(String birthNo, String firstName, String lastName,
-            String telephoneNo, String zipCode, String streetAddress,
-            String billingZipCode, String billingStreetAddress) {
-        super(birthNo, firstName, lastName, telephoneNo, zipCode,
+            String telephoneNo, String email, String zipCode,
+            String streetAddress, String billingZipCode,
+            String billingStreetAddress) {
+        super(birthNo, firstName, lastName, telephoneNo, email, zipCode,
                 streetAddress);
         registrationDate = Calendar.getInstance();
         setBillingZipCode(billingZipCode);
