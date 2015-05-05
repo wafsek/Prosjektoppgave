@@ -13,7 +13,6 @@ public class HomeInsurance extends Insurance {
     private String buildingMaterial;
     private String standard;
     private int squareMetres;
-    private int homeAmount;
     private int contentsAmount;
     
     /**
@@ -21,7 +20,6 @@ public class HomeInsurance extends Insurance {
      * 
      * @param employee the employee who registered the insurance
      * @param premium the yearly premium of the insurance
-     * @param amount how much the insurance may cover
      * @param terms the terms of the insurance
      * @param streetAddress street address of the insured home
      * @param zipCode zip code of the insured home
@@ -33,19 +31,29 @@ public class HomeInsurance extends Insurance {
      * @param contentsAmount how much the contents of the home are insured for
      * @throws NullPointerException if any of the arguments are null
      */
-    public HomeInsurance(Employee employee, int premium, int amount,
-            String terms, String streetAddress, String zipCode,
-            HomeType homeType, String buildingMaterial, String standard,
-            int squareMetres, int homeAmount, int contentsAmount) {
-        super(employee, premium, amount, terms);
+    public HomeInsurance(Employee employee, int premium, String terms,
+            String streetAddress, String zipCode, HomeType homeType,
+            String buildingMaterial, String standard, int squareMetres,
+            int homeAmount, int contentsAmount) {
+        super(employee, premium, homeAmount, terms);
         setStreetAddress(streetAddress);
         setZipCode(zipCode);
         setHomeType(homeType);
         setBuildingMaterial(buildingMaterial);
         setStandard(standard);
         this.squareMetres = squareMetres;
-        this.homeAmount = homeAmount;
         this.contentsAmount = contentsAmount;
+    }
+    
+    /**
+     * Returns the total amount this home is insured for. This is the same as
+     * <code>getHomeAmount() + getContentsAmount()</code>.
+     * 
+     * @return the total amount this home is insured for
+     */
+    @Override
+    public int getAmount() {
+        return getHomeAmount() + getContentsAmount();
     }
     
     /**
@@ -172,7 +180,7 @@ public class HomeInsurance extends Insurance {
      * @return the home amount for this home insurance
      */
     public int getHomeAmount() {
-        return homeAmount;
+        return super.getAmount();
     }
 
     /**
@@ -181,7 +189,7 @@ public class HomeInsurance extends Insurance {
      * @param homeAmount the new home amount
      */
     public void setHomeAmount(int homeAmount) {
-        this.homeAmount = homeAmount;
+        super.setAmount(homeAmount);
     }
 
     /**
