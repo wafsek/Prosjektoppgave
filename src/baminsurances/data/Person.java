@@ -10,6 +10,7 @@ public class Person implements Comparable<Person> {
     private String firstName;
     private String lastName;
     private String telephoneNo;
+    private String email;
     private String zipCode;
     private String streetAddress;
     //TODO add mail
@@ -21,17 +22,20 @@ public class Person implements Comparable<Person> {
      * @param firstName first name
      * @param lastName last name
      * @param telephoneNo telephone number
+     * @param email the email
      * @param zipCode zip code
      * @param streetAddress street address
-     * @throws IllegalArgumentException if birthNumberField is not a number of length 11
+     * @throws IllegalArgumentException if birthNo is not a number of length 11
      * @throws NullPointerException if any of the arguments are null
      */
     public Person(String birthNo, String firstName, String lastName,
-            String telephoneNo, String zipCode, String streetAddress) {
+            String telephoneNo, String email,String zipCode,
+            String streetAddress) {
         setBirthNo(birthNo);
         setFirstName(firstName);
         setLastName(lastName);
         setTelephoneNo(telephoneNo);
+        setEmail(email);
         setZipCode(zipCode);
         setStreetAddress(streetAddress);
     }
@@ -176,6 +180,28 @@ public class Person implements Comparable<Person> {
      */
     public String getTelephoneNo() {
         return telephoneNo;
+    }
+    
+    /**
+     * Sets this person's email address to the given value.
+     * 
+     * @param email the new email
+     * @throws NullPointerException if argument is null
+     */
+    public void setEmail(String email) {
+        if (email == null) {
+            throw new NullPointerException("Email cannot be null.");
+        }
+        this.email = email;
+    }
+    
+    /**
+     * Returns this person's email address.
+     * 
+     * @return this person's email address
+     */
+    public String getEmail() {
+        return email;
     }
 
     /**
