@@ -14,17 +14,16 @@ import java.util.logging.Level;
  * @author Adrian
  */
 public class Gui extends Application {
-    private static CustomLogger logger; 
+    private static CustomLogger logger = CustomLogger.getInstance(); 
+    
     public static void main(String[] args){
-        //Config.setProperties();
-        CustomLogger.setUp();
-        System.out.println("Welkommen til " + Config.getApplicationName());
-        addHook();
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        addHook();
+        //Config.setProperties();
         logger.log("Starting the Program", Level.INFO);
         Controller controller = new Controller();
         controller.start();
@@ -39,11 +38,10 @@ public class Gui extends Application {
      * a bit unpredictable.
      */
     public static void addHook(){
-        logger = new CustomLogger(Gui.class.getName());
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-                Gui.logger.log("Program Shutdown", Level.INFO);
+                logger.log("Program Shutdown", Level.INFO);
             }
         });
     }

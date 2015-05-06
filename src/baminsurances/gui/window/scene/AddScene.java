@@ -249,39 +249,39 @@ public class AddScene {
         return registerPersonButton;
     }
 
-    public String getFirstNameField() {
+    public String getFirstNameFieldText() {
         return firstNameField.getText();
     }
     
-    public String getLastNameField(){
+    public String getLastNameFieldText(){
         return lastNameField.getText();
     }
 
-    public String getBirthNumberField() {
+    public String getBirthNumberFieldText() {
         return birthNumberField.getText();
     }
 
-    public String getEmailField() {
+    public String getEmailFieldText() {
         return emailField.getText();
     }
 
-    public String getTelephoneNumberField() {
+    public String getTelephoneNumberFieldText() {
         return telephoneNumberField.getText();
     }
 
-    public String getAdressField() {
+    public String getAdressFieldText() {
         return adressField.getText();
     }
 
-    public String getZipCodeField() {
+    public String getZipCodeFieldText() {
         return zipCodeField.getText();
     }
 
-    public String getBillingZipCodeField() {
+    public String getBillingZipCodeFieldText() {
         return billingZipCodeField.getText();
     }
 
-    public String getBillingAdressField() {
+    public String getBillingAdressFieldText() {
         return billingAdressField.getText();
     }
 

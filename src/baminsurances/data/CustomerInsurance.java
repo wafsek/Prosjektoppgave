@@ -19,6 +19,7 @@ public class CustomerInsurance {
     
     public CustomerInsurance(Customer customer) {
         this.customer = customer;
+        //insuranceList.add(firstInsurance);
     }
     
     /**

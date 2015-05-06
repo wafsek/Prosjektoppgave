@@ -16,7 +16,7 @@ public class Authenticator {
     private String displayName = "UnKnown";
     private User user;
     private boolean loggedIn;
-    private CustomLogger logger = new CustomLogger(Authenticator.class.getName());
+    private CustomLogger logger = CustomLogger.getInstance();
     
     private static final Authenticator authenticator = new Authenticator();
     

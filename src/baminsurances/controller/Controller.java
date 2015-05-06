@@ -1,9 +1,12 @@
 package baminsurances.controller;
 
+import baminsurances.api.Config;
 import baminsurances.api.CustomerServiceManager;
 import baminsurances.api.Validation;
 import baminsurances.data.Customer;
+import baminsurances.data.CustomerInsurance;
 import baminsurances.data.InsuranceDataBank;
+import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.LoginWindow;
@@ -12,8 +15,14 @@ import baminsurances.gui.window.MessageDialog;
 import baminsurances.gui.window.scene.*;
 import baminsurances.logging.CustomLogger;
 import baminsurances.security.Authenticator;
+import javafx.beans.InvalidationListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
 
+import java.util.*;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 
 
@@ -51,7 +60,7 @@ public class Controller {
     
     
     
-    private CustomLogger logger = new CustomLogger(GuiEventHandler.class.getName());
+    private CustomLogger logger = CustomLogger.getInstance();
     
     
     public Controller(){
@@ -60,6 +69,7 @@ public class Controller {
     
     
     public void start(){
+        System.out.println("Welkommen til " + Config.getApplicationName());
         loginWindow = LoginWindow.getLoginWindow();
         loginWindow.show();
         operationWindow = OperationWindow.getOperationWindow();
@@ -134,7 +144,6 @@ public class Controller {
             searchScene = new SearchScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
             operationWindow.displayScene(searchScene.getScene());
         }
-        
     }
 
 
@@ -147,6 +156,29 @@ public class Controller {
         logger.log("Logged in", Level.INFO);
     }
     
+    
+   /* private String findPerson(){
+        return manager.getCustomerInsurancesWithFirstName(searchScene.);
+    }*/
+    public ObservableList<Person> findPeople(){
+        ObservableList<Person> personObservableList = FXCollections.observableArrayList();
+        
+        List<Predicate<CustomerInsurance>> predicates = new ArrayList<>();
+        String firstName = travelInsuranceScene.getFirstName();
+        String lastName = travelInsuranceScene.getLastName();
+        String birthNo = travelInsuranceScene.getBirthNumber();
+        String streetAddress = travelInsuranceScene.getAdress();
+        String zipCode = travelInsuranceScene.getZipCode();
+        
+        predicates.add(CustomerServiceManager.firstNameStartsWith(firstName));
+        //predicates.add(CustomerServiceManager.lastNameStartsWith(lastName));
+        //predicates.add(CustomerServiceManager.birthNoStartsWith(birthNo));
+        //predicates.add(CustomerServiceManager.streetAddressStartsWith(streetAddress));
+        //predicates.add(CustomerServiceManager.zipCodeStartsWith(zipCode));
+        personObservableList.addAll(manager.findCustomers(predicates));
+        return personObservableList;
+    }
+    
     private String registerPerson(){
         /*Note by baljit sarai: After thinking about it for a while,
         i have come to the conclusion that this method needs to put the 
@@ -156,32 +188,33 @@ public class Controller {
         if(this.validatePersonData() != DataControl.SUCCESS){
             return this.validatePersonData().getDescription();
         }else{
-            manager.registerCustomerInsurance(new Customer(addScene.getBirthNumberField(),
-                    addScene.getFirstNameField(),addScene.getLastNameField(),addScene.getTelephoneNumberField(),
-                    addScene.getEmailField(), addScene.getZipCodeField(),addScene.getAdressField(),
-                    addScene.getBillingZipCodeField(),addScene.getBillingAdressField()));
+            manager.registerCustomerInsurance(new Customer(addScene.getBirthNumberFieldText(),
+                    addScene.getFirstNameFieldText(),addScene.getLastNameFieldText(),
+                    addScene.getTelephoneNumberFieldText(),addScene.getEmailFieldText(),
+                    addScene.getZipCodeFieldText(),addScene.getAdressFieldText(),
+                    addScene.getBillingZipCodeFieldText(),addScene.getBillingAdressFieldText()));
             return "person registered";
         }
     }
     
     private DataControl validatePersonData(){
-        if(!Validation.isValidFirstName(addScene.getFirstNameField())){
+        if(!Validation.isValidFirstName(addScene.getFirstNameFieldText())){
             return DataControl.INVALID_FIRST_NAME;
-        }else if(!Validation.isValidFirstName(addScene.getLastNameField())){
+        }else if(!Validation.isValidFirstName(addScene.getLastNameFieldText())){
             return DataControl.INVALID_LAST_NAME;
-        }else if(!Validation.isValidBirthNo(addScene.getBirthNumberField())){
+        }else if(!Validation.isValidBirthNo(addScene.getBirthNumberFieldText())){
             return DataControl.INVALID_BIRTHNO;
-        }/*else if(!Validation.isValidE(addScene.getEmailField())){
+        }else if(!Validation.isValidEmail(addScene.getEmailFieldText())){
             return DataControl.INVALID_EMAIL;
-        }*/else if(!Validation.isValidTelephoneNo(addScene.getTelephoneNumberField())){
+        }else if(!Validation.isValidTelephoneNo(addScene.getTelephoneNumberFieldText())){
             return DataControl.INVALID_TLF;
-        }else if(!Validation.isValidStreetAddress(addScene.getAdressField())){
+        }else if(!Validation.isValidStreetAddress(addScene.getAdressFieldText())){
             return DataControl.INVALID_ADRESSE;
-        }else if(!Validation.isValidZipCode(addScene.getZipCodeField())){
+        }else if(!Validation.isValidZipCode(addScene.getZipCodeFieldText())){
             return DataControl.INVALID_ZIPCODE;
-        }else if(!Validation.isValidStreetAddress(addScene.getBillingAdressField())){
+        }else if(!Validation.isValidStreetAddress(addScene.getBillingAdressFieldText())){
             return DataControl.INVALID_BILLING_ADRESSE;
-        }else if(!Validation.isValidZipCode(addScene.getBillingZipCodeField())){
+        }else if(!Validation.isValidZipCode(addScene.getBillingZipCodeFieldText())){
             return DataControl.INVALID_BILLING_ZIPCODE;
         }else{
             return DataControl.SUCCESS;

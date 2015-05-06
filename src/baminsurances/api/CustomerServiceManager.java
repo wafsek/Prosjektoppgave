@@ -20,7 +20,7 @@ public class CustomerServiceManager {
     public static final int ALREADY_CANCELED = 3;
     
     private InsuranceDataBank dataBank;
-    private CustomLogger logger = new CustomLogger(CustomerServiceManager.class.getName());
+    private CustomLogger logger = CustomLogger.getInstance();
     //private static final InsuranceServiceManager manager = new InsuranceServiceManager();
     
     
@@ -54,12 +54,12 @@ public class CustomerServiceManager {
      */
     public void registerCustomerInsurance(Customer customer)
     {
-        /*if(insurance ==null || customer == null){
+        if(customer == null){
             throw new NullPointerException("insurance and customer parameter cannot be null");
         }
-        CustomerInsurance customerInsurance = new CustomerInsurance(customer,insurance);
+        CustomerInsurance customerInsurance = new CustomerInsurance(customer);
         dataBank.addCustomerInsurance(customerInsurance);
-        logger.log("|"+"CustomerInsurance registered.", Level.INFO);*/
+        logger.log("|"+"CustomerInsurance registered.", Level.INFO);
     }
 
     
@@ -115,26 +115,26 @@ public class CustomerServiceManager {
     public static final Predicate<CustomerInsurance> isTotalCustomer =
             ci -> ci.isTotalCustomer();
             
-    public Predicate<CustomerInsurance> firstNameStartsWith(String s) {
+    public static Predicate<CustomerInsurance> firstNameStartsWith(String s) {
         return ci -> ci.getCustomer().getFirstName().toLowerCase().startsWith(
                 s.toLowerCase());
     }
     
-    public Predicate<CustomerInsurance> lastNameStartsWith(String s) {
+    public static Predicate<CustomerInsurance> lastNameStartsWith(String s) {
         return ci -> ci.getCustomer().getLastName().toLowerCase().startsWith(
                 s.toLowerCase());
     }
     
-    public Predicate<CustomerInsurance> birthNoStartsWith(String s) {
+    public static Predicate<CustomerInsurance> birthNoStartsWith(String s) {
         return ci -> ci.getCustomer().getBirthNo().toLowerCase().startsWith(s);
     }
     
-    public Predicate<CustomerInsurance> streetAddressStartsWith(String s) {
+    public static Predicate<CustomerInsurance> streetAddressStartsWith(String s) {
         return ci -> ci.getCustomer().getStreetAddress().startsWith(
                 s.toLowerCase());
     }
     
-    public Predicate<CustomerInsurance> zipCodeStartsWith(String s) {
+    public static Predicate<CustomerInsurance> zipCodeStartsWith(String s) {
         return ci -> ci.getCustomer().getZipCode().startsWith(
                 s.toLowerCase());
     }
@@ -253,11 +253,11 @@ public class CustomerServiceManager {
         return result;
     }
 
-    /**
+    /*/**
      * Return List of all active Insurances 
      * @return List of Insurances
      */
-    public List<Insurance> getActiveInsurances(){
+    /*public List<Insurance> getActiveInsurances(){
         ArrayList<Insurance> result = new ArrayList<>();
         for(CustomerInsurance customerInsurance : this.getActiveCustomerInsurances()){
            customerInsurance.getInsurances().stream()
@@ -265,7 +265,7 @@ public class CustomerServiceManager {
                    .forEach(i -> result.add(i));
         }
         return result;
-    }
+    }*/
 
     /**
      * Return List of all Insurances 
