@@ -91,4 +91,11 @@ public class Customer extends Person {
         }
         this.billingStreetAddress = billingStreetAddress;
     }
+    
+    @Override
+    public String toString() {
+        return super.toString() + ", " +
+                billingZipCode + " " + billingStreetAddress + ", " +
+                registrationDate.toString();
+    }
 }

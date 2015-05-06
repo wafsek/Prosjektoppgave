@@ -259,4 +259,13 @@ public class Person implements Comparable<Person> {
         }
         this.streetAddress = streetAddress;
     }
+    
+    @Override
+    public String toString() {
+        return birthNo + ", " +
+               firstName + " " + lastName + ", " +
+               telephoneNo + ", " +
+               email + ", " +
+               zipCode + " " + streetAddress;
+    }
 }
