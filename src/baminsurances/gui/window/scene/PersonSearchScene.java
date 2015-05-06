@@ -1,15 +1,17 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.OperationWindow;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -26,11 +28,10 @@ public abstract class PersonSearchScene {
     protected TableView personTable;
     protected TableColumn birthNoColumn, nameColumn, adressColumn, tlfNoColumn;
 
-    protected ArrayList<TextField> textFieldArray;
+    protected ArrayList<TextField> textFieldArrayList;
     protected Iterator textFieldsIterator;
 
     protected Button requestRegistration;
-    private ArrayList<TextField> textFieldArrayList;
 
     protected GridPane itemContainer;
     protected BorderPane borderPane;
@@ -43,9 +44,13 @@ public abstract class PersonSearchScene {
 
         personTable = new TableView();
         birthNoColumn = new TableColumn("Fødselsnummer");
+        birthNoColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("birthNo"));
         nameColumn = new TableColumn("Navn");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
         adressColumn = new TableColumn("Adresse");
+        adressColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("streetAdress"));
         tlfNoColumn = new TableColumn("Telefonnummer");
+        tlfNoColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("telephoneNo"));
         personTable.getColumns().addAll(birthNoColumn, nameColumn, adressColumn, tlfNoColumn);
         personTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         personTable.setEditable(false);
@@ -63,13 +68,13 @@ public abstract class PersonSearchScene {
         zipCodeField = new TextField();
         zipCodeLabel = new Label("Postnummer:");
 
-        textFieldArray = new ArrayList<TextField>();
-        textFieldArray.add(birthNumberField);
-        textFieldArray.add(firstNameField);
-        textFieldArray.add(lastNameField);
-        textFieldArray.add(adressField);
-        textFieldArray.add(zipCodeField);
-        textFieldsIterator = textFieldArray.iterator();
+        textFieldArrayList = new ArrayList<TextField>();
+        textFieldArrayList.add(birthNumberField);
+        textFieldArrayList.add(firstNameField);
+        textFieldArrayList.add(lastNameField);
+        textFieldArrayList.add(adressField);
+        textFieldArrayList.add(zipCodeField);
+        textFieldsIterator = textFieldArrayList.iterator();
 
         firstNameField.setOnKeyReleased(keyPressHandler);
         lastNameField.setOnKeyReleased(keyPressHandler);
@@ -137,6 +142,19 @@ public abstract class PersonSearchScene {
 
     public ArrayList getTextFieldArrayList(){
         return textFieldArrayList;
+    }
+
+    public Iterator getTextFieldIterator(){
+        return textFieldsIterator;
+    }
+
+    public void resetIterator(){
+        textFieldsIterator = textFieldArrayList.iterator();
+    }
+
+    public void setTableData(ObservableList observableList){
+        personTable.setItems(null);
+        personTable.setItems(observableList);
     }
 }
 

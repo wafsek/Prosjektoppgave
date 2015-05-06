@@ -34,45 +34,83 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent e) {
         while (txtFieldsIterator.hasNext()){
-            if (e.getSource() == statisticsScene.getTextFieldsIterator()) {
+            if (statisticsScene != null && e.getSource() == statisticsScene.getTextFieldsIterator().next()) {
                 statisticsScene.setEditableEmployeeFields();
                 statisticsScene.setEditableCustomerFields();
-                statisticsScene.resetIterator();
+                txtFieldsIterator = statisticsScene.getTextFieldList().iterator();
+                resetIterators();
                 return;
-            }/*else if(e.getSource() == searchScene.getTextFieldArrayList().iterator().next()){
+            }else if(travelInsuranceScene != null && e.getSource() == travelInsuranceScene.getTextFieldIterator().next()){
                 System.out.println("jeg funker");
+                travelInsuranceScene.setTableData(controller.findPeople());
+                resetIterators();
+                txtFieldsIterator = travelInsuranceScene.getTextFieldArrayList().iterator();
                 return;
-            }*/
+            }
         }
     }
 
     public void setStatisticsScene(StatisticsScene statisticsScene/*, ArrayList<TextField> textfields*/){
+        //this.resetScenes();
         this.statisticsScene = statisticsScene;
         txtFieldsIterator = statisticsScene.getTextFieldList().iterator();
     }
 
-    public void setInsurePersonScene(TravelInsuranceScene travelInsuranceScene, ArrayList<TextField> textFields){
+    public void setTravelInsuranceScene(TravelInsuranceScene travelInsuranceScene){
+        //this.resetScenes();
         this.travelInsuranceScene = travelInsuranceScene;
-        txtFieldsIterator = textFields.iterator();
+        txtFieldsIterator = travelInsuranceScene.getTextFieldArrayList().iterator();
     }
 
     public void setInsureHouseScene(InsureHouseScene insureHouseScene, ArrayList<TextField> textFields){
+        //this.resetScenes();
         this.insureHouseScene = insureHouseScene;
         txtFieldsIterator = textFields.iterator();
     }
 
     public void setInsureBoatScene(InsureBoatScene insureBoatScene, ArrayList<TextField> textFields){
+        //this.resetScenes();
         this.insureBoatScene = insureBoatScene;
         txtFieldsIterator = textFields.iterator();
     }
 
     public void setInsureCarScene(InsureCarScene insureCarScene, ArrayList<TextField> textFields){
+        //this.resetScenes();
         this.insureCarScene = insureCarScene;
         txtFieldsIterator = textFields.iterator();
     }
 
     public void setSearchScene(SearchScene searchScene){
+        //this.resetScenes();
         this.searchScene = searchScene;
         txtFieldsIterator = searchScene.getTextFieldArrayList().iterator();
+    }
+
+    /*private void resetScenes(){
+        statisticsScene = null;
+        travelInsuranceScene = null;
+        insureHouseScene = null;
+        insureBoatScene = null;
+        insureCarScene = null;
+        addScene = null;
+        searchScene = null;
+    }*/
+
+    private void resetIterators(){
+        if(statisticsScene != null) {
+            statisticsScene.resetIterator();
+        }if(travelInsuranceScene != null){
+            travelInsuranceScene.resetIterator();
+        }if(insureHouseScene != null){
+            insureHouseScene.resetIterator();
+        }if(insureBoatScene != null){
+            insureBoatScene.resetIterator();
+        }if(insureCarScene != null){
+            insureCarScene.resetIterator();
+        }if(addScene != null){
+            addScene.resetIterator();
+        }if(searchScene != null) {
+            searchScene.resetIterator();
+        }
     }
 }

@@ -37,13 +37,14 @@ public class TravelInsuranceScene extends PersonSearchScene{
         this.footer = footer;
         borderPane = new BorderPane(itemContainer, header, personTable, footer, null);
         scene = new Scene(borderPane);
+        keyPressHandler.setTravelInsuranceScene(this);
     }
 
     /**
      * recreated the initial Scene, adds -FX components and returns it.
      * @return the Scene created.
      */
-    public Scene requestApproved(){
+    public Scene requestApproved() {
         incomeList = FXCollections.observableArrayList("150.000 eller minde.", "150.000 - 250.000",
                 "250.000 - 500.000", "500.000 - 1.500.000", "1.500.000 eller mer");
         deptList = FXCollections.observableArrayList("150.000 eller minde.", "150.000 - 250.000",
@@ -70,7 +71,7 @@ public class TravelInsuranceScene extends PersonSearchScene{
         printArea = new TextArea();
         printArea.setEditable(false);
         scrollPane = new ScrollPane(printArea);
-        scrollPane.setPrefWidth(OperationWindow.STAGE_WIDTH * 3/5);
+        scrollPane.setPrefWidth(OperationWindow.STAGE_WIDTH * 3 / 5);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
         scrollPane.setStyle("-fx-border-color: gray;");
@@ -81,10 +82,6 @@ public class TravelInsuranceScene extends PersonSearchScene{
         itemContainer.addColumn(0, incomeBox, deptBox, kidsBox, relationshipBox, registerPersonInsurance);
         borderPane = new BorderPane(itemContainer, header, scrollPane, footer, null);
         return new Scene(borderPane);
-    }
-
-    public void displayPossibleCustomers(){
-
     }
 }
 
