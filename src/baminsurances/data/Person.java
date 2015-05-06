@@ -1,5 +1,7 @@
 package baminsurances.data;
 
+import java.time.LocalDate;
+
 /**
  * The root class in the Person hierarchy.
  * 
@@ -77,6 +79,41 @@ public class Person implements Comparable<Person> {
     @Override
     public int compareTo(Person p) {
         return Integer.parseInt(this.birthNo) - Integer.parseInt(p.birthNo);
+    }
+    
+    /**
+     * Returns this person's date of birth.
+     * 
+     * @return this person's date of birth
+     */
+    public LocalDate getDateOfBirth() {
+        int day = Integer.parseInt(birthNo.substring(0, 2));
+        int month = Integer.parseInt(birthNo.substring(2, 4));
+        int first2DigitsOfYear; // unknown for now
+        int last2DigitsOfYear = Integer.parseInt(birthNo.substring(4, 6));
+        
+        int individualNo = Integer.parseInt(birthNo.substring(6, 9));
+        
+        /**
+         * For information on this algorithm, see the following link (Norwegian):
+         * 
+         * http://www.skatteetaten.no/no/Person/Folkeregister/Fodsel-og-navnevalg/Barn-fodt-i-Norge/Fodselsnummer/
+         */
+        if (individualNo < 500) {
+            first2DigitsOfYear = 19;
+        } else if (individualNo < 750 &&
+                last2DigitsOfYear >= 54 && last2DigitsOfYear <= 99) {
+            first2DigitsOfYear = 18;
+        } else if (individualNo >= 900 && individualNo < 1000 &&
+                last2DigitsOfYear >= 40 && last2DigitsOfYear <= 99) { 
+            first2DigitsOfYear = 19;
+        } else {
+            first2DigitsOfYear = 20;
+        }
+        int year = Integer.parseInt(
+                String.valueOf(first2DigitsOfYear) + String.valueOf(last2DigitsOfYear));
+        
+        return LocalDate.of(year, month, day);
     }
     
     /**
@@ -258,5 +295,14 @@ public class Person implements Comparable<Person> {
             throw new NullPointerException("Street address cannot be null.");
         }
         this.streetAddress = streetAddress;
+    }
+    
+    @Override
+    public String toString() {
+        return birthNo + ", " +
+               firstName + " " + lastName + ", " +
+               telephoneNo + ", " +
+               email + ", " +
+               zipCode + " " + streetAddress;
     }
 }

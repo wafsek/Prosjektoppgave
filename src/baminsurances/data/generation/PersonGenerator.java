@@ -1,6 +1,7 @@
 package baminsurances.data.generation;
 
 import java.io.File;
+import java.time.Year;
 import java.util.List;
 
 import baminsurances.data.*;
@@ -101,12 +102,36 @@ public class PersonGenerator {
      * @return a valid Norwegian birth number
      */
     public String generateBirthNo() {
-        int day = (int) (Math.random() * 28) + 1;
-        String dayString = day < 10 ? "0" + String.valueOf(day) : String.valueOf(day);
         int month = (int) (Math.random() * 12) + 1;
         String monthString = month < 10 ? "0" + String.valueOf(month) : String.valueOf(month);
+
         int year = (int) (Math.random() * 99) + 1;
         String yearString = year < 10 ? "0" + String.valueOf(year) : String.valueOf(year);
+        
+        int day;
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                day = (int) (Math.random() * 31) + 1;
+                break;
+            case 2:
+                if (Year.isLeap(year)) {
+                    day = (int) (Math.random() * 29) + 1;
+                } else {
+                    day = (int) (Math.random() * 28) + 1;
+                }
+                break;
+            default:
+                day = (int) (Math.random() * 30) + 1;
+                break;
+        }
+        String dayString = day < 10 ? "0" + String.valueOf(day) : String.valueOf(day);
+        
         String dateOfBirth = dayString + monthString + yearString;
         
         String individualNoString;
@@ -233,7 +258,11 @@ public class PersonGenerator {
      */
     public String generateTelephoneNo() {
         String telephoneNo = "";
-        for (int i = 0; i < 8; i++) {
+        
+        // first digit can't be 0
+        telephoneNo += String.valueOf((int) (Math.random() * 9) + 1);
+        
+        for (int i = 1; i < 8; i++) {
             telephoneNo += String.valueOf((int) (Math.random() * 10));
         }
         return telephoneNo;
@@ -247,8 +276,18 @@ public class PersonGenerator {
      * @return an email address
      */
     public String generateEmail(String firstName, String lastName) {
-        String[] hosts = {"hotmail", "google", "start", "msn"};
+        String[] hosts = {"hotmail", "gmail", "start", "msn", "yahoo",
+                "online", "aol", "outlook"};
         String[] domains = {"no", "com"};
+        
+        firstName = firstName.toLowerCase()
+                             .replace('ø', 'o')
+                             .replace('å', 'a')
+                             .replace("æ", "ae");
+        lastName = lastName.toLowerCase()
+                           .replace('ø', 'o')
+                           .replace('å', 'a')
+                           .replace("æ", "ae");
         
         String host = hosts[(int) (Math.random() * hosts.length)];
         String domain = domains[(int) (Math.random() * domains.length)];

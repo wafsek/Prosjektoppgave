@@ -6,6 +6,7 @@ import baminsurances.logging.CustomLogger;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 
 /**
@@ -106,9 +107,56 @@ public class CustomerServiceManager {
     *                                                                           *
     * ***************************************************************************/
     
-    Predicate<CustomerInsurance> activeCustomerInsurances = ci -> ci.isActive();
-    //Predicate<CustomerInsurance> isTotalCustomer = ci -> ci.isTotalCustomer();
-    Predicate<Insurance> isActiveInsurance = i -> i.isActive();
+    /* Customer predicates */
+    
+    public static final Predicate<CustomerInsurance> isActive =
+            ci -> ci.isActive();
+            
+    public static final Predicate<CustomerInsurance> isTotalCustomer =
+            ci -> ci.isTotalCustomer();
+            
+    public Predicate<CustomerInsurance> firstNameStartsWith(String s) {
+        return ci -> ci.getCustomer().getFirstName().toLowerCase().startsWith(
+                s.toLowerCase());
+    }
+    
+    public Predicate<CustomerInsurance> lastNameStartsWith(String s) {
+        return ci -> ci.getCustomer().getLastName().toLowerCase().startsWith(
+                s.toLowerCase());
+    }
+    
+    public Predicate<CustomerInsurance> birthNoStartsWith(String s) {
+        return ci -> ci.getCustomer().getBirthNo().toLowerCase().startsWith(s);
+    }
+    
+    public Predicate<CustomerInsurance> streetAddressStartsWith(String s) {
+        return ci -> ci.getCustomer().getStreetAddress().startsWith(
+                s.toLowerCase());
+    }
+    
+    public Predicate<CustomerInsurance> zipCodeStartsWith(String s) {
+        return ci -> ci.getCustomer().getZipCode().startsWith(
+                s.toLowerCase());
+    }
+    
+    /**
+     * Takes a list of CustomerInsurance predicates, and returns a list of all
+     * customers who satisfy these.
+     * 
+     * @param predicates the list of predicates
+     * @return a list of customers
+     */
+    public List<Customer> findCustomers(List<Predicate<CustomerInsurance>> predicates) {
+        // Reducing the given filters into one Predicate:
+        Predicate<CustomerInsurance> pred = predicates.stream()
+                                                      .reduce(Predicate::and)
+                                                      .orElse(x -> true);
+
+        return dataBank.getCustomerInsuranceList().stream()
+                                                  .filter(pred)
+                                                  .map(ci -> ci.getCustomer())
+                                                  .collect(Collectors.toList());
+    }
     
     /**
      * Returns CustomerInsurance object with given Customer object

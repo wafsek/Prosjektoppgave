@@ -11,7 +11,7 @@ public class DataBankGenerator {
     private CustomerGenerator customerGen = new CustomerGenerator();
     private EmployeeGenerator employeeGen = new EmployeeGenerator();
     
-    // Insurace generators:
+    // Insurance generators:
     private InsuranceGenerator insGen = new InsuranceGenerator();
     private VehicleInsuranceGenerator vehicleGen =
             new VehicleInsuranceGenerator();
@@ -32,11 +32,20 @@ public class DataBankGenerator {
      * 
      * @param num the number of customers to generate
      */
-    public void generateCustomerList(int num) {
+    public void generateCustomerInsuranceList(int num) {
         for (int i = 0; i < num; i++) {
             customerInsuranceList.add(
                     new CustomerInsurance(customerGen.generateCustomer()));   
         }
+    }
+    
+    /**
+     * Returns the CustomerInsurance list.
+     * 
+     * @return the CustomerInsurance list
+     */
+    public List<CustomerInsurance> getCustomerInsuranceList() {
+        return customerInsuranceList;
     }
     
     /**
@@ -63,6 +72,15 @@ public class DataBankGenerator {
         for (int i = 0; i < num; i++) {
             employeeList.add(employeeGen.generateEmployee());
         }
+    }
+    
+    /**
+     * Returns the employee list.
+     * 
+     * @return the employee list
+     */
+    public List<Employee> getEmployeeList() {
+        return employeeList;
     }
     
     /**
