@@ -115,26 +115,26 @@ public class CustomerServiceManager {
     public static final Predicate<CustomerInsurance> isTotalCustomer =
             ci -> ci.isTotalCustomer();
             
-    public Predicate<CustomerInsurance> firstNameStartsWith(String s) {
+    public static Predicate<CustomerInsurance> firstNameStartsWith(String s) {
         return ci -> ci.getCustomer().getFirstName().toLowerCase().startsWith(
                 s.toLowerCase());
     }
     
-    public Predicate<CustomerInsurance> lastNameStartsWith(String s) {
+    public static Predicate<CustomerInsurance> lastNameStartsWith(String s) {
         return ci -> ci.getCustomer().getLastName().toLowerCase().startsWith(
                 s.toLowerCase());
     }
     
-    public Predicate<CustomerInsurance> birthNoStartsWith(String s) {
+    public static Predicate<CustomerInsurance> birthNoStartsWith(String s) {
         return ci -> ci.getCustomer().getBirthNo().toLowerCase().startsWith(s);
     }
     
-    public Predicate<CustomerInsurance> streetAddressStartsWith(String s) {
+    public static Predicate<CustomerInsurance> streetAddressStartsWith(String s) {
         return ci -> ci.getCustomer().getStreetAddress().startsWith(
                 s.toLowerCase());
     }
     
-    public Predicate<CustomerInsurance> zipCodeStartsWith(String s) {
+    public static Predicate<CustomerInsurance> zipCodeStartsWith(String s) {
         return ci -> ci.getCustomer().getZipCode().startsWith(
                 s.toLowerCase());
     }

@@ -4,7 +4,9 @@ import baminsurances.api.Config;
 import baminsurances.api.CustomerServiceManager;
 import baminsurances.api.Validation;
 import baminsurances.data.Customer;
+import baminsurances.data.CustomerInsurance;
 import baminsurances.data.InsuranceDataBank;
+import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.LoginWindow;
@@ -13,8 +15,14 @@ import baminsurances.gui.window.MessageDialog;
 import baminsurances.gui.window.scene.*;
 import baminsurances.logging.CustomLogger;
 import baminsurances.security.Authenticator;
+import javafx.beans.InvalidationListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
 
+import java.util.*;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 
 
@@ -152,15 +160,24 @@ public class Controller {
    /* private String findPerson(){
         return manager.getCustomerInsurancesWithFirstName(searchScene.);
     }*/
-    /*public String findPerson(){
-        String firstName = insurePersonScene.getFirstName();
-        String lastName = insurePersonScene.getLastName();
-        String birthNo = insurePersonScene.getBirthNumber();
-        String streetAddress = insurePersonScene.getAdress();
-        String zipCode = insurePersonScene.getZipCode();
-        manager.findCustomers();
-        return "It works";
-    }*/
+    public ObservableList<Person> findPeople(){
+        ObservableList<Person> personObservableList = FXCollections.observableArrayList();
+        
+        List<Predicate<CustomerInsurance>> predicates = new ArrayList<>();
+        String firstName = travelInsuranceScene.getFirstName();
+        String lastName = travelInsuranceScene.getLastName();
+        String birthNo = travelInsuranceScene.getBirthNumber();
+        String streetAddress = travelInsuranceScene.getAdress();
+        String zipCode = travelInsuranceScene.getZipCode();
+        
+        predicates.add(CustomerServiceManager.firstNameStartsWith(firstName));
+        //predicates.add(CustomerServiceManager.lastNameStartsWith(lastName));
+        //predicates.add(CustomerServiceManager.birthNoStartsWith(birthNo));
+        //predicates.add(CustomerServiceManager.streetAddressStartsWith(streetAddress));
+        //predicates.add(CustomerServiceManager.zipCodeStartsWith(zipCode));
+        personObservableList.addAll(manager.findCustomers(predicates));
+        return personObservableList;
+    }
     
     private String registerPerson(){
         /*Note by baljit sarai: After thinking about it for a while,
