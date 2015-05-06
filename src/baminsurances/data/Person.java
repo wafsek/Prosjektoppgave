@@ -299,8 +299,10 @@ public class Person implements Comparable<Person> {
     
     @Override
     public String toString() {
+        int age = LocalDate.now().getYear() - getDateOfBirth().getYear();
         return birthNo + ", " +
                firstName + " " + lastName + ", " +
+               age + " years old, " +
                telephoneNo + ", " +
                email + ", " +
                zipCode + " " + streetAddress;

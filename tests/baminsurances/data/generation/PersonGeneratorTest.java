@@ -9,7 +9,7 @@ import baminsurances.data.Person;
 
 public class PersonGeneratorTest {
     private PersonGenerator generator = new PersonGenerator();
-    private int numTests = 100;
+    private int numTests = 10;
     
     @Test
     public void testGeneratePerson() {
@@ -35,7 +35,8 @@ public class PersonGeneratorTest {
     @Test
     public void testGenerateFirstName() {
         for (int i = 0; i < numTests; i++) {
-            String firstName = generator.generateFirstName();
+            String birthNo = generator.generateBirthNo();
+            String firstName = generator.generateFirstName(birthNo);
             assertTrue("Found: '" + firstName + "'",
                     Validation.isValidFirstName(firstName));
         }
