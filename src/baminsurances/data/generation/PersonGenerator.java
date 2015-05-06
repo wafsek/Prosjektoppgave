@@ -250,9 +250,18 @@ public class PersonGenerator {
         String[] hosts = {"hotmail", "google", "start", "msn"};
         String[] domains = {"no", "com"};
         
+        firstName = firstName.toLowerCase()
+                             .replace('ø', 'o')
+                             .replace('å', 'a')
+                             .replace("æ", "ae");
+        lastName = lastName.toLowerCase()
+                           .replace('ø', 'o')
+                           .replace('å', 'a')
+                           .replace("æ", "ae");
+        
         String host = hosts[(int) (Math.random() * hosts.length)];
         String domain = domains[(int) (Math.random() * domains.length)];
-        return firstName + "." + lastName + "@" + host + "." + domain;
+        return firstName + "."+ lastName + "@" + host + "." + domain;
     }
     
     /**
