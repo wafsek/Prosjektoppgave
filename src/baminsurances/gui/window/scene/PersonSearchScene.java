@@ -1,6 +1,7 @@
 package baminsurances.gui.window.scene;
 
 import baminsurances.gui.eventhandler.GuiEventHandler;
+import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.OperationWindow;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -28,13 +30,16 @@ public abstract class PersonSearchScene {
     protected Iterator textFieldsIterator;
 
     protected Button requestRegistration;
+    private ArrayList<TextField> textFieldArrayList;
 
     protected GridPane itemContainer;
     protected BorderPane borderPane;
     protected GuiEventHandler handler;
+    protected KeyPressHandler keyPressHandler;
 
-    public PersonSearchScene(GuiEventHandler handler){
+    public PersonSearchScene(GuiEventHandler handler, KeyPressHandler keyPressHandler){
         this.handler = handler;
+        this.keyPressHandler = keyPressHandler;
 
         personTable = new TableView();
         birthNoColumn = new TableColumn("Fødselsnummer");
@@ -66,7 +71,20 @@ public abstract class PersonSearchScene {
         textFieldArray.add(zipCodeField);
         textFieldsIterator = textFieldArray.iterator();
 
-        requestRegistration = new Button("Finn person");
+        firstNameField.setOnKeyReleased(keyPressHandler);
+        lastNameField.setOnKeyReleased(keyPressHandler);
+        birthNumberField.setOnKeyReleased(keyPressHandler);
+        adressField.setOnKeyReleased(keyPressHandler);
+        zipCodeField.setOnKeyReleased(keyPressHandler);
+
+        textFieldArrayList = new ArrayList<TextField>();
+        textFieldArrayList.add(firstNameField);
+        textFieldArrayList.add(lastNameField);
+        textFieldArrayList.add(birthNumberField);
+        textFieldArrayList.add(adressField);
+        textFieldArrayList.add(zipCodeField);
+
+        requestRegistration = new Button("Velg Person");
         requestRegistration.setOnAction(handler);
 
         itemContainer = new GridPane();
@@ -97,18 +115,6 @@ public abstract class PersonSearchScene {
         return requestRegistration;
     }
 
-    public Iterator getTextFieldsIterator(){
-        return textFieldsIterator;
-    }
-
-    public void resetIterator(){
-        textFieldsIterator = textFieldArray.iterator();
-    }
-
-    public void displayPossiblePeople(){
-        /*ObservableList = getAllPossibleCustomers()*/
-    }
-
     public String getFirstName() {
         return firstNameField.getText();
     }
@@ -128,4 +134,9 @@ public abstract class PersonSearchScene {
     public String getBirthNumber() {
         return birthNumberField.getText();
     }
+
+    public ArrayList getTextFieldArrayList(){
+        return textFieldArrayList;
+    }
 }
+

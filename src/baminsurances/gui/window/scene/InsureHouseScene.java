@@ -1,6 +1,7 @@
 package baminsurances.gui.window.scene;
 
 import baminsurances.gui.eventhandler.GuiEventHandler;
+import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.OperationWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,8 +30,8 @@ public class InsureHouseScene extends PersonSearchScene{
      * @param footer
      * @param handler
      */
-    public InsureHouseScene(HBox header, HBox footer, GuiEventHandler handler) {
-        super(handler);
+    public InsureHouseScene(HBox header, HBox footer, GuiEventHandler handler, KeyPressHandler keyPressHandler) {
+        super(handler, keyPressHandler);
         this.header = header;
         this.footer = footer;
         borderPane = new BorderPane(itemContainer, header, personTable, footer, null);

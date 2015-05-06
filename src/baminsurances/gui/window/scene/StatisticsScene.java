@@ -137,7 +137,7 @@ public class StatisticsScene {
 
         scene = new Scene(borderPane);
 
-        keyHandler.setStatisticsScene(this, textFieldList);
+        keyHandler.setStatisticsScene(this/*, textFieldList*/);
     }
 
     /**

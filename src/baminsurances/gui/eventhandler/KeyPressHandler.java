@@ -3,7 +3,6 @@ package baminsurances.gui.eventhandler;
 import baminsurances.controller.Controller;
 import baminsurances.gui.window.OperationWindow;
 import baminsurances.gui.window.scene.*;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -18,11 +17,12 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
 
     private OperationWindow operationWindow;
     private StatisticsScene statisticsScene;
-    private InsurePersonScene insurePersonScene;
+    private TravelInsuranceScene travelInsuranceScene;
     private InsureHouseScene insureHouseScene;
     private InsureBoatScene insureBoatScene;
     private InsureCarScene insureCarScene;
     private AddScene addScene;
+    private SearchScene searchScene;
     private Iterator txtFieldsIterator;
     private Controller controller;
 
@@ -33,24 +33,26 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent e) {
-        while(txtFieldsIterator.hasNext()){
-            if(e.getSource() == statisticsScene.getTextFieldsIterator().next()) {
+        while (txtFieldsIterator.hasNext()){
+            if (e.getSource() == statisticsScene.getTextFieldsIterator()) {
                 statisticsScene.setEditableEmployeeFields();
                 statisticsScene.setEditableCustomerFields();
                 statisticsScene.resetIterator();
-                txtFieldsIterator = statisticsScene.getTextFieldsIterator();
-                break;
-            }
+                return;
+            }/*else if(e.getSource() == searchScene.getTextFieldArrayList().iterator().next()){
+                System.out.println("jeg funker");
+                return;
+            }*/
         }
     }
 
-    public void setStatisticsScene(StatisticsScene statisticsScene, ArrayList<TextField> textfields){
+    public void setStatisticsScene(StatisticsScene statisticsScene/*, ArrayList<TextField> textfields*/){
         this.statisticsScene = statisticsScene;
-        txtFieldsIterator = textfields.iterator();
+        txtFieldsIterator = statisticsScene.getTextFieldList().iterator();
     }
 
-    public void setInsurePersonScene(InsurePersonScene insurePersonScene, ArrayList<TextField> textFields){
-        this.insurePersonScene = insurePersonScene;
+    public void setInsurePersonScene(TravelInsuranceScene travelInsuranceScene, ArrayList<TextField> textFields){
+        this.travelInsuranceScene = travelInsuranceScene;
         txtFieldsIterator = textFields.iterator();
     }
 
@@ -67,5 +69,10 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
     public void setInsureCarScene(InsureCarScene insureCarScene, ArrayList<TextField> textFields){
         this.insureCarScene = insureCarScene;
         txtFieldsIterator = textFields.iterator();
+    }
+
+    public void setSearchScene(SearchScene searchScene){
+        this.searchScene = searchScene;
+        txtFieldsIterator = searchScene.getTextFieldArrayList().iterator();
     }
 }

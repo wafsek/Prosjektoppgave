@@ -37,7 +37,7 @@ public class Controller {
      */
     private WelcomeScene welcomeScene;
     private AddScene addScene;
-    private InsurePersonScene insurePersonScene;
+    private TravelInsuranceScene travelInsuranceScene;
     private InsureCarScene insureCarScene;
     private StatisticsScene statisticsScene;
     private InsureHouseScene insureHouseScene;
@@ -70,12 +70,12 @@ public class Controller {
         operationWindow.setKeyHandler(keyPressHandler);
         welcomeScene = new WelcomeScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
         addScene = new AddScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
-        insurePersonScene = new InsurePersonScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
-        insureCarScene = new InsureCarScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
+        travelInsuranceScene = new TravelInsuranceScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
+        insureCarScene = new InsureCarScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
         statisticsScene = new StatisticsScene(operationWindow.getFooter(), keyPressHandler, guiEventHandler);
-        insureHouseScene = new InsureHouseScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
-        insureBoatScene = new InsureBoatScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
-        searchScene = new SearchScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
+        insureHouseScene = new InsureHouseScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
+        insureBoatScene = new InsureBoatScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
+        searchScene = new SearchScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
     }
     
     
@@ -95,11 +95,11 @@ public class Controller {
             addScene = new AddScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
         operationWindow.displayScene(addScene.getScene());
     } else if (control == operationWindow.getPersonSceneButton()){
-            insurePersonScene = new InsurePersonScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
-            operationWindow.displayScene(insurePersonScene.getScene());
-            }else if (control == insurePersonScene.getRequestRegistration()) {
+            travelInsuranceScene = new TravelInsuranceScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
+            operationWindow.displayScene(travelInsuranceScene.getScene());
+            }else if (control == travelInsuranceScene.getRequestRegistration()) {
                 String result = this.registerPerson();//Note by sarai. Person registered.
-                operationWindow.displayScene(insurePersonScene.requestApproved());
+                operationWindow.displayScene(travelInsuranceScene.requestApproved());
         } else if (control == operationWindow.getLogOutButton()){
             if (new MessageDialog().showMessageDialog("Logg ut", "Er du sikke" +
                     "r på at du vil logge ut?", MessageDialog.QUESTION_ICON,
@@ -108,7 +108,7 @@ public class Controller {
                 loginWindow.show();
             }
         }else if (control == operationWindow.getCarSceneButton()){
-            insureCarScene = new InsureCarScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
+            insureCarScene = new InsureCarScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
             operationWindow.displayScene(insureCarScene.getScene());
         }else if (control == insureCarScene.getRequestRegistration()) {
                 operationWindow.displayScene(insureCarScene.requestApproved());
@@ -119,19 +119,19 @@ public class Controller {
             welcomeScene = new WelcomeScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
             operationWindow.displayScene(welcomeScene.getScene());
         }else if (control == operationWindow.getHouseSceneButton()){
-            insureHouseScene = new InsureHouseScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
+            insureHouseScene = new InsureHouseScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
             operationWindow.displayScene(insureHouseScene.getScene());
         }else if (control == insureHouseScene.getRequestRegistration()) {
                 operationWindow.displayScene(insureHouseScene.requestApproved());
         }else if (control == operationWindow.getBoatSceneButton()){
-            insureBoatScene = new InsureBoatScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
+            insureBoatScene = new InsureBoatScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
             operationWindow.displayScene(insureBoatScene.getScene());
         }else if (control == insureBoatScene.getRequestRegistration()) {
                 operationWindow.displayScene(insureBoatScene.requestApproved());
         }else if (control == addScene.getRegisterPersonButton()) {
             addScene.registerPerson(this.registerPerson());
         }else if (control == operationWindow.getSearchSceneButton()) {
-            searchScene = new SearchScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
+            searchScene = new SearchScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
             operationWindow.displayScene(searchScene.getScene());
         }
         
