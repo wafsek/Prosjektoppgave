@@ -308,5 +308,4 @@ public class AddScene {
         resetIterator();
         registerPersonButton.setDisable(false);
     }
-
 }

@@ -158,7 +158,7 @@ public class Controller {
         }else{
             manager.registerCustomerInsurance(new Customer(addScene.getBirthNumberField(),
                     addScene.getFirstNameField(),addScene.getLastNameField(),addScene.getTelephoneNumberField(),
-                    addScene.getZipCodeField(),addScene.getAdressField(),
+                    addScene.getEmailField(), addScene.getZipCodeField(),addScene.getAdressField(),
                     addScene.getBillingZipCodeField(),addScene.getBillingAdressField()));
             return "person registered";
         }
