@@ -11,7 +11,7 @@ public class DataBankGenerator {
     private CustomerGenerator customerGen = new CustomerGenerator();
     private EmployeeGenerator employeeGen = new EmployeeGenerator();
     
-    // Insurace generators:
+    // Insurance generators:
     private InsuranceGenerator insGen = new InsuranceGenerator();
     private VehicleInsuranceGenerator vehicleGen =
             new VehicleInsuranceGenerator();

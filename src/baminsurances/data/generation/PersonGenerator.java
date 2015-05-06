@@ -233,7 +233,11 @@ public class PersonGenerator {
      */
     public String generateTelephoneNo() {
         String telephoneNo = "";
-        for (int i = 0; i < 8; i++) {
+        
+        // first digit can't be 0
+        telephoneNo += String.valueOf((int) (Math.random() * 9) + 1);
+        
+        for (int i = 1; i < 8; i++) {
             telephoneNo += String.valueOf((int) (Math.random() * 10));
         }
         return telephoneNo;
@@ -247,7 +251,8 @@ public class PersonGenerator {
      * @return an email address
      */
     public String generateEmail(String firstName, String lastName) {
-        String[] hosts = {"hotmail", "google", "start", "msn"};
+        String[] hosts = {"hotmail", "gmail", "start", "msn", "yahoo",
+                "online", "aol", "outlook"};
         String[] domains = {"no", "com"};
         
         firstName = firstName.toLowerCase()
@@ -261,7 +266,7 @@ public class PersonGenerator {
         
         String host = hosts[(int) (Math.random() * hosts.length)];
         String domain = domains[(int) (Math.random() * domains.length)];
-        return firstName + "."+ lastName + "@" + host + "." + domain;
+        return firstName + "." + lastName + "@" + host + "." + domain;
     }
     
     /**
