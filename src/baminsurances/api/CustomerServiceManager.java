@@ -20,7 +20,7 @@ public class CustomerServiceManager {
     public static final int ALREADY_CANCELED = 3;
     
     private InsuranceDataBank dataBank;
-    private CustomLogger logger = new CustomLogger(CustomerServiceManager.class.getName());
+    private CustomLogger logger = CustomLogger.getInstance();
     //private static final InsuranceServiceManager manager = new InsuranceServiceManager();
     
     
@@ -54,12 +54,12 @@ public class CustomerServiceManager {
      */
     public void registerCustomerInsurance(Customer customer)
     {
-        /*if(insurance ==null || customer == null){
+        if(customer == null){
             throw new NullPointerException("insurance and customer parameter cannot be null");
         }
-        CustomerInsurance customerInsurance = new CustomerInsurance(customer,insurance);
+        CustomerInsurance customerInsurance = new CustomerInsurance(customer);
         dataBank.addCustomerInsurance(customerInsurance);
-        logger.log("|"+"CustomerInsurance registered.", Level.INFO);*/
+        logger.log("|"+"CustomerInsurance registered.", Level.INFO);
     }
 
     
@@ -253,11 +253,11 @@ public class CustomerServiceManager {
         return result;
     }
 
-    /**
+    /*/**
      * Return List of all active Insurances 
      * @return List of Insurances
      */
-    public List<Insurance> getActiveInsurances(){
+    /*public List<Insurance> getActiveInsurances(){
         ArrayList<Insurance> result = new ArrayList<>();
         for(CustomerInsurance customerInsurance : this.getActiveCustomerInsurances()){
            customerInsurance.getInsurances().stream()
@@ -265,7 +265,7 @@ public class CustomerServiceManager {
                    .forEach(i -> result.add(i));
         }
         return result;
-    }
+    }*/
 
     /**
      * Return List of all Insurances 

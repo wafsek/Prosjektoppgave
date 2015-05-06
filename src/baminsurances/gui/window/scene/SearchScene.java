@@ -34,7 +34,6 @@ public class SearchScene extends PersonSearchScene{
         printArea = new TextArea();
         printArea.setPrefHeight(OperationWindow.STAGE_HEIGHT * 2 / 3);
         printArea.setEditable(false);
-
         rightSideContainer = new VBox(0, personTable, printArea);
 
         itemContainer = new GridPane();

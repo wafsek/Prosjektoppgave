@@ -35,6 +35,9 @@ public class Config{
         return getProperties().getProperty("applicationName");
     }
     
+    public static String getConsoleOutputOption(){
+        return getProperties().getProperty("consoleOutput");
+    }
     
     public static String getDataBankFilePath(){
         return getProperties().getProperty("dataBankFilePath");
