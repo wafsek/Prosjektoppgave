@@ -96,6 +96,6 @@ public class Customer extends Person {
     public String toString() {
         return super.toString() + ", " +
                 billingZipCode + " " + billingStreetAddress + ", " +
-                registrationDate.toString();
+                registrationDate.getTime().toString();
     }
 }
