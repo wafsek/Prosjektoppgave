@@ -3,7 +3,6 @@ package baminsurances.data;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
-import java.util.GregorianCalendar;
 
 import org.junit.Before;
 import org.junit.Rule;
