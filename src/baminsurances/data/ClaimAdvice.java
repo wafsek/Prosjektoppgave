@@ -24,7 +24,7 @@ public class ClaimAdvice {
     private String damageType;
     private String damageDescription;
     private List<Person> witnesses = new ArrayList<>();
-    private int numPictures;
+    private int numPictures = 0;
     private long assessmentAmount;
     private long compensationAmount;
     
@@ -148,14 +148,12 @@ public class ClaimAdvice {
      * @return a list containing pictures of the damage
      */
     public List<BufferedImage> getPicturesOfDamage() {
-        //TODO review below code with Sarai
+        File dir = new File(
+                ClassLoader.getSystemClassLoader().getResource(".").getPath()
+                + "claimadvices");
         
-        if (numPictures == 0) {
-            return null;
-        }
-        // Getting a list of all files in /claimadvice
-        // with name matching 'damageNo_xxx'
-        File dir = new File(this.getClass().getResource("img/claimadvices/").getFile());
+        // Getting an array of all files in /claimadvices
+        // with name matching the pattern 'damageNo_xxx'
         File[] files = dir.listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
@@ -169,28 +167,29 @@ public class ClaimAdvice {
             for (File img : files) {
                 pictures.add(ImageIO.read(img));
             }
+            return pictures;
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
-        return pictures;
     }
 
     /**
      * Adds the given picture to the list containing pictures of the damage.
      * 
      * @param picture the picture to add
-     * @throws NullPointerException if argument is null
      */
     public void addPictureOfDamage(BufferedImage picture) {
-        //TODO IllegalArgumentException ?
-        //TODO review below code with Sarai
-        String filename = String.valueOf(damageNo) + "_" + String.valueOf(
-                ++numPictures);
-        String filepath = this.getClass().getResource("img/claimadvice/").getFile()
-                + filename;
-        
+        String filename = String.valueOf(damageNo) + "_" +
+                String.valueOf(++numPictures);
         try {
-            ImageIO.write(picture, "png", new File(filepath));
+            File dir = new File(
+                    ClassLoader.getSystemClassLoader().getResource(".").getPath()
+                    + "claimadvices");
+            
+            dir.mkdir(); // directory will be made if it does not already exist
+            
+            ImageIO.write(picture, "png", new File(dir.getPath() + "/" + filename));
         } catch (IOException e) {
             e.printStackTrace();
         }
