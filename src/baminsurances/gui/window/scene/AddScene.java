@@ -245,58 +245,129 @@ public class AddScene {
         }
     }
 
+    /**
+     * Returns the Button that requests the registration of a person
+     * defined by the given values.
+     *
+     * @return Button that requests the registration of a person
+     * defined by the given values.
+     */
     public Button getRegisterPersonButton(){
         return registerPersonButton;
     }
 
+    /**
+     * Returns a String of what is written in firstNameField.
+     *
+     * @return String of what is written in firstNameField.
+     */
     public String getFirstNameFieldText() {
         return firstNameField.getText();
     }
-    
+
+    /**
+     * Returns a String of what is written in lastNameField.
+     *
+     * @return String of what is written in lastNameField.
+     */
     public String getLastNameFieldText(){
         return lastNameField.getText();
     }
 
+    /**
+     * Returns a String of what is written in birthNumberField.
+     *
+     * @return String of what is written in birthNumberField.
+     */
     public String getBirthNumberFieldText() {
         return birthNumberField.getText();
     }
 
+    /**
+     * Returns a String of what is written in emailField.
+     *
+     * @return String of what is written in emailField.
+     */
     public String getEmailFieldText() {
         return emailField.getText();
     }
 
+    /**
+     * Returns a String of what is written in telephoneNumberField.
+     *
+     * @return String of what is written in telephoneNumberField.
+     */
     public String getTelephoneNumberFieldText() {
         return telephoneNumberField.getText();
     }
 
+    /**
+     * Returns a String of what is written in adressField.
+     *
+     * @return String of what is written in adresField.
+     */
     public String getAdressFieldText() {
         return adressField.getText();
     }
 
+    /**
+     * Returns a String of what is written in zipCodeField.
+     *
+     * @return String of what is written in zipCodeField.
+     */
     public String getZipCodeFieldText() {
         return zipCodeField.getText();
     }
 
+    /**
+     * Returns a String of what is written in billingZipCodeField.
+     *
+     * @return String of what is written in billingZipCodeField.
+     */
     public String getBillingZipCodeFieldText() {
         return billingZipCodeField.getText();
     }
 
+    /**
+     * Returns a String of what is written in billingAdressField.
+     *
+     * @return String of what is written in billingAdressField.
+     */
     public String getBillingAdressFieldText() {
         return billingAdressField.getText();
     }
 
+    /**
+     * Sets the text of the printArea to what the given String
+     * contains.
+     *
+     * @param text
+     */
     public void registerPerson(String text){
         printArea.setText(text);
     }
 
+    /**
+     * Returns the Iterator of the TextFields in this class.
+     *
+     * @return Iterator of the TextFields in this class.
+     */
     public Iterator getTextFieldIterator(){
         return textFieldIterator;
     }
 
+    /**
+     * Refreshes the Iterator of the TextFields in this class.
+     */
     public void resetIterator(){
         textFieldIterator = textFieldArrayList.iterator();
     }
 
+    /**
+     * Iterates through the TextFields to check if they are empty or not.
+     * If all are empty, the Button to register a person will not be
+     * clickable. Else if they are all not empty, it will be clickable.
+     */
     public void emptyFieldsCheck(){
         while(textFieldIterator.hasNext()){
             if(textFieldIterator.next().getText().trim().isEmpty()){
