@@ -1,6 +1,8 @@
 package baminsurances.data.generation;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.List;
 
 import baminsurances.data.*;
@@ -8,7 +10,7 @@ import baminsurances.util.CsvReader;
 import baminsurances.util.TxtReader;
 
 /**
- * Provides methods for generating complete Person objects and its data fields.
+ * Provides methods for generating complete {@link Person} objects and its data fields.
  * The class uses external resources to generate these data, and they are
  * loaded in the constructor. 
  * 
@@ -32,6 +34,20 @@ public class PersonGenerator {
         zipCodes = loadZipCodes();
         streetAddressStarts = loadStreetAddressStarts();
         streetAddressEndings = loadStreetAddressEndings();
+    }
+    
+    public Person generatePerson() {
+        String birthNo = generateBirthNo();
+        String firstName = generateFirstName(birthNo);
+        String lastName = generateLastName();
+        return new Person(
+                birthNo,
+                firstName,
+                lastName,
+                generateTelephoneNo(),
+                generateEmail(firstName, lastName),
+                generateZipCode(),
+                generateStreetAddress());
     }
     
     private List<String> loadBoysNames() {
@@ -83,39 +99,31 @@ public class PersonGenerator {
     }
     
     /**
-     * Generates and returns a Person object.
-     * 
-     * @return a Person object
-     */
-    public Person generate() {
-        return new Person(
-                generateBirthNo(),
-                generateFirstName(),
-                generateLastName(),
-                generateTelephoneNo(),
-                generateZipCode(),
-                generateStreetAddress());
-    }
-    
-    /**
      * Generates and returns a valid Norwegian birth number.
      * 
      * @return a valid Norwegian birth number
+     * @see <a href="http://no.wikipedia.org/wiki/F%C3%B8dselsnummer">
+     * http://no.wikipedia.org/wiki/F%C3%B8dselsnummer</a> 
      */
     public String generateBirthNo() {
-        int day = (int) (Math.random() * 28) + 1;
-        String dayString = day < 10 ? "0" + String.valueOf(day) : String.valueOf(day);
         int month = (int) (Math.random() * 12) + 1;
         String monthString = month < 10 ? "0" + String.valueOf(month) : String.valueOf(month);
-        int year = (int) (Math.random() * 99) + 1;
+
+        int year = (int) (Math.random() * 67) + 30;
         String yearString = year < 10 ? "0" + String.valueOf(year) : String.valueOf(year);
+        
+        int day = generateDay(month, year);
+        String dayString = day < 10 ? "0" + String.valueOf(day) : String.valueOf(day);
+        
         String dateOfBirth = dayString + monthString + yearString;
         
         String individualNoString;
         int controllNo1;
         int controllNo2;
+        int individualNo;
+        int age;
         do {
-            int individualNo = (int) (Math.random() * 999) + 1;
+            individualNo = (int) (Math.random() * 999) + 1;
             String zeroes = "";
             if (individualNo < 10) {
                 zeroes += "00";
@@ -134,11 +142,48 @@ public class PersonGenerator {
             if (controllNo2 == 11) {
                 controllNo2 = 0;
             }
-            
-        } while (controllNo1 == 10 || controllNo2 == 10);
+            age = getAge(day, month, yearString, individualNo);
+        } while (controllNo1 == 10 || controllNo2 == 10 ||
+                 age < 18 || age > 110);
         
         return dateOfBirth + individualNoString + String.valueOf(controllNo1) +
                 String.valueOf(controllNo2);
+    }
+    
+    /**
+     * Uses the given month and year to generate a valid day. The method takes
+     * leap years into account.
+     * 
+     * @param month the month (1-12)
+     * @param year the year
+     * @return a valid day of the given month and year
+     */
+    private int generateDay(int month, int year) {
+        int numDays;
+        switch (month) {
+            case 1: case 3:
+            case 5: case 7:
+            case 8: case 10:
+            case 12:
+                numDays = 31;
+                break;
+            case 4: case 6:
+            case 9: case 11:
+                numDays = 30;
+                break;
+            case 2:
+                if (Year.isLeap(year)) {
+                    numDays = 29;
+                } else {
+                    numDays = 28;
+                }
+                break;
+            default:
+                System.out.println("Invalid month generated.");
+                numDays = -1;
+                break;
+        }
+        return (int) (Math.random() * numDays) + 1;
     }
     
     /**
@@ -187,17 +232,40 @@ public class PersonGenerator {
                 3*i3 + 2*controllNo1) % 11;
     }
     
+    private int getAge(int day, int month, String last2DigitsOfYearString,
+            int individualNo) {
+        int last2DigitsOfYear = Integer.parseInt(last2DigitsOfYearString);
+        int first2DigitsOfYear;
+        if (individualNo < 500) {
+            first2DigitsOfYear = 19;
+        } else if (individualNo < 750 &&
+                last2DigitsOfYear >= 54 && last2DigitsOfYear <= 99) {
+            first2DigitsOfYear = 18;
+        } else if (individualNo >= 900 && individualNo < 1000 &&
+                last2DigitsOfYear >= 40 && last2DigitsOfYear <= 99) { 
+            first2DigitsOfYear = 19;
+        } else {
+            first2DigitsOfYear = 20;
+        }
+        int year = Integer.parseInt(
+                String.valueOf(first2DigitsOfYear) + last2DigitsOfYearString);
+        LocalDate bd = LocalDate.of(year, month, day);
+        System.out.println(bd);
+        return bd.until(
+                LocalDate.now()).getYears();
+    }
+    
     /**
-     * Generates and returns a first name. Has a 50% chance of generating a
-     * boys name, and a 50% chance of generating a girls name.
+     * Generates and returns a first name. The method uses the given birth
+     * number to determine whether it should be a boys or girls name.
      * 
      * @return a first name
      */
-    public String generateFirstName() {
-        if (Math.random() < 0.5) {
-            return generateBoysName();
-        } else {
+    public String generateFirstName(String birthNo) {
+        if (Character.getNumericValue(birthNo.charAt(8)) % 2 == 0) {
             return generateGirlsName();
+        } else {
+            return generateBoysName();
         }
     }
     
@@ -235,10 +303,40 @@ public class PersonGenerator {
      */
     public String generateTelephoneNo() {
         String telephoneNo = "";
-        for (int i = 0; i < 8; i++) {
+        
+        // first digit can't be 0
+        telephoneNo += String.valueOf((int) (Math.random() * 9) + 1);
+        
+        for (int i = 1; i < 8; i++) {
             telephoneNo += String.valueOf((int) (Math.random() * 10));
         }
         return telephoneNo;
+    }
+    
+    /**
+     * Uses a first name and last name to generate and return an email address.
+     * 
+     * @param firstName the first name
+     * @param lastName the last name
+     * @return an email address
+     */
+    public String generateEmail(String firstName, String lastName) {
+        String[] hosts = {"hotmail", "gmail", "start", "msn", "yahoo",
+                "online", "aol", "outlook"};
+        String[] domains = {"no", "com"};
+        
+        firstName = firstName.toLowerCase()
+                             .replace('ø', 'o')
+                             .replace('å', 'a')
+                             .replace("æ", "ae");
+        lastName = lastName.toLowerCase()
+                           .replace('ø', 'o')
+                           .replace('å', 'a')
+                           .replace("æ", "ae");
+        
+        String host = hosts[(int) (Math.random() * hosts.length)];
+        String domain = domains[(int) (Math.random() * domains.length)];
+        return firstName + "." + lastName + "@" + host + "." + domain;
     }
     
     /**

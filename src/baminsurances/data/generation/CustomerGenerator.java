@@ -3,8 +3,8 @@ package baminsurances.data.generation;
 import baminsurances.data.Customer;
 
 /**
- * Provides methods for generating Customer objects. The class utilizes methods
- * found in {@link PersonGenerator}.
+ * Provides methods for generating {@link Customer} objects. The class utilizes
+ * methods found in {@link PersonGenerator}.
  * 
  * @author martin
  */
@@ -25,11 +25,15 @@ public class CustomerGenerator {
             }
         }
         
+        String birthNo = gen.generateBirthNo();
+        String firstName = gen.generateFirstName(birthNo);
+        String lastName = gen.generateLastName();
         return new Customer(
-                gen.generateBirthNo(),
-                gen.generateFirstName(),
-                gen.generateLastName(),
+                birthNo,
+                firstName,
+                lastName,
                 gen.generateTelephoneNo(),
+                gen.generateEmail(firstName, lastName),
                 zipCode,
                 streetAddress,
                 billingZipCode,

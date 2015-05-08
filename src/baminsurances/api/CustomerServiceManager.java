@@ -6,6 +6,7 @@ import baminsurances.logging.CustomLogger;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 
 /**
@@ -19,7 +20,7 @@ public class CustomerServiceManager {
     public static final int ALREADY_CANCELED = 3;
     
     private InsuranceDataBank dataBank;
-    private CustomLogger logger = new CustomLogger(CustomerServiceManager.class.getName());
+    private CustomLogger logger = CustomLogger.getInstance();
     //private static final InsuranceServiceManager manager = new InsuranceServiceManager();
     
     
@@ -49,15 +50,14 @@ public class CustomerServiceManager {
     
     /**
      * Creates and adds new CustomerInsurance
-     * @param insurance The first Insurance to be set. 
      * @param customer The Customer object to be set to the field. 
      */
-    public void registerCustomerInsurance(Insurance insurance, Customer customer)
+    public void registerCustomerInsurance(Customer customer)
     {
-        if(insurance ==null || customer == null){
+        if(customer == null){
             throw new NullPointerException("insurance and customer parameter cannot be null");
         }
-        CustomerInsurance customerInsurance = new CustomerInsurance(customer,insurance);
+        CustomerInsurance customerInsurance = new CustomerInsurance(customer);
         dataBank.addCustomerInsurance(customerInsurance);
         logger.log("|"+"CustomerInsurance registered.", Level.INFO);
     }
@@ -107,9 +107,56 @@ public class CustomerServiceManager {
     *                                                                           *
     * ***************************************************************************/
     
-    Predicate<CustomerInsurance> activeCustomerInsurances = ci -> ci.isActive();
-    //Predicate<CustomerInsurance> isTotalCustomer = ci -> ci.isTotalCustomer();
-    Predicate<Insurance> isActiveInsurance = i -> i.isActive();
+    /* Customer predicates */
+    
+    public static final Predicate<CustomerInsurance> isActive =
+            ci -> ci.isActive();
+            
+    public static final Predicate<CustomerInsurance> isTotalCustomer =
+            ci -> ci.isTotalCustomer();
+            
+    public static Predicate<CustomerInsurance> firstNameStartsWith(String s) {
+        return ci -> ci.getCustomer().getFirstName().toLowerCase().startsWith(
+                s.toLowerCase());
+    }
+    
+    public static Predicate<CustomerInsurance> lastNameStartsWith(String s) {
+        return ci -> ci.getCustomer().getLastName().toLowerCase().startsWith(
+                s.toLowerCase());
+    }
+    
+    public static Predicate<CustomerInsurance> birthNoStartsWith(String s) {
+        return ci -> ci.getCustomer().getBirthNo().toLowerCase().startsWith(s);
+    }
+    
+    public static Predicate<CustomerInsurance> streetAddressStartsWith(String s) {
+        return ci -> ci.getCustomer().getStreetAddress().startsWith(
+                s.toLowerCase());
+    }
+    
+    public static Predicate<CustomerInsurance> zipCodeStartsWith(String s) {
+        return ci -> ci.getCustomer().getZipCode().startsWith(
+                s.toLowerCase());
+    }
+    
+    /**
+     * Takes a list of CustomerInsurance predicates, and returns a list of all
+     * customers who satisfy these.
+     * 
+     * @param predicates the list of predicates
+     * @return a list of customers
+     */
+    public List<Customer> findCustomers(List<Predicate<CustomerInsurance>> predicates) {
+        // Reducing the given filters into one Predicate:
+        Predicate<CustomerInsurance> pred = predicates.stream()
+                                                      .reduce(Predicate::and)
+                                                      .orElse(x -> true);
+
+        return dataBank.getCustomerInsuranceList().stream()
+                                                  .filter(pred)
+                                                  .map(ci -> ci.getCustomer())
+                                                  .collect(Collectors.toList());
+    }
     
     /**
      * Returns CustomerInsurance object with given Customer object
@@ -206,11 +253,11 @@ public class CustomerServiceManager {
         return result;
     }
 
-    /**
+    /*/**
      * Return List of all active Insurances 
      * @return List of Insurances
      */
-    public List<Insurance> getActiveInsurances(){
+    /*public List<Insurance> getActiveInsurances(){
         ArrayList<Insurance> result = new ArrayList<>();
         for(CustomerInsurance customerInsurance : this.getActiveCustomerInsurances()){
            customerInsurance.getInsurances().stream()
@@ -218,7 +265,7 @@ public class CustomerServiceManager {
                    .forEach(i -> result.add(i));
         }
         return result;
-    }
+    }*/
 
     /**
      * Return List of all Insurances 

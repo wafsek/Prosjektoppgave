@@ -1,5 +1,7 @@
 package baminsurances.logging;
 
+import baminsurances.api.Config;
+
 import java.io.IOException;
 import java.util.logging.*;
 
@@ -10,42 +12,41 @@ import java.util.logging.*;
  */
 public class CustomLogger extends Thread{
     private Logger logger = null;
-    private static FileHandler logFileHandler ;
-    private static FileHandler txtFileHandler;
-    private static ConsoleHandler consoleHandler;
+    private FileHandler txtFileHandler;
+    private ConsoleHandler consoleHandler;
     
     
-    String className;
+    String className = CustomLogger.class.getName();
     
-    public static void setUp() {
-    try{
-       
-        logFileHandler = new FileHandler("log.log",true);
-        CustomFormatter customFormatter = new CustomFormatter();
-        txtFileHandler = new FileHandler("log.txt",true);
-        txtFileHandler.setFormatter(customFormatter);
-        consoleHandler = new ConsoleHandler();
-        consoleHandler.setFormatter(new ConsoleFormatter());
+    private static CustomLogger customLogger;
+    
+    private CustomLogger() {
+        try{
+            CustomFormatter customFormatter = new CustomFormatter();
+            txtFileHandler = new FileHandler("log.txt",true);
+            txtFileHandler.setFormatter(customFormatter);
+            consoleHandler = new ConsoleHandler();
+            consoleHandler.setFormatter(new ConsoleFormatter());
         }
-    catch (IOException ioe){
-        System.out.print("Something went wrong opening the log files");
+        catch (IOException ioe){
+            System.out.print("Something went wrong opening the log files");
         }
-    }
-    
-    
-    public CustomLogger(String className) {
-            this.className = className;
             this.logger = Logger.getLogger(this.className);
-            this.logger.addHandler(CustomLogger.logFileHandler);
-            this.logger.addHandler(CustomLogger.txtFileHandler);
-            logger.setUseParentHandlers(false);
-            this.logger.addHandler(consoleHandler);
-           
+            this.setConsoleOutput();
+            this.setLoggerLevel(Level.INFO);
+            this.logger.addHandler(txtFileHandler);
     }
     
-   
-    private void customLog(String msg,Level level) {
-        this.logger.logp(level, this.className, Thread.currentThread().getStackTrace()[3].getMethodName(), msg);
+    public static CustomLogger getInstance(){
+        if(customLogger==null){
+            customLogger= new CustomLogger();
+        }
+        return customLogger;
+    }
+    
+    
+    private void customLog(String msg, Level level) {
+        this.logger.logp(level, Thread.currentThread().getStackTrace()[3].getClassName(), Thread.currentThread().getStackTrace()[3].getMethodName(), msg);
     }
     
     
@@ -54,7 +55,22 @@ public class CustomLogger extends Thread{
     }
     
     
-    public void logToConsole(Boolean b) {
-        logger.setUseParentHandlers(b);
+    public void setConsoleOutput() {
+        if(Config.getConsoleOutputOption().toLowerCase().equals("trimmed")){
+            this.logger.addHandler(consoleHandler);
+            logger.setUseParentHandlers(false);
+        }else if(Config.getConsoleOutputOption().toLowerCase().equals("detail")){
+            logger.setUseParentHandlers(true);
+        }else if(Config.getConsoleOutputOption().toLowerCase().equals("none")){
+            logger.removeHandler(consoleHandler);
+            logger.setUseParentHandlers(false);
+        }
     }
+    
+    
+    private void setLoggerLevel(Level loggerLevel){
+        
+        this.logger.setLevel(Level.INFO);
+    }
+    
 }

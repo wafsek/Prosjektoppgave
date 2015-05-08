@@ -193,6 +193,42 @@ public class Validation {
     }
     
     /**
+     * Returns <code>true</code> if the given registration number is a valid
+     * one. For it to be valid, it has to consist of 2 letters from the
+     * English alphabet, followed by 5 digits.
+     * 
+     * @param registrationNo the registration number to validate
+     * @return <code>true</code> if the given registration number is a valid
+     * one
+     */
+    public static boolean isValidCarRegistrationNo(String registrationNo) {
+        return registrationNo.matches("[A-Z]{2}[0-9]{5}");
+    }
+    
+    /**
+     * Returns <code>true</code> if the given boat registration number is a
+     * valid one. For it to be valid, it has to consist of 3 letters, followed
+     * by 3 digits.
+     * 
+     * @param registrationNo the registration numberto validate
+     * @return <code>true</code> if the given boat registration number is a
+     * valid one
+     */
+    public static boolean isValidBoatRegistrationNo(String registrationNo) {
+        return registrationNo.matches("[A-Z]{3}[0-9]{3}");
+    }
+    
+    /**
+     * Returns <code>true</code> if the given email address is a valid one.
+     * 
+     * @param email the email to validate
+     * @return <code>true</code> if the given email address is a valid one
+     */
+    public static boolean isValidEmail(String email) {
+        return email.matches("[A-Za-z//., _-]+[@][a-z]+.[a-z]{2,4}");
+    }
+    
+    /**
      * Returns <code>true</code> if the given value is a number.
      * 
      * @param value the value to validate

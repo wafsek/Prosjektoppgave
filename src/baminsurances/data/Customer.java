@@ -19,6 +19,7 @@ public class Customer extends Person {
      * @param firstName first name
      * @param lastName last name
      * @param telephoneNo telephone number
+     * @param email the email
      * @param zipCode zip code
      * @param streetAddress street address
      * @param billingZipCode billing zip code
@@ -27,9 +28,10 @@ public class Customer extends Person {
      * @throws IllegalArgumentException if birthNo is not a number of length 11
      */
     public Customer(String birthNo, String firstName, String lastName,
-            String telephoneNo, String zipCode, String streetAddress,
-            String billingZipCode, String billingStreetAddress) {
-        super(birthNo, firstName, lastName, telephoneNo, zipCode,
+            String telephoneNo, String email, String zipCode,
+            String streetAddress, String billingZipCode,
+            String billingStreetAddress) {
+        super(birthNo, firstName, lastName, telephoneNo, email, zipCode,
                 streetAddress);
         registrationDate = Calendar.getInstance();
         setBillingZipCode(billingZipCode);
@@ -88,5 +90,12 @@ public class Customer extends Person {
                     "be null.");
         }
         this.billingStreetAddress = billingStreetAddress;
+    }
+    
+    @Override
+    public String toString() {
+        return super.toString() + ", " +
+                billingZipCode + " " + billingStreetAddress + ", " +
+                registrationDate.getTime().toString();
     }
 }

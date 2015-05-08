@@ -5,6 +5,7 @@ import java.util.logging.LogRecord;
 
 /**
  * Created by baljit on 23.04.2015.
+ * @author baljit 
  */
 public class CustomFormatter extends java.util.logging.Formatter {
     public CustomFormatter() { super(); }
@@ -22,7 +23,7 @@ public class CustomFormatter extends java.util.logging.Formatter {
                 .append(record.getLevel()).append('|')
                 .append(new Date(record.getMillis()))
                 .append("]: ")
-                .append(loggerName)
+                .append(record.getSourceClassName())
                 .append("| In Method -> "+record.getSourceMethodName())
                 .append(" | ")
                 .append(": ")

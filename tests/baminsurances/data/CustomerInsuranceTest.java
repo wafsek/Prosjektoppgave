@@ -11,12 +11,14 @@ public class CustomerInsuranceTest {
     @Before
     public void init() {
         emp = new Employee("23041593083", "Kari", "Hansen",
-                "43218765", "0166", "Pilestredet 37");
+                "43218765", "kari.hansen@gmail.com", "0166", "Pilestredet 37");
         Customer cus = new Customer("23041597348", "Ola", "Nordmann",
-                "87651234", "0166", "Pilestredet 35", "0166", "Pilestredet 35");
+                "87651234", "ola.nordmann@start.no", "0166", "Pilestredet 35",
+                "0166", "Pilestredet 35");
         Insurance ins = new TravelInsurance(emp, 1000, 10000,
-                "Alle barn under 20.", "Europa");
-        customerInsurance = new CustomerInsurance(cus, ins);
+                "Alle barn under 20.", TravelRegion.EUROPE);
+        customerInsurance = new CustomerInsurance(cus);
+        customerInsurance.getInsurances().add(ins);
     }
     
     @Test
@@ -24,14 +26,14 @@ public class CustomerInsuranceTest {
         assertFalse(customerInsurance.isTotalCustomer());
         
         customerInsurance.getInsurances().add(
-                new HomeInsurance(emp, 5000, 500000, "All skade",
-                        "Pilestredet 35", "0166", "Leilighet", "Betong",
-                        "God", 50, 2500, 2500));
+                new HomeInsurance(emp, 5000, "All skade",
+                        "Pilestredet 35", "0166", 1990, HomeType.APARTMENT,
+                        "Betong", "God", 50, 2500, 2500));
         assertFalse(customerInsurance.isTotalCustomer());
         
         BoatInsurance boa = new BoatInsurance(emp, 2000, 10000, "All skade",
-                customerInsurance.getCustomer(), "B080", "Jolle", "FX2", 4,
-                2010, "Gx", 2);
+                customerInsurance.getCustomer(), "B080", BoatType.DINGHY,
+                "Yamaha","FX2", 4, 2010, "Gx", 2);
         customerInsurance.getInsurances().add(boa);
         assertTrue(customerInsurance.isTotalCustomer());
         
@@ -53,10 +55,10 @@ public class CustomerInsuranceTest {
             i.cancel();
         }
         BoatInsurance boa = new BoatInsurance(emp, 2000, 10000, "All skade",
-                customerInsurance.getCustomer(), "B080", "Jolle", "FX2", 4,
-                2010, "Gx", 2);
-        HomeInsurance hi = new HomeInsurance(emp, 5000, 500000, "All skade",
-                "Pilestredet 35", "0166", "Leilighet", "Betong",
+                customerInsurance.getCustomer(), "B080", BoatType.DINGHY,
+                "Yamaha","FX2", 4, 2010, "Gx", 2);
+        HomeInsurance hi = new HomeInsurance(emp, 5000, "All skade",
+                "Pilestredet 35", "0166", 1990, HomeType.APARTMENT, "Betong",
                 "God", 50, 2500, 2500);
         for (Class<? extends Insurance> type :
                 customerInsurance.getActiveInsuranceTypes()) {

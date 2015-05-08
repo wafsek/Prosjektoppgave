@@ -16,6 +16,7 @@ public class Config{
     
     private static String applicationName;
     private static String dataBankFilePath;
+    
     private static int number;
     
     
@@ -30,19 +31,20 @@ public class Config{
     }
     
     
-    public static void setProperties(){
-        applicationName = getProperties().getProperty("applicationName");
-        dataBankFilePath = getProperties().getProperty("dataBankFilePath");
-        System.out.print(number);
-    }
-    
-    
     public static String getApplicationName(){
-        return applicationName;
+        return getProperties().getProperty("applicationName");
     }
     
+    public static String getConsoleOutputOption(){
+        return getProperties().getProperty("consoleOutput");
+    }
     
     public static String getDataBankFilePath(){
-        return dataBankFilePath;
+        return getProperties().getProperty("dataBankFilePath");
     }
+    
+    public static String getLoggingLevelString(){
+        return getProperties().getProperty("loggingLevel");
+    }
+    
 }

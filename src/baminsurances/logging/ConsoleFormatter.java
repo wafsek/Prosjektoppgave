@@ -5,6 +5,7 @@ import java.util.logging.LogRecord;
 
 /**
  * Created by baljit on 23.04.2015.
+ * @author baljit 
  */
 public class ConsoleFormatter extends java.util.logging.Formatter {
     public ConsoleFormatter() { super(); }

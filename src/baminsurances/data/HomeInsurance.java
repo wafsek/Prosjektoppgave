@@ -9,22 +9,21 @@ public class HomeInsurance extends Insurance {
     private String streetAddress;
     private String zipCode;
     private int constructionYear;
-    private String homeType;
+    private HomeType homeType;
     private String buildingMaterial;
     private String standard;
     private int squareMetres;
-    private long homeAmount;
-    private long contentsAmount;
+    private int contentsAmount;
     
     /**
      * Creates a new home insurance with the given values.
      * 
      * @param employee the employee who registered the insurance
      * @param premium the yearly premium of the insurance
-     * @param amount how much the insurance may cover
      * @param terms the terms of the insurance
      * @param streetAddress street address of the insured home
      * @param zipCode zip code of the insured home
+     * @param constructionYear the home's construction year
      * @param homeType type of home
      * @param buildingMaterial building material used
      * @param standard standard of the home
@@ -33,19 +32,30 @@ public class HomeInsurance extends Insurance {
      * @param contentsAmount how much the contents of the home are insured for
      * @throws NullPointerException if any of the arguments are null
      */
-    public HomeInsurance(Employee employee, int premium, int amount,
-            String terms, String streetAddress, String zipCode,
-            String homeType, String buildingMaterial, String standard,
-            int squareMetres, long homeAmount, long contentsAmount) {
-        super(employee, premium, amount, terms);
+    public HomeInsurance(Employee employee, int premium, String terms,
+            String streetAddress, String zipCode, int constructionYear,
+            HomeType homeType, String buildingMaterial, String standard,
+            int squareMetres, int homeAmount, int contentsAmount) {
+        super(employee, premium, homeAmount, terms);
         setStreetAddress(streetAddress);
         setZipCode(zipCode);
+        this.constructionYear = constructionYear;
         setHomeType(homeType);
         setBuildingMaterial(buildingMaterial);
         setStandard(standard);
         this.squareMetres = squareMetres;
-        this.homeAmount = homeAmount;
         this.contentsAmount = contentsAmount;
+    }
+    
+    /**
+     * Returns the total amount this home is insured for. This is the same as
+     * <code>getHomeAmount() + getContentsAmount()</code>.
+     * 
+     * @return the total amount this home is insured for
+     */
+    @Override
+    public int getAmount() {
+        return getHomeAmount() + getContentsAmount();
     }
     
     /**
@@ -101,18 +111,19 @@ public class HomeInsurance extends Insurance {
      * 
      * @return the home type of the insured home
      */
-    public String getHomeType() {
+    public HomeType getHomeType() {
         return homeType;
     }
 
     /**
-     * Sets the home type of the insured home to the given string. This method
+     * Sets the home type of the insured home to the given type. This method
      * is private because if the home type is changed, it is no longer the same
+     * home.
      * 
      * @param homeType the new home type
      * @throws NullPointerException if argument is null
      */
-    private void setHomeType(String homeType) {
+    private void setHomeType(HomeType homeType) {
         if (homeType == null) {
             throw new NullPointerException("Home type cannot be null.");
         }
@@ -170,8 +181,8 @@ public class HomeInsurance extends Insurance {
      * 
      * @return the home amount for this home insurance
      */
-    public long getHomeAmount() {
-        return homeAmount;
+    public int getHomeAmount() {
+        return super.getAmount();
     }
 
     /**
@@ -179,8 +190,8 @@ public class HomeInsurance extends Insurance {
      * 
      * @param homeAmount the new home amount
      */
-    public void setHomeAmount(long homeAmount) {
-        this.homeAmount = homeAmount;
+    public void setHomeAmount(int homeAmount) {
+        super.setAmount(homeAmount);
     }
 
     /**
@@ -188,7 +199,7 @@ public class HomeInsurance extends Insurance {
      * 
      * @return the contents amount for this home insurance
      */
-    public long getContentsAmount() {
+    public int getContentsAmount() {
         return contentsAmount;
     }
 
@@ -197,7 +208,7 @@ public class HomeInsurance extends Insurance {
      * 
      * @param contentsAmount the new home amount
      */
-    public void setContentsAmount(long contentsAmount) {
+    public void setContentsAmount(int contentsAmount) {
         this.contentsAmount = contentsAmount;
     }
 

@@ -11,29 +11,29 @@ public class HolidayHomeInsurance extends HomeInsurance {
     /**
      * Creates a new holiday home insurance with the given values.
      * 
-     * @param employee
-     * @param premium
-     * @param amount
-     * @param terms
-     * @param streetAddress
-     * @param zipCode
-     * @param homeType
-     * @param buildingMaterial
-     * @param standard
-     * @param squareMetres
-     * @param homeAmount
-     * @param contentsAmount
-     * @param rentedOut
+     * @param employee the employee who registered the insurance
+     * @param premium the premium for this insurance
+     * @param terms the terms for this insurance
+     * @param streetAddress the street address of the insured home
+     * @param zipCode the zip code of the insured home
+     * @param constructionYear the home's construction year
+     * @param homeType the type of home
+     * @param buildingMaterial the building material used to build the home
+     * @param standard the standard of the home
+     * @param squareMetres the home's area in square metres
+     * @param homeAmount how much the home itself is insured for
+     * @param contentsAmount how much the contents of the home are insured for
+     * @param rentedOut is the holiday home being rented out?
      * @throws NullPointerException if any of the arguments are null
      */
-    public HolidayHomeInsurance(Employee employee, int premium, int amount,
-            String terms, String streetAddress, String zipCode,
-            String homeType, String buildingMaterial, String standard,
-            int squareMetres, long homeAmount, long contentsAmount,
+    public HolidayHomeInsurance(Employee employee, int premium, String terms,
+            String streetAddress, String zipCode, int constructionYear,
+            HomeType homeType, String buildingMaterial, String standard,
+            int squareMetres, int homeAmount, int contentsAmount,
             boolean rentedOut) {
-        super(employee, premium, amount, terms, streetAddress, zipCode,
-                homeType, buildingMaterial, standard, squareMetres, homeAmount,
-                contentsAmount);
+        super(employee, premium, terms, streetAddress, zipCode,
+                constructionYear, homeType, buildingMaterial, standard,
+                squareMetres, homeAmount, contentsAmount);
         this.rentedOut = rentedOut;
     }
 

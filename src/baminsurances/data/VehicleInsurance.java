@@ -8,7 +8,8 @@ package baminsurances.data;
 public abstract class VehicleInsurance extends Insurance {
     private Person vehicleOwner;
     private String registrationNo;
-    private String type;
+    private VehicleType type;
+    private String brand;
     private String model;
     
     /**
@@ -26,11 +27,12 @@ public abstract class VehicleInsurance extends Insurance {
      */
     public VehicleInsurance(Employee employee, int premium, int amount,
             String terms, Person vehicleOwner, String registrationNo,
-            String type, String model) {
+            VehicleType type, String brand, String model) {
         super(employee, premium, amount, terms);
         setVehicleOwner(vehicleOwner);
         setRegistrationNo(registrationNo);
         setType(type);
+        setBrand(brand);
         setModel(model);
     }
     
@@ -82,7 +84,7 @@ public abstract class VehicleInsurance extends Insurance {
      * 
      * @return the type of the insured vehicle
      */
-    public String getType() {
+    public VehicleType getType() {
         return type;
     }
     
@@ -94,11 +96,34 @@ public abstract class VehicleInsurance extends Insurance {
      * @param type the type
      * @throws NullPointerException if argument is null
      */
-    private void setType(String type) {
+    private void setType(VehicleType type) {
         if (type == null) {
             throw new NullPointerException("Vehicle type cannot be null.");
         }
         this.type = type;
+    }
+    
+    /**
+     * Returns the insured vehicle's brand.
+     * 
+     * @return the insured vehicle's brand
+     */
+    public String getBrand() {
+        return brand;
+    }
+    
+    /**
+     * Sets the vehicle's brand to the given value. Private method because it
+     * should only be called in the constructor.
+     * 
+     * @param brand the new brand
+     * @throws NullPointerException if argument is null
+     */
+    private void setBrand(String brand) {
+        if (brand == null) {
+            throw new NullPointerException("Brand cannot be null.");
+        }
+        this.brand = brand;
     }
     
     /**

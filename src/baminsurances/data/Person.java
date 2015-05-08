@@ -1,5 +1,7 @@
 package baminsurances.data;
 
+import java.time.LocalDate;
+
 /**
  * The root class in the Person hierarchy.
  * 
@@ -10,6 +12,7 @@ public class Person implements Comparable<Person> {
     private String firstName;
     private String lastName;
     private String telephoneNo;
+    private String email;
     private String zipCode;
     private String streetAddress;
     
@@ -20,17 +23,20 @@ public class Person implements Comparable<Person> {
      * @param firstName first name
      * @param lastName last name
      * @param telephoneNo telephone number
+     * @param email the email
      * @param zipCode zip code
      * @param streetAddress street address
      * @throws IllegalArgumentException if birthNo is not a number of length 11
      * @throws NullPointerException if any of the arguments are null
      */
     public Person(String birthNo, String firstName, String lastName,
-            String telephoneNo, String zipCode, String streetAddress) {
+            String telephoneNo, String email,String zipCode,
+            String streetAddress) {
         setBirthNo(birthNo);
         setFirstName(firstName);
         setLastName(lastName);
         setTelephoneNo(telephoneNo);
+        setEmail(email);
         setZipCode(zipCode);
         setStreetAddress(streetAddress);
     }
@@ -73,6 +79,41 @@ public class Person implements Comparable<Person> {
     @Override
     public int compareTo(Person p) {
         return Integer.parseInt(this.birthNo) - Integer.parseInt(p.birthNo);
+    }
+    
+    /**
+     * Returns this person's date of birth.
+     * 
+     * @return this person's date of birth
+     */
+    public LocalDate getDateOfBirth() {
+        int day = Integer.parseInt(birthNo.substring(0, 2));
+        int month = Integer.parseInt(birthNo.substring(2, 4));
+        int first2DigitsOfYear; // unknown for now
+        int last2DigitsOfYear = Integer.parseInt(birthNo.substring(4, 6));
+        
+        int individualNo = Integer.parseInt(birthNo.substring(6, 9));
+        
+        /**
+         * For information on this algorithm, see the following link (Norwegian):
+         * 
+         * http://www.skatteetaten.no/no/Person/Folkeregister/Fodsel-og-navnevalg/Barn-fodt-i-Norge/Fodselsnummer/
+         */
+        if (individualNo < 500) {
+            first2DigitsOfYear = 19;
+        } else if (individualNo < 750 &&
+                last2DigitsOfYear >= 54 && last2DigitsOfYear <= 99) {
+            first2DigitsOfYear = 18;
+        } else if (individualNo >= 900 && individualNo < 1000 &&
+                last2DigitsOfYear >= 40 && last2DigitsOfYear <= 99) { 
+            first2DigitsOfYear = 19;
+        } else {
+            first2DigitsOfYear = 20;
+        }
+        int year = Integer.parseInt(
+                String.valueOf(first2DigitsOfYear) + String.valueOf(last2DigitsOfYear));
+        
+        return LocalDate.of(year, month, day);
     }
     
     /**
@@ -176,6 +217,28 @@ public class Person implements Comparable<Person> {
     public String getTelephoneNo() {
         return telephoneNo;
     }
+    
+    /**
+     * Sets this person's email address to the given value.
+     * 
+     * @param email the new email
+     * @throws NullPointerException if argument is null
+     */
+    public void setEmail(String email) {
+        if (email == null) {
+            throw new NullPointerException("Email cannot be null.");
+        }
+        this.email = email;
+    }
+    
+    /**
+     * Returns this person's email address.
+     * 
+     * @return this person's email address
+     */
+    public String getEmail() {
+        return email;
+    }
 
     /**
      * Sets this person's telephone number to the given value.
@@ -232,5 +295,16 @@ public class Person implements Comparable<Person> {
             throw new NullPointerException("Street address cannot be null.");
         }
         this.streetAddress = streetAddress;
+    }
+    
+    @Override
+    public String toString() {
+        int age = LocalDate.now().getYear() - getDateOfBirth().getYear();
+        return birthNo + ", " +
+               firstName + " " + lastName + ", " +
+               age + " years old, " +
+               telephoneNo + ", " +
+               email + ", " +
+               zipCode + " " + streetAddress;
     }
 }

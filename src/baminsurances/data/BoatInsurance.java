@@ -14,32 +14,37 @@ public class BoatInsurance extends VehicleInsurance {
     /**
      * Creates a new boat insurance with the given values.
      * 
-     * @param employee
-     * @param premium
-     * @param amount
-     * @param terms
-     * @param vehicleOwner
-     * @param registrationNo
-     * @param type
-     * @param model
-     * @param lengthInFeet
-     * @param productionYear
-     * @param motorType
-     * @param horsePower
+     * @param employee the employee who registered this insurance
+     * @param premium the premium
+     * @param amount the amount
+     * @param terms the terms for this insurance
+     * @param vehicleOwner the owner of the boat
+     * @param registrationNo the insured boat's registration number
+     * @param type the type of boat
+     * @param model the boat's model
+     * @param lengthInFeet the boat's length in feet
+     * @param productionYear the boat's production year
+     * @param motorType the motor type of the boat's motor
+     * @param horsePower the horse power of the boat
      * @throws NullPointerException if any of the given arguments are null
      */
     public BoatInsurance(Employee employee, int premium, int amount,
             String terms, Person vehicleOwner, String registrationNo,
-            String type, String model, int lengthInFeet, int productionYear,
-            String motorType, int horsePower) {
+            BoatType type, String brand, String model, int lengthInFeet,
+            int productionYear, String motorType, int horsePower) {
         super(employee, premium, amount, terms, vehicleOwner, registrationNo,
-                type, model);
+                type, brand, model);
         this.lengthInFeet = lengthInFeet;
         this.productionYear = productionYear;
         setMotorType(motorType);
         this.horsePower = horsePower;
     }
 
+    /**
+     * Returns the motor type of the insured boat's motor.
+     * 
+     * @return the motor type of the insured boat's motor
+     */
     public String getMotorType() {
         return motorType;
     }

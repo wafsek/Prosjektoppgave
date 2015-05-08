@@ -1,15 +1,16 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
+import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.OperationWindow;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,13 +22,13 @@ public abstract class PersonSearchScene {
 
     protected Scene scene;
 
-    protected TextField firstName, lastName, adress, zipCode, birthNo;
+    protected TextField firstNameField, lastNameField, adressField, zipCodeField, birthNumberField;
     protected Label firstNameLabel, lastNameLabel, adressLabel, zipCodeLabel,
             birthNoLabel;
-    protected TableView personList;
+    protected TableView personTable;
     protected TableColumn birthNoColumn, nameColumn, adressColumn, tlfNoColumn;
 
-    protected ArrayList<TextField> textFields;
+    protected ArrayList<TextField> textFieldArrayList;
     protected Iterator textFieldsIterator;
 
     protected Button requestRegistration;
@@ -35,46 +36,65 @@ public abstract class PersonSearchScene {
     protected GridPane itemContainer;
     protected BorderPane borderPane;
     protected GuiEventHandler handler;
+    protected KeyPressHandler keyPressHandler;
 
-    public PersonSearchScene(GuiEventHandler handler){
+    public PersonSearchScene(GuiEventHandler handler, KeyPressHandler keyPressHandler){
         this.handler = handler;
+        this.keyPressHandler = keyPressHandler;
 
-        personList = new TableView();
+        personTable = new TableView();
         birthNoColumn = new TableColumn("Fødselsnummer");
+        birthNoColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("birthNo"));
         nameColumn = new TableColumn("Navn");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
         adressColumn = new TableColumn("Adresse");
+        adressColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("streetAdress"));
         tlfNoColumn = new TableColumn("Telefonnummer");
-        personList.getColumns().addAll(birthNoColumn, nameColumn, adressColumn, tlfNoColumn);
-        personList.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        personList.setEditable(false);
-        personList.setStyle("-fx-border-color: gray;");
-        personList.setPrefWidth(OperationWindow.STAGE_WIDTH * 2/4);
+        tlfNoColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("telephoneNo"));
+        personTable.getColumns().addAll(birthNoColumn, nameColumn, adressColumn, tlfNoColumn);
+        personTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        personTable.setEditable(false);
+        personTable.setStyle("-fx-border-color: gray;");
+        personTable.setPrefWidth(OperationWindow.STAGE_WIDTH * 2 / 4);
 
-        birthNo = new TextField();
+        birthNumberField = new TextField();
         birthNoLabel = new Label("Fødselsnummer:");
-        firstName = new TextField();
+        firstNameField = new TextField();
         firstNameLabel = new Label("Fornavn:");
-        lastName = new TextField();
+        lastNameField = new TextField();
         lastNameLabel = new Label("Etternavn:");
-        adress = new TextField();
+        adressField = new TextField();
         adressLabel = new Label("Adresse:");
-        zipCode = new TextField();
+        zipCodeField = new TextField();
         zipCodeLabel = new Label("Postnummer:");
 
-        textFields = new ArrayList<TextField>();
-        textFields.add(birthNo);
-        textFields.add(firstName);
-        textFields.add(lastName);
-        textFields.add(adress);
-        textFields.add(zipCode);
-        textFieldsIterator = textFields.iterator();
+        textFieldArrayList = new ArrayList<TextField>();
+        textFieldArrayList.add(birthNumberField);
+        textFieldArrayList.add(firstNameField);
+        textFieldArrayList.add(lastNameField);
+        textFieldArrayList.add(adressField);
+        textFieldArrayList.add(zipCodeField);
+        textFieldsIterator = textFieldArrayList.iterator();
 
-        requestRegistration = new Button("Finn person");
+        firstNameField.setOnKeyReleased(keyPressHandler);
+        lastNameField.setOnKeyReleased(keyPressHandler);
+        birthNumberField.setOnKeyReleased(keyPressHandler);
+        adressField.setOnKeyReleased(keyPressHandler);
+        zipCodeField.setOnKeyReleased(keyPressHandler);
+
+        textFieldArrayList = new ArrayList<TextField>();
+        textFieldArrayList.add(firstNameField);
+        textFieldArrayList.add(lastNameField);
+        textFieldArrayList.add(birthNumberField);
+        textFieldArrayList.add(adressField);
+        textFieldArrayList.add(zipCodeField);
+
+        requestRegistration = new Button("Velg Person");
         requestRegistration.setOnAction(handler);
 
         itemContainer = new GridPane();
         itemContainer.addColumn(0, firstNameLabel, lastNameLabel, birthNoLabel, adressLabel, zipCodeLabel);
-        itemContainer.addColumn(1, firstName, lastName, birthNo, adress, zipCode, requestRegistration);
+        itemContainer.addColumn(1, firstNameField, lastNameField, birthNumberField, adressField, zipCodeField, requestRegistration);
         itemContainer.setAlignment(Pos.CENTER);
         itemContainer.setVgap(30);
         itemContainer.setHgap(20);
@@ -100,15 +120,41 @@ public abstract class PersonSearchScene {
         return requestRegistration;
     }
 
-    public Iterator getTextFieldsIterator(){
+    public String getFirstName() {
+        return firstNameField.getText();
+    }
+
+    public String getLastName() {
+        return lastNameField.getText();
+    }
+
+    public String getAdress() {
+        return adressField.getText();
+    }
+
+    public String getZipCode() {
+        return zipCodeField.getText();
+    }
+
+    public String getBirthNumber() {
+        return birthNumberField.getText();
+    }
+
+    public ArrayList getTextFieldArrayList(){
+        return textFieldArrayList;
+    }
+
+    public Iterator getTextFieldIterator(){
         return textFieldsIterator;
     }
 
     public void resetIterator(){
-        textFieldsIterator = textFields.iterator();
+        textFieldsIterator = textFieldArrayList.iterator();
     }
 
-    public void displayPossiblePeople(){
-        /*ObservableList = getAllPossibleCustomers()*/
+    public void setTableData(ObservableList observableList){
+        personTable.setItems(null);
+        personTable.setItems(observableList);
     }
 }
+
