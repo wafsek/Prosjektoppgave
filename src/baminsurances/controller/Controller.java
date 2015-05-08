@@ -3,6 +3,7 @@ package baminsurances.controller;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.LoginWindow;
+import baminsurances.gui.window.NavigationWindow;
 import baminsurances.gui.window.OperationWindow;
 import baminsurances.gui.window.MessageDialog;
 import baminsurances.gui.window.scene.*;
@@ -31,6 +32,7 @@ public class Controller {
     /**
      * The Gui type fields
      */
+    private NavigationScene navigationScene;
     private WelcomeScene welcomeScene;
     private AddScene addScene;
     private InsurePersonScene insurePersonScene;
@@ -42,6 +44,7 @@ public class Controller {
     private GuiEventHandler guiEventHandler;
     private KeyPressHandler keyPressHandler;
     private LoginWindow loginWindow;
+    private NavigationWindow navigationWindow;
     private OperationWindow operationWindow;
     
     
@@ -72,6 +75,8 @@ public class Controller {
         operationWindow = OperationWindow.getOperationWindow();
         guiEventHandler = new GuiEventHandler(this);
         keyPressHandler = new KeyPressHandler(operationWindow,this);
+        navigationWindow = new NavigationWindow();
+        navigationScene = new NavigationScene(guiEventHandler);
         loginWindow.setGuiEventHandler(guiEventHandler);
         operationWindow.setGuiEventHandler(guiEventHandler);
         operationWindow.setKeyHandler(keyPressHandler);
@@ -89,9 +94,40 @@ public class Controller {
         
         loginWindow.close();
         operationWindow.createFooter(getDisplayName());
-        welcomeScene = new WelcomeScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
-        operationWindow.initialize(welcomeScene.getScene());
+        welcomeScene = new WelcomeScene(operationWindow.getHeader(),
+                operationWindow.getFooter(), guiEventHandler);
+        //operationWindow.initialize(welcomeScene.getScene());
+        navigationWindow.initiate(navigationScene.getScene());
         logger.log("Logged in", Level.INFO);
+    }
+
+    private void launchStatistics(){
+        navigationWindow.close();
+        statisticsScene = new StatisticsScene(operationWindow.getFooter(),
+                keyPressHandler, guiEventHandler);
+        operationWindow.initialize(statisticsScene.getScene());
+        logger.log("Initializing Statistics scene", Level.INFO);
+    }
+
+    private void launchCustomerHandling(){
+        navigationWindow.close();
+        welcomeScene = new WelcomeScene(operationWindow.getHeader(),
+                operationWindow.getFooter(), guiEventHandler);
+        operationWindow.initialize(welcomeScene.getScene());
+        logger.log("Initializing Customer handling scene", Level.INFO);
+    }
+
+    private void launchSearchScene(){
+        navigationWindow.close();
+        searchScene = new SearchScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
+        operationWindow.initialize(searchScene.getScene());
+        logger.log("Initializing Search scene", Level.INFO);
+    }
+
+    private void backToNavigation(){
+        operationWindow.close();
+        navigationWindow.reopen();
+        logger.log("Closeing main Stage, reopening navigation stage.", Level.INFO);
     }
     
     public String getDisplayName(){
@@ -128,9 +164,6 @@ public class Controller {
         }else if (control == operationWindow.getStatsSceneButton()){
             statisticsScene = new StatisticsScene(operationWindow.getFooter(), keyPressHandler, guiEventHandler);
             operationWindow.displayScene(statisticsScene.getScene());
-        }else if(control == statisticsScene.getBackToRegistration()){
-            welcomeScene = new WelcomeScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
-            operationWindow.displayScene(welcomeScene.getScene());
         }else if (control == operationWindow.getHouseSceneButton()){
             insureHouseScene = new InsureHouseScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
             operationWindow.displayScene(insureHouseScene.getScene());
@@ -146,6 +179,16 @@ public class Controller {
         }else if (control == operationWindow.getSearchSceneButton()){
             searchScene = new SearchScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler);
             operationWindow.displayScene(searchScene.getScene());
+        }else if (control == navigationScene.getStatisticsButton()){
+            launchStatistics();
+        }else if (control == navigationScene.getCustomerInteractionButton()){
+            launchCustomerHandling();
+        }else if (control == navigationScene.getSearchButton()){
+            launchSearchScene();
+        }else if (control == operationWindow.getBackButton()){
+            backToNavigation();
+        }else if(control == statisticsScene.getbackToNavigationButton()){
+            backToNavigation();
         }
         
     }

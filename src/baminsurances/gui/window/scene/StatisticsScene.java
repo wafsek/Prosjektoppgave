@@ -21,7 +21,7 @@ import java.util.Iterator;
 public class StatisticsScene {
     private Scene scene;
 
-    private Button backToRegistration;
+    private Button backToNavigationButton;
 
     private TextField employeeNmbr, birthNmbr, firstName, lastName,
             carBrand, carType, adress;
@@ -129,11 +129,12 @@ public class StatisticsScene {
         checkBoxContainer.setAlignment(Pos.CENTER);
         checkBoxContainer.setStyle("-fx-border-color: gray;");
 
-        backToRegistration = new IconButton().iconButton(100, 100, IconButton.ADD_BUTTON);
-        backToRegistration.setOnAction(handler);
+        backToNavigationButton = new IconButton().iconButton(OperationWindow.STAGE_HEIGHT*1/7,
+                OperationWindow.STAGE_HEIGHT*1/7, IconButton.STATISTIC_BUTTON);
+        backToNavigationButton.setOnAction(handler);
 
         container = new HBox(0, fieldContainer, tableContainer, checkBoxContainer);
-        menu = new VBox(0, backToRegistration);
+        menu = new VBox(0, backToNavigationButton);
         menu.setAlignment(Pos.CENTER);
         menu.setPrefHeight(120);
         menu.setStyle("-fx-border-color: gray;");
@@ -159,8 +160,8 @@ public class StatisticsScene {
      * @return the Button that requests the Scene change between the
      * two stages defined in this class
      */
-    public Button getBackToRegistration(){
-        return backToRegistration;
+    public Button getbackToNavigationButton(){
+        return backToNavigationButton;
     }
 
     public ArrayList getTextFields(){
