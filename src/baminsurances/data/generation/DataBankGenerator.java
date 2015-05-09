@@ -27,6 +27,25 @@ public class DataBankGenerator {
     private List<Employee> employeeList = new ArrayList<>();
     
     /**
+     * Generates the given amount of customers, employees and insurances, and
+     * adds these to the data bank.
+     * 
+     * @param numCustomers number of customers to generate
+     * @param numEmployees number of employees to generate
+     * @param numInsurances number of insurances to generate
+     */
+    public void generateDataBank(int numCustomers, int numEmployees,
+            int numInsurances) {
+        generateCustomerInsuranceList(numCustomers);
+        generateEmployeeList(numEmployees);
+        generateInsurances(numInsurances);
+        
+        DataBank db = DataBank.getInstance();
+        db.getCustomerInsuranceList().addAll(customerInsuranceList);
+        db.getEmployeeList().addAll(employeeList);
+    }
+    
+    /**
      * Fills this DataBankGenerator's CustomerInsurance list with the given
      * amount of generated customers.
      * 
@@ -104,7 +123,7 @@ public class DataBankGenerator {
      * @throws IllegalStateException if the CustomerInsurance list or the
      * employee list is empty
      */
-    public void generateInsurances() {
+    public void generateInsurances(int amount) {
         if (customerInsuranceList.isEmpty()) {
             throw new IllegalStateException("The CustomerInsurance list is "
                     + "empty.");
@@ -112,13 +131,17 @@ public class DataBankGenerator {
         if (employeeList.isEmpty()) {
             throw new IllegalStateException("The employee list is empty.");
         }
-        generateRandomInsurance(getRandomEmployee(),
-                getRandomCustomerInsurance());
+        
+        for (int i = 0; i < amount; i++) {
+            generateRandomInsurance(getRandomEmployee(),
+                    getRandomCustomerInsurance());
+        }
     }
     
     /**
      * Generates a random type of insurance, and registers it on the given
      * employee and CustomerInsurance.
+     * 
      * @param emp the employee
      * @param cusIns the CustomerInsurance
      */
@@ -127,9 +150,10 @@ public class DataBankGenerator {
         int amount = insGen.generateAmount();
         
         double x = Math.random();
+        Insurance ins = null;
         int numInsuranceTypes = 5;
         if (x < 1 / numInsuranceTypes) {
-            cusIns.getInsurances().add(new CarInsurance(
+            ins = new CarInsurance(
                     emp,
                     insGen.generatePremium(amount),
                     amount,
@@ -142,9 +166,9 @@ public class DataBankGenerator {
                     carGen.generateRegistrationYear(),
                     carGen.generateYearlyMileage(),
                     carGen.generatePricePerKilometer(), 
-                    carGen.generateBonusPercentage()));
+                    carGen.generateBonusPercentage());
         } else if (x < 2 / numInsuranceTypes) {
-            cusIns.getInsurances().add(new BoatInsurance(
+            ins = new BoatInsurance(
                     emp,
                     insGen.generatePremium(amount),
                     amount,
@@ -157,9 +181,9 @@ public class DataBankGenerator {
                     boatGen.generateLengthInFeet(),
                     boatGen.generateProductionYear(),
                     boatGen.generateMotorType(),
-                    boatGen.generateHorsePower()));
+                    boatGen.generateHorsePower());
         } else if (x < 3 / numInsuranceTypes) {
-            cusIns.getInsurances().add(new HomeInsurance(
+            ins = new HomeInsurance(
                     emp,
                     insGen.generatePremium(amount),
                     homeGen.generateTerms(),
@@ -171,9 +195,9 @@ public class DataBankGenerator {
                     homeGen.generateStandard(),
                     homeGen.generateSquareMeters(),
                     homeGen.generateHomeAmount(),
-                    homeGen.generateContentsAmount()));
+                    homeGen.generateContentsAmount());
         } else if (x < 4 / numInsuranceTypes) {
-            cusIns.getInsurances().add(new HolidayHomeInsurance(
+            ins = new HolidayHomeInsurance(
                     emp,
                     insGen.generatePremium(amount),
                     holidayHomeGen.generateTerms(),
@@ -186,14 +210,21 @@ public class DataBankGenerator {
                     homeGen.generateSquareMeters(),
                     homeGen.generateHomeAmount(),
                     homeGen.generateContentsAmount(),
-                    holidayHomeGen.generateRentedOut()));
+                    holidayHomeGen.generateRentedOut());
         } else {
-            cusIns.getInsurances().add(new TravelInsurance(
+            ins = new TravelInsurance(
                     emp,
                     insGen.generatePremium(amount),
                     amount,
                     travelGen.generateTerms(),
-                    travelGen.generateRegion()));
+                    travelGen.generateRegion());
         }
+        ins.setCreationDate(DateGenerator.generateBeforeNowAndAfter(
+                cusIns.getCustomer().getRegistrationDate()));
+        if (Math.random() < 0.5) { // 50% chance of being cancelled
+            ins.setCancellationDate(
+                    DateGenerator.generateBeforeNowAndAfter(ins.getCreationDate()));
+        }
+        cusIns.getInsurances().add(ins);
     }
 }

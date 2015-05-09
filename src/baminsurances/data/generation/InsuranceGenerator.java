@@ -1,5 +1,7 @@
 package baminsurances.data.generation;
 
+import java.time.LocalDate;
+
 /**
  * Provides methods for generating {@link Insurance} objects.
  * 
@@ -26,45 +28,26 @@ public class InsuranceGenerator {
         return (int) (Math.random() * 5000) + 2000;
     }
     
-    /*
-    public String generateTerms(String insuranceType) {
-        double x = Math.random();
-        switch (insuranceType) {
-            case "CAR":
-                return carGen.generateTerms();
-            case "BOAT":
-                if (x < 0.2) {
-                    return "Super";
-                } else if (x < 0.6) {
-                    return "Kasko";
-                } else {
-                    return "Delkasko";
-                }
-            case "HOME":
-                String homeBasis = "Rettshjelp, brannskader, "
-                        + "vann- og rørskader, tyveri og hærværk, naturskade";
-                if (x < 0.4) {
-                    return homeBasis + "kunstnerisk utsmykning, "
-                            + "skadeverk dyr og insekter, sopp- og råteskade, "
-                            + "følgeskader av håndverkerfeil.";
-                } else {
-                    return homeBasis + ".";
-                }
-            case "HOLIDAYHOME":
-                if (x < 0.3) {
-                    return homeBasis;
-                } else {
-                    return homeBasis;
-                }
-            case "TRAVEL":
-                String travelBasis = "Reisesyke, ulykke, ansvarsforsikring, reisegods";
-                if (x < 0.4) {
-                    return travelBasis + ", avbestilling, forsinkelse, dyr.";
-                } else {
-                    return travelBasis + ".";
-                }
-            default:
-                return null;
-        }
-    }*/
+    /**
+     * Generates and returns a date after the given creation date of the
+     * customer.
+     * 
+     * @param customerRegistrationDate the customer's creation date
+     * @return a date after the given creation date of the customer
+     */
+    public LocalDate generateCreationDate(
+            LocalDate customerRegistrationDate) {
+        return DateGenerator.generateBeforeNowAndAfter(customerRegistrationDate);
+    }
+    
+    /**
+     * Generates and returns a cancellation date after the given registration
+     * date for an insurance.
+     * 
+     * @param creationDate the creation date of the insurance
+     * @return a date after the given one
+     */
+    public LocalDate generateCancellationDate(LocalDate creationDate) {
+        return DateGenerator.generateBeforeNowAndAfter(creationDate);
+    }
 }
