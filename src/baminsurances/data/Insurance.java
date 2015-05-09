@@ -1,6 +1,6 @@
 package baminsurances.data;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 /**
  * The root class in the Insurance hierarchy.
@@ -13,8 +13,8 @@ public abstract class Insurance implements Comparable<Insurance> {
     private Employee employee;
     private int premium;
     private int amount;
-    private Calendar creationDate;
-    private Calendar cancellationDate = null;
+    private LocalDate creationDate;
+    private LocalDate cancellationDate = null;
     private String terms;
     //TODO skademeldinger
 
@@ -32,7 +32,7 @@ public abstract class Insurance implements Comparable<Insurance> {
         this.employee = employee;
         this.premium = premium;
         this.amount = amount;
-        creationDate = Calendar.getInstance();
+        creationDate = LocalDate.now();
         this.terms = terms;
     }
     
@@ -165,14 +165,16 @@ public abstract class Insurance implements Comparable<Insurance> {
     }
     
     /**
-     * Returns a Calendar object representing the date on which this insurance
-     * was created.
+     * Returns the date on which this insurance was created
      * 
-     * @return a Calendar object representing the date on which this insurance
-     * was created
+     * @return the date on which this insurance was created
      */
-    public Calendar getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
+    }
+    
+    public void setCreationDate(LocalDate date) {
+        creationDate = date;
     }
     
     /**
@@ -183,7 +185,7 @@ public abstract class Insurance implements Comparable<Insurance> {
      */
     public boolean cancel() {
         if (isActive()) {
-            cancellationDate = Calendar.getInstance();
+            cancellationDate = LocalDate.now();
             return true;
         } else {
             return false;
@@ -191,15 +193,18 @@ public abstract class Insurance implements Comparable<Insurance> {
     }
     
     /**
-     * If this insurance has been cancelled, this method returns a Calendar
-     * object representing the cancellation date. Otherwise, <code>null</code>
-     * is returned.
+     * If this insurance has been cancelled, this method returns the
+     * cancellation date. Otherwise, <code>null</code> is returned.
      * 
-     * @return a Calendar object representing cthe ancellation date if the
-     * insurance is cancelled, <code>null</code> otherwise
+     * @return the cancellation date if the insurance is cancelled,
+     * <code>null</code> otherwise
      */
-    public Calendar getCancellationDate() {
+    public LocalDate getCancellationDate() {
         return cancellationDate;
+    }
+    
+    public void setCancellationDate(LocalDate date) {
+        cancellationDate = date;
     }
     
     /**

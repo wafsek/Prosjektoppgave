@@ -1,6 +1,6 @@
 package baminsurances.data;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 /**
  * The class representing the company's customers.
@@ -8,7 +8,7 @@ import java.util.Calendar;
  * @author martin
  */
 public class Customer extends Person {
-    private Calendar registrationDate;
+    private LocalDate registrationDate;
     private String billingZipCode;
     private String billingStreetAddress;
     
@@ -33,7 +33,7 @@ public class Customer extends Person {
             String billingStreetAddress) {
         super(birthNo, firstName, lastName, telephoneNo, email, zipCode,
                 streetAddress);
-        registrationDate = Calendar.getInstance();
+        registrationDate = LocalDate.now();
         setBillingZipCode(billingZipCode);
         setBillingStreetAddress(billingStreetAddress);
     }
@@ -43,8 +43,12 @@ public class Customer extends Person {
      * 
      * @return this customer's registration date
      */
-    public Calendar getRegistrationDate() {
+    public LocalDate getRegistrationDate() {
         return registrationDate;
+    }
+    
+    public void setRegistrationDate(LocalDate date) {
+        registrationDate = date;
     }
     
     /**
@@ -96,6 +100,6 @@ public class Customer extends Person {
     public String toString() {
         return super.toString() + ", " +
                 billingZipCode + " " + billingStreetAddress + ", " +
-                registrationDate.getTime().toString();
+                registrationDate.toString();
     }
 }
