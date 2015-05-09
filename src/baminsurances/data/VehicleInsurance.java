@@ -3,7 +3,7 @@ package baminsurances.data;
 /**
  * Root class in the VehicleInsurance hierarchy.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public abstract class VehicleInsurance extends Insurance {
     private Person vehicleOwner;
@@ -22,6 +22,7 @@ public abstract class VehicleInsurance extends Insurance {
      * @param vehicleOwner owner of the insured vehicle
      * @param registrationNo registration number of the insured vehicle
      * @param type type of the insured vehicle
+     * @param brand the vehicle's brand
      * @param model model of the insured vehicle
      * @throws NullPointerException if any of the arguments are null
      */

@@ -1,8 +1,9 @@
 package baminsurances.security;
 
 /**
- * Created by baljit on 29.04.2015.
- * @author baljit 
+ * Represents a user of the software.
+ * 
+ * @author Baljit Sarai 
  */
 public class User {
     
@@ -10,18 +11,34 @@ public class User {
     private String password;
     protected Authorization authorization;
     
+    /**
+     * Creates a new user with the given username, password and authorization.
+     * 
+     * @param username the username
+     * @param password the password
+     * @param authorization the authorization
+     */
     public User(String username,String password,Authorization authorization){
         this.password = password;
         this.username = username;
         this.authorization = authorization;
     }
 
+    /**
+     * Returns this user's username.
+     * 
+     * @return this user's username
+     */
     public String getUsername() {
         return username;
     }
     
-    public String getPassword(){
+    /**
+     * Returns this user's password.
+     * 
+     * @return this user's password
+     */
+    public String getPassword() {
         return password;
     }
-    
 }

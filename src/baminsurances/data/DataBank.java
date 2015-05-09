@@ -4,72 +4,90 @@ import baminsurances.security.User;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Iterator;
 
 /**
+ * Contains collections with all data that is to be stored between sessions.
+ * Because there should never exist two seperate data banks, this class is
+ * implemented with the Singleton pattern.
  * 
- * @author baljit sarai
+ * @author Baljit Sarai
  */
 public class DataBank {
     
-    private List<CustomerInsurance> customerInsuranceList = new ArrayList<CustomerInsurance>();
-    private List<Employee> employeeList = new ArrayList<Employee>();
-    private List<User> userList = new ArrayList<User>();
+    private List<CustomerInsurance> customerInsuranceList = new ArrayList<>();
+    private List<Employee> employeeList = new ArrayList<>();
+    private List<User> userList = new ArrayList<>();
     private static final DataBank dataBank = new DataBank();
     
-    private DataBank(){
+    /**
+     * The constructor is private, because there should never exist more than
+     * one data bank at any given time. To get this data bank object, use the
+     * {@link #getInstance() getInstance} method.
+     */
+    private DataBank() {
     }
     
-    public static DataBank getInstance(){
+    /**
+     * Returns an instance of the data bank.
+     * 
+     * @return an instance of the data bank
+     */
+    public static DataBank getInstance() {
         return dataBank;
     }
     
     /**
-     * This method adds a Customer object to the customerInsuranceList. 
-     * @param customerInsurance - Object of type CustomerInsurance. 
+     * Adds a CustomerInsurance to the list of these. 
+     * 
+     * @param customerInsurance the CustomerInsurance to add 
      */
     public void addCustomerInsurance(CustomerInsurance customerInsurance){
-        if(customerInsurance == null){
-            throw new NullPointerException("CustomerInsurance object expected; Null receive");
-        }else{
-
+        if (customerInsurance == null) {
+            throw new NullPointerException("CustomerInsurance object expected;"
+                    + " Null received.");
+        } else {
             this.customerInsuranceList.add(customerInsurance);
         }
     }
     
-    
+    //TODO
     /**
-     * This method removes a CustomerInsurance object (With the same  birthNumberField) from the customerInsuranceList.
+     * Removes a CustomerInsurance.
      * @param customerInsurance - Object of type CustomerInsurance. 
      */
     public void removeCustomerInsurance(CustomerInsurance customerInsurance){
-        if(customerInsurance == null){
-            throw new NullPointerException("CustomerInsurance object expected; Null receive");
-        }else{
+        if (customerInsurance == null) {
+            throw new NullPointerException("CustomerInsurance object " 
+                    + "expected; Null received");
+        } else {
             this.customerInsuranceList.remove(customerInsurance);
         }
     }
 
     /**
-     * Returns customerInsuranceList
-     * @return customerInsuranceList - List of CustomersInsurance objects.
+     * Returns the list of CustomerInsurances.
+     * 
+     * @return the list of CustomerInsurances
      */
     public List<CustomerInsurance> getCustomerInsuranceList(){
         return customerInsuranceList;
     }
 
     /**
-     * This method adds a Employee object to the employeeList.
-     * @param employee - Employee object.
+     * Adds an employee to the list of these.
+     * 
+     * @param employee the employee to add
      */
-    public void addEmployee(Employee employee){
-        if (employee == null){
-            throw new NullPointerException("Employee object expected; null received");
-        }else{
+    public void addEmployee(Employee employee) {
+        if (employee == null) {
+            throw new NullPointerException("Employee object expected; "
+                    + "Null received.");
+        } else {
             this.employeeList.add(employee);
         }
     }
 
+    // TODO
     /**
      * This method removes a Employee object (With the same birthNumberField) from the employeeList.
      * @param employee -Employee object.
@@ -77,19 +95,25 @@ public class DataBank {
     public void removeEmployee(Employee employee){
         if (employee == null){
             throw new NullPointerException("Employee object expected; null received");
-        }else{
+        } else {
             this.employeeList.remove(employee);
         }
     }
 
     /**
-     * Returns employeeList
-     * @return employeeList - List of Employee objects.
+     * Returns the list of employees.
+     * 
+     * @return employeeList the list of employees
      */
     public List<Employee> getEmployeeList(){
         return employeeList;
     }
 
+    /**
+     * Returns the list of users.
+     * 
+     * @return the list of users
+     */
     public List<User> getUserList() {
         return userList;
     }

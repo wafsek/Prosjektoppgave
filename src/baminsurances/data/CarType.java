@@ -3,7 +3,7 @@ package baminsurances.data;
 /**
  * Represents a car type that is available for insurance.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public enum CarType implements VehicleType {
     SEDAN ("Personbil"),
@@ -21,11 +21,6 @@ public enum CarType implements VehicleType {
         this.norwegianTranslation = norwegianTranslation;
     }
     
-    /**
-     * Returns the Norwegian translation for this car type.
-     * 
-     * @return the Norwegian translation for this car type
-     */
     @Override
     public String getNorwegianTranslation() {
         return norwegianTranslation;

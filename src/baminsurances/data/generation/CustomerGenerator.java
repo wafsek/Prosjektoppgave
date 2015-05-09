@@ -9,7 +9,7 @@ import baminsurances.data.Customer;
  * Provides methods for generating {@link Customer} objects. The class utilizes
  * methods found in {@link PersonGenerator}.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class CustomerGenerator {
     private PersonGenerator gen = new PersonGenerator();

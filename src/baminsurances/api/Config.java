@@ -1,28 +1,30 @@
 package baminsurances.api;
 
-import java.io.FileNotFoundException;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.io.File;
-import java.util.logging.Level;
 
 /**
- * Created by baljit  on 15.04.2015.
- * @author baljit sarai 
+ * A class that manages different configurations of the software.
+ * 
+ * @author Baljit Sarai
  */
-public class Config{
+public class Config {
     
     private static String applicationName;
     private static String dataBankFilePath;
     
     private static int number;
     
-    
-    private static Properties getProperties(){
+    /**
+     * Returns the properties for this config.
+     * 
+     * @return the properties for this config
+     */
+    private static Properties getProperties() {
         Properties prop = new Properties();
-        try(InputStream inputStream = Config.class.getResourceAsStream("config.properties")){
+        try (InputStream inputStream =
+                Config.class.getResourceAsStream("config.properties")) {
             prop.load(inputStream);
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -30,21 +32,40 @@ public class Config{
         return prop;
     }
     
-    
-    public static String getApplicationName(){
+    /**
+     * Returns the application's name. Will among other things be shown in the
+     * window title.
+     * 
+     * @returnt the application's name
+     */
+    public static String getApplicationName() {
         return getProperties().getProperty("applicationName");
     }
     
-    public static String getConsoleOutputOption(){
+    /**
+     * Returns the current console output option.
+     * 
+     * @return the current console output option
+     */
+    public static String getConsoleOutputOption() {
         return getProperties().getProperty("consoleOutput");
     }
     
-    public static String getDataBankFilePath(){
+    /**
+     * Returns the file path of the data bank.
+     * 
+     * @return the file path of the data bank
+     */
+    public static String getDataBankFilePath() {
         return getProperties().getProperty("dataBankFilePath");
     }
     
-    public static String getLoggingLevelString(){
+    /**
+     * Returns a string with the current logging level.
+     * 
+     * @return the current logging level
+     */
+    public static String getLoggingLevelString() {
         return getProperties().getProperty("loggingLevel");
     }
-    
 }

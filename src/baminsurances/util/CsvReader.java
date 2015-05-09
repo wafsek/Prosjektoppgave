@@ -13,7 +13,7 @@ import java.util.List;
  * extension. The methods are ones we implement as we find the need for them,
  * and so they might seem somewhat sparse.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class CsvReader {
     private File csvFile;

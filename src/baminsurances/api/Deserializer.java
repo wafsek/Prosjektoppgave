@@ -5,19 +5,19 @@ import baminsurances.data.DataBank;
 import java.io.*;
 
 /**
- * Created by baljit on 15.04.2015.
- * @author baljit 
+ * Handles the deserialization of the stored data.
+ * 
+ * @author Baljit Sarai 
  */
 public class Deserializer {
 
-    public DataBank deserialze(){
+    public DataBank deserialize() {
 
         DataBank bokRegister;
 
-        try{
+        try {
             File file = new File(Config.getDataBankFilePath());
-            if(!(file.exists()))
-            {
+            if(!(file.exists())) {
                 file.createNewFile();
             }
             FileInputStream fin = new FileInputStream(Config.getDataBankFilePath());
@@ -25,13 +25,10 @@ public class Deserializer {
             bokRegister = (DataBank) ois.readObject();
             ois.close();
             return bokRegister;
-
-        }catch(EOFException ex)
-        {
+        } catch(EOFException ex) {
             //This exception is thrown because the file is empty and has just been created.
             return null;
-        }
-        catch(Exception ex){
+        } catch(Exception ex) {
             ex.printStackTrace();
             return null;
         }

@@ -3,7 +3,7 @@ package baminsurances.data;
 /**
  * A class representing a car insurance in the company's data bank.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class CarInsurance extends VehicleInsurance {
     private int registrationYear;

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 /**
  * The root class in the Person hierarchy.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class Person implements Comparable<Person> {
     private String birthNo;

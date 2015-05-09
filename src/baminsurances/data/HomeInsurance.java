@@ -1,9 +1,9 @@
 package baminsurances.data;
 
 /**
- * A class that represents a home insurance in the company's data bank.
+ * Represents a home insurance in the company's data bank.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class HomeInsurance extends Insurance {
     private String streetAddress;

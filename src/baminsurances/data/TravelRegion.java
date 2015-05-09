@@ -1,5 +1,10 @@
 package baminsurances.data;
 
+/**
+ * Represents a travel region for travel insurances.
+ * 
+ * @author martin
+ */
 public enum TravelRegion implements HasNorwegianTranslation {
     EUROPE("Europa"),
     WORLD("Verden"),

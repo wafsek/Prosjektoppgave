@@ -10,7 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 /**
- * Created by Adrian PC on 08/05/2015.
+ * @author Adrian Melsom
  */
 public class NavigationScene {
 
@@ -20,28 +20,36 @@ public class NavigationScene {
     private BorderPane borderPane;
     private VBox container;
 
-    public NavigationScene(GuiEventHandler guiEventHandler){
+    public NavigationScene(GuiEventHandler guiEventHandler) {
         this.guiEventHandler = guiEventHandler;
-        statisticsButton = new IconButton().IconButtonWithText(NavigationWindow.STAGE_WIDTH*1/5,
-                NavigationWindow.STAGE_WIDTH*1/5, IconButton.ADD_BUTTON, "Statistikk");
+        statisticsButton = new IconButton().IconButtonWithText(
+                NavigationWindow.STAGE_WIDTH*1/5,
+                NavigationWindow.STAGE_WIDTH*1/5, IconButton.ADD_BUTTON,
+                "Statistikk");
         statisticsButton.setPrefWidth(NavigationWindow.STAGE_WIDTH);
         statisticsButton.setPrefHeight(NavigationWindow.STAGE_HEIGHT * 1 / 4);
         statisticsButton.setOnAction(guiEventHandler);
-        customerInteractionButton = new IconButton().IconButtonWithText(NavigationWindow.STAGE_WIDTH*1/5,
-                NavigationWindow.STAGE_WIDTH*1/5, IconButton.ADD_BUTTON, "Kundebehandling");
+        customerInteractionButton = new IconButton().IconButtonWithText(
+                NavigationWindow.STAGE_WIDTH*1/5,
+                NavigationWindow.STAGE_WIDTH*1/5, IconButton.ADD_BUTTON,
+                "Kundebehandling");
         customerInteractionButton.setPrefWidth(NavigationWindow.STAGE_WIDTH);
-        customerInteractionButton.setPrefHeight(NavigationWindow.STAGE_HEIGHT * 1 / 4);
+        customerInteractionButton.setPrefHeight(
+                NavigationWindow.STAGE_HEIGHT * 1 / 4);
         customerInteractionButton.setOnAction(guiEventHandler);
-        searchButton = new IconButton().IconButtonWithText(NavigationWindow.STAGE_WIDTH*1/5,
-                NavigationWindow.STAGE_WIDTH*1/5, IconButton.ADD_BUTTON, "Statistikk");
+        searchButton = new IconButton().IconButtonWithText(
+                NavigationWindow.STAGE_WIDTH*1/5,
+                NavigationWindow.STAGE_WIDTH*1/5, IconButton.ADD_BUTTON,
+                "Statistikk");
         searchButton.setPrefWidth(NavigationWindow.STAGE_WIDTH);
         searchButton.setPrefHeight(NavigationWindow.STAGE_HEIGHT * 1 / 4);
         searchButton.setOnAction(guiEventHandler);
-        container = new VBox(24, statisticsButton, customerInteractionButton, searchButton);
+        container = new VBox(24, statisticsButton, customerInteractionButton,
+                searchButton);
         scene = new Scene(container);
     }
 
-    public Scene getScene(){
+    public Scene getScene() {
         return scene;
     }
 

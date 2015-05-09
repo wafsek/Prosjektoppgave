@@ -8,9 +8,9 @@ import java.util.Set;
 
 /**
  * A class to connect a Customer-object to a collection of Insurance-objects.
- * Contains methods to update both of these.
+ * Contains methods to perform operations on both of these.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class CustomerInsurance {
     private Customer customer;
@@ -19,7 +19,6 @@ public class CustomerInsurance {
     
     public CustomerInsurance(Customer customer) {
         this.customer = customer;
-        //insuranceList.add(firstInsurance);
     }
     
     /**
@@ -88,7 +87,7 @@ public class CustomerInsurance {
      * insurance contains at least one active instance of the given
      * {@link Insurance} subclass
      */
-    private boolean hasActiveInsuranceType(Class<? extends Insurance>
+    public boolean hasActiveInsuranceType(Class<? extends Insurance>
             insuranceType) {
         return getActiveInsuranceTypes().contains(insuranceType);
     }

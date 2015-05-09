@@ -4,17 +4,16 @@ import java.util.Date;
 import java.util.logging.LogRecord;
 
 /**
- * Created by baljit on 23.04.2015.
- * @author baljit 
+ * A customer formatter for console output.
+ * 
+ * @author Baljit Sarai 
  */
 public class ConsoleFormatter extends java.util.logging.Formatter {
     public ConsoleFormatter() { super(); }
     private static final String lineSep = System.getProperty("line.separator");
     
     @Override
-    public String format(final LogRecord record)
-    {
-
+    public String format(final LogRecord record) {
         String loggerName = record.getLoggerName();
         if(loggerName == null) {
             loggerName = "root";

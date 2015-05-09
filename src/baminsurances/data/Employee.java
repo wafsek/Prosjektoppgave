@@ -1,10 +1,9 @@
 package baminsurances.data;
 
 /**
- * This class represents an employee working for the company.
+ * Represents an employee working for the company.
  * 
- * @author martin
- *
+ * @author Martin Jackson
  */
 public class Employee extends Person {
     

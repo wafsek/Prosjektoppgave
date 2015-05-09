@@ -5,7 +5,7 @@ import baminsurances.data.TravelRegion;
 /**
  * Provides methods for generating {@link TravelInsurance} objects.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class TravelInsuranceGenerator {
     

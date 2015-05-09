@@ -5,7 +5,7 @@ import baminsurances.data.BoatType;
 /**
  * Provides methods for generating {@link BoatInsurance} objects.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class BoatInsuranceGenerator {
     

@@ -29,7 +29,7 @@ import java.util.logging.Level;
 
 /**
  * Created by baljit on 30.04.2015.
- * @author baljit
+ * @author Baljit Sarai
  * 
  */
 public class Controller {
@@ -227,7 +227,7 @@ public class Controller {
        */
         if(this.validatePersonData() != DataControl.SUCCESS){
             return this.validatePersonData().getDescription();
-        }else{
+        } else {
             manager.registerCustomerInsurance(new Customer(addScene.getBirthNumberFieldText(),
                     addScene.getFirstNameFieldText(),addScene.getLastNameFieldText(),
                     addScene.getTelephoneNumberFieldText(),addScene.getEmailFieldText(),
@@ -256,7 +256,7 @@ public class Controller {
             return DataControl.INVALID_BILLING_ADRESSE;
         }else if(!Validation.isValidZipCode(addScene.getBillingZipCodeFieldText())){
             return DataControl.INVALID_BILLING_ZIPCODE;
-        }else{
+        } else {
             return DataControl.SUCCESS;
         }
     }

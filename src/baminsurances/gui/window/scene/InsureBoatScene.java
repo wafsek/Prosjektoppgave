@@ -13,26 +13,29 @@ import javafx.scene.layout.HBox;
 import java.security.Key;
 
 /**
- * Created by Adrian on 15/04/2015.
+ * @author Adrian Melsom
  */
-public class InsureBoatScene extends PersonSearchScene{
+public class InsureBoatScene extends PersonSearchScene {
 
     private TextArea printArea;
     private ScrollPane scrollPane;
-    private ObservableList<String> boatTypeList, yearOfConstructionList, lengthInFeetList, harborTypeList;
-    private ComboBox yearOfConstructionBox, boatTypeBox, lengthInFeetBox, harborTypeBox;
+    private ObservableList<String> boatTypeList, yearOfConstructionList,
+        lengthInFeetList, harborTypeList;
+    private ComboBox yearOfConstructionBox, boatTypeBox, lengthInFeetBox,
+        harborTypeBox;
     private HBox footer, header;
 
     private Button registerBoatButton;
 
     /**
-     * creates a new Scene based on the values.
+     * Creates a new Scene based on the values.
      *
      * @param header
      * @param footer
      * @param handler
      */
-    public InsureBoatScene(HBox header, HBox footer, GuiEventHandler handler, KeyPressHandler keyPressHandler) {
+    public InsureBoatScene(HBox header, HBox footer, GuiEventHandler handler,
+            KeyPressHandler keyPressHandler) {
         super(handler, keyPressHandler);
         this.footer = footer;
         this.header = header;
@@ -41,35 +44,36 @@ public class InsureBoatScene extends PersonSearchScene{
     }
 
     /**
-     * returns the initial scene made by this class.
+     * Returns the initial scene made by this class.
      *
      * @return the initial scene made by this class
      */
-    public Scene getScene(){
+    public Scene getScene() {
         return scene;
     }
 
     /**
-     * recreates and adds -FX components to the initial Scene and returns it.
+     * Recreates and adds -FX components to the initial Scene and returns it.
      *
      * @return the recreated Scene.
      */
-    public Scene requestApproved(){
-        yearOfConstructionList = FXCollections.observableArrayList("1900 eller tidligere",
-                "1901 - 1920", "1921 - 1950", "1951 - 1970", "1971 - 1990",
-                "1991 - nå");
-        lengthInFeetList = FXCollections.observableArrayList("10 eller minde", "11 - 20",
-                "21 - 50", "51 eller større");
-        boatTypeList = FXCollections.observableArrayList("Cabincruiser", "Daycruiser",
-                "Gummibåt/Jolle", "RIB", "Seilbåt/Motorseiler",
-                "Skjærgårdsjeep/Landstedsbåt", "Speedbåt", "Trebåt/Snekke",
-                "Vannscooter", "Yacht", "Yrkesbåt/Sjark/Skøyte", "Andre");
-        harborTypeList = FXCollections.observableArrayList("Åpen havn", "Lukket havn");
+    public Scene requestApproved() {
+        yearOfConstructionList = FXCollections.observableArrayList(
+                "1900 eller tidligere", "1901 - 1920", "1921 - 1950",
+                "1951 - 1970", "1971 - 1990", "1991 - nÃ¥");
+        lengthInFeetList = FXCollections.observableArrayList("10 eller minde",
+                "11 - 20", "21 - 50", "51 eller stÃ¸rre");
+        boatTypeList = FXCollections.observableArrayList("Cabincruiser",
+                "Daycruiser", "GummibÃ¥t/Jolle", "RIB", "SeilbÃ¥t/Motorseiler",
+                "SkjÃ¦rgÃ¥rdsjeep/LandstedsbÃ¥t", "SpeedbÃ¥t", "TrebÃ¥t/Snekke",
+                "Vannscooter", "Yacht", "YrkesbÃ¥t/Sjark/SkÃ¸yte", "Andre");
+        harborTypeList = FXCollections.observableArrayList("Ã…pen havn",
+                "Lukket havn");
         yearOfConstructionBox = new ComboBox(yearOfConstructionList);
-        yearOfConstructionBox.setPromptText("Konstruksjonsår");
+        yearOfConstructionBox.setPromptText("KonstruksjonsÃ¥r");
         yearOfConstructionBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1/6);
         boatTypeBox = new ComboBox(boatTypeList);
-        boatTypeBox.setPromptText("Båttype");
+        boatTypeBox.setPromptText("BÃ¥ttype");
         boatTypeBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1/6);
         lengthInFeetBox = new ComboBox(lengthInFeetList);
         lengthInFeetBox.setPromptText("Lengde (fot)");
@@ -88,11 +92,14 @@ public class InsureBoatScene extends PersonSearchScene{
         scrollPane.setFitToWidth(true);
         scrollPane.setStyle("-fx-border-color: gray;");
 
-        itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel, birthNoLabel,
-                adressLabel, zipCodeLabel, firstNameField, lastNameField, birthNumberField, adressField, zipCodeField,
+        itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel,
+                birthNoLabel, adressLabel, zipCodeLabel, firstNameField,
+                lastNameField, birthNumberField, adressField, zipCodeField,
                 requestRegistration);
-        itemContainer.addColumn(0, boatTypeBox, yearOfConstructionBox, lengthInFeetBox, harborTypeBox, registerBoatButton);
-        borderPane = new BorderPane(itemContainer, header, scrollPane, footer, null);
+        itemContainer.addColumn(0, boatTypeBox, yearOfConstructionBox,
+                lengthInFeetBox, harborTypeBox, registerBoatButton);
+        borderPane = new BorderPane(itemContainer, header, scrollPane, footer,
+                null);
         return new Scene(borderPane);
     }
 }

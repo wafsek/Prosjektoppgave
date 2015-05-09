@@ -3,7 +3,7 @@ package baminsurances.data;
 /**
  * Represents a home type that is available for insurance.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public enum HomeType implements HasNorwegianTranslation {
     APARTMENT("Leilighet"),

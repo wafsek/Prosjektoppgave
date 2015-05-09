@@ -32,22 +32,26 @@ public class OperationWindow {
     private KeyPressHandler keyHandler;
 
     private OperationWindow() {
-
-
-
         stage = new Stage();
         //searchButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.SEARCH_BUTTON);
-        //statsButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.STATISTIC_BUTTON);
-        addButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.ADD_BUTTON);
-        houseButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.INSURE_HOUSE_BUTTON);
-        carButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.INSURE_CAR_BUTTON);
-        personButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.INSURE_PERSON_BUTTON);
-        boatButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.INSURE_BOAT_BUTTON);
-        backButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.STATISTIC_BUTTON);
+        //statsButton = new IconButton().iconButton(STAGE_HEIGHT*1/7,STAGE_HEIGHT*1/7, IconButton.STATISTIC_BUTTON);
+        addButton = new IconButton().iconButton(
+                STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.ADD_BUTTON);
+        houseButton = new IconButton().iconButton(
+                STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.INSURE_HOUSE_BUTTON);
+        carButton = new IconButton().iconButton(
+                STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.INSURE_CAR_BUTTON);
+        personButton = new IconButton().iconButton(
+                STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.INSURE_PERSON_BUTTON);
+        boatButton = new IconButton().iconButton(
+                STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.INSURE_BOAT_BUTTON);
+        backButton = new IconButton().iconButton(
+                STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.STATISTIC_BUTTON);
 
         logOutButton = new Button("Logg ut");
 
-        header = new HBox(50, addButton, personButton, houseButton, carButton, boatButton, backButton);
+        header = new HBox(50, addButton, personButton, houseButton, carButton,
+                boatButton, backButton);
         header.setAlignment(Pos.CENTER);
         header.setStyle("-fx-border-color: gray;" +
                 "-fx-padding: 5;");
@@ -56,7 +60,8 @@ public class OperationWindow {
         stage.setHeight(STAGE_HEIGHT);
         stage.setResizable(false);
         stage.setTitle(Config.getApplicationName());
-        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../img/temp_logo.png")));
+        stage.getIcons().add(new Image(this.getClass().getResourceAsStream(
+                "../img/temp_logo.png")));
     }
 
     public Button getSearchSceneButton() {
@@ -91,7 +96,7 @@ public class OperationWindow {
         return backButton;
     }
 
-    public Button getLogOutButton(){
+    public Button getLogOutButton() {
         return logOutButton;
     }
 
@@ -107,7 +112,7 @@ public class OperationWindow {
         return footer;
     }
 
-    public void setGuiEventHandler(GuiEventHandler geh){
+    public void setGuiEventHandler(GuiEventHandler geh) {
         handler = geh;
         //searchButton.setOnAction(handler);
         addButton.setOnAction(handler);
@@ -120,27 +125,27 @@ public class OperationWindow {
         backButton.setOnAction(handler);
     }
 
-    public void createFooter(String displayName){
+    public void createFooter(String displayName) {
         displaNameLabel = new Label(displayName);
         footer = new HBox(STAGE_WIDTH*5/6, displaNameLabel, logOutButton);
         footer.setAlignment(Pos.BASELINE_RIGHT);
         footer.setStyle("-fx-border-color: gray;");
     }
     
-    public void setKeyHandler(KeyPressHandler keyHandler){
+    public void setKeyHandler(KeyPressHandler keyHandler) {
         this.keyHandler = keyHandler;
     }
 
-    public void initialize(Scene scene){
+    public void initialize(Scene scene) {
         stage.setScene(scene);
         stage.show();
     }
 
-    public void displayScene(Scene scene){
+    public void displayScene(Scene scene) {
         stage.setScene(scene);
     }
 
-    public void close(){
+    public void close() {
         stage.close();
     }
 }

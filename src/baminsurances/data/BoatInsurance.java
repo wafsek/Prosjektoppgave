@@ -3,7 +3,7 @@ package baminsurances.data;
 /**
  * A class representing a boat insurance in the company's data bank.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class BoatInsurance extends VehicleInsurance {
     private int lengthInFeet;
@@ -21,6 +21,7 @@ public class BoatInsurance extends VehicleInsurance {
      * @param vehicleOwner the owner of the boat
      * @param registrationNo the insured boat's registration number
      * @param type the type of boat
+     * @param brand the boat's brand
      * @param model the boat's model
      * @param lengthInFeet the boat's length in feet
      * @param productionYear the boat's production year

@@ -5,7 +5,7 @@ package baminsurances.data;
  * fields in our classes. Examples are {@link CarType}, {@HomeType} and
  * {@link TravelRegion}.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public interface HasNorwegianTranslation {
     

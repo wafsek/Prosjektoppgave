@@ -15,10 +15,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-
-
 /**
- * Created by Adrian on 13/04/2015.
+ * @author Adrian Melsom
  */
 public class LoginWindow {
 
@@ -42,8 +40,9 @@ public class LoginWindow {
 
     private static LoginWindow loginWindow = new LoginWindow();
 
-    private LoginWindow(){
-        companyLogo = new Image(this.getClass().getResourceAsStream("../img/temp_logo.png"));
+    private LoginWindow() {
+        companyLogo = new Image(
+                this.getClass().getResourceAsStream("../img/temp_logo.png"));
         stage = new Stage();
         stage.setTitle(Config.getApplicationName());
         stage.getIcons().add(companyLogo);
@@ -82,42 +81,74 @@ public class LoginWindow {
         fieldContainer.setAlignment(Pos.CENTER);
 
         itemContainer.getChildren().addAll(logo, fieldContainer, login);
-        itemContainer.backgroundProperty().setValue(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY) ));
+        itemContainer.backgroundProperty().setValue(
+                new Background(new BackgroundFill(Color.LIGHTBLUE,
+                        CornerRadii.EMPTY, Insets.EMPTY) ));
 
         scene = new Scene(itemContainer);
         stage.setScene(scene);
         stage.setHeight(325);
         stage.setWidth(275);
         stage.setResizable(false);
-        
     }
 
+    /**
+     * Returns the login button.
+     * 
+     * @return the login button
+     */
     public Button getLoginButton() {
         return loginButton;
     }
 
+    /**
+     * Closes the window.
+     */
     public void close() {
         stage.hide();
     }
 
+    /**
+     * Returns the login window.
+     * 
+     * @return the login window
+     */
     public static LoginWindow getLoginWindow() {
         return loginWindow;
     }
 
+    /**
+     * Set the GuiEventHandler to the given one.
+     * 
+     * @param geh the GuiEventHandler
+     */
     public void setGuiEventHandler(GuiEventHandler geh) {
         handler = geh;
         loginButton.setOnAction(handler);
     }
     
-    public String getUsernameFieldText(){
+    /**
+     * Returns the current text in the username field.
+     * 
+     * @return the current text in the username field
+     */
+    public String getUsernameFieldText() {
         return usernameField.getText();    
     }
     
-    public String getPasswordFieldText(){
+    /**
+     * Returns the current text in the password field.
+     * 
+     * @return the current text in the password field
+     */
+    public String getPasswordFieldText() {
         return passwordField.getText();
     }
     
-    public void show(){
+    /**
+     * Shows the window.
+     */
+    public void show() {
         stage.show();
     }
 }

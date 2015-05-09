@@ -3,7 +3,7 @@ package baminsurances.data.generation;
 /**
  * Provides methods for generating {@link HolidayHomeInsurance} objects.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class HolidayHomeInsuranceGenerator {
     

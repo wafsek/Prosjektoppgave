@@ -14,7 +14,7 @@ import baminsurances.util.TxtReader;
  * The class uses external resources to generate these data, and they are
  * loaded in the constructor. 
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class PersonGenerator {
     private List<String> boysNames;

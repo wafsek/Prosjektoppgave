@@ -5,7 +5,7 @@ import baminsurances.data.Employee;
 /**
  * Provides methods for generating {@link Employee} objects.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class EmployeeGenerator {
     private PersonGenerator gen = new PersonGenerator();

@@ -1,9 +1,9 @@
 package baminsurances.data;
 
 /**
- * A class that represents a travel insurance in the company's data bank.
+ * Represents a travel insurance in the company's data bank.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class TravelInsurance extends Insurance {
     private TravelRegion region;

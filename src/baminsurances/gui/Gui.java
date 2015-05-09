@@ -10,9 +10,8 @@ import javafx.stage.Stage;
 import java.util.logging.Level;
 
 /**
- * Created by Adrian PC on 10/04/2015.
- * @author baljit sarai
- * @author Adrian
+ * @author Baljit Sarai
+ * @author Adrian Melsom
  */
 public class Gui extends Application {
     private static CustomLogger logger = CustomLogger.getInstance(); 

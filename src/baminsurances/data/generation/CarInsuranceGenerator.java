@@ -8,7 +8,7 @@ import baminsurances.util.CsvReader;
 /**
  * Provides methods for generating {@link CarInsurance} objects.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class CarInsuranceGenerator {
     List<String> brands;

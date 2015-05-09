@@ -5,7 +5,7 @@ import baminsurances.data.HomeType;
 /**
  * Provides methods for generating {@link HomeInsurance} objects.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class HomeInsuranceGenerator {
     

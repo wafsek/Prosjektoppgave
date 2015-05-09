@@ -19,7 +19,7 @@ import java.util.GregorianCalendar;
  * for the time being. This is do to the fact that the class does not load any
  * resources, and therefore does not "contain" anything.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class DateGenerator {
     

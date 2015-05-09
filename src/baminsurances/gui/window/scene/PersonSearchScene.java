@@ -16,15 +16,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Created by Adrian on 23/04/2015.
+ * @author Adrian Melsom
  */
 public abstract class PersonSearchScene {
 
     protected Scene scene;
 
-    protected TextField firstNameField, lastNameField, adressField, zipCodeField, birthNumberField;
+    protected TextField firstNameField, lastNameField, adressField,
+        zipCodeField, birthNumberField;
     protected Label firstNameLabel, lastNameLabel, adressLabel, zipCodeLabel,
-            birthNoLabel;
+        birthNoLabel;
     protected TableView personTable;
     protected TableColumn birthNoColumn, nameColumn, adressColumn, tlfNoColumn;
 
@@ -38,27 +39,34 @@ public abstract class PersonSearchScene {
     protected GuiEventHandler handler;
     protected KeyPressHandler keyPressHandler;
 
-    public PersonSearchScene(GuiEventHandler handler, KeyPressHandler keyPressHandler){
+    public PersonSearchScene(GuiEventHandler handler,
+            KeyPressHandler keyPressHandler) {
         this.handler = handler;
         this.keyPressHandler = keyPressHandler;
 
         personTable = new TableView();
-        birthNoColumn = new TableColumn("Fødselsnummer");
-        birthNoColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("birthNo"));
+        birthNoColumn = new TableColumn("FÃ¸dselsnummer");
+        birthNoColumn.setCellValueFactory(
+                new PropertyValueFactory<Person, String>("birthNo"));
         nameColumn = new TableColumn("Navn");
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
+        nameColumn.setCellValueFactory(
+                new PropertyValueFactory<Person, String>("firstName"));
         adressColumn = new TableColumn("Adresse");
-        adressColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("streetAdress"));
+        adressColumn.setCellValueFactory(
+                new PropertyValueFactory<Person, String>("streetAdress"));
         tlfNoColumn = new TableColumn("Telefonnummer");
-        tlfNoColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("telephoneNo"));
-        personTable.getColumns().addAll(birthNoColumn, nameColumn, adressColumn, tlfNoColumn);
-        personTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tlfNoColumn.setCellValueFactory(
+                new PropertyValueFactory<Person, String>("telephoneNo"));
+        personTable.getColumns().addAll(
+                birthNoColumn, nameColumn, adressColumn, tlfNoColumn);
+        personTable.setColumnResizePolicy(
+                TableView.CONSTRAINED_RESIZE_POLICY);
         personTable.setEditable(false);
         personTable.setStyle("-fx-border-color: gray;");
         personTable.setPrefWidth(OperationWindow.STAGE_WIDTH * 2 / 4);
 
         birthNumberField = new TextField();
-        birthNoLabel = new Label("Fødselsnummer:");
+        birthNoLabel = new Label("FÃ¸dselsnummer:");
         firstNameField = new TextField();
         firstNameLabel = new Label("Fornavn:");
         lastNameField = new TextField();
@@ -93,8 +101,11 @@ public abstract class PersonSearchScene {
         requestRegistration.setOnAction(handler);
 
         itemContainer = new GridPane();
-        itemContainer.addColumn(0, firstNameLabel, lastNameLabel, birthNoLabel, adressLabel, zipCodeLabel);
-        itemContainer.addColumn(1, firstNameField, lastNameField, birthNumberField, adressField, zipCodeField, requestRegistration);
+        itemContainer.addColumn(0, firstNameLabel, lastNameLabel, birthNoLabel,
+                adressLabel, zipCodeLabel);
+        itemContainer.addColumn(1, firstNameField, lastNameField,
+                birthNumberField, adressField, zipCodeField,
+                requestRegistration);
         itemContainer.setAlignment(Pos.CENTER);
         itemContainer.setVgap(30);
         itemContainer.setHgap(20);
@@ -102,21 +113,21 @@ public abstract class PersonSearchScene {
     }
 
     /**
-     * returns the Scene created in this class.
+     * Returns the Scene created in this class.
      *
      * @return the Scene created in this class.
      */
-    public Scene getScene(){
+    public Scene getScene() {
         return scene;
     }
 
     /**
-     * returns the Button that requests the change between the two
+     * Returns the Button that requests the change between the two
      * stages.
      *
      * @return the button that requests the Scene change.
      */
-    public Button getRequestRegistration(){
+    public Button getRequestRegistration() {
         return requestRegistration;
     }
 
@@ -140,21 +151,20 @@ public abstract class PersonSearchScene {
         return birthNumberField.getText();
     }
 
-    public ArrayList getTextFieldArrayList(){
+    public ArrayList getTextFieldArrayList() {
         return textFieldArrayList;
     }
 
-    public Iterator getTextFieldIterator(){
+    public Iterator getTextFieldIterator() {
         return textFieldsIterator;
     }
 
-    public void resetIterator(){
+    public void resetIterator() {
         textFieldsIterator = textFieldArrayList.iterator();
     }
 
-    public void setTableData(ObservableList observableList){
+    public void setTableData(ObservableList observableList) {
         personTable.setItems(null);
         personTable.setItems(observableList);
     }
 }
-

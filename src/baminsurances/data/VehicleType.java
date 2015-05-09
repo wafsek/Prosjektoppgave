@@ -2,9 +2,9 @@ package baminsurances.data;
 
 /**
  * An interface to be implemented by the different vehicle type enums, such as
- * CarType and BoatType.
+ * {@link CarType} and {@link BoatType}.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public interface VehicleType extends HasNorwegianTranslation {
 }

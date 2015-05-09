@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Created by Adrian PC on 19/04/2015.
+ * @author Adrian Melsom
  */
 public class StatisticsScene {
     private Scene scene;
     private Button backToRegistration;
-    private TextField employeeNumberField, birthNumberField, firstNameField, lastNameField,
-            carBrandField, carTypeField, adressField;
+    private TextField employeeNumberField, birthNumberField, firstNameField,
+            lastNameField, carBrandField, carTypeField, adressField;
     private ArrayList<TextField> textFieldList;
 
     private Button backToNavigationButton;
@@ -44,13 +44,14 @@ public class StatisticsScene {
     private GuiEventHandler handler;
 
     /**
-     * creates a new Scene based on the given values.
+     * Creates a new Scene based on the given values.
      *
      * @param footer
      * @param keyHandler
      * @param handler
      */
-    public StatisticsScene(HBox footer, KeyPressHandler keyHandler, GuiEventHandler handler){
+    public StatisticsScene(HBox footer, KeyPressHandler keyHandler,
+            GuiEventHandler handler) {
         this.handler = handler;
         this.keyHandler = keyHandler;
 
@@ -88,8 +89,9 @@ public class StatisticsScene {
 
 
         fieldContainer = new GridPane();
-        fieldContainer.addColumn(0, employeeNumberField, birthNumberField, firstNameField,
-                lastNameField, carBrandField, carTypeField, adressField);
+        fieldContainer.addColumn(0, employeeNumberField, birthNumberField,
+                firstNameField, lastNameField, carBrandField, carTypeField,
+                adressField);
         fieldContainer.setVgap(20);
         fieldContainer.setAlignment(Pos.CENTER);
         fieldContainer.setPrefWidth(OperationWindow.STAGE_WIDTH * 1 / 4);
@@ -98,9 +100,10 @@ public class StatisticsScene {
         possiblePeople = new TableView();
         fname = new TableColumn("Fornavn");
         lname = new TableColumn("Etternavn");
-        bnmbr = new TableColumn("Fødselsnummer");
+        bnmbr = new TableColumn("FÃ¸dselsnummer");
         possiblePeople.getColumns().addAll(fname, lname, bnmbr);
-        possiblePeople.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        possiblePeople.setColumnResizePolicy(
+                TableView.CONSTRAINED_RESIZE_POLICY);
         tableContainer = new VBox(20, possiblePeople);
         tableContainer.setPrefWidth(OperationWindow.STAGE_WIDTH * 2 / 4);
         tableContainer.setStyle("-fx-border-color: gray;");
@@ -122,19 +125,23 @@ public class StatisticsScene {
         dummy10 = new CheckBox("Dummy10");
 
         checkBoxContainer = new GridPane();
-        checkBoxContainer.addColumn(0, fromLabel, fromDate, dummy1, dummy3, dummy5, dummy7, dummy9);
-        checkBoxContainer.addColumn(1, toLabel, toDate, dummy2, dummy4, dummy6, dummy8, dummy10);
+        checkBoxContainer.addColumn(0, fromLabel, fromDate, dummy1, dummy3,
+                dummy5, dummy7, dummy9);
+        checkBoxContainer.addColumn(1, toLabel, toDate, dummy2, dummy4, dummy6,
+                dummy8, dummy10);
         checkBoxContainer.setVgap(20);
         checkBoxContainer.setHgap(20);
         checkBoxContainer.setPrefWidth(OperationWindow.STAGE_WIDTH * 1 / 4);
         checkBoxContainer.setAlignment(Pos.CENTER);
         checkBoxContainer.setStyle("-fx-border-color: gray;");
 
-        backToNavigationButton = new IconButton().iconButton(OperationWindow.STAGE_HEIGHT*1/7,
+        backToNavigationButton = new IconButton().iconButton(
+                OperationWindow.STAGE_HEIGHT*1/7,
                 OperationWindow.STAGE_HEIGHT*1/7, IconButton.STATISTIC_BUTTON);
         backToNavigationButton.setOnAction(handler);
 
-        container = new HBox(0, fieldContainer, tableContainer, checkBoxContainer);
+        container = new HBox(0, fieldContainer, tableContainer,
+                checkBoxContainer);
         menu = new VBox(0, backToNavigationButton);
         menu.setAlignment(Pos.CENTER);
         menu.setPrefHeight(120);
@@ -148,11 +155,11 @@ public class StatisticsScene {
     }
 
     /**
-     * returns the Scene defined in this class.
+     * Returns the Scene defined in this class.
      *
      * @return the Scene defined in this class.
      */
-    public Scene getScene(){
+    public Scene getScene() {
         return scene;
     }
 
@@ -163,28 +170,28 @@ public class StatisticsScene {
      * @return the Button that requests the Scene change between the
      * two stages defined in this class
      */
-    public Button getbackToNavigationButton(){
+    public Button getbackToNavigationButton() {
         return backToNavigationButton;
     }
 
-    public ArrayList getTextFieldList(){
+    public ArrayList getTextFieldList() {
         return textFieldList;
     }
 
-    public void employeeStatistics(){
+    public void employeeStatistics() {
         carTypeField.setEditable(false);
         carBrandField.setEditable(false);
     }
 
-    public void setEditableEmployeeFields(){
-        if (employeeNumberField.getText().trim().isEmpty()){
+    public void setEditableEmployeeFields() {
+        if (employeeNumberField.getText().trim().isEmpty()) {
             birthNumberField.setEditable(true);
             carBrandField.setEditable(true);
             adressField.setEditable(true);
             birthNumberField.setPromptText("Personnummer");
             carBrandField.setPromptText("Bilmerke");
             adressField.setPromptText("Adresse");
-        }else {
+        } else {
             birthNumberField.setEditable(false);
             carBrandField.setEditable(false);
             adressField.setEditable(false);
@@ -194,23 +201,23 @@ public class StatisticsScene {
         }
     }
 
-    public void setEditableCustomerFields(){
+    public void setEditableCustomerFields() {
         if (birthNumberField.getText().trim().isEmpty() &&
                 carBrandField.getText().trim().isEmpty() &&
                 adressField.getText().trim().isEmpty()){
             employeeNumberField.setEditable(true);
             employeeNumberField.setPromptText("Ansattnummer");
-        }else {
+        } else {
             employeeNumberField.setEditable(false);
             employeeNumberField.setPromptText("Irrelevant felt");
         }
     }
 
-    public Iterator getTextFieldsIterator(){
+    public Iterator getTextFieldsIterator() {
         return textFieldsIterator;
     }
 
-    public void resetIterator(){
+    public void resetIterator() {
         textFieldsIterator = textFieldList.iterator();
     }
 }

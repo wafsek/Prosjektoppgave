@@ -4,11 +4,11 @@ import baminsurances.data.DataBank;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 /**
- * Created by baljit on 15.04.2015.
- * @author baljit 
+ * Handles the serialization of the stored data.
+ * 
+ * @author Baljit Sarai 
  */
 public class Serializer {
 

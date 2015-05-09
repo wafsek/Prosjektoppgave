@@ -11,16 +11,17 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
 /**
- * Created by Adrian on 15/04/2015.
+ * @author Adrian Melsom
  */
-public class TravelInsuranceScene extends PersonSearchScene{
+public class TravelInsuranceScene extends PersonSearchScene {
 
     private final int COMBOBOX_WIDTH = 175;
 
     private Button registerPersonInsurance;
     private TextArea printArea;
     private ScrollPane scrollPane;
-    private ObservableList<String> kidsList, relationshipList, incomeList, deptList;
+    private ObservableList<String> kidsList, relationshipList, incomeList,
+        deptList;
     private ComboBox kidsBox, relationshipBox, incomeBox, deptBox;
     private HBox header, footer;
 
@@ -31,11 +32,13 @@ public class TravelInsuranceScene extends PersonSearchScene{
      * @param footer
      * @param handler
      */
-    public TravelInsuranceScene(HBox header, HBox footer, GuiEventHandler handler, KeyPressHandler keyPressHandler) {
+    public TravelInsuranceScene(HBox header, HBox footer,
+            GuiEventHandler handler, KeyPressHandler keyPressHandler) {
         super(handler, keyPressHandler);
         this.header = header;
         this.footer = footer;
-        borderPane = new BorderPane(itemContainer, header, personTable, footer, null);
+        borderPane = new BorderPane(itemContainer, header, personTable, footer,
+                null);
         scene = new Scene(borderPane);
         keyPressHandler.setTravelInsuranceScene(this);
     }
@@ -45,12 +48,16 @@ public class TravelInsuranceScene extends PersonSearchScene{
      * @return the Scene created.
      */
     public Scene requestApproved() {
-        incomeList = FXCollections.observableArrayList("150.000 eller minde.", "150.000 - 250.000",
-                "250.000 - 500.000", "500.000 - 1.500.000", "1.500.000 eller mer");
-        deptList = FXCollections.observableArrayList("150.000 eller minde.", "150.000 - 250.000",
-                "250.000 - 500.000", "500.000 - 1.500.000", "1.500.000 eller mer");
-        kidsList = FXCollections.observableArrayList("0", "1", "2", "3", "4", "5 eller fler");
-        relationshipList = FXCollections.observableArrayList("Har samboer", "Har ikke samboer");
+        incomeList = FXCollections.observableArrayList("150.000 eller minde.",
+                "150.000 - 250.000", "250.000 - 500.000", "500.000 - 1.500.000",
+                "1.500.000 eller mer");
+        deptList = FXCollections.observableArrayList("150.000 eller minde.",
+                "150.000 - 250.000", "250.000 - 500.000", "500.000 - 1.500.000",
+                "1.500.000 eller mer");
+        kidsList = FXCollections.observableArrayList("0", "1", "2", "3", "4",
+                "5 eller fler");
+        relationshipList = FXCollections.observableArrayList("Har samboer",
+                "Har ikke samboer");
 
         kidsBox = new ComboBox(kidsList);
         kidsBox.setPromptText("Barn");
@@ -76,12 +83,14 @@ public class TravelInsuranceScene extends PersonSearchScene{
         scrollPane.setFitToWidth(true);
         scrollPane.setStyle("-fx-border-color: gray;");
 
-        itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel, birthNoLabel,
-                adressLabel, zipCodeLabel, firstNameField, lastNameField, birthNumberField, adressField, zipCodeField,
+        itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel,
+                birthNoLabel, adressLabel, zipCodeLabel, firstNameField,
+                lastNameField, birthNumberField, adressField, zipCodeField,
                 requestRegistration);
-        itemContainer.addColumn(0, incomeBox, deptBox, kidsBox, relationshipBox, registerPersonInsurance);
-        borderPane = new BorderPane(itemContainer, header, scrollPane, footer, null);
+        itemContainer.addColumn(0, incomeBox, deptBox, kidsBox, relationshipBox,
+                registerPersonInsurance);
+        borderPane = new BorderPane(itemContainer, header, scrollPane, footer,
+                null);
         return new Scene(borderPane);
     }
 }
-

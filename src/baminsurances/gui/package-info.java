@@ -3,6 +3,6 @@
  * <p>
  * Made using JavaFX.
  * 
- * @author adrian
+ * @author Adrian Melsom
  */
 package baminsurances.gui;

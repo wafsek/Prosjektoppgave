@@ -1,7 +1,9 @@
 package baminsurances.security;
 
 /**
- * Created by baljit on 29.04.2015.
+ * Enum that represents a level of authorization in the software.
+ * 
+ * @author Baljit Sarai
  */
 public enum Authorization {
     

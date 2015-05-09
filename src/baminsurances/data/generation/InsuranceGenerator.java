@@ -5,7 +5,7 @@ import java.time.LocalDate;
 /**
  * Provides methods for generating {@link Insurance} objects.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class InsuranceGenerator {
     

@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * Created by Adrian PC on 12/04/2015.
+ * @author Adrian Melsom
  */
 public class IconButton {
 
@@ -28,7 +28,7 @@ public class IconButton {
 
     private String imagePath = "../img/";
 
-    public IconButton(){
+    public IconButton() {
         button = new Button();
 
         addImage = new Image(this.getClass().getResourceAsStream(imagePath + "add.png"));
@@ -53,29 +53,27 @@ public class IconButton {
         boatImageView = new ImageView(boatImage);
     }
 
-    private ImageView testMagicalInput(int magical_constant)
-    {
-        if(magical_constant == ADD_BUTTON){
+    private ImageView testMagicalInput(int magical_constant) {
+        if (magical_constant == ADD_BUTTON) {
             return addImageView;
-        }else if(magical_constant == STATISTIC_BUTTON){
+        } else if (magical_constant == STATISTIC_BUTTON) {
             return statisticImageView;
-        }else if(magical_constant == SEARCH_BUTTON){
+        } else if (magical_constant == SEARCH_BUTTON) {
             return searchImageView;
-        }else if(magical_constant == INSURE_HOUSE_BUTTON){
+        } else if (magical_constant == INSURE_HOUSE_BUTTON) {
             return houseImageView;
-        }else if(magical_constant == INSURE_CAR_BUTTON){
+        } else if (magical_constant == INSURE_CAR_BUTTON) {
             return carImageView;
-        }else if(magical_constant == INSURE_PERSON_BUTTON){
+        } else if (magical_constant == INSURE_PERSON_BUTTON) {
             return personImageView;
-        }else if(magical_constant == INSURE_BOAT_BUTTON){
+        } else if (magical_constant == INSURE_BOAT_BUTTON) {
             return boatImageView;
-        }else{
+        } else {
             return null;
         }
-
     }
 
-    public Button iconButton(double width, double height, int magical_constant){
+    public Button iconButton(double width, double height, int magical_constant) {
         imageViewToBeUsed = testMagicalInput(magical_constant);
         imageViewToBeUsed.setFitWidth(width);
         imageViewToBeUsed.setFitHeight(height);
@@ -84,45 +82,11 @@ public class IconButton {
         return button;
     }
 
-    public Button IconButtonWithText(double width, double height, int magical_constant, String buttonText){
+    public Button IconButtonWithText(double width, double height,
+            int magical_constant, String buttonText) {
         imageViewToBeUsed = testMagicalInput(magical_constant);
         imageViewToBeUsed.setFitWidth(width);
         imageViewToBeUsed.setFitHeight(height);
         return new Button(buttonText, imageViewToBeUsed);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-

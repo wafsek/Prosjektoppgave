@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
- * Created by Adrian PC on 08/05/2015.
+ * @author Adrian Melsom
  */
 public class NavigationWindow {
 
@@ -14,7 +14,7 @@ public class NavigationWindow {
             STAGE_HEIGHT = OperationWindow.STAGE_WIDTH*1/4;
     private Stage stage;
 
-    public NavigationWindow(){
+    public NavigationWindow() {
         stage = new Stage();
         stage.setTitle(Config.getApplicationName());
         stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../img/temp_logo.png")));
@@ -23,16 +23,16 @@ public class NavigationWindow {
         stage.setResizable(false);
     }
 
-    public void initiate(Scene scene){
+    public void initiate(Scene scene) {
         stage.setScene(scene);
         stage.show();
     }
 
-    public void close(){
+    public void close() {
         stage.hide();
     }
 
-    public void reopen(){
+    public void reopen() {
         stage.show();
     }
 }

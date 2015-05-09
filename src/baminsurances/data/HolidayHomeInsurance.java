@@ -3,7 +3,7 @@ package baminsurances.data;
 /**
  * A class representing a holiday home insurance in the company's data bank.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class HolidayHomeInsurance extends HomeInsurance {
     private boolean rentedOut;
@@ -38,8 +38,7 @@ public class HolidayHomeInsurance extends HomeInsurance {
     }
 
     /**
-     * Returns <code>true</code> if the insured holiday home is being rented
-     * out.
+     * Is the holiday home being rented out?
      * 
      * @return <code>true</code> if the insured holiday home is being rented
      * out.

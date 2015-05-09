@@ -3,9 +3,9 @@ package baminsurances.data;
 import java.time.LocalDate;
 
 /**
- * The class representing the company's customers.
+ * The class representing a customer of the company.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class Customer extends Person {
     private LocalDate registrationDate;

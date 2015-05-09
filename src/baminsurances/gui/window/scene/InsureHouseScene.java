@@ -11,7 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
 /**
- * Created by Adrian on 15/04/2015.
+ * @author Adrian Melsom
  */
 public class InsureHouseScene extends PersonSearchScene{
 
@@ -30,11 +30,13 @@ public class InsureHouseScene extends PersonSearchScene{
      * @param footer
      * @param handler
      */
-    public InsureHouseScene(HBox header, HBox footer, GuiEventHandler handler, KeyPressHandler keyPressHandler) {
+    public InsureHouseScene(HBox header, HBox footer, GuiEventHandler handler,
+            KeyPressHandler keyPressHandler) {
         super(handler, keyPressHandler);
         this.header = header;
         this.footer = footer;
-        borderPane = new BorderPane(itemContainer, header, personTable, footer, null);
+        borderPane = new BorderPane(itemContainer, header, personTable, footer,
+                null);
         scene = new Scene(borderPane);
     }
 
@@ -43,7 +45,7 @@ public class InsureHouseScene extends PersonSearchScene{
      *
      * @return the Scene created by this class
      */
-    public Scene getScene(){
+    public Scene getScene() {
         return scene;
     }
 
@@ -52,14 +54,15 @@ public class InsureHouseScene extends PersonSearchScene{
      *
      * @return the recreated initial Scene.
      */
-    public Scene requestApproved(){
-        yearOfConstructionList = FXCollections.observableArrayList("1900 eller tidligere",
-                "1901 - 1920", "1921 - 1950", "1951 - 1970", "1971 - 1990",
-                "1991 - nå");
+    public Scene requestApproved() {
+        yearOfConstructionList = FXCollections.observableArrayList(
+                "1900 eller tidligere", "1901 - 1920", "1921 - 1950",
+                "1951 - 1970", "1971 - 1990", "1991 - nÃ¥");
         areaList = FXCollections.observableArrayList("50 eller mindre",
-                "51 - 75", "76 - 125", "126 - 175", "176 - 250", "251 eller mer");
+                "51 - 75", "76 - 125", "126 - 175", "176 - 250",
+                "251 eller mer");
         yearOfConstructionBox = new ComboBox(yearOfConstructionList);
-        yearOfConstructionBox.setPromptText("Konstruksjonsår");
+        yearOfConstructionBox.setPromptText("Konstruksjonsï¿½r");
         yearOfConstructionBox.setPrefWidth(OperationWindow.STAGE_WIDTH * 1/5);
         areaBox = new ComboBox(areaList);
         areaBox.setPromptText("Areal (m^2)");
@@ -90,7 +93,7 @@ public class InsureHouseScene extends PersonSearchScene{
         return new Scene(borderPane);
     }
 
-    public Button getRegisterHouseButton(){
+    public Button getRegisterHouseButton() {
         return registerHouseButton;
     }
 }

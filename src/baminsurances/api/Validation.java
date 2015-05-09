@@ -15,7 +15,7 @@ package baminsurances.api;
  * To see a detailed guide for what's considered OK for each data type, see
  * their respective validator-methods.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class Validation {
     

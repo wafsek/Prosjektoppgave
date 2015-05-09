@@ -18,15 +18,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Created by Adrian on 30/04/2015.
+ * @author Adrian Melsom
  */
-public class SearchScene extends PersonSearchScene{
+public class SearchScene extends PersonSearchScene {
 
     private TextArea printArea;
     private VBox rightSideContainer;
     private HBox footer, header;
 
-    public SearchScene(HBox header, HBox footer, GuiEventHandler handler, KeyPressHandler keyPressHandler){
+    public SearchScene(HBox header, HBox footer, GuiEventHandler handler,
+            KeyPressHandler keyPressHandler){
         super(handler, keyPressHandler);
         this.header = header;
         this.footer = footer;
@@ -37,14 +38,17 @@ public class SearchScene extends PersonSearchScene{
         rightSideContainer = new VBox(0, personTable, printArea);
 
         itemContainer = new GridPane();
-        itemContainer.addColumn(0, firstNameLabel, lastNameLabel, birthNoLabel, adressLabel, zipCodeLabel);
-        itemContainer.addColumn(1, firstNameField, lastNameField, birthNumberField, adressField, zipCodeField);
+        itemContainer.addColumn(0, firstNameLabel, lastNameLabel, birthNoLabel,
+                adressLabel, zipCodeLabel);
+        itemContainer.addColumn(1, firstNameField, lastNameField,
+                birthNumberField, adressField, zipCodeField);
         itemContainer.setAlignment(Pos.CENTER);
         itemContainer.setVgap(30);
         itemContainer.setHgap(20);
         itemContainer.setStyle("-fx-border-color: gray;");
 
-        borderPane = new BorderPane(itemContainer, header, rightSideContainer, footer, null);
+        borderPane = new BorderPane(itemContainer, header, rightSideContainer,
+                footer, null);
         scene = new Scene(borderPane);
 
         keyPressHandler.setSearchScene(this);
@@ -53,31 +57,4 @@ public class SearchScene extends PersonSearchScene{
     public void setTableData(ObservableList observableList){
         personTable.setItems(observableList);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-

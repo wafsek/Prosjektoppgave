@@ -18,7 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Created by Adrian PC on 13/04/2015.
+ * @author Adrian Melsom
  */
 public class MessageDialog {
 
@@ -46,8 +46,7 @@ public class MessageDialog {
 
     private static IntegerProperty returnCode;
 
-    public MessageDialog(){
-
+    public MessageDialog() {
         path = "../img/iconImg/";
         warning = new Image(this.getClass().getResourceAsStream(path + "warning_icon.png"));
         warningImageView = new ImageView(warning);
@@ -86,8 +85,7 @@ public class MessageDialog {
         });
     }
 
-
-    public static int showMessageDialog(String title, String object_message){
+    public static int showMessageDialog(String title, String object_message) {
         stage = new Stage();
         stage.setMinHeight(150);
         stage.setMinWidth(250);
@@ -118,7 +116,8 @@ public class MessageDialog {
         return returnCode.get();
     }
 
-    public static int showMessageDialog(String title, String object_message, int magical_constant_icon, int magical_constant_buttons) {
+    public static int showMessageDialog(String title, String object_message,
+            int magical_constant_icon, int magical_constant_buttons) {
         stage = new Stage();
         stage.setMinHeight(150);
         stage.setMinWidth(250);
@@ -129,23 +128,23 @@ public class MessageDialog {
         message = new Label(fitText(object_message));
 
         ImageView iconToBeUsed;
-        if (magical_constant_icon == ERROR_ICON){
+        if (magical_constant_icon == ERROR_ICON) {
             iconToBeUsed = errorImageView;
-        }else if (magical_constant_icon == WARNING_ICON){
+        } else if (magical_constant_icon == WARNING_ICON) {
             iconToBeUsed = warningImageView;
-        }else if (magical_constant_icon == QUESTION_ICON){
+        } else if (magical_constant_icon == QUESTION_ICON) {
             iconToBeUsed = questionImageView;
-        }else{
+        } else {
             iconToBeUsed = informationImageView;
         }
         iconToBeUsed.setFitHeight(50);
         iconToBeUsed.setFitWidth(50);
 
-        if (magical_constant_buttons == OK_OPTION){
+        if (magical_constant_buttons == OK_OPTION) {
             buttonHBox = new HBox(ok);
-        }else if (magical_constant_buttons == YES__NO_OPTION){
+        } else if (magical_constant_buttons == YES__NO_OPTION) {
             buttonHBox = new HBox(40, yes, no);
-        }else if (magical_constant_buttons == CANCEL_OPTION){
+        } else if (magical_constant_buttons == CANCEL_OPTION) {
             buttonHBox = new HBox(cancel);
         }
 
@@ -162,7 +161,8 @@ public class MessageDialog {
         return returnCode.get();
     }
 
-    public static int showMessageDialog(String title, String object_message, int magical_icon_constant) {
+    public static int showMessageDialog(String title, String object_message,
+            int magical_icon_constant) {
         stage = new Stage();
         stage.setMinHeight(150);
         stage.setMinWidth(250);
@@ -175,11 +175,11 @@ public class MessageDialog {
         ImageView iconToBeUsed;
         if (magical_icon_constant == ERROR_ICON){
             iconToBeUsed = errorImageView;
-        }else if (magical_icon_constant == WARNING_ICON){
+        } else if (magical_icon_constant == WARNING_ICON){
             iconToBeUsed = warningImageView;
-        }else if (magical_icon_constant == QUESTION_ICON){
+        } else if (magical_icon_constant == QUESTION_ICON){
             iconToBeUsed = questionImageView;
-        }else{
+        } else {
             iconToBeUsed = informationImageView;
         }
         iconToBeUsed.setFitWidth(50);
@@ -207,17 +207,16 @@ public class MessageDialog {
         return returnCode.get();
     }
 
-     private static String fitText(String inputString){
-
+    private static String fitText(String inputString) {
         String output = "";
         char[] chars = inputString.toCharArray();
 
-        for(int i = 0; i < chars.length; i++){
-            if(i != 0 && i % 20 == 0 && chars[i] != ' ' ){
+        for(int i = 0; i < chars.length; i++) {
+            if(i != 0 && i % 20 == 0 && chars[i] != ' ' ) {
                 output = (output + chars[i] + "-\n");
-            }else if (i != 0 && i % 20 == 0){
+            } else if (i != 0 && i % 20 == 0) {
                 output = (output + chars[i] + "\n");
-            }else{
+            } else {
                 output = (output + chars[i]);
             }
         }

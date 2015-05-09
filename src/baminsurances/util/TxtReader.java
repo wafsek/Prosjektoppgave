@@ -8,6 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that provides methods for reading .txt-files.
+ * 
+ * @author Martin Jackson
+ */
 public class TxtReader {
     private File txtFile;
     

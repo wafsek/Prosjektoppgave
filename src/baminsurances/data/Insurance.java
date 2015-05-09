@@ -5,7 +5,7 @@ import java.time.LocalDate;
 /**
  * The root class in the Insurance hierarchy.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public abstract class Insurance implements Comparable<Insurance> {
     private static int nextInsuranceNo = 1;

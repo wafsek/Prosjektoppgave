@@ -12,10 +12,9 @@ import javax.imageio.ImageIO;
 
 /**
  * A class representing a claim advice in the company's data bank. It contains
- * information about the claim advice itself, as well as witnesses, if they are
- * present.
+ * information about the claim advice itself, as well as witnesses, if any.
  * 
- * @author martin
+ * @author Martin Jackson
  */
 public class ClaimAdvice {
     private static int nextDamageNo = 1;
@@ -29,13 +28,14 @@ public class ClaimAdvice {
     private long compensationAmount;
     
     /**
-     * Creates a new claim advice with the given values.
+     * Creates a new claim advice with the given values. To add pictures and
+     * witnesses, instantiate a ClaimAdvice before using the {@link
+     * #addWitness(Person) addWitness} and {@link
+     * #addPictureOfDamage(BufferedImage) addPictureOfDamage} methods.
      * 
      * @param dateOfDamage the date of the damage
      * @param damageType the type of damage (crash, fire, etc.)
      * @param damageDescription description of the damage
-     * @param picturesOfDamage pictures of the damage
-     * @param witnesses witnesses of the damage
      * @param assessmentAmount the assessment amount
      * @param compensationAmount the compensation amount
      * @throws NullPointerException if any of the arguments are null

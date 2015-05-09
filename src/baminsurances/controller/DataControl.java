@@ -1,8 +1,10 @@
 package baminsurances.controller;
 
 /**
- * Created by baljit on 04.05.2015.
- * @author baljit 
+ * The DataControl enums represent a response that is given to the user, after
+ * performing a certain action.
+ * 
+ * @author Baljit Sarai 
  */
 public enum DataControl {
     SUCCESS("Sucess"),
@@ -18,12 +20,20 @@ public enum DataControl {
     
     private final String description;
     
-    DataControl(String description){
+    /**
+     * Returns the description of this 
+     * @param description
+     */
+    DataControl(String description) {
         this.description = description;
     }
     
-    public String getDescription(){
+    /**
+     * Returns a description of this DataControl?
+     * 
+     * @return a description of this DataControl?
+     */
+    public String getDescription() {
         return this.description;
     }
-    
 }

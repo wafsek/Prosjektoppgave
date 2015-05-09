@@ -5,16 +5,12 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 
 /**
- * Created by baljit on 22.04.2015.
- * @author baljit 
+ * A customer filter used for logging.
+ * 
+ * @author Baljit Sarai 
  */
 public class CustomFilter implements Filter {
     public boolean isLoggable(LogRecord record) {
-        return  record.getLevel() == Level.SEVERE;
+        return record.getLevel() == Level.SEVERE;
     }
 }
-
-
-
-
-
