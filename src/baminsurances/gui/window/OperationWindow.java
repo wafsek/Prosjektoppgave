@@ -22,7 +22,8 @@ public class OperationWindow {
     private Stage stage;
     private HBox header, footer;
 
-    private Button searchButton, addButton, statsButton, houseButton, carButton, personButton, boatButton, logOutButton;
+    private Button searchButton, addButton, statsButton, houseButton, carButton,
+            personButton, boatButton, logOutButton, backButton;
     private Label displaNameLabel;
 
     private static OperationWindow operationWindow = new OperationWindow();
@@ -35,16 +36,18 @@ public class OperationWindow {
 
 
         stage = new Stage();
-        searchButton = new IconButton().iconButton(100, 100, IconButton.SEARCH_BUTTON);
-        addButton = new IconButton().iconButton(100, 100, IconButton.ADD_BUTTON);
-        statsButton = new IconButton().iconButton(100, 100, IconButton.STATISTIC_BUTTON);
-        houseButton = new IconButton().iconButton(100, 100, IconButton.INSURE_HOUSE_BUTTON);
-        carButton = new IconButton().iconButton(100, 100, IconButton.INSURE_CAR_BUTTON);
-        personButton = new IconButton().iconButton(100, 100, IconButton.INSURE_PERSON_BUTTON);
-        boatButton = new IconButton().iconButton(100, 100, IconButton.INSURE_BOAT_BUTTON);
+        //searchButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.SEARCH_BUTTON);
+        //statsButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.STATISTIC_BUTTON);
+        addButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.ADD_BUTTON);
+        houseButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.INSURE_HOUSE_BUTTON);
+        carButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.INSURE_CAR_BUTTON);
+        personButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.INSURE_PERSON_BUTTON);
+        boatButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.INSURE_BOAT_BUTTON);
+        backButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.STATISTIC_BUTTON);
+
         logOutButton = new Button("Logg ut");
 
-        header = new HBox(30, searchButton, addButton, personButton, houseButton, carButton, boatButton, statsButton);
+        header = new HBox(50, addButton, personButton, houseButton, carButton, boatButton, backButton);
         header.setAlignment(Pos.CENTER);
         header.setStyle("-fx-border-color: gray;" +
                 "-fx-padding: 5;");
@@ -84,6 +87,10 @@ public class OperationWindow {
         return boatButton;
     }
 
+    public Button getBackButton() {
+        return backButton;
+    }
+
     public Button getLogOutButton(){
         return logOutButton;
     }
@@ -102,14 +109,15 @@ public class OperationWindow {
 
     public void setGuiEventHandler(GuiEventHandler geh){
         handler = geh;
-        searchButton.setOnAction(handler);
+        //searchButton.setOnAction(handler);
         addButton.setOnAction(handler);
-        statsButton.setOnAction(handler);
+        //statsButton.setOnAction(handler);
         houseButton.setOnAction(handler);
         carButton.setOnAction(handler);
         personButton.setOnAction(handler);
         boatButton.setOnAction(handler);
         logOutButton.setOnAction(handler);
+        backButton.setOnAction(handler);
     }
 
     public void createFooter(String displayName){

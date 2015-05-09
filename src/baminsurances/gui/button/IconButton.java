@@ -75,13 +75,20 @@ public class IconButton {
 
     }
 
-    public Button iconButton(double preferredWidth, double preferredHeight, int magical_constant){
+    public Button iconButton(double width, double height, int magical_constant){
         imageViewToBeUsed = testMagicalInput(magical_constant);
-        imageViewToBeUsed.setFitWidth(preferredWidth);
-        imageViewToBeUsed.setFitHeight(preferredHeight);
+        imageViewToBeUsed.setFitWidth(width);
+        imageViewToBeUsed.setFitHeight(height);
         button = new Button();
         button.setGraphic(imageViewToBeUsed);
         return button;
+    }
+
+    public Button IconButtonWithText(double width, double height, int magical_constant, String buttonText){
+        imageViewToBeUsed = testMagicalInput(magical_constant);
+        imageViewToBeUsed.setFitWidth(width);
+        imageViewToBeUsed.setFitHeight(height);
+        return new Button(buttonText, imageViewToBeUsed);
     }
 
 
