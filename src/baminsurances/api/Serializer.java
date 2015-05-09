@@ -1,6 +1,6 @@
 package baminsurances.api;
 
-import baminsurances.data.InsuranceDataBank;
+import baminsurances.data.DataBank;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 public class Serializer {
 
-    public void serialize(InsuranceDataBank dataBank){
+    public void serialize(DataBank dataBank){
 
         try{
             FileOutputStream fileOut = new FileOutputStream(Config.getDataBankFilePath());

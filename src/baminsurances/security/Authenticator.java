@@ -1,6 +1,6 @@
 package baminsurances.security;
 
-import baminsurances.data.InsuranceDataBank;
+import baminsurances.data.DataBank;
 import baminsurances.logging.CustomLogger;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class Authenticator {
     private static final Authenticator authenticator = new Authenticator();
     
     private Authenticator(){
-        userList = InsuranceDataBank.getInstance().getUserList();
+        userList = DataBank.getInstance().getUserList();
     }
     
     

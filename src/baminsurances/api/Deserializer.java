@@ -1,6 +1,6 @@
 package baminsurances.api;
 
-import baminsurances.data.InsuranceDataBank;
+import baminsurances.data.DataBank;
 
 import java.io.*;
 
@@ -10,9 +10,9 @@ import java.io.*;
  */
 public class Deserializer {
 
-    public InsuranceDataBank deserialze(){
+    public DataBank deserialze(){
 
-        InsuranceDataBank bokRegister;
+        DataBank bokRegister;
 
         try{
             File file = new File(Config.getDataBankFilePath());
@@ -22,7 +22,7 @@ public class Deserializer {
             }
             FileInputStream fin = new FileInputStream(Config.getDataBankFilePath());
             ObjectInputStream ois = new ObjectInputStream(fin);
-            bokRegister = (InsuranceDataBank) ois.readObject();
+            bokRegister = (DataBank) ois.readObject();
             ois.close();
             return bokRegister;
 

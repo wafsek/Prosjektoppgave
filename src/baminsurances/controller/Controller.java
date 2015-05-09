@@ -5,7 +5,7 @@ import baminsurances.api.CustomerServiceManager;
 import baminsurances.api.Validation;
 import baminsurances.data.Customer;
 import baminsurances.data.CustomerInsurance;
-import baminsurances.data.InsuranceDataBank;
+import baminsurances.data.DataBank;
 import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
@@ -64,7 +64,7 @@ public class Controller {
     
     
     public Controller(){
-        manager = new CustomerServiceManager(InsuranceDataBank.getInstance());    
+        manager = new CustomerServiceManager(DataBank.getInstance());    
     }
     
     
@@ -112,7 +112,7 @@ public class Controller {
                 operationWindow.displayScene(travelInsuranceScene.requestApproved());
         } else if (control == operationWindow.getLogOutButton()){
             if (new MessageDialog().showMessageDialog("Logg ut", "Er du sikke" +
-                    "r på at du vil logge ut?", MessageDialog.QUESTION_ICON,
+                    "r pï¿½ at du vil logge ut?", MessageDialog.QUESTION_ICON,
                     MessageDialog.YES__NO_OPTION)==MessageDialog.YES_OPTION){
                 operationWindow.close();
                 loginWindow.show();
