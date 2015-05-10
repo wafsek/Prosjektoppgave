@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
 public class ClaimAdvice {
     private static int nextDamageNo = 1;
     private int damageNo;
-    private Calendar dateOfDamage;
+    private LocalDate dateOfDamage;
     private String damageType;
     private String damageDescription;
     private List<Person> witnesses = new ArrayList<>();
@@ -40,7 +40,7 @@ public class ClaimAdvice {
      * @param compensationAmount the compensation amount
      * @throws NullPointerException if any of the arguments are null
      */
-    public ClaimAdvice(Calendar dateOfDamage, String damageType,
+    public ClaimAdvice(LocalDate dateOfDamage, String damageType,
             String damageDescription, long assessmentAmount,
             long compensationAmount) {
         //TODO add witnesses and images to constructor?
@@ -84,7 +84,7 @@ public class ClaimAdvice {
      * 
      * @return the date of the damage
      */
-    public Calendar getDateOfDamage() {
+    public LocalDate getDateOfDamage() {
         return dateOfDamage;
     }
 
@@ -94,7 +94,7 @@ public class ClaimAdvice {
      * @param dateOfDamage the new date of the damage
      * @throws NullPointerException if argument is null
      */
-    public void setDateOfDamage(Calendar dateOfDamage) {
+    public void setDateOfDamage(LocalDate dateOfDamage) {
         if (dateOfDamage == null) {
             throw new NullPointerException("Date of damage cannot be null.");
         }
