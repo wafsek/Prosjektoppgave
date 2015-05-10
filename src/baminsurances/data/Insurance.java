@@ -1,6 +1,8 @@
 package baminsurances.data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The root class in the Insurance hierarchy.
@@ -16,7 +18,7 @@ public abstract class Insurance implements Comparable<Insurance> {
     private LocalDate creationDate;
     private LocalDate cancellationDate = null;
     private String terms;
-    //TODO skademeldinger
+    private List<ClaimAdvice> claimAdviceList = new ArrayList<>();
 
     /**
      * Creates a new insurance with the given values.
@@ -173,7 +175,20 @@ public abstract class Insurance implements Comparable<Insurance> {
         return creationDate;
     }
     
+    /**
+     * Sets the creation date of this insurance to the given date.
+     * <p>
+     * While this is a method that should not exist, it is necessary for the
+     * generator classes. If not for this method, all generated insurances
+     * would be created at the same time.
+     * 
+     * @param date the new creation date
+     * @throws NullPointerException if argument is null
+     */
     public void setCreationDate(LocalDate date) {
+        if (date == null) {
+            throw new NullPointerException("Creation date cannot be null.");
+        }
         creationDate = date;
     }
     
@@ -203,8 +218,43 @@ public abstract class Insurance implements Comparable<Insurance> {
         return cancellationDate;
     }
     
+    /**
+     * Sets the cancellation date of this insurance to the given date.
+     * <p>
+     * While this is a method that should not exist, it is necessary for the
+     * generator classes. If not for this method, all generated insurances
+     * would be cancelled at the same time.
+     * 
+     * @param date the new cancellation date
+     * @throws NullPointerException if argument is null
+     */
     public void setCancellationDate(LocalDate date) {
+        if (date == null) {
+            throw new NullPointerException("Cancellation date cannot be null.");
+        }
         cancellationDate = date;
+    }
+    
+    /**
+     * Adds a claim advice to this insurance.
+     * 
+     * @param ca the claim advice to add
+     * @throws NullPointerException if argument is null
+     */
+    public void addClaimAdvice(ClaimAdvice ca) {
+        if (ca == null) {
+            throw new NullPointerException("Claim advice cannot be null.");
+        }
+        claimAdviceList.add(ca);
+    }
+    
+    /**
+     * Returns a list of claim advices for this insurance.
+     * 
+     * @return a list of claim advices for this insurance
+     */
+    public List<ClaimAdvice> getClaimAdvices() {
+        return claimAdviceList;
     }
     
     /**

@@ -47,7 +47,20 @@ public class Customer extends Person {
         return registrationDate;
     }
     
+    /**
+     * Sets the registration date of this customer to the given date.
+     * <p>
+     * While this is a method that should not exist, it is necessary for the
+     * generator classes. If not for this method, all generated customers
+     * would be registered at the exact same time.
+     * 
+     * @param date the new registration date
+     * @throws NullPointerException if argument is null
+     */
     public void setRegistrationDate(LocalDate date) {
+        if (date == null) {
+            throw new NullPointerException("Registration date cannot be null.");
+        }
         registrationDate = date;
     }
     
