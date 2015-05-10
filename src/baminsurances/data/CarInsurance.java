@@ -1,5 +1,9 @@
 package baminsurances.data;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class representing a car insurance in the company's data bank.
  * 
@@ -10,6 +14,7 @@ public class CarInsurance extends VehicleInsurance {
     private int yearlyMileage;
     private double pricePerKilometer;
     private int bonusPercentage;
+    private List<Integer> payments = new ArrayList<>();
     
     /**
      * Creates a new car insurance with the given values.
@@ -85,5 +90,44 @@ public class CarInsurance extends VehicleInsurance {
      */
     public void setBonusPercentage(int bonusPercentage) {
         this.bonusPercentage = bonusPercentage;
+    }
+    
+    /**
+     * Returns a list of payments made to this insurance.
+     * <p>
+     * This is necessary because payments on a car insurance is not constant
+     * due to bonus percentage.
+     * 
+     * @return a list of payments made to this insurance
+     */
+    public List<Integer> getPayments() {
+        return payments;
+    }
+    
+    /**
+     * Updates the list of payments made to this insurance, by checking how
+     * many months that are unpaid for. Uses the current bonus percentage to
+     * calculate the payments.
+     */
+    public void updatePayments() {
+        LocalDate date = null;
+        if (isActive()) {
+            date = LocalDate.now();
+        } else {
+            date = getCancellationDate();
+        }
+        
+        int numUnpaidMonths = getCreationDate().until(date).getMonths() + 1 -
+                payments.size(); 
+        for (int i = 0; i < numUnpaidMonths; i++) {
+            payments.add(getAmount() * (1 - bonusPercentage / 100));
+        }
+    }
+    
+    @Override
+    public int getTotalAmountPaid() {
+        return getPayments().stream()
+                            .mapToInt(Integer::intValue)
+                            .sum();
     }
 }
