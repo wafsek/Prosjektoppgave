@@ -272,11 +272,11 @@ public abstract class Insurance implements Comparable<Insurance> {
      * 
      * @return the total amount paid for this insurance
      */
-    public int getTotalAmountPaid() {
+    public int getTotalPaid() {
         if (isActive()) {
-            return amount * creationDate.until(LocalDate.now()).getMonths() + 1;
+            return premium * creationDate.until(LocalDate.now()).getMonths() + 1;
         } else {
-            return amount * creationDate.until(cancellationDate).getMonths() + 1;
+            return premium * creationDate.until(cancellationDate).getMonths() + 1;
         }
     }
 }

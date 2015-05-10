@@ -110,24 +110,35 @@ public class CarInsurance extends VehicleInsurance {
      * calculate the payments.
      */
     public void updatePayments() {
-        LocalDate date = null;
-        if (isActive()) {
-            date = LocalDate.now();
-        } else {
-            date = getCancellationDate();
-        }
+        LocalDate date = isActive() ? LocalDate.now() : getCancellationDate();
         
         int numUnpaidMonths = getCreationDate().until(date).getMonths() + 1 -
                 payments.size(); 
         for (int i = 0; i < numUnpaidMonths; i++) {
-            payments.add(getAmount() * (1 - bonusPercentage / 100));
+            payments.add(getPremium() * (1 - bonusPercentage / 100));
         }
     }
     
     @Override
-    public int getTotalAmountPaid() {
+    public int getTotalPaid() {
         return getPayments().stream()
                             .mapToInt(Integer::intValue)
                             .sum();
+    }
+    
+    /**
+     * Adds a claim advice to the car insurance, and reduces the
+     * bonus percentage by 30.
+     * 
+     * @param ca the claim advice to add
+     * @throws NullPointerException if argument is null
+     */
+    @Override
+    public void addClaimAdvice(ClaimAdvice ca) {
+        super.addClaimAdvice(ca);
+        bonusPercentage -= 30;
+        if (bonusPercentage < 0) {
+            bonusPercentage = 0;
+        }
     }
 }
