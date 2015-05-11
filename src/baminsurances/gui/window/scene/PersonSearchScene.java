@@ -1,9 +1,12 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.data.Customer;
 import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
+import baminsurances.gui.window.GuiConfig;
 import baminsurances.gui.window.OperationWindow;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,9 +21,7 @@ import java.util.Iterator;
 /**
  * @author Adrian Melsom
  */
-public abstract class PersonSearchScene {
-
-    protected Scene scene;
+public abstract class PersonSearchScene extends GeneralScene{
 
     protected TextField firstNameField, lastNameField, adressField,
         zipCodeField, birthNumberField;
@@ -35,14 +36,10 @@ public abstract class PersonSearchScene {
     protected Button requestRegistration;
 
     protected GridPane itemContainer;
-    protected BorderPane borderPane;
-    protected GuiEventHandler guiEventHandler;
-    protected KeyPressHandler keyPressHandler;
 
     public PersonSearchScene(GuiEventHandler guiEventHandler,
-            KeyPressHandler keyPressHandler) {
-        this.guiEventHandler = guiEventHandler;
-        this.keyPressHandler = keyPressHandler;
+            KeyPressHandler keyPressHandler, String displayName) {
+        super(guiEventHandler, keyPressHandler, displayName);
 
         personTable = new TableView();
         birthNoColumn = new TableColumn("Fødselsnummer");
@@ -164,7 +161,6 @@ public abstract class PersonSearchScene {
     }
 
     public void setTableData(ObservableList observableList) {
-        personTable.setItems(null);
         personTable.setItems(observableList);
     }
 }

@@ -35,8 +35,8 @@ public class InsureBoatScene extends PersonSearchScene {
      * @param handler
      */
     public InsureBoatScene(HBox header, HBox footer, GuiEventHandler handler,
-            KeyPressHandler keyPressHandler) {
-        super(handler, keyPressHandler);
+            KeyPressHandler keyPressHandler, String displayName) {
+        super(handler, keyPressHandler, displayName);
         this.footer = footer;
         this.header = header;
         borderPane = new BorderPane(itemContainer, header, personTable, footer, null);

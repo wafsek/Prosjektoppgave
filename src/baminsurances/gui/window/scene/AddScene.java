@@ -2,6 +2,7 @@ package baminsurances.gui.window.scene;
 
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
+import baminsurances.gui.window.GuiConfig;
 import baminsurances.gui.window.MessageDialog;
 import baminsurances.gui.window.OperationWindow;
 import javafx.geometry.*;
@@ -13,7 +14,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,7 +21,7 @@ import java.util.Iterator;
 /**
  * @author Adrian Melsom
  */
-public class AddScene {
+public class AddScene extends GeneralScene{
 
     private Scene scene;
     private TextField firstNameField, lastNameField, birthNumberField,
@@ -33,94 +33,46 @@ public class AddScene {
     private ArrayList<TextField> textFieldArrayList;
     private Iterator<TextField> textFieldIterator;
     private CheckBox differentAdressCheck;
-    private BorderPane borderPane;
     private GridPane fieldBox;
     private TextArea printArea;
     private ScrollPane scrollPane;
-    private Button registerPersonButton;
-    private GuiEventHandler handler;
-    private int adressCheckCounter = 0;
-    private int test = 0;
+    private Button registerPersonButton;;
+    private int adressCheckCounter = 1;
 
     /**
      * Creates a new Scene with the given values.
-     * @param header
-     * @param footer
-     * @param handler
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
      */
-    public AddScene(HBox header, HBox footer, GuiEventHandler handler,
-            KeyPressHandler keyPressHandler) {
-        this.handler = handler;
+    public AddScene(GuiEventHandler guiEventHandler,
+            KeyPressHandler keyPressHandler, String displayName) {
+        super(guiEventHandler, keyPressHandler, displayName);
 
         firstNameField = new TextField();
         firstNameField.setStyle("-fx-effect: dropshadow"
                 + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-        firstNameField.setOnKeyReleased(e -> {
-            if (firstNameField.getText().trim().isEmpty()) {
-                firstNameField.setStyle("-fx-effect: dropshadow"
-                        + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-                this.emptyFieldsCheck();
-            } else {
-                firstNameField.setStyle("");
-                this.emptyFieldsCheck();
-            }
-        });
+        firstNameField.setOnKeyReleased(e -> fieldCheck(firstNameField));
         firstNameLabel = new Label("Fornavn:");
         lastNameField = new TextField();
         lastNameField.setStyle("-fx-effect: dropshadow"
                 + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-        lastNameField.setOnKeyReleased(e -> {
-            if (lastNameField.getText().trim().isEmpty()) {
-                lastNameField.setStyle("-fx-effect: dropshadow"
-                        + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-                this.emptyFieldsCheck();
-            } else {
-                lastNameField.setStyle("");
-                this.emptyFieldsCheck();
-            }
-        });
+        lastNameField.setOnKeyReleased(e -> fieldCheck(lastNameField));
         lastNameLabel = new Label("Etternavn:");
         birthNumberField = new TextField();
         birthNumberField.setStyle("-fx-effect: dropshadow"
                 + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-        birthNumberField.setOnKeyReleased(e -> {
-            if (birthNumberField.getText().trim().isEmpty()) {
-                birthNumberField.setStyle("-fx-effect: dropshadow"
-                        + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-                this.emptyFieldsCheck();
-            } else {
-                birthNumberField.setStyle("");
-                this.emptyFieldsCheck();
-            }
-        });
+        birthNumberField.setOnKeyReleased(e -> fieldCheck(birthNumberField));
         birthNumberLabel = new Label("Fødselsnummer:");
         emailField = new TextField();
         emailField.setStyle("-fx-effect: dropshadow"
                 + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-        emailField.setOnKeyReleased(e -> {
-            if (emailField.getText().trim().isEmpty()) {
-                emailField.setStyle("-fx-effect: dropshadow"
-                        + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-                this.emptyFieldsCheck();
-            } else {
-                emailField.setStyle("");
-                this.emptyFieldsCheck();
-            }
-        });
+        emailField.setOnKeyReleased(e -> fieldCheck(emailField));
         emailLabel = new Label("Mailadresse:");
         telephoneNumberField = new TextField();
         telephoneNumberField.setStyle("-fx-effect: dropshadow"
                 + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-        telephoneNumberField.setOnKeyReleased(e -> {
-            if (telephoneNumberField.getText().trim().isEmpty()) {
-                telephoneNumberField.setStyle("-fx-effect: dropshadow"
-                        + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-                this.emptyFieldsCheck();
-            } else {
-                telephoneNumberField.setStyle("");
-                this.emptyFieldsCheck();
-            }
-        });
+        telephoneNumberField.setOnKeyReleased(e -> fieldCheck(telephoneNumberField));
         telephoneNumberLabel = new Label("Telefonnummer:");
         adressField = new TextField();
         adressField.setStyle("-fx-effect: dropshadow"
@@ -131,29 +83,11 @@ public class AddScene {
                 + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
         zipCodeLabel = new Label("Postnummer:");
         billingAdressField = new TextField();
-        billingAdressField.setOnKeyReleased(e -> {
-            if (billingAdressField.getText().trim().isEmpty()) {
-                billingAdressField.setStyle("-fx-effect: dropshadow"
-                        + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-                this.emptyFieldsCheck();
-            } else {
-                billingAdressField.setStyle("");
-                this.emptyFieldsCheck();
-            }
-        });
+        billingAdressField.setOnKeyReleased(e -> fieldCheck(billingAdressField));
         billingAdressField.setEditable(false);
         billingAdressLabel = new Label("Betalingsadresse:");
         billingZipCodeField = new TextField();
-        billingZipCodeField.setOnKeyReleased(e -> {
-            if (billingZipCodeField.getText().trim().isEmpty()) {
-                billingZipCodeField.setStyle("-fx-effect: dropshadow"
-                        + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-                this.emptyFieldsCheck();
-            } else {
-                billingZipCodeField.setStyle("");
-                this.emptyFieldsCheck();
-            }
-        });
+        billingZipCodeField.setOnKeyReleased(e -> fieldCheck(billingZipCodeField));
         billingZipCodeField.setEditable(false);
         billingZipCodeLabel = new Label("Postnr. for betaling:");
         adressField.setOnKeyReleased(e -> {
@@ -192,37 +126,10 @@ public class AddScene {
         textFieldIterator = textFieldArrayList.iterator();
 
         differentAdressCheck = new CheckBox("Forskjellig betalingsadresse?");
-        differentAdressCheck.setOnAction(ev -> {
-            if (adressCheckCounter == 0) {
-                adressField.setOnKeyReleased(null);
-                zipCodeField.setOnKeyReleased(null);
-                billingAdressField.setText("");
-                billingAdressField.setEditable(true);
-                billingAdressField.setStyle("-fx-effect: dropshadow"
-                        + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-                billingZipCodeField.setText("");
-                billingZipCodeField.setEditable(true);
-                billingZipCodeField.setStyle("-fx-effect: dropshadow"
-                        + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-                adressCheckCounter++;
-            } else {
-                adressField.setOnKeyReleased(
-                        e -> billingAdressField.setText(adressField.getText()));
-                zipCodeField.setOnKeyReleased(
-                        e -> billingZipCodeField.setText(zipCodeField.getText()));
-                billingAdressField.setText(adressField.getText());
-                billingAdressField.setEditable(false);
-                billingAdressField.setStyle("");
-                billingZipCodeField.setText(zipCodeField.getText());
-                billingZipCodeField.setEditable(false);
-                billingZipCodeField.setStyle("");
-                adressCheckCounter--;
-            }
-            emptyFieldsCheck();
-        });
+        differentAdressCheck.setOnAction(ev -> fillAdressAndZipFields());
 
         registerPersonButton = new Button("Registrer");
-        registerPersonButton.setOnAction(handler);
+        registerPersonButton.setOnAction(guiEventHandler);
         registerPersonButton.setDisable(true);
 
         fieldBox = new GridPane();
@@ -240,12 +147,16 @@ public class AddScene {
         printArea = new TextArea();
         printArea.setEditable(false);
         scrollPane = new ScrollPane(printArea);
-        scrollPane.setPrefWidth(OperationWindow.STAGE_WIDTH * 3/5);
+        scrollPane.setPrefWidth(OperationWindow.STAGE_WIDTH * 3 / 5);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
         scrollPane.setStyle("-fx-border-color: gray;");
-
-        borderPane = new BorderPane(fieldBox, header, scrollPane, footer, null);
+        buttonContainer = new HBox(0, logOutButton);
+        buttonContainer.setAlignment(Pos.CENTER_RIGHT);
+        infoContainer = new HBox(0, informationLabel);
+        footer = new HBox(GuiConfig.PRIMARY_WIDTH * 3/4, infoContainer, buttonContainer);
+        footer.setAlignment(Pos.BOTTOM_RIGHT);
+        borderPane = new BorderPane(fieldBox, null, scrollPane, footer, null);
         scene = new Scene(borderPane);
     }
 
@@ -256,6 +167,35 @@ public class AddScene {
      */
     public Scene getScene() {
         return scene;
+    }
+
+    private void fillAdressAndZipFields(){
+        if (adressCheckCounter == 0) {
+            adressField.setOnKeyReleased(null);
+            zipCodeField.setOnKeyReleased(null);
+            billingAdressField.setText("");
+            billingAdressField.setEditable(true);
+            billingAdressField.setStyle("-fx-effect: dropshadow"
+                    + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
+            billingZipCodeField.setText("");
+            billingZipCodeField.setEditable(true);
+            billingZipCodeField.setStyle("-fx-effect: dropshadow"
+                    + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
+            adressCheckCounter++;
+        } else {
+            adressField.setOnKeyReleased(
+                    e -> billingAdressField.setText(adressField.getText()));
+            zipCodeField.setOnKeyReleased(
+                    e -> billingZipCodeField.setText(zipCodeField.getText()));
+            billingAdressField.setText(adressField.getText());
+            billingAdressField.setEditable(false);
+            billingAdressField.setStyle("");
+            billingZipCodeField.setText(zipCodeField.getText());
+            billingZipCodeField.setEditable(false);
+            billingZipCodeField.setStyle("");
+            adressCheckCounter--;
+        }
+        emptyFieldsCheck();
     }
 
     public void requestRegistration() {
@@ -406,5 +346,27 @@ public class AddScene {
         }
         resetIterator();
         registerPersonButton.setDisable(false);
+    }
+
+    private void fieldCheck(TextField textField){
+        if (textField.getText().trim().isEmpty()) {
+            textField.setStyle("-fx-effect: dropshadow"
+                    + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
+            this.emptyFieldsCheck();
+        } else {
+            textField.setStyle("");
+            this.emptyFieldsCheck();
+        }
+    }
+
+    public void insertText(String[] infoArray){
+        TextField[] textFieldsArray = new TextField[] {firstNameField, lastNameField,
+                birthNumberField, adressField,
+                zipCodeField};
+        for(int i = 0; i<infoArray.length; i++){
+            textFieldsArray[i].setText(infoArray[i]);
+            fieldCheck(textFieldsArray[i]);
+        }
+        fillAdressAndZipFields();
     }
 }

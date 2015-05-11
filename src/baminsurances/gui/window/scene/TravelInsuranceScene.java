@@ -33,8 +33,8 @@ public class TravelInsuranceScene extends PersonSearchScene {
      * @param handler
      */
     public TravelInsuranceScene(HBox header, HBox footer,
-            GuiEventHandler handler, KeyPressHandler keyPressHandler) {
-        super(handler, keyPressHandler);
+            GuiEventHandler handler, KeyPressHandler keyPressHandler, String displayName) {
+        super(handler, keyPressHandler, displayName);
         this.header = header;
         this.footer = footer;
         borderPane = new BorderPane(itemContainer, header, personTable, footer,

@@ -48,7 +48,7 @@ public class OperationWindow {
         boatButton = new IconButton().iconButton(
                 STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.INSURE_BOAT_BUTTON);
         backButton = new IconButton().iconButton(
-                STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.STATISTIC_BUTTON);
+                STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.BACK_BUTTON);
 
         logOutButton = new Button("Logg ut");
 
