@@ -41,9 +41,6 @@ public class Person implements Comparable<Person> {
         setStreetAddress(streetAddress);
     }
     
-    protected Person() {
-    }
-    
     /**
      * Returns <code>true</code>, if the given person has the same birth number
      * as this one.

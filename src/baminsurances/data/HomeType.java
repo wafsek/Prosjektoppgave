@@ -5,21 +5,21 @@ package baminsurances.data;
  * 
  * @author Martin Jackson
  */
-public enum HomeType implements HasNorwegianTranslation {
+public enum HomeType implements NameDisplayable {
     APARTMENT("Leilighet"),
     DETACHED_HOUSE("Enebolig"),
     TOWNHOME("Rekkehus"),
     SEMI_DETACHED_HOUSE("Tomannsbolig"),
     FARM("Gård");
     
-    private String norwegianTranslation;
+    private final String displayName;
     
-    HomeType(String norwegianTranslation) {
-        this.norwegianTranslation = norwegianTranslation;
+    private HomeType(String displayName) {
+        this.displayName = displayName;
     }
     
     @Override
-    public String getNorwegianTranslation() {
-        return norwegianTranslation;
+    public String getDisplayName() {
+        return displayName;
     }
 }

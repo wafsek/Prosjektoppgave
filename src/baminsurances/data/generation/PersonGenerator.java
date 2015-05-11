@@ -36,6 +36,7 @@ public class PersonGenerator {
         streetAddressEndings = loadStreetAddressEndings();
     }
     
+    
     public Person generatePerson() {
         String birthNo = generateBirthNo();
         String firstName = generateFirstName(birthNo);

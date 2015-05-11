@@ -3,14 +3,14 @@ package baminsurances.data;
 import static org.junit.Assert.*;
 
 import java.awt.image.BufferedImage;
-import java.util.Calendar;
+import java.time.LocalDate;
 
 import org.junit.After;
 import org.junit.Test;
 import org.junit.Before;
 
 public class ClaimAdviceTest {
-    ClaimAdvice ca = new ClaimAdvice(Calendar.getInstance(), "Fire",
+    ClaimAdvice ca = new ClaimAdvice(LocalDate.now(), "Fire",
             "House burned down", 10000, 5000);
 
     @Test
