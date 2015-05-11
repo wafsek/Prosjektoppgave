@@ -22,7 +22,7 @@ public class ClaimAdvice {
     private LocalDate dateOfDamage;
     private String damageType;
     private String damageDescription;
-    private List<Person> witnesses = new ArrayList<>();
+    private List<Witness> witnesses = new ArrayList<>();
     private int numPictures = 0;
     private long assessmentAmount;
     private long compensationAmount;
@@ -43,7 +43,6 @@ public class ClaimAdvice {
     public ClaimAdvice(LocalDate dateOfDamage, String damageType,
             String damageDescription, long assessmentAmount,
             long compensationAmount) {
-        //TODO add witnesses and images to constructor?
         damageNo = nextDamageNo++;
         setDateOfDamage(dateOfDamage);
         setDamageType(damageType);
@@ -200,7 +199,7 @@ public class ClaimAdvice {
      * 
      * @return a list of witnesses for the damage
      */
-    public List<Person> getWitnesses() {
+    public List<Witness> getWitnesses() {
         return witnesses;
     }
 
@@ -210,7 +209,7 @@ public class ClaimAdvice {
      * @param witnesses the person to add
      * @throws NullPointerException if argument is null
      */
-    public void addWitness(Person witness) {
+    public void addWitness(Witness witness) {
         if (witness == null) {
             throw new NullPointerException("Witness cannot be null.");
         }
