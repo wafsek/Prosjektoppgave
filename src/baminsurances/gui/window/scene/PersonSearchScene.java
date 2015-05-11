@@ -36,12 +36,12 @@ public abstract class PersonSearchScene {
 
     protected GridPane itemContainer;
     protected BorderPane borderPane;
-    protected GuiEventHandler handler;
+    protected GuiEventHandler guiEventHandler;
     protected KeyPressHandler keyPressHandler;
 
-    public PersonSearchScene(GuiEventHandler handler,
+    public PersonSearchScene(GuiEventHandler guiEventHandler,
             KeyPressHandler keyPressHandler) {
-        this.handler = handler;
+        this.guiEventHandler = guiEventHandler;
         this.keyPressHandler = keyPressHandler;
 
         personTable = new TableView();
@@ -98,7 +98,7 @@ public abstract class PersonSearchScene {
         textFieldArrayList.add(zipCodeField);
 
         requestRegistration = new Button("Velg Person");
-        requestRegistration.setOnAction(handler);
+        requestRegistration.setOnAction(guiEventHandler);
 
         itemContainer = new GridPane();
         itemContainer.addColumn(0, firstNameLabel, lastNameLabel, birthNoLabel,

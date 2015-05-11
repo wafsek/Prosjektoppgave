@@ -82,7 +82,7 @@ public class InsureCarScene extends PersonSearchScene {
         printArea.setEditable(false);
 
         registerCarScene = new Button("Registrer");
-        registerCarScene.setOnAction(handler);
+        registerCarScene.setOnAction(guiEventHandler);
 
         scrollPane = new ScrollPane(printArea);
         scrollPane.setPrefWidth(OperationWindow.STAGE_WIDTH * 3/5);

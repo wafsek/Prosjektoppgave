@@ -16,9 +16,7 @@ import baminsurances.gui.window.MessageDialog;
 import baminsurances.gui.window.scene.*;
 import baminsurances.logging.CustomLogger;
 import baminsurances.security.Authenticator;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
 
@@ -45,6 +43,7 @@ public class Controller {
     /**
      * The Gui type fields
      */
+    private ClaimAdviceScene claimAdviceScene;
     private NavigationScene navigationScene;
     private WelcomeScene welcomeScene;
     private AddScene addScene;
@@ -91,6 +90,7 @@ public class Controller {
         insureHouseScene = new InsureHouseScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
         insureBoatScene = new InsureBoatScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
         searchScene = new SearchScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
+        claimAdviceScene = new ClaimAdviceScene(operationWindow.getFooter(), guiEventHandler, keyPressHandler);
     }
     
     private void login(){
@@ -194,6 +194,11 @@ public class Controller {
             backToNavigation();
         } else if (control == statisticsScene.getbackToNavigationButton()) {
             backToNavigation();
+        } else if (control == operationWindow.getClaimAdviceButton()){
+            claimAdviceScene = new ClaimAdviceScene(operationWindow.getFooter(), guiEventHandler, keyPressHandler);
+            operationWindow.displayScene(claimAdviceScene.getScene());
+        } else if (control == claimAdviceScene.getRequestRegistration()){
+            operationWindow.displayScene(claimAdviceScene.changeToAdviceClaimRegistration());
         }
     }
     

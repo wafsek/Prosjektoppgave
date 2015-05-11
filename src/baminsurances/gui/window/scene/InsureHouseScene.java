@@ -73,7 +73,7 @@ public class InsureHouseScene extends PersonSearchScene{
         houseAdressField = new TextField();
 
         registerHouseButton = new Button("Registrer forsikring");
-        registerHouseButton.setOnAction(handler);
+        registerHouseButton.setOnAction(guiEventHandler);
 
         printArea = new TextArea();
         printArea.setEditable(false);

@@ -73,7 +73,7 @@ public class TravelInsuranceScene extends PersonSearchScene {
         deptBox.setPrefWidth(COMBOBOX_WIDTH);
 
         registerPersonInsurance = new Button("Registrer forsikring");
-        registerPersonInsurance.setOnAction(handler);
+        registerPersonInsurance.setOnAction(guiEventHandler);
 
         printArea = new TextArea();
         printArea.setEditable(false);
