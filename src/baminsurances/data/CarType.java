@@ -15,14 +15,14 @@ public enum CarType implements VehicleType {
     BUS ("Buss"),
     TRUCK ("Lastebil");
     
-    private final String norwegianTranslation;
+    private final String displayName;
     
-    CarType(String norwegianTranslation) {
-        this.norwegianTranslation = norwegianTranslation;
+    private CarType(String displayName) {
+        this.displayName = displayName;
     }
     
     @Override
-    public String getNorwegianTranslation() {
-        return norwegianTranslation;
+    public String getDisplayName() {
+        return displayName;
     }
 }

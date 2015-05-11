@@ -11,14 +11,14 @@ public enum BoatType implements VehicleType {
     SAILBOAT ("Seilbåt"),
     YACHT ("Yacht");
     
-    private String norwegianTranslation;
+    private final String displayName;
     
-    BoatType(String norwegianTranslation) {
-        this.norwegianTranslation = norwegianTranslation;
+    private BoatType(String displayName) {
+        this.displayName = displayName;
     }
     
     @Override
-    public String getNorwegianTranslation() {
-        return norwegianTranslation;
+    public String getDisplayName() {
+        return displayName;
     }
 }

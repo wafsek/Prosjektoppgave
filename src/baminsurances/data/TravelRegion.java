@@ -5,19 +5,19 @@ package baminsurances.data;
  * 
  * @author martin
  */
-public enum TravelRegion implements HasNorwegianTranslation {
+public enum TravelRegion implements NameDisplayable {
     EUROPE("Europa"),
     WORLD("Verden"),
     SCANDINAVIA("Skandinavia");
     
-    private String norwegianTranslation;
+    private final String displayName;
     
-    TravelRegion(String norwegianTranslation) {
-        this.norwegianTranslation = norwegianTranslation;
+    private TravelRegion(String displayName) {
+        this.displayName = displayName;
     }
     
     @Override
-    public String getNorwegianTranslation() {
-        return norwegianTranslation;
+    public String getDisplayName() {
+        return displayName;
     }
 }
