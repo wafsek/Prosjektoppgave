@@ -2,6 +2,8 @@ package baminsurances.data.generation;
 
 import java.time.LocalDate;
 
+import baminsurances.data.PaymentFrequency;
+
 /**
  * Provides methods for generating {@link Insurance} objects.
  * 
@@ -26,6 +28,16 @@ public class InsuranceGenerator {
      */
     public int generateAmount() {
         return (int) (Math.random() * 5000) + 2000;
+    }
+    
+    /**
+     * Generates and returns a payment frequency.
+     * 
+     * @return a payment frequency
+     */
+    public PaymentFrequency generatePaymentFrequency() {
+        PaymentFrequency[] frequencies = PaymentFrequency.values();
+        return frequencies[(int) (Math.random() * frequencies.length)];
     }
     
     /**

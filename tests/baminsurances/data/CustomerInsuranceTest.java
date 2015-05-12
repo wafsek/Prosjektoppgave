@@ -16,7 +16,8 @@ public class CustomerInsuranceTest {
                 "87651234", "ola.nordmann@start.no", "0166", "Pilestredet 35",
                 "0166", "Pilestredet 35");
         Insurance ins = new TravelInsurance(emp, 1000, 10000,
-                "Alle barn under 20.", TravelRegion.EUROPE);
+                PaymentFrequency.MONTHLY, "Alle barn under 20.",
+                TravelRegion.EUROPE);
         customerInsurance = new CustomerInsurance(cus);
         customerInsurance.getInsurances().add(ins);
     }
@@ -26,12 +27,13 @@ public class CustomerInsuranceTest {
         assertFalse(customerInsurance.isTotalCustomer());
         
         customerInsurance.getInsurances().add(
-                new HomeInsurance(emp, 5000, "All skade",
-                        "Pilestredet 35", "0166", 1990, HomeType.APARTMENT,
-                        "Betong", "God", 50, 2500, 2500));
+                new HomeInsurance(emp, 5000, PaymentFrequency.MONTHLY,
+                        "All skade", "Pilestredet 35", "0166", 1990,
+                        HomeType.APARTMENT, "Betong", "God", 50, 2500, 2500));
         assertFalse(customerInsurance.isTotalCustomer());
         
-        BoatInsurance boa = new BoatInsurance(emp, 2000, 10000, "All skade",
+        BoatInsurance boa = new BoatInsurance(emp, 2000, 10000,
+                PaymentFrequency.ANNUALLY, "All skade",
                 customerInsurance.getCustomer(), "B080", BoatType.DINGHY,
                 "Yamaha","FX2", 4, 2010, "Gx", 2);
         customerInsurance.getInsurances().add(boa);
@@ -54,10 +56,12 @@ public class CustomerInsuranceTest {
         for (Insurance i : customerInsurance.getInsurances()) {
             i.cancel();
         }
-        BoatInsurance boa = new BoatInsurance(emp, 2000, 10000, "All skade",
+        BoatInsurance boa = new BoatInsurance(emp, 2000, 10000,
+                PaymentFrequency.ANNUALLY, "All skade",
                 customerInsurance.getCustomer(), "B080", BoatType.DINGHY,
                 "Yamaha","FX2", 4, 2010, "Gx", 2);
-        HomeInsurance hi = new HomeInsurance(emp, 5000, "All skade",
+        HomeInsurance hi = new HomeInsurance(emp, 5000,
+                PaymentFrequency.QUARTERLY, "All skade",
                 "Pilestredet 35", "0166", 1990, HomeType.APARTMENT, "Betong",
                 "God", 50, 2500, 2500);
         for (Class<? extends Insurance> type :

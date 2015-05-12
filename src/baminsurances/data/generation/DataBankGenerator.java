@@ -157,6 +157,7 @@ public class DataBankGenerator {
                     emp,
                     insGen.generatePremium(amount),
                     amount,
+                    insGen.generatePaymentFrequency(),
                     carGen.generateTerms(),
                     vehicleGen.generateVehicleOwner(cusIns.getCustomer()),
                     carGen.generateRegistrationNo(),
@@ -172,6 +173,7 @@ public class DataBankGenerator {
                     emp,
                     insGen.generatePremium(amount),
                     amount,
+                    insGen.generatePaymentFrequency(),
                     boatGen.generateTerms(),
                     vehicleGen.generateVehicleOwner(cusIns.getCustomer()),
                     boatGen.generateRegistrationNo(),
@@ -186,6 +188,7 @@ public class DataBankGenerator {
             ins = new HomeInsurance(
                     emp,
                     insGen.generatePremium(amount),
+                    insGen.generatePaymentFrequency(),
                     homeGen.generateTerms(),
                     personGen.generateStreetAddress(),
                     personGen.generateZipCode(),
@@ -200,6 +203,7 @@ public class DataBankGenerator {
             ins = new HolidayHomeInsurance(
                     emp,
                     insGen.generatePremium(amount),
+                    insGen.generatePaymentFrequency(),
                     holidayHomeGen.generateTerms(),
                     personGen.generateStreetAddress(),
                     personGen.generateZipCode(),
@@ -216,6 +220,7 @@ public class DataBankGenerator {
                     emp,
                     insGen.generatePremium(amount),
                     amount,
+                    insGen.generatePaymentFrequency(),
                     travelGen.generateTerms(),
                     travelGen.generateRegion());
         }
