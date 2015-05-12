@@ -33,7 +33,7 @@ public abstract class GeneralScene {
         logOutButton.setOnAction(guiEventHandler);
         backButton = new Button("Tilbake");
         backButton.setOnAction(guiEventHandler);
-        informationLabel = new Label(Config.getLoggingLevelString());
+        informationLabel = new Label(displayName);
     }
 
     public Scene getScene() {

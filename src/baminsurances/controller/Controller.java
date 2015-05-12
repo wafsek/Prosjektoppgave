@@ -58,8 +58,7 @@ public class Controller {
     private GeneralStage loginStage, menuStage, primaryStage;
     private LoginScene loginScene;
     private FindPersonScene findPersonScene;
-    
-    
+    private HandleCustomerScene handleCustomerScene;
     
     
     private CustomLogger logger = CustomLogger.getInstance();
@@ -82,6 +81,7 @@ public class Controller {
         navigationScene = new NavigationScene(guiEventHandler, keyPressHandler, getDisplayName());
         findPersonScene = new FindPersonScene(guiEventHandler, keyPressHandler, getDisplayName());
         addScene = new AddScene(guiEventHandler, keyPressHandler, getDisplayName());
+        handleCustomerScene = new HandleCustomerScene(guiEventHandler, keyPressHandler, getDisplayName());
 
         launchLoginWindow();
         /*System.out.println("Welkommen til " + Config.getApplicationName());
@@ -137,6 +137,10 @@ public class Controller {
         addScene.insertText(findPersonScene.getWrittenInfo());
     }
 
+    private void launchHandleCustomerScene(){
+        primaryStage.initiate(handleCustomerScene.getScene());
+    }
+
     private void backToNavigation(){
         primaryStage.close();
         menuStage.initiate(navigationScene.getScene());
@@ -169,6 +173,8 @@ public class Controller {
             launchRegistration();
         } else if (control == findPersonScene.getBackButton()) {
             backToNavigation();
+        } else if (control == findPersonScene.getChoosePersonButton()) {
+            launchHandleCustomerScene();
         }
 
         /*if (control == loginWindow.getLoginButton()) {
