@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
@@ -16,7 +17,8 @@ import javax.imageio.ImageIO;
  * 
  * @author Martin Jackson
  */
-public class ClaimAdvice {
+public class ClaimAdvice implements Serializable {
+    private static final long serialVersionUID = -7432562192214939768L;
     private static int nextDamageNo = 1;
     private int damageNo;
     private LocalDate dateOfDamage;

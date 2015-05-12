@@ -6,6 +6,7 @@ package baminsurances.data;
  * @author Martin Jackson
  */
 public class HomeInsurance extends Insurance {
+    private static final long serialVersionUID = 8534516926894091551L;
     private String streetAddress;
     private String zipCode;
     private int constructionYear;

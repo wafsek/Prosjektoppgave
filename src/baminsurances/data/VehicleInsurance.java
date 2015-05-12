@@ -6,6 +6,7 @@ package baminsurances.data;
  * @author Martin Jackson
  */
 public abstract class VehicleInsurance extends Insurance {
+    private static final long serialVersionUID = 6372745353974082263L;
     private Person vehicleOwner;
     private String registrationNo;
     private VehicleType type;

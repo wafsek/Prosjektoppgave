@@ -6,6 +6,7 @@ package baminsurances.data;
  * @author Martin Jackson
  */
 public class BoatInsurance extends VehicleInsurance {
+    private static final long serialVersionUID = -5027463809124610647L;
     private int lengthInFeet;
     private int productionYear;
     private String motorType;

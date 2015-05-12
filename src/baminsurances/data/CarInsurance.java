@@ -6,6 +6,7 @@ package baminsurances.data;
  * @author Martin Jackson
  */
 public class CarInsurance extends VehicleInsurance {
+    private static final long serialVersionUID = -51742097604728715L;
     private int registrationYear;
     private int yearlyMileage;
     private double pricePerKilometer;

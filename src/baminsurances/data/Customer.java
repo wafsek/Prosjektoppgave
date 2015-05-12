@@ -8,6 +8,7 @@ import java.time.LocalDate;
  * @author Martin Jackson
  */
 public class Customer extends Person {
+    private static final long serialVersionUID = 6786528708505151650L;
     private LocalDate registrationDate;
     private String billingZipCode;
     private String billingStreetAddress;

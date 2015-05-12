@@ -2,6 +2,7 @@ package baminsurances.data;
 
 import baminsurances.security.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,8 @@ import java.util.List;
  * 
  * @author Baljit Sarai
  */
-public class DataBank {
-    
+public class DataBank implements Serializable {
+    private static final long serialVersionUID = -1348011558079744947L;
     private List<CustomerInsurance> customerInsuranceList = new ArrayList<>();
     private List<Employee> employeeList = new ArrayList<>();
     private List<User> userList = new ArrayList<>();

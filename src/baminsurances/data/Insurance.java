@@ -1,5 +1,6 @@
 package baminsurances.data;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.TreeMap;
  * 
  * @author Martin Jackson
  */
-public abstract class Insurance implements Comparable<Insurance> {
+public abstract class Insurance implements Comparable<Insurance>, Serializable {
+    private static final long serialVersionUID = -5838064838237534933L;
     private static int nextInsuranceNo = 1;
     private int insuranceNo;
     private Employee employee;

@@ -6,6 +6,7 @@ package baminsurances.data;
  * @author Martin Jackson
  */
 public class TravelInsurance extends Insurance {
+    private static final long serialVersionUID = 5645186764127122831L;
     private TravelRegion region;
 
     /**

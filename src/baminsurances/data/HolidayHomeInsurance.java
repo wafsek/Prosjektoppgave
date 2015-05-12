@@ -6,6 +6,7 @@ package baminsurances.data;
  * @author Martin Jackson
  */
 public class HolidayHomeInsurance extends HomeInsurance {
+    private static final long serialVersionUID = 2922293587301733278L;
     private boolean rentedOut;
 
     /**

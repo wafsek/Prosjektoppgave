@@ -1,5 +1,6 @@
 package baminsurances.data;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -12,7 +13,8 @@ import java.util.Set;
  * 
  * @author Martin Jackson
  */
-public class CustomerInsurance {
+public class CustomerInsurance implements Serializable {
+    private static final long serialVersionUID = -3498652112706172807L;
     private Customer customer;
     private List<Insurance> insuranceList = new ArrayList<Insurance>();
     public static final int NUM_REQUIRED_FOR_TOTAL_CUSTOMER = 3;

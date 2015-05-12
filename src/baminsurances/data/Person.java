@@ -1,5 +1,6 @@
 package baminsurances.data;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -7,7 +8,8 @@ import java.time.LocalDate;
  * 
  * @author Martin Jackson
  */
-public class Person implements Comparable<Person> {
+public class Person implements Comparable<Person>, Serializable{
+    private static final long serialVersionUID = 6981784780352951569L;
     private String birthNo;
     private String firstName;
     private String lastName;

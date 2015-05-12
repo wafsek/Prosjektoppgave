@@ -6,7 +6,8 @@ package baminsurances.data;
  * @author Martin Jackson
  */
 public class Employee extends Person {
-    
+    private static final long serialVersionUID = -1320643100908863211L;
+
     /**
      * Creates a new employee with the given values.
      * 
