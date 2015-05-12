@@ -116,6 +116,15 @@ public class Person implements Comparable<Person>, Serializable{
     }
     
     /**
+     * Returns the age of this customer.
+     * 
+     * @return the age of this customer
+     */
+    public int getAge() {
+        return getDateOfBirth().until(LocalDate.now()).getYears();
+    }
+    
+    /**
      * Returns a char indicating what gender this person is.
      * 
      * @return 'F' if female, 'M' if male
@@ -298,10 +307,9 @@ public class Person implements Comparable<Person>, Serializable{
     
     @Override
     public String toString() {
-        int age = LocalDate.now().getYear() - getDateOfBirth().getYear();
         return birthNo + ", " +
                firstName + " " + lastName + ", " +
-               age + " years old, " +
+               getAge() + " years old, " +
                telephoneNo + ", " +
                email + ", " +
                zipCode + " " + streetAddress;
