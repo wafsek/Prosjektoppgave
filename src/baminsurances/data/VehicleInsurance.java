@@ -27,9 +27,10 @@ public abstract class VehicleInsurance extends Insurance {
      * @throws NullPointerException if any of the arguments are null
      */
     public VehicleInsurance(Employee employee, int premium, int amount,
-            String terms, Person vehicleOwner, String registrationNo,
-            VehicleType type, String brand, String model) {
-        super(employee, premium, amount, terms);
+            PaymentFrequency paymentFrequency, String terms,
+            Person vehicleOwner, String registrationNo, VehicleType type,
+            String brand, String model) {
+        super(employee, premium, amount, paymentFrequency, terms);
         setVehicleOwner(vehicleOwner);
         setRegistrationNo(registrationNo);
         setType(type);

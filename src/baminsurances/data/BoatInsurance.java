@@ -30,11 +30,12 @@ public class BoatInsurance extends VehicleInsurance {
      * @throws NullPointerException if any of the given arguments are null
      */
     public BoatInsurance(Employee employee, int premium, int amount,
-            String terms, Person vehicleOwner, String registrationNo,
-            BoatType type, String brand, String model, int lengthInFeet,
-            int productionYear, String motorType, int horsePower) {
-        super(employee, premium, amount, terms, vehicleOwner, registrationNo,
-                type, brand, model);
+            PaymentFrequency paymentFrequency, String terms,
+            Person vehicleOwner, String registrationNo, BoatType type,
+            String brand, String model, int lengthInFeet, int productionYear,
+            String motorType, int horsePower) {
+        super(employee, premium, amount, paymentFrequency, terms, vehicleOwner,
+                registrationNo, type, brand, model);
         this.lengthInFeet = lengthInFeet;
         this.productionYear = productionYear;
         setMotorType(motorType);

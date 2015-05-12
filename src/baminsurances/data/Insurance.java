@@ -3,6 +3,8 @@ package baminsurances.data;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * The root class in the Insurance hierarchy.
@@ -13,27 +15,30 @@ public abstract class Insurance implements Comparable<Insurance> {
     private static int nextInsuranceNo = 1;
     private int insuranceNo;
     private Employee employee;
-    private int premium;
+    private int annualPremium;
     private int amount;
+    private PaymentFrequency paymentFrequency;
+    private String terms;
     private LocalDate creationDate;
     private LocalDate cancellationDate = null;
-    private String terms;
+    private SortedMap<LocalDate, Integer> payments = new TreeMap<>();
     private List<ClaimAdvice> claimAdviceList = new ArrayList<>();
 
     /**
      * Creates a new insurance with the given values.
      * 
      * @param employee the employee who registered this insurance
-     * @param premium
-     * @param amount
-     * @param terms
+     * @param annualPremium the annual premium
+     * @param amount the amount insured
+     * @param terms the terms
      */
-    public Insurance(Employee employee, int premium, int amount,
-            String terms) {
+    public Insurance(Employee employee, int annualPremium, int amount,
+            PaymentFrequency paymentFrequency, String terms) {
         insuranceNo = nextInsuranceNo++;
         this.employee = employee;
-        this.premium = premium;
+        this.annualPremium = annualPremium;
         this.amount = amount;
+        this.paymentFrequency = paymentFrequency;
         creationDate = LocalDate.now();
         this.terms = terms;
     }
@@ -99,17 +104,17 @@ public abstract class Insurance implements Comparable<Insurance> {
      * 
      * @return this insurance's annual premium
      */
-    public int getPremium() {
-        return premium;
+    public int getAnnualPremium() {
+        return annualPremium;
     }
     
     /**
      * Sets this insurance's annual premium to the given value.
      * 
-     * @param premium the new premium
+     * @param annualPremium the new premium
      */
-    public void setPremium(int premium) {
-        this.premium = premium;
+    public void setAnnualPremium(int annualPremium) {
+        this.annualPremium = annualPremium;
     }
     
     /**
@@ -128,6 +133,28 @@ public abstract class Insurance implements Comparable<Insurance> {
      */
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+    
+    /**
+     * Returns the payment frequency of this insurance.
+     * 
+     * @return the payment frequency of this insurance
+     */
+    public PaymentFrequency getPaymentFrequency() {
+        return paymentFrequency;
+    }
+    
+    /**
+     * Sets the payment frequency of the insurance to the given one.
+     * 
+     * @param paymentFrequency the new payment frequency
+     * @throws NullPointerException if argument is null
+     */
+    public void setPaymentFrequency(PaymentFrequency paymentFrequency) {
+        if (paymentFrequency == null) {
+            throw new NullPointerException("Payment frequency cannot be null.");
+        }
+        this.paymentFrequency = paymentFrequency;
     }
     
     /**
@@ -268,15 +295,88 @@ public abstract class Insurance implements Comparable<Insurance> {
     }
     
     /**
+     * Returns a sorted map representing the date of payments, along with the
+     * amount paid.
+     * <p>
+     * The map is sorted by the natural ordering of {@link LocalDate}.
+     * 
+     * @return a sorted map representing the date of payments, along with the
+     * amount paid
+     */
+    public SortedMap<LocalDate, Integer> getPayments() {
+        return payments;
+    }
+    
+    /**
      * Returns the total amount paid for this insurance.
      * 
      * @return the total amount paid for this insurance
      */
     public int getTotalPaid() {
-        if (isActive()) {
-            return premium * creationDate.until(LocalDate.now()).getMonths() + 1;
-        } else {
-            return premium * creationDate.until(cancellationDate).getMonths() + 1;
+        return payments.values().stream()
+                                .mapToInt(Integer::intValue)
+                                .sum();
+    }
+    
+    /**
+     * Returns the amount of each payment.
+     * <p>
+     * The return value of this method changes when the payment frequency or
+     * annual premium is changed.
+     * 
+     * @return the amount of each payment
+     */
+    public int getAmountPerPayment() {
+        return annualPremium / paymentFrequency.getPaymentsPerYear();
+    }
+    
+    /**
+     * Returns the date of the next payment.
+     * 
+     * @return the date of the next payment
+     */
+    public LocalDate getNextPaymentDate() {
+        return payments.isEmpty() ? getCreationDate() : payments.lastKey();
+    }
+    
+    /**
+     * Updates this insurance's payments by checking the last payment date, and
+     * the payment frequency, to find out how many payments are missing. This
+     * method is necessary, as no updates are made to the data while the
+     * software is not being used.
+     * <p>
+     * The amount to be paid is calculated using the amount per payment, as
+     * well as the given discount percentage.
+     * 
+     * @param discountPercentage the discount percentage
+     * @throws IllegalArgumentException if discount percentage is not a number
+     * between 0 and 100, both inclusive
+     */
+    public void updatePayments(int discountPercentage) {
+        if (discountPercentage < 0 || discountPercentage > 100) {
+            throw new IllegalArgumentException("Discount percentage "
+                    + "should be a number between 0 and 100, both inclusive."
+                    + "Found: " + discountPercentage);
         }
+        
+        int monthsBetweenPayments = 12 / paymentFrequency.getPaymentsPerYear();
+        int numMissingPayments =
+                getNextPaymentDate().until(LocalDate.now()).getMonths() /
+                monthsBetweenPayments;
+        for (int i = 0; i < numMissingPayments; i++) {
+            payments.put(
+                    getNextPaymentDate().plusMonths(i * monthsBetweenPayments),
+                    getAmountPerPayment() * (1 - discountPercentage / 100));
+        }
+    }
+    
+    /**
+     * Updates this insurance's payments by checking the last payment date, and
+     * the payment frequency, to find out how many payments are missing. This
+     * method is necessary, as no updates are made to the data while the
+     * software is not being used.
+     */
+    public void updatePayments() {
+        updatePayments(0);
     }
 }

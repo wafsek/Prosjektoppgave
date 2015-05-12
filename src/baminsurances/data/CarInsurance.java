@@ -1,9 +1,5 @@
 package baminsurances.data;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * A class representing a car insurance in the company's data bank.
  * 
@@ -14,7 +10,6 @@ public class CarInsurance extends VehicleInsurance {
     private int yearlyMileage;
     private double pricePerKilometer;
     private int bonusPercentage;
-    private List<Integer> payments = new ArrayList<>();
     
     /**
      * Creates a new car insurance with the given values.
@@ -35,11 +30,12 @@ public class CarInsurance extends VehicleInsurance {
      * @throws NullPointerException if any of the arguments are null
      */
     public CarInsurance(Employee employee, int premium, int amount,
-            String terms, Person vehicleOwner, String registrationNo,
-            CarType type, String brand, String model, int registrationYear,
+            PaymentFrequency paymentFrequency, String terms,
+            Person vehicleOwner, String registrationNo, CarType type,
+            String brand, String model, int registrationYear,
             int yearlyMileage, double pricePerKilometer,
             int bonusPercentage) {
-        super(employee, premium, amount, terms, vehicleOwner,
+        super(employee, premium, amount, paymentFrequency, terms, vehicleOwner,
                 registrationNo, type, brand, model);
         this.registrationYear = registrationYear;
         this.yearlyMileage = yearlyMileage;
@@ -93,40 +89,6 @@ public class CarInsurance extends VehicleInsurance {
     }
     
     /**
-     * Returns a list of payments made to this insurance.
-     * <p>
-     * This is necessary because payments on a car insurance is not constant
-     * due to bonus percentage.
-     * 
-     * @return a list of payments made to this insurance
-     */
-    public List<Integer> getPayments() {
-        return payments;
-    }
-    
-    /**
-     * Updates the list of payments made to this insurance, by checking how
-     * many months that are unpaid for. Uses the current bonus percentage to
-     * calculate the payments.
-     */
-    public void updatePayments() {
-        LocalDate date = isActive() ? LocalDate.now() : getCancellationDate();
-        
-        int numUnpaidMonths = getCreationDate().until(date).getMonths() + 1 -
-                payments.size(); 
-        for (int i = 0; i < numUnpaidMonths; i++) {
-            payments.add(getPremium() * (1 - bonusPercentage / 100));
-        }
-    }
-    
-    @Override
-    public int getTotalPaid() {
-        return getPayments().stream()
-                            .mapToInt(Integer::intValue)
-                            .sum();
-    }
-    
-    /**
      * Adds a claim advice to the car insurance, and reduces the
      * bonus percentage by 30.
      * 
@@ -140,5 +102,19 @@ public class CarInsurance extends VehicleInsurance {
         if (bonusPercentage < 0) {
             bonusPercentage = 0;
         }
+    }
+    
+    /**
+     * Returns the amount of each payment, taking the current bonus percentage
+     * into account.
+     * <p>
+     * The return value of this method changes when the payment frequency or
+     * annual premium is changed.
+     * 
+     * @return the amount of each payment
+     */
+    @Override
+    public int getAmountPerPayment() {
+        return super.getAmountPerPayment() * (1 - bonusPercentage / 100);
     }
 }

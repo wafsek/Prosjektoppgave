@@ -26,14 +26,15 @@ public class HolidayHomeInsurance extends HomeInsurance {
      * @param rentedOut is the holiday home being rented out?
      * @throws NullPointerException if any of the arguments are null
      */
-    public HolidayHomeInsurance(Employee employee, int premium, String terms,
+    public HolidayHomeInsurance(Employee employee, int premium,
+            PaymentFrequency paymentFrequency, String terms,
             String streetAddress, String zipCode, int constructionYear,
             HomeType homeType, String buildingMaterial, String standard,
             int squareMetres, int homeAmount, int contentsAmount,
             boolean rentedOut) {
-        super(employee, premium, terms, streetAddress, zipCode,
-                constructionYear, homeType, buildingMaterial, standard,
-                squareMetres, homeAmount, contentsAmount);
+        super(employee, premium, paymentFrequency, terms, streetAddress,
+                zipCode, constructionYear, homeType, buildingMaterial,
+                standard, squareMetres, homeAmount, contentsAmount);
         this.rentedOut = rentedOut;
     }
 

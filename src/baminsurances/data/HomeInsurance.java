@@ -32,11 +32,12 @@ public class HomeInsurance extends Insurance {
      * @param contentsAmount how much the contents of the home are insured for
      * @throws NullPointerException if any of the arguments are null
      */
-    public HomeInsurance(Employee employee, int premium, String terms,
+    public HomeInsurance(Employee employee, int premium,
+            PaymentFrequency paymentFrequency, String terms,
             String streetAddress, String zipCode, int constructionYear,
             HomeType homeType, String buildingMaterial, String standard,
             int squareMetres, int homeAmount, int contentsAmount) {
-        super(employee, premium, homeAmount, terms);
+        super(employee, premium, homeAmount, paymentFrequency, terms);
         setStreetAddress(streetAddress);
         setZipCode(zipCode);
         this.constructionYear = constructionYear;

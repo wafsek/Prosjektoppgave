@@ -144,7 +144,7 @@ public class CustomerInsurance {
     public long getSumOfActivePremiums() {
         return insuranceList.stream()
                             .filter(Insurance::isActive)
-                            .mapToLong(Insurance::getPremium)
+                            .mapToLong(Insurance::getAnnualPremium)
                             .sum();
     }
     
