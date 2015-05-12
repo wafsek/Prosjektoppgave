@@ -88,6 +88,14 @@ public class CustomerServiceManager {
             
     public static final Predicate<CustomerInsurance> isTotalCustomer =
             ci -> ci.isTotalCustomer();
+            
+    public static Predicate<CustomerInsurance> isOlderThan(int age) {
+        return ci -> ci.getCustomer().getAge() >= age;
+    }
+    
+    public static Predicate<CustomerInsurance> isYoungerThan(int age) {
+        return ci -> ci.getCustomer().getAge() < age;
+    }
 
     public static Predicate<CustomerInsurance> birthNoStartsWith(String s) {
         return ci -> ci.getCustomer().getBirthNo().toLowerCase().startsWith(s);
@@ -163,23 +171,82 @@ public class CustomerServiceManager {
     
     /**
      * Takes a list of CustomerInsurance predicates, and returns a list of all
-     * customers who satisfy these.
+     * CustomerInsurances which satisfy these.
+     *  
+     * @param predicates the list of predicates
+     * @return a list of CustomerInsurances which satisfy the predicates
+     */
+    public List<CustomerInsurance> findCustomerInsurances(
+            List<Predicate<CustomerInsurance>> predicates) {
+        
+        Predicate<CustomerInsurance> predicate =
+                reducePredicates(predicates);
+        
+        return dataBank.getCustomerInsuranceList()
+                .stream()
+                .filter(predicate)
+                .collect(Collectors.toList());
+    }
+    
+    /**
+     * Takes a list of CustomerInsurance predicates, and returns a list of all
+     * customers which satisfy these.
      * 
      * @param predicates the list of predicates
-     * @return a list of customers
+     * @return a list of customers which match the predicates
      */
     public List<Customer> findCustomers(
             List<Predicate<CustomerInsurance>> predicates) {
-        return dataBank.getCustomerInsuranceList()
-                           .stream()
-                           .filter(reducePredicates(predicates))
-                           .map(ci -> ci.getCustomer())
-                           .collect(Collectors.toList());
+        return findCustomerInsurances(predicates)
+                .stream()
+                .map(cusIns -> cusIns.getCustomer())
+                .collect(Collectors.toList());
     }
     
+    /**
+     * Takes a list of CustomerInsurance and Insurance predicates, and returns
+     * a list of all insurances which satisfy these.
+     * 
+     * @param cusInsPredicates the CustomerInsurance predicates
+     * @param insPredicates the Insurance predicates 
+     * @return a list of insurances which match the predicates
+     */
     public List<Insurance> findInsurances(
-            List<Predicate<CustomerInsurance>> predicates) {
-        return null;
+            List<Predicate<CustomerInsurance>> cusInsPredicates,
+            List<Predicate<Insurance>> insPredicates) {
+        
+        Predicate<Insurance> insPredicate =
+                reducePredicates(insPredicates);
+        
+        return findCustomerInsurances(cusInsPredicates)
+                .stream()
+                .flatMap(cus -> cus.getInsurances().stream())
+                .filter(insPredicate)
+                .collect(Collectors.toList());
+    }
+    
+    /**
+     * Takes a list of CustomerInsurance, Insurance and ClaimAdvice predicates,
+     * and returns a list of all claim advices which satisfy these.
+     * 
+     * @param cusInsPredicates the CustomerInsurance predicates
+     * @param insPredicates the Insurance predicates
+     * @param claimPredicats the ClaimAdvice predicates 
+     * @return a list of claim advices which match the predicates
+     */
+    public List<ClaimAdvice> findClaimAdvices(
+            List<Predicate<CustomerInsurance>> cusInsPredicates,
+            List<Predicate<Insurance>> insPredicates,
+            List<Predicate<ClaimAdvice>> claimPredicates) {
+        
+        Predicate<ClaimAdvice> claimPredicate =
+                reducePredicates(claimPredicates);
+        
+        return findInsurances(cusInsPredicates, insPredicates)
+                .stream()
+                .flatMap(ins -> ins.getClaimAdvices().stream())
+                .filter(claimPredicate)
+                .collect(Collectors.toList());
     }
     
     /**
