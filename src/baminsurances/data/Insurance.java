@@ -43,6 +43,7 @@ public abstract class Insurance implements Comparable<Insurance>, Serializable {
         this.paymentFrequency = paymentFrequency;
         creationDate = LocalDate.now();
         this.terms = terms;
+        //TODO: updatePayments(); ?
     }
     
     /**
@@ -338,7 +339,12 @@ public abstract class Insurance implements Comparable<Insurance>, Serializable {
      * @return the date of the next payment
      */
     public LocalDate getNextPaymentDate() {
-        return payments.isEmpty() ? getCreationDate() : payments.lastKey();
+        return payments.isEmpty() ? getCreationDate() :
+            payments.lastKey().plusMonths(getMonthsBetweenPayments());
+    }
+    
+    public int getMonthsBetweenPayments() {
+        return  12 / paymentFrequency.getPaymentsPerYear();
     }
     
     /**
@@ -361,13 +367,8 @@ public abstract class Insurance implements Comparable<Insurance>, Serializable {
                     + "Found: " + discountPercentage);
         }
         
-        int monthsBetweenPayments = 12 / paymentFrequency.getPaymentsPerYear();
-        int numMissingPayments =
-                getNextPaymentDate().until(LocalDate.now()).getMonths() /
-                monthsBetweenPayments;
-        for (int i = 0; i < numMissingPayments; i++) {
-            payments.put(
-                    getNextPaymentDate().plusMonths(i * monthsBetweenPayments),
+        while (getNextPaymentDate().isBefore(LocalDate.now())) {
+            payments.put(getNextPaymentDate(),
                     getAmountPerPayment() * (1 - discountPercentage / 100));
         }
     }

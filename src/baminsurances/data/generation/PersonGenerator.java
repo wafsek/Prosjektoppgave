@@ -251,7 +251,6 @@ public class PersonGenerator {
         int year = Integer.parseInt(
                 String.valueOf(first2DigitsOfYear) + last2DigitsOfYearString);
         LocalDate bd = LocalDate.of(year, month, day);
-        System.out.println(bd);
         return bd.until(
                 LocalDate.now()).getYears();
     }
