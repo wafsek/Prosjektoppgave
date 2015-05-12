@@ -43,4 +43,8 @@ public abstract class GeneralScene {
     public Button getLogOutButton() {
         return logOutButton;
     }
+
+    public Button getBackButton(){
+        return backButton;
+    }
 }

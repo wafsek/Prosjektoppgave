@@ -1,18 +1,14 @@
 package baminsurances.gui.window.scene;
 
-import baminsurances.data.Customer;
 import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
-import baminsurances.gui.window.GuiConfig;
 import baminsurances.gui.window.OperationWindow;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
@@ -33,7 +29,7 @@ public abstract class PersonSearchScene extends GeneralScene{
     protected ArrayList<TextField> textFieldArrayList;
     protected Iterator textFieldsIterator;
 
-    protected Button requestRegistration;
+    protected Button choosePersonButton;
 
     protected GridPane itemContainer;
 
@@ -94,15 +90,15 @@ public abstract class PersonSearchScene extends GeneralScene{
         textFieldArrayList.add(adressField);
         textFieldArrayList.add(zipCodeField);
 
-        requestRegistration = new Button("Velg Person");
-        requestRegistration.setOnAction(guiEventHandler);
+        choosePersonButton = new Button("Velg Person");
+        choosePersonButton.setOnAction(guiEventHandler);
 
         itemContainer = new GridPane();
         itemContainer.addColumn(0, firstNameLabel, lastNameLabel, birthNoLabel,
                 adressLabel, zipCodeLabel);
         itemContainer.addColumn(1, firstNameField, lastNameField,
                 birthNumberField, adressField, zipCodeField,
-                requestRegistration);
+                choosePersonButton);
         itemContainer.setAlignment(Pos.CENTER);
         itemContainer.setVgap(30);
         itemContainer.setHgap(20);
@@ -124,8 +120,8 @@ public abstract class PersonSearchScene extends GeneralScene{
      *
      * @return the button that requests the Scene change.
      */
-    public Button getRequestRegistration() {
-        return requestRegistration;
+    public Button getChoosePersonButton() {
+        return choosePersonButton;
     }
 
     public String getFirstName() {

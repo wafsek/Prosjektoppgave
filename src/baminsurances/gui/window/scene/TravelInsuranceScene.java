@@ -86,7 +86,7 @@ public class TravelInsuranceScene extends PersonSearchScene {
         itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel,
                 birthNoLabel, adressLabel, zipCodeLabel, firstNameField,
                 lastNameField, birthNumberField, adressField, zipCodeField,
-                requestRegistration);
+                choosePersonButton);
         itemContainer.addColumn(0, incomeBox, deptBox, kidsBox, relationshipBox,
                 registerPersonInsurance);
         borderPane = new BorderPane(itemContainer, header, scrollPane, footer,

@@ -92,7 +92,7 @@ public class InsureCarScene extends PersonSearchScene {
         itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel,
                 birthNoLabel, adressLabel, zipCodeLabel, firstNameField,
                 lastNameField, birthNumberField, adressField, zipCodeField,
-                requestRegistration);
+                choosePersonButton);
         itemContainer.addColumn(0, yearOfProductionBox, carBrandBox, carTypeBox,
                 bonusBox, registerCarScene);
         borderPane = new BorderPane(itemContainer, header, scrollPane, footer,

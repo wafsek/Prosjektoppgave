@@ -138,8 +138,8 @@ public class Controller {
     }
 
     private void backToNavigation(){
-        operationWindow.close();
-        loginStage.reopen();
+        primaryStage.close();
+        menuStage.initiate(navigationScene.getScene());
         logger.log("Closing main Stage, reopening navigation stage.", Level.INFO);
     }
     
@@ -165,8 +165,10 @@ public class Controller {
             }
         } else if (control == navigationScene.getCustomerInteractionButton()) {
             launchCustomerHandling();
-        } else if (control == findPersonScene.getRequestRegistration()) {
+        } else if (control == findPersonScene.getRegisterPersonButton()) {
             launchRegistration();
+        } else if (control == findPersonScene.getBackButton()) {
+            backToNavigation();
         }
 
         /*if (control == loginWindow.getLoginButton()) {
@@ -177,7 +179,7 @@ public class Controller {
         } else if (control == operationWindow.getPersonSceneButton()) {
             travelInsuranceScene = new TravelInsuranceScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
             operationWindow.displayScene(travelInsuranceScene.getScene());
-        } else if (control == travelInsuranceScene.getRequestRegistration()) {
+        } else if (control == travelInsuranceScene.getChoosePersonButton()) {
             String result = this.registerPerson();//Note by sarai. Person registered.
             operationWindow.displayScene(travelInsuranceScene.requestApproved());
         } else if (control == operationWindow.getLogOutButton()) {
@@ -190,7 +192,7 @@ public class Controller {
         } else if (control == operationWindow.getCarSceneButton()) {
             insureCarScene = new InsureCarScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
             operationWindow.displayScene(insureCarScene.getScene());
-        } else if (control == insureCarScene.getRequestRegistration()) {
+        } else if (control == insureCarScene.getChoosePersonButton()) {
             operationWindow.displayScene(insureCarScene.requestApproved());
         } else if (control == operationWindow.getStatsSceneButton()) {
             statisticsScene = new StatisticsScene(operationWindow.getFooter(), keyPressHandler, guiEventHandler);
@@ -198,12 +200,12 @@ public class Controller {
         } else if (control == operationWindow.getHouseSceneButton()) {
             insureHouseScene = new InsureHouseScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
             operationWindow.displayScene(insureHouseScene.getScene());
-        } else if (control == insureHouseScene.getRequestRegistration()) {
+        } else if (control == insureHouseScene.getChoosePersonButton()) {
             operationWindow.displayScene(insureHouseScene.requestApproved());
         } else if (control == operationWindow.getBoatSceneButton()) {
             insureBoatScene = new InsureBoatScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
             operationWindow.displayScene(insureBoatScene.getScene());
-        } else if (control == insureBoatScene.getRequestRegistration()) {
+        } else if (control == insureBoatScene.getChoosePersonButton()) {
             operationWindow.displayScene(insureBoatScene.requestApproved());
         } else if (control == addScene.getRegisterPersonButton()) {
             addScene.registerPerson(this.registerPerson());
@@ -223,7 +225,7 @@ public class Controller {
         } else if (control == operationWindow.getClaimAdviceButton()){
             claimAdviceScene = new ClaimAdviceScene(operationWindow.getFooter(), guiEventHandler, keyPressHandler);
             operationWindow.displayScene(claimAdviceScene.getScene());
-        } else if (control == claimAdviceScene.getRequestRegistration()){
+        } else if (control == claimAdviceScene.getChoosePersonButton()){
             operationWindow.displayScene(claimAdviceScene.changeToAdviceClaimRegistration());
         }*/
     }

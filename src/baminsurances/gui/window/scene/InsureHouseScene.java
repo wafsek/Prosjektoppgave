@@ -85,7 +85,7 @@ public class InsureHouseScene extends PersonSearchScene{
 
         itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel, birthNoLabel,
                 adressLabel, zipCodeLabel, firstNameField, lastNameField, birthNumberField, adressField, zipCodeField,
-                requestRegistration);
+                choosePersonButton);
         itemContainer.addColumn(0, zipCodeLabel, adressLabel);
         itemContainer.addColumn(1, zipCodeField, houseAdressField, yearOfConstructionBox, areaBox, registerHouseButton);
         itemContainer.setHgap(20);
