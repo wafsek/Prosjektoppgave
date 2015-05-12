@@ -22,32 +22,8 @@ public class CustomerServiceManager {
     public static final int INSURANCE_NOT_FOUND = 2;
     public static final int ALREADY_CANCELED = 3;
     
-    private DataBank dataBank;
+    private DataBank dataBank = DataBank.getInstance();
     private CustomLogger logger = CustomLogger.getInstance();
-    //private static final InsuranceServiceManager manager = new InsuranceServiceManager();
-        
-    private CustomerServiceManager() {
-    }
-    
-    private void setInsuranceDataBank(DataBank dataBank) {
-        this.dataBank = dataBank;
-    }
-    
-    public DataBank getInsuranceDataBank() {
-        return this.dataBank;
-    }
-    
-    /**
-     * Calls the setInsuranceDataBank method 
-     * 
-     * @param dataBank InsuranceDataBank object that needs to be assigned to this class.
-     */
-    public CustomerServiceManager(DataBank dataBank) {
-        if (dataBank == null){
-            throw new NullPointerException("InsuranceDataBank object expected; Null received");
-        }
-        this.setInsuranceDataBank(dataBank);
-    }
     
     /**
      * Registers the given customer with a new CustomerInsurance.

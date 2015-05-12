@@ -67,7 +67,7 @@ public class Controller {
     
     
     public Controller(){
-        manager = new CustomerServiceManager(DataBank.getInstance());    
+        manager = new CustomerServiceManager();    
     }
     
     
@@ -249,7 +249,7 @@ public class Controller {
         }else if(!Validation.isValidTelephoneNo(addScene.getTelephoneNumberFieldText())){
             return DataControl.INVALID_TLF;
         }else if(!Validation.isValidStreetAddress(addScene.getAdressFieldText())){
-            return DataControl.INVALID_ADRESSE;
+            return DataControl.INVALID_ADDRESS;
         }else if(!Validation.isValidZipCode(addScene.getZipCodeFieldText())){
             return DataControl.INVALID_ZIPCODE;
         }else if(!Validation.isValidStreetAddress(addScene.getBillingAdressFieldText())){

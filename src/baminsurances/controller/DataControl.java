@@ -7,16 +7,16 @@ package baminsurances.controller;
  * @author Baljit Sarai 
  */
 public enum DataControl {
-    SUCCESS("Sucess"),
-    INVALID_FIRST_NAME("Invalid first name"),
-    INVALID_LAST_NAME("Invalid last name"),
-    INVALID_BIRTHNO("Invalid birthNo"),
-    INVALID_EMAIL("Invalid Email"),
-    INVALID_TLF("Invalid Telephone Number"),
-    INVALID_ADRESSE("Invalid Adresse"),
-    INVALID_ZIPCODE("Invalid zip code"),
-    INVALID_BILLING_ADRESSE("Invalid billing adresse"),
-    INVALID_BILLING_ZIPCODE("Invalid bliing zip code");
+    SUCCESS("Success"),
+    INVALID_FIRST_NAME("Ulovlig fornavn"),
+    INVALID_LAST_NAME("Ulovlig etternavn"),
+    INVALID_BIRTHNO("Ulovlig fødselsnummer"),
+    INVALID_EMAIL("Ulovlig e-postadresse"),
+    INVALID_TLF("Ulovlig telefonnummer"),
+    INVALID_ADDRESS("Ulovlig afdresse"),
+    INVALID_ZIPCODE("Ulovlig postnummer"),
+    INVALID_BILLING_ADRESSE("Ulovlig addresse"),
+    INVALID_BILLING_ZIPCODE("Ulovlig addresse");
     
     private final String description;
     

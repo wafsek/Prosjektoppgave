@@ -28,7 +28,9 @@ public class ClaimAdvice {
     private long compensationAmount;
     
     /**
-     * Creates a new claim advice with the given values. To add pictures and
+     * Creates a new claim advice with the given values.
+     * <p>
+     * To add pictures and
      * witnesses, instantiate a ClaimAdvice before using the {@link
      * #addWitness(Person) addWitness} and {@link
      * #addPictureOfDamage(BufferedImage) addPictureOfDamage} methods.

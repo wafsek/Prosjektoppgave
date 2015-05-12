@@ -11,11 +11,6 @@ import java.util.Properties;
  */
 public class Config {
     
-    private static String applicationName;
-    private static String dataBankFilePath;
-    
-    private static int number;
-    
     /**
      * Returns the properties for this config.
      * 
