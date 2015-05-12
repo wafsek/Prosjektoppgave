@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/HandleCustomerScene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/FindPersonScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/FindPersonScene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/GeneralScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/GeneralScene.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/NavigationScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/NavigationScene.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -44,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HandleCustomerScene.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HandleCustomerScene.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/HandleCustomerScene.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35905513">
-              <caret line="112" column="65" selection-start-line="112" selection-start-column="65" selection-end-line="112" selection-end-column="65" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="107" column="49" selection-start-line="107" selection-start-column="49" selection-end-line="107" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -61,6 +58,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NavigationScene.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/NavigationScene.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4715026">
+              <caret line="55" column="35" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -213,7 +220,6 @@
         <option value="$PROJECT_DIR$/src/baminsurances/gui/Gui.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/button/IconButton.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/NavigationWindow.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/NavigationScene.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/OperationWindow.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticsScene.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/PersonSearchScene.java" />
@@ -221,6 +227,7 @@
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/FindPersonScene.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/HandleCustomerScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/NavigationScene.java" />
       </list>
     </option>
   </component>
@@ -913,7 +920,13 @@
       <option name="project" value="LOCAL" />
       <updated>1431106480060</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="The main scene for customer handling is now finished. Functionality may be added at this point to this, and the current parts of Gui">
+      <created>1431432935470</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1431432935470</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -927,8 +940,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32826748" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38500506" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826748" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38500506" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17447917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1000,7 +1013,8 @@
     <MESSAGE value="Gui is no longer responsible for scene management." />
     <MESSAGE value="Username now shows while the program is running." />
     <MESSAGE value="The middle stage between login and the other main main stage with the main scenes is now fully functional. &#10;NOTICE: it still lacks proper icons for the buttons. The old statisticsbutton &#10;on the other stages are now changed to return to the navigation. Icon is also missing there, but it is renamed appropriately to it's functionality." />
-    <option name="LAST_COMMIT_MESSAGE" value="The middle stage between login and the other main main stage with the main scenes is now fully functional. &#10;NOTICE: it still lacks proper icons for the buttons. The old statisticsbutton &#10;on the other stages are now changed to return to the navigation. Icon is also missing there, but it is renamed appropriately to it's functionality." />
+    <MESSAGE value="The main scene for customer handling is now finished. Functionality may be added at this point to this, and the current parts of Gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="The main scene for customer handling is now finished. Functionality may be added at this point to this, and the current parts of Gui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1311,17 +1325,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/NavigationScene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="48" selection-start-line="49" selection-start-column="48" selection-end-line="49" selection-end-column="48" />
-          <folding>
-            <marker date="1431422484917" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1431422484917" expanded="true" signature="-1:-1" placeholder=" { " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/OperationWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1414,13 +1417,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/LoginScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0276339">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/HandleCustomerScene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35905513">
-          <caret line="112" column="65" selection-start-line="112" selection-start-column="65" selection-end-line="112" selection-end-column="65" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="107" column="49" selection-start-line="107" selection-start-column="49" selection-end-line="107" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/NavigationScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4715026">
+          <caret line="55" column="35" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -53,7 +53,7 @@ public class NavigationScene extends GeneralScene{
         buttonContainer = new HBox(0, logOutButton);
         buttonContainer.setAlignment(Pos.CENTER_RIGHT);
         infoContainer = new HBox(0, informationLabel);
-        footer = new HBox(WIDTH*3/4, infoContainer, buttonContainer);
+        footer = new HBox(WIDTH*2/5, infoContainer, buttonContainer);
         footer.setAlignment(Pos.BOTTOM_RIGHT);
         footer.setStyle("-fx-border-color: gray;");
         borderPane = new BorderPane(container, null, null, footer, null);
