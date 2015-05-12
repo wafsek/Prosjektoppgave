@@ -9,19 +9,16 @@ import javafx.scene.image.ImageView;
  */
 public class IconButton {
 
-    public static final int ADD_BUTTON = 1;
-    public static final int STATISTIC_BUTTON = 2;
-    public static final int SEARCH_BUTTON = 3;
-    public static final int INSURE_HOUSE_BUTTON = 4;
-    public static final int INSURE_CAR_BUTTON = 5;
-    public static final int INSURE_PERSON_BUTTON = 6;
-    public static final int INSURE_BOAT_BUTTON = 7;
+    public static final int ADD_BUTTON = 1, STATISTIC_BUTTON = 2, SEARCH_BUTTON = 3,
+            INSURE_HOUSE_BUTTON = 4, INSURE_CAR_BUTTON = 5, INSURE_PERSON_BUTTON = 6,
+            INSURE_BOAT_BUTTON = 7, BACK_BUTTON = 8, CUSTOMERS_BUTTON = 9;
 
     private Image addImage, statisticImage, searchImage, houseImage, carImage,
-            personImage, boatImage;
+            personImage, boatImage, backImage, customersImage;
 
     private ImageView addImageView, statisticImageView, searchImageView,
-            houseImageView, carImageView, personImageView, boatImageView;
+            houseImageView, carImageView, personImageView, boatImageView,
+            backImageView, customersImageView;
 
     private Button button;
     private ImageView imageViewToBeUsed;
@@ -40,17 +37,23 @@ public class IconButton {
         searchImage = new Image(this.getClass().getResourceAsStream(imagePath + "search.png"));
         searchImageView = new ImageView(searchImage);
 
-        houseImage = new Image(this.getClass().getResourceAsStream(imagePath + "house_icon.png"));
+        houseImage = new Image(this.getClass().getResourceAsStream(imagePath + "house.png"));
         houseImageView = new ImageView(houseImage);
 
-        carImage = new Image(this.getClass().getResourceAsStream(imagePath + "car_icon.png"));
+        carImage = new Image(this.getClass().getResourceAsStream(imagePath + "car.png"));
         carImageView = new ImageView(carImage);
 
-        personImage = new Image(this.getClass().getResourceAsStream(imagePath + "insure_person_icon.png"));
+        personImage = new Image(this.getClass().getResourceAsStream(imagePath + "airplane.png"));
         personImageView = new ImageView(personImage);
 
-        boatImage = new Image(this.getClass().getResourceAsStream(imagePath + "boat_icon.png"));
+        boatImage = new Image(this.getClass().getResourceAsStream(imagePath + "boat.png"));
         boatImageView = new ImageView(boatImage);
+
+        backImage = new Image(this.getClass().getResourceAsStream(imagePath + "back.png"));
+        backImageView = new ImageView(backImage);
+
+        customersImage = new Image(this.getClass().getResourceAsStream(imagePath + "multiplecustomers.png"));
+        customersImageView = new ImageView(customersImage);
     }
 
     private ImageView testMagicalInput(int magical_constant) {
@@ -68,6 +71,10 @@ public class IconButton {
             return personImageView;
         } else if (magical_constant == INSURE_BOAT_BUTTON) {
             return boatImageView;
+        } else if (magical_constant == BACK_BUTTON) {
+            return backImageView;
+        } else if (magical_constant == CUSTOMERS_BUTTON) {
+            return customersImageView;
         } else {
             return null;
         }

@@ -4,7 +4,6 @@ import baminsurances.api.Config;
 import baminsurances.gui.button.IconButton;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
-import baminsurances.gui.window.scene.*;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,7 +21,7 @@ public class OperationWindow {
     private Stage stage;
     private HBox header, footer;
 
-    private Button searchButton, addButton, statsButton, houseButton, carButton,
+    private Button searchButton, claimAdviceButton, addButton, statisticsButton, houseButton, carButton,
             personButton, boatButton, logOutButton, backButton;
     private Label displaNameLabel;
 
@@ -34,7 +33,10 @@ public class OperationWindow {
     private OperationWindow() {
         stage = new Stage();
         //searchButton = new IconButton().iconButton(STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.SEARCH_BUTTON);
-        //statsButton = new IconButton().iconButton(STAGE_HEIGHT*1/7,STAGE_HEIGHT*1/7, IconButton.STATISTIC_BUTTON);
+        claimAdviceButton = new IconButton().iconButton(
+                STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.ADD_BUTTON);
+        statisticsButton = new IconButton().iconButton(
+                STAGE_HEIGHT*1/7,STAGE_HEIGHT*1/7, IconButton.STATISTIC_BUTTON);
         addButton = new IconButton().iconButton(
                 STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.ADD_BUTTON);
         houseButton = new IconButton().iconButton(
@@ -46,12 +48,12 @@ public class OperationWindow {
         boatButton = new IconButton().iconButton(
                 STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.INSURE_BOAT_BUTTON);
         backButton = new IconButton().iconButton(
-                STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.STATISTIC_BUTTON);
+                STAGE_HEIGHT*1/7, STAGE_HEIGHT*1/7, IconButton.BACK_BUTTON);
 
         logOutButton = new Button("Logg ut");
 
         header = new HBox(50, addButton, personButton, houseButton, carButton,
-                boatButton, backButton);
+                boatButton, claimAdviceButton, backButton);
         header.setAlignment(Pos.CENTER);
         header.setStyle("-fx-border-color: gray;" +
                 "-fx-padding: 5;");
@@ -73,7 +75,7 @@ public class OperationWindow {
     }
 
     public Button getStatsSceneButton() {
-        return statsButton;
+        return statisticsButton;
     }
 
     public Button getHouseSceneButton() {
@@ -90,6 +92,10 @@ public class OperationWindow {
 
     public Button getBoatSceneButton() {
         return boatButton;
+    }
+
+    public Button getClaimAdviceButton(){
+        return claimAdviceButton;
     }
 
     public Button getBackButton() {
@@ -114,9 +120,10 @@ public class OperationWindow {
 
     public void setGuiEventHandler(GuiEventHandler geh) {
         handler = geh;
-        //searchButton.setOnAction(handler);
+        //searchButton.setOnAction(guiEventHandler);
+        claimAdviceButton.setOnAction(handler);
         addButton.setOnAction(handler);
-        //statsButton.setOnAction(handler);
+        statisticsButton.setOnAction(handler);
         houseButton.setOnAction(handler);
         carButton.setOnAction(handler);
         personButton.setOnAction(handler);

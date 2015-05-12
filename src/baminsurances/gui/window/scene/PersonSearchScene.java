@@ -9,7 +9,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
@@ -18,9 +17,7 @@ import java.util.Iterator;
 /**
  * @author Adrian Melsom
  */
-public abstract class PersonSearchScene {
-
-    protected Scene scene;
+public abstract class PersonSearchScene extends GeneralScene{
 
     protected TextField firstNameField, lastNameField, adressField,
         zipCodeField, birthNumberField;
@@ -32,17 +29,13 @@ public abstract class PersonSearchScene {
     protected ArrayList<TextField> textFieldArrayList;
     protected Iterator textFieldsIterator;
 
-    protected Button requestRegistration;
+    protected Button choosePersonButton;
 
     protected GridPane itemContainer;
-    protected BorderPane borderPane;
-    protected GuiEventHandler handler;
-    protected KeyPressHandler keyPressHandler;
 
-    public PersonSearchScene(GuiEventHandler handler,
-            KeyPressHandler keyPressHandler) {
-        this.handler = handler;
-        this.keyPressHandler = keyPressHandler;
+    public PersonSearchScene(GuiEventHandler guiEventHandler,
+            KeyPressHandler keyPressHandler, String displayName) {
+        super(guiEventHandler, keyPressHandler, displayName);
 
         personTable = new TableView();
         birthNoColumn = new TableColumn("Fødselsnummer");
@@ -97,15 +90,15 @@ public abstract class PersonSearchScene {
         textFieldArrayList.add(adressField);
         textFieldArrayList.add(zipCodeField);
 
-        requestRegistration = new Button("Velg Person");
-        requestRegistration.setOnAction(handler);
+        choosePersonButton = new Button("Velg Person");
+        choosePersonButton.setOnAction(guiEventHandler);
 
         itemContainer = new GridPane();
         itemContainer.addColumn(0, firstNameLabel, lastNameLabel, birthNoLabel,
                 adressLabel, zipCodeLabel);
         itemContainer.addColumn(1, firstNameField, lastNameField,
                 birthNumberField, adressField, zipCodeField,
-                requestRegistration);
+                choosePersonButton);
         itemContainer.setAlignment(Pos.CENTER);
         itemContainer.setVgap(30);
         itemContainer.setHgap(20);
@@ -127,8 +120,8 @@ public abstract class PersonSearchScene {
      *
      * @return the button that requests the Scene change.
      */
-    public Button getRequestRegistration() {
-        return requestRegistration;
+    public Button getChoosePersonButton() {
+        return choosePersonButton;
     }
 
     public String getFirstName() {
@@ -164,7 +157,6 @@ public abstract class PersonSearchScene {
     }
 
     public void setTableData(ObservableList observableList) {
-        personTable.setItems(null);
         personTable.setItems(observableList);
     }
 }

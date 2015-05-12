@@ -27,7 +27,7 @@ public class WelcomeScene {
     *
     *@param header horizontal array of components
     *@param footer horizontal array of components
-     *@param handler handler that listens for actions
+     *@param handler guiEventHandler that listens for actions
      */
     public WelcomeScene(HBox header, HBox footer, GuiEventHandler handler){
         welcomeImage = new Image(this.getClass().getResourceAsStream("../../img/add.png"));

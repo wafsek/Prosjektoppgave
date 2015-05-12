@@ -27,8 +27,8 @@ public class SearchScene extends PersonSearchScene {
     private HBox footer, header;
 
     public SearchScene(HBox header, HBox footer, GuiEventHandler handler,
-            KeyPressHandler keyPressHandler){
-        super(handler, keyPressHandler);
+            KeyPressHandler keyPressHandler, String displayName){
+        super(handler, keyPressHandler, displayName);
         this.header = header;
         this.footer = footer;
 
@@ -52,9 +52,5 @@ public class SearchScene extends PersonSearchScene {
         scene = new Scene(borderPane);
 
         keyPressHandler.setSearchScene(this);
-    }
-
-    public void setTableData(ObservableList observableList){
-        personTable.setItems(observableList);
     }
 }

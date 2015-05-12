@@ -1,52 +1,63 @@
 package baminsurances.gui.window.scene;
 
-import baminsurances.gui.Gui;
 import baminsurances.gui.button.IconButton;
 import baminsurances.gui.eventhandler.GuiEventHandler;
-import baminsurances.gui.window.NavigationWindow;
+import baminsurances.gui.eventhandler.KeyPressHandler;
+import baminsurances.gui.window.GuiConfig;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.security.Key;
 
 /**
  * @author Adrian Melsom
  */
-public class NavigationScene {
+public class NavigationScene extends GeneralScene{
 
     private Scene scene;
     private Button statisticsButton, customerInteractionButton, searchButton;
     private GuiEventHandler guiEventHandler;
     private BorderPane borderPane;
     private VBox container;
+    private static final double WIDTH = GuiConfig.PRIMARY_WIDTH*1/4, HEIGHT = GuiConfig.PRIMARY_HEIGHT*1/10;
 
-    public NavigationScene(GuiEventHandler guiEventHandler) {
+    public NavigationScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName) {
+        super(guiEventHandler, keyPressHandler, displayName);
         this.guiEventHandler = guiEventHandler;
         statisticsButton = new IconButton().IconButtonWithText(
-                NavigationWindow.STAGE_WIDTH*1/5,
-                NavigationWindow.STAGE_WIDTH*1/5, IconButton.ADD_BUTTON,
+                HEIGHT, HEIGHT, IconButton.STATISTIC_BUTTON,
                 "Statistikk");
-        statisticsButton.setPrefWidth(NavigationWindow.STAGE_WIDTH);
-        statisticsButton.setPrefHeight(NavigationWindow.STAGE_HEIGHT * 1 / 4);
+        statisticsButton.setPrefWidth(WIDTH);
+        statisticsButton.setPrefHeight(HEIGHT);
         statisticsButton.setOnAction(guiEventHandler);
         customerInteractionButton = new IconButton().IconButtonWithText(
-                NavigationWindow.STAGE_WIDTH*1/5,
-                NavigationWindow.STAGE_WIDTH*1/5, IconButton.ADD_BUTTON,
+                HEIGHT, HEIGHT, IconButton.CUSTOMERS_BUTTON,
                 "Kundebehandling");
-        customerInteractionButton.setPrefWidth(NavigationWindow.STAGE_WIDTH);
+        customerInteractionButton.setPrefWidth(WIDTH);
         customerInteractionButton.setPrefHeight(
-                NavigationWindow.STAGE_HEIGHT * 1 / 4);
+                HEIGHT);
         customerInteractionButton.setOnAction(guiEventHandler);
         searchButton = new IconButton().IconButtonWithText(
-                NavigationWindow.STAGE_WIDTH*1/5,
-                NavigationWindow.STAGE_WIDTH*1/5, IconButton.ADD_BUTTON,
-                "Statistikk");
-        searchButton.setPrefWidth(NavigationWindow.STAGE_WIDTH);
-        searchButton.setPrefHeight(NavigationWindow.STAGE_HEIGHT * 1 / 4);
+                HEIGHT,
+                HEIGHT, IconButton.SEARCH_BUTTON,
+                "Søk");
+        searchButton.setPrefWidth(WIDTH);
+        searchButton.setPrefHeight(HEIGHT);
         searchButton.setOnAction(guiEventHandler);
-        container = new VBox(24, statisticsButton, customerInteractionButton,
+        container = new VBox(10, statisticsButton, customerInteractionButton,
                 searchButton);
-        scene = new Scene(container);
+        buttonContainer = new HBox(0, logOutButton);
+        buttonContainer.setAlignment(Pos.CENTER_RIGHT);
+        infoContainer = new HBox(0, informationLabel);
+        footer = new HBox(WIDTH*3/4, infoContainer, buttonContainer);
+        footer.setAlignment(Pos.BOTTOM_RIGHT);
+        footer.setStyle("-fx-border-color: gray;");
+        borderPane = new BorderPane(container, null, null, footer, null);
+        scene = new Scene(borderPane);
     }
 
     public Scene getScene() {

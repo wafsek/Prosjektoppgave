@@ -10,8 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
-import java.security.Key;
-
 /**
  * @author Adrian Melsom
  */
@@ -35,8 +33,8 @@ public class InsureBoatScene extends PersonSearchScene {
      * @param handler
      */
     public InsureBoatScene(HBox header, HBox footer, GuiEventHandler handler,
-            KeyPressHandler keyPressHandler) {
-        super(handler, keyPressHandler);
+            KeyPressHandler keyPressHandler, String displayName) {
+        super(handler, keyPressHandler, displayName);
         this.footer = footer;
         this.header = header;
         borderPane = new BorderPane(itemContainer, header, personTable, footer, null);
@@ -95,7 +93,7 @@ public class InsureBoatScene extends PersonSearchScene {
         itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel,
                 birthNoLabel, adressLabel, zipCodeLabel, firstNameField,
                 lastNameField, birthNumberField, adressField, zipCodeField,
-                requestRegistration);
+                choosePersonButton);
         itemContainer.addColumn(0, boatTypeBox, yearOfConstructionBox,
                 lengthInFeetBox, harborTypeBox, registerBoatButton);
         borderPane = new BorderPane(itemContainer, header, scrollPane, footer,

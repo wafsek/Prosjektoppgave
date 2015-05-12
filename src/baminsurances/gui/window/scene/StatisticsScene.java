@@ -137,7 +137,7 @@ public class StatisticsScene {
 
         backToNavigationButton = new IconButton().iconButton(
                 OperationWindow.STAGE_HEIGHT*1/7,
-                OperationWindow.STAGE_HEIGHT*1/7, IconButton.STATISTIC_BUTTON);
+                OperationWindow.STAGE_HEIGHT*1/7, IconButton.BACK_BUTTON);
         backToNavigationButton.setOnAction(handler);
 
         container = new HBox(0, fieldContainer, tableContainer,

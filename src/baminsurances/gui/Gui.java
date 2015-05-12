@@ -1,9 +1,6 @@
 package baminsurances.gui;
-import baminsurances.api.Config;
 import baminsurances.controller.Controller;
-import baminsurances.gui.window.NavigationWindow;
 import baminsurances.logging.CustomLogger;
-import baminsurances.gui.eventhandler.GuiEventHandler;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

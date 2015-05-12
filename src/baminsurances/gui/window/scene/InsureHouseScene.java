@@ -31,8 +31,8 @@ public class InsureHouseScene extends PersonSearchScene{
      * @param handler
      */
     public InsureHouseScene(HBox header, HBox footer, GuiEventHandler handler,
-            KeyPressHandler keyPressHandler) {
-        super(handler, keyPressHandler);
+            KeyPressHandler keyPressHandler, String displayName) {
+        super(handler, keyPressHandler, displayName);
         this.header = header;
         this.footer = footer;
         borderPane = new BorderPane(itemContainer, header, personTable, footer,
@@ -73,7 +73,7 @@ public class InsureHouseScene extends PersonSearchScene{
         houseAdressField = new TextField();
 
         registerHouseButton = new Button("Registrer forsikring");
-        registerHouseButton.setOnAction(handler);
+        registerHouseButton.setOnAction(guiEventHandler);
 
         printArea = new TextArea();
         printArea.setEditable(false);
@@ -85,7 +85,7 @@ public class InsureHouseScene extends PersonSearchScene{
 
         itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel, birthNoLabel,
                 adressLabel, zipCodeLabel, firstNameField, lastNameField, birthNumberField, adressField, zipCodeField,
-                requestRegistration);
+                choosePersonButton);
         itemContainer.addColumn(0, zipCodeLabel, adressLabel);
         itemContainer.addColumn(1, zipCodeField, houseAdressField, yearOfConstructionBox, areaBox, registerHouseButton);
         itemContainer.setHgap(20);

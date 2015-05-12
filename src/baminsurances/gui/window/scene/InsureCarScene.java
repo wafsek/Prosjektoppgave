@@ -29,8 +29,8 @@ public class InsureCarScene extends PersonSearchScene {
      * @param handler
      */
     public InsureCarScene(HBox header, HBox footer, GuiEventHandler handler,
-            KeyPressHandler keyPressHandler) {
-        super(handler, keyPressHandler);
+            KeyPressHandler keyPressHandler, String displayName) {
+        super(handler, keyPressHandler, displayName);
         this.header = header;
         this.footer = footer;
         borderPane = new BorderPane(itemContainer, header, personTable, footer, null);
@@ -82,7 +82,7 @@ public class InsureCarScene extends PersonSearchScene {
         printArea.setEditable(false);
 
         registerCarScene = new Button("Registrer");
-        registerCarScene.setOnAction(handler);
+        registerCarScene.setOnAction(guiEventHandler);
 
         scrollPane = new ScrollPane(printArea);
         scrollPane.setPrefWidth(OperationWindow.STAGE_WIDTH * 3/5);
@@ -92,7 +92,7 @@ public class InsureCarScene extends PersonSearchScene {
         itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel,
                 birthNoLabel, adressLabel, zipCodeLabel, firstNameField,
                 lastNameField, birthNumberField, adressField, zipCodeField,
-                requestRegistration);
+                choosePersonButton);
         itemContainer.addColumn(0, yearOfProductionBox, carBrandBox, carTypeBox,
                 bonusBox, registerCarScene);
         borderPane = new BorderPane(itemContainer, header, scrollPane, footer,

@@ -33,8 +33,8 @@ public class TravelInsuranceScene extends PersonSearchScene {
      * @param handler
      */
     public TravelInsuranceScene(HBox header, HBox footer,
-            GuiEventHandler handler, KeyPressHandler keyPressHandler) {
-        super(handler, keyPressHandler);
+            GuiEventHandler handler, KeyPressHandler keyPressHandler, String displayName) {
+        super(handler, keyPressHandler, displayName);
         this.header = header;
         this.footer = footer;
         borderPane = new BorderPane(itemContainer, header, personTable, footer,
@@ -73,7 +73,7 @@ public class TravelInsuranceScene extends PersonSearchScene {
         deptBox.setPrefWidth(COMBOBOX_WIDTH);
 
         registerPersonInsurance = new Button("Registrer forsikring");
-        registerPersonInsurance.setOnAction(handler);
+        registerPersonInsurance.setOnAction(guiEventHandler);
 
         printArea = new TextArea();
         printArea.setEditable(false);
@@ -86,7 +86,7 @@ public class TravelInsuranceScene extends PersonSearchScene {
         itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel,
                 birthNoLabel, adressLabel, zipCodeLabel, firstNameField,
                 lastNameField, birthNumberField, adressField, zipCodeField,
-                requestRegistration);
+                choosePersonButton);
         itemContainer.addColumn(0, incomeBox, deptBox, kidsBox, relationshipBox,
                 registerPersonInsurance);
         borderPane = new BorderPane(itemContainer, header, scrollPane, footer,
