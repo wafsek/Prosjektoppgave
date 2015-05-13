@@ -18,13 +18,16 @@ public class Authenticator {
     private boolean loggedIn;
     private CustomLogger logger = CustomLogger.getInstance();
     
-    private static final Authenticator authenticator = new Authenticator();
+    private static Authenticator authenticator;
     
     private Authenticator() {
-        userList = DataBank.getInstance().getUserList();
+        //userList = DataBank.getInstance().getUserList();
     }
     
     public static Authenticator getAuthenticator() {
+        if(authenticator == null){
+            authenticator = new Authenticator();
+        }
         return authenticator;
     }
     

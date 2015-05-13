@@ -31,8 +31,8 @@ public class CustomLogger extends Thread {
         }
             this.logger = Logger.getLogger(this.className);
             this.setConsoleOutput();
-            this.setLoggerLevel(Level.INFO);
-            this.logger.addHandler(txtFileHandler);
+        this.setLoggerLevel(Level.FINEST);
+        this.logger.addHandler(txtFileHandler);
     }
     
     public static CustomLogger getInstance() {
@@ -65,6 +65,6 @@ public class CustomLogger extends Thread {
     }
     
     private void setLoggerLevel(Level loggerLevel) {
-        this.logger.setLevel(Level.INFO);
+        this.logger.setLevel(Level.FINEST);
     }
 }

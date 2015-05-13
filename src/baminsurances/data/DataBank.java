@@ -1,5 +1,7 @@
 package baminsurances.data;
 
+import baminsurances.api.Deserializer;
+import baminsurances.api.Serializer;
 import baminsurances.security.User;
 
 import java.io.Serializable;
@@ -15,10 +17,12 @@ import java.util.List;
  */
 public class DataBank implements Serializable {
     private static final long serialVersionUID = -1348011558079744947L;
+    private static Deserializer deserializer = new Deserializer();
+    private  static Serializer serializer = new Serializer();
     private List<CustomerInsurance> customerInsuranceList = new ArrayList<>();
     private List<Employee> employeeList = new ArrayList<>();
-    private List<User> userList = new ArrayList<>();
-    private static final DataBank dataBank = new DataBank();
+    //private List<User> userList = new ArrayList<>();
+    private static DataBank dataBank;
     
     /**
      * The constructor is private, because there should never exist more than
@@ -34,7 +38,25 @@ public class DataBank implements Serializable {
      * @return an instance of the data bank
      */
     public static DataBank getInstance() {
+        if(dataBank == null){
+            if(deserializer.deserialize() == null){
+                dataBank = new DataBank();
+                serializer.serialize(dataBank);
+            }
+            System.out.println(deserializer.deserialize());
+            dataBank = deserializer.deserialize();
+        }
         return dataBank;
+    }
+
+    /**
+     * Saves an instance of the data bank into a file.
+     *
+     */
+    public static void saveDataBank(){
+        if(dataBank != null){
+            serializer.serialize(dataBank);
+        }
     }
     
     /**
@@ -115,7 +137,7 @@ public class DataBank implements Serializable {
      * 
      * @return the list of users
      */
-    public List<User> getUserList() {
+    /*public List<User> getUserList() {
         return userList;
-    }
+    }*/
 }

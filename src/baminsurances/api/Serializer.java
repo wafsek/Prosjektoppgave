@@ -15,7 +15,8 @@ public class Serializer {
     public void serialize(DataBank dataBank){
 
         try{
-            FileOutputStream fileOut = new FileOutputStream(Config.getDataBankFilePath());
+            FileOutputStream fileOut = new FileOutputStream(
+                    Config.getDataBankFilePath());
             ObjectOutputStream oos = new ObjectOutputStream(fileOut);
             oos.writeObject(dataBank);
             oos.close();

@@ -74,33 +74,49 @@ public class CustomerServiceManager {
         }
     }
 
+     /****************************************************************************
+     * This section of the class if for creating and registering all the         * 
+     * insurances.                                                               *
+     *                                                                           *
+     *                                                                           *
+     ****************************************************************************/
+
+
+     private void registerCarInsurance( ){
+                 
+     }
+
+     private void registerBoatInsurance(){
+
+     }
+
+     private void registerHomeInsurance(){
+
+     }
+
+     private void registerHolidayHomeInsurance(){
+
+     }
+
+     private void registerTravelInsurance(){
+
+     } 
+
+
     /****************************************************************************
-    * This section of the class deals with all types of search                  * 
-    *                                                                           *
-    *                                                                           *
-    *                                                                           *
-    * ***************************************************************************/
+     * This section of the class deals with all types of search                  * 
+     *                                                                           *
+     *                                                                           *
+     *                                                                           *
+     ****************************************************************************/
     
     /* Customer predicates */
     
-    public static final Predicate<CustomerInsurance> isActiveCustomer =
+    public static final Predicate<CustomerInsurance> isActive =
             ci -> ci.isActive();
             
     public static final Predicate<CustomerInsurance> isTotalCustomer =
             ci -> ci.isTotalCustomer();
-            
-    public static final Predicate<CustomerInsurance> hasInsurance =
-            ci -> !ci.getInsurances().isEmpty();
-            
-    public static final Predicate<CustomerInsurance> customerHasClaimAdvice =
-            ci -> ci.getInsurances()
-                        .stream()
-                        .anyMatch(ins -> !ins.getClaimAdvices().isEmpty());
-            
-    public static final Predicate<CustomerInsurance> customerDoesntHaveClaimAdvice =
-            ci -> ci.getInsurances()
-                        .stream()
-                        .allMatch(ins -> ins.getClaimAdvices().isEmpty());
             
     public static Predicate<CustomerInsurance> isOlderThan(int age) {
         return ci -> ci.getCustomer().getAge() >= age;
@@ -162,52 +178,11 @@ public class CustomerServiceManager {
         return ci -> ci.hasActiveInsuranceType(type);
     } 
     
-    
     /* Insurance predicates */
     
-    public static final Predicate<Insurance> isActiveInsurance =
-            ins -> ins.isActive();
-            
-    public static final Predicate<Insurance> hasClaimAdvice =
-            ins -> !ins.getClaimAdvices().isEmpty();
-            
-    public static final Predicate<Insurance> insuranceNoStartsWith(String s) {
-        return ins -> String.valueOf(ins.getInsuranceNo()).startsWith(s);
-    }
-    
-    public static final Predicate<Insurance> insuranceTermsContains(String s) {
-        return ins -> ins.getTerms().toLowerCase().contains(s);
-    }
-    
-    public static final Predicate<Insurance> insurancePaidLessThan(int n) {
-        return ins -> ins.getTotalPaid() < n;
-    }
-    
-    public static final Predicate<Insurance> insurancePaidMoreThan(int n) {
-        return ins -> ins.getTotalPaid() >= n;
-    }
-            
-    public static final Predicate<Insurance> insuranceRegisteredBefore(
-            LocalDate date) {
-        return ins -> ins.getCreationDate().isBefore(date);
-    }
-    
-    public static final Predicate<Insurance> insuranceRegisteredAfter(
-            LocalDate date) {
-        return ins -> ins.getCreationDate().isAfter(date);
-    }
-    
-    public static final Predicate<Insurance> isOfType(
-            Class<? extends Insurance> type) {
-        return ins -> type.isInstance(type);
-    }
-    
-    public static final Predicate<Insurance> registeredByEmployee(Employee emp) {
-        return ins -> ins.getEmployee().equals(emp);
-    }
+    public static final Predicate<CustomerInsurance> insuranceIsActive = null;
     
     
-    /* Claim advice predicates */
     
     
     

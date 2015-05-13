@@ -13,23 +13,28 @@ public class Deserializer {
 
     public DataBank deserialize() {
 
-        DataBank bokRegister;
+        DataBank databank;
 
         try {
-            File file = new File(Config.getDataBankFilePath());
-            if(!(file.exists())) {
+            File file = new File("data_bank.ser");
+            if(!file.exists()) {
                 file.createNewFile();
             }
-            FileInputStream fin = new FileInputStream(Config.getDataBankFilePath());
+            FileInputStream fin = new FileInputStream("data_bank.ser");
             ObjectInputStream ois = new ObjectInputStream(fin);
-            bokRegister = (DataBank) ois.readObject();
+            databank = (DataBank) ois.readObject();
             ois.close();
-            return bokRegister;
+            return databank;
         } catch(EOFException ex) {
             //This exception is thrown because the file is empty and has just been created.
             return null;
-        } catch(Exception ex) {
+        } catch(IOException ex) {
             ex.printStackTrace();
+            return null;
+        }catch (ClassNotFoundException cnfex){
+            cnfex.printStackTrace();
+            return null;
+        }catch (Exception ex){
             return null;
         }
     }

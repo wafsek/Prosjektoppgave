@@ -4,6 +4,7 @@ import baminsurances.api.CustomerServiceManager;
 import baminsurances.api.Validation;
 import baminsurances.data.Customer;
 import baminsurances.data.CustomerInsurance;
+import baminsurances.data.DataBank;
 import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
@@ -32,8 +33,9 @@ public class Controller {
      * The fields
      * 
      */
-    private Authenticator authenticator = Authenticator.getAuthenticator();
-    private CustomerServiceManager manager;    
+    //private Authenticator authenticator = Authenticator.getAuthenticator();
+    private CustomerServiceManager manager;
+    private CustomerInsurance currentCustomerInsurance;
     
     /**
      * The Gui type fields
@@ -146,7 +148,7 @@ public class Controller {
     
     
     public String getDisplayName(){
-        return "Brukernavn: "+authenticator.getDisplayName();
+        return "Brukernavn: ";//+authenticator.getDisplayName();
     }
     
     /**
@@ -172,9 +174,10 @@ public class Controller {
         } else if (control == findPersonScene.getBackButton()) {
             backToNavigation();
         } else if (control == findPersonScene.getChoosePersonButton()) {
+            //this.setCurrentCustomerInsurance(//Method for getting the chosen customer);
             launchHandleCustomerScene();
         } else if (control == addScene.getRegisterPersonButton()) {
-
+                this.registerPerson();
         } else if (control == handleCustomerScene.getBackButton()) {
             launchFindPersonScene();
         } else if (control == handleCustomerScene.getChooseInsuranceButton()) {
@@ -247,40 +250,67 @@ public class Controller {
    /* private String findPerson(){
         return manager.getCustomerInsurancesWithFirstName(searchScene.);
     }*/
-    public ObservableList<Person> findPeople(){
-        ObservableList<Person> personObservableList = FXCollections.observableArrayList();
+    
+    public void setCurrentCustomerInsurance(Customer customer){
+        currentCustomerInsurance = manager.getCustomerInsurance(customer);
+    }
+    
+    public CustomerInsurance getCurrentCustomerInsurance(){
+        return currentCustomerInsurance;
+    }
+    
+    public ObservableList<Customer> findPeople(){
+        logger.log("findPeople method called", Level.FINER);
         
+        ObservableList<Customer> personObservableList = FXCollections.observableArrayList();
+        List<Customer> customerList;
         List<Predicate<CustomerInsurance>> predicates = new ArrayList<>();
-        String firstName = travelInsuranceScene.getFirstName();
-        String lastName = travelInsuranceScene.getLastName();
-        String birthNo = travelInsuranceScene.getBirthNumber();
-        String streetAddress = travelInsuranceScene.getAdress();
-        String zipCode = travelInsuranceScene.getZipCode();
+        String firstName = findPersonScene.getFirstName().trim();
+        String lastName = findPersonScene.getLastName().trim();
+        String birthNo = findPersonScene.getBirthNumber().trim();
+        String streetAddress = findPersonScene.getAdress().trim();
+        String zipCode = findPersonScene.getZipCode().trim();
         
-        predicates.add(CustomerServiceManager.firstNameStartsWith(firstName));
-        //predicates.add(CustomerServiceManager.lastNameStartsWith(lastName));
-        //predicates.add(CustomerServiceManager.birthNoStartsWith(birthNo));
-        //predicates.add(CustomerServiceManager.streetAddressStartsWith(streetAddress));
-        //predicates.add(CustomerServiceManager.zipCodeStartsWith(zipCode));
-        personObservableList.addAll(manager.findCustomers(predicates));
+        if(!firstName.isEmpty()){
+            predicates.add(CustomerServiceManager.firstNameStartsWith(firstName));
+        }
+        if(!lastName.isEmpty()){
+            predicates.add(CustomerServiceManager.lastNameStartsWith(lastName));  
+        }
+        if(!birthNo.isEmpty()){
+            predicates.add(CustomerServiceManager.birthNoStartsWith(birthNo));  
+        }
+        if(!streetAddress.isEmpty()){
+            predicates.add(CustomerServiceManager.streetAddressStartsWith(streetAddress));  
+        }
+        if(!zipCode.isEmpty()){
+            predicates.add(CustomerServiceManager.zipCodeStartsWith(zipCode));  
+        }
+        
+        if(predicates.isEmpty()){
+            return null;
+        }
+        
+        customerList = manager.findCustomers(predicates);
+        if(customerList.isEmpty()){
+            logger.log("No customers found",Level.FINER);
+            return null;
+        }
+        personObservableList.addAll(customerList);
         return personObservableList;
     }
     
     private String registerPerson(){
-        /*Note by baljit sarai: After thinking about it for a while,
-        i have come to the conclusion that this method needs to put the 
-        data from the fields into local variables for security reasons.
-        Marking this place so i can change it after talking to rest of the group.
-       */
         if(this.validatePersonData() != DataControl.SUCCESS){
             return this.validatePersonData().getDescription();
         } else {
             manager.registerCustomerInsurance(new Customer(addScene.getBirthNumberFieldText(),
-                    addScene.getFirstNameFieldText(),addScene.getLastNameFieldText(),
+                    addScene.getFirstNameFieldText(),addScene.getLastNameFieldText(), 
                     addScene.getTelephoneNumberFieldText(),addScene.getEmailFieldText(),
                     addScene.getZipCodeFieldText(),addScene.getAdressFieldText(),
                     addScene.getBillingZipCodeFieldText(),addScene.getBillingAdressFieldText()));
-            return "person registered";
+            DataBank.saveDataBank();
+            return "Person Registered";
         }
     }
     
@@ -306,6 +336,12 @@ public class Controller {
         } else {
             return DataControl.SUCCESS;
         }
+    }
+    
+    public String registerInsurance(){
+        //check if the drop down menu has been selected
+        
+        return "All is Well";
     }
     
 }
