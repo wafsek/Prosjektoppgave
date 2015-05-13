@@ -6,6 +6,7 @@ import baminsurances.data.Customer;
 import baminsurances.data.CustomerInsurance;
 import baminsurances.data.DataBank;
 import baminsurances.data.Person;
+import baminsurances.data.generation.DataBankGenerator;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.*;
@@ -58,7 +59,7 @@ public class Controller {
     private LoginScene loginScene;
     private FindPersonScene findPersonScene;
     private HandleCustomerScene handleCustomerScene;
-    
+    private GeneratingStage generatingStage;
     
     private CustomLogger logger = CustomLogger.getInstance();
     
@@ -82,7 +83,10 @@ public class Controller {
         addScene = new AddScene(guiEventHandler, keyPressHandler, getDisplayName());
         handleCustomerScene = new HandleCustomerScene(guiEventHandler, keyPressHandler, getDisplayName());
 
+        generatingStage = new GeneratingStage();
+
         launchLoginWindow();
+        generatingStage.show();
         /*System.out.println("Welkommen til " + Config.getApplicationName());
         loginWindow = LoginWindow.getLoginWindow();
         loginWindow.show();
