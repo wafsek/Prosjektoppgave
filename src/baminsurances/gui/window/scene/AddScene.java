@@ -36,8 +36,8 @@ public class AddScene extends GeneralScene{
     private GridPane fieldBox;
     private TextArea printArea;
     private ScrollPane scrollPane;
-    private Button registerPersonButton;;
-    private int adressCheckCounter = 1;
+    private Button registerPersonButton;
+    private int adressCheckCounter = 0;
 
     /**
      * Creates a new Scene with the given values.
@@ -90,28 +90,6 @@ public class AddScene extends GeneralScene{
         billingZipCodeField.setOnKeyReleased(e -> fieldCheck(billingZipCodeField));
         billingZipCodeField.setEditable(false);
         billingZipCodeLabel = new Label("Postnr. for betaling:");
-        adressField.setOnKeyReleased(e -> {
-            billingAdressField.setText(adressField.getText());
-            if(adressField.getText().trim().isEmpty()){
-                adressField.setStyle("-fx-effect: dropshadow"
-                        + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-                this.emptyFieldsCheck();
-            } else {
-                adressField.setStyle("");
-                this.emptyFieldsCheck();
-            }
-        });
-        zipCodeField.setOnKeyReleased(e -> {
-            billingZipCodeField.setText(zipCodeField.getText());
-            if(zipCodeField.getText().trim().isEmpty()){
-                zipCodeField.setStyle("-fx-effect: dropshadow"
-                        + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-                this.emptyFieldsCheck();
-            } else {
-                zipCodeField.setStyle("");
-                this.emptyFieldsCheck();
-            }
-        });
 
         textFieldArrayList = new ArrayList<TextField>();
         textFieldArrayList.add(firstNameField);
@@ -171,6 +149,23 @@ public class AddScene extends GeneralScene{
 
     private void fillAdressAndZipFields(){
         if (adressCheckCounter == 0) {
+            adressField.setOnKeyReleased(e -> {
+                billingAdressField.setText(adressField.getText());
+                fieldCheck(adressField);
+            });
+            zipCodeField.setOnKeyReleased(e -> {
+                billingZipCodeField.setText(zipCodeField.getText());
+                fieldCheck(zipCodeField);
+            });
+            billingAdressField.setText(adressField.getText());
+            billingAdressField.setEditable(false);
+            billingAdressField.setStyle("");
+            billingZipCodeField.setText(zipCodeField.getText());
+            billingZipCodeField.setEditable(false);
+            billingZipCodeField.setStyle("");
+            adressCheckCounter++;
+
+        } else {
             adressField.setOnKeyReleased(null);
             zipCodeField.setOnKeyReleased(null);
             billingAdressField.setText("");
@@ -181,18 +176,6 @@ public class AddScene extends GeneralScene{
             billingZipCodeField.setEditable(true);
             billingZipCodeField.setStyle("-fx-effect: dropshadow"
                     + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
-            adressCheckCounter++;
-        } else {
-            adressField.setOnKeyReleased(
-                    e -> billingAdressField.setText(adressField.getText()));
-            zipCodeField.setOnKeyReleased(
-                    e -> billingZipCodeField.setText(zipCodeField.getText()));
-            billingAdressField.setText(adressField.getText());
-            billingAdressField.setEditable(false);
-            billingAdressField.setStyle("");
-            billingZipCodeField.setText(zipCodeField.getText());
-            billingZipCodeField.setEditable(false);
-            billingZipCodeField.setStyle("");
             adressCheckCounter--;
         }
         emptyFieldsCheck();

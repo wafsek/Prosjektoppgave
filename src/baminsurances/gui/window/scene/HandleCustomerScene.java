@@ -64,8 +64,11 @@ public class HandleCustomerScene extends GeneralScene {
         tableHeaderLabel.setStyle("-fx-font: 28px Times;");
 
         updateInfoButton = new Button("Oppdater informasjon");
+        updateInfoButton.setOnAction(guiEventHandler);
         newInsuranceButton = new Button("Tegn ny forsikring");
+        newInsuranceButton.setOnAction(guiEventHandler);
         chooseInsuranceButton = new Button("Velg forsikring");
+        chooseInsuranceButton.setOnAction(guiEventHandler);
 
         insuranceNumberColumn = new TableColumn<>("Nummer");
         typeColumn = new TableColumn<>("Type");
@@ -145,5 +148,45 @@ public class HandleCustomerScene extends GeneralScene {
         borderPane = new BorderPane(null, null, rightSideContainer, footer, leftSideContainer);
 
         scene = new Scene(borderPane);
+    }
+
+    public TextField getBirthNoField() {
+        return birthNoField;
+    }
+
+    public TextField getNameField() {
+        return nameField;
+    }
+
+    public TextField getTelephoneNoField() {
+        return telephoneNoField;
+    }
+
+    public TextField getEmailField() {
+        return emailField;
+    }
+
+    public TextField getAdressField() {
+        return adressField;
+    }
+
+    public TextField getBillingadressField() {
+        return billingadressField;
+    }
+
+    public TextField getDateOfRegistrationField() {
+        return dateOfRegistrationField;
+    }
+
+    public Button getUpdateInfoButton() {
+        return updateInfoButton;
+    }
+
+    public Button getNewInsuranceButton() {
+        return newInsuranceButton;
+    }
+
+    public Button getChooseInsuranceButton() {
+        return chooseInsuranceButton;
     }
 }

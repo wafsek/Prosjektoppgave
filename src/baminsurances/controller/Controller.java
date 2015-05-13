@@ -1,11 +1,9 @@
 package baminsurances.controller;
 
-import baminsurances.api.Config;
 import baminsurances.api.CustomerServiceManager;
 import baminsurances.api.Validation;
 import baminsurances.data.Customer;
 import baminsurances.data.CustomerInsurance;
-import baminsurances.data.DataBank;
 import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
@@ -16,7 +14,6 @@ import baminsurances.security.Authenticator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
-import javafx.scene.control.TextField;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -120,7 +117,7 @@ public class Controller {
         logger.log("Initializing Statistics scene", Level.INFO);
     }
 
-    private void launchCustomerHandling(){
+    private void launchFindPersonScene(){
         menuStage.close();
         primaryStage.initiate(findPersonScene.getScene());
     }
@@ -160,7 +157,8 @@ public class Controller {
 
         if(control == loginScene.getLoginButton()){
             login();
-        } else if (control == navigationScene.getLogOutButton() || control == findPersonScene.getLogOutButton()){
+        } else if (control == navigationScene.getLogOutButton() || control == findPersonScene.getLogOutButton() ||
+                control == handleCustomerScene.getLogOutButton()){
             if(new MessageDialog().showMessageDialog("Sikker?", "Logge ut?", MessageDialog.QUESTION_ICON,
                     MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION){
                 menuStage.close();
@@ -168,13 +166,23 @@ public class Controller {
                 launchLoginWindow();
             }
         } else if (control == navigationScene.getCustomerInteractionButton()) {
-            launchCustomerHandling();
+            launchFindPersonScene();
         } else if (control == findPersonScene.getRegisterPersonButton()) {
             launchRegistration();
         } else if (control == findPersonScene.getBackButton()) {
             backToNavigation();
         } else if (control == findPersonScene.getChoosePersonButton()) {
             launchHandleCustomerScene();
+        } else if (control == addScene.getRegisterPersonButton()) {
+
+        } else if (control == handleCustomerScene.getBackButton()) {
+            launchFindPersonScene();
+        } else if (control == handleCustomerScene.getChooseInsuranceButton()) {
+
+        } else if (control == handleCustomerScene.getNewInsuranceButton()) {
+
+        } else if (control == handleCustomerScene.getUpdateInfoButton()) {
+
         }
 
         /*if (control == loginWindow.getLoginButton()) {
@@ -221,7 +229,7 @@ public class Controller {
         } else if (control == navigationScene.getStatisticsButton()) {
             launchStatistics();
         } else if (control == navigationScene.getCustomerInteractionButton()) {
-            launchCustomerHandling();
+            findPersonScene();
         } else if (control == navigationScene.getSearchButton()) {
             launchSearchScene();
         } else if (control == operationWindow.getBackButton()) {
