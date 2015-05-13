@@ -4,6 +4,7 @@ import baminsurances.controller.Controller;
 import baminsurances.gui.window.OperationWindow;
 import baminsurances.gui.window.scene.*;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
@@ -22,6 +23,7 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
     private InsureBoatScene insureBoatScene;
     private InsureCarScene insureCarScene;
     private AddScene addScene;
+    private FindPersonScene findPersonScene;
     private SearchScene searchScene;
     private Iterator txtFieldsIterator;
     private Controller controller;
@@ -34,20 +36,19 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent e) {
         while (txtFieldsIterator.hasNext()){
-            if (statisticsScene != null && e.getSource() == statisticsScene.getTextFieldsIterator().next()) {
-                statisticsScene.setEditableEmployeeFields();
-                statisticsScene.setEditableCustomerFields();
-                txtFieldsIterator = statisticsScene.getTextFieldList().iterator();
-                resetIterators();
-                return;
-            }else if(travelInsuranceScene != null && e.getSource() == travelInsuranceScene.getTextFieldIterator().next()){
-                System.out.println("jeg funker");
-                travelInsuranceScene.setTableData(controller.findPeople());
-                resetIterators();
-                txtFieldsIterator = travelInsuranceScene.getTextFieldArrayList().iterator();
+            if (findPersonScene != null && e.getSource() == findPersonScene.getTextFieldIterator().next()) {
+                findPersonScene.setTableData(controller.findPeople());
+                txtFieldsIterator = findPersonScene.getTextFieldArrayList().iterator();
+                findPersonScene.resetIterator();
                 return;
             }
         }
+        resetIterators();
+    }
+
+    public void setFindPersonScene(FindPersonScene findPersonScene) {
+        this.findPersonScene = findPersonScene;
+        txtFieldsIterator = findPersonScene.getTextFieldArrayList().iterator();
     }
 
     public void setStatisticsScene(StatisticsScene statisticsScene/*, ArrayList<TextField> textfields*/){
@@ -111,6 +112,8 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
             addScene.resetIterator();
         }if(searchScene != null) {
             searchScene.resetIterator();
+        }if(findPersonScene != null){
+            findPersonScene.resetIterator();
         }
     }
 }

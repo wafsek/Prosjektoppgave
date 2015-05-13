@@ -138,7 +138,7 @@ public class AddScene extends GeneralScene{
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
         scrollPane.setStyle("-fx-border-color: gray;");
-        buttonContainer = new HBox(0, logOutButton);
+        buttonContainer = new HBox(0, backButton, logOutButton);
         buttonContainer.setAlignment(Pos.CENTER_RIGHT);
         infoContainer = new HBox(0, informationLabel);
         footer = new HBox(GuiConfig.PRIMARY_WIDTH * 3/4, infoContainer, buttonContainer);

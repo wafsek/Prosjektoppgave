@@ -160,10 +160,7 @@ public abstract class PersonSearchScene extends GeneralScene{
     }
 
     public void setTableData(ObservableList observableList) {
-        FilteredList<Customer> filteredList = new FilteredList<>(observableList);
-        SortedList<Customer> sortedList = new SortedList<>(filteredList);
-        sortedList.comparatorProperty().bind(customerTable.comparatorProperty());
-        customerTable.setItems(sortedList);
+        customerTable.setItems(observableList);
     }
 
     public Customer getCustomer() {

@@ -1,6 +1,7 @@
 package baminsurances.gui;
 import baminsurances.api.Commandline;
 import baminsurances.controller.Controller;
+import baminsurances.data.generation.DataBankGenerator;
 import baminsurances.logging.CustomLogger;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -16,6 +17,7 @@ public class Gui extends Application {
     
     public static void main(String[] args){
         launch(args);
+
     }
 
     @Override

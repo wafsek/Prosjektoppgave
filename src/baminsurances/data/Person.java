@@ -52,7 +52,7 @@ public class Person implements Comparable<Person>, Serializable{
      */
     @Override
     public boolean equals(Object obj) {
-        return this.birthNo.equals(((Person) obj).getBirthNo());
+        return obj != null && this.birthNo.equals(((Person) obj).getBirthNo());
     }
     
     /**

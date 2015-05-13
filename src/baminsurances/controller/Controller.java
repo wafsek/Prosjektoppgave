@@ -122,6 +122,7 @@ public class Controller {
     private void launchFindPersonScene(){
         menuStage.close();
         primaryStage.initiate(findPersonScene.getScene());
+        keyPressHandler.setFindPersonScene(findPersonScene);
     }
 
     private void launchSearchScene(){
@@ -178,7 +179,7 @@ public class Controller {
             launchHandleCustomerScene();
         } else if (control == addScene.getRegisterPersonButton()) {
                 this.registerPerson();
-        } else if (control == handleCustomerScene.getBackButton()) {
+        } else if (control == handleCustomerScene.getBackButton() || control == addScene.getBackButton()) {
             launchFindPersonScene();
         } else if (control == handleCustomerScene.getChooseInsuranceButton()) {
 
