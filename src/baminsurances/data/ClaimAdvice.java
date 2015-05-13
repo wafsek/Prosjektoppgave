@@ -24,7 +24,7 @@ public class ClaimAdvice implements Serializable {
     private LocalDate dateOfDamage;
     private String damageType;
     private String damageDescription;
-    private List<Witness> witnesses = new ArrayList<>();
+    private List<Person> witnesses = new ArrayList<>();
     private int numPictures = 0;
     private long assessmentAmount;
     private long compensationAmount;
@@ -203,7 +203,7 @@ public class ClaimAdvice implements Serializable {
      * 
      * @return a list of witnesses for the damage
      */
-    public List<Witness> getWitnesses() {
+    public List<Person> getWitnesses() {
         return witnesses;
     }
 
@@ -213,7 +213,7 @@ public class ClaimAdvice implements Serializable {
      * @param witnesses the person to add
      * @throws NullPointerException if argument is null
      */
-    public void addWitness(Witness witness) {
+    public void addWitness(Person witness) {
         if (witness == null) {
             throw new NullPointerException("Witness cannot be null.");
         }
