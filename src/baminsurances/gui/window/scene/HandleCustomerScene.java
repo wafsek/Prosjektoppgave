@@ -21,7 +21,7 @@ public class HandleCustomerScene extends GeneralScene {
             adressField, billingadressField, dateOfRegistrationField;
     private Label birthNoLabel, nameLabel, telephoneNoLabel, emailLabel,
             adressLabel, billingadressLabel, dateOfRegistrationLabel, headerInfo,
-            tableHeaderLabel, dateColumnLabel, isActiveColumnLabel;
+            tableHeaderLabel;
     private Button updateInfoButton, newInsuranceButton, chooseInsuranceButton;
     private TableView<Insurance> insuranceTable;
     private TableColumn<Insurance, String> insuranceNumberColumn, typeColumn,
@@ -29,7 +29,7 @@ public class HandleCustomerScene extends GeneralScene {
     private BorderPane leftSideContainer, rightSideContainer;
     private GridPane topContainer, uppermiddleContainer,
             lowerMiddleContainer, bottomContainer, fieldButtonContainer;
-    private HBox headerContainer, tableButtons, tableHeaderContainer, leftTableHeader, rightTableHeader;
+    private HBox headerContainer, tableButtons, tableHeaderContainer;
     private VBox fieldContainer;
 
     public HandleCustomerScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
@@ -81,6 +81,7 @@ public class HandleCustomerScene extends GeneralScene {
         insuranceTable.setEditable(false);
         insuranceTable.setColumnResizePolicy(
                 TableView.CONSTRAINED_RESIZE_POLICY);
+        insuranceTable.setStyle("-fx-border-color: gray;");
 
         topContainer = new GridPane();
         topContainer.addColumn(0, birthNoLabel, nameLabel);
@@ -113,7 +114,7 @@ public class HandleCustomerScene extends GeneralScene {
         fieldButtonContainer = new GridPane();
         fieldButtonContainer.addColumn(0, backButton);
         fieldButtonContainer.addColumn(1, updateInfoButton);
-        fieldButtonContainer.setHgap(GuiConfig.PRIMARY_WIDTH*1/18);
+        fieldButtonContainer.setHgap(GuiConfig.PRIMARY_WIDTH * 1 / 18);
         fieldButtonContainer.setAlignment(Pos.CENTER);
 
 
@@ -127,23 +128,25 @@ public class HandleCustomerScene extends GeneralScene {
         headerContainer.setAlignment(Pos.CENTER);
 
         leftSideContainer = new BorderPane(fieldContainer, headerContainer, null, null, null);
-        leftSideContainer.setStyle("-fx-border-color: gray;");
-        leftSideContainer.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 3);
+        leftSideContainer.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
 
         tableHeaderContainer = new HBox(0, tableHeaderLabel);
         tableHeaderContainer.setStyle("-fx-border-color: gray;");
         tableHeaderContainer.setAlignment(Pos.CENTER);
 
         tableButtons = new HBox(GuiConfig.PRIMARY_WIDTH * 1/4, newInsuranceButton, chooseInsuranceButton);
-        tableButtons.setStyle("-fx-padding: 5;");
+        tableButtons.setStyle("-fx-padding: 5;" +
+                "-fx-border-color: gray;");
 
         rightSideContainer = new BorderPane(insuranceTable, tableHeaderContainer, null, tableButtons, null);
-        rightSideContainer.setStyle("-fx-border-color: gray;");
-        rightSideContainer.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 2 / 3);
+        rightSideContainer.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
 
-        footer = new HBox(GuiConfig.PRIMARY_WIDTH*4/5, informationLabel, logOutButton);
-        footer.setStyle("-fx-border-color: gray; " +
-                "-fx-padding: 2;");
+        footerRightSide.getChildren().remove(backButton);
+        footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        footer = new HBox(0, footerLeftSide, footerRightSide);
+        footer.setStyle("-fx-border-color: gray;");
+
 
         borderPane = new BorderPane(null, null, rightSideContainer, footer, leftSideContainer);
 

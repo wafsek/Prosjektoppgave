@@ -24,8 +24,8 @@ public class Gui extends Application {
         addHook();
         //Config.setProperties();
         logger.log("Starting the Program", Level.INFO);
-        Commandline commandline = new Commandline();
-        commandline.start();
+        //Commandline commandline = new Commandline();
+        //commandline.start();
         Controller controller = new Controller();
         controller.start();
     }

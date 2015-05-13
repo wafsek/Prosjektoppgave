@@ -29,7 +29,7 @@ public class GeneratingStage {
 
     public GeneratingStage() {
         stage = new Stage();
-        stage.setWidth(GuiConfig.PRIMARY_WIDTH*1/3);
+        stage.setWidth(GuiConfig.PRIMARY_WIDTH * 1 / 3);
         stage.setHeight(GuiConfig.PRIMARY_HEIGHT * 1 / 2);
 
         generateCustomerField = new TextField();
@@ -42,9 +42,12 @@ public class GeneratingStage {
         headerLabel = new Label("Generering");
         headerLabel.setStyle("-fx-font: 28px Times");
 
-        customerBox = new ComboBox<>(FXCollections.observableArrayList("1", "10", "100", "1000", "10000", "100000"));
-        employeeBox = new ComboBox<>(FXCollections.observableArrayList("1", "10", "100", "1000", "10000", "100000"));
-        insuranceBox = new ComboBox<>(FXCollections.observableArrayList("1", "10", "100", "1000", "10000", "100000"));
+        customerBox = new ComboBox<>(FXCollections.observableArrayList("0", "1", "10", "100", "1000", "10000", "100000"));
+        customerBox.setValue("0");
+        employeeBox = new ComboBox<>(FXCollections.observableArrayList("0", "1", "10", "100", "1000", "10000", "100000"));
+        employeeBox.setValue("0");
+        insuranceBox = new ComboBox<>(FXCollections.observableArrayList("0", "1", "10", "100", "1000", "10000", "100000"));
+        insuranceBox.setValue("0");
 
         generateButton = new Button("Generer");
         generateButton.setOnAction(e -> {

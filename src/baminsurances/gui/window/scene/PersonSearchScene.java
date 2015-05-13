@@ -49,7 +49,7 @@ public abstract class PersonSearchScene extends GeneralScene{
                 new PropertyValueFactory<Person, String>("firstName"));
         adressColumn = new TableColumn("Adresse");
         adressColumn.setCellValueFactory(
-                new PropertyValueFactory<Person, String>("streetAdress"));
+                new PropertyValueFactory<Person, String>("streetAddress"));
         tlfNoColumn = new TableColumn("Telefonnummer");
         tlfNoColumn.setCellValueFactory(
                 new PropertyValueFactory<Person, String>("telephoneNo"));
