@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/api/CustomerServiceManager.java" afterPath="$PROJECT_DIR$/src/baminsurances/api/CustomerServiceManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -30,8 +29,8 @@
           <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4821634">
-                  <caret line="293" column="57" selection-start-line="293" selection-start-column="57" selection-end-line="293" selection-end-column="57" />
+                <state vertical-scroll-proportion="0.424626">
+                  <caret line="291" column="57" selection-start-line="291" selection-start-column="57" selection-end-line="291" selection-end-column="57" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#2032#2033#0" expanded="true" />
@@ -998,7 +997,13 @@
       <option name="project" value="LOCAL" />
       <updated>1431518987160</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Command Line added">
+      <created>1431520009459</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1431520009459</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1718,8 +1723,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4821634">
-          <caret line="293" column="57" selection-start-line="293" selection-start-column="57" selection-end-line="293" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.424626">
+          <caret line="291" column="57" selection-start-line="291" selection-start-column="57" selection-end-line="291" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2032#2033#0" expanded="true" />
