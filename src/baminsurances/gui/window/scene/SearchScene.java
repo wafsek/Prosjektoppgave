@@ -3,19 +3,13 @@ package baminsurances.gui.window.scene;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.OperationWindow;
-import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * @author Adrian Melsom
@@ -35,7 +29,7 @@ public class SearchScene extends PersonSearchScene {
         printArea = new TextArea();
         printArea.setPrefHeight(OperationWindow.STAGE_HEIGHT * 2 / 3);
         printArea.setEditable(false);
-        rightSideContainer = new VBox(0, personTable, printArea);
+        rightSideContainer = new VBox(0, customerTable, printArea);
 
         itemContainer = new GridPane();
         itemContainer.addColumn(0, firstNameLabel, lastNameLabel, birthNoLabel,

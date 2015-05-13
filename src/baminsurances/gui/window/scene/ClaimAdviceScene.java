@@ -54,7 +54,7 @@ public class ClaimAdviceScene extends PersonSearchScene{
         header.setAlignment(Pos.CENTER);
         header.setStyle("-fx-border-color: gray;" +
                 "-fx-padding: 5;");
-        borderPane = new BorderPane(itemContainer, header, personTable, footer, null);
+        borderPane = new BorderPane(itemContainer, header, customerTable, footer, null);
         scene = new Scene(borderPane);
     }
 

@@ -37,7 +37,7 @@ public class InsureBoatScene extends PersonSearchScene {
         super(handler, keyPressHandler, displayName);
         this.footer = footer;
         this.header = header;
-        borderPane = new BorderPane(itemContainer, header, personTable, footer, null);
+        borderPane = new BorderPane(itemContainer, header, customerTable, footer, null);
         scene = new Scene(borderPane);
     }
 

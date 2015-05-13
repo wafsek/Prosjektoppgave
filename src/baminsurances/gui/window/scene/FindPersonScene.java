@@ -39,7 +39,7 @@ public class FindPersonScene extends PersonSearchScene {
         itemContainer.setHgap(50);
         leftSideContainer = new BorderPane(itemContainer, headerContainer, null, null, null);
 
-        borderPane = new BorderPane(leftSideContainer, null, personTable, footer, null);
+        borderPane = new BorderPane(leftSideContainer, null, customerTable, footer, null);
         scene = new Scene(borderPane);
     }
 
@@ -52,7 +52,4 @@ public class FindPersonScene extends PersonSearchScene {
     public Button getRegisterPersonButton() {
         return registerPersonButton;
     }
-
-
-
 }

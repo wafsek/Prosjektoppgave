@@ -158,7 +158,7 @@ public class Controller {
         if(control == loginScene.getLoginButton()){
             login();
         } else if (control == navigationScene.getLogOutButton() || control == findPersonScene.getLogOutButton() ||
-                control == handleCustomerScene.getLogOutButton()){
+                control == handleCustomerScene.getLogOutButton() || control == addScene.getLogOutButton()){
             if(new MessageDialog().showMessageDialog("Sikker?", "Logge ut?", MessageDialog.QUESTION_ICON,
                     MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION){
                 menuStage.close();

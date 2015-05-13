@@ -29,7 +29,7 @@ public class AddScene extends GeneralScene{
             billingZipCodeField, billingAdressField;
     private Label firstNameLabel, lastNameLabel, birthNumberLabel, emailLabel,
             telephoneNumberLabel, adressLabel, zipCodeLabel,
-            billingZipCodeLabel, billingAdressLabel;
+            billingZipCodeLabel, billingAdressLabel, headerLabel;
     private ArrayList<TextField> textFieldArrayList;
     private Iterator<TextField> textFieldIterator;
     private CheckBox differentAdressCheck;
@@ -37,6 +37,7 @@ public class AddScene extends GeneralScene{
     private TextArea printArea;
     private ScrollPane scrollPane;
     private Button registerPersonButton;
+    private HBox headerContainer;
     private int adressCheckCounter = 0;
 
     /**
@@ -82,6 +83,14 @@ public class AddScene extends GeneralScene{
         zipCodeField.setStyle("-fx-effect: dropshadow"
                 + "(three-pass-box, rgba(250, 0, 0, 250), 5, 0, 0, 0);");
         zipCodeLabel = new Label("Postnummer:");
+
+        headerLabel = new Label("Kunderegistrering");
+        headerLabel.setStyle("-fx-padding: 5;" +
+                "-fx-font: 28px Times;");
+        headerContainer = new HBox(0, headerLabel);
+        headerContainer.setStyle("-fx-border-color: gray;");
+        headerContainer.setAlignment(Pos.CENTER);
+
         billingAdressField = new TextField();
         billingAdressField.setOnKeyReleased(e -> fieldCheck(billingAdressField));
         billingAdressField.setEditable(false);
@@ -119,8 +128,8 @@ public class AddScene extends GeneralScene{
                 new Label(""), billingAdressField, billingZipCodeField,
                 registerPersonButton);
         fieldBox.setAlignment(Pos.CENTER);
-        fieldBox.setVgap(10);
-        fieldBox.setHgap(20);
+        fieldBox.setVgap(20);
+        fieldBox.setHgap(40);
         fieldBox.setStyle("-fx-border-color: gray;");
         printArea = new TextArea();
         printArea.setEditable(false);
@@ -134,7 +143,7 @@ public class AddScene extends GeneralScene{
         infoContainer = new HBox(0, informationLabel);
         footer = new HBox(GuiConfig.PRIMARY_WIDTH * 3/4, infoContainer, buttonContainer);
         footer.setAlignment(Pos.BOTTOM_RIGHT);
-        borderPane = new BorderPane(fieldBox, null, scrollPane, footer, null);
+        borderPane = new BorderPane(fieldBox, headerContainer, null, footer, null);
         scene = new Scene(borderPane);
     }
 

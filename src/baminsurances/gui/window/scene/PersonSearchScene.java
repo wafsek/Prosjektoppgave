@@ -1,10 +1,13 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.data.Customer;
 import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.OperationWindow;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -23,7 +26,7 @@ public abstract class PersonSearchScene extends GeneralScene{
         zipCodeField, birthNumberField;
     protected Label firstNameLabel, lastNameLabel, adressLabel, zipCodeLabel,
         birthNoLabel;
-    protected TableView personTable;
+    protected TableView<Customer> customerTable;
     protected TableColumn birthNoColumn, nameColumn, adressColumn, tlfNoColumn;
 
     protected ArrayList<TextField> textFieldArrayList;
@@ -37,7 +40,7 @@ public abstract class PersonSearchScene extends GeneralScene{
             KeyPressHandler keyPressHandler, String displayName) {
         super(guiEventHandler, keyPressHandler, displayName);
 
-        personTable = new TableView();
+        customerTable = new TableView();
         birthNoColumn = new TableColumn("Fødselsnummer");
         birthNoColumn.setCellValueFactory(
                 new PropertyValueFactory<Person, String>("birthNo"));
@@ -50,13 +53,13 @@ public abstract class PersonSearchScene extends GeneralScene{
         tlfNoColumn = new TableColumn("Telefonnummer");
         tlfNoColumn.setCellValueFactory(
                 new PropertyValueFactory<Person, String>("telephoneNo"));
-        personTable.getColumns().addAll(
+        customerTable.getColumns().addAll(
                 birthNoColumn, nameColumn, adressColumn, tlfNoColumn);
-        personTable.setColumnResizePolicy(
+        customerTable.setColumnResizePolicy(
                 TableView.CONSTRAINED_RESIZE_POLICY);
-        personTable.setEditable(false);
-        personTable.setStyle("-fx-border-color: gray;");
-        personTable.setPrefWidth(OperationWindow.STAGE_WIDTH * 2 / 4);
+        customerTable.setEditable(false);
+        customerTable.setStyle("-fx-border-color: gray;");
+        customerTable.setPrefWidth(OperationWindow.STAGE_WIDTH * 2 / 4);
 
         birthNumberField = new TextField();
         birthNoLabel = new Label("Fødselsnummer:");
@@ -157,6 +160,13 @@ public abstract class PersonSearchScene extends GeneralScene{
     }
 
     public void setTableData(ObservableList observableList) {
-        personTable.setItems(observableList);
+        FilteredList<Customer> filteredList = new FilteredList<>(observableList);
+        SortedList<Customer> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(customerTable.comparatorProperty());
+        customerTable.setItems(sortedList);
+    }
+
+    public Customer getCustomer() {
+        return customerTable.getSelectionModel().getSelectedItem();
     }
 }
