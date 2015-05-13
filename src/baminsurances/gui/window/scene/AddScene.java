@@ -131,7 +131,6 @@ public class AddScene extends GeneralScene{
         fieldBox.setVgap(20);
         fieldBox.setHgap(40);
         fieldBox.setStyle("-fx-border-color: gray;");
-        footerRightSide.getChildren().remove(backButton);
         footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
         footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
         footer = new HBox(0, footerLeftSide, footerRightSide);

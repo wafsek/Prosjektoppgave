@@ -112,8 +112,7 @@ public class HandleCustomerScene extends GeneralScene {
         bottomContainer.setAlignment(Pos.CENTER);
 
         fieldButtonContainer = new GridPane();
-        fieldButtonContainer.addColumn(0, backButton);
-        fieldButtonContainer.addColumn(1, updateInfoButton);
+        fieldButtonContainer.addColumn(0, updateInfoButton);
         fieldButtonContainer.setHgap(GuiConfig.PRIMARY_WIDTH * 1 / 18);
         fieldButtonContainer.setAlignment(Pos.CENTER);
 
@@ -128,7 +127,6 @@ public class HandleCustomerScene extends GeneralScene {
         headerContainer.setAlignment(Pos.CENTER);
 
         leftSideContainer = new BorderPane(fieldContainer, headerContainer, null, null, null);
-        leftSideContainer.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
 
         tableHeaderContainer = new HBox(0, tableHeaderLabel);
         tableHeaderContainer.setStyle("-fx-border-color: gray;");
@@ -139,16 +137,15 @@ public class HandleCustomerScene extends GeneralScene {
                 "-fx-border-color: gray;");
 
         rightSideContainer = new BorderPane(insuranceTable, tableHeaderContainer, null, tableButtons, null);
-        rightSideContainer.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        rightSideContainer.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 2/3);
 
-        footerRightSide.getChildren().remove(backButton);
         footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
         footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
         footer = new HBox(0, footerLeftSide, footerRightSide);
         footer.setStyle("-fx-border-color: gray;");
 
 
-        borderPane = new BorderPane(null, null, rightSideContainer, footer, leftSideContainer);
+        borderPane = new BorderPane(leftSideContainer, null, rightSideContainer, footer, null);
 
         scene = new Scene(borderPane);
     }

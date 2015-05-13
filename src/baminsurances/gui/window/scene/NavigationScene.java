@@ -51,7 +51,8 @@ public class NavigationScene extends GeneralScene{
         container = new VBox(10, statisticsButton, customerInteractionButton,
                 searchButton);
         footerLeftSide.setPrefWidth(WIDTH * 1/2);
-        footerRightSide.setPrefWidth(WIDTH * 1/2);
+        footerRightSide.setPrefWidth(WIDTH * 1 / 2);
+        footerRightSide.getChildren().remove(backButton);
         footer = new HBox(0, footerLeftSide, footerRightSide);
         footer.setStyle("-fx-border-color: gray;");
         borderPane = new BorderPane(container, null, null, footer, null);
