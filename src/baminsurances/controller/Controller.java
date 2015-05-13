@@ -292,10 +292,6 @@ public class Controller {
         }
         
         customerList = manager.findCustomers(predicates);
-        if(customerList.isEmpty()){
-            logger.log("No customers found",Level.FINER);
-            return null;
-        }
         personObservableList.addAll(customerList);
         return personObservableList;
     }

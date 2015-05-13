@@ -54,6 +54,7 @@ public class CustomerServiceManager {
             return CUSTOMER_NOT_FOUND;
         } else {
             customerInsurance.getInsurances().add(insurance);
+            logger.log(insurance.getClass().getSimpleName()+" added",Level.INFO);
             return SUCCESS;
         }
     }
