@@ -287,7 +287,9 @@ public class Controller {
             predicates.add(CustomerServiceManager.zipCodeStartsWith(zipCode));  
         }
         
-        
+        if(predicates.isEmpty()){
+            return personObservableList;
+        }
         
         customerList = manager.findCustomers(predicates);
         personObservableList.addAll(customerList);
