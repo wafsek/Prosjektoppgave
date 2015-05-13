@@ -50,11 +50,9 @@ public class NavigationScene extends GeneralScene{
         searchButton.setOnAction(guiEventHandler);
         container = new VBox(10, statisticsButton, customerInteractionButton,
                 searchButton);
-        buttonContainer = new HBox(0, logOutButton);
-        buttonContainer.setAlignment(Pos.CENTER_RIGHT);
-        infoContainer = new HBox(0, informationLabel);
-        footer = new HBox(WIDTH*2/5, infoContainer, buttonContainer);
-        footer.setAlignment(Pos.BOTTOM_RIGHT);
+        footerLeftSide.setPrefWidth(WIDTH * 1/2);
+        footerRightSide.setPrefWidth(WIDTH * 1/2);
+        footer = new HBox(0, footerLeftSide, footerRightSide);
         footer.setStyle("-fx-border-color: gray;");
         borderPane = new BorderPane(container, null, null, footer, null);
         scene = new Scene(borderPane);

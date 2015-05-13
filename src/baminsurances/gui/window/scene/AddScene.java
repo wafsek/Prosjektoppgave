@@ -131,18 +131,12 @@ public class AddScene extends GeneralScene{
         fieldBox.setVgap(20);
         fieldBox.setHgap(40);
         fieldBox.setStyle("-fx-border-color: gray;");
-        printArea = new TextArea();
-        printArea.setEditable(false);
-        scrollPane = new ScrollPane(printArea);
-        scrollPane.setPrefWidth(OperationWindow.STAGE_WIDTH * 3 / 5);
-        scrollPane.setFitToHeight(true);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-border-color: gray;");
-        buttonContainer = new HBox(0, backButton, logOutButton);
-        buttonContainer.setAlignment(Pos.CENTER_RIGHT);
-        infoContainer = new HBox(0, informationLabel);
-        footer = new HBox(GuiConfig.PRIMARY_WIDTH * 3/4, infoContainer, buttonContainer);
-        footer.setAlignment(Pos.BOTTOM_RIGHT);
+        footerRightSide.getChildren().remove(backButton);
+        footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        footer = new HBox(0, footerLeftSide, footerRightSide);
+        footer.setStyle("-fx-border-color: gray;");
+        footer.setAlignment(Pos.CENTER_RIGHT);
         borderPane = new BorderPane(fieldBox, headerContainer, null, footer, null);
         scene = new Scene(borderPane);
     }

@@ -26,13 +26,13 @@ public class FindPersonScene extends PersonSearchScene {
         registerPersonButton.setOnAction(guiEventHandler);
         headerLabel = new Label("Finn kunden du ønsker å behandle");
         headerLabel.setStyle("-fx-font: 28px Times;");
-        buttonContainer = new HBox(0, backButton, logOutButton);
-        buttonContainer.setAlignment(Pos.CENTER_RIGHT);
         headerContainer = new HBox(0, headerLabel);
         headerContainer.setStyle("-fx-border-color: gray;");
         headerContainer.setAlignment(Pos.CENTER);
-        infoContainer = new HBox(0, informationLabel);
-        footer = new HBox(GuiConfig.PRIMARY_WIDTH*3/4, infoContainer, buttonContainer);
+
+        footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        footer = new HBox(0, footerLeftSide, footerRightSide);
         footer.setAlignment(Pos.BOTTOM_RIGHT);
         footer.setStyle("-fx-border-color: gray;");
         itemContainer.add(registerPersonButton, 0, 5, 1, 1);

@@ -6,6 +6,7 @@ import baminsurances.data.Customer;
 import baminsurances.data.CustomerInsurance;
 import baminsurances.data.DataBank;
 import baminsurances.data.Person;
+import baminsurances.data.generation.DataBankGenerator;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.*;
@@ -58,7 +59,8 @@ public class Controller {
     private LoginScene loginScene;
     private FindPersonScene findPersonScene;
     private HandleCustomerScene handleCustomerScene;
-    
+    private GeneratingStage generatingStage;
+    private InsuranceScene insuranceScene;
     
     private CustomLogger logger = CustomLogger.getInstance();
     
@@ -81,8 +83,12 @@ public class Controller {
         findPersonScene = new FindPersonScene(guiEventHandler, keyPressHandler, getDisplayName());
         addScene = new AddScene(guiEventHandler, keyPressHandler, getDisplayName());
         handleCustomerScene = new HandleCustomerScene(guiEventHandler, keyPressHandler, getDisplayName());
+        insuranceScene = new InsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
+
+        generatingStage = new GeneratingStage();
 
         launchLoginWindow();
+        generatingStage.show();
         /*System.out.println("Welkommen til " + Config.getApplicationName());
         loginWindow = LoginWindow.getLoginWindow();
         loginWindow.show();
@@ -141,6 +147,10 @@ public class Controller {
         primaryStage.initiate(handleCustomerScene.getScene());
     }
 
+    private void launchInsuranceScene() {
+        primaryStage.initiate(insuranceScene.getScene());
+    }
+
     private void backToNavigation(){
         primaryStage.close();
         menuStage.initiate(navigationScene.getScene());
@@ -178,13 +188,14 @@ public class Controller {
             //this.setCurrentCustomerInsurance(//Method for getting the chosen customer);
             launchHandleCustomerScene();
         } else if (control == addScene.getRegisterPersonButton()) {
-                this.registerPerson();
+            this.registerPerson();
+            launchHandleCustomerScene();
         } else if (control == handleCustomerScene.getBackButton() || control == addScene.getBackButton()) {
             launchFindPersonScene();
         } else if (control == handleCustomerScene.getChooseInsuranceButton()) {
 
         } else if (control == handleCustomerScene.getNewInsuranceButton()) {
-
+            launchInsuranceScene();
         } else if (control == handleCustomerScene.getUpdateInfoButton()) {
 
         }

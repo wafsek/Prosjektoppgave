@@ -52,6 +52,7 @@ public class PersonGenerator {
     }
     
     private List<String> loadBoysNames() {
+        System.out.println(new File(".").getAbsolutePath());
         String filepath =
                 PersonGenerator.class.getClassLoader().getResource(
                         "guttenavn.csv").getPath();

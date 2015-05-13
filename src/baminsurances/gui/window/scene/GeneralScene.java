@@ -16,7 +16,7 @@ import javafx.scene.layout.HBox;
 public abstract class GeneralScene {
 
     protected Scene scene;
-    protected HBox buttonContainer, infoContainer, footer;
+    protected HBox footerLeftSide, footerRightSide, footer;
     protected Button logOutButton, backButton;
     protected GuiEventHandler guiEventHandler;
     protected KeyPressHandler keyPressHandler;
@@ -29,11 +29,16 @@ public abstract class GeneralScene {
         this.keyPressHandler = keyPressHandler;
         this.displayName = displayName;
         logOutButton = new Button("Logg ut");
-        logOutButton.setStyle("-fx-padding: 5;");
         logOutButton.setOnAction(guiEventHandler);
         backButton = new Button("Tilbake");
         backButton.setOnAction(guiEventHandler);
         informationLabel = new Label(displayName);
+        footerLeftSide = new HBox(0, informationLabel);
+        footerLeftSide.setStyle("-fx-padding: 5;");
+        footerLeftSide.setAlignment(Pos.CENTER_LEFT);
+        footerRightSide = new HBox(10, backButton, logOutButton);
+        footerRightSide.setStyle("-fx-padding: 5;");
+        footerRightSide.setAlignment(Pos.CENTER_RIGHT);
     }
 
     public Scene getScene() {
