@@ -8,7 +8,7 @@ package baminsurances.data;
 public class CarInsurance extends VehicleInsurance {
     private static final long serialVersionUID = -51742097604728715L;
     private int registrationYear;
-    private int yearlyMileage;
+    private int annualMileage;
     private double pricePerKilometer;
     private int bonusPercentage;
     
@@ -25,7 +25,7 @@ public class CarInsurance extends VehicleInsurance {
      * @param brand the car's brand
      * @param model the car's model
      * @param registrationYear the registration year of the car
-     * @param yearlyMileage the car's yearly mileage
+     * @param annualMileage the car's annual mileage
      * @param pricePerKilometer the car's price per kilometer
      * @param bonusPercentage the bonus percentage for this car insurance
      * @throws NullPointerException if any of the arguments are null
@@ -34,12 +34,12 @@ public class CarInsurance extends VehicleInsurance {
             PaymentFrequency paymentFrequency, String terms,
             Person vehicleOwner, String registrationNo, CarType type,
             String brand, String model, int registrationYear,
-            int yearlyMileage, double pricePerKilometer,
+            int annualMileage, double pricePerKilometer,
             int bonusPercentage) {
         super(employee, premium, amount, paymentFrequency, terms, vehicleOwner,
                 registrationNo, type, brand, model);
         this.registrationYear = registrationYear;
-        this.yearlyMileage = yearlyMileage;
+        this.annualMileage = annualMileage;
         this.pricePerKilometer = pricePerKilometer;
         this.bonusPercentage = bonusPercentage;
     }
@@ -59,7 +59,7 @@ public class CarInsurance extends VehicleInsurance {
      * @return the yearly mileage for the insured car
      */
     public int getYearlyMileage() {
-        return yearlyMileage;
+        return annualMileage;
     }
 
     /**
