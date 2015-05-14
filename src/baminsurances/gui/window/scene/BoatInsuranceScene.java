@@ -30,6 +30,7 @@ public class BoatInsuranceScene extends InsuranceScene {
         insuranceValueField.setEditable(true);
         conditionArea.setEditable(true);
         registerInsuranceButton.setDisable(false);
+        leftSideContentContainer.getChildren().remove(discribtionContainer);
 
         lengthInFeetLabel = new Label("Lengde i fot:");
         productionYearLabel = new Label("Produsjonsår:");
@@ -42,21 +43,31 @@ public class BoatInsuranceScene extends InsuranceScene {
 
         motorTypeDropdown = new ComboBox<>(FXCollections.observableArrayList("Innbors", "utenbors"));
 
-        leftSideContentContainer.getChildren().remove(discribtionContainer);
-
         rightSideFieldContainer.addColumn(0, lengthInFeetLabel, productionYearLabel,
                 motorTypeLabel, horsePowerLabel);
         rightSideFieldContainer.addColumn(1, lengthInFeetField, productionYearField,
                 motorTypeDropdown, horsePowerField);
-        rightSideFieldContainer.setAlignment(Pos.CENTER);
-        rightSideFieldContainer.setHgap(40);
-        rightSideFieldContainer.setVgap(25);
 
         rightSideBorderPane = new BorderPane(rightSideFieldContainer, rightSideHeader, null, rightSideFooter, null);
         rightSideBorderPane.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
 
         borderPane = new BorderPane(leftSideBorderPane, null, rightSideBorderPane, footer, null);
         scene = new Scene(borderPane);
+    }
 
+    public String getLengthInFeetFieldText() {
+        return lengthInFeetField.getText();
+    }
+
+    public String getProductionYearFieldText() {
+        return productionYearField.getText();
+    }
+
+    public String getHorsePowerFieldText() {
+        return horsePowerField.getText();
+    }
+
+    public String getMotorTypeDropdownSelectedValue() {
+        return motorTypeDropdown.getValue();
     }
 }

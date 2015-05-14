@@ -1,5 +1,6 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.data.NameDisplayable;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
@@ -89,6 +90,9 @@ public class InsuranceScene extends GeneralScene {
         rightSideBorderPane.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
 
         rightSideFieldContainer = new GridPane();
+        rightSideFieldContainer.setAlignment(Pos.CENTER);
+        rightSideFieldContainer.setHgap(40);
+        rightSideFieldContainer.setVgap(25);
 
         footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
         footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
@@ -99,19 +103,31 @@ public class InsuranceScene extends GeneralScene {
         scene = new Scene(borderPane);
     }
 
+    protected <T extends NameDisplayable> String[] getFillingArray(T[] typeArray) {
+        String[] returnValues = new String[typeArray.length];
+        for (int i = 0; i < typeArray.length; i++) {
+            returnValues[i] = typeArray[i].getDisplayName();
+        }
+        return returnValues;
+    }
+
     public ComboBox<String> getInsuranceDropDown() {
         return insuranceDropDown;
     }
 
-    public String getAnnualPremiumField() {
+    public String getInsuranceDropDownSelectedValue() {
+        return insuranceDropDown.getValue();
+    }
+
+    public String getAnnualPremiumFieldText() {
         return annualPremiumField.getText();
     }
 
-    public String getInsuranceValueField() {
+    public String getInsuranceValueFieldText() {
         return insuranceValueField.getText();
     }
 
-    public String getConditionArea() {
+    public String getConditionAreaText() {
         return conditionArea.getText();
     }
 

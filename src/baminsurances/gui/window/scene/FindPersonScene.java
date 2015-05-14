@@ -1,5 +1,6 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.data.Customer;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
@@ -51,5 +52,9 @@ public class FindPersonScene extends PersonSearchScene {
 
     public Button getRegisterPersonButton() {
         return registerPersonButton;
+    }
+
+    public Customer getSelectedCustomer() {
+        return customerTable.getSelectionModel().getSelectedItem();
     }
 }

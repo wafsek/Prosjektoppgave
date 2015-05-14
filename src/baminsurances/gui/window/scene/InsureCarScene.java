@@ -1,5 +1,7 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.data.CarType;
+import baminsurances.data.HomeType;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.OperationWindow;
@@ -99,4 +101,5 @@ public class InsureCarScene extends PersonSearchScene {
                 null);
         return new Scene(borderPane);
     }
+
 }

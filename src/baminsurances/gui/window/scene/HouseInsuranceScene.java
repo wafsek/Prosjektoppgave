@@ -71,7 +71,7 @@ public class HouseInsuranceScene extends InsuranceScene {
         rentableBox = new CheckBox("Mulig å leie?");
         rentableBox.setDisable(true);
 
-        leftSideContentContainer.getChildren().remove(discribtionContainer);
+        leftSideFieldContainer.getChildren().remove(discribtionLabel);
 
         rightSideFieldContainer.addColumn(0, streetAddressLabel, zipCodeLabel,
                 constructionYearLabel, homeTypeLabel, buildingMaterialLabel,
@@ -80,9 +80,6 @@ public class HouseInsuranceScene extends InsuranceScene {
         rightSideFieldContainer.addColumn(1, streetAddressField, zipCodeField,
                 constructionYearField, homeTypeDropDown, buildingMaterialField,
                 standardField, squareMetersField, contentsAmountField, rentableBox);
-        rightSideFieldContainer.setAlignment(Pos.CENTER);
-        rightSideFieldContainer.setHgap(40);
-        rightSideFieldContainer.setVgap(25);
 
         rightSideBorderPane = new BorderPane(rightSideFieldContainer, rightSideHeader, null, rightSideFooter, null);
         rightSideBorderPane.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);

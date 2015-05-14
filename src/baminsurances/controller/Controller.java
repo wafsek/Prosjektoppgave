@@ -5,14 +5,11 @@ import baminsurances.api.Validation;
 import baminsurances.data.Customer;
 import baminsurances.data.CustomerInsurance;
 import baminsurances.data.DataBank;
-import baminsurances.data.Person;
-import baminsurances.data.generation.DataBankGenerator;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.*;
 import baminsurances.gui.window.scene.*;
 import baminsurances.logging.CustomLogger;
-import baminsurances.security.Authenticator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
@@ -63,7 +60,10 @@ public class Controller {
     private InsuranceScene insuranceScene;
     private HouseInsuranceScene houseInsuranceScene;
     private BoatInsuranceScene boatInsuranceScene;
-    
+    private CarInsuranceScene carInsuranceScene;
+
+    private int carInsuranceCheckCounter = 0;
+
     private CustomLogger logger = CustomLogger.getInstance();
     
     
@@ -88,6 +88,7 @@ public class Controller {
         insuranceScene = new InsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
         houseInsuranceScene = new HouseInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
         boatInsuranceScene = new BoatInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
+        carInsuranceScene = new CarInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
 
         generatingStage = new GeneratingStage();
 
@@ -161,14 +162,28 @@ public class Controller {
         primaryStage.initiate(houseInsuranceScene.getScene());
     }
 
-    private void lauchBoatInsuranceScene() {
+    private void launchBoatInsuranceScene() {
         primaryStage.initiate(boatInsuranceScene.getScene());
+    }
+
+    private void launchCarInsuranceScene() {
+        primaryStage.initiate(carInsuranceScene.getScene());
     }
 
     private void backToNavigation(){
         primaryStage.close();
         menuStage.initiate(navigationScene.getScene());
         logger.log("Closing main Stage, reopening navigation stage.", Level.INFO);
+    }
+
+    private void setDifferentCarOwner() {
+        if (carInsuranceCheckCounter == 0) {
+
+            carInsuranceCheckCounter++;
+        } else {
+
+            carInsuranceCheckCounter--;
+        }
     }
     
     
@@ -187,7 +202,7 @@ public class Controller {
         } else if (control == navigationScene.getLogOutButton() || control == findPersonScene.getLogOutButton() ||
                 control == handleCustomerScene.getLogOutButton() || control == addScene.getLogOutButton() ||
                 control == insuranceScene.getLogOutButton() || control == houseInsuranceScene.getLogOutButton() ||
-                control == boatInsuranceScene.getLogOutButton()){
+                control == boatInsuranceScene.getLogOutButton() || control == carInsuranceScene.getLogOutButton()){
             if(new MessageDialog().showMessageDialog("Sikker?", "Logge ut?", MessageDialog.QUESTION_ICON,
                     MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION){
                 menuStage.close();
@@ -217,16 +232,28 @@ public class Controller {
         } else if (control == insuranceScene.getInsuranceDropDown() &&
                 insuranceScene.getInsuranceDropDown().getValue().equals("Boligforsikring")
                 || control == boatInsuranceScene.getInsuranceDropDown() &&
-                boatInsuranceScene.getInsuranceDropDown().getValue().equals("Boligforsikring")) {
+                boatInsuranceScene.getInsuranceDropDown().getValue().equals("Boligforsikring")
+                || control == carInsuranceScene.getInsuranceDropDown() &&
+                carInsuranceScene.getInsuranceDropDown().getValue().equals("Boligforsikring")) {
             launchHouseInsuranceScene();
         } else if (control == insuranceScene.getInsuranceDropDown() &&
                 insuranceScene.getInsuranceDropDown().getValue().equals("Baatforsikring")
                 || control == houseInsuranceScene.getInsuranceDropDown() &&
-                houseInsuranceScene.getInsuranceDropDown().getValue().equals("Baatforsikring")) {
-            lauchBoatInsuranceScene();
+                houseInsuranceScene.getInsuranceDropDown().getValue().equals("Baatforsikring")
+                || control == carInsuranceScene.getInsuranceDropDown() &&
+                carInsuranceScene.getInsuranceDropDown().getValue().equals("Baatforsikring")) {
+            launchBoatInsuranceScene();
+        } else if (control == insuranceScene.getInsuranceDropDown() &&
+                insuranceScene.getInsuranceDropDown().getValue().equals("Bilforsikring")
+                || control == houseInsuranceScene.getInsuranceDropDown() &&
+                houseInsuranceScene.getInsuranceDropDown().getValue().equals("Bilforsikring")
+                || control == boatInsuranceScene.getInsuranceDropDown() &&
+                boatInsuranceScene.getInsuranceDropDown().getValue().equals("Bilforsikring")) {
+            launchCarInsuranceScene();
         } else if (control == insuranceScene.getBackButton()) {
             launchHandleCustomerScene();
-        } else if (control == houseInsuranceScene.getBackButton() || control == boatInsuranceScene.getBackButton()) {
+        } else if (control == houseInsuranceScene.getBackButton() || control == boatInsuranceScene.getBackButton() ||
+                control == carInsuranceScene.getBackButton()) {
             launchInsuranceScene();
         }
 
