@@ -21,9 +21,10 @@ public class HouseInsuranceScene extends InsuranceScene {
 
     private Label streetAddressLabel, zipCodeLabel, constructionYearLabel,
             homeTypeLabel, buildingMaterialLabel, standardLabel, squareMetersLabel,
-            contentsAmountLabel;
+            homeAmountLabel, contentsAmountLabel;
     private TextField streetAddressField, zipCodeField, constructionYearField,
-            buildingMaterialField, standardField, squareMetersField, contentsAmountField;
+            buildingMaterialField, standardField, squareMetersField, homeAmountField,
+            contentsAmountField;
     private ComboBox<String> homeTypeDropDown;
     private CheckBox holydayHomeBox, rentableBox;
     private int checkBoxCounter = 0;
@@ -45,6 +46,7 @@ public class HouseInsuranceScene extends InsuranceScene {
         buildingMaterialLabel = new Label("Byggmateriale:");
         standardLabel = new Label("Tilstand:");
         squareMetersLabel = new Label("Kvadratmeter:");
+        homeAmountLabel = new Label("Husets forsikringsverdi:");
         contentsAmountLabel = new Label("Innbo:");
 
         streetAddressField = new TextField();
@@ -53,9 +55,10 @@ public class HouseInsuranceScene extends InsuranceScene {
         buildingMaterialField = new TextField();
         standardField = new TextField();
         squareMetersField = new TextField();
+        homeAmountField = new TextField();
         contentsAmountField = new TextField();
 
-        homeTypeDropDown = new ComboBox<>(FXCollections.observableArrayList(getFillingArray()));
+        homeTypeDropDown = new ComboBox<>(FXCollections.observableArrayList(getFillingArray(HomeType.values())));
 
         holydayHomeBox = new CheckBox("Feriebolig?");
         holydayHomeBox.setOnAction(e -> {
@@ -75,11 +78,12 @@ public class HouseInsuranceScene extends InsuranceScene {
 
         rightSideFieldContainer.addColumn(0, streetAddressLabel, zipCodeLabel,
                 constructionYearLabel, homeTypeLabel, buildingMaterialLabel,
-                standardLabel, squareMetersLabel, contentsAmountLabel,
-                holydayHomeBox);
+                standardLabel, squareMetersLabel, homeAmountLabel,
+                contentsAmountLabel, holydayHomeBox);
         rightSideFieldContainer.addColumn(1, streetAddressField, zipCodeField,
                 constructionYearField, homeTypeDropDown, buildingMaterialField,
-                standardField, squareMetersField, contentsAmountField, rentableBox);
+                standardField, squareMetersField, homeAmountField, contentsAmountField,
+                rentableBox);
 
         rightSideBorderPane = new BorderPane(rightSideFieldContainer, rightSideHeader, null, rightSideFooter, null);
         rightSideBorderPane.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
@@ -88,12 +92,47 @@ public class HouseInsuranceScene extends InsuranceScene {
         scene = new Scene(borderPane);
     }
 
-    private String[] getFillingArray() {
-        HomeType[] type = HomeType.values();
-        String[] returnValues = new String[type.length];
-        for (int i = 0; i < type.length; i++) {
-            returnValues[i] = type[i].getDisplayName();
-        }
-        return returnValues;
+    public String getStreetAddressFieldText() {
+        return streetAddressField.getText();
+    }
+
+    public String getZipCodeFieldText() {
+        return zipCodeField.getText();
+    }
+
+    public String getConstructionYearFieldText() {
+        return constructionYearField.getText();
+    }
+
+    public String getBuildingMaterialFieldText() {
+        return buildingMaterialField.getText();
+    }
+
+    public String getStandardFieldText() {
+        return standardField.getText();
+    }
+
+    public String getSquareMetersFieldText() {
+        return squareMetersField.getText();
+    }
+
+    public String getHomeAmountFieldText() {
+        return homeAmountField.getText();
+    }
+
+    public String getContentsAmountFieldText() {
+        return contentsAmountField.getText();
+    }
+
+    public String getHomeTypeDropDownSelectedValue() {
+        return homeTypeDropDown.getValue();
+    }
+
+    public boolean getHolydayHomeBoxIsSelected() {
+        return holydayHomeBox.isSelected();
+    }
+
+    public boolean getRentableBoxIsSelected() {
+        return rentableBox.isSelected();
     }
 }

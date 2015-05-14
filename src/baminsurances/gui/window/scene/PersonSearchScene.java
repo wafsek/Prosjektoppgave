@@ -59,7 +59,7 @@ public abstract class PersonSearchScene extends GeneralScene{
                 TableView.CONSTRAINED_RESIZE_POLICY);
         customerTable.setEditable(false);
         customerTable.setStyle("-fx-border-color: gray;");
-        customerTable.setPrefWidth(OperationWindow.STAGE_WIDTH * 2 / 4);
+        customerTable.setPrefWidth(OperationWindow.STAGE_WIDTH * 1 / 2);
 
         birthNumberField = new TextField();
         birthNoLabel = new Label("Fødselsnummer:");

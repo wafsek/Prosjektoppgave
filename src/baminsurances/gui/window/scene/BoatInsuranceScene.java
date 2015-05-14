@@ -1,11 +1,16 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.data.BoatType;
+import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
+import baminsurances.gui.window.DifferentVehicleOwnerWindow;
 import baminsurances.gui.window.GuiConfig;
+import baminsurances.gui.window.MessageDialog;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,10 +21,15 @@ import javafx.scene.layout.GridPane;
  * Created by Adrian on 14/05/2015.
  */
 public class BoatInsuranceScene extends InsuranceScene {
-    private Label lengthInFeetLabel, productionYearLabel, motorTypeLabel,
+    private Label registrationNoLabel, typeLabel, brandLabel, modelLabel,
+            lengthInFeetLabel, productionYearLabel, motorTypeLabel,
             horsePowerLabel;
-    private TextField lengthInFeetField, productionYearField, horsePowerField;
-    private ComboBox<String> motorTypeDropdown;
+    private TextField registrationNoField, modelField, brandField,
+            lengthInFeetField, productionYearField, horsePowerField;
+    private ComboBox<String> motorTypeDropdown, typeDropDown;
+    private CheckBox ownerBox;
+    private boolean ownerBoxIsSelected;
+    private Person person;
 
     public BoatInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
         super(guiEventHandler, keyPressHandler, displayName);
@@ -31,19 +41,48 @@ public class BoatInsuranceScene extends InsuranceScene {
         conditionArea.setEditable(true);
         registerInsuranceButton.setDisable(false);
         leftSideContentContainer.getChildren().remove(discribtionContainer);
+        ownerBoxIsSelected = false;
+        person = null;
 
+        registrationNoLabel = new Label("Registreringsnummer:");
+        typeLabel = new Label("Båttype:");
+        brandLabel = new Label("Båtmerke:");
+        modelLabel = new Label("Modell:");
         lengthInFeetLabel = new Label("Lengde i fot:");
         productionYearLabel = new Label("Produsjonsår:");
         motorTypeLabel = new Label("Motortype:");
         horsePowerLabel = new Label("Hestekrefter:");
 
+        registrationNoField = new TextField();
+        modelField = new TextField();
+        brandField = new TextField();
         lengthInFeetField = new TextField();
         productionYearField = new TextField();
         horsePowerField = new TextField();
 
-        motorTypeDropdown = new ComboBox<>(FXCollections.observableArrayList("Innbors", "utenbors"));
+        ownerBox = new CheckBox("Forskjellig eier?");
+        ownerBox.setOnAction(e -> {
+            if(!ownerBoxIsSelected){
+                person = new DifferentVehicleOwnerWindow().registerOwner();
+                if (person == null) {
+                    ownerBox.setSelected(false);
+                } else {
+                    ownerBoxIsSelected = !ownerBoxIsSelected;
+                }
+            } else {
+                new MessageDialog().showMessageDialog("Slettet", "Eieren er nå " +
+                                "satt tilbake på kunden som blir behandlet.",
+                        MessageDialog.INFORMATION_ICON);
+                person = null;
+                ownerBoxIsSelected = !ownerBoxIsSelected;
+            }
+        });
 
-        rightSideFieldContainer.addColumn(0, lengthInFeetLabel, productionYearLabel,
+        motorTypeDropdown = new ComboBox<>(FXCollections.observableArrayList("Innbors", "utenbors"));
+        typeDropDown = new ComboBox<>(FXCollections.observableArrayList(getFillingArray(BoatType.values())));
+
+        rightSideFieldContainer.addColumn(0, ownerBox, registrationNoLabel, typeLabel,
+                brandLabel, modelLabel,  lengthInFeetLabel, productionYearLabel,
                 motorTypeLabel, horsePowerLabel);
         rightSideFieldContainer.addColumn(1, lengthInFeetField, productionYearField,
                 motorTypeDropdown, horsePowerField);
