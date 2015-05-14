@@ -23,6 +23,7 @@ public class PersonGenerator {
     private List<String> zipCodes;
     private List<String> streetAddressStarts;
     private List<String> streetAddressEndings;
+    private static final String resourceFolderName = "text_data";
     
     /**
      * Creates a new Person object generator.
@@ -52,48 +53,48 @@ public class PersonGenerator {
     
     private List<String> loadBoysNames() {
         String filepath =
-                PersonGenerator.class.getClassLoader().getResource(
-                        "guttenavn.csv").getPath();
+                ClassLoader.getSystemClassLoader().getResource(".").getPath()
+                + resourceFolderName +  "/" + "guttenavn.csv";
         CsvReader reader = new CsvReader(new File(filepath), ";");
         return reader.getValuesInColumn(0);
     }
     
     private List<String> loadGirlsNames() {
         String filepath =
-                PersonGenerator.class.getClassLoader().getResource(
-                        "jentenavn.csv").getPath();
+                ClassLoader.getSystemClassLoader().getResource(".").getPath()
+                + resourceFolderName +  "/" + "jentenavn.csv";
         CsvReader reader = new CsvReader(new File(filepath), ";");
         return reader.getValuesInColumn(0);
     }
     
     private List<String> loadLastNames() {
         String filepath =
-                PersonGenerator.class.getClassLoader().getResource(
-                        "etternavn.csv").getPath();
+                ClassLoader.getSystemClassLoader().getResource(".").getPath()
+                + resourceFolderName +  "/" + "etternavn.csv";
         CsvReader reader = new CsvReader(new File(filepath), ";");
         return reader.getValuesInColumn(1);
     }
     
     private List<String> loadZipCodes() {
         String filepath =
-                PersonGenerator.class.getClassLoader().getResource(
-                        "postnummer.csv").getPath();
+                ClassLoader.getSystemClassLoader().getResource(".").getPath()
+                + resourceFolderName +  "/" + "postnummer.csv";
         CsvReader reader = new CsvReader(new File(filepath), ";");
         return reader.getValuesInColumn(0);        
     }
     
     private List<String> loadStreetAddressStarts() {
         String startsFilepath =
-                PersonGenerator.class.getClassLoader().getResource(
-                        "gateadresse1.txt").getPath();
+                ClassLoader.getSystemClassLoader().getResource(".").getPath()
+                + resourceFolderName +  "/" + "gateadresse1.txt";
         TxtReader reader = new TxtReader(new File(startsFilepath));
         return reader.getLines();
     }
     
     private List<String> loadStreetAddressEndings() {
         String endingsFilepath =
-                PersonGenerator.class.getClassLoader().getResource(
-                        "gateadresse2.txt").getPath();
+                ClassLoader.getSystemClassLoader().getResource(".").getPath()
+                + resourceFolderName +  "/" + "gateadresse2.txt";
         TxtReader reader = new TxtReader(new File(endingsFilepath));
         return reader.getLines();
     }
