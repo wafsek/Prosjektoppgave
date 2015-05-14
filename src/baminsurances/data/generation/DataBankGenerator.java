@@ -10,6 +10,7 @@ public class DataBankGenerator {
     private PersonGenerator personGen = new PersonGenerator();
     private CustomerGenerator customerGen = new CustomerGenerator();
     private EmployeeGenerator employeeGen = new EmployeeGenerator();
+    private ClaimAdviceGenerator claimAdviceGen = new ClaimAdviceGenerator();
     
     // Insurance generators:
     private InsuranceGenerator insGen = new InsuranceGenerator();
@@ -35,10 +36,11 @@ public class DataBankGenerator {
      * @param numInsurances number of insurances to generate
      */
     public void generateDataBank(int numCustomers, int numEmployees,
-            int numInsurances) {
+            int numInsurances, int numClaimAdvices) {
         generateCustomerInsuranceList(numCustomers);
         generateEmployeeList(numEmployees);
         generateInsurances(numInsurances);
+        generateClaimAdvices(numClaimAdvices);
         
         DataBank db = DataBank.getInstance();
         db.getCustomerInsuranceList().addAll(customerInsuranceList);
@@ -224,12 +226,37 @@ public class DataBankGenerator {
                     travelGen.generateTerms(),
                     travelGen.generateRegion());
         }
-        ins.setCreationDate(DateGenerator.generateBeforeNowAndAfter(
+        ins.setCreationDate(DateGenerator.generateDateAfter(
                 cusIns.getCustomer().getRegistrationDate()));
         if (Math.random() < 0.5) { // 50% chance of being cancelled
             ins.setCancellationDate(
-                    DateGenerator.generateBeforeNowAndAfter(ins.getCreationDate()));
+                    DateGenerator.generateDateAfter(ins.getCreationDate()));
         }
         cusIns.getInsurances().add(ins);
+    }
+    
+    /**
+     * Generates a given number of claim advices, and registers these on the
+     * existing insurances.
+     * 
+     * @param numClaimAdvices the number of claim advices to generate
+     */
+    public void generateClaimAdvices(int numClaimAdvices) {
+        int numGenerated = 0;
+        outerloop:
+        while (numGenerated < numClaimAdvices) {
+            for (CustomerInsurance cusIns : customerInsuranceList) {
+                for (Insurance ins : cusIns.getInsurances()) {
+                    if (Math.random() < 0.35) {
+                        ins.addClaimAdvice(claimAdviceGen.generateClaimAdvice(
+                                ins.getClass(), ins.getCreationDate()));
+                        numGenerated++;
+                        if (numGenerated >= numClaimAdvices) {
+                            break outerloop;
+                        }
+                    }
+                }   
+            }
+        }
     }
 }

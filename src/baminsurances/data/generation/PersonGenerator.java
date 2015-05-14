@@ -36,7 +36,6 @@ public class PersonGenerator {
         streetAddressEndings = loadStreetAddressEndings();
     }
     
-    
     public Person generatePerson() {
         String birthNo = generateBirthNo();
         String firstName = generateFirstName(birthNo);
@@ -52,7 +51,6 @@ public class PersonGenerator {
     }
     
     private List<String> loadBoysNames() {
-        System.out.println(new File(".").getAbsolutePath());
         String filepath =
                 PersonGenerator.class.getClassLoader().getResource(
                         "guttenavn.csv").getPath();

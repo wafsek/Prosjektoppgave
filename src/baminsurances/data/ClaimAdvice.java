@@ -32,9 +32,8 @@ public class ClaimAdvice implements Serializable {
     /**
      * Creates a new claim advice with the given values.
      * <p>
-     * To add pictures and
-     * witnesses, instantiate a ClaimAdvice before using the {@link
-     * #addWitness(Person) addWitness} and {@link
+     * To add pictures and witnesses, instantiate a ClaimAdvice before using
+     * the {@link #addWitness(Person) addWitness} and {@link
      * #addPictureOfDamage(BufferedImage) addPictureOfDamage} methods.
      * 
      * @param dateOfDamage the date of the damage
@@ -192,9 +191,20 @@ public class ClaimAdvice implements Serializable {
             
             dir.mkdir(); // directory will be made if it does not already exist
             
-            ImageIO.write(picture, "png", new File(dir.getPath() + "/" + filename));
+            ImageIO.write(picture, "png", new File(dir.getPath() + "/" + filename + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Adds the given pictures to this claim advice.
+     * 
+     * @param pictures a list of pictures
+     */
+    public void addPicturesOfDamage(List<BufferedImage> pictures) {
+        for (BufferedImage img : pictures) {
+            addPictureOfDamage(img);
         }
     }
 
@@ -254,5 +264,15 @@ public class ClaimAdvice implements Serializable {
      */
     public void setCompensationAmount(long compensationAmount) {
         this.compensationAmount = compensationAmount;
+    }
+    
+    @Override
+    public String toString() {
+        return damageNo + ", "
+                + damageType + ", "
+                + "Vitner: " + witnesses.size() + ", "
+                + "Bilder: " + numPictures + ", "
+                + "Taksering: " + assessmentAmount + ", "
+                + "Erstatning: " + compensationAmount;
     }
 }

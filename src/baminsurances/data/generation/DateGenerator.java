@@ -73,7 +73,7 @@ public class DateGenerator {
      * @return a new date before the current date, and after the given date
      * (both inclusive)
      */
-    public static LocalDate generateBeforeNowAndAfter(LocalDate date) {
+    public static LocalDate generateDateAfter(LocalDate date) {
         return generateDateInRange(date, LocalDate.now());
     }
     

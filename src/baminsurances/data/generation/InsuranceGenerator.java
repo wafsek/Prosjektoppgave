@@ -49,7 +49,7 @@ public class InsuranceGenerator {
      */
     public LocalDate generateCreationDate(
             LocalDate customerRegistrationDate) {
-        return DateGenerator.generateBeforeNowAndAfter(customerRegistrationDate);
+        return DateGenerator.generateDateAfter(customerRegistrationDate);
     }
     
     /**
@@ -60,6 +60,6 @@ public class InsuranceGenerator {
      * @return a date after the given one
      */
     public LocalDate generateCancellationDate(LocalDate creationDate) {
-        return DateGenerator.generateBeforeNowAndAfter(creationDate);
+        return DateGenerator.generateDateAfter(creationDate);
     }
 }

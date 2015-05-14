@@ -25,4 +25,13 @@ public class DataBankGeneratorTest {
                          .getAsDouble();
         System.out.println(averageAge);
     }
+    
+    @Test
+    public void testGenerateDataBank() {
+        long startTime = System.currentTimeMillis();
+        generator.generateCustomerInsuranceList(1000);
+        generator.generateEmployeeList(75);
+        generator.generateInsurances(10000);
+        System.out.println((System.currentTimeMillis() - startTime) / 1000);
+    }
 }
