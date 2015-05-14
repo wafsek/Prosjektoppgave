@@ -17,23 +17,24 @@ import javafx.scene.layout.VBox;
  */
 public class InsuranceScene extends GeneralScene {
 
-    private ComboBox<String> insuranceDropDown;
-    private Label annualPremiumLabel, insuranceValueLabel, conditionLabel, insuranceType,
-            rightSideHeaderLabel, leftSideHeaderLabel;
-    private TextField annualPremiumField, insuranceValueField;
-    private TextArea conditionArea;
-    private Button registerInsurance;
+    protected ComboBox<String> insuranceDropDown;
+    protected Label annualPremiumLabel, insuranceValueLabel, conditionLabel, insuranceType,
+            rightSideHeaderLabel, leftSideHeaderLabel, discribtionLabel;
+    protected TextField annualPremiumField, insuranceValueField;
+    protected TextArea conditionArea;
+    protected Button registerInsuranceButton;
 
-    private HBox leftSideHeader, rightSideHeader, leftSideFooter, rightSideFooter;
-    private GridPane leftSideFieldContainer, rightSideFieldContainer;
-    private BorderPane leftSideBorderPane, rightSideBorderPane;
-    private VBox leftSideContentContainer;
+    protected HBox leftSideHeader, rightSideHeader, leftSideFooter, rightSideFooter;
+    protected GridPane leftSideFieldContainer, rightSideFieldContainer;
+    protected BorderPane leftSideBorderPane, rightSideBorderPane;
+    protected VBox leftSideContentContainer;
 
 
     public InsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
         super(guiEventHandler, keyPressHandler, displayName);
         insuranceDropDown = new ComboBox<>(FXCollections.observableArrayList(
                 "Reiseforsikring", "Boligforsikring", "Bilforsikring", "Båtforsikring"));
+        insuranceDropDown.setOnAction(guiEventHandler);
         insuranceType = new Label("Forsikringstype:");
         annualPremiumLabel = new Label("Årlig premie:");
         insuranceValueLabel = new Label("Forsikringsbeløp:");
@@ -42,37 +43,74 @@ public class InsuranceScene extends GeneralScene {
         leftSideHeaderLabel.setStyle("-fx-font: 28px Times");
         rightSideHeaderLabel = new Label("Kunde: ");
         rightSideHeaderLabel.setStyle("-fx-font: 28px Times");
+        discribtionLabel = new Label("Her må du først velge en forsikringstype.\n" +
+                "Avhenger av hva som velges, vil ytterligere\nutfyllingsfelt presenteres.");
 
         annualPremiumField = new TextField();
+        annualPremiumField.setEditable(false);
         insuranceValueField = new TextField();
+        insuranceValueField.setEditable(false);
 
         conditionArea = new TextArea();
-        conditionArea.setPrefHeight(GuiConfig.PRIMARY_HEIGHT*2/5);
-
-        registerInsurance = new Button("Registrer");
-        registerInsurance.setDisable(true);
+        conditionArea.setEditable(false);
+        registerInsuranceButton = new Button("Registrer");
+        registerInsuranceButton.setDisable(true);
 
         leftSideHeader = new HBox(0, leftSideHeaderLabel);
         leftSideHeader.setAlignment(Pos.CENTER);
+        leftSideHeader.setStyle("-fx-border-color: gray; ");
 
         leftSideFieldContainer = new GridPane();
-        leftSideFieldContainer.addColumn(0, annualPremiumLabel, insuranceValueLabel, conditionLabel);
-        leftSideFieldContainer.addColumn(1, annualPremiumField, insuranceValueField);
-        leftSideFieldContainer.setHgap(30);
+        leftSideFieldContainer.add(discribtionLabel, 0, 0, 2, 1);
+        leftSideFieldContainer.addColumn(0, insuranceType, annualPremiumLabel, insuranceValueLabel, conditionLabel);
+        leftSideFieldContainer.addColumn(1, insuranceDropDown, annualPremiumField, insuranceValueField);
+        leftSideFieldContainer.add(conditionArea, 0, 5, 3, 3);
+        leftSideFieldContainer.setHgap(50);
         leftSideFieldContainer.setVgap(20);
         leftSideFieldContainer.setAlignment(Pos.CENTER);
 
-        leftSideContentContainer = new VBox(10, leftSideFieldContainer, conditionArea);
+        leftSideContentContainer = new VBox(10, leftSideFieldContainer);
         leftSideContentContainer.setAlignment(Pos.CENTER);
 
         leftSideBorderPane = new BorderPane(leftSideContentContainer, leftSideHeader, null, leftSideFooter, null);
-        leftSideBorderPane.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1/2);
 
-        footer = new HBox(GuiConfig.PRIMARY_WIDTH*4/5, informationLabel, backButton, logOutButton);
-        footer.setStyle("-fx-border-color: gray; " +
-                "-fx-padding: 5;");
+        rightSideHeader = new HBox(0, rightSideHeaderLabel);
+        rightSideHeader.setAlignment(Pos.CENTER);
+        rightSideHeader.setStyle("-fx-border-color: gray;");
 
-        borderPane = new BorderPane(null, null, null, footer, leftSideBorderPane);
+        rightSideFooter = new HBox(0, registerInsuranceButton);
+        rightSideFooter.setAlignment(Pos.CENTER);
+        rightSideFooter.setStyle("-fx-padding: 5;");
+
+        rightSideBorderPane = new BorderPane(null, rightSideHeader, null, rightSideFooter, null);
+        rightSideBorderPane.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+
+        footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        footer = new HBox(0, footerLeftSide, footerRightSide);
+        footer.setStyle("-fx-border-color: gray;");
+
+        borderPane = new BorderPane(leftSideBorderPane, null, rightSideBorderPane, footer, null);
         scene = new Scene(borderPane);
+    }
+
+    public ComboBox<String> getInsuranceDropDown() {
+        return insuranceDropDown;
+    }
+
+    public TextField getAnnualPremiumField() {
+        return annualPremiumField;
+    }
+
+    public TextField getInsuranceValueField() {
+        return insuranceValueField;
+    }
+
+    public TextArea getConditionArea() {
+        return conditionArea;
+    }
+
+    public Button getRegisterInsuranceButton() {
+        return registerInsuranceButton;
     }
 }

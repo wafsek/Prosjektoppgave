@@ -61,6 +61,7 @@ public class Controller {
     private HandleCustomerScene handleCustomerScene;
     private GeneratingStage generatingStage;
     private InsuranceScene insuranceScene;
+    private HouseInsuranceScene houseInsuranceScene;
     
     private CustomLogger logger = CustomLogger.getInstance();
     
@@ -84,6 +85,7 @@ public class Controller {
         addScene = new AddScene(guiEventHandler, keyPressHandler, getDisplayName());
         handleCustomerScene = new HandleCustomerScene(guiEventHandler, keyPressHandler, getDisplayName());
         insuranceScene = new InsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
+        houseInsuranceScene = new HouseInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
 
         generatingStage = new GeneratingStage();
 
@@ -151,6 +153,10 @@ public class Controller {
         primaryStage.initiate(insuranceScene.getScene());
     }
 
+    private void launchHouseInsuranceScene() {
+        primaryStage.initiate(houseInsuranceScene.getScene());
+    }
+
     private void backToNavigation(){
         primaryStage.close();
         menuStage.initiate(navigationScene.getScene());
@@ -198,6 +204,8 @@ public class Controller {
             launchInsuranceScene();
         } else if (control == handleCustomerScene.getUpdateInfoButton()) {
 
+        } else if (control == insuranceScene.getInsuranceDropDown() && insuranceScene.getInsuranceDropDown().getValue().equals("Boligforsikring")) {
+            launchHouseInsuranceScene();
         }
 
         /*if (control == loginWindow.getLoginButton()) {
