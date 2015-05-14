@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 public class GeneralStage {
 
     private Stage stage;
+    private Scene scene;
 
     public GeneralStage(double width, double height) {
         stage = new Stage();
@@ -24,7 +25,12 @@ public class GeneralStage {
 
     public void initiate(Scene scene) {
         stage.setScene(scene);
+        this.scene = scene;
         stage.show();
+    }
+
+    public Scene getScene() {
+        return scene;
     }
 
     public void close() {

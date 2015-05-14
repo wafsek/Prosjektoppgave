@@ -2,9 +2,12 @@ package baminsurances.gui.window.scene;
 
 import baminsurances.data.CarType;
 import baminsurances.data.NameDisplayable;
+import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
+import baminsurances.gui.window.DifferentVehicleOwnerWindow;
 import baminsurances.gui.window.GuiConfig;
+import baminsurances.gui.window.MessageDialog;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
@@ -25,6 +28,8 @@ public class CarInsuranceScene extends InsuranceScene{
             bonusPercentageField;
     private ComboBox<String> carTypeDropDown, carBrandDropDown;
     private CheckBox ownerBox;
+    private Person person;
+    private boolean ownerBoxIsSelected;
 
     public CarInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
         super(guiEventHandler, keyPressHandler, displayName);
@@ -36,6 +41,9 @@ public class CarInsuranceScene extends InsuranceScene{
         conditionArea.setEditable(true);
         registerInsuranceButton.setDisable(false);
         leftSideContentContainer.getChildren().remove(discribtionContainer);
+
+        ownerBoxIsSelected = false;
+        person = null;
 
         carBrandDropDown = new ComboBox<>(FXCollections.observableArrayList("Alfa Romeo",
                 "Aston Martin", "Audi", "Austin", "Bentley", "BMW", "Buddy",
@@ -71,12 +79,28 @@ public class CarInsuranceScene extends InsuranceScene{
         bonusPercentageField = new TextField();
 
         ownerBox = new CheckBox("Annen eier?");
-        ownerBox.setOnAction(guiEventHandler);
+        ownerBox.setOnAction(e -> {
+            if(!ownerBoxIsSelected){
+                person = new DifferentVehicleOwnerWindow().registerOwner();
+                if (person == null) {
+                    ownerBox.setSelected(false);
+                } else {
+                    ownerBoxIsSelected = !ownerBoxIsSelected;
+                }
+            } else {
+                new MessageDialog().showMessageDialog("Slettet", "Eieren er nå " +
+                        "satt tilbake på kunden som blir behandlet.",
+                        MessageDialog.INFORMATION_ICON);
+                person = null;
+                ownerBoxIsSelected = !ownerBoxIsSelected;
+            }
+        });
 
         rightSideFieldContainer.addColumn(0, ownerBox, registrationNumberLabel, carTypeLabel,
                 carBrandLabel, carModelLabel, productionYearLabel, annualMilageLabel,
                 pricePerKilometerLabel, bonusPercentageLabel);
-        rightSideFieldContainer.addColumn(1, productionYearField, annualMilageField,
+        rightSideFieldContainer.addColumn(1, new Label(""), registrationNumberField, carTypeDropDown,
+                carBrandDropDown, carModelField, productionYearField, annualMilageField,
                 pricePerKilometerField, bonusPercentageField);
 
         rightSideBorderPane = new BorderPane(rightSideFieldContainer, rightSideHeader, null, rightSideFooter, null);
@@ -84,5 +108,49 @@ public class CarInsuranceScene extends InsuranceScene{
 
         borderPane = new BorderPane(leftSideBorderPane, null, rightSideBorderPane, footer, null);
         scene = new Scene(borderPane);
+    }
+
+    public String getRegistrationNumberFieldText() {
+        return registrationNumberField.getText();
+    }
+
+    public String getCarModelFieldText() {
+        return carModelField.getText();
+    }
+
+    public String getProductionYearFieldText() {
+        return productionYearField.getText();
+    }
+
+    public String getAnnualMilageFieldText() {
+        return annualMilageField.getText();
+    }
+
+    public String getPricePerKilometerFieldText() {
+        return pricePerKilometerField.getText();
+    }
+
+    public String getBonusPercentageFieldText() {
+        return bonusPercentageField.getText();
+    }
+
+    public String getCarTypeDropDownSelectedValue() {
+        return carTypeDropDown.getValue();
+    }
+
+    public String getCarBrandDropDownSelectedValue() {
+        return carBrandDropDown.getValue();
+    }
+
+    public ComboBox<String> getCarTypeDropDown() {
+        return carTypeDropDown;
+    }
+
+    public ComboBox<String> getCarBrandDropDown() {
+        return carBrandDropDown;
+    }
+
+    public Person getPerson() {
+        return person;
     }
 }

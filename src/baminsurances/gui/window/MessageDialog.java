@@ -209,15 +209,16 @@ public class MessageDialog {
 
     private static String fitText(String inputString) {
         String output = "";
+        int counter = 0;
         char[] chars = inputString.toCharArray();
 
         for(int i = 0; i < chars.length; i++) {
-            if(i != 0 && i % 20 == 0 && chars[i] != ' ' ) {
-                output = (output + chars[i] + "-\n");
-            } else if (i != 0 && i % 20 == 0) {
-                output = (output + chars[i] + "\n");
+            if(counter > 15 && chars[i] == ' '){
+                output += "\n";
+                counter = 0;
             } else {
-                output = (output + chars[i]);
+                output += chars[i];
+                counter++;
             }
         }
         return output;

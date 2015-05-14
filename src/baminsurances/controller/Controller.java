@@ -255,6 +255,8 @@ public class Controller {
         } else if (control == houseInsuranceScene.getBackButton() || control == boatInsuranceScene.getBackButton() ||
                 control == carInsuranceScene.getBackButton()) {
             launchInsuranceScene();
+        } else if (control == carInsuranceScene.getRegisterInsuranceButton()) {
+
         }
 
         /*if (control == loginWindow.getLoginButton()) {
