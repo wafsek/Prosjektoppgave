@@ -24,7 +24,8 @@ public class InsuranceScene extends GeneralScene {
     protected TextArea conditionArea;
     protected Button registerInsuranceButton;
 
-    protected HBox leftSideHeader, rightSideHeader, leftSideFooter, rightSideFooter;
+    protected HBox leftSideHeader, rightSideHeader, leftSideFooter, rightSideFooter,
+            discribtionContainer;
     protected GridPane leftSideFieldContainer, rightSideFieldContainer;
     protected BorderPane leftSideBorderPane, rightSideBorderPane;
     protected VBox leftSideContentContainer;
@@ -33,7 +34,7 @@ public class InsuranceScene extends GeneralScene {
     public InsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
         super(guiEventHandler, keyPressHandler, displayName);
         insuranceDropDown = new ComboBox<>(FXCollections.observableArrayList(
-                "Reiseforsikring", "Boligforsikring", "Bilforsikring", "Båtforsikring"));
+                "Reiseforsikring", "Boligforsikring", "Bilforsikring", "Baatforsikring"));
         insuranceDropDown.setOnAction(guiEventHandler);
         insuranceType = new Label("Forsikringstype:");
         annualPremiumLabel = new Label("Årlig premie:");
@@ -56,12 +57,14 @@ public class InsuranceScene extends GeneralScene {
         registerInsuranceButton = new Button("Registrer");
         registerInsuranceButton.setDisable(true);
 
+        discribtionContainer = new HBox(discribtionLabel);
+        discribtionContainer.setAlignment(Pos.CENTER);
+
         leftSideHeader = new HBox(0, leftSideHeaderLabel);
         leftSideHeader.setAlignment(Pos.CENTER);
         leftSideHeader.setStyle("-fx-border-color: gray; ");
 
         leftSideFieldContainer = new GridPane();
-        leftSideFieldContainer.add(discribtionLabel, 0, 0, 2, 1);
         leftSideFieldContainer.addColumn(0, insuranceType, annualPremiumLabel, insuranceValueLabel, conditionLabel);
         leftSideFieldContainer.addColumn(1, insuranceDropDown, annualPremiumField, insuranceValueField);
         leftSideFieldContainer.add(conditionArea, 0, 5, 3, 3);
@@ -69,7 +72,7 @@ public class InsuranceScene extends GeneralScene {
         leftSideFieldContainer.setVgap(20);
         leftSideFieldContainer.setAlignment(Pos.CENTER);
 
-        leftSideContentContainer = new VBox(10, leftSideFieldContainer);
+        leftSideContentContainer = new VBox(10, discribtionContainer, leftSideFieldContainer);
         leftSideContentContainer.setAlignment(Pos.CENTER);
 
         leftSideBorderPane = new BorderPane(leftSideContentContainer, leftSideHeader, null, leftSideFooter, null);
@@ -85,6 +88,8 @@ public class InsuranceScene extends GeneralScene {
         rightSideBorderPane = new BorderPane(null, rightSideHeader, null, rightSideFooter, null);
         rightSideBorderPane.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
 
+        rightSideFieldContainer = new GridPane();
+
         footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
         footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
         footer = new HBox(0, footerLeftSide, footerRightSide);
@@ -98,19 +103,23 @@ public class InsuranceScene extends GeneralScene {
         return insuranceDropDown;
     }
 
-    public TextField getAnnualPremiumField() {
-        return annualPremiumField;
+    public String getAnnualPremiumField() {
+        return annualPremiumField.getText();
     }
 
-    public TextField getInsuranceValueField() {
-        return insuranceValueField;
+    public String getInsuranceValueField() {
+        return insuranceValueField.getText();
     }
 
-    public TextArea getConditionArea() {
-        return conditionArea;
+    public String getConditionArea() {
+        return conditionArea.getText();
     }
 
     public Button getRegisterInsuranceButton() {
         return registerInsuranceButton;
+    }
+
+    public void setInsuranceDropDownEmpty() {
+        insuranceDropDown.setValue("");
     }
 }

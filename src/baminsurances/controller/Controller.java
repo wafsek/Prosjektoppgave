@@ -62,6 +62,7 @@ public class Controller {
     private GeneratingStage generatingStage;
     private InsuranceScene insuranceScene;
     private HouseInsuranceScene houseInsuranceScene;
+    private BoatInsuranceScene boatInsuranceScene;
     
     private CustomLogger logger = CustomLogger.getInstance();
     
@@ -86,6 +87,7 @@ public class Controller {
         handleCustomerScene = new HandleCustomerScene(guiEventHandler, keyPressHandler, getDisplayName());
         insuranceScene = new InsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
         houseInsuranceScene = new HouseInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
+        boatInsuranceScene = new BoatInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
 
         generatingStage = new GeneratingStage();
 
@@ -150,11 +152,17 @@ public class Controller {
     }
 
     private void launchInsuranceScene() {
+        insuranceScene.setInsuranceDropDownEmpty();
         primaryStage.initiate(insuranceScene.getScene());
+
     }
 
     private void launchHouseInsuranceScene() {
         primaryStage.initiate(houseInsuranceScene.getScene());
+    }
+
+    private void lauchBoatInsuranceScene() {
+        primaryStage.initiate(boatInsuranceScene.getScene());
     }
 
     private void backToNavigation(){
@@ -177,7 +185,9 @@ public class Controller {
         if(control == loginScene.getLoginButton()){
             login();
         } else if (control == navigationScene.getLogOutButton() || control == findPersonScene.getLogOutButton() ||
-                control == handleCustomerScene.getLogOutButton() || control == addScene.getLogOutButton()){
+                control == handleCustomerScene.getLogOutButton() || control == addScene.getLogOutButton() ||
+                control == insuranceScene.getLogOutButton() || control == houseInsuranceScene.getLogOutButton() ||
+                control == boatInsuranceScene.getLogOutButton()){
             if(new MessageDialog().showMessageDialog("Sikker?", "Logge ut?", MessageDialog.QUESTION_ICON,
                     MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION){
                 menuStage.close();
@@ -204,8 +214,20 @@ public class Controller {
             launchInsuranceScene();
         } else if (control == handleCustomerScene.getUpdateInfoButton()) {
 
-        } else if (control == insuranceScene.getInsuranceDropDown() && insuranceScene.getInsuranceDropDown().getValue().equals("Boligforsikring")) {
+        } else if (control == insuranceScene.getInsuranceDropDown() &&
+                insuranceScene.getInsuranceDropDown().getValue().equals("Boligforsikring")
+                || control == boatInsuranceScene.getInsuranceDropDown() &&
+                boatInsuranceScene.getInsuranceDropDown().getValue().equals("Boligforsikring")) {
             launchHouseInsuranceScene();
+        } else if (control == insuranceScene.getInsuranceDropDown() &&
+                insuranceScene.getInsuranceDropDown().getValue().equals("Baatforsikring")
+                || control == houseInsuranceScene.getInsuranceDropDown() &&
+                houseInsuranceScene.getInsuranceDropDown().getValue().equals("Baatforsikring")) {
+            lauchBoatInsuranceScene();
+        } else if (control == insuranceScene.getBackButton()) {
+            launchHandleCustomerScene();
+        } else if (control == houseInsuranceScene.getBackButton() || control == boatInsuranceScene.getBackButton()) {
+            launchInsuranceScene();
         }
 
         /*if (control == loginWindow.getLoginButton()) {
