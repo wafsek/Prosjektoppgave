@@ -1,4 +1,4 @@
-package baminsurances.util;
+package baminsurances.data.generation;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,10 +10,14 @@ import java.util.List;
 
 /**
  * A class that provides methods for reading .txt-files.
+ * <p>
+ * Because this class only exists as a utility for the generator classes, its
+ * visibility is set to default, preventing classes outside the
+ * {@link baminsurances.data.generation} package from accessing it.
  * 
  * @author Martin Jackson
  */
-public class TxtReader {
+class TxtReader {
     private File txtFile;
     
     public TxtReader(File txtFile) {

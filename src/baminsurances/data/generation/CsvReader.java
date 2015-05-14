@@ -1,4 +1,4 @@
-package baminsurances.util;
+package baminsurances.data.generation;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,10 +12,14 @@ import java.util.List;
  * A utility class that provides methods for reading files with the .csv
  * extension. The methods are ones we implement as we find the need for them,
  * and so they might seem somewhat sparse.
+ * <p>
+ * Because this class only exists as a utility for the generator classes, its
+ * visibility is set to default, preventing classes outside the
+ * {@link baminsurances.data.generation} package from accessing it. 
  * 
  * @author Martin Jackson
  */
-public class CsvReader {
+class CsvReader {
     private File csvFile;
     private String splitter;
     
