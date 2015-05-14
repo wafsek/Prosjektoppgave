@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.List;
 
 import baminsurances.data.CarType;
-import baminsurances.util.CsvReader;
 
 /**
  * Provides methods for generating {@link CarInsurance} objects.
