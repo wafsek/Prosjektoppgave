@@ -2,6 +2,7 @@ package baminsurances.data.generation;
 
 import java.io.File;
 import java.util.List;
+
 import baminsurances.data.CarType;
 import baminsurances.util.CsvReader;
 
@@ -12,11 +13,12 @@ import baminsurances.util.CsvReader;
  */
 public class CarInsuranceGenerator {
     List<String> brands;
+    private static final String resourceFolderName = "text_data";
     
     public CarInsuranceGenerator() {
         String filepath =
-                PersonGenerator.class.getClassLoader().getResource(
-                        "bilmerker.csv").getPath();
+                ClassLoader.getSystemClassLoader().getResource(".").getPath()
+                + resourceFolderName +  "/" + "bilmerker.csv";
         CsvReader reader = new CsvReader(new File(filepath), ";");
         brands = reader.getValuesInColumn(0);
     }
