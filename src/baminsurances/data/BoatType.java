@@ -18,7 +18,7 @@ public enum BoatType implements VehicleType {
     }
     
     @Override
-    public String getDisplayName() {
+    public String toString() {
         return displayName;
     }
 }
