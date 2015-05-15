@@ -4,21 +4,20 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
-import baminsurances.data.CustomerInsurance;
+import baminsurances.data.Customer;
 
 public class DataBankGeneratorTest {
     DataBankGenerator generator = new DataBankGenerator();
     
     @Test
     public void testGenerateCustomerInsuranceList() {
-        generator.generateCustomerInsuranceList(1000);
-        for (CustomerInsurance cusIns : generator.getCustomerInsuranceList()) {
-            System.out.println(cusIns.getCustomer().toString());
+        generator.generateCustomerList(1000);
+        for (Customer cus : generator.getCustomerList()) {
+            System.out.println(cus.toString());
         }
         double averageAge =
-                generator.getCustomerInsuranceList()
+                generator.getCustomerList()
                          .stream()
-                         .map(ci -> ci.getCustomer())
                          .mapToInt(c -> LocalDate.now().getYear() -
                                  c.getDateOfBirth().getYear())
                          .average()
@@ -29,7 +28,7 @@ public class DataBankGeneratorTest {
     @Test
     public void testGenerateDataBank() {
         long startTime = System.currentTimeMillis();
-        generator.generateCustomerInsuranceList(1000);
+        generator.generateCustomerList(1000);
         generator.generateEmployeeList(75);
         generator.generateInsurances(10000);
         System.out.println((System.currentTimeMillis() - startTime) / 1000);

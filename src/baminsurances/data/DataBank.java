@@ -2,7 +2,6 @@ package baminsurances.data;
 
 import baminsurances.api.Deserializer;
 import baminsurances.api.Serializer;
-import baminsurances.security.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class DataBank implements Serializable {
     private static final long serialVersionUID = -1348011558079744947L;
     private static Deserializer deserializer = new Deserializer();
     private  static Serializer serializer = new Serializer();
-    private List<CustomerInsurance> customerInsuranceList = new ArrayList<>();
+    private List<Customer> customerList = new ArrayList<>();
     private List<Employee> employeeList = new ArrayList<>();
     //private List<User> userList = new ArrayList<>();
     private static DataBank dataBank;
@@ -51,49 +50,33 @@ public class DataBank implements Serializable {
 
     /**
      * Saves an instance of the data bank into a file.
-     *
      */
-    public static void saveDataBank(){
-        if(dataBank != null){
+    public static void saveDataBank() {
+        if (dataBank != null) {
             serializer.serialize(dataBank);
         }
     }
     
     /**
-     * Adds a CustomerInsurance to the list of these. 
+     * Adds a customer to the data bank. 
      * 
-     * @param customerInsurance the CustomerInsurance to add 
+     * @param customer the customer to add 
      */
-    public void addCustomerInsurance(CustomerInsurance customerInsurance){
-        if (customerInsurance == null) {
-            throw new NullPointerException("CustomerInsurance object expected;"
-                    + " Null received.");
+    public void addCustomer(Customer customer) {
+        if (customer == null) {
+            throw new NullPointerException("Customer cannot be null.");
         } else {
-            this.customerInsuranceList.add(customerInsurance);
-        }
-    }
-    
-    //TODO
-    /**
-     * Removes a CustomerInsurance.
-     * @param customerInsurance - Object of type CustomerInsurance. 
-     */
-    public void removeCustomerInsurance(CustomerInsurance customerInsurance){
-        if (customerInsurance == null) {
-            throw new NullPointerException("CustomerInsurance object " 
-                    + "expected; Null received");
-        } else {
-            this.customerInsuranceList.remove(customerInsurance);
+            this.customerList.add(customer);
         }
     }
 
     /**
-     * Returns the list of CustomerInsurances.
+     * Returns the list of customers.
      * 
-     * @return the list of CustomerInsurances
+     * @return the list of customers
      */
-    public List<CustomerInsurance> getCustomerInsuranceList(){
-        return customerInsuranceList;
+    public List<Customer> getCustomerList(){
+        return customerList;
     }
 
     /**
@@ -109,20 +92,7 @@ public class DataBank implements Serializable {
             this.employeeList.add(employee);
         }
     }
-
-    // TODO
-    /**
-     * This method removes a Employee object (With the same birthNumberField) from the employeeList.
-     * @param employee -Employee object.
-     */
-    public void removeEmployee(Employee employee){
-        if (employee == null){
-            throw new NullPointerException("Employee object expected; null received");
-        } else {
-            this.employeeList.remove(employee);
-        }
-    }
-
+    
     /**
      * Returns the list of employees.
      * 
@@ -131,13 +101,4 @@ public class DataBank implements Serializable {
     public List<Employee> getEmployeeList(){
         return employeeList;
     }
-
-    /**
-     * Returns the list of users.
-     * 
-     * @return the list of users
-     */
-    /*public List<User> getUserList() {
-        return userList;
-    }*/
 }

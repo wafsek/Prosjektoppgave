@@ -20,7 +20,8 @@ public class Commandline extends Thread{
     Person owner = new Person("05038437102","Arne","Hansen",
             "99999999","eier@online.no","1445","Heer veien 11");
     CustomerServiceManager manager = new CustomerServiceManager();
-    List<Predicate<CustomerInsurance>> predicates = new ArrayList<>();
+    Searcher searcher = new Searcher();
+    List<Predicate<Customer>> predicates = new ArrayList<>();
     @Override
     public void  run() {
         //this.login();
@@ -73,7 +74,7 @@ public class Commandline extends Thread{
             }
     }
     
-    private void login(){
+    private void login() {
         this.clearScreen();
         System.out.println("first name");
         String  firstName = scanner.nextLine();
@@ -122,15 +123,15 @@ public class Commandline extends Thread{
         System.out.println("email: ");
         String  email = scanner.nextLine();
 
-        manager.registerCustomerInsurance(new Customer(birthNo,
+        manager.registerCustomer(new Customer(birthNo,
                 firstName, lastName, tlf, email, zipCode, address,
                 zipCode, address));
         
-        for(CustomerInsurance customerInsurance : 
-                DataBank.getInstance().getCustomerInsuranceList()){
-            System.out.println(customerInsurance.getCustomer().toString());
+        for(Customer customer : 
+                DataBank.getInstance().getCustomerList()){
+            System.out.println(customer.toString());
         }
-        System.out.println(manager.findCustomers(predicates).toString());
+        System.out.println(searcher.findCustomers(predicates).toString());
     }
     
     private void findCustomer(){
@@ -138,8 +139,8 @@ public class Commandline extends Thread{
         List<Customer> customerList = new ArrayList<>();
         System.out.println("Type in birthNo");
         String  birthNo = scanner.nextLine();
-        predicates.add(CustomerServiceManager.birthNoStartsWith(birthNo));
-        customerList = manager.findCustomers(predicates);
+        predicates.add(Searcher.birthNoStartsWith(birthNo));
+        customerList = searcher.findCustomers(predicates);
         if(customerList.isEmpty())
         {
             System.out.println("Did not find any");
@@ -240,9 +241,8 @@ public class Commandline extends Thread{
     
     
     private void showAllInsurances(){
-        for(CustomerInsurance customerInsurance:
-        DataBank.getInstance().getCustomerInsuranceList()){
-            for (Insurance insurance:customerInsurance.getInsurances()){
+        for(Customer customer: DataBank.getInstance().getCustomerList()) {
+            for (Insurance insurance : customer.getInsurances()){
                 System.out.println("\n#####################################" +
                         "\nInsurance No : "+insurance.getInsuranceNo()+
                         "\nType : "+insurance.getClass().getSimpleName()+

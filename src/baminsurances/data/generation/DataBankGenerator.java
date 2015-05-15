@@ -24,7 +24,7 @@ public class DataBankGenerator {
     private TravelInsuranceGenerator travelGen = new TravelInsuranceGenerator();
     
     // The generated data:
-    private List<CustomerInsurance> customerInsuranceList = new ArrayList<>();
+    private List<Customer> customerList = new ArrayList<>();
     private List<Employee> employeeList = new ArrayList<>();
     
     /**
@@ -37,50 +37,48 @@ public class DataBankGenerator {
      */
     public void generateDataBank(int numCustomers, int numEmployees,
             int numInsurances, int numClaimAdvices) {
-        generateCustomerInsuranceList(numCustomers);
+        generateCustomerList(numCustomers);
         generateEmployeeList(numEmployees);
         generateInsurances(numInsurances);
         generateClaimAdvices(numClaimAdvices);
         
         DataBank db = DataBank.getInstance();
-        db.getCustomerInsuranceList().addAll(customerInsuranceList);
+        db.getCustomerList().addAll(customerList);
         db.getEmployeeList().addAll(employeeList);
     }
     
     /**
-     * Fills this DataBankGenerator's CustomerInsurance list with the given
+     * Fills this DataBankGenerator's customer list with the given
      * amount of generated customers.
      * 
      * @param num the number of customers to generate
      */
-    public void generateCustomerInsuranceList(int num) {
+    public void generateCustomerList(int num) {
         for (int i = 0; i < num; i++) {
-            customerInsuranceList.add(
-                    new CustomerInsurance(customerGen.generateCustomer()));   
+            customerList.add(customerGen.generateCustomer());   
         }
     }
     
     /**
-     * Returns the CustomerInsurance list.
+     * Returns the customer list.
      * 
-     * @return the CustomerInsurance list
+     * @return the customer list
      */
-    public List<CustomerInsurance> getCustomerInsuranceList() {
-        return customerInsuranceList;
+    public List<Customer> getCustomerList() {
+        return customerList;
     }
     
     /**
-     * Returns a random CustomerInsurance from the CustomerInsurance list.
+     * Returns a random customer.
      * 
-     * @return a random CustomerInsurance from the CustomerInsurance list
+     * @return a random customer
      * @throws IllegalStateException if the list is empty
      */
-    public CustomerInsurance getRandomCustomerInsurance() {
-        if (customerInsuranceList.isEmpty()) {
+    public Customer getRandomCustomer() {
+        if (customerList.isEmpty()) {
             throw new IllegalStateException("CustomerInsurance list is empty");
         }
-        return customerInsuranceList.get(
-                (int) (Math.random() * customerInsuranceList.size()));
+        return customerList.get((int) (Math.random() * customerList.size()));
     }
     
     /**
@@ -118,37 +116,34 @@ public class DataBankGenerator {
     }
     
     /**
-     * Registers the given amount of insurances on randomly chosen customers in
-     * the CustomerInsurance list.
+     * Registers the given amount of insurances on randomly chosen customers.
      * 
      * @param num the number of insurances to generate
-     * @throws IllegalStateException if the CustomerInsurance list or the
-     * employee list is empty
+     * @throws IllegalStateException if there aren't generated any customers or
+     * employees yet
      */
     public void generateInsurances(int amount) {
-        if (customerInsuranceList.isEmpty()) {
-            throw new IllegalStateException("The CustomerInsurance list is "
-                    + "empty.");
+        if (customerList.isEmpty()) {
+            throw new IllegalStateException("No customers are generated.");
         }
         if (employeeList.isEmpty()) {
-            throw new IllegalStateException("The employee list is empty.");
+            throw new IllegalStateException("No employees are generated.");
         }
         
         for (int i = 0; i < amount; i++) {
-            generateRandomInsurance(getRandomEmployee(),
-                    getRandomCustomerInsurance());
+            generateRandomInsurance(getRandomEmployee(), getRandomCustomer());
         }
     }
     
     /**
      * Generates a random type of insurance, and registers it on the given
-     * employee and CustomerInsurance.
+     * employee and customer.
      * 
      * @param emp the employee
-     * @param cusIns the CustomerInsurance
+     * @param cus the customer
      */
     public void generateRandomInsurance(Employee emp,
-            CustomerInsurance cusIns) {
+            Customer cus) {
         int amount = insGen.generateAmount();
         
         double x = Math.random();
@@ -161,7 +156,7 @@ public class DataBankGenerator {
                     amount,
                     insGen.generatePaymentFrequency(),
                     carGen.generateTerms(),
-                    vehicleGen.generateVehicleOwner(cusIns.getCustomer()),
+                    vehicleGen.generateVehicleOwner(cus),
                     carGen.generateRegistrationNo(),
                     carGen.generateType(),
                     carGen.generateBrand(),
@@ -177,7 +172,7 @@ public class DataBankGenerator {
                     amount,
                     insGen.generatePaymentFrequency(),
                     boatGen.generateTerms(),
-                    vehicleGen.generateVehicleOwner(cusIns.getCustomer()),
+                    vehicleGen.generateVehicleOwner(cus),
                     boatGen.generateRegistrationNo(),
                     boatGen.generateType(),
                     boatGen.generateBrand(),
@@ -227,12 +222,12 @@ public class DataBankGenerator {
                     travelGen.generateRegion());
         }
         ins.setCreationDate(DateGenerator.generateDateAfter(
-                cusIns.getCustomer().getRegistrationDate()));
+                cus.getRegistrationDate()));
         if (Math.random() < 0.5) { // 50% chance of being cancelled
             ins.setCancellationDate(
                     DateGenerator.generateDateAfter(ins.getCreationDate()));
         }
-        cusIns.getInsurances().add(ins);
+        cus.getInsurances().add(ins);
     }
     
     /**
@@ -245,8 +240,8 @@ public class DataBankGenerator {
         int numGenerated = 0;
         outerloop:
         while (numGenerated < numClaimAdvices) {
-            for (CustomerInsurance cusIns : customerInsuranceList) {
-                for (Insurance ins : cusIns.getInsurances()) {
+            for (Customer cus : customerList) {
+                for (Insurance ins : cus.getInsurances()) {
                     if (Math.random() < 0.35) {
                         ins.addClaimAdvice(claimAdviceGen.generateClaimAdvice(
                                 ins.getClass(), ins.getCreationDate()));
