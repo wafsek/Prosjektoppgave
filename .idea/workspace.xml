@@ -4,10 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/AddScene.java" line="294" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="The insurance scenes are now almost done">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/BoatInsuranceScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/BoatInsuranceScene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/CarInsuranceScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/CarInsuranceScene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/DifferentVehicleOwnerWindow.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/DifferentVehicleOwnerWindow.java" />
+    <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/HouseInsuranceScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/HouseInsuranceScene.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -26,7 +24,7 @@
     </SUITE>
   </component>
   <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
+    <option name="PATCH_PATH" value="C:\GitProjects\prosjektoppgave-programutvikling-2015" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -100,10 +98,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BoatInsuranceScene.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BoatInsuranceScene.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/BoatInsuranceScene.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.88941175">
               <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -119,39 +117,6 @@
               <caret line="80" column="75" selection-start-line="80" selection-start-column="75" selection-end-line="80" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HouseInsuranceScene.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/HouseInsuranceScene.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="135" column="39" selection-start-line="135" selection-start-column="39" selection-end-line="135" selection-end-column="39" />
-              <folding>
-                <element signature="e#5183#5184#0" expanded="true" />
-                <element signature="e#5230#5231#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CarInsuranceScene.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/CarInsuranceScene.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4517647">
-              <caret line="106" column="71" selection-start-line="106" selection-start-column="71" selection-end-line="106" selection-end-column="71" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5946#5947#0" expanded="true" />
-                <element signature="e#6002#6003#0" expanded="true" />
-                <element signature="e#6140#6141#0" expanded="true" />
-                <element signature="e#6190#6191#0" expanded="true" />
-                <element signature="e#6458#6459#0" expanded="true" />
-                <element signature="e#6507#6508#0" expanded="true" />
-                <element signature="e#6561#6562#0" expanded="true" />
-                <element signature="e#6617#6618#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -250,10 +215,10 @@
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/MessageDialog.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/PersonSearchScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/HouseInsuranceScene.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/DifferentVehicleOwnerWindow.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/BoatInsuranceScene.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/CarInsuranceScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/HouseInsuranceScene.java" />
       </list>
     </option>
   </component>
@@ -1032,21 +997,27 @@
       <option name="project" value="LOCAL" />
       <updated>1431634621765</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Car insurance scene now returns enums for car type. Also it generates production years based on what year we are in">
+      <created>1431686031329</created>
+      <option name="number" value="00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1431686031329</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288889" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3288889" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3288889" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288889" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38518518" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1077,7 +1048,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="forgot to add the icons to the push by misstake. Corrected with this." />
     <MESSAGE value="Just a few lines of code has been added. Pushing to avoid merge conflict at home." />
     <MESSAGE value="Added som code for the InsureCarScene. Also added a footer to all the scenes. Give me feedback on that." />
     <MESSAGE value="Added a couple of scenes. Also fixed some potential nullpointers and reduced the code to avoid them" />
@@ -1102,7 +1072,8 @@
     <MESSAGE value="New scenes are added with more functionality added to most of them." />
     <MESSAGE value="The scene for car insurance is now finished. It handles all the generation of the car owner, if it's desired to have a different one than the current customer." />
     <MESSAGE value="The insurance scenes are now almost done" />
-    <option name="LAST_COMMIT_MESSAGE" value="The insurance scenes are now almost done" />
+    <MESSAGE value="Car insurance scene now returns enums for car type. Also it generates production years based on what year we are in" />
+    <option name="LAST_COMMIT_MESSAGE" value="Car insurance scene now returns enums for car type. Also it generates production years based on what year we are in" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1486,27 +1457,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/BoatInsuranceScene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/HouseInsuranceScene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="135" column="39" selection-start-line="135" selection-start-column="39" selection-end-line="135" selection-end-column="39" />
-          <folding>
-            <element signature="e#5183#5184#0" expanded="true" />
-            <element signature="e#5230#5231#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/DifferentVehicleOwnerWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1519,8 +1469,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/CarInsuranceScene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4517647">
-          <caret line="106" column="71" selection-start-line="106" selection-start-column="71" selection-end-line="106" selection-end-column="71" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="116" column="9" selection-start-line="116" selection-start-column="9" selection-end-line="116" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5946#5947#0" expanded="true" />
@@ -1531,6 +1481,29 @@
             <element signature="e#6507#6508#0" expanded="true" />
             <element signature="e#6561#6562#0" expanded="true" />
             <element signature="e#6617#6618#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/HouseInsuranceScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="127" column="19" selection-start-line="127" selection-start-column="19" selection-end-line="127" selection-end-column="19" />
+          <folding>
+            <element signature="e#4980#4981#0" expanded="true" />
+            <element signature="e#5030#5031#0" expanded="true" />
+            <element signature="e#5181#5182#0" expanded="true" />
+            <element signature="e#5228#5229#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/BoatInsuranceScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.88941175">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

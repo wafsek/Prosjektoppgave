@@ -25,7 +25,7 @@ public class HouseInsuranceScene extends InsuranceScene {
     private TextField streetAddressField, zipCodeField, constructionYearField,
             buildingMaterialField, standardField, squareMetersField, homeAmountField,
             contentsAmountField;
-    private ComboBox<String> homeTypeDropDown;
+    private ComboBox<HomeType> homeTypeDropDown;
     private CheckBox holydayHomeBox, rentableBox;
     private int checkBoxCounter = 0;
 
@@ -58,7 +58,8 @@ public class HouseInsuranceScene extends InsuranceScene {
         homeAmountField = new TextField();
         contentsAmountField = new TextField();
 
-        homeTypeDropDown = new ComboBox<>(FXCollections.observableArrayList(getFillingArray(HomeType.values())));
+        homeTypeDropDown = new ComboBox<>();
+        homeTypeDropDown.getItems().setAll(HomeType.values());
 
         holydayHomeBox = new CheckBox("Feriebolig?");
         holydayHomeBox.setOnAction(e -> {
@@ -124,7 +125,7 @@ public class HouseInsuranceScene extends InsuranceScene {
         return contentsAmountField.getText();
     }
 
-    public String getHomeTypeDropDownSelectedValue() {
+    public HomeType getHomeTypeDropDownSelectedValue() {
         return homeTypeDropDown.getValue();
     }
 
