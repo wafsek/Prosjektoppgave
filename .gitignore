@@ -73,6 +73,9 @@ local.properties
 # Data
 *.dta
 
+# Serialized
+*.ser
+
 # JavaFX
 .idea/workspace.xml
 workspace.xml
