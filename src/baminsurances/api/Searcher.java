@@ -133,7 +133,7 @@ public class Searcher {
     }
     
     public static Predicate<Customer> streetAddressStartsWith(String s) {
-        return cus -> cus.getStreetAddress().startsWith(s.toLowerCase());
+        return cus -> cus.getStreetAddress().toLowerCase().startsWith(s.toLowerCase());
     }
     
     public static Predicate<Customer> registeredBefore(LocalDate date) {
