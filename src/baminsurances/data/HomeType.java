@@ -5,7 +5,7 @@ package baminsurances.data;
  * 
  * @author Martin Jackson
  */
-public enum HomeType implements NameDisplayable {
+public enum HomeType {
     APARTMENT("Leilighet"),
     DETACHED_HOUSE("Enebolig"),
     TOWNHOME("Rekkehus"),
@@ -19,7 +19,7 @@ public enum HomeType implements NameDisplayable {
     }
     
     @Override
-    public String getDisplayName() {
+    public String toString() {
         return displayName;
     }
 }

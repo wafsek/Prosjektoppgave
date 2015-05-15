@@ -22,7 +22,7 @@ public enum CarType implements VehicleType {
     }
     
     @Override
-    public String getDisplayName() {
+    public String toString() {
         return displayName;
     }
 }

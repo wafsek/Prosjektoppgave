@@ -5,11 +5,11 @@ package baminsurances.data;
  * 
  * @author martin
  */
-public enum PaymentFrequency implements NameDisplayable {
-    MONTHLY("Monthly", 12),
-    QUARTERLY("Quarterly", 4),
-    SEMIANNUALLY("Semiannually", 2),
-    ANNUALLY("Annually", 1);
+public enum PaymentFrequency {
+    MONTHLY("Månedlig", 12),
+    QUARTERLY("Hver fjerde måned", 4),
+    SEMIANNUALLY("Hver sjette måned", 2),
+    ANNUALLY("Én gang i året", 1);
 
     private final String displayName;
     private final int paymentsPerYear;
@@ -20,7 +20,7 @@ public enum PaymentFrequency implements NameDisplayable {
     }
 
     @Override
-    public String getDisplayName() {
+    public String toString() {
         return displayName;
     }
 

@@ -5,7 +5,7 @@ package baminsurances.data;
  * 
  * @author martin
  */
-public enum TravelRegion implements NameDisplayable {
+public enum TravelRegion {
     EUROPE("Europa"),
     WORLD("Verden"),
     SCANDINAVIA("Skandinavia");
@@ -17,7 +17,7 @@ public enum TravelRegion implements NameDisplayable {
     }
     
     @Override
-    public String getDisplayName() {
+    public String toString() {
         return displayName;
     }
 }

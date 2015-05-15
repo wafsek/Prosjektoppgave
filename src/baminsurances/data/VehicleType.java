@@ -6,5 +6,5 @@ package baminsurances.data;
  * 
  * @author Martin Jackson
  */
-public interface VehicleType extends NameDisplayable {
+public interface VehicleType{
 }
