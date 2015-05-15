@@ -71,11 +71,19 @@ public class Authenticator {
     public  User getUser() {
         return this.currentUser;
     }
+    
+    private void setCurrentUser(User user){
+        this.currentUser = user;
+    }
 
     public boolean loginUser(String username, String password) {
         User user = this.getUserByUserName(username);
+        if(user == null ) {
+            return false;
+        }
         if(this.authenticate(user, password)) {
             this.setDisplayName(user.getUsername());
+            this.setCurrentUser(user);
             logger.log(this.currentUser.getUsername()+": Logged in.", Level.FINE);
             return true;
         }        

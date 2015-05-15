@@ -51,7 +51,7 @@ public class GeneratingStage {
 
         generateButton = new Button("Generer");
         generateButton.setOnAction(e -> {
-            new DataBankGenerator().generateDataBank(
+            new DataBankGenerator().fillDataBank(
                     Integer.parseInt(customerBox.getValue()),
                     Integer.parseInt(employeeBox.getValue()),
                     Integer.parseInt(insuranceBox.getValue()),

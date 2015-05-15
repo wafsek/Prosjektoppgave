@@ -2,15 +2,15 @@ package baminsurances.controller;
 
 import baminsurances.api.Config;
 import baminsurances.api.CustomerServiceManager;
+import baminsurances.api.Searcher;
 import baminsurances.api.Validation;
-import baminsurances.data.Customer;
-import baminsurances.data.CustomerInsurance;
-import baminsurances.data.DataBank;
+import baminsurances.data.*;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.*;
 import baminsurances.gui.window.scene.*;
 import baminsurances.logging.CustomLogger;
+import baminsurances.security.Authenticator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
@@ -35,6 +35,7 @@ public class Controller {
     //private Authenticator authenticator = Authenticator.getAuthenticator();
     private CustomerServiceManager manager;
     private CustomerInsurance currentCustomerInsurance;
+    private Searcher searcher;
 
     /**
      * The Gui type fields
@@ -62,10 +63,12 @@ public class Controller {
     private int carInsuranceCheckCounter = 0;
 
     private CustomLogger logger = CustomLogger.getInstance();
-
+    private Authenticator authenticator;
 
     public Controller(){
+        searcher = new Searcher();
         manager = new CustomerServiceManager();
+        authenticator = Authenticator.getInstance();
     }
 
 
@@ -100,9 +103,16 @@ public class Controller {
     }
 
     private void login() {
-        loginStage.close();
-        menuStage.initiate(navigationScene.getScene());
-        logger.log("Logged in", Level.INFO);
+
+       boolean loginTest = authenticator.loginUser(loginScene.getUsernameFieldText(),
+                loginScene.getPasswordFieldText());
+        if(loginTest){
+            loginStage.close();
+            menuStage.initiate(navigationScene.getScene());
+            logger.log("Logged in", Level.INFO); 
+        }else {
+            this.launchLoginWindow();
+        }
     }
 
     private void launchStatistics(){
@@ -266,20 +276,14 @@ public class Controller {
         return manager.getCustomerInsurancesWithFirstName(searchScene.);
     }*/
 
-    public void setCurrentCustomerInsurance(Customer customer){
-        currentCustomerInsurance = manager.getCustomer(customer);
-    }
-
-    public CustomerInsurance getCurrentCustomerInsurance(){
-        return currentCustomerInsurance;
-    }
+    
 
     public ObservableList<Customer> findPeople(){
         logger.log("findPeople method called", Level.FINER);
 
         ObservableList<Customer> personObservableList = FXCollections.observableArrayList();
         List<Customer> customerList;
-        List<Predicate<CustomerInsurance>> predicates = new ArrayList<>();
+        List<Predicate<Customer>> predicates = new ArrayList<>();
         String firstName = findPersonScene.getFirstName().trim();
         String lastName = findPersonScene.getLastName().trim();
         String birthNo = findPersonScene.getBirthNumber().trim();
@@ -287,26 +291,26 @@ public class Controller {
         String zipCode = findPersonScene.getZipCode().trim();
 
         if(!firstName.isEmpty()){
-            predicates.add(CustomerServiceManager.firstNameStartsWith(firstName));
+            predicates.add(Searcher.firstNameStartsWith(firstName));
         }
         if(!lastName.isEmpty()){
-            predicates.add(CustomerServiceManager.lastNameStartsWith(lastName));
+            predicates.add(Searcher.lastNameStartsWith(lastName));
         }
         if(!birthNo.isEmpty()){
-            predicates.add(CustomerServiceManager.birthNoStartsWith(birthNo));
+            predicates.add(Searcher.birthNoStartsWith(birthNo));
         }
         if(!streetAddress.isEmpty()){
-            predicates.add(CustomerServiceManager.streetAddressStartsWith(streetAddress));
+            predicates.add(Searcher.streetAddressStartsWith(streetAddress));
         }
         if(!zipCode.isEmpty()){
-            predicates.add(CustomerServiceManager.zipCodeStartsWith(zipCode));
+            predicates.add(Searcher.zipCodeStartsWith(zipCode));
         }
 
         if(predicates.isEmpty()){
             return personObservableList;
         }
 
-        customerList = manager.findCustomers(predicates);
+        customerList = searcher.findCustomers(predicates);
         personObservableList.addAll(customerList);
         return personObservableList;
     }
@@ -315,11 +319,11 @@ public class Controller {
         if(this.validatePersonData() != DataControl.SUCCESS){
             return this.validatePersonData().getDescription();
         } else {
-            manager.registerCustomerInsurance(new Customer(addScene.getBirthNumberFieldText(),
-                    addScene.getFirstNameFieldText(),addScene.getLastNameFieldText(),
-                    addScene.getTelephoneNumberFieldText(),addScene.getEmailFieldText(),
-                    addScene.getZipCodeFieldText(),addScene.getAdressFieldText(),
-                    addScene.getBillingZipCodeFieldText(),addScene.getBillingAdressFieldText()));
+            manager.registerCustomer(new Customer(addScene.getBirthNumberFieldText(),
+                    addScene.getFirstNameFieldText(), addScene.getLastNameFieldText(),
+                    addScene.getTelephoneNumberFieldText(), addScene.getEmailFieldText(),
+                    addScene.getZipCodeFieldText(), addScene.getAdressFieldText(),
+                    addScene.getBillingZipCodeFieldText(), addScene.getBillingAdressFieldText()));
             DataBank.saveDataBank();
             return "Person Registered";
         }
@@ -353,6 +357,56 @@ public class Controller {
         //check if the drop down menu has been selected
 
         return "All is Well";
+    }
+
+
+    public String registerCarInsurance(){
+        if(this.validateCarInsuranceData() != DataControl.SUCCESS){
+            return this.validateCarInsuranceData().getDescription();
+        }
+        else {
+            manager.registerCarInsurance(new CarInsurance(
+                    manager.getEmployee(Authenticator.getInstance().getUser().getUsername()),
+                    Integer.parseInt(carInsuranceScene.getAnnualPremiumFieldText()),
+                    Integer.parseInt(carInsuranceScene.getInsuranceValueFieldText()),
+                    PaymentFrequency.ANNUALLY,
+                    carInsuranceScene.getConditionAreaText(),
+                    carInsuranceScene.getPerson(),
+                    carInsuranceScene.getRegistrationNumberFieldText(),
+                    carInsuranceScene.getCarTypeDropDownSelectedValue(),
+                    carInsuranceScene.getCarBrandDropDownSelectedValue(),
+                    carInsuranceScene.getCarModelFieldText(),
+                    Integer.parseInt(carInsuranceScene.getProductionYearSelectedValue()),
+                    Integer.parseInt(carInsuranceScene.getAnnualMilageFieldText()),
+                    Double.parseDouble(carInsuranceScene.getPricePerKilometerFieldText()),
+                    Integer.parseInt(carInsuranceScene.getBonusPercentageFieldText()
+                    )), CurrentStatus.getCurrentCustomer());
+            DataBank.saveDataBank();
+            return "Person Registered";
+        }
+    }
+
+    private DataControl validateInsuranceData(){
+        if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getAnnualPremiumFieldText())){
+            return DataControl.INVALID_ANNUAL_PREMIUM;
+        }else if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getInsuranceValueFieldText())){
+            return DataControl.INVALID_AMOUNT;
+        }else {
+            return DataControl.SUCCESS;
+        }
+    }
+
+    public DataControl validateCarInsuranceData(){
+        if(this.validateInsuranceData() != DataControl.SUCCESS){
+            return this.validateInsuranceData();
+        }else if(!Validation.isValidCarRegistrationNo(
+                carInsuranceScene.getRegistrationNumberFieldText())){
+            return DataControl.INVALID_CAR_REGISTRATION_NUMBER;
+        }else {
+            return DataControl.SUCCESS;
+        }
     }
     
 }
