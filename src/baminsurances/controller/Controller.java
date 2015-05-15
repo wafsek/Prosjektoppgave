@@ -127,6 +127,7 @@ public class Controller {
 
     private void launchFindPersonScene(){
         menuStage.close();
+        findPersonScene.clearFields();
         primaryStage.initiate(findPersonScene.getScene());
         keyPressHandler.setFindPersonScene(findPersonScene);
     }
@@ -175,7 +176,7 @@ public class Controller {
     }
 
     private void launchSpecificInsuranceScene() {
-        primaryStage.initiate(specificInsuranceScene.getScene());
+        //primaryStage.initiate(specificInsuranceScene.getTravelInsuranceInfoScene());
     }
 
     private void backToNavigation(){
@@ -216,7 +217,8 @@ public class Controller {
         } else if (control == navigationScene.getLogOutButton() || control == findPersonScene.getLogOutButton() ||
                 control == handleCustomerScene.getLogOutButton() || control == addScene.getLogOutButton() ||
                 control == insuranceScene.getLogOutButton() || control == houseInsuranceScene.getLogOutButton() ||
-                control == boatInsuranceScene.getLogOutButton() || control == carInsuranceScene.getLogOutButton()){
+                control == boatInsuranceScene.getLogOutButton() || control == carInsuranceScene.getLogOutButton() ||
+                control == specificInsuranceScene.getLogOutButton()){
             if(new MessageDialog().showMessageDialog("Sikker?", "Logge ut?", MessageDialog.QUESTION_ICON,
                     MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION){
                 menuStage.close();
@@ -283,7 +285,7 @@ public class Controller {
                 || control == carInsuranceScene.getInsuranceDropDown() &&
                 carInsuranceScene.getInsuranceDropDown().getValue().equals("Reiseforsikring")) {
             launchTravelInsuranceScene();
-        } else if (control == insuranceScene.getBackButton()) {
+        } else if (control == insuranceScene.getBackButton() || control == specificInsuranceScene.getBackButton()) {
             launchHandleCustomerScene();
         } else if (control == houseInsuranceScene.getBackButton() || control == boatInsuranceScene.getBackButton() ||
                 control == carInsuranceScene.getBackButton()) {

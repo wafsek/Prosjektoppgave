@@ -5,6 +5,7 @@ import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.OperationWindow;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -130,6 +131,16 @@ public abstract class PersonSearchScene extends GeneralScene{
      */
     public Scene getScene() {
         return scene;
+    }
+
+    public void clearFields() {
+        birthNumberField.setText("");
+        adressField.setText("");
+        firstNameField.setText("");
+        lastNameField.setText("");
+        zipCodeField.setText("");
+        setChoosePersonClickable();
+        customerTable.setItems(FXCollections.observableArrayList());
     }
 
     /**
