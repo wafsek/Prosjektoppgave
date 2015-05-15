@@ -59,6 +59,7 @@ public class Controller {
     private HouseInsuranceScene houseInsuranceScene;
     private BoatInsuranceScene boatInsuranceScene;
     private CarInsuranceScene carInsuranceScene;
+    private SpecificInsuranceScene specificInsuranceScene;
 
     private int carInsuranceCheckCounter = 0;
 
@@ -90,6 +91,7 @@ public class Controller {
         boatInsuranceScene = new BoatInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
         carInsuranceScene = new CarInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
         travelInsuranceScene = new TravelInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
+        specificInsuranceScene = new SpecificInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
 
         generatingStage = new GeneratingStage();
 
@@ -172,6 +174,10 @@ public class Controller {
         primaryStage.initiate(carInsuranceScene.getScene());
     }
 
+    private void launchSpecificInsuranceScene() {
+        primaryStage.initiate(specificInsuranceScene.getScene());
+    }
+
     private void backToNavigation(){
         primaryStage.close();
         menuStage.initiate(navigationScene.getScene());
@@ -235,7 +241,7 @@ public class Controller {
         } else if (control == handleCustomerScene.getBackButton() || control == addScene.getBackButton()) {
             launchFindPersonScene();
         } else if (control == handleCustomerScene.getChooseInsuranceButton()) {
-
+            launchSpecificInsuranceScene();
         } else if (control == handleCustomerScene.getNewInsuranceButton()) {
             launchInsuranceScene();
         } else if (control == handleCustomerScene.getUpdateInfoButton()) {
