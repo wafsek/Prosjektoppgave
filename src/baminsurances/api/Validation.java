@@ -263,4 +263,15 @@ public class Validation {
                                         .mapToObj(i -> (char) i)
                                         .allMatch(Character::isLetter);
     }
+    
+    /**
+     * Returns <code>true</code> if the given string is a valid model. Applies
+     * to both car and boat models.
+     * 
+     * @param model the model to validate
+     * @return <code>true</code> if the given string is a valid model
+     */
+    public static boolean isValidModel(String model) {
+        return model.matches("[A-ZÆØÅa-zæøå0-9 -]");
+    }
 }
