@@ -19,9 +19,6 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
     private OperationWindow operationWindow;
     private StatisticsScene statisticsScene;
     private TravelInsuranceScene travelInsuranceScene;
-    private InsureHouseScene insureHouseScene;
-    private InsureBoatScene insureBoatScene;
-    private InsureCarScene insureCarScene;
     private AddScene addScene;
     private FindPersonScene findPersonScene;
     private SearchScene searchScene;
@@ -57,30 +54,6 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
         txtFieldsIterator = statisticsScene.getTextFieldList().iterator();
     }
 
-    public void setTravelInsuranceScene(TravelInsuranceScene travelInsuranceScene){
-        //this.resetScenes();
-        this.travelInsuranceScene = travelInsuranceScene;
-        txtFieldsIterator = travelInsuranceScene.getTextFieldArrayList().iterator();
-    }
-
-    public void setInsureHouseScene(InsureHouseScene insureHouseScene, ArrayList<TextField> textFields){
-        //this.resetScenes();
-        this.insureHouseScene = insureHouseScene;
-        txtFieldsIterator = textFields.iterator();
-    }
-
-    public void setInsureBoatScene(InsureBoatScene insureBoatScene, ArrayList<TextField> textFields){
-        //this.resetScenes();
-        this.insureBoatScene = insureBoatScene;
-        txtFieldsIterator = textFields.iterator();
-    }
-
-    public void setInsureCarScene(InsureCarScene insureCarScene, ArrayList<TextField> textFields){
-        //this.resetScenes();
-        this.insureCarScene = insureCarScene;
-        txtFieldsIterator = textFields.iterator();
-    }
-
     public void setSearchScene(SearchScene searchScene){
         //this.resetScenes();
         this.searchScene = searchScene;
@@ -100,14 +73,6 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
     private void resetIterators(){
         if(statisticsScene != null) {
             statisticsScene.resetIterator();
-        }if(travelInsuranceScene != null){
-            travelInsuranceScene.resetIterator();
-        }if(insureHouseScene != null){
-            insureHouseScene.resetIterator();
-        }if(insureBoatScene != null){
-            insureBoatScene.resetIterator();
-        }if(insureCarScene != null){
-            insureCarScene.resetIterator();
         }if(addScene != null){
             addScene.resetIterator();
         }if(searchScene != null) {

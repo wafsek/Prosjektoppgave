@@ -1,5 +1,6 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.data.PaymentFrequency;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
@@ -18,6 +19,7 @@ import javafx.scene.layout.VBox;
 public class InsuranceScene extends GeneralScene {
 
     protected ComboBox<String> insuranceDropDown;
+    protected ComboBox<PaymentFrequency> paymentFrequencyDropDown;
     protected Label annualPremiumLabel, insuranceValueLabel, conditionLabel, insuranceType,
             rightSideHeaderLabel, leftSideHeaderLabel, discribtionLabel;
     protected TextField annualPremiumField, insuranceValueField;
@@ -35,6 +37,8 @@ public class InsuranceScene extends GeneralScene {
         super(guiEventHandler, keyPressHandler, displayName);
         insuranceDropDown = new ComboBox<>(FXCollections.observableArrayList(
                 "Reiseforsikring", "Boligforsikring", "Bilforsikring", "Baatforsikring"));
+        paymentFrequencyDropDown = new ComboBox<>();
+        paymentFrequencyDropDown.getItems().setAll(PaymentFrequency.values());
         insuranceDropDown.setOnAction(guiEventHandler);
         insuranceType = new Label("Forsikringstype:");
         annualPremiumLabel = new Label("Årlig premie:");
@@ -65,8 +69,8 @@ public class InsuranceScene extends GeneralScene {
         leftSideHeader.setStyle("-fx-border-color: gray; ");
 
         leftSideFieldContainer = new GridPane();
-        leftSideFieldContainer.addColumn(0, insuranceType, annualPremiumLabel, insuranceValueLabel, conditionLabel);
-        leftSideFieldContainer.addColumn(1, insuranceDropDown, annualPremiumField, insuranceValueField);
+        leftSideFieldContainer.addColumn(0, insuranceType, annualPremiumLabel, insuranceValueLabel, conditionLabel, new Label(""));
+        leftSideFieldContainer.addColumn(1, insuranceDropDown, annualPremiumField, insuranceValueField, paymentFrequencyDropDown);
         leftSideFieldContainer.add(conditionArea, 0, 5, 3, 3);
         leftSideFieldContainer.setHgap(50);
         leftSideFieldContainer.setVgap(20);
@@ -128,5 +132,9 @@ public class InsuranceScene extends GeneralScene {
 
     public void setInsuranceDropDownEmpty() {
         insuranceDropDown.setValue("");
+    }
+
+    public PaymentFrequency getPaymentFrequency() {
+        return paymentFrequencyDropDown.getValue();
     }
 }

@@ -1,96 +1,53 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.data.TravelInsurance;
+import baminsurances.data.TravelRegion;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
-import baminsurances.gui.window.OperationWindow;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import baminsurances.gui.window.GuiConfig;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 
 /**
- * @author Adrian Melsom
+ * Created by Adrian on 15/05/2015.
  */
-public class TravelInsuranceScene extends PersonSearchScene {
+public class TravelInsuranceScene extends InsuranceScene{
 
-    private final int COMBOBOX_WIDTH = 175;
+    private Label regionLabel;
+    private ComboBox<TravelRegion> regionDropDown;
 
-    private Button registerPersonInsurance;
-    private TextArea printArea;
-    private ScrollPane scrollPane;
-    private ObservableList<String> kidsList, relationshipList, incomeList,
-        deptList;
-    private ComboBox kidsBox, relationshipBox, incomeBox, deptBox;
-    private HBox header, footer;
+    public TravelInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName) {
+        super(guiEventHandler, keyPressHandler, displayName);
 
-    /**
-     * creates a new Scene based on the values given.
-     *
-     * @param header
-     * @param footer
-     * @param handler
-     */
-    public TravelInsuranceScene(HBox header, HBox footer,
-            GuiEventHandler handler, KeyPressHandler keyPressHandler, String displayName) {
-        super(handler, keyPressHandler, displayName);
-        this.header = header;
-        this.footer = footer;
-        borderPane = new BorderPane(itemContainer, header, customerTable, footer,
-                null);
+        insuranceDropDown.setOnAction(null);
+        insuranceDropDown.setValue("Baatforsikring");
+        insuranceDropDown.setOnAction(guiEventHandler);
+        annualPremiumField.setEditable(true);
+        insuranceValueField.setEditable(true);
+        conditionArea.setEditable(true);
+        registerInsuranceButton.setDisable(false);
+        leftSideContentContainer.getChildren().remove(discribtionContainer);
+
+        regionLabel = new Label("Område:");
+        regionDropDown = new ComboBox<>();
+        regionDropDown.getItems().setAll(TravelRegion.values());
+
+        rightSideFieldContainer.addRow(0, regionLabel, regionDropDown);
+
+        rightSideBorderPane = new BorderPane(rightSideFieldContainer, rightSideHeader, null, rightSideFooter, null);
+        rightSideBorderPane.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+
+        borderPane = new BorderPane(leftSideBorderPane, null, rightSideBorderPane, footer, null);
         scene = new Scene(borderPane);
-        keyPressHandler.setTravelInsuranceScene(this);
     }
 
-    /**
-     * recreated the initial Scene, adds -FX components and returns it.
-     * @return the Scene created.
-     */
-    public Scene requestApproved() {
-        incomeList = FXCollections.observableArrayList("150.000 eller minde.",
-                "150.000 - 250.000", "250.000 - 500.000", "500.000 - 1.500.000",
-                "1.500.000 eller mer");
-        deptList = FXCollections.observableArrayList("150.000 eller minde.",
-                "150.000 - 250.000", "250.000 - 500.000", "500.000 - 1.500.000",
-                "1.500.000 eller mer");
-        kidsList = FXCollections.observableArrayList("0", "1", "2", "3", "4",
-                "5 eller fler");
-        relationshipList = FXCollections.observableArrayList("Har samboer",
-                "Har ikke samboer");
+    public Scene getScene() {
+        return scene;
+    }
 
-        kidsBox = new ComboBox(kidsList);
-        kidsBox.setPromptText("Barn");
-        kidsBox.setPrefWidth(COMBOBOX_WIDTH);
-        relationshipBox = new ComboBox(relationshipList);
-        relationshipBox.setPromptText("Forholdsstatus");
-        relationshipBox.setPrefWidth(COMBOBOX_WIDTH);
-        incomeBox = new ComboBox(incomeList);
-        incomeBox.setPromptText("Inntekt");
-        incomeBox.setPrefWidth(COMBOBOX_WIDTH);
-        deptBox = new ComboBox(deptList);
-        deptBox.setPromptText("Gjeld");
-        deptBox.setPrefWidth(COMBOBOX_WIDTH);
-
-        registerPersonInsurance = new Button("Registrer forsikring");
-        registerPersonInsurance.setOnAction(guiEventHandler);
-
-        printArea = new TextArea();
-        printArea.setEditable(false);
-        scrollPane = new ScrollPane(printArea);
-        scrollPane.setPrefWidth(OperationWindow.STAGE_WIDTH * 3 / 5);
-        scrollPane.setFitToHeight(true);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-border-color: gray;");
-
-        itemContainer.getChildren().removeAll(firstNameLabel, lastNameLabel,
-                birthNoLabel, adressLabel, zipCodeLabel, firstNameField,
-                lastNameField, birthNumberField, adressField, zipCodeField,
-                choosePersonButton);
-        itemContainer.addColumn(0, incomeBox, deptBox, kidsBox, relationshipBox,
-                registerPersonInsurance);
-        borderPane = new BorderPane(itemContainer, header, scrollPane, footer,
-                null);
-        return new Scene(borderPane);
+    public TravelRegion getRegionDropDown() {
+        return regionDropDown.getValue();
     }
 }
