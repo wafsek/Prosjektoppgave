@@ -1,15 +1,15 @@
 package baminsurances.controller;
 
 import baminsurances.api.CustomerServiceManager;
+import baminsurances.api.Searcher;
 import baminsurances.api.Validation;
-import baminsurances.data.Customer;
-import baminsurances.data.CustomerInsurance;
-import baminsurances.data.DataBank;
+import baminsurances.data.*;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.*;
 import baminsurances.gui.window.scene.*;
 import baminsurances.logging.CustomLogger;
+import baminsurances.security.Authenticator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
@@ -31,9 +31,10 @@ public class Controller {
      * The fields
      * 
      */
-    //private Authenticator authenticator = Authenticator.getAuthenticator();
+    //private Authenticator authenticator = Authenticator.getInstance();
     private CustomerServiceManager manager;
-    private CustomerInsurance currentCustomerInsurance;
+    private Searcher searcher;
+    private Authenticator authenticator;
     
     /**
      * The Gui type fields
@@ -61,14 +62,14 @@ public class Controller {
     private HouseInsuranceScene houseInsuranceScene;
     private BoatInsuranceScene boatInsuranceScene;
     private CarInsuranceScene carInsuranceScene;
-
-    private int carInsuranceCheckCounter = 0;
-
+    
     private CustomLogger logger = CustomLogger.getInstance();
     
     
-    public Controller(){
-        manager = new CustomerServiceManager();    
+    public Controller() {
+        manager = new CustomerServiceManager();   
+        searcher = new Searcher();
+        authenticator = Authenticator.getInstance();
     }
     
     
@@ -85,15 +86,8 @@ public class Controller {
         findPersonScene = new FindPersonScene(guiEventHandler, keyPressHandler, getDisplayName());
         addScene = new AddScene(guiEventHandler, keyPressHandler, getDisplayName());
         handleCustomerScene = new HandleCustomerScene(guiEventHandler, keyPressHandler, getDisplayName());
-        insuranceScene = new InsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
-        houseInsuranceScene = new HouseInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
-        boatInsuranceScene = new BoatInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
-        carInsuranceScene = new CarInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
-
-        generatingStage = new GeneratingStage();
 
         launchLoginWindow();
-        generatingStage.show();
         /*System.out.println("Welkommen til " + Config.getApplicationName());
         loginWindow = LoginWindow.getLoginWindow();
         loginWindow.show();
@@ -111,15 +105,21 @@ public class Controller {
         searchScene = new SearchScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler);
         claimAdviceScene = new ClaimAdviceScene(operationWindow.getFooter(), guiEventHandler, keyPressHandler);*/
     }
-
+    
     private void launchLoginWindow(){
         loginStage.initiate(loginScene.getScene());
     }
     
     private void login() {
-        loginStage.close();
-        menuStage.initiate(navigationScene.getScene());
-        logger.log("Logged in", Level.INFO);
+       /*boolean loginTest = authenticator.loginUser(loginScene.getUsernameFieldText(),
+                loginScene.getPasswordFieldText());
+        if(loginTest){*/
+            loginStage.close();
+            menuStage.initiate(navigationScene.getScene());
+            logger.log("Logged in", Level.INFO); 
+        /*}else {
+            this.login();
+        }*/
     }
 
     private void launchStatistics(){
@@ -133,7 +133,6 @@ public class Controller {
     private void launchFindPersonScene(){
         menuStage.close();
         primaryStage.initiate(findPersonScene.getScene());
-        keyPressHandler.setFindPersonScene(findPersonScene);
     }
 
     private void launchSearchScene(){
@@ -152,40 +151,20 @@ public class Controller {
         primaryStage.initiate(handleCustomerScene.getScene());
     }
 
-    private void launchInsuranceScene() {
-        insuranceScene.setInsuranceDropDownEmpty();
-        primaryStage.initiate(insuranceScene.getScene());
-
-    }
-
-    private void launchHouseInsuranceScene() {
-        primaryStage.initiate(houseInsuranceScene.getScene());
-    }
-
-    private void launchBoatInsuranceScene() {
-        primaryStage.initiate(boatInsuranceScene.getScene());
-    }
-
-    private void launchCarInsuranceScene() {
-        primaryStage.initiate(carInsuranceScene.getScene());
-    }
-
     private void backToNavigation(){
         primaryStage.close();
         menuStage.initiate(navigationScene.getScene());
         logger.log("Closing main Stage, reopening navigation stage.", Level.INFO);
     }
-
+    /*
     private void setDifferentCarOwner() {
         if (carInsuranceCheckCounter == 0) {
-
             carInsuranceCheckCounter++;
         } else {
 
             carInsuranceCheckCounter--;
         }
-    }
-    
+    }*/
     
     public String getDisplayName(){
         return "Brukernavn: ";//+authenticator.getDisplayName();
@@ -200,9 +179,7 @@ public class Controller {
         if(control == loginScene.getLoginButton()){
             login();
         } else if (control == navigationScene.getLogOutButton() || control == findPersonScene.getLogOutButton() ||
-                control == handleCustomerScene.getLogOutButton() || control == addScene.getLogOutButton() ||
-                control == insuranceScene.getLogOutButton() || control == houseInsuranceScene.getLogOutButton() ||
-                control == boatInsuranceScene.getLogOutButton() || control == carInsuranceScene.getLogOutButton()){
+                control == handleCustomerScene.getLogOutButton() || control == addScene.getLogOutButton()){
             if(new MessageDialog().showMessageDialog("Sikker?", "Logge ut?", MessageDialog.QUESTION_ICON,
                     MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION){
                 menuStage.close();
@@ -219,43 +196,14 @@ public class Controller {
             //this.setCurrentCustomerInsurance(//Method for getting the chosen customer);
             launchHandleCustomerScene();
         } else if (control == addScene.getRegisterPersonButton()) {
-            this.registerPerson();
-            launchHandleCustomerScene();
-        } else if (control == handleCustomerScene.getBackButton() || control == addScene.getBackButton()) {
+                this.registerPerson();
+        } else if (control == handleCustomerScene.getBackButton()) {
             launchFindPersonScene();
         } else if (control == handleCustomerScene.getChooseInsuranceButton()) {
 
         } else if (control == handleCustomerScene.getNewInsuranceButton()) {
-            launchInsuranceScene();
-        } else if (control == handleCustomerScene.getUpdateInfoButton()) {
 
-        } else if (control == insuranceScene.getInsuranceDropDown() &&
-                insuranceScene.getInsuranceDropDown().getValue().equals("Boligforsikring")
-                || control == boatInsuranceScene.getInsuranceDropDown() &&
-                boatInsuranceScene.getInsuranceDropDown().getValue().equals("Boligforsikring")
-                || control == carInsuranceScene.getInsuranceDropDown() &&
-                carInsuranceScene.getInsuranceDropDown().getValue().equals("Boligforsikring")) {
-            launchHouseInsuranceScene();
-        } else if (control == insuranceScene.getInsuranceDropDown() &&
-                insuranceScene.getInsuranceDropDown().getValue().equals("Baatforsikring")
-                || control == houseInsuranceScene.getInsuranceDropDown() &&
-                houseInsuranceScene.getInsuranceDropDown().getValue().equals("Baatforsikring")
-                || control == carInsuranceScene.getInsuranceDropDown() &&
-                carInsuranceScene.getInsuranceDropDown().getValue().equals("Baatforsikring")) {
-            launchBoatInsuranceScene();
-        } else if (control == insuranceScene.getInsuranceDropDown() &&
-                insuranceScene.getInsuranceDropDown().getValue().equals("Bilforsikring")
-                || control == houseInsuranceScene.getInsuranceDropDown() &&
-                houseInsuranceScene.getInsuranceDropDown().getValue().equals("Bilforsikring")
-                || control == boatInsuranceScene.getInsuranceDropDown() &&
-                boatInsuranceScene.getInsuranceDropDown().getValue().equals("Bilforsikring")) {
-            launchCarInsuranceScene();
-        } else if (control == insuranceScene.getBackButton()) {
-            launchHandleCustomerScene();
-        } else if (control == houseInsuranceScene.getBackButton() || control == boatInsuranceScene.getBackButton() ||
-                control == carInsuranceScene.getBackButton()) {
-            launchInsuranceScene();
-        } else if (control == carInsuranceScene.getRegisterInsuranceButton()) {
+        } else if (control == handleCustomerScene.getUpdateInfoButton()) {
 
         }
 
@@ -322,20 +270,13 @@ public class Controller {
         return manager.getCustomerInsurancesWithFirstName(searchScene.);
     }*/
     
-    public void setCurrentCustomerInsurance(Customer customer){
-        currentCustomerInsurance = manager.getCustomerInsurance(customer);
-    }
     
-    public CustomerInsurance getCurrentCustomerInsurance(){
-        return currentCustomerInsurance;
-    }
     
     public ObservableList<Customer> findPeople(){
         logger.log("findPeople method called", Level.FINER);
-        
         ObservableList<Customer> personObservableList = FXCollections.observableArrayList();
         List<Customer> customerList;
-        List<Predicate<CustomerInsurance>> predicates = new ArrayList<>();
+        List<Predicate<Customer>> predicates = new ArrayList<>();
         String firstName = findPersonScene.getFirstName().trim();
         String lastName = findPersonScene.getLastName().trim();
         String birthNo = findPersonScene.getBirthNumber().trim();
@@ -343,26 +284,26 @@ public class Controller {
         String zipCode = findPersonScene.getZipCode().trim();
         
         if(!firstName.isEmpty()){
-            predicates.add(CustomerServiceManager.firstNameStartsWith(firstName));
+            predicates.add(Searcher.firstNameStartsWith(firstName));
         }
         if(!lastName.isEmpty()){
-            predicates.add(CustomerServiceManager.lastNameStartsWith(lastName));  
+            predicates.add(Searcher.lastNameStartsWith(lastName));  
         }
         if(!birthNo.isEmpty()){
-            predicates.add(CustomerServiceManager.birthNoStartsWith(birthNo));  
+            predicates.add(Searcher.birthNoStartsWith(birthNo));  
         }
         if(!streetAddress.isEmpty()){
-            predicates.add(CustomerServiceManager.streetAddressStartsWith(streetAddress));  
+            predicates.add(Searcher.streetAddressStartsWith(streetAddress));  
         }
         if(!zipCode.isEmpty()){
-            predicates.add(CustomerServiceManager.zipCodeStartsWith(zipCode));  
+            predicates.add(Searcher.zipCodeStartsWith(zipCode));  
         }
         
         if(predicates.isEmpty()){
             return personObservableList;
         }
         
-        customerList = manager.findCustomers(predicates);
+        customerList = searcher.findCustomers(predicates);
         personObservableList.addAll(customerList);
         return personObservableList;
     }
@@ -371,11 +312,11 @@ public class Controller {
         if(this.validatePersonData() != DataControl.SUCCESS){
             return this.validatePersonData().getDescription();
         } else {
-            manager.registerCustomerInsurance(new Customer(addScene.getBirthNumberFieldText(),
-                    addScene.getFirstNameFieldText(),addScene.getLastNameFieldText(), 
-                    addScene.getTelephoneNumberFieldText(),addScene.getEmailFieldText(),
-                    addScene.getZipCodeFieldText(),addScene.getAdressFieldText(),
-                    addScene.getBillingZipCodeFieldText(),addScene.getBillingAdressFieldText()));
+            manager.registerCustomer(new Customer(addScene.getBirthNumberFieldText(),
+                    addScene.getFirstNameFieldText(), addScene.getLastNameFieldText(),
+                    addScene.getTelephoneNumberFieldText(), addScene.getEmailFieldText(),
+                    addScene.getZipCodeFieldText(), addScene.getAdressFieldText(),
+                    addScene.getBillingZipCodeFieldText(), addScene.getBillingAdressFieldText()));
             DataBank.saveDataBank();
             return "Person Registered";
         }
@@ -384,7 +325,7 @@ public class Controller {
     private DataControl validatePersonData(){
         if(!Validation.isValidFirstName(addScene.getFirstNameFieldText())){
             return DataControl.INVALID_FIRST_NAME;
-        }else if(!Validation.isValidFirstName(addScene.getLastNameFieldText())){
+        }else if(!Validation.isValidLastName(addScene.getLastNameFieldText())){
             return DataControl.INVALID_LAST_NAME;
         }else if(!Validation.isValidBirthNo(addScene.getBirthNumberFieldText())){
             return DataControl.INVALID_BIRTHNO;
@@ -407,8 +348,77 @@ public class Controller {
     
     public String registerInsurance(){
         //check if the drop down menu has been selected
-        
+        Employee employee;
+        int annualPremium;
+        int amount;
+        PaymentFrequency paymentFrequency;
+        String terms;
+        String InsuranceType;
+        //bring the right person to assign it to 
+        //this.set manager.getCustomerInsurance()
+        //
         return "All is Well";
     }
+    
+    public String registerCarInsurance(){
+        if(this.validateCarInsuranceData() != DataControl.SUCCESS){
+            return this.validateCarInsuranceData().getDescription();
+        }
+        else {
+            manager.registerCarInsurance(new CarInsurance(
+                    manager.getEmployee(Authenticator.getInstance().getUser().getUsername()),
+                    Integer.parseInt(carInsuranceScene.getAnnualPremiumFieldText()),
+                    Integer.parseInt(carInsuranceScene.getInsuranceValueFieldText()),
+                    PaymentFrequency.ANNUALLY,
+                    carInsuranceScene.getConditionAreaText(),
+                    carInsuranceScene.getPerson(),
+                    carInsuranceScene.getRegistrationNumberFieldText(),
+                    carInsuranceScene.getCarTypeDropDownSelectedValue(),
+                    carInsuranceScene.getCarBrandDropDownSelectedValue(),
+                    carInsuranceScene.getCarModelFieldText(),
+                    Integer.parseInt(carInsuranceScene.getProductionYearSelectedValue()),
+                    Integer.parseInt(carInsuranceScene.getAnnualMilageFieldText()),
+                    Double.parseDouble(carInsuranceScene.getPricePerKilometerFieldText()),
+                    Integer.parseInt(carInsuranceScene.getBonusPercentageFieldText()
+                    )),CurrentStatus.getCurrentCustomer());
+            DataBank.saveDataBank();
+            return "Person Registered";
+        }
+    }
+
+    private DataControl validateInsuranceData(){
+        if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getAnnualPremiumFieldText())){
+            return DataControl.INVALID_ANNUAL_PREMIUM;
+        }else if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getInsuranceValueFieldText())){
+            return DataControl.INVALID_AMOUNT;
+        }else {
+            return DataControl.SUCCESS;
+        }
+    }
+    
+    public DataControl validateCarInsuranceData(){
+        if(this.validateInsuranceData() != DataControl.SUCCESS){
+            return this.validateInsuranceData();
+        }else if(!Validation.isValidCarRegistrationNo(
+                carInsuranceScene.getRegistrationNumberFieldText())){
+            return DataControl.INVALID_CAR_REGISTRATION_NUMBER;
+        }else {
+            return DataControl.SUCCESS;
+        }
+    }
+    /*
+    public DataControl validateBoatInsuranceData() {
+        if(this.validateInsuranceData() != DataControl.SUCCESS){
+            return this.validateInsuranceData();
+        }else if(!Validation.isValidBoatRegistrationNo(
+                boatInsuranceScene.)){
+            return DataControl.INVALID_CAR_REGISTRATION_NUMBER;
+        }else {
+            return DataControl.SUCCESS;
+        }
+    }*/
+    
     
 }

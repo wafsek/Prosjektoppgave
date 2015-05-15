@@ -16,8 +16,11 @@ public enum DataControl {
     INVALID_ADDRESS("Ulovlig afdresse"),
     INVALID_ZIPCODE("Ulovlig postnummer"),
     INVALID_BILLING_ADRESSE("Ulovlig addresse"),
-    INVALID_BILLING_ZIPCODE("Ulovlig addresse");
-    
+    INVALID_BILLING_ZIPCODE("Ulovlig addresse"),
+    INVALID_CAR_REGISTRATION_NUMBER(""),
+    INVALID_BOAT_REGISTRATION_NUMBER(""),
+    INVALID_ANNUAL_PREMIUM("VVV"),
+    INVALID_AMOUNT("ASDF");
     private final String description;
     
     /**

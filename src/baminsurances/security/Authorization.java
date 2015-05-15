@@ -7,7 +7,7 @@ package baminsurances.security;
  */
 public enum Authorization {
     
-    GUEST,USER,MANAGER,ADMIN;
+    USER,ADMIN;
     
     Authorization() {
     }

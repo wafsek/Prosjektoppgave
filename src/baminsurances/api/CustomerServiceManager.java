@@ -78,8 +78,8 @@ public class CustomerServiceManager {
     ****************************************************************************/
 
 
-    private void registerCarInsurance( ){
-                 
+    public void registerCarInsurance(CarInsurance carInsurance, Customer customer){
+        customer.addInsurance(carInsurance);
     }
     
     private void registerBoatInsurance(){
