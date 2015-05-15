@@ -72,10 +72,11 @@ public class BoatInsuranceScene extends InsuranceScene {
             } else {
                 new MessageDialog().showMessageDialog("Slettet", "Eieren er nå " +
                                 "satt tilbake på kunden som blir behandlet.",
-                        MessageDialog.INFORMATION_ICON);
+                        MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
                 person = null;
                 ownerBoxIsSelected = !ownerBoxIsSelected;
             }
+            System.out.println(person == null);
         });
 
         motorTypeDropdown = new ComboBox<>(FXCollections.observableArrayList("Innbors", "utenbors"));

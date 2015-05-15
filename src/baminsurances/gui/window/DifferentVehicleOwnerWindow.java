@@ -78,7 +78,7 @@ public class DifferentVehicleOwnerWindow {
                 String streetAddress = streetAddressField.getText();
                 person = new Person(birthNo, firstName, lastName, telephoneNo, email, zipCode, streetAddress);
                 new MessageDialog().showMessageDialog("Registrert", "Du har nå registrert en person ny eier av bilen.",
-                    MessageDialog.INFORMATION_ICON);
+                    MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
                 stage.close();
             } else {
                 if (new MessageDialog().showMessageDialog("Ugyldig", "Ugyldig informasjon. Ønsker du å gjøre om?",
