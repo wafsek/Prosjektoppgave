@@ -26,7 +26,8 @@ public class BoatInsuranceScene extends InsuranceScene {
             horsePowerLabel;
     private TextField registrationNoField, modelField, brandField,
             lengthInFeetField, productionYearField, horsePowerField;
-    private ComboBox<String> motorTypeDropdown, typeDropDown;
+    private ComboBox<String> motorTypeDropdown;
+    private ComboBox<BoatType> typeDropDown;
     private CheckBox ownerBox;
     private boolean ownerBoxIsSelected;
     private Person person;
@@ -80,7 +81,8 @@ public class BoatInsuranceScene extends InsuranceScene {
         });
 
         motorTypeDropdown = new ComboBox<>(FXCollections.observableArrayList("Innbors", "utenbors"));
-        typeDropDown = new ComboBox<>(FXCollections.observableArrayList(getFillingArray(BoatType.values())));
+        typeDropDown = new ComboBox<>();
+        typeDropDown.getItems().setAll(BoatType.values());
 
         rightSideFieldContainer.addColumn(0, ownerBox, registrationNoLabel, typeLabel,
                 brandLabel, modelLabel,  lengthInFeetLabel, productionYearLabel,
@@ -109,5 +111,29 @@ public class BoatInsuranceScene extends InsuranceScene {
 
     public String getMotorTypeDropdownSelectedValue() {
         return motorTypeDropdown.getValue();
+    }
+
+    public boolean isOwnerBoxIsSelected() {
+        return ownerBoxIsSelected;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public String getModelFieldText() {
+        return modelField.getText();
+    }
+
+    public String getBrandFieldText() {
+        return brandField.getText();
+    }
+
+    public String getRegistrationNoFieldText() {
+        return registrationNoField.getText();
+    }
+
+    public BoatType getTypeDropDown() {
+        return typeDropDown.getValue();
     }
 }
