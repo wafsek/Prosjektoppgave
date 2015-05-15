@@ -3,6 +3,8 @@ package baminsurances.data.generation;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.xml.internal.txw2.IllegalSignatureException;
+
 import baminsurances.data.*;
 
 public class DataBankGenerator {
@@ -26,6 +28,9 @@ public class DataBankGenerator {
     // The generated data:
     private List<Customer> customerList = new ArrayList<>();
     private List<Employee> employeeList = new ArrayList<>();
+    private List<Insurance> insuranceList = new ArrayList<>();
+        // The insurance list is used to be able to pick random insurances.
+        // All insurances in this list exist in a customer in customerList.
     
     /**
      * Generates the given amount of customers, employees and insurances, and
@@ -34,11 +39,15 @@ public class DataBankGenerator {
      * @param numCustomers number of customers to generate
      * @param numEmployees number of employees to generate
      * @param numInsurances number of insurances to generate
+     * @param numClaimAdvices number of claim advices to generate
+     * @throws IllegalStateException if the caller attempts to generate
+     * insurances without customers and employees, or generate claim advices
+     * without insurances
      */
-    public void generateDataBank(int numCustomers, int numEmployees,
+    public void fillDataBank(int numCustomers, int numEmployees,
             int numInsurances, int numClaimAdvices) {
         generateCustomerList(numCustomers);
-        generateEmployeeList(numEmployees);
+        generateEmployees(numEmployees);
         generateInsurances(numInsurances);
         generateClaimAdvices(numClaimAdvices);
         
@@ -48,33 +57,25 @@ public class DataBankGenerator {
     }
     
     /**
-     * Fills this DataBankGenerator's customer list with the given
-     * amount of generated customers.
+     * Generates the given amount of customers, adding them to this class's
+     * generated collection of customers.
      * 
      * @param num the number of customers to generate
      */
-    public void generateCustomerList(int num) {
+    private void generateCustomerList(int num) {
         for (int i = 0; i < num; i++) {
-            customerList.add(customerGen.generateCustomer());   
+            customerList.add(customerGen.generateCustomer());
         }
     }
     
     /**
-     * Returns the customer list.
-     * 
-     * @return the customer list
-     */
-    public List<Customer> getCustomerList() {
-        return customerList;
-    }
-    
-    /**
-     * Returns a random customer.
+     * Returns a random customer from this class's generated collection of
+     * employees.
      * 
      * @return a random customer
      * @throws IllegalStateException if the list is empty
      */
-    public Customer getRandomCustomer() {
+    private Customer getRandomCustomer() {
         if (customerList.isEmpty()) {
             throw new IllegalStateException("CustomerInsurance list is empty");
         }
@@ -82,24 +83,15 @@ public class DataBankGenerator {
     }
     
     /**
-     * Fills this DataBankGenerator's employee list with the given amount of
-     * generated employees.
+     * Generates the given amount of employees, adding them to this class's
+     * generated collection of employees.
      * 
      * @param num the number of employees to generate
      */
-    public void generateEmployeeList(int num) {
+    private void generateEmployees(int num) {
         for (int i = 0; i < num; i++) {
             employeeList.add(employeeGen.generateEmployee());
         }
-    }
-    
-    /**
-     * Returns the employee list.
-     * 
-     * @return the employee list
-     */
-    public List<Employee> getEmployeeList() {
-        return employeeList;
     }
     
     /**
@@ -108,7 +100,7 @@ public class DataBankGenerator {
      * @return a random employee from the employee list
      * @throws IllegalStateException if list is empty
      */
-    public Employee getRandomEmployee() {
+    private Employee getRandomEmployee() {
         if (employeeList.isEmpty()) {
             throw new IllegalStateException("Employee list is empty");
         }
@@ -122,7 +114,7 @@ public class DataBankGenerator {
      * @throws IllegalStateException if there aren't generated any customers or
      * employees yet
      */
-    public void generateInsurances(int amount) {
+    private void generateInsurances(int amount) {
         if (customerList.isEmpty()) {
             throw new IllegalStateException("No customers are generated.");
         }
@@ -131,8 +123,18 @@ public class DataBankGenerator {
         }
         
         for (int i = 0; i < amount; i++) {
-            generateRandomInsurance(getRandomEmployee(), getRandomCustomer());
+            insuranceList.add(
+                    generateRandomInsurance(getRandomEmployee(), getRandomCustomer()));
         }
+    }
+    
+    /**
+     * Returns a random insurance from this class's collection of insurances.
+     * 
+     * @return a random insurance from this class's collection of insurances
+     */
+    private Insurance getRandomInsurance() {
+        return insuranceList.get((int) (Math.random() * insuranceList.size()));
     }
     
     /**
@@ -141,9 +143,9 @@ public class DataBankGenerator {
      * 
      * @param emp the employee
      * @param cus the customer
+     * @return the generated insurance
      */
-    public void generateRandomInsurance(Employee emp,
-            Customer cus) {
+    private Insurance generateRandomInsurance(Employee emp, Customer cus) {
         int amount = insGen.generateAmount();
         
         double x = Math.random();
@@ -228,6 +230,7 @@ public class DataBankGenerator {
                     DateGenerator.generateDateAfter(ins.getCreationDate()));
         }
         cus.getInsurances().add(ins);
+        return ins;
     }
     
     /**
@@ -235,23 +238,17 @@ public class DataBankGenerator {
      * existing insurances.
      * 
      * @param numClaimAdvices the number of claim advices to generate
+     * @throws IllegalStateException if the insurance collection is empty
      */
-    public void generateClaimAdvices(int numClaimAdvices) {
-        int numGenerated = 0;
-        outerloop:
-        while (numGenerated < numClaimAdvices) {
-            for (Customer cus : customerList) {
-                for (Insurance ins : cus.getInsurances()) {
-                    if (Math.random() < 0.35) {
-                        ins.addClaimAdvice(claimAdviceGen.generateClaimAdvice(
-                                ins.getClass(), ins.getCreationDate()));
-                        numGenerated++;
-                        if (numGenerated >= numClaimAdvices) {
-                            break outerloop;
-                        }
-                    }
-                }   
-            }
+    private void generateClaimAdvices(int numClaimAdvices) {
+        if (insuranceList.isEmpty()) {
+            throw new IllegalSignatureException("The insurance collection "
+                    + " cannot be empty when generating claim advices.");
+        }
+        for (int i = 0; i < numClaimAdvices; i++) {
+            Insurance ins = getRandomInsurance();
+            ins.addClaimAdvice(claimAdviceGen.generateClaimAdvice(
+                    ins.getClass(), ins.getCreationDate()));
         }
     }
 }
