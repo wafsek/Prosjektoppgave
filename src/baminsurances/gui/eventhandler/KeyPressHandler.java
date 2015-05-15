@@ -37,6 +37,7 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
                 findPersonScene.setTableData(controller.findPeople());
                 txtFieldsIterator = findPersonScene.getTextFieldArrayList().iterator();
                 findPersonScene.resetIterator();
+                findPersonScene.setChoosePersonClickable();
                 return;
             }
         }

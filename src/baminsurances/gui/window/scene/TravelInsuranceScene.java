@@ -20,13 +20,10 @@ public class TravelInsuranceScene extends InsuranceScene{
 
     public TravelInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName) {
         super(guiEventHandler, keyPressHandler, displayName);
-
-        insuranceDropDown.setOnAction(null);
-        insuranceDropDown.setValue("Baatforsikring");
-        insuranceDropDown.setOnAction(guiEventHandler);
         annualPremiumField.setEditable(true);
         insuranceValueField.setEditable(true);
         conditionArea.setEditable(true);
+        paymentFrequencyDropDown.setDisable(false);
         registerInsuranceButton.setDisable(false);
         leftSideContentContainer.getChildren().remove(discribtionContainer);
 

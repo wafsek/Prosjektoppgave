@@ -142,6 +142,7 @@ public class Controller {
     }
 
     private void launchHandleCustomerScene(){
+        handleCustomerScene.setCustomerData(CurrentStatus.getCurrentCustomer());
         primaryStage.initiate(handleCustomerScene.getScene());
     }
 
@@ -152,18 +153,22 @@ public class Controller {
     }
 
     private void launchHouseInsuranceScene() {
+        houseInsuranceScene.setDropDownValue("Boligforsikring");
         primaryStage.initiate(houseInsuranceScene.getScene());
     }
 
     private void launchBoatInsuranceScene() {
+        boatInsuranceScene.setDropDownValue("Baatforsikring");
         primaryStage.initiate(boatInsuranceScene.getScene());
     }
 
     private void launchTravelInsuranceScene() {
+        travelInsuranceScene.setDropDownValue("Reiseforsikring");
         primaryStage.initiate(travelInsuranceScene.getScene());
     }
 
     private void launchCarInsuranceScene() {
+        carInsuranceScene.setDropDownValue("Bilforsikring");
         primaryStage.initiate(carInsuranceScene.getScene());
     }
 
@@ -186,6 +191,12 @@ public class Controller {
 
     public String getDisplayName(){
         return "Brukernavn: ";//+authenticator.getDisplayName();
+    }
+
+    private void updateCustomerInfo() {
+        CurrentStatus.setCurrentCustomer(new UpdateInfoWindow().
+                updateCustomerInfo(CurrentStatus.getCurrentCustomer()));
+
     }
 
     /**
@@ -213,8 +224,11 @@ public class Controller {
         } else if (control == findPersonScene.getBackButton()) {
             backToNavigation();
         } else if (control == findPersonScene.getChoosePersonButton()) {
+            if (findPersonScene.getSelectedCustomer() != null) {
+                CurrentStatus.setCurrentCustomer(findPersonScene.getSelectedCustomer());
+                launchHandleCustomerScene();
+            }
             //this.setCurrentCustomerInsurance(//Method for getting the chosen customer);
-            launchHandleCustomerScene();
         } else if (control == addScene.getRegisterPersonButton()) {
             this.registerPerson();
             launchHandleCustomerScene();
@@ -225,7 +239,8 @@ public class Controller {
         } else if (control == handleCustomerScene.getNewInsuranceButton()) {
             launchInsuranceScene();
         } else if (control == handleCustomerScene.getUpdateInfoButton()) {
-
+            this.updateCustomerInfo();
+            launchHandleCustomerScene();
         } else if (control == insuranceScene.getInsuranceDropDown() &&
                 insuranceScene.getInsuranceDropDown().getValue().equals("Boligforsikring")
                 || control == boatInsuranceScene.getInsuranceDropDown() &&
@@ -254,13 +269,13 @@ public class Controller {
                 travelInsuranceScene.getInsuranceDropDown().getValue().equals("Bilforsikring")) {
             launchCarInsuranceScene();
         } else if (control == insuranceScene.getInsuranceDropDown() &&
-                insuranceScene.getInsuranceDropDown().getValue().equals("Bilforsikring")
+                insuranceScene.getInsuranceDropDown().getValue().equals("Reiseforsikring")
                 || control == houseInsuranceScene.getInsuranceDropDown() &&
-                houseInsuranceScene.getInsuranceDropDown().getValue().equals("Bilforsikring")
+                houseInsuranceScene.getInsuranceDropDown().getValue().equals("Reiseforsikring")
                 || control == boatInsuranceScene.getInsuranceDropDown() &&
-                boatInsuranceScene.getInsuranceDropDown().getValue().equals("Bilforsikring")
+                boatInsuranceScene.getInsuranceDropDown().getValue().equals("Reiseforsikring")
                 || control == carInsuranceScene.getInsuranceDropDown() &&
-                carInsuranceScene.getInsuranceDropDown().getValue().equals("Bilforsikring")) {
+                carInsuranceScene.getInsuranceDropDown().getValue().equals("Reiseforsikring")) {
             launchTravelInsuranceScene();
         } else if (control == insuranceScene.getBackButton()) {
             launchHandleCustomerScene();
@@ -275,8 +290,6 @@ public class Controller {
    /* private String findPerson(){
         return manager.getCustomerInsurancesWithFirstName(searchScene.);
     }*/
-
-    
 
     public ObservableList<Customer> findPeople(){
         logger.log("findPeople method called", Level.FINER);

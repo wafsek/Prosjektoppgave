@@ -34,11 +34,9 @@ public class BoatInsuranceScene extends InsuranceScene {
 
     public BoatInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
         super(guiEventHandler, keyPressHandler, displayName);
-        insuranceDropDown.setOnAction(null);
-        insuranceDropDown.setValue("Baatforsikring");
-        insuranceDropDown.setOnAction(guiEventHandler);
         annualPremiumField.setEditable(true);
         insuranceValueField.setEditable(true);
+        paymentFrequencyDropDown.setDisable(false);
         conditionArea.setEditable(true);
         registerInsuranceButton.setDisable(false);
         leftSideContentContainer.getChildren().remove(discribtionContainer);
@@ -87,8 +85,9 @@ public class BoatInsuranceScene extends InsuranceScene {
         rightSideFieldContainer.addColumn(0, ownerBox, registrationNoLabel, typeLabel,
                 brandLabel, modelLabel,  lengthInFeetLabel, productionYearLabel,
                 motorTypeLabel, horsePowerLabel);
-        rightSideFieldContainer.addColumn(1, lengthInFeetField, productionYearField,
-                motorTypeDropdown, horsePowerField);
+        rightSideFieldContainer.addColumn(1, new Label(""), registrationNoField,
+                typeDropDown, brandField, modelField, lengthInFeetField,
+                productionYearField, motorTypeDropdown, horsePowerField);
 
         rightSideBorderPane = new BorderPane(rightSideFieldContainer, rightSideHeader, null, rightSideFooter, null);
         rightSideBorderPane.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);

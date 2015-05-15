@@ -21,7 +21,7 @@ public class InsuranceScene extends GeneralScene {
     protected ComboBox<String> insuranceDropDown;
     protected ComboBox<PaymentFrequency> paymentFrequencyDropDown;
     protected Label annualPremiumLabel, insuranceValueLabel, conditionLabel, insuranceType,
-            rightSideHeaderLabel, leftSideHeaderLabel, discribtionLabel;
+            rightSideHeaderLabel, leftSideHeaderLabel, discribtionLabel, paymentFrequencyLabel;
     protected TextField annualPremiumField, insuranceValueField;
     protected TextArea conditionArea;
     protected Button registerInsuranceButton;
@@ -39,6 +39,7 @@ public class InsuranceScene extends GeneralScene {
                 "Reiseforsikring", "Boligforsikring", "Bilforsikring", "Baatforsikring"));
         paymentFrequencyDropDown = new ComboBox<>();
         paymentFrequencyDropDown.getItems().setAll(PaymentFrequency.values());
+        paymentFrequencyDropDown.setDisable(true);
         insuranceDropDown.setOnAction(guiEventHandler);
         insuranceType = new Label("Forsikringstype:");
         annualPremiumLabel = new Label("Årlig premie:");
@@ -47,6 +48,7 @@ public class InsuranceScene extends GeneralScene {
         leftSideHeaderLabel = new Label("Ny forsikring");
         leftSideHeaderLabel.setStyle("-fx-font: 28px Times");
         rightSideHeaderLabel = new Label("Kunde: ");
+        paymentFrequencyLabel = new Label("Betalingsintervaller:");
         rightSideHeaderLabel.setStyle("-fx-font: 28px Times");
         discribtionLabel = new Label("Her må du først velge en forsikringstype.\n" +
                 "Avhenger av hva som velges, vil ytterligere\nutfyllingsfelt presenteres.");
@@ -69,8 +71,10 @@ public class InsuranceScene extends GeneralScene {
         leftSideHeader.setStyle("-fx-border-color: gray; ");
 
         leftSideFieldContainer = new GridPane();
-        leftSideFieldContainer.addColumn(0, insuranceType, annualPremiumLabel, insuranceValueLabel, conditionLabel, new Label(""));
-        leftSideFieldContainer.addColumn(1, insuranceDropDown, annualPremiumField, insuranceValueField, paymentFrequencyDropDown);
+        leftSideFieldContainer.addColumn(0, insuranceType, annualPremiumLabel,
+                insuranceValueLabel, paymentFrequencyLabel, conditionLabel, new Label(""));
+        leftSideFieldContainer.addColumn(1, insuranceDropDown, annualPremiumField,
+                insuranceValueField, paymentFrequencyDropDown);
         leftSideFieldContainer.add(conditionArea, 0, 5, 3, 3);
         leftSideFieldContainer.setHgap(50);
         leftSideFieldContainer.setVgap(20);
@@ -104,6 +108,12 @@ public class InsuranceScene extends GeneralScene {
 
         borderPane = new BorderPane(leftSideBorderPane, null, rightSideBorderPane, footer, null);
         scene = new Scene(borderPane);
+    }
+
+    public void setDropDownValue(String text) {
+        insuranceDropDown.setOnAction(null);
+        insuranceDropDown.setValue(text);
+        insuranceDropDown.setOnAction(guiEventHandler);
     }
 
     public ComboBox<String> getInsuranceDropDown() {

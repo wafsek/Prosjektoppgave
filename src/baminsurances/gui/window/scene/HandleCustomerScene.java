@@ -1,5 +1,6 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.data.Customer;
 import baminsurances.data.Insurance;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
@@ -11,6 +12,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Adrian PC on 12/05/2015.
@@ -148,6 +151,16 @@ public class HandleCustomerScene extends GeneralScene {
         borderPane = new BorderPane(leftSideContainer, null, rightSideContainer, footer, null);
 
         scene = new Scene(borderPane);
+    }
+
+    public void setCustomerData(Customer customer) {
+        birthNoField.setText(customer.getBirthNo());
+        nameField.setText(customer.getFirstName() + " " + customer.getLastName());
+        telephoneNoField.setText(customer.getTelephoneNo());
+        emailField.setText(customer.getEmail());
+        adressField.setText(customer.getStreetAddress());
+        billingadressField.setText(customer.getBillingStreetAddress());
+        dateOfRegistrationField.setText(customer.getRegistrationDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
     }
 
     public TextField getBirthNoField() {

@@ -35,11 +35,9 @@ public class CarInsuranceScene extends InsuranceScene{
 
     public CarInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
         super(guiEventHandler, keyPressHandler, displayName);
-        insuranceDropDown.setOnAction(null);
-        insuranceDropDown.setValue("Bilforsikring");
-        insuranceDropDown.setOnAction(guiEventHandler);
         annualPremiumField.setEditable(true);
         insuranceValueField.setEditable(true);
+        paymentFrequencyDropDown.setDisable(false);
         conditionArea.setEditable(true);
         registerInsuranceButton.setDisable(false);
         leftSideContentContainer.getChildren().remove(discribtionContainer);

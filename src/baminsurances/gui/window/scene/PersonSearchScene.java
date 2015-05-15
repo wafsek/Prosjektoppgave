@@ -25,7 +25,7 @@ public abstract class PersonSearchScene extends GeneralScene{
     protected TextField firstNameField, lastNameField, adressField,
         zipCodeField, birthNumberField;
     protected Label firstNameLabel, lastNameLabel, adressLabel, zipCodeLabel,
-        birthNoLabel;
+        birthNoLabel, discribtionLabel;
     protected TableView<Customer> customerTable;
     protected TableColumn birthNoColumn, nameColumn, adressColumn, tlfNoColumn;
 
@@ -71,6 +71,8 @@ public abstract class PersonSearchScene extends GeneralScene{
         adressLabel = new Label("Adresse:");
         zipCodeField = new TextField();
         zipCodeLabel = new Label("Postnummer:");
+        discribtionLabel = new Label("Bruk feltene nedenfor til å søke.");
+        discribtionLabel.setStyle("-fx-font: 15px Times");
 
         textFieldArrayList = new ArrayList<TextField>();
         textFieldArrayList.add(birthNumberField);
@@ -94,18 +96,31 @@ public abstract class PersonSearchScene extends GeneralScene{
         textFieldArrayList.add(zipCodeField);
 
         choosePersonButton = new Button("Velg Person");
-        choosePersonButton.setOnAction(guiEventHandler);
+        choosePersonButton.setDisable(true);
+        customerTable.setOnMouseClicked(e -> {
+                    choosePersonButton.setDisable(false);
+            choosePersonButton.setOnAction(guiEventHandler);
+                });
 
         itemContainer = new GridPane();
-        itemContainer.addColumn(0, firstNameLabel, lastNameLabel, birthNoLabel,
+        itemContainer.addColumn(0, discribtionLabel, firstNameLabel, lastNameLabel, birthNoLabel,
                 adressLabel, zipCodeLabel);
-        itemContainer.addColumn(1, firstNameField, lastNameField,
-                birthNumberField, adressField, zipCodeField,
-                choosePersonButton);
+        itemContainer.addColumn(1, new Label(""), firstNameField, lastNameField, birthNumberField,
+                adressField, zipCodeField, choosePersonButton);
         itemContainer.setAlignment(Pos.CENTER);
         itemContainer.setVgap(30);
         itemContainer.setHgap(20);
         itemContainer.setStyle("-fx-border-color: gray;");
+    }
+
+    public void setChoosePersonClickable() {
+        if (birthNumberField.getText().trim().isEmpty() &&
+                adressField.getText().trim().isEmpty() &&
+                firstNameField.getText().trim().isEmpty() &&
+                lastNameField.getText().trim().isEmpty() &&
+                zipCodeField.getText().trim().isEmpty()){
+            choosePersonButton.setDisable(true);
+        }
     }
 
     /**

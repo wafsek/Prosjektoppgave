@@ -31,13 +31,12 @@ public class HouseInsuranceScene extends InsuranceScene {
 
     public HouseInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
         super(guiEventHandler, keyPressHandler, displayName);
-        insuranceDropDown.setOnAction(null);
-        insuranceDropDown.setValue("Boligforsikring");
-        insuranceDropDown.setOnAction(guiEventHandler);
         annualPremiumField.setEditable(true);
         insuranceValueField.setEditable(true);
         conditionArea.setEditable(true);
+        paymentFrequencyDropDown.setDisable(false);
         registerInsuranceButton.setDisable(false);
+        leftSideContentContainer.getChildren().remove(discribtionContainer);
 
         streetAddressLabel = new Label("Gateadresse:");
         zipCodeLabel = new Label("Postnummer:");

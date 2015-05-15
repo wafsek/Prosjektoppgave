@@ -36,7 +36,7 @@ public class FindPersonScene extends PersonSearchScene {
         footer = new HBox(0, footerLeftSide, footerRightSide);
         footer.setAlignment(Pos.BOTTOM_RIGHT);
         footer.setStyle("-fx-border-color: gray;");
-        itemContainer.add(registerPersonButton, 0, 5, 1, 1);
+        itemContainer.add(registerPersonButton, 0, 6, 1, 1);
         itemContainer.setHgap(50);
         leftSideContainer = new BorderPane(itemContainer, headerContainer, null, null, null);
 
