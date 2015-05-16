@@ -12,6 +12,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Adrian on 15/05/2015.
  */
@@ -147,7 +149,7 @@ public class SpecificInsuranceScene extends GeneralScene {
                 carBrandField = new TextField(carInsurance.getBrand()),
                 productionYearField = new TextField(carInsurance.getCreationDate().getYear()+""),
                 annualMilageField = new TextField(carInsurance.getYearlyMileage()+""),
-                pricePerKilometerField = new TextField(carInsurance.getPricePerKilometer()+""),
+                pricePerKilometerField = new TextField(new DecimalFormat("#.##").format(carInsurance.getPricePerKilometer())),
                 bonusPercentageField = new TextField(carInsurance.getBonusPercentage()+"");
         Label registrationNumberLabel = new Label("Registreringsnummer:"),
                 carTypeLabel = new Label("Type:"), carBrandLabel = new Label("Merke:"),
