@@ -8,7 +8,7 @@ import java.time.LocalDate;
  * 
  * @author Martin Jackson
  */
-public class Person implements Comparable<Person>, Serializable{
+public class Person implements Comparable<Person>, Serializable {
     private static final long serialVersionUID = 6981784780352951569L;
     private String birthNo;
     private String firstName;
@@ -299,7 +299,7 @@ public class Person implements Comparable<Person>, Serializable{
      * @throws NullPointerException if argument is null
      */
     public void setStreetAddress(String streetAddress) {
-        if (streetAddress == null) {
+        if (streetAddress == null) {    
             throw new NullPointerException("Street address cannot be null.");
         }
         this.streetAddress = streetAddress;

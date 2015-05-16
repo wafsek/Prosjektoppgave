@@ -106,34 +106,35 @@ public class Searcher {
     }
 
     public static Predicate<Customer> birthNoStartsWith(String s) {
-        return cus -> cus.getBirthNo().toLowerCase().startsWith(s);
+        return cus -> cus.getBirthNo().startsWith(s.trim());
     }
             
     public static Predicate<Customer> firstNameStartsWith(String s) {
         return cus -> cus.getFirstName().toLowerCase().startsWith(
-                s.toLowerCase());
+                s.trim().toLowerCase());
     }
     
     public static Predicate<Customer> lastNameStartsWith(String s) {
         return cus -> cus.getLastName().toLowerCase().startsWith(
-                s.toLowerCase());
+                s.trim().toLowerCase());
     }
     
     public static Predicate<Customer> telephoneNoStartsWith(String s) {
-        return cus -> cus.getTelephoneNo().startsWith(s);
+        return cus -> cus.getTelephoneNo().startsWith(s.trim());
     }
     
     public static Predicate<Customer> emailStartsWith(String s) {
         return cus -> cus.getStreetAddress().toLowerCase().startsWith(
-                    s.toLowerCase());
+                    s.trim().toLowerCase());
     }
     
     public static Predicate<Customer> zipCodeStartsWith(String s) {
-        return cus -> cus.getZipCode().startsWith(s.toLowerCase());
+        return cus -> cus.getZipCode().startsWith(s.trim());
     }
     
     public static Predicate<Customer> streetAddressStartsWith(String s) {
-        return cus -> cus.getStreetAddress().toLowerCase().startsWith(s.toLowerCase());
+        return cus -> cus.getStreetAddress().toLowerCase().startsWith(
+                s.trim().toLowerCase());
     }
     
     public static Predicate<Customer> registeredBefore(LocalDate date) {

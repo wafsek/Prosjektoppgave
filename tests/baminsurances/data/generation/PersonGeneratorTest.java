@@ -9,13 +9,12 @@ import baminsurances.data.Person;
 
 public class PersonGeneratorTest {
     private PersonGenerator generator = new PersonGenerator();
-    private int numTests = 10;
+    private int numTests = 0;
     
     @Test
     public void testGeneratePerson() {
-        for (int i = 0; i < numTests; i++) {
+        for (int i = 0; i < 100000; i++) {
             Person p = generator.generatePerson();
-            System.out.println(p.toString());
         }
     }
     
