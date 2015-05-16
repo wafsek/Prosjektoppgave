@@ -120,15 +120,15 @@ public class HandleCustomerScene extends GeneralScene {
                         } else if (i.getValue() instanceof TravelInsurance) {
                             return new SimpleStringProperty("Reiseforsikring");
                         } else if (i.getValue() instanceof CarInsurance) {
-                            return new SimpleStringProperty("Båtforsikring");
-                        } else {
                             return new SimpleStringProperty("Bilforsikring");
+                        } else {
+                            return new SimpleStringProperty("Båtforsikring");
                         }
                     }
                 });
 
         insuranceTable = new TableView();
-        insuranceTable.getColumns().addAll(insuranceNumberColumn, typeColumn,
+        insuranceTable.getColumns().addAll(typeColumn, insuranceNumberColumn,
                 dateOfRegistrationColumn, isActiveColumn);
         insuranceTable.setEditable(false);
         insuranceTable.setColumnResizePolicy(
@@ -256,7 +256,7 @@ public class HandleCustomerScene extends GeneralScene {
         insuranceTable.setItems(observableList);
     }
 
-    public Insurance getCustomer() {
+    public Insurance getInsurance() {
         return insuranceTable.getSelectionModel().getSelectedItem();
     }
 }
