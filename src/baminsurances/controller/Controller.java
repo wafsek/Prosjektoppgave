@@ -141,6 +141,7 @@ public class Controller {
     }
 
     private void launchHandleCustomerScene(){
+        handleCustomerScene.setTableData(FXCollections.observableArrayList(CurrentStatus.getCurrentCustomer().getInsurances()));
         handleCustomerScene.setDisplayName(getDisplayName());
         handleCustomerScene.setCustomerData(CurrentStatus.getCurrentCustomer());
         primaryStage.initiate(handleCustomerScene.getScene());

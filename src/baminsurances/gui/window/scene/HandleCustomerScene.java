@@ -1,17 +1,21 @@
 package baminsurances.gui.window.scene;
 
-import baminsurances.data.Customer;
-import baminsurances.data.Insurance;
+import baminsurances.data.*;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 
 import java.time.format.DateTimeFormatter;
 
@@ -74,9 +78,54 @@ public class HandleCustomerScene extends GeneralScene {
         chooseInsuranceButton.setOnAction(guiEventHandler);
 
         insuranceNumberColumn = new TableColumn<>("Nummer");
-        typeColumn = new TableColumn<>("Type");
+        insuranceNumberColumn.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<Insurance, String>,
+                        ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(
+                            TableColumn.CellDataFeatures<Insurance, String> i) {
+                        return new SimpleStringProperty(""+i.getValue().getInsuranceNo());
+                    }
+                });
         dateOfRegistrationColumn = new TableColumn<>("Registrert (Dato)");
-        isActiveColumn = new TableColumn<>("Aktiv (Ja/Nei)");
+        dateOfRegistrationColumn.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<Insurance, String>,
+                        ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(
+                            TableColumn.CellDataFeatures<Insurance, String> i) {
+                        return new SimpleStringProperty((""+i.getValue().getCreationDate()));
+                    }
+                });
+        isActiveColumn = new TableColumn<>("Tilstand");
+        isActiveColumn.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<Insurance, String>,
+                        ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(
+                            TableColumn.CellDataFeatures<Insurance, String> i) {
+                        return new SimpleStringProperty((i.getValue().isActive())?"Aktiv":"Inaktiv");
+                    }
+                });
+
+        typeColumn = new TableColumn<>("Type");
+        typeColumn.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<Insurance, String>,
+                        ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(
+                            TableColumn.CellDataFeatures<Insurance, String> i) {
+                        if (i.getValue() instanceof HomeInsurance) {
+                            return new SimpleStringProperty("Boligforsikring");
+                        } else if (i.getValue() instanceof TravelInsurance) {
+                            return new SimpleStringProperty("Reiseforsikring");
+                        } else if (i.getValue() instanceof CarInsurance) {
+                            return new SimpleStringProperty("Båtforsikring");
+                        } else {
+                            return new SimpleStringProperty("Bilforsikring");
+                        }
+                    }
+                });
 
         insuranceTable = new TableView();
         insuranceTable.getColumns().addAll(insuranceNumberColumn, typeColumn,
@@ -201,5 +250,13 @@ public class HandleCustomerScene extends GeneralScene {
 
     public Button getChooseInsuranceButton() {
         return chooseInsuranceButton;
+    }
+
+    public void setTableData(ObservableList observableList) {
+        insuranceTable.setItems(observableList);
+    }
+
+    public Insurance getCustomer() {
+        return insuranceTable.getSelectionModel().getSelectedItem();
     }
 }
