@@ -5,6 +5,8 @@ import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.OperationWindow;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -12,8 +14,10 @@ import javafx.collections.transformation.SortedList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -46,8 +50,21 @@ public abstract class PersonSearchScene extends GeneralScene{
         birthNoColumn.setCellValueFactory(
                 new PropertyValueFactory<Person, String>("birthNo"));
         nameColumn = new TableColumn("Navn");
+        
+        /*nameColumn.setCellValueFactory(
+                new PropertyValueFactory<Person, String>("firstName"));*/
+        
         nameColumn.setCellValueFactory(
-                new PropertyValueFactory<Person, String>("firstName"));
+                new Callback<CellDataFeatures<Person, String>,
+                        ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(
+                            CellDataFeatures<Person, String> p) {
+                        return new SimpleStringProperty(p.getValue().getFirstName() +
+                                " " + p.getValue().getLastName());
+                    }
+                });
+        
         adressColumn = new TableColumn("Adresse");
         adressColumn.setCellValueFactory(
                 new PropertyValueFactory<Person, String>("streetAddress"));
