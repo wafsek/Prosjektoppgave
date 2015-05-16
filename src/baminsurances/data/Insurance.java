@@ -54,8 +54,8 @@ public abstract class Insurance implements Comparable<Insurance>, Serializable {
      * number as this insurance
      */
     @Override
-    public boolean equals(Object o) {
-        return this.insuranceNo == ((Insurance) o).insuranceNo;
+    public boolean equals(Object obj) {
+        return obj != null && this.insuranceNo == ((Insurance) obj).insuranceNo;
     }
     
     /**
