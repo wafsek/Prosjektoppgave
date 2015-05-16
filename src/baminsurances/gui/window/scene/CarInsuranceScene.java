@@ -112,15 +112,6 @@ public class CarInsuranceScene extends InsuranceScene{
         scene = new Scene(borderPane);
     }
 
-    private String[] years() {
-        int i = LocalDate.now().getYear();
-        String[] returnValue = new String[LocalDate.now().getYear() - 1924];
-        for (int j = 0; j < returnValue.length; j++) {
-            returnValue[j] = ""+i--;
-        }
-        return returnValue;
-    }
-
     public String getRegistrationNumberFieldText() {
         return registrationNumberField.getText();
     }

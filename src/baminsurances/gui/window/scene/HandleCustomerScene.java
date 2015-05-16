@@ -1,5 +1,6 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.controller.CurrentStatus;
 import baminsurances.data.*;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
@@ -257,6 +258,7 @@ public class HandleCustomerScene extends GeneralScene {
     }
 
     public Insurance getInsurance() {
+        CurrentStatus.setCurrenInsurance(insuranceTable.getSelectionModel().getSelectedItem());
         return insuranceTable.getSelectionModel().getSelectedItem();
     }
 }

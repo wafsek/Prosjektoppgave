@@ -213,7 +213,7 @@ public class Controller {
     }
 
     private void updateCustomerInfo() {
-        CurrentStatus.setCurrentCustomer(new UpdateInfoWindow().
+        CurrentStatus.setCurrentCustomer(UpdateInfoWindow.
                 updateCustomerInfo(CurrentStatus.getCurrentCustomer()));
 
     }
@@ -251,6 +251,7 @@ public class Controller {
             //this.setCurrentCustomerInsurance(//Method for getting the chosen customer);
         } else if (control == addScene.getRegisterPersonButton()) {
             this.registerPerson();
+            handleCustomerScene.setCustomerData(CurrentStatus.getCurrentCustomer());
             launchHandleCustomerScene();
         } else if (control == handleCustomerScene.getBackButton() || control == addScene.getBackButton()) {
             launchFindPersonScene();
@@ -304,6 +305,10 @@ public class Controller {
             launchInsuranceScene();
         } else if (control == carInsuranceScene.getRegisterInsuranceButton()) {
 
+        } else if (control == specificInsuranceScene.getUpdateInfoButton()) {
+            CurrentStatus.setCurrenInsurance(UpdateInfoWindow.updateInsurance
+                    (CurrentStatus.getCurrenInsurance()));
+            launchSpecificInsuranceScene();
         }
     }
 
@@ -352,11 +357,13 @@ public class Controller {
         if(this.validatePersonData() != DataControl.SUCCESS){
             return this.validatePersonData().getDescription();
         } else {
-            manager.registerCustomer(new Customer(addScene.getBirthNumberFieldText(),
+            Customer customer = new Customer(addScene.getBirthNumberFieldText(),
                     addScene.getFirstNameFieldText(), addScene.getLastNameFieldText(),
                     addScene.getTelephoneNumberFieldText(), addScene.getEmailFieldText(),
                     addScene.getZipCodeFieldText(), addScene.getAdressFieldText(),
-                    addScene.getBillingZipCodeFieldText(), addScene.getBillingAdressFieldText()));
+                    addScene.getBillingZipCodeFieldText(), addScene.getBillingAdressFieldText());
+            CurrentStatus.setCurrentCustomer(customer);
+            manager.registerCustomer(customer);
             DataBank.saveDataBank();
             return "Person Registered";
         }

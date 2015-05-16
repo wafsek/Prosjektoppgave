@@ -1,9 +1,13 @@
 package baminsurances.gui.window.scene;
 
+import baminsurances.controller.CurrentStatus;
 import baminsurances.data.*;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -11,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 
 import java.text.DecimalFormat;
 
@@ -26,9 +31,8 @@ public class SpecificInsuranceScene extends GeneralScene {
             claimAdviceLabel, rightSideHeaderLabel;
     private TextArea conditionTextArea;
     private Button updateInfoButton, newClaimAdviceButton, chooseClaimAdviceButton;
-    private TableView<Insurance> claimAdviceTable;
-    private TableColumn<Insurance, String> insuranceNumberColumn, dateColumn,
-            dateOfRegistrationColumn, isActiveColumn;
+    private TableView<ClaimAdvice> claimAdviceTable;
+    private TableColumn<ClaimAdvice, String> damageTypeColumn, dateOfDamageColumn, damageNoColumn;
     private BorderPane leftSideContainer, rightSideContainer;
     private GridPane topContainer, middleContainer,
             rightSideContentContainer, bottomContainer, fieldButtonContainer;
@@ -78,13 +82,42 @@ public class SpecificInsuranceScene extends GeneralScene {
         conditionTextArea = new TextArea();
         conditionTextArea.setEditable(false);
 
-        insuranceNumberColumn = new TableColumn<>("Nummer");
-        dateColumn = new TableColumn<>("Dato");
-        dateOfRegistrationColumn = new TableColumn<>("Skadetype");
+        damageTypeColumn = new TableColumn<>("Skadetype");
+        damageNoColumn = new TableColumn<>("Skadenummer");
+        dateOfDamageColumn = new TableColumn<>("Skadedato");
+
+        damageTypeColumn.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<ClaimAdvice, String>,
+                        ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(
+                            TableColumn.CellDataFeatures<ClaimAdvice, String> ca) {
+                        return new SimpleStringProperty(ca.getValue().getDamageType());
+                    }
+                });
+
+        damageNoColumn.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<ClaimAdvice, String>,
+                        ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(
+                            TableColumn.CellDataFeatures<ClaimAdvice, String> ca) {
+                        return new SimpleStringProperty(ca.getValue().getDamageNo() + "");
+                    }
+                });
+
+        dateOfDamageColumn.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<ClaimAdvice, String>,
+                        ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(
+                            TableColumn.CellDataFeatures<ClaimAdvice, String> ca) {
+                        return new SimpleStringProperty(ca.getValue().getDateOfDamage() + "");
+                    }
+                });
 
         claimAdviceTable = new TableView();
-        claimAdviceTable.getColumns().addAll(insuranceNumberColumn, dateColumn,
-                dateOfRegistrationColumn);
+        claimAdviceTable.getColumns().addAll(damageTypeColumn, damageNoColumn, dateOfDamageColumn);
         claimAdviceTable.setEditable(false);
         claimAdviceTable.setColumnResizePolicy(
                 TableView.CONSTRAINED_RESIZE_POLICY);
@@ -112,12 +145,6 @@ public class SpecificInsuranceScene extends GeneralScene {
         bottomContainer.setHgap(20);
         bottomContainer.setAlignment(Pos.CENTER);
 
-        fieldButtonContainer = new GridPane();
-        fieldButtonContainer.addColumn(0, updateInfoButton);
-        fieldButtonContainer.setHgap(GuiConfig.PRIMARY_WIDTH * 1 / 18);
-        fieldButtonContainer.setAlignment(Pos.CENTER);
-
-
         fieldContainer = new VBox(40, topContainer, middleContainer, bottomContainer);
         fieldContainer.setStyle("-fx-border-color: gray;");
         fieldContainer.setAlignment(Pos.CENTER);
@@ -129,9 +156,10 @@ public class SpecificInsuranceScene extends GeneralScene {
         leftSideContainer = new BorderPane(fieldContainer, headerContainer, null, null, null);
         leftSideContainer.setStyle("-fx-border-color: gray;");
 
-        tableButtons = new HBox(GuiConfig.PRIMARY_WIDTH * 1 / 4, newClaimAdviceButton, chooseClaimAdviceButton);
+        tableButtons = new HBox(GuiConfig.PRIMARY_WIDTH * 1 / 12, newClaimAdviceButton, updateInfoButton, chooseClaimAdviceButton);
         tableButtons.setStyle("-fx-padding: 5;" +
                 "-fx-border-color: gray;");
+        tableButtons.setAlignment(Pos.CENTER);
 
         footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
         footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
@@ -165,8 +193,10 @@ public class SpecificInsuranceScene extends GeneralScene {
         insuranceValueField.setText(carInsurance.getAmount() + "");
         employeeField.setText(carInsurance.getEmployee().getFirstName() + " " + carInsurance.getEmployee().getLastName());
         dateOfRegistrationField.setText(carInsurance.getCreationDate() + "");
-        cancelledField.setText((carInsurance.getCancellationDate() != null)?""+carInsurance.getCancellationDate():"");
+        cancelledField.setText((carInsurance.getCancellationDate() != null) ? "" + carInsurance.getCancellationDate() : "");
         conditionTextArea.setText(carInsurance.getTerms());
+
+        claimAdviceTable.setItems(FXCollections.observableArrayList(carInsurance.getClaimAdvices()));
 
         registrationNumberField.setEditable(false);
         carTypeField.setEditable(false);
@@ -234,6 +264,8 @@ public class SpecificInsuranceScene extends GeneralScene {
         motorTypeField.setEditable(false);
         horsePowerField.setEditable(false);
 
+        claimAdviceTable.setItems(FXCollections.observableArrayList(boatInsurance.getClaimAdvices()));
+
         rightSideContentContainer = new GridPane();
         rightSideContentContainer.addColumn(0, registrationNoLabel, typeLabel,
                 brandLabel, modelLabel, lengthInFeetLabel, productionYearLabel,
@@ -296,6 +328,8 @@ public class SpecificInsuranceScene extends GeneralScene {
         homeAmountField.setEditable(false);
         contentsAmountField.setEditable(false);
 
+        claimAdviceTable.setItems(FXCollections.observableArrayList(homeInsurance.getClaimAdvices()));
+
         rightSideContentContainer = new GridPane();
         rightSideContentContainer.addColumn(0, streetAddressLabel, zipCodeLabel,
                 constructionYearLabel, homeTypeLabel, buildingMaterialLabel,
@@ -323,6 +357,8 @@ public class SpecificInsuranceScene extends GeneralScene {
         TextField regionField = new TextField(travelInsurance.getRegion().toString());
         regionField.setEditable(false);
 
+        claimAdviceTable.setItems(FXCollections.observableArrayList(travelInsurance.getClaimAdvices()));
+
         typeField.setText("Reiseforsikring");
         insuranceNumberField.setText(travelInsurance.getInsuranceNo()+"");
         annualPremiumField.setText(travelInsurance.getAnnualPremium()+"");
@@ -349,4 +385,15 @@ public class SpecificInsuranceScene extends GeneralScene {
         return new Scene(borderPane);
     }
 
+    public Button getNewClaimAdviceButton() {
+        return newClaimAdviceButton;
+    }
+
+    public Button getChooseClaimAdviceButton() {
+        return chooseClaimAdviceButton;
+    }
+
+    public Button getUpdateInfoButton() {
+        return updateInfoButton;
+    }
 }
