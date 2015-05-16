@@ -115,10 +115,10 @@ public class DataBankGenerator {
      * employees yet
      */
     private void generateInsurances(int amount) {
-        if (customerList.isEmpty()) {
+        if (amount > 0 && customerList.isEmpty()) {
             throw new IllegalStateException("No customers are generated.");
         }
-        if (employeeList.isEmpty()) {
+        if (amount > 0 && employeeList.isEmpty()) {
             throw new IllegalStateException("No employees are generated.");
         }
         
@@ -151,7 +151,7 @@ public class DataBankGenerator {
         double x = Math.random();
         Insurance ins = null;
         int numInsuranceTypes = 5;
-        if (x < 1 / numInsuranceTypes) {
+        if (x < (double) 1 / numInsuranceTypes) {
             ins = new CarInsurance(
                     emp,
                     insGen.generatePremium(amount),
@@ -167,7 +167,7 @@ public class DataBankGenerator {
                     carGen.generateYearlyMileage(),
                     carGen.generatePricePerKilometer(), 
                     carGen.generateBonusPercentage());
-        } else if (x < 2 / numInsuranceTypes) {
+        } else if (x < (double) 2 / numInsuranceTypes) {
             ins = new BoatInsurance(
                     emp,
                     insGen.generatePremium(amount),
@@ -183,7 +183,7 @@ public class DataBankGenerator {
                     boatGen.generateProductionYear(),
                     boatGen.generateMotorType(),
                     boatGen.generateHorsePower());
-        } else if (x < 3 / numInsuranceTypes) {
+        } else if (x < (double) 3 / numInsuranceTypes) {
             ins = new HomeInsurance(
                     emp,
                     insGen.generatePremium(amount),
@@ -198,7 +198,7 @@ public class DataBankGenerator {
                     homeGen.generateSquareMeters(),
                     homeGen.generateHomeAmount(),
                     homeGen.generateContentsAmount());
-        } else if (x < 4 / numInsuranceTypes) {
+        } else if (x < (double) 4 / numInsuranceTypes) {
             ins = new HolidayHomeInsurance(
                     emp,
                     insGen.generatePremium(amount),
@@ -241,7 +241,7 @@ public class DataBankGenerator {
      * @throws IllegalStateException if the insurance collection is empty
      */
     private void generateClaimAdvices(int numClaimAdvices) {
-        if (insuranceList.isEmpty()) {
+        if (numClaimAdvices > 0 && insuranceList.isEmpty()) {
             throw new IllegalSignatureException("The insurance collection "
                     + " cannot be empty when generating claim advices.");
         }
