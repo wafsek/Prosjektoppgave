@@ -27,7 +27,7 @@ public class ClaimAdviceGeneratorTest {
     @Test
     public void testGetImagesInFolderWithName() {
         assertTrue(!generator.getImagesInFolderWithName("car", "kollisjon").isEmpty());
-        assertTrue(!generator.getImagesInFolderWithName("car", "naturforårsaket").isEmpty());
+        assertTrue(!generator.getImagesInFolderWithName("car", "naturforarsaket").isEmpty());
     }
     
     @Test
@@ -39,7 +39,7 @@ public class ClaimAdviceGeneratorTest {
         types.add(HolidayHomeInsurance.class);
         types.add(TravelInsurance.class);
         
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             generator.generateClaimAdvice(
                     types.get((int) (Math.random() * types.size())),
                     LocalDate.now());
