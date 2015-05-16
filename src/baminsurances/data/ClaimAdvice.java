@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
  * 
  * @author Martin Jackson
  */
-public class ClaimAdvice implements Serializable {
+public class ClaimAdvice implements Comparable<ClaimAdvice>, Serializable {
     private static final long serialVersionUID = -7432562192214939768L;
     private static int nextDamageNo = 1;
     private int damageNo;
@@ -52,6 +52,43 @@ public class ClaimAdvice implements Serializable {
         setDamageDescription(damageDescription);
         this.assessmentAmount = assessmentAmount;
         this.compensationAmount = compensationAmount;
+    }
+    
+    /**
+     * Returns <code>true</code>, if the given object is a claim advice, and
+     * has the same damage number as this claim advice.
+     * 
+     * @return <code>true</code>, if the given object is a claim advice, and
+     * has the same damage number as this claim advice
+     */
+    public boolean equals(Object obj) {
+        return obj instanceof ClaimAdvice &&
+                this.damageNo == ((ClaimAdvice) obj).damageNo;
+    }
+    
+    /**
+     * Returns a hash code value for this claim advice, equal to its damage
+     * number.
+     * 
+     * @return a hash code value for this claim advice, equal to its damage
+     * number
+     */
+    @Override
+    public int hashCode() {
+        return damageNo;
+    }
+    
+    /**
+     * Compares this claim advice with the given one, by comparing their
+     * damage numbers. Returns a negative number if this claim advice is less
+     * than the given one, zero if it is equal, and positive if is greater.
+     * 
+     * @return a negative number if this claim advice is less than the given
+     * one, zero if it is equal, and positive if is greater 
+     */
+    @Override
+    public int compareTo(ClaimAdvice ca) {
+        return this.damageNo - ca.damageNo;
     }
 
     /**

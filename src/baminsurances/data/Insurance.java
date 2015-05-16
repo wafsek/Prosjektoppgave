@@ -47,15 +47,16 @@ public abstract class Insurance implements Comparable<Insurance>, Serializable {
     }
     
     /**
-     * Returns <code>true</code>, if the given insurance has the same insurance
-     * number as this insurance.
+     * Returns <code>true</code>, if the given object is an insurance, and has
+     * the same insurance number as this insurance.
      * 
-     * @return <code>true</code>, if the given insurance has the same insurance
-     * number as this insurance
+     * @return <code>true</code>, if the given object is an insurance, and has
+     * the same insurance number as this insurance
      */
     @Override
     public boolean equals(Object obj) {
-        return obj != null && this.insuranceNo == ((Insurance) obj).insuranceNo;
+        return obj instanceof Insurance
+                && this.insuranceNo == ((Insurance) obj).insuranceNo;
     }
     
     /**
@@ -334,13 +335,18 @@ public abstract class Insurance implements Comparable<Insurance>, Serializable {
     }
     
     /**
-     * Returns the date of the next payment.
+     * Returns the date of the next payment, or <code>null</code> if cancelled.
      * 
-     * @return the date of the next payment
+     * @return the date of the next payment, or <code>null</code> if cancelled
      */
     public LocalDate getNextPaymentDate() {
-        return payments.isEmpty() ? getCreationDate() :
-            payments.lastKey().plusMonths(getMonthsBetweenPayments());
+        if (!isActive()) {
+            return null;
+        } else if (payments.isEmpty()) {
+            return getCreationDate();
+        } else {
+            return payments.lastKey().plusMonths(getMonthsBetweenPayments());
+        }
     }
     
     public int getMonthsBetweenPayments() {
@@ -365,6 +371,10 @@ public abstract class Insurance implements Comparable<Insurance>, Serializable {
             throw new IllegalArgumentException("Discount percentage "
                     + "should be a number between 0 and 100, both inclusive."
                     + "Found: " + discountPercentage);
+        }
+        
+        if (getNextPaymentDate() == null) {
+            return; // the insurance is cancelled, and has no next payment date
         }
         
         while (getNextPaymentDate().isBefore(LocalDate.now())) {

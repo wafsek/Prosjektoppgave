@@ -44,15 +44,16 @@ public class Person implements Comparable<Person>, Serializable {
     }
     
     /**
-     * Returns <code>true</code>, if the given person has the same birth number
-     * as this one.
+     * Returns <code>true</code>, if the given object is a person, and has the
+     * same birth number as this person.
      * 
-     * @return <code>true</code>, if the given person has the same birth number
-     * as this one
+     * @return <code>true</code>, if the given object is a person, and has the
+     * same birth number as this person
      */
     @Override
     public boolean equals(Object obj) {
-        return obj != null && this.birthNo.equals(((Person) obj).getBirthNo());
+        return obj instanceof Person &&
+                this.birthNo.equals(((Person) obj).getBirthNo());
     }
     
     /**
