@@ -141,6 +141,7 @@ public class Controller {
     }
 
     private void launchHandleCustomerScene(){
+        CurrentStatus.setCurrentCustomer(findPersonScene.getSelectedCustomer());
         handleCustomerScene.setTableData(FXCollections.observableArrayList(CurrentStatus.getCurrentCustomer().getInsurances()));
         handleCustomerScene.setDisplayName(getDisplayName());
         handleCustomerScene.setCustomerData(CurrentStatus.getCurrentCustomer());
@@ -179,7 +180,16 @@ public class Controller {
     }
 
     private void launchSpecificInsuranceScene() {
-        //primaryStage.initiate(specificInsuranceScene.getTravelInsuranceInfoScene());
+        Insurance insurance = handleCustomerScene.getInsurance();
+        if(insurance instanceof HomeInsurance) {
+            primaryStage.initiate(specificInsuranceScene.getHouseInsuranceInfoScene((HomeInsurance) insurance));
+        } else if (insurance instanceof TravelInsurance) {
+            primaryStage.initiate(specificInsuranceScene.getTravelInsuranceInfoScene((TravelInsurance) insurance));
+        } else if (insurance instanceof BoatInsurance) {
+            primaryStage.initiate(specificInsuranceScene.getBoatInsuranceInfoScene((BoatInsurance) insurance));
+        } else if (insurance instanceof CarInsurance) {
+            primaryStage.initiate(specificInsuranceScene.getCarInsuranceInfoScene((CarInsurance) insurance));
+        }
     }
 
     private void backToNavigation(){

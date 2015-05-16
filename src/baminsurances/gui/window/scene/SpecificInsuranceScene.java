@@ -157,13 +157,14 @@ public class SpecificInsuranceScene extends GeneralScene {
                 productionYearLabel = new Label("Produksjonsår:"),
                 bonusPercentageLabel = new Label("Bonus:");
 
-        typeField = new TextField("Bilforsikring");
-        insuranceNumberField = new TextField(carInsurance.getInsuranceNo()+"");
-        annualPremiumField = new TextField(carInsurance.getAnnualPremium()+"");
-        insuranceValueField = new TextField(carInsurance.getAmount()+"");
-        employeeField = new TextField(carInsurance.getEmployee().getFirstName() + " " + carInsurance.getEmployee().getLastName());
-        dateOfRegistrationField = new TextField(carInsurance.getCreationDate()+"");
-        cancelledField = new TextField(carInsurance.getCancellationDate()+"");
+        typeField.setText("Bilforsikring");
+        insuranceNumberField.setText(carInsurance.getInsuranceNo() + "");
+        annualPremiumField.setText(carInsurance.getAnnualPremium() + "");
+        insuranceValueField.setText(carInsurance.getAmount() + "");
+        employeeField.setText(carInsurance.getEmployee().getFirstName() + " " + carInsurance.getEmployee().getLastName());
+        dateOfRegistrationField.setText(carInsurance.getCreationDate() + "");
+        cancelledField.setText((carInsurance.getCancellationDate() != null)?""+carInsurance.getCancellationDate():"");
+        conditionTextArea.setText(carInsurance.getTerms());
 
         registrationNumberField.setEditable(false);
         carTypeField.setEditable(false);
@@ -197,7 +198,7 @@ public class SpecificInsuranceScene extends GeneralScene {
 
     public Scene getBoatInsuranceInfoScene(BoatInsurance boatInsurance) {
         TextField regstrationNoField = new TextField(boatInsurance.getRegistrationNo()),
-                typeField = new TextField(boatInsurance.getType().toString()),
+                boatTypeField = new TextField(boatInsurance.getType().toString()),
                 brandField = new TextField(boatInsurance.getBrand()),
                 modelField = new TextField(boatInsurance.getModel()),
                 lengthInFeetField = new TextField(boatInsurance.getLengthInFeet()+""),
@@ -213,16 +214,17 @@ public class SpecificInsuranceScene extends GeneralScene {
                 motorTypeLabel = new Label("Motortype:"),
                 horsePowerLabel = new Label("Hestekrefter:");
 
-        typeField = new TextField("Baatforsikring");
-        insuranceNumberField = new TextField(boatInsurance.getInsuranceNo()+"");
-        annualPremiumField = new TextField(boatInsurance.getAnnualPremium()+"");
-        insuranceValueField = new TextField(boatInsurance.getAmount()+"");
-        employeeField = new TextField(boatInsurance.getEmployee().getFirstName() + " " + boatInsurance.getEmployee().getLastName());
-        dateOfRegistrationField = new TextField(boatInsurance.getCreationDate()+"");
-        cancelledField = new TextField(boatInsurance.getCancellationDate()+"");
+        typeField.setText("Baatforsikring");
+        insuranceNumberField.setText(boatInsurance.getInsuranceNo()+"");
+        annualPremiumField.setText(boatInsurance.getAnnualPremium()+"");
+        insuranceValueField.setText(boatInsurance.getAmount()+"");
+        employeeField.setText(boatInsurance.getEmployee().getFirstName() + " " + boatInsurance.getEmployee().getLastName());
+        dateOfRegistrationField.setText(boatInsurance.getCreationDate()+"");
+        cancelledField.setText((boatInsurance.getCancellationDate() != null)?""+boatInsurance.getCancellationDate() : "");
+        conditionTextArea.setText(boatInsurance.getTerms());
 
         regstrationNoField.setEditable(false);
-        typeField.setEditable(false);
+        boatTypeField.setEditable(false);
         brandField.setEditable(false);
         modelField.setEditable(false);
         lengthInFeetField.setEditable(false);
@@ -234,7 +236,7 @@ public class SpecificInsuranceScene extends GeneralScene {
         rightSideContentContainer.addColumn(0, registrationNoLabel, typeLabel,
                 brandLabel, modelLabel, lengthInFeetLabel, productionYearLabel,
                 motorTypeLabel, horsePowerLabel, claimAdviceLabel);
-        rightSideContentContainer.addColumn(1, regstrationNoField, typeField,
+        rightSideContentContainer.addColumn(1, regstrationNoField, boatTypeField,
                 brandField, modelField, lengthInFeetField, productionYearField,
                 motorTypeField, horsePowerField);
         rightSideContentContainer.setAlignment(Pos.CENTER);
@@ -273,13 +275,14 @@ public class SpecificInsuranceScene extends GeneralScene {
                 homeAmountField = new TextField(homeInsurance.getHomeAmount()+""),
                 contentsAmountField = new TextField(homeInsurance.getContentsAmount()+"");
 
-        typeField = new TextField("Boligforsikring");
-        insuranceNumberField = new TextField(homeInsurance.getInsuranceNo()+"");
-        annualPremiumField = new TextField(homeInsurance.getAnnualPremium()+"");
-        insuranceValueField = new TextField(homeInsurance.getAmount()+"");
-        employeeField = new TextField(homeInsurance.getEmployee().getFirstName() + " " + homeInsurance.getEmployee().getLastName());
-        dateOfRegistrationField = new TextField(homeInsurance.getCreationDate()+"");
-        cancelledField = new TextField(homeInsurance.getCancellationDate()+"");
+        typeField.setText("Boligforsikring");
+        insuranceNumberField.setText(homeInsurance.getInsuranceNo()+"");
+        annualPremiumField.setText(homeInsurance.getAnnualPremium() + "");
+        insuranceValueField.setText(homeInsurance.getAmount()+"");
+        employeeField.setText(homeInsurance.getEmployee().getFirstName() + " " + homeInsurance.getEmployee().getLastName());
+        dateOfRegistrationField.setText(homeInsurance.getCreationDate()+"");
+        cancelledField.setText((homeInsurance.getCancellationDate() != null)?""+homeInsurance.getCancellationDate():"");
+        conditionTextArea.setText(homeInsurance.getTerms());
 
         streetAdressField.setEditable(false);
         zipCodeField.setEditable(false);
@@ -318,13 +321,14 @@ public class SpecificInsuranceScene extends GeneralScene {
         TextField regionField = new TextField(travelInsurance.getRegion().toString());
         regionField.setEditable(false);
 
-        typeField = new TextField("Reiseforsikring");
-        insuranceNumberField = new TextField(travelInsurance.getInsuranceNo()+"");
-        annualPremiumField = new TextField(travelInsurance.getAnnualPremium()+"");
-        insuranceValueField = new TextField(travelInsurance.getAmount()+"");
-        employeeField = new TextField(travelInsurance.getEmployee().getFirstName() + " " + travelInsurance.getEmployee().getLastName());
-        dateOfRegistrationField = new TextField(travelInsurance.getCreationDate()+"");
-        cancelledField = new TextField(travelInsurance.getCancellationDate()+"");
+        typeField.setText("Reiseforsikring");
+        insuranceNumberField.setText(travelInsurance.getInsuranceNo()+"");
+        annualPremiumField.setText(travelInsurance.getAnnualPremium()+"");
+        insuranceValueField.setText(travelInsurance.getAmount()+"");
+        employeeField.setText(travelInsurance.getEmployee().getFirstName() + " " + travelInsurance.getEmployee().getLastName());
+        dateOfRegistrationField.setText(travelInsurance.getCreationDate() + "");
+        cancelledField.setText((travelInsurance.getCancellationDate() != null)?""+travelInsurance.getCancellationDate():"");
+        conditionTextArea.setText(travelInsurance.getTerms());
 
         rightSideContentContainer = new GridPane();
         rightSideContentContainer.addColumn(0, regionLabel, claimAdviceLabel);
