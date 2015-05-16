@@ -21,8 +21,8 @@ public class FindPersonScene extends PersonSearchScene {
     private BorderPane leftSideContainer;
     private HBox headerContainer;
 
-    public FindPersonScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
-        super(guiEventHandler, keyPressHandler, displayName);
+    public FindPersonScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler){
+        super(guiEventHandler, keyPressHandler);
         registerPersonButton = new Button("Registrer ny kunde");
         registerPersonButton.setOnAction(guiEventHandler);
         headerLabel = new Label("Finn kunden du ønsker å behandle");

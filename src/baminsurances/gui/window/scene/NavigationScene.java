@@ -25,8 +25,8 @@ public class NavigationScene extends GeneralScene{
     private VBox container;
     private static final double WIDTH = GuiConfig.PRIMARY_WIDTH*1/4, HEIGHT = GuiConfig.PRIMARY_HEIGHT*1/10;
 
-    public NavigationScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName) {
-        super(guiEventHandler, keyPressHandler, displayName);
+    public NavigationScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler) {
+        super(guiEventHandler, keyPressHandler);
         this.guiEventHandler = guiEventHandler;
         statisticsButton = new IconButton().IconButtonWithText(
                 HEIGHT, HEIGHT, IconButton.STATISTIC_BUTTON,

@@ -82,16 +82,16 @@ public class Controller {
         primaryStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH, GuiConfig.PRIMARY_HEIGHT);
 
         loginScene = new LoginScene(guiEventHandler, keyPressHandler);
-        navigationScene = new NavigationScene(guiEventHandler, keyPressHandler, getDisplayName());
-        findPersonScene = new FindPersonScene(guiEventHandler, keyPressHandler, getDisplayName());
-        addScene = new AddScene(guiEventHandler, keyPressHandler, getDisplayName());
-        handleCustomerScene = new HandleCustomerScene(guiEventHandler, keyPressHandler, getDisplayName());
-        insuranceScene = new InsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
-        houseInsuranceScene = new HouseInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
-        boatInsuranceScene = new BoatInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
-        carInsuranceScene = new CarInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
-        travelInsuranceScene = new TravelInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
-        specificInsuranceScene = new SpecificInsuranceScene(guiEventHandler, keyPressHandler, getDisplayName());
+        navigationScene = new NavigationScene(guiEventHandler, keyPressHandler);
+        findPersonScene = new FindPersonScene(guiEventHandler, keyPressHandler);
+        addScene = new AddScene(guiEventHandler, keyPressHandler);
+        handleCustomerScene = new HandleCustomerScene(guiEventHandler, keyPressHandler);
+        insuranceScene = new InsuranceScene(guiEventHandler, keyPressHandler);
+        houseInsuranceScene = new HouseInsuranceScene(guiEventHandler, keyPressHandler);
+        boatInsuranceScene = new BoatInsuranceScene(guiEventHandler, keyPressHandler);
+        carInsuranceScene = new CarInsuranceScene(guiEventHandler, keyPressHandler);
+        travelInsuranceScene = new TravelInsuranceScene(guiEventHandler, keyPressHandler);
+        specificInsuranceScene = new SpecificInsuranceScene(guiEventHandler, keyPressHandler);
 
         generatingStage = new GeneratingStage();
 
@@ -109,6 +109,7 @@ public class Controller {
        boolean loginTest = authenticator.loginUser(loginScene.getUsernameFieldText(),
                 loginScene.getPasswordFieldText());
         if(loginTest){
+            navigationScene.setDisplayName(getDisplayName());
             loginStage.close();
             menuStage.initiate(navigationScene.getScene());
             logger.log("Logged in", Level.INFO); 
@@ -127,50 +128,51 @@ public class Controller {
 
     private void launchFindPersonScene(){
         menuStage.close();
+        findPersonScene.setDisplayName(getDisplayName());
         findPersonScene.clearFields();
         primaryStage.initiate(findPersonScene.getScene());
         keyPressHandler.setFindPersonScene(findPersonScene);
     }
 
-    private void launchSearchScene(){
-        loginStage.close();
-        searchScene = new SearchScene(operationWindow.getHeader(), operationWindow.getFooter(), guiEventHandler, keyPressHandler, getDisplayName());
-        operationWindow.initialize(searchScene.getScene());
-        logger.log("Initializing Search scene", Level.INFO);
-    }
-
     private void launchRegistration(){
+        addScene.setDisplayName(getDisplayName());
         primaryStage.initiate(addScene.getScene());
         addScene.insertText(findPersonScene.getWrittenInfo());
     }
 
     private void launchHandleCustomerScene(){
+        handleCustomerScene.setDisplayName(getDisplayName());
         handleCustomerScene.setCustomerData(CurrentStatus.getCurrentCustomer());
         primaryStage.initiate(handleCustomerScene.getScene());
     }
 
     private void launchInsuranceScene() {
+        insuranceScene.setDisplayName(getDisplayName());
         insuranceScene.setInsuranceDropDownEmpty();
         primaryStage.initiate(insuranceScene.getScene());
 
     }
 
     private void launchHouseInsuranceScene() {
+        houseInsuranceScene.setDisplayName(getDisplayName());
         houseInsuranceScene.setDropDownValue("Boligforsikring");
         primaryStage.initiate(houseInsuranceScene.getScene());
     }
 
     private void launchBoatInsuranceScene() {
+        boatInsuranceScene.setDisplayName(getDisplayName());
         boatInsuranceScene.setDropDownValue("Baatforsikring");
         primaryStage.initiate(boatInsuranceScene.getScene());
     }
 
     private void launchTravelInsuranceScene() {
+        travelInsuranceScene.setDisplayName(getDisplayName());
         travelInsuranceScene.setDropDownValue("Reiseforsikring");
         primaryStage.initiate(travelInsuranceScene.getScene());
     }
 
     private void launchCarInsuranceScene() {
+        carInsuranceScene.setDisplayName(getDisplayName());
         carInsuranceScene.setDropDownValue("Bilforsikring");
         primaryStage.initiate(carInsuranceScene.getScene());
     }

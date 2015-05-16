@@ -47,8 +47,8 @@ public class AddScene extends GeneralScene{
      * @param keyPressHandler
      */
     public AddScene(GuiEventHandler guiEventHandler,
-            KeyPressHandler keyPressHandler, String displayName) {
-        super(guiEventHandler, keyPressHandler, displayName);
+            KeyPressHandler keyPressHandler) {
+        super(guiEventHandler, keyPressHandler);
 
         firstNameField = new TextField();
         firstNameField.setStyle("-fx-effect: dropshadow"

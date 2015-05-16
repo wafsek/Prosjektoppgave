@@ -38,8 +38,8 @@ public abstract class PersonSearchScene extends GeneralScene{
     protected GridPane itemContainer;
 
     public PersonSearchScene(GuiEventHandler guiEventHandler,
-            KeyPressHandler keyPressHandler, String displayName) {
-        super(guiEventHandler, keyPressHandler, displayName);
+            KeyPressHandler keyPressHandler) {
+        super(guiEventHandler, keyPressHandler);
 
         customerTable = new TableView();
         birthNoColumn = new TableColumn("Fødselsnummer");

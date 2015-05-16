@@ -35,8 +35,8 @@ public class HandleCustomerScene extends GeneralScene {
     private HBox headerContainer, tableButtons, tableHeaderContainer;
     private VBox fieldContainer;
 
-    public HandleCustomerScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
-        super(guiEventHandler, keyPressHandler, displayName);
+    public HandleCustomerScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler){
+        super(guiEventHandler, keyPressHandler);
 
         birthNoField = new TextField();
         birthNoField.setEditable(false);

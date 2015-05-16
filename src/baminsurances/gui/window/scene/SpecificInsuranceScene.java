@@ -33,8 +33,8 @@ public class SpecificInsuranceScene extends GeneralScene {
     private HBox headerContainer, tableButtons, rightHeaderContainer;
     private VBox fieldContainer, rightSideItemContainer;
 
-    public SpecificInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName) {
-        super(guiEventHandler, keyPressHandler, displayName);
+    public SpecificInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler) {
+        super(guiEventHandler, keyPressHandler);
 
         typeField = new TextField();
         typeField.setEditable(false);

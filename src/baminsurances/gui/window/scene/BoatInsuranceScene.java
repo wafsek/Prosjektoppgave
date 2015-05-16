@@ -32,8 +32,8 @@ public class BoatInsuranceScene extends InsuranceScene {
     private boolean ownerBoxIsSelected;
     private Person person;
 
-    public BoatInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
-        super(guiEventHandler, keyPressHandler, displayName);
+    public BoatInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler){
+        super(guiEventHandler, keyPressHandler);
         annualPremiumField.setEditable(true);
         insuranceValueField.setEditable(true);
         paymentFrequencyDropDown.setDisable(false);

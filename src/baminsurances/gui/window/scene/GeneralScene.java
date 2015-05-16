@@ -22,17 +22,15 @@ public abstract class GeneralScene {
     protected KeyPressHandler keyPressHandler;
     protected BorderPane borderPane;
     protected Label informationLabel;
-    protected String displayName;
 
-    public GeneralScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
+    public GeneralScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler){
         this.guiEventHandler = guiEventHandler;
         this.keyPressHandler = keyPressHandler;
-        this.displayName = displayName;
         logOutButton = new Button("Logg ut");
         logOutButton.setOnAction(guiEventHandler);
         backButton = new Button("Tilbake");
         backButton.setOnAction(guiEventHandler);
-        informationLabel = new Label(displayName);
+        informationLabel = new Label();
         footerLeftSide = new HBox(0, informationLabel);
         footerLeftSide.setStyle("-fx-padding: 5;");
         footerLeftSide.setAlignment(Pos.CENTER_LEFT);
@@ -51,5 +49,9 @@ public abstract class GeneralScene {
 
     public Button getBackButton(){
         return backButton;
+    }
+
+    public void setDisplayName (String displayName) {
+        informationLabel.setText(displayName);
     }
 }

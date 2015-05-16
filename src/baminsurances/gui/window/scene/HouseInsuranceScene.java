@@ -29,8 +29,8 @@ public class HouseInsuranceScene extends InsuranceScene {
     private CheckBox holydayHomeBox, rentableBox;
     private int checkBoxCounter = 0;
 
-    public HouseInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
-        super(guiEventHandler, keyPressHandler, displayName);
+    public HouseInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler){
+        super(guiEventHandler, keyPressHandler);
         annualPremiumField.setEditable(true);
         insuranceValueField.setEditable(true);
         conditionArea.setEditable(true);

@@ -33,8 +33,8 @@ public class InsuranceScene extends GeneralScene {
     protected VBox leftSideContentContainer;
 
 
-    public InsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
-        super(guiEventHandler, keyPressHandler, displayName);
+    public InsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler){
+        super(guiEventHandler, keyPressHandler);
         insuranceDropDown = new ComboBox<>(FXCollections.observableArrayList(
                 "Reiseforsikring", "Boligforsikring", "Bilforsikring", "Baatforsikring"));
         paymentFrequencyDropDown = new ComboBox<>();

@@ -44,8 +44,8 @@ public class ClaimAdviceScene extends PersonSearchScene{
     private HBox header, footer, container;
     private VBox chooseImageContainer;
 
-    public ClaimAdviceScene(HBox footer, GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName){
-        super(guiEventHandler, keyPressHandler, displayName);
+    public ClaimAdviceScene(HBox footer, GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler){
+        super(guiEventHandler, keyPressHandler);
         this.footer = footer;
         backButton = new IconButton().iconButton(OperationWindow.STAGE_HEIGHT*1/7,
                 OperationWindow.STAGE_HEIGHT*1/7, IconButton.STATISTIC_BUTTON);

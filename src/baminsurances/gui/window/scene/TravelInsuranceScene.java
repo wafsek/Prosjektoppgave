@@ -18,8 +18,8 @@ public class TravelInsuranceScene extends InsuranceScene{
     private Label regionLabel;
     private ComboBox<TravelRegion> regionDropDown;
 
-    public TravelInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler, String displayName) {
-        super(guiEventHandler, keyPressHandler, displayName);
+    public TravelInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler) {
+        super(guiEventHandler, keyPressHandler);
         annualPremiumField.setEditable(true);
         insuranceValueField.setEditable(true);
         conditionArea.setEditable(true);

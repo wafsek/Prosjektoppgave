@@ -21,8 +21,8 @@ public class SearchScene extends PersonSearchScene {
     private HBox footer, header;
 
     public SearchScene(HBox header, HBox footer, GuiEventHandler handler,
-            KeyPressHandler keyPressHandler, String displayName){
-        super(handler, keyPressHandler, displayName);
+            KeyPressHandler keyPressHandler){
+        super(handler, keyPressHandler);
         this.header = header;
         this.footer = footer;
 
