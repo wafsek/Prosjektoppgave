@@ -39,7 +39,7 @@ public class HouseInsuranceScene extends InsuranceScene {
 
         streetAddressLabel = new Label("Gateadresse:");
         zipCodeLabel = new Label("Postnummer:");
-        constructionYearLabel = new Label("Konstruksjons�r");
+        constructionYearLabel = new Label("Konstruksjonsår");
         homeTypeLabel = new Label("Boligtype:");
         buildingMaterialLabel = new Label("Byggmateriale:");
         standardLabel = new Label("Tilstand:");
@@ -71,7 +71,7 @@ public class HouseInsuranceScene extends InsuranceScene {
                 checkBoxCounter--;
             }
         });
-        rentableBox = new CheckBox("Mulig � leie?");
+        rentableBox = new CheckBox("Mulig å leie?");
         rentableBox.setDisable(true);
 
         leftSideFieldContainer.getChildren().remove(discribtionLabel);

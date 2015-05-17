@@ -64,9 +64,9 @@ public class ClaimAdviceScene extends GeneralScene{
         damageTypeField = new TextField();
         damageTypeLabel = new Label("Skadetype:");
         damageDescribtionField = new TextField();
-        damageDescribtionLabel = new Label("Skadeerklæring:");
+        damageDescribtionLabel = new Label("SkadeerklÃ¦ring:");
         assessmentAmountField = new TextField();
-        assessmentAmountLabel= new Label("Takseringsbeløp:");
+        assessmentAmountLabel= new Label("TakseringsbelÃ¸p:");
         compensationAmountField = new TextField();
         compensationAmountLabel = new Label("Kompansasjon:");
 
@@ -90,7 +90,7 @@ public class ClaimAdviceScene extends GeneralScene{
          */
 
         birthNoField = new TextField();
-        birthNoLabel = new Label("Fødselsnummer:");
+        birthNoLabel = new Label("FÃ¸dselsnummer:");
         firstNameField = new TextField();
         firstNameLabel = new Label("Fornavn:");
         lastnameField = new TextField();

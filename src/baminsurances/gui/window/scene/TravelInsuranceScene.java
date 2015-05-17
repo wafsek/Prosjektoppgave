@@ -27,7 +27,7 @@ public class TravelInsuranceScene extends InsuranceScene{
         registerInsuranceButton.setDisable(false);
         leftSideContentContainer.getChildren().remove(discribtionContainer);
 
-        regionLabel = new Label("Område:");
+        regionLabel = new Label("OmrÃ¥de:");
         regionDropDown = new ComboBox<>();
         regionDropDown.getItems().setAll(TravelRegion.values());
 

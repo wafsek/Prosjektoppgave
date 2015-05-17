@@ -25,7 +25,7 @@ public class FindPersonScene extends PersonSearchScene {
         super(guiEventHandler, keyPressHandler);
         registerPersonButton = new Button("Registrer ny kunde");
         registerPersonButton.setOnAction(guiEventHandler);
-        headerLabel = new Label("Finn kunden du ønsker å behandle");
+        headerLabel = new Label("Finn kunden du Ã¸nsker Ã¥ behandle");
         headerLabel.setStyle("-fx-font: 28px Times;");
         headerContainer = new HBox(0, headerLabel);
         headerContainer.setStyle("-fx-border-color: gray;");

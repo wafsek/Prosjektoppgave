@@ -59,12 +59,12 @@ public class SpecificInsuranceScene extends GeneralScene {
 
         typeLabel = new Label("Type:");
         insuranceNumberLabel = new Label("Nummer:");
-        annualPremiumLabel = new Label("Årlig premie:");
-        insuranceValueLabel = new Label("Forsikringsbeløp:");
+        annualPremiumLabel = new Label("Ã…rlig premie:");
+        insuranceValueLabel = new Label("ForsikringsbelÃ¸p:");
         employeeLabel = new Label("Ansatt:");
         dateOfRegistrationLabel = new Label("Registrert:");
         cancelledLabel = new Label("Kansellert:            ");
-        conditionLabel = new Label("Vilkår:");
+        conditionLabel = new Label("VilkÃ¥r:");
         claimAdviceLabel = new Label("Skademeldinger:");
         leftSideHeaderLabel = new Label("Generell informasjon");
         leftSideHeaderLabel.setStyle("-fx-font: 28px Times;");
@@ -182,9 +182,9 @@ public class SpecificInsuranceScene extends GeneralScene {
         Label registrationNumberLabel = new Label("Registreringsnummer:"),
                 carTypeLabel = new Label("Type:"), carBrandLabel = new Label("Merke:"),
                 carModelLabel = new Label("Modell:"),
-                annualMilageLabel = new Label("Årlig kilometer:"),
+                annualMilageLabel = new Label("Ã…rlig kilometer:"),
                 pricePerKilometerLabel = new Label("Pris per kilometer:"),
-                productionYearLabel = new Label("Produksjonsår:"),
+                productionYearLabel = new Label("ProduksjonsÃ¥r:"),
                 bonusPercentageLabel = new Label("Bonus:");
 
         typeField.setText("Bilforsikring");
@@ -242,7 +242,7 @@ public class SpecificInsuranceScene extends GeneralScene {
                 brandLabel = new Label("Merke:"),
                 modelLabel = new Label("Modell:"),
                 lengthInFeetLabel = new Label("Lende i fot:"),
-                productionYearLabel = new Label("Produksjonsår:"),
+                productionYearLabel = new Label("ProduksjonsÃ¥r:"),
                 motorTypeLabel = new Label("Motortype:"),
                 horsePowerLabel = new Label("Hestekrefter:");
 
@@ -291,7 +291,7 @@ public class SpecificInsuranceScene extends GeneralScene {
 
         Label streetAddressLabel = new Label("Adresse:"),
                 zipCodeLabel = new Label("Postnummer:"),
-                constructionYearLabel = new Label("Konstruksjonsår:"),
+                constructionYearLabel = new Label("KonstruksjonsÃ¥r:"),
                 homeTypeLabel = new Label("Type:"),
                 buildingMaterialLabel = new Label("Byggmateriale:"),
                 standardLabel = new Label("Tilstand:"),

@@ -192,7 +192,7 @@ public class AddScene extends GeneralScene{
                     MessageDialog.WARNING_ICON, MessageDialog.OK_OPTION);
         } else {
             /*(MethodForRegistrationOfACustomers(birthNumberField.getText(), name.getText(), lastNameField.getText(), telephoneNumberField.getText(), zipCodeField.getText(), adressField.getText()))? MessageDialog.showMessageDialog("Godkjent",
-            name.getText() + "\s" + lastNameField.getText() + " er n� registrert.",
+            name.getText() + "\s" + lastNameField.getText() + " er nå registrert.",
             MessageDialog.INFORMATION_ICON): MessageDialog.showMessageDialog(
             "Error", "Noe gikk galt under registreingen.", MessageDialog.ERROR_ICON);*/
         }

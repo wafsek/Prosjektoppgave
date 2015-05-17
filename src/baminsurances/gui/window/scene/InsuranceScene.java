@@ -44,15 +44,15 @@ public class InsuranceScene extends GeneralScene {
         paymentFrequencyDropDown.setDisable(true);
         insuranceDropDown.setOnAction(guiEventHandler);
         insuranceType = new Label("Forsikringstype:");
-        annualPremiumLabel = new Label("Årlig premie:");
-        insuranceValueLabel = new Label("Forsikringsbeløp:");
-        conditionLabel = new Label("Vilkår:");
+        annualPremiumLabel = new Label("Ã…rlig premie:");
+        insuranceValueLabel = new Label("ForsikringsbelÃ¸p:");
+        conditionLabel = new Label("VilkÃ¥r:");
         leftSideHeaderLabel = new Label("Ny forsikring");
         leftSideHeaderLabel.setStyle("-fx-font: 28px Times");
         rightSideHeaderLabel = new Label("Kunde: ");
         paymentFrequencyLabel = new Label("Betalingsintervaller:");
         rightSideHeaderLabel.setStyle("-fx-font: 28px Times");
-        discribtionLabel = new Label("Her må du først velge en forsikringstype.\n" +
+        discribtionLabel = new Label("Her mÃ¥ du fÃ¸rst velge en forsikringstype.\n" +
                 "Avhenger av hva som velges, vil ytterligere\nutfyllingsfelt presenteres.");
 
         annualPremiumField = new TextField();

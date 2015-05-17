@@ -38,7 +38,7 @@ public class DifferentVehicleOwnerWindow {
         person = null;
         returnCode = new SimpleIntegerProperty(-1);
 
-        birthNoLabel = new Label("Fødselsnummer:");
+        birthNoLabel = new Label("FÃ¸dselsnummer:");
         firstNameLabel = new Label("Fornavn:");
         lastNameLabel = new Label("Etternavn:");
         telephoneNoLabel = new Label("Telefonnummer:");
@@ -77,11 +77,11 @@ public class DifferentVehicleOwnerWindow {
                 String zipCode = zipCodeField.getText();
                 String streetAddress = streetAddressField.getText();
                 person = new Person(birthNo, firstName, lastName, telephoneNo, email, zipCode, streetAddress);
-                new MessageDialog().showMessageDialog("Registrert", "Du har nå registrert en person ny eier av bilen.",
+                new MessageDialog().showMessageDialog("Registrert", "Du har nÃ¥ registrert en person ny eier av bilen.",
                     MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
                 stage.close();
             } else {
-                if (new MessageDialog().showMessageDialog("Ugyldig", "Ugyldig informasjon. Ønsker du å gjøre om?",
+                if (new MessageDialog().showMessageDialog("Ugyldig", "Ugyldig informasjon. Ã˜nsker du Ã¥ gjÃ¸re om?",
                         MessageDialog.INFORMATION_ICON, MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION) {
 
                 } else {

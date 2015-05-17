@@ -65,11 +65,11 @@ public class CarInsuranceScene extends InsuranceScene{
         productionYearDropDown = new ComboBox<>(FXCollections.observableArrayList(years()));
 
         registrationNumberLabel = new Label("Registreringsnummer:");
-        productionYearLabel = new Label("Produksjonsår:");
+        productionYearLabel = new Label("ProduksjonsÃ¥r:");
         carTypeLabel = new Label("Biltype:");
         carBrandLabel = new Label("Bilmerke:");
         carModelLabel = new Label("Bilmodell:");
-        annualMilageLabel = new Label("Årlig kilometer");
+        annualMilageLabel = new Label("Ã…rlig kilometer");
         pricePerKilometerLabel = new Label("Pris per kilometer:");
         bonusPercentageLabel = new Label("Bonusprosent i heltall:");
 
@@ -90,8 +90,8 @@ public class CarInsuranceScene extends InsuranceScene{
                     ownerBoxIsSelected = !ownerBoxIsSelected;
                 }
             } else {
-                new MessageDialog().showMessageDialog("Slettet", "Eieren er nå " +
-                        "satt tilbake på kunden som blir behandlet.",
+                new MessageDialog().showMessageDialog("Slettet", "Eieren er nÃ¥ " +
+                        "satt tilbake pÃ¥ kunden som blir behandlet.",
                         MessageDialog.INFORMATION_ICON);
                 person = null;
                 ownerBoxIsSelected = !ownerBoxIsSelected;

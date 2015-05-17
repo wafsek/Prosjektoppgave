@@ -87,9 +87,9 @@ public class UpdateInfoWindow {
         TextArea termsArea;
         CheckBox cancelBox;
 
-        annualPremuimLabel = new Label("Årlig premie:");
-        amountLabel = new Label("Forsikringsbeløp:");
-        termsLabel = new Label("Vilkår:");
+        annualPremuimLabel = new Label("Ã…rlig premie:");
+        amountLabel = new Label("ForsikringsbelÃ¸p:");
+        termsLabel = new Label("VilkÃ¥r:");
 
         annualPremuimField = new TextField(""+insurance.getAnnualPremium());
         amountField = new TextField(""+insurance.getAmount());
@@ -97,7 +97,7 @@ public class UpdateInfoWindow {
         termsArea.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 4);
         termsArea.setStyle("fx-border-color: gray");
 
-        cancelBox = new CheckBox("Gjør innaktiv?");
+        cancelBox = new CheckBox("GjÃ¸r innaktiv?");
 
         updateInfoButton.setOnAction(e -> {
             if (!annualPremuimField.getText().trim().isEmpty()) {

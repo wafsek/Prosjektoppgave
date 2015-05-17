@@ -17,8 +17,8 @@ public class SearchMenuScene {
     private Label informationLabel;
 
     public SearchMenuScene(HBox footer, GuiEventHandler guiEventHandler){
-        customerSearchButton = new Button("Kundesøk");
-        insuranceSearchButton = new Button("Forsikringssøk");
+        customerSearchButton = new Button("KundesÃ¸k");
+        insuranceSearchButton = new Button("ForsikringssÃ¸k");
         claimAdviceSearchButton = new Button();
     }
 }

@@ -58,7 +58,7 @@ public class HandleCustomerScene extends GeneralScene {
         dateOfRegistrationField = new TextField();
         dateOfRegistrationField.setEditable(false);
 
-        birthNoLabel = new Label("Fødselsnummer:");
+        birthNoLabel = new Label("FÃ¸dselsnummer:");
         nameLabel = new Label("Navn:");
         telephoneNoLabel = new Label("Telefonnummer:");
         emailLabel = new Label("Email:");
@@ -123,7 +123,7 @@ public class HandleCustomerScene extends GeneralScene {
                         } else if (i.getValue() instanceof CarInsurance) {
                             return new SimpleStringProperty("Bilforsikring");
                         } else {
-                            return new SimpleStringProperty("Båtforsikring");
+                            return new SimpleStringProperty("BÃ¥tforsikring");
                         }
                     }
                 });

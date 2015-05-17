@@ -44,11 +44,11 @@ public class BoatInsuranceScene extends InsuranceScene {
         person = null;
 
         registrationNoLabel = new Label("Registreringsnummer:");
-        typeLabel = new Label("Båttype:");
-        brandLabel = new Label("Båtmerke:");
+        typeLabel = new Label("BÃ¥ttype:");
+        brandLabel = new Label("BÃ¥tmerke:");
         modelLabel = new Label("Modell:");
         lengthInFeetLabel = new Label("Lengde i fot:");
-        productionYearLabel = new Label("Produsjonsår:");
+        productionYearLabel = new Label("ProdusjonsÃ¥r:");
         motorTypeLabel = new Label("Motortype:");
         horsePowerLabel = new Label("Hestekrefter:");
 
@@ -69,8 +69,8 @@ public class BoatInsuranceScene extends InsuranceScene {
                     ownerBoxIsSelected = !ownerBoxIsSelected;
                 }
             } else {
-                new MessageDialog().showMessageDialog("Slettet", "Eieren er nå " +
-                                "satt tilbake på kunden som blir behandlet.",
+                new MessageDialog().showMessageDialog("Slettet", "Eieren er nÃ¥ " +
+                                "satt tilbake pÃ¥ kunden som blir behandlet.",
                         MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
                 person = null;
                 ownerBoxIsSelected = !ownerBoxIsSelected;
