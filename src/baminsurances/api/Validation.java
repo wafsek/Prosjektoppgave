@@ -189,7 +189,7 @@ public class Validation {
      */
     public static boolean isValidStreetAddress(String streetAddress) {
         return streetAddress.matches(
-                "[A-ZÆØÅ][a-zæøå]+([ -][a-zæøå]*)?[ ][0-9]{1,2}[A-ZÆØÅ]?");
+                "[A-ZÆØÅ][a-zæøå]+([ -][a-zæøå]*)?([ ][0-9]{1,2}[A-ZÆØÅ]?)?");
     }
     
     /**
