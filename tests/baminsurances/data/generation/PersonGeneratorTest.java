@@ -15,6 +15,7 @@ public class PersonGeneratorTest {
     public void testGeneratePerson() {
         for (int i = 0; i < 100000; i++) {
             Person p = generator.generatePerson();
+            System.out.println(p.toString());
         }
     }
     

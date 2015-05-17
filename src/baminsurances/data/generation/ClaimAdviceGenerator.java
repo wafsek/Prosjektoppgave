@@ -70,7 +70,6 @@ public class ClaimAdviceGenerator {
         } else if (type.equals(TravelInsurance.class)) {
             ca = generateTravelClaimAdvice(insuranceDate);
         }
-        System.out.println(ca.toString()); //TODO
         return ca;
     }
     
