@@ -84,7 +84,7 @@ public class ValidationTest {
         assertTrue(Validation.isValidStreetAddress("Ørneveien 12B"));
         assertTrue(Validation.isValidStreetAddress("Heer terrasse 3"));
         assertTrue(Validation.isValidStreetAddress("Heer terrasse 3A"));
-        assertFalse(Validation.isValidStreetAddress("Pilestredet"));
+        assertTrue(Validation.isValidStreetAddress("Pilestredet"));
         assertFalse(Validation.isValidStreetAddress("Ørneveien 12BA"));
     }
     
