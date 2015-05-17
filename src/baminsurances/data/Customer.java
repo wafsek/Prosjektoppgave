@@ -18,7 +18,9 @@ public class Customer extends Person {
     private String billingZipCode;
     private String billingStreetAddress;
     private List<Insurance> insuranceList = new ArrayList<Insurance>();
+    
     public static final int NUM_REQUIRED_FOR_TOTAL_CUSTOMER = 3;
+    public static final int TOTAL_CUSTOMER_DISCOUNT_PERCENTAGE = 10;
     
     /**
      * Creates a new customer with the given values.
@@ -140,6 +142,7 @@ public class Customer extends Person {
      */
     public void addInsurance(Insurance ins) {
         insuranceList.add(ins);
+        ins.updatePayments(TOTAL_CUSTOMER_DISCOUNT_PERCENTAGE);
     }
     
     /**
@@ -240,26 +243,42 @@ public class Customer extends Person {
     }
     
     /**
-     * Returns the sum of all premiums currently being paid by the customer.
+     * Returns the sum of all annual premiums being paid this year.
      * 
-     * @return the sum of all premiums currently being paid by the customer
+     * @return the sum of all annual premiums being paid this year
      */
-    public long getSumOfActivePremiums() {
+    public int getSumOfActivePremiums() {
         return insuranceList.stream()
                             .filter(Insurance::isActive)
-                            .mapToLong(Insurance::getAnnualPremium)
+                            .mapToInt(Insurance::getAnnualPremium)
                             .sum();
     }
     
     /**
-     * Returns the sum of all premiums that have been paid by the customer.
+     * Returns the total amount paid by this customer.
      * 
-     * @return the sum of all premiums that have been paid by the customer
+     * @return the total amount paid by this customer
      */
-    public long getSumOfAllPremiums() {
-        //TODO
-        // 1. gather all insurances
-        // 2. multiply with year count
-        return 0L;
+    public int getTotalPaid() {
+        return insuranceList.stream()
+                            .mapToInt(ins -> ins.getTotalPaid())
+                            .sum();
+    }
+    
+    /**
+     * Updates all active insurances' payments.
+     * <p>
+     * If the customer currently pays for at least
+     * {@value #NUM_REQUIRED_FOR_TOTAL_CUSTOMER} insurances, all payments
+     * receive a {@value #TOTAL_CUSTOMER_DISCOUNT_PERCENTAGE} % discount.
+     * 
+     * @see #NUM_REQUIRED_FOR_TOTAL_CUSTOMER
+     * @see #TOTAL_CUSTOMER_DISCOUNT_PERCENTAGE
+     */
+    public void updatePayments() {
+        insuranceList.stream()
+                     .filter(Insurance::isActive)
+                     .forEach(ins -> ins.updatePayments(
+                             TOTAL_CUSTOMER_DISCOUNT_PERCENTAGE));
     }
 }

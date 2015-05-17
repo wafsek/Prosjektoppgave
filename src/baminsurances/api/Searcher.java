@@ -1,15 +1,24 @@
 package baminsurances.api;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import baminsurances.data.BoatInsurance;
+import baminsurances.data.CarInsurance;
 import baminsurances.data.ClaimAdvice;
 import baminsurances.data.Customer;
 import baminsurances.data.DataBank;
 import baminsurances.data.Employee;
+import baminsurances.data.HolidayHomeInsurance;
+import baminsurances.data.HomeInsurance;
 import baminsurances.data.Insurance;
+import baminsurances.data.TravelInsurance;
 
 /**
  * The class that handles all forms of data search. Provides methods for
@@ -283,5 +292,145 @@ public class Searcher {
     public static final Predicate<ClaimAdvice> damageDescriptionContains(String s) {
         return ca -> ca.getDamageDescription().toLowerCase().contains(
                 s.trim().toLowerCase());
+    }
+    
+    /***********************************************
+     *                                             * 
+     *         Methods used for statistics         *
+     *                                             *
+     ***********************************************/
+    
+    /**
+     * Returns a sorted map where the keys are different ages, and the values
+     * are the number of customers per age.
+     * 
+     * @return a sorted map where the keys are different ages, and the values
+     * are the number of customers per age
+     */
+    public SortedMap<Integer, Integer> numCustomersPerAge() {
+        SortedMap<Integer, Integer> result = new TreeMap<>();
+        
+        for (Customer cus : dataBank.getCustomerList()) {
+            int age = cus.getAge();
+            Integer currentNum = result.get(age);
+            if (currentNum == null) {
+                currentNum = 0;
+            }
+            result.put(age, currentNum + 1);
+        }
+        
+        /*
+         * Initializing all "empty" keys between the min and max value to zero,
+         * so that there are no empty intervals.
+         */
+        for (int age = result.firstKey() + 1; age < result.lastKey(); age++) {
+            if (result.get(age) == null) {
+                result.put(age, 0);
+            }
+        }
+        return result;
+    }
+    
+    /**
+     * Returns a sorted map where the keys are different ages, and the values
+     * are the number of insurances per age.
+     * 
+     * @return a sorted map where the keys are different ages, and the values
+     * are the number of insurances per age
+     */
+    public SortedMap<Integer, Integer> numInsurancesPerAge() {
+        SortedMap<Integer, Integer> result = new TreeMap<>();
+        
+        for (Customer cus : dataBank.getCustomerList()) {
+            int age = cus.getAge();
+            Integer currentNum = result.get(age);
+            if (currentNum == null) {
+                currentNum = 0;
+            }
+            result.put(age, currentNum + cus.getInsurances().size());
+        }
+        
+        /*
+         * Initializing all "empty" keys between the min and max value to zero,
+         * so that there are no empty intervals.
+         */
+        for (int age = result.firstKey() + 1; age < result.lastKey(); age++) {
+            if (result.get(age) == null) {
+                result.put(age, 0);
+            }
+        }
+        return result;
+    }
+    
+    /**
+     * Returns a map where the keys are different ages, and the values are the
+     * number of insurances per age.
+     * 
+     * @return a map where the keys are different ages, and the values are the
+     * number of insurances per age
+     */
+    public SortedMap<String, Integer> numInsurancesPerZipCode() {
+        SortedMap<String, Integer> result = new TreeMap<>();
+        for (Customer cus : dataBank.getCustomerList()) {
+            String zipCode = cus.getZipCode();
+            Integer currentNum = result.get(zipCode);
+            if (currentNum == null) {
+                currentNum = 0;
+            }
+            result.put(zipCode, currentNum + cus.getInsurances().size());
+        }
+        return result;
+    }
+    
+    /**
+     * Returns a map where the keys are genders, and the values are the number
+     * of insurances per gender. 'M' is male, and 'F' is female.
+     * 
+     * @return a map where the keys are genders, and the values are the number
+     * of insurances per gender
+     */
+    public Map<Character, Integer> numInsurancesPerGender() {
+        Map<Character, Integer> result = new HashMap<>();
+        
+        /* Initializing all keys with a value of 0, so that they are included
+         * even if no customer of that gender exists.
+         */
+        result.put('M', 0);
+        result.put('F', 0);
+        
+        for (Customer cus : dataBank.getCustomerList()) {
+            char gender = cus.getGender();
+            result.put(gender,
+                    result.get(gender) +cus.getInsurances().size());
+        }
+        return result;
+    }
+    
+    /**
+     * Returns a map where the keys are {@link Insurance} subclasses, and the
+     * values are the number of insurances of that type.
+     * 
+     * @return a map where the keys are {@link Insurance} subclasses, and the
+     * values are the number of insurances of that type
+     */
+    public Map<Class<? extends Insurance>, Integer> numInsurancesPerType() {
+        Map<Class<? extends Insurance>, Integer> result = new HashMap<>();
+        
+        /* Initializing all keys with a value of 0, so that they are included
+         * even if no insurance exists of that type.
+         */
+        result.put(CarInsurance.class, 0);
+        result.put(BoatInsurance.class, 0);
+        result.put(HomeInsurance.class, 0);
+        result.put(HolidayHomeInsurance.class, 0);
+        result.put(TravelInsurance.class, 0);
+        
+        for (Customer cus : dataBank.getCustomerList()) {
+            for (Insurance ins : cus.getInsurances()) {
+                Class<? extends Insurance> type = ins.getClass();
+                result.put(type, result.get(type) + 1);
+            }
+        }
+        return result;
     }
 }
