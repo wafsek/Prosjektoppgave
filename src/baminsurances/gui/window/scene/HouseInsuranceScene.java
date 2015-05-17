@@ -5,7 +5,6 @@ import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
 import javafx.collections.FXCollections;
-import javafx.embed.swt.FXCanvas;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -40,7 +39,7 @@ public class HouseInsuranceScene extends InsuranceScene {
 
         streetAddressLabel = new Label("Gateadresse:");
         zipCodeLabel = new Label("Postnummer:");
-        constructionYearLabel = new Label("Konstruksjonsår");
+        constructionYearLabel = new Label("Konstruksjonsï¿½r");
         homeTypeLabel = new Label("Boligtype:");
         buildingMaterialLabel = new Label("Byggmateriale:");
         standardLabel = new Label("Tilstand:");
@@ -72,7 +71,7 @@ public class HouseInsuranceScene extends InsuranceScene {
                 checkBoxCounter--;
             }
         });
-        rentableBox = new CheckBox("Mulig å leie?");
+        rentableBox = new CheckBox("Mulig ï¿½ leie?");
         rentableBox.setDisable(true);
 
         leftSideFieldContainer.getChildren().remove(discribtionLabel);
