@@ -5,14 +5,13 @@ import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
 import javafx.collections.FXCollections;
-import javafx.geometry.Pos;
+import javafx.embed.swt.FXCanvas;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 
 /**
  * Created by Adrian PC on 13/05/2015.
@@ -22,10 +21,11 @@ public class HouseInsuranceScene extends InsuranceScene {
     private Label streetAddressLabel, zipCodeLabel, constructionYearLabel,
             homeTypeLabel, buildingMaterialLabel, standardLabel, squareMetersLabel,
             homeAmountLabel, contentsAmountLabel;
-    private TextField streetAddressField, zipCodeField, constructionYearField,
+    private TextField streetAddressField, zipCodeField,
             buildingMaterialField, standardField, squareMetersField, homeAmountField,
             contentsAmountField;
     private ComboBox<HomeType> homeTypeDropDown;
+    private ComboBox<String> constructionYearDropDown;
     private CheckBox holydayHomeBox, rentableBox;
     private int checkBoxCounter = 0;
 
@@ -50,7 +50,6 @@ public class HouseInsuranceScene extends InsuranceScene {
 
         streetAddressField = new TextField();
         zipCodeField = new TextField();
-        constructionYearField = new TextField();
         buildingMaterialField = new TextField();
         standardField = new TextField();
         squareMetersField = new TextField();
@@ -59,6 +58,8 @@ public class HouseInsuranceScene extends InsuranceScene {
 
         homeTypeDropDown = new ComboBox<>();
         homeTypeDropDown.getItems().setAll(HomeType.values());
+
+        constructionYearDropDown = new ComboBox<>(FXCollections.observableArrayList(years()));
 
         holydayHomeBox = new CheckBox("Feriebolig?");
         holydayHomeBox.setOnAction(e -> {
@@ -81,7 +82,7 @@ public class HouseInsuranceScene extends InsuranceScene {
                 standardLabel, squareMetersLabel, homeAmountLabel,
                 contentsAmountLabel, holydayHomeBox);
         rightSideFieldContainer.addColumn(1, streetAddressField, zipCodeField,
-                constructionYearField, homeTypeDropDown, buildingMaterialField,
+                constructionYearDropDown, homeTypeDropDown, buildingMaterialField,
                 standardField, squareMetersField, homeAmountField, contentsAmountField,
                 rentableBox);
 
@@ -101,7 +102,7 @@ public class HouseInsuranceScene extends InsuranceScene {
     }
 
     public String getConstructionYearFieldText() {
-        return constructionYearField.getText();
+        return constructionYearDropDown.getValue();
     }
 
     public String getBuildingMaterialFieldText() {

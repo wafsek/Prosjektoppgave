@@ -46,7 +46,7 @@ public class GeneratingStage {
         employeeBox.setValue("0");
         insuranceBox = new ComboBox<>(FXCollections.observableArrayList("0", "1", "10", "100", "1000", "10000", "100000"));
         insuranceBox.setValue("0");
-        claimAdviceBox = new ComboBox<>(FXCollections.observableArrayList("0", "1", "10", "100", "1000"));
+        claimAdviceBox = new ComboBox<>(FXCollections.observableArrayList("0", "1", "10", "100", "1000", "100000"));
         claimAdviceBox.setValue("0");
 
         generateButton = new Button("Generer");
@@ -55,7 +55,7 @@ public class GeneratingStage {
                     Integer.parseInt(customerBox.getValue()),
                     Integer.parseInt(employeeBox.getValue()),
                     Integer.parseInt(insuranceBox.getValue()),
-                    0);
+                    Integer.parseInt(claimAdviceBox.getValue()));
             System.out.println(customerBox.selectionModelProperty());
         });
 

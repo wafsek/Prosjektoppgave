@@ -29,7 +29,7 @@ import java.time.LocalDate;
 /**
  * Created by Adrian on 11/05/2015.
  */
-public class ClaimAdviceScene extends PersonSearchScene{
+public class ClaimAdviceScene extends GeneralScene{
     private TextField damageTypeField, damageDescribtionField, assessmentAmountField,
             compensationAmountField, birthNoField, firstNameField, lastnameField,
             telePhoneNoField, emailField, zipCodeField, streetAdressField;
@@ -54,7 +54,6 @@ public class ClaimAdviceScene extends PersonSearchScene{
         header.setAlignment(Pos.CENTER);
         header.setStyle("-fx-border-color: gray;" +
                 "-fx-padding: 5;");
-        borderPane = new BorderPane(itemContainer, header, customerTable, footer, null);
         scene = new Scene(borderPane);
     }
 

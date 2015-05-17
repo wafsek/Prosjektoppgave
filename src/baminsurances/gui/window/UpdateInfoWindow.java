@@ -1,31 +1,37 @@
 package baminsurances.gui.window;
 
+import baminsurances.api.Config;
 import baminsurances.api.Validation;
-import baminsurances.data.Customer;
+import baminsurances.data.*;
+import baminsurances.gui.window.scene.InsuranceScene;
+import javafx.collections.FXCollections;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+
+import java.time.LocalDate;
 
 /**
  * Created by Adrian on 15/05/2015.
  */
 public class UpdateInfoWindow {
 
-    private Stage stage;
-    private Scene scene;
+    private static Stage stage = new Stage();
+    private static Scene scene;
+    private static Button updateInfoButton = new Button("Oppdater informasjon");
 
-    private Label telephoneNoLabel, emailLabel, addressLabel, paymentAddressLabel;
-    private TextField telephoneNoField, emailField, addressField, billingAddressField;
-
-    private Button updateInfoButton;
-
-    private GridPane gridPane;
+    private static GridPane gridPane;
 
     public UpdateInfoWindow() {
-        stage = new Stage();
+    }
+
+    public static Customer updateCustomerInfo(Customer customer) {
+
+        Label telephoneNoLabel, emailLabel, addressLabel, paymentAddressLabel;
+        TextField telephoneNoField, emailField, addressField, billingAddressField;
+
         telephoneNoLabel = new Label("Nytt telefonnummer:");
         emailLabel = new Label("Ny email:");
         addressLabel = new Label("Ny adresse:");
@@ -36,17 +42,15 @@ public class UpdateInfoWindow {
         addressField = new TextField();
         billingAddressField = new TextField();
 
-        updateInfoButton = new Button("Oppdater informasjon");
-
         gridPane = new GridPane();
         gridPane.addColumn(0, telephoneNoLabel, emailLabel, addressLabel, paymentAddressLabel);
         gridPane.addColumn(1, telephoneNoField, emailField, addressField, billingAddressField, updateInfoButton);
+        gridPane.setAlignment(Pos.CENTER);
+        gridPane.setHgap(10);
+        gridPane.setVgap(20);
+        gridPane.setStyle("fx-border-color: gray");
 
-        scene = new Scene(gridPane);
-        stage.setScene(scene);
-    }
 
-    public Customer updateCustomerInfo(Customer customer) {
         telephoneNoField.setText(customer.getTelephoneNo());
         emailField.setText(customer.getEmail());
         addressField.setText(customer.getStreetAddress());
@@ -70,7 +74,64 @@ public class UpdateInfoWindow {
             }
             stage.close();
         });
+
+        scene = new Scene(gridPane);
+        stage.setScene(scene);
         stage.showAndWait();
         return customer;
+    }
+
+    public static Insurance updateInsurance(Insurance insurance) {
+        Label annualPremuimLabel, amountLabel, termsLabel;
+        TextField annualPremuimField, amountField;
+        TextArea termsArea;
+        CheckBox cancelBox;
+
+        annualPremuimLabel = new Label("Årlig premie:");
+        amountLabel = new Label("Forsikringsbeløp:");
+        termsLabel = new Label("Vilkår:");
+
+        annualPremuimField = new TextField(""+insurance.getAnnualPremium());
+        amountField = new TextField(""+insurance.getAmount());
+        termsArea = new TextArea(insurance.getTerms());
+        termsArea.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 4);
+        termsArea.setStyle("fx-border-color: gray");
+
+        cancelBox = new CheckBox("Gjør innaktiv?");
+
+        updateInfoButton.setOnAction(e -> {
+            if (!annualPremuimField.getText().trim().isEmpty()) {
+                insurance.setAnnualPremium(Integer.parseInt(annualPremuimField.getText()));
+            }
+            if (!amountField.getText().trim().isEmpty()) {
+                insurance.setAmount(Integer.parseInt(amountField.getText()));
+            }
+            if (!termsArea.getText().trim().isEmpty()) {
+                insurance.setTerms(termsArea.getText());
+            }
+            if (cancelBox.isSelected()) {
+                insurance.setCancellationDate(LocalDate.now());
+            }
+
+            stage.close();
+        });
+
+        gridPane = new GridPane();
+        gridPane.addColumn(0, annualPremuimLabel, amountLabel, termsLabel);
+        gridPane.addColumn(1, annualPremuimField, amountField);
+        gridPane.add(termsArea, 0, 4, 2, 2);
+        if (insurance.getCancellationDate() == null) {
+            gridPane.add(cancelBox, 0, 6, 1, 1);
+        }
+        gridPane.add(updateInfoButton, 1, 6, 1, 1);
+        gridPane.setAlignment(Pos.CENTER);
+        gridPane.setHgap(10);
+        gridPane.setVgap(20);
+        gridPane.setStyle("fx-border-color: gray");
+
+        scene = new Scene(gridPane);
+        stage.setScene(scene);
+        stage.showAndWait();
+        return insurance;
     }
 }

@@ -13,6 +13,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.time.LocalDate;
+
 /**
  * Created by Adrian on 13/05/2015.
  */
@@ -146,5 +148,14 @@ public class InsuranceScene extends GeneralScene {
 
     public PaymentFrequency getPaymentFrequency() {
         return paymentFrequencyDropDown.getValue();
+    }
+
+    public static String[] years() {
+        int i = LocalDate.now().getYear();
+        String[] returnValue = new String[LocalDate.now().getYear() - 1924];
+        for (int j = 0; j < returnValue.length; j++) {
+            returnValue[j] = ""+i--;
+        }
+        return returnValue;
     }
 }
