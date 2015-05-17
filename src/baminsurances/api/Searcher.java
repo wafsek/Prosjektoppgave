@@ -389,46 +389,58 @@ public class Searcher {
      * @return a map where the keys are genders, and the values are the number
      * of insurances per gender
      */
-    public Map<Character, Integer> numInsurancesPerGender() {
-        Map<Character, Integer> result = new HashMap<>();
+    public Map<String, Integer> numInsurancesPerGender() {
+        Map<String, Integer> result = new HashMap<>();
+        
+        Map<Character, String> displayNames = new HashMap<>();
+        displayNames.put('M', "Menn");
+        displayNames.put('F', "Kvinner");
         
         /* Initializing all keys with a value of 0, so that they are included
          * even if no customer of that gender exists.
          */
-        result.put('M', 0);
-        result.put('F', 0);
+        result.put("Menn", 0);
+        result.put("Kvinner", 0);
         
         for (Customer cus : dataBank.getCustomerList()) {
             char gender = cus.getGender();
-            result.put(gender,
-                    result.get(gender) +cus.getInsurances().size());
+            result.put(displayNames.get(gender),
+                    result.get(gender) + cus.getInsurances().size());
         }
         return result;
     }
     
     /**
-     * Returns a map where the keys are {@link Insurance} subclasses, and the
-     * values are the number of insurances of that type.
+     * Returns a map where the keys are types of insurances, and the values are
+     * the number of insurances of that type.
      * 
-     * @return a map where the keys are {@link Insurance} subclasses, and the
-     * values are the number of insurances of that type
+     * @return a map where the keys are types of insurances, and the values are
+     * the number of insurances of that type
      */
-    public Map<Class<? extends Insurance>, Integer> numInsurancesPerType() {
-        Map<Class<? extends Insurance>, Integer> result = new HashMap<>();
+    public Map<String, Integer> numInsurancesPerType() {
+        Map<String, Integer> result = new HashMap<>();
+        
+        // Map used to find the right name based on class.
+        Map<Class<? extends Insurance>, String> displayNames = new HashMap<>();
+        displayNames.put(CarInsurance.class, "Bilforsikring");
+        displayNames.put(BoatInsurance.class, "Båtforsikring");
+        displayNames.put(HomeInsurance.class, "Boligforsikring");
+        displayNames.put(HolidayHomeInsurance.class, "Fritidsboligforsikring");
+        displayNames.put(TravelInsurance.class, "Reiseforsikring");
         
         /* Initializing all keys with a value of 0, so that they are included
          * even if no insurance exists of that type.
          */
-        result.put(CarInsurance.class, 0);
-        result.put(BoatInsurance.class, 0);
-        result.put(HomeInsurance.class, 0);
-        result.put(HolidayHomeInsurance.class, 0);
-        result.put(TravelInsurance.class, 0);
+        result.put("Bilforsikring", 0);
+        result.put("Båtforsikring", 0);
+        result.put("Boligforsikring", 0);
+        result.put("Ferieboligforsikring", 0);
+        result.put("Reiseforsikring", 0);
         
         for (Customer cus : dataBank.getCustomerList()) {
             for (Insurance ins : cus.getInsurances()) {
                 Class<? extends Insurance> type = ins.getClass();
-                result.put(type, result.get(type) + 1);
+                result.put(displayNames.get(type), result.get(type) + 1);
             }
         }
         return result;
