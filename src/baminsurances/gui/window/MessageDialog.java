@@ -47,16 +47,16 @@ public class MessageDialog {
     private static IntegerProperty returnCode;
 
     public MessageDialog() {
-        path = "../img/iconImg/";
-        warning = new Image(this.getClass().getResourceAsStream(path + "warning_icon.png"));
+        path = "../img/";
+        warning = new Image(this.getClass().getResourceAsStream(path + "add_user.png"));
         warningImageView = new ImageView(warning);
-        information = new Image(this.getClass().getResourceAsStream(path + "information_icon.png"));
+        information = new Image(this.getClass().getResourceAsStream(path + "add_user.png"));
         informationImageView = new ImageView(information);
-        error = new Image(this.getClass().getResourceAsStream(path + "error_icon.png"));
+        error = new Image(this.getClass().getResourceAsStream(path + "add_user.png"));
         errorImageView = new ImageView(error);
-        question = new Image(this.getClass().getResourceAsStream(path + "question_icon.png"));
+        question = new Image(this.getClass().getResourceAsStream(path + "add_user.png"));
         questionImageView = new ImageView(question);
-        logo = new Image(this.getClass().getResourceAsStream(path + "../temp_logo.png"));
+        logo = new Image(this.getClass().getResourceAsStream(path + "temp_logo.png"));
 
         returnCode = new SimpleIntegerProperty(-1);
 

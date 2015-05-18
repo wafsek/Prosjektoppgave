@@ -16,7 +16,12 @@ import baminsurances.security.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
+import javafx.stage.FileChooser;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.logging.Level;
@@ -65,6 +70,8 @@ public class Controller {
     private SearchNavigationScene searchNavigationScene;
     private SettingsScene settingScene;
 
+    private FileChooser fileChooser;
+
     private int carInsuranceCheckCounter = 0;
 
     private CustomLogger logger = CustomLogger.getInstance();
@@ -79,6 +86,10 @@ public class Controller {
 
 
     public void start(){
+
+        fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("IMAGE files (*.png)", "*.png"),
+                new FileChooser.ExtensionFilter("IMAGE files (*.jpg)", "*.jpg"));
         guiEventHandler = new GuiEventHandler(this);
         keyPressHandler = new KeyPressHandler(operationWindow,this);
 
@@ -98,6 +109,7 @@ public class Controller {
         carInsuranceScene = new CarInsuranceScene(guiEventHandler, keyPressHandler);
         travelInsuranceScene = new TravelInsuranceScene(guiEventHandler, keyPressHandler);
         specificInsuranceScene = new SpecificInsuranceScene(guiEventHandler, keyPressHandler);
+        claimAdviceScene = new ClaimAdviceScene(guiEventHandler, keyPressHandler);
         searchNavigationScene = new SearchNavigationScene(guiEventHandler, keyPressHandler);
         settingScene = new SettingsScene(guiEventHandler);
 
@@ -200,6 +212,11 @@ public class Controller {
         primaryStage.initiate(carInsuranceScene.getScene());
     }
 
+    public void launchClaimAdviceScene() {
+        claimAdviceScene.setDisplayName(getDisplayName());
+        primaryStage.initiate(claimAdviceScene.getScene());
+    }
+
     private void launchSpecificInsuranceScene() {
         Insurance insurance = handleCustomerScene.getInsurance();
         if(insurance instanceof HomeInsurance) {
@@ -251,7 +268,8 @@ public class Controller {
                 control == handleCustomerScene.getLogOutButton() || control == addScene.getLogOutButton() ||
                 control == insuranceScene.getLogOutButton() || control == houseInsuranceScene.getLogOutButton() ||
                 control == boatInsuranceScene.getLogOutButton() || control == carInsuranceScene.getLogOutButton() ||
-                control == specificInsuranceScene.getLogOutButton() || control == searchNavigationScene.getLogOutButton()){
+                control == specificInsuranceScene.getLogOutButton() || control == claimAdviceScene.getLogOutButton() ||
+                control == specificInsuranceScene.getLogOutButton() || control == searchNavigationScene.getLogOutButton()) {
             if(new MessageDialog().showMessageDialog("Sikker?", "Logge ut?", MessageDialog.QUESTION_ICON,
                     MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION){
                 menuStage.close();
@@ -325,14 +343,22 @@ public class Controller {
                 control == carInsuranceScene.getBackButton()) {
             launchInsuranceScene();
         } else if (control == carInsuranceScene.getRegisterInsuranceButton()) {
-                    this.registerCarInsurance();
+
+        } else if (control == specificInsuranceScene.getUpdateInfoButton()) {
+            CurrentStatus.setCurrentInsurance(new UpdateInfoWindow().updateInsurance
+                    (CurrentStatus.getCurrentInsurance()));
+            launchSpecificInsuranceScene();
+        } else if (control == specificInsuranceScene.getNewClaimAdviceButton()) {
+            launchClaimAdviceScene();
+        } else if (control == claimAdviceScene.getBackButton()) {
+                    this.launchSpecificInsuranceScene();
         } else if (control == boatInsuranceScene.getRegisterInsuranceButton()) {
                     this.registerBoatInsurance();
         }else if (control == houseInsuranceScene.getRegisterInsuranceButton()) {
                     this.registerHomeInsurance();
-        }else if (control == houseInsuranceScene.getRegisterInsuranceButton()
+        }else if (control == carInsuranceScene.getRegisterInsuranceButton()
                 && houseInsuranceScene.getRentableBoxIsSelected()) {
-                    this.registerHomeInsurance();
+                    this.registerCarInsurance();
         }else if (control == travelInsuranceScene.getRegisterInsuranceButton()) {
                     this.registerTravelInsurance();
         }else if (control == specificInsuranceScene.getUpdateInfoButton()) {
@@ -344,12 +370,52 @@ public class Controller {
             menuStage.initiate(searchNavigationScene.getScene());
         } else if (control == navigationScene.getSettingsButton()) {
             launchSettingsWindow();
+        } else if (control == claimAdviceScene.getRegisterClaimAdviceButton()) {
+            ClaimAdvice ca = this.registerClaimAdvice();
+            if(ca != null) {
+                this.addImagesToClaimAdvice(ca);
+            }
+            launchSpecificInsuranceScene();
         }
     }
 
    /* private String findPerson(){
         return manager.getCustomerInsurancesWithFirstName(searchScene.);
     }*/
+
+    private void addImagesToClaimAdvice(ClaimAdvice claimAdvice) {
+        if(new MessageDialog().showMessageDialog("Bilder", "Øsnker " +
+                        "du å laste opp bilder?", MessageDialog.QUESTION_ICON,
+                MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION) {
+            BufferedImage bufferedImage = null;
+            try{
+                System.out.println("Kom hit");
+                bufferedImage = ImageIO.read(fileChooser.showOpenDialog(primaryStage.getStage()));
+            }catch (IOException ioe) {
+
+            }
+            if(bufferedImage != null) {
+                claimAdvice.addPictureOfDamage(bufferedImage);
+                this.addImagesToClaimAdvice(claimAdvice);
+            }
+        }
+    }
+
+    private ClaimAdvice registerClaimAdvice() {
+        LocalDate localDate = claimAdviceScene.getDateOfDamagePicker();
+        String assessment = claimAdviceScene.getAssessmentFieldText();
+        String compensation = claimAdviceScene.getCompensationFieldText();
+        String damageDescribtion = claimAdviceScene.getDamageDescribtionAreaText();
+        String damageType = claimAdviceScene.getDamageTypeFieldText();
+
+        if(localDate != null && Validation.consistsOnlyOfNumbers(assessment) &&
+                Validation.consistsOnlyOfNumbers(compensation) &&
+                !damageDescribtion.trim().isEmpty() && !damageType.trim().isEmpty()) {
+            return new ClaimAdvice(localDate, damageType, damageDescribtion, Long.parseLong(assessment), Long.parseLong(compensation));
+        }
+        new MessageDialog().showMessageDialog("Feil informasjon", "Feltene er feil", MessageDialog.ERROR_ICON, MessageDialog.OK_OPTION);
+        return null;
+    }
 
     public ObservableList<Customer> findPeople(){
         logger.log("findPeople method called", Level.FINER);
@@ -527,19 +593,19 @@ public class Controller {
         } else {
             manager.registerBoatInsurance(new BoatInsurance(
                             Authenticator.getInstance().getCurrentEmployee(),
-                    Integer.parseInt(boatInsuranceScene.getAnnualPremiumFieldText()),
-                    Integer.parseInt(boatInsuranceScene.getInsuranceValueFieldText()),
-                    PaymentFrequency.ANNUALLY,
-                    boatInsuranceScene.getConditionAreaText(),
-                    boatInsuranceScene.getPerson(),
-                    boatInsuranceScene.getRegistrationNoFieldText(),
-                    boatInsuranceScene.getTypeDropDown(),
-                    boatInsuranceScene.getBrandFieldText(),
-                    boatInsuranceScene.getModelFieldText(),
-                    Integer.parseInt(boatInsuranceScene.getLengthInFeetFieldText()),
-                    Integer.parseInt(boatInsuranceScene.getProductionYearFieldText()),
-                    boatInsuranceScene.getMotorTypeDropdownSelectedValue(),
-                    Integer.parseInt(boatInsuranceScene.getHorsePowerFieldText())),
+                            Integer.parseInt(boatInsuranceScene.getAnnualPremiumFieldText()),
+                            Integer.parseInt(boatInsuranceScene.getInsuranceValueFieldText()),
+                            PaymentFrequency.ANNUALLY,
+                            boatInsuranceScene.getConditionAreaText(),
+                            boatInsuranceScene.getPerson(),
+                            boatInsuranceScene.getRegistrationNoFieldText(),
+                            boatInsuranceScene.getTypeDropDown(),
+                            boatInsuranceScene.getBrandFieldText(),
+                            boatInsuranceScene.getModelFieldText(),
+                            Integer.parseInt(boatInsuranceScene.getLengthInFeetFieldText()),
+                            Integer.parseInt(boatInsuranceScene.getProductionYearFieldText()),
+                            boatInsuranceScene.getMotorTypeDropdownSelectedValue(),
+                            Integer.parseInt(boatInsuranceScene.getHorsePowerFieldText())),
                     CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
             return "Boat Insurance Registered";
