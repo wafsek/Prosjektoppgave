@@ -4,11 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/AddScene.java" line="294" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/api/CustomerServiceManager.java" afterPath="$PROJECT_DIR$/src/baminsurances/api/CustomerServiceManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/DataControl.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/DataControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/security/User.java" afterPath="$PROJECT_DIR$/src/baminsurances/security/User.java" />
+    <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="Fininshing validation">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -41,12 +37,14 @@
             <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.712313">
-                  <caret line="550" column="50" selection-start-line="550" selection-start-column="50" selection-end-line="550" selection-end-column="50" />
+                  <caret line="565" column="50" selection-start-line="565" selection-start-column="50" selection-end-line="565" selection-end-column="50" />
                   <folding>
-                    <element signature="e#3935#3936#0" expanded="true" />
-                    <element signature="e#3993#3994#0" expanded="true" />
-                    <element signature="e#8118#8119#0" expanded="true" />
-                    <element signature="e#8189#8190#0" expanded="true" />
+                    <element signature="e#4316#4317#0" expanded="true" />
+                    <element signature="e#4374#4375#0" expanded="true" />
+                    <element signature="e#4881#4882#0" expanded="true" />
+                    <element signature="e#4944#4945#0" expanded="true" />
+                    <element signature="e#8605#8606#0" expanded="true" />
+                    <element signature="e#8676#8677#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -227,8 +225,8 @@
         <option value="$PROJECT_DIR$/src/baminsurances/controller/StatisticController.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/api/CustomerServiceManager.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/controller/DataControl.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/security/User.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
       </list>
     </option>
   </component>
@@ -558,6 +556,126 @@
       <recent name="C:\workspace\git-projects\prosjektoppgave-programutvikling-2015\src\baminsurances\gui\window" />
       <recent name="C:\GitProjects\prosjektoppgave-programutvikling-2015\src\baminsurances\gui\img" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/api/Searcher.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/controller/Controller.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/data/Customer.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/temp_logo.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/CarInsuranceScene.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/HouseInsuranceScene.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/InsuranceScene.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/NavigationScene.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/SearchNavigationScene.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/SettingsScene.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/util/NorwegianComparator.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunManager" selected="Application.Gui">
     <configuration default="false" name="Gui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -1051,7 +1169,13 @@
       <option name="project" value="LOCAL" />
       <updated>1431940301432</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Fininshing validation">
+      <created>1431950788776</created>
+      <option name="number" value="00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1431950788776</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1065,7 +1189,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826748" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32815966" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20427808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1096,7 +1220,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="The TravelInsuranceScene now displays possible people. Still a few bugs we need to look at. &#10;- It show all customers when all textfields are empty.&#10;- Got a nullpointer in Person, line 56.&#10;- Not sure how the TableView will react under stress. Need to test that." />
     <MESSAGE value="Added comments to AddScene" />
     <MESSAGE value="A basic scene for claim advice is added." />
     <MESSAGE value="I have started to work on the new Gui. Please do not touch anything yet, and let Controller be for a little while. I will just do the most basic stuff there. You can do the more advanced stuff later, Sarai." />
@@ -1121,7 +1244,8 @@
     <MESSAGE value="Changed how the table reads it's values based on Martins finds" />
     <MESSAGE value="Minor changes. Some textfields displayed wrong info, which is now fixed" />
     <MESSAGE value="Another minor display bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Another minor display bug fix" />
+    <MESSAGE value="Fininshing validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fininshing validation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1412,8 +1536,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="155" column="54" selection-start-line="155" selection-start-column="54" selection-end-line="155" selection-end-column="54" />
           <folding>
-            <element signature="e#5523#5524#0" expanded="true" />
-            <element signature="e#5563#5564#0" expanded="true" />
+            <element signature="e#5523#5524#0" expanded="false" />
+            <element signature="e#5563#5564#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1519,12 +1643,14 @@
     <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.712313">
-          <caret line="550" column="50" selection-start-line="550" selection-start-column="50" selection-end-line="550" selection-end-column="50" />
+          <caret line="565" column="50" selection-start-line="565" selection-start-column="50" selection-end-line="565" selection-end-column="50" />
           <folding>
-            <element signature="e#3935#3936#0" expanded="true" />
-            <element signature="e#3993#3994#0" expanded="true" />
-            <element signature="e#8118#8119#0" expanded="true" />
-            <element signature="e#8189#8190#0" expanded="true" />
+            <element signature="e#4316#4317#0" expanded="true" />
+            <element signature="e#4374#4375#0" expanded="true" />
+            <element signature="e#4881#4882#0" expanded="true" />
+            <element signature="e#4944#4945#0" expanded="true" />
+            <element signature="e#8605#8606#0" expanded="true" />
+            <element signature="e#8676#8677#0" expanded="true" />
           </folding>
         </state>
       </provider>
