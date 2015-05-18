@@ -15,16 +15,13 @@ import java.util.logging.Level;
  */
 public class Serializer {
     CustomLogger logger = CustomLogger.getInstance();
-    public void serialize(DataBank dataBank){
-
-        try{
-            FileOutputStream fileOut = new FileOutputStream(
-                    Config.getDataBankFilePath());
-            ObjectOutputStream oos = new ObjectOutputStream(fileOut);
-            oos.writeObject(dataBank);
-            oos.close();
+    
+    public void serialize(DataBank dataBank) {
+        try (ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream("data/data_bank.ser"))) {
+            out.writeObject(dataBank);
             logger.log("Data Saved", Level.INFO);
-        }catch(Exception ex){
+        } catch(Exception ex) {
             ex.printStackTrace();
         }
     }

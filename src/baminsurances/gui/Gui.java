@@ -3,6 +3,7 @@ import baminsurances.api.Commandline;
 import baminsurances.controller.Controller;
 import baminsurances.data.generation.DataBankGenerator;
 import baminsurances.logging.CustomLogger;
+import baminsurances.util.SavedDataHandler;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -24,6 +25,9 @@ public class Gui extends Application {
         addHook();
         //Config.setProperties();
         logger.log("Starting the Program", Level.INFO);
+        SavedDataHandler handler = new SavedDataHandler();
+        handler.readNextInsuranceNo();
+        handler.readNextDamageNo();
         //Commandline commandline = new Commandline();
         //commandline.start();
         Controller controller = new Controller();
@@ -42,6 +46,10 @@ public class Gui extends Application {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
+                SavedDataHandler handler = new SavedDataHandler();
+                handler.writeDataBank();
+                handler.writeNextInsuranceNo();
+                handler.writeNextDamageNo();
                 logger.log("Program Shutdown", Level.INFO);
             }
         });

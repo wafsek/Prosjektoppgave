@@ -11,31 +11,25 @@ import java.io.*;
  */
 public class Deserializer {
 
+    /**
+     * Deserializes the file 'data_bank.ser' in the folder 'data', and returns
+     * it. If not found, <code>null</code> is returned.
+     * 
+     * @return the deserialized data bank, or <code>null</code> if not found
+     */
     public DataBank deserialize() {
-
-        DataBank databank;
-
-        try {
-            File file = new File("data_bank.ser");
-            if(!file.exists()) {
-                file.createNewFile();
-            }
-            FileInputStream fin = new FileInputStream("data_bank.ser");
-            ObjectInputStream ois = new ObjectInputStream(fin);
-            databank = (DataBank) ois.readObject();
-            ois.close();
-            return databank;
-        } catch(EOFException ex) {
-            //This exception is thrown because the file is empty and has just been created.
-            return null;
-        } catch(IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }catch (ClassNotFoundException cnfex){
-            cnfex.printStackTrace();
-            return null;
-        }catch (Exception ex){
-            return null;
+        try (ObjectInputStream in = new ObjectInputStream(
+                new FileInputStream("data/data_bank.ser"))) {
+            return (DataBank) in.readObject();
+        } catch (FileNotFoundException e) {
+            /* Do nothing. If the method that calls this one receives a null,
+             * it will take care of instantiating a new DataBank object.
+             */
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return null;
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import baminsurances.gui.window.LoadingWindow;
+
 import com.sun.xml.internal.txw2.IllegalSignatureException;
 
 import baminsurances.data.*;
@@ -28,11 +29,24 @@ public class DataBankGenerator {
     private TravelInsuranceGenerator travelGen = new TravelInsuranceGenerator();
     
     // The generated data:
-    private List<Customer> customerList = new ArrayList<>();
-    private List<Employee> employeeList = new ArrayList<>();
-    private List<Insurance> insuranceList = new ArrayList<>();
+    private List<Customer> customerList = DataBank.getInstance().getCustomerList();
+    private List<Employee> employeeList = DataBank.getInstance().getEmployeeList();
+    private List<Insurance> insuranceList = getExistingInsurances();
         // The insurance list is used to be able to pick random insurances.
         // All insurances in this list exist in a customer in customerList.
+    
+    /**
+     * Returns a list of the already existing insurances from the data bank.
+     * 
+     * @return a list of the already existing insurances from the data bank
+     */
+    private List<Insurance> getExistingInsurances() {
+        List<Insurance> insurances = new ArrayList<>();
+        for (Customer cus : DataBank.getInstance().getCustomerList()) {
+            insurances.addAll(cus.getInsurances());
+        }
+        return insurances;
+    }
     
     /**
      * Generates the given amount of customers, employees and insurances, and
@@ -54,10 +68,6 @@ public class DataBankGenerator {
         generateInsurances(numInsurances);
         generateClaimAdvices(numClaimAdvices);
         loadingWindow.close();
-        
-        DataBank db = DataBank.getInstance();
-        db.getCustomerList().addAll(customerList);
-        db.getEmployeeList().addAll(employeeList);
     }
     
     /**

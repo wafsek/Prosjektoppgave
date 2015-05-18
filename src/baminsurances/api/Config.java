@@ -47,15 +47,6 @@ public class Config {
     }
     
     /**
-     * Returns the file path of the data bank.
-     * 
-     * @return the file path of the data bank
-     */
-    public static String getDataBankFilePath() {
-        return getProperties().getProperty("dataBankFilePath");
-    }
-    
-    /**
      * Returns a string with the current logging level.
      * 
      * @return the current logging level

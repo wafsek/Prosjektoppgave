@@ -2,6 +2,7 @@ package baminsurances.data;
 
 import baminsurances.api.Deserializer;
 import baminsurances.api.Serializer;
+import baminsurances.util.SavedDataHandler;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,8 +17,6 @@ import java.util.List;
  */
 public class DataBank implements Serializable {
     private static final long serialVersionUID = -1348011558079744947L;
-    private static Deserializer deserializer = new Deserializer();
-    private  static Serializer serializer = new Serializer();
     private List<Customer> customerList = new ArrayList<>();
     private List<Employee> employeeList = new ArrayList<>();
     private static DataBank dataBank;
@@ -36,13 +35,12 @@ public class DataBank implements Serializable {
      * @return an instance of the data bank
      */
     public static DataBank getInstance() {
+        SavedDataHandler handler = new SavedDataHandler();
         if(dataBank == null){
-            if(deserializer.deserialize() == null){
+            dataBank = handler.readDataBank();
+            if(dataBank == null){
                 dataBank = new DataBank();
-                serializer.serialize(dataBank);
             }
-            System.out.println(deserializer.deserialize());
-            dataBank = deserializer.deserialize();
         }
         System.out.println(dataBank.toString());
         return dataBank;
@@ -52,9 +50,9 @@ public class DataBank implements Serializable {
      * Saves an instance of the data bank into a file.
      *
      */
-    public static void saveDataBank(){
-        if(dataBank != null){
-            serializer.serialize(dataBank);
+    public static void saveDataBank() {
+        if (dataBank != null) {
+            new SavedDataHandler().writeDataBank();
         }
     }
     
@@ -63,7 +61,7 @@ public class DataBank implements Serializable {
      * 
      * @param customer the Customer to add 
      */
-    public void addCustomer(Customer customer){
+    public void addCustomer(Customer customer) {
         if (customer == null) {
             throw new NullPointerException("CustomerInsurance object expected;"
                     + " Null received.");
@@ -77,7 +75,7 @@ public class DataBank implements Serializable {
      * 
      * @return the list of CustomerInsurances
      */
-    public List<Customer> getCustomerList(){
+    public List<Customer> getCustomerList() {
         return customerList;
     }
 
@@ -100,7 +98,7 @@ public class DataBank implements Serializable {
      * 
      * @return employeeList the list of employees
      */
-    public List<Employee> getEmployeeList(){
+    public List<Employee> getEmployeeList() {
         return employeeList;
     }
 }
