@@ -7,6 +7,7 @@ import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -213,6 +214,11 @@ public class HandleCustomerScene extends GeneralScene {
         dateOfRegistrationField.setText(customer.getRegistrationDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
     }
 
+    @Override
+    public Scene getScene() {
+        return scene;
+    }
+
     public TextField getBirthNoField() {
         return birthNoField;
     }
@@ -253,7 +259,7 @@ public class HandleCustomerScene extends GeneralScene {
         return chooseInsuranceButton;
     }
 
-    public void setTableData(ObservableList observableList) {
+    public void setTableData(ObservableList<Insurance> observableList) {
         insuranceTable.setItems(observableList);
     }
 
