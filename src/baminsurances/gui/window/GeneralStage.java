@@ -40,4 +40,8 @@ public class GeneralStage {
     public void reopen() {
         stage.show();
     }
+
+    public Stage getStage() {
+        return stage;
+    }
 }
