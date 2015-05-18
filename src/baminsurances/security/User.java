@@ -1,11 +1,13 @@
 package baminsurances.security;
 
+import java.io.Serializable;
+
 /**
  * Represents a user of the software.
  * 
  * @author Baljit Sarai 
  */
-public class User {
+public class User implements Serializable{
     
     private String username;
     private String password;
