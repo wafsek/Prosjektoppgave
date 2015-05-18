@@ -36,7 +36,6 @@ public class Controller {
      */
     //private Authenticator authenticator = Authenticator.getAuthenticator();
     private CustomerServiceManager manager;
-    private CustomerInsurance currentCustomerInsurance;
     private Searcher searcher;
 
     /**
@@ -335,8 +334,8 @@ public class Controller {
         }else if (control == travelInsuranceScene.getRegisterInsuranceButton()) {
                     this.registerTravelInsurance();
         }else if (control == specificInsuranceScene.getUpdateInfoButton()) {
-            CurrentStatus.setCurrenInsurance(UpdateInfoWindow.updateInsurance
-                    (CurrentStatus.getCurrenInsurance()));
+            CurrentStatus.setCurrentInsurance(UpdateInfoWindow.updateInsurance
+                    (CurrentStatus.getCurrentInsurance()));
             launchSpecificInsuranceScene();
         } else if (control == navigationScene.getSearchButton()) {
             searchNavigationScene.setDisplayName(getDisplayName());

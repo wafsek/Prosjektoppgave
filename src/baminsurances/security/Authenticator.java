@@ -1,12 +1,8 @@
 package baminsurances.security;
 
-import baminsurances.api.CustomerServiceManager;
-import baminsurances.controller.DataControl;
 import baminsurances.data.DataBank;
 import baminsurances.data.Employee;
 import baminsurances.logging.CustomLogger;
-
-import java.util.List;
 import java.util.logging.Level;
 
 /**
@@ -18,7 +14,6 @@ public class Authenticator {
     private static String displayName = "UnKnown";
     DataBank dataBank;
     private Employee currentEmployee;
-    private boolean loggedIn;
     private CustomLogger logger = CustomLogger.getInstance();
     private static Authenticator authenticator;
     
@@ -40,10 +35,6 @@ public class Authenticator {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
-    }
-    
-    public boolean isLoggedIn() {
-        return loggedIn;
     }
     
     public Employee getUserByUserName(String username) {

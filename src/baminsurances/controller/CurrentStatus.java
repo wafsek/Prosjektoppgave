@@ -14,6 +14,8 @@ public class CurrentStatus {
     private static Customer currentCustomer;
     private static CustomerServiceManager manager;
     private static Insurance currenInsurance;
+    
+    
     public static Customer getCurrentCustomer() {
         return currentCustomer;
     }
@@ -22,11 +24,11 @@ public class CurrentStatus {
         CurrentStatus.currentCustomer = currentCustomer;
     }
 
-    public static void setCurrenInsurance(Insurance insurance) {
+    public static void setCurrentInsurance(Insurance insurance) {
         CurrentStatus.currenInsurance = insurance;
     }
 
-    public static Insurance getCurrenInsurance() {
+    public static Insurance getCurrentInsurance() {
         return currenInsurance;
     }
 
