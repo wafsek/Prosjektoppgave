@@ -50,7 +50,8 @@ public class Controller {
     private KeyPressHandler keyPressHandler;
     private LoginWindow loginWindow;
     private OperationWindow operationWindow;
-    private GeneralStage loginStage, menuStage, primaryStage;
+    private GeneralStage loginStage, menuStage, primaryStage,
+            settingsStage;
     private LoginScene loginScene;
     private FindPersonScene findPersonScene;
     private HandleCustomerScene handleCustomerScene;
@@ -60,6 +61,8 @@ public class Controller {
     private BoatInsuranceScene boatInsuranceScene;
     private CarInsuranceScene carInsuranceScene;
     private SpecificInsuranceScene specificInsuranceScene;
+    private SearchNavigationScene searchNavigationScene;
+    private SettingsScene settingScene;
 
     private int carInsuranceCheckCounter = 0;
 
@@ -78,8 +81,9 @@ public class Controller {
         keyPressHandler = new KeyPressHandler(operationWindow,this);
 
         loginStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/4, GuiConfig.PRIMARY_HEIGHT * 1/2);
-        menuStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/4, GuiConfig.PRIMARY_HEIGHT * 1/2);
+        menuStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/4, GuiConfig.PRIMARY_HEIGHT * 2/3);
         primaryStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH, GuiConfig.PRIMARY_HEIGHT);
+        settingsStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/5, GuiConfig.PRIMARY_HEIGHT * 2/5);
 
         loginScene = new LoginScene(guiEventHandler, keyPressHandler);
         navigationScene = new NavigationScene(guiEventHandler, keyPressHandler);
@@ -92,6 +96,8 @@ public class Controller {
         carInsuranceScene = new CarInsuranceScene(guiEventHandler, keyPressHandler);
         travelInsuranceScene = new TravelInsuranceScene(guiEventHandler, keyPressHandler);
         specificInsuranceScene = new SpecificInsuranceScene(guiEventHandler, keyPressHandler);
+        searchNavigationScene = new SearchNavigationScene(guiEventHandler, keyPressHandler);
+        settingScene = new SettingsScene(guiEventHandler);
 
         generatingStage = new GeneratingStage();
 
@@ -116,6 +122,10 @@ public class Controller {
         }else {
             this.launchLoginWindow();
         }
+    }
+
+    private void launchSettingsWindow() {
+        settingsStage.initiate(settingScene.getScene());
     }
 
     private void launchStatistics(){
@@ -230,7 +240,7 @@ public class Controller {
                 control == handleCustomerScene.getLogOutButton() || control == addScene.getLogOutButton() ||
                 control == insuranceScene.getLogOutButton() || control == houseInsuranceScene.getLogOutButton() ||
                 control == boatInsuranceScene.getLogOutButton() || control == carInsuranceScene.getLogOutButton() ||
-                control == specificInsuranceScene.getLogOutButton()){
+                control == specificInsuranceScene.getLogOutButton() || control == searchNavigationScene.getLogOutButton()){
             if(new MessageDialog().showMessageDialog("Sikker?", "Logge ut?", MessageDialog.QUESTION_ICON,
                     MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION){
                 menuStage.close();
@@ -241,7 +251,7 @@ public class Controller {
             launchFindPersonScene();
         } else if (control == findPersonScene.getRegisterPersonButton()) {
             launchRegistration();
-        } else if (control == findPersonScene.getBackButton()) {
+        } else if (control == findPersonScene.getBackButton() || control == searchNavigationScene.getBackButton()) {
             backToNavigation();
         } else if (control == findPersonScene.getChoosePersonButton()) {
             if (findPersonScene.getSelectedCustomer() != null) {
@@ -318,6 +328,11 @@ public class Controller {
             CurrentStatus.setCurrenInsurance(UpdateInfoWindow.updateInsurance
                     (CurrentStatus.getCurrenInsurance()));
             launchSpecificInsuranceScene();
+        } else if (control == navigationScene.getSearchButton()) {
+            searchNavigationScene.setDisplayName(getDisplayName());
+            menuStage.initiate(searchNavigationScene.getScene());
+        } else if (control == navigationScene.getSettingsButton()) {
+            launchSettingsWindow();
         }
     }
 

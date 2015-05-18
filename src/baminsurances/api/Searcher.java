@@ -294,6 +294,7 @@ public class Searcher {
                 s.trim().toLowerCase());
     }
     
+    
     /***********************************************
      *                                             * 
      *         Methods used for statistics         *
@@ -384,7 +385,7 @@ public class Searcher {
     
     /**
      * Returns a map where the keys are genders, and the values are the number
-     * of insurances per gender. 'M' is male, and 'F' is female.
+     * of insurances per gender.
      * 
      * @return a map where the keys are genders, and the values are the number
      * of insurances per gender
@@ -392,6 +393,7 @@ public class Searcher {
     public Map<String, Integer> numInsurancesPerGender() {
         Map<String, Integer> result = new HashMap<>();
         
+        // Map used to find the right display name based on class.
         Map<Character, String> displayNames = new HashMap<>();
         displayNames.put('M', "Menn");
         displayNames.put('F', "Kvinner");
@@ -420,7 +422,7 @@ public class Searcher {
     public Map<String, Integer> numInsurancesPerType() {
         Map<String, Integer> result = new HashMap<>();
         
-        // Map used to find the right name based on class.
+        // Map used to find the right display name based on class.
         Map<Class<? extends Insurance>, String> displayNames = new HashMap<>();
         displayNames.put(CarInsurance.class, "Bilforsikring");
         displayNames.put(BoatInsurance.class, "Båtforsikring");
