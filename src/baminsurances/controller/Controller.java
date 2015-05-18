@@ -36,7 +36,6 @@ public class Controller {
      */
     //private Authenticator authenticator = Authenticator.getAuthenticator();
     private CustomerServiceManager manager;
-    private CustomerInsurance currentCustomerInsurance;
     private Searcher searcher;
 
     /**
