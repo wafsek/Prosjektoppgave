@@ -4,10 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/AddScene.java" line="294" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="employee login fixing">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/security/Authenticator.java" afterPath="$PROJECT_DIR$/src/baminsurances/security/Authenticator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/CurrentStatus.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/CurrentStatus.java" />
+    <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -71,7 +68,7 @@
           <file leaf-file-name="Authenticator.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/baminsurances/security/Authenticator.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="2.748691">
+                <state vertical-scroll-proportion="1.8124281">
                   <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
                   <folding>
                     <element signature="e#1052#1053#0" expanded="true" />
@@ -145,7 +142,7 @@
             <entry file="file://$PROJECT_DIR$/src/baminsurances/api/CustomerServiceManager.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
+                  <caret line="112" column="10" selection-start-line="112" selection-start-column="10" selection-end-line="112" selection-end-column="10" />
                   <folding />
                 </state>
               </provider>
@@ -178,7 +175,7 @@
           <file leaf-file-name="Employee.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/baminsurances/data/Employee.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.33507854">
+                <state vertical-scroll-proportion="0.22094361">
                   <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
                   <folding>
                     <element signature="e#1459#1460#0" expanded="true" />
@@ -609,8 +606,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/data/Employee.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/PersonSearchScene.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/api/CustomerServiceManager.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tests/baminsurances/data/CustomerTest.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -618,7 +615,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/util/package-info.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -911,12 +907,6 @@
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
     </task>
-    <task id="LOCAL-00005" summary="adden methods to the data bank">
-      <created>1429035435045</created>
-      <option name="number" value="00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1429035435045</updated>
-    </task>
     <task id="LOCAL-00006" summary="Fixed the gui bug where the scene would go black. (KEY WORDS: Minor differences in windowsize, and components not being allowed to scale by default) Also added functionality to AddScene, InsurePersonScene and GuiEventHandler">
       <created>1429127231861</created>
       <option name="number" value="00006" />
@@ -1205,7 +1195,13 @@
       <option name="project" value="LOCAL" />
       <updated>1431954734195</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="employee login fixed ...For now">
+      <created>1431955933131</created>
+      <option name="number" value="00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1431955933131</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1219,7 +1215,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32815966" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32815966" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38470066" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1250,7 +1246,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="I have started to work on the new Gui. Please do not touch anything yet, and let Controller be for a little while. I will just do the most basic stuff there. You can do the more advanced stuff later, Sarai." />
     <MESSAGE value="Just made a few minor changes. Pushing so I can work on my home pc" />
     <MESSAGE value="Fixed a minor bug in AddScene, where the TextFields did not work how they should. &#10;&#10;Controller now has access to all the button which are in the program at this point" />
     <MESSAGE value="TableView problem might be fixed. Try it" />
@@ -1275,7 +1270,8 @@
     <MESSAGE value="Fininshing validation" />
     <MESSAGE value="Finishing the insurance creating" />
     <MESSAGE value="employee login fixing" />
-    <option name="LAST_COMMIT_MESSAGE" value="employee login fixing" />
+    <MESSAGE value="employee login fixed ...For now" />
+    <option name="LAST_COMMIT_MESSAGE" value="employee login fixed ...For now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1612,7 +1608,7 @@
     <entry file="file://$PROJECT_DIR$/src/baminsurances/api/CustomerServiceManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
+          <caret line="112" column="10" selection-start-line="112" selection-start-column="10" selection-end-line="112" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -1635,7 +1631,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/data/Employee.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33507854">
+        <state vertical-scroll-proportion="0.22094361">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
             <element signature="e#1459#1460#0" expanded="true" />
@@ -1694,7 +1690,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/security/Authenticator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.748691">
+        <state vertical-scroll-proportion="1.8124281">
           <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
           <folding>
             <element signature="e#1052#1053#0" expanded="true" />
