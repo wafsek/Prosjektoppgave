@@ -25,10 +25,11 @@ public class SettingsScene {
 
     public SettingsScene(GuiEventHandler guiEventHandler) {
         saveButton = new Button("Lagre");
-        percentageDropDown = new ComboBox(FXCollections.observableArrayList(InsuranceScene.fillArray(90, 10)));
-        activeInsuranceRequiredDropDown = new ComboBox(FXCollections.observableArrayList(InsuranceScene.fillArray(10, 2)));
-        percentageLabel = new Label("Prosentrabatt for totalkunde:");
-        activeInsuranceRequiredLabel = new Label("Antall nødvending for å\nbli totalkunde");
+        percentageDropDown = new ComboBox<String>(FXCollections.observableArrayList(
+                InsuranceScene.fillArray(90, 10)));
+        activeInsuranceRequiredDropDown = new ComboBox<String>(FXCollections.observableArrayList(InsuranceScene.fillArray(10, 2)));
+        percentageLabel = new Label("Prosentrabatt for totalkunder:");
+        activeInsuranceRequiredLabel = new Label("Antall nÃ¸dvending for Ã¥\nbli totalkunde");
         headerLabel = new Label("Instillinger");
         headerLabel.setStyle("-fx-font: 28px Times;");
 

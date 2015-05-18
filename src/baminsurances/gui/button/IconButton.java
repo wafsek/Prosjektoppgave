@@ -28,7 +28,7 @@ public class IconButton {
     public IconButton() {
         button = new Button();
 
-        addImage = new Image(this.getClass().getResourceAsStream(imagePath + "add.png"));
+        addImage = new Image(this.getClass().getResourceAsStream(imagePath + "add_user.png"));
         addImageView = new ImageView(addImage);
 
         statisticImage = new Image(this.getClass().getResourceAsStream(imagePath + "statistics.png"));

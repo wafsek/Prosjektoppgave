@@ -136,6 +136,8 @@ public class Controller {
 
     private void launchSettingsWindow() {
         settingsStage.initiate(settingScene.getScene());
+        settingScene.setInitialValues(Customer.getTotalCustomerDiscountPercentage(),
+                Customer.getNumRequiredForTotalCustomer());
     }
 
     private void launchStatistics(){
