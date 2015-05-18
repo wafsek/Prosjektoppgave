@@ -110,11 +110,11 @@ public class Controller {
     }
     
     private void setDefaultUser(){
-        Employee employee = new Employee("12019533547","Martin","Jackson",
-                "41438870","hei@gmail.com","1445","Hulder veien 6");
+        Employee employee = new Employee("12019533547","Ola","Nordmann",
+                "41438870","hei@gmail.com","1445","Hulder veien 6",
+                "brukernavn","passord",Authorization.ADMIN);
         DataBank.getInstance().getEmployeeList().add(employee);
-        User user = new User("12019533547","duemae", Authorization.ADMIN);
-        DataBank.getInstance().getUserList().add(user);
+        
     }
     
     private void launchLoginWindow(){
@@ -478,7 +478,7 @@ public class Controller {
         }
         else {
             manager.registerCarInsurance(new CarInsurance(
-                    manager.getEmployee(Authenticator.getInstance().getUser().getUsername()),
+                    Authenticator.getInstance().getCurrentEmployee(),
                     Integer.parseInt(carInsuranceScene.getAnnualPremiumFieldText()),
                     Integer.parseInt(carInsuranceScene.getInsuranceValueFieldText()),
                     PaymentFrequency.ANNUALLY,
@@ -525,7 +525,7 @@ public class Controller {
             return this.validateBoatInsuranceData();
         } else {
             manager.registerBoatInsurance(new BoatInsurance(
-                    manager.getEmployee(Authenticator.getInstance().getUser().getUsername()),
+                            Authenticator.getInstance().getCurrentEmployee(),
                     Integer.parseInt(boatInsuranceScene.getAnnualPremiumFieldText()),
                     Integer.parseInt(boatInsuranceScene.getInsuranceValueFieldText()),
                     PaymentFrequency.ANNUALLY,
@@ -577,7 +577,7 @@ public class Controller {
             return this.validateHomeInsuranceData();
         } else {
             manager.registerHomeInsurance(new HomeInsurance(
-                            manager.getEmployee(Authenticator.getInstance().getUser().getUsername()),
+                            Authenticator.getInstance().getCurrentEmployee(),
                             Integer.parseInt(houseInsuranceScene.getAnnualPremiumFieldText()),
                             PaymentFrequency.ANNUALLY,
                             houseInsuranceScene.getConditionAreaText(),
@@ -603,7 +603,7 @@ public class Controller {
             return this.validateHomeInsuranceData();
         } else {
             manager.registerHolidayHomeInsurance(new HolidayHomeInsurance(
-                            manager.getEmployee(Authenticator.getInstance().getUser().getUsername()),
+                            Authenticator.getInstance().getCurrentEmployee(),
                             Integer.parseInt(houseInsuranceScene.getAnnualPremiumFieldText()),
                             PaymentFrequency.ANNUALLY,
                             houseInsuranceScene.getConditionAreaText(),
@@ -626,7 +626,7 @@ public class Controller {
 
     public String registerTravelInsurance() {
         manager.registerTravelInsurance(new TravelInsurance(
-                        manager.getEmployee(Authenticator.getInstance().getUser().getUsername()),
+                        Authenticator.getInstance().getCurrentEmployee(),
                         Integer.parseInt(travelInsuranceScene.getAnnualPremiumFieldText()),
                         Integer.parseInt(travelInsuranceScene.getInsuranceValueFieldText()),
                         PaymentFrequency.ANNUALLY,

@@ -17,6 +17,7 @@ import java.util.logging.Level;
 public class Authenticator {
     private static String displayName = "UnKnown";
     DataBank dataBank;
+    private Employee currentEmployee;
     private boolean loggedIn;
     private CustomLogger logger = CustomLogger.getInstance();
     private static Authenticator authenticator;
@@ -67,31 +68,27 @@ public class Authenticator {
         return user.authorization;
     }
     
-    public  User getUser() {
-        return this.currentUser;
+    public  Employee getCurrentEmployee() {
+        return this.currentEmployee;
     }
     
-    private void setCurrentUser(User user){
-        this.currentUser = user;
+    private void setCurrentEmployee(Employee employee){
+        this.currentEmployee = employee;
     }
 
     public boolean loginUser(String username, String password) {
         Employee employee = this.getUserByUserName(username);
         if(employee == null ) {
-            //logger.log(this. .getUsername()+"No user with that name", Level.FINE);
+            logger.log(username+": No Employee with that username", Level.FINE);
             return false;
         }
         if(this.authenticate(employee, password)) {
-            this.setDisplayName(user.getUsername());
-            this.setCurrentUser(user);
-            logger.log(this.currentUser.getUsername()+": Logged in.", Level.FINE);
+            this.setDisplayName(employee.getFirstName()+" "+employee.getLastName());
+            this.setCurrentEmployee(employee);
+            logger.log(this.currentEmployee.getUsername()+": Logged in.", Level.FINE);
             return true;
-        }        
-        /*This method logs a person in to the system 
-        * Sets the display name
-        * Sets the "status logged-in"
-        */
-        logger.log(this.currentUser.getUsername()+": Login Failed", Level.INFO);
+        }
+        logger.log(this.currentEmployee.getUsername()+": Login Failed", Level.INFO);
         return false;
     }
     
@@ -106,7 +103,7 @@ public class Authenticator {
     }
     
     public boolean removeUser(String username){
-        return currentUser.authorization == Authorization.ADMIN
+        return currentEmployee.getAuthorization() == Authorization.ADMIN
                 && dataBank.removeUser(username);
     }
 }

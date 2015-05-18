@@ -12,7 +12,6 @@ import baminsurances.security.Authenticator;
 public class CurrentStatus {
     
     private static Customer currentCustomer;
-    private static Employee currentEmployee;
     private static CustomerServiceManager manager;
     private static Insurance currenInsurance;
     public static Customer getCurrentCustomer() {
@@ -32,12 +31,7 @@ public class CurrentStatus {
     }
 
     public static Employee getCurrentEmployee() {
-        return currentEmployee;
+        return Authenticator.getInstance().getCurrentEmployee();
     }
-
-    public static void setCurrentEmployee() {
-        CurrentStatus.currentEmployee = manager.getEmployee(
-                (Authenticator.getInstance()
-        .getUser().getUsername()));
-    }
+    
 }
