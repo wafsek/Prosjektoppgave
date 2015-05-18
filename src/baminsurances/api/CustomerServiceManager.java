@@ -70,6 +70,20 @@ public class CustomerServiceManager {
             return ALREADY_CANCELLED;
         }
     }
+    
+    /**
+     * Returns <code>true</code> if the given username already is taken by
+     * an employee.
+     * 
+     * @param username the username to look for
+     * @return <code>true</code> if the given username already is taken by
+     * an employee
+     */
+    public boolean usernameTaken(String username) {
+        return dataBank.getEmployeeList()
+                .stream()
+                .anyMatch(emp -> emp.getUsername().equals(username));
+    }
 
     /****************************************************************************
     *                                                                           *

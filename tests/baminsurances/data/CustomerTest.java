@@ -1,8 +1,11 @@
 package baminsurances.data;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.Before;
+
+import baminsurances.security.Authorization;
 
 public class CustomerTest {
     private Customer customer;
@@ -11,7 +14,8 @@ public class CustomerTest {
     @Before
     public void init() {
         emp = new Employee("23041593083", "Kari", "Hansen",
-                "43218765", "kari.hansen@gmail.com", "0166", "Pilestredet 37");
+                "43218765", "kari.hansen@gmail.com", "0166", "Pilestredet 37",
+                "23041593083", "Hansen", Authorization.USER);
         customer = new Customer("23041597348", "Ola", "Nordmann",
                 "87651234", "ola.nordmann@start.no", "0166", "Pilestredet 35",
                 "0166", "Pilestredet 35");
