@@ -84,3 +84,6 @@ workspace.xml
 # Log
 *.log
 **/log.txt
+
+# The data folder
+data/
