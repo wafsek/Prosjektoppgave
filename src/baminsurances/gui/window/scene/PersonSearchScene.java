@@ -1,10 +1,10 @@
 package baminsurances.gui.window.scene;
 
 import baminsurances.data.Customer;
-import baminsurances.data.Person;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.OperationWindow;
+import baminsurances.util.NorwegianComparator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -17,6 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 
 /**
@@ -29,10 +30,12 @@ public abstract class PersonSearchScene extends GeneralScene{
     protected Label firstNameLabel, lastNameLabel, adressLabel, zipCodeLabel,
         birthNoLabel, discribtionLabel;
     protected TableView<Customer> customerTable;
-    protected TableColumn birthNoColumn, firstNameColumn, lastNameColumn, adressColumn, tlfNoColumn;
+    protected TableColumn<Customer, String> birthNoColumn,
+    firstNameColumn, lastNameColumn, addressColumn, tlfNoColumn;
+    private Comparator<String> comparator = new NorwegianComparator();
 
     protected ArrayList<TextField> textFieldArrayList;
-    protected Iterator textFieldsIterator;
+    protected Iterator<TextField> textFieldsIterator;
 
     protected Button choosePersonButton;
 
@@ -42,68 +45,78 @@ public abstract class PersonSearchScene extends GeneralScene{
             KeyPressHandler keyPressHandler) {
         super(guiEventHandler, keyPressHandler);
 
-        customerTable = new TableView();
-        birthNoColumn = new TableColumn("Fødselsnummer");
+        customerTable = new TableView<>();
+        
+        birthNoColumn = new TableColumn<Customer, String>("Fødselsnummer");
         birthNoColumn.setCellValueFactory(
-                new Callback<CellDataFeatures<Person, String>,
+                new Callback<CellDataFeatures<Customer, String>,
                         ObservableValue<String>>() {
                     @Override
                     public ObservableValue<String> call(
-                            CellDataFeatures<Person, String> p) {
+                            CellDataFeatures<Customer, String> p) {
                         return new SimpleStringProperty(p.getValue().getBirthNo());
                     }
                 });
 
-        firstNameColumn = new TableColumn("Fornavn");
-        
-        /*firstNameColumn.setCellValueFactory(
-                new PropertyValueFactory<Person, String>("firstName"));*/
-        
+        firstNameColumn = new TableColumn<Customer, String>("Fornavn");
+        firstNameColumn.setComparator(comparator);
         firstNameColumn.setCellValueFactory(
-                new Callback<CellDataFeatures<Person, String>,
+                new Callback<CellDataFeatures<Customer, String>,
                         ObservableValue<String>>() {
                     @Override
                     public ObservableValue<String> call(
-                            CellDataFeatures<Person, String> p) {
-                        return new SimpleStringProperty(p.getValue().getFirstName());
+                            CellDataFeatures<Customer, String> p) {
+                        return new SimpleStringProperty(
+                                p.getValue().getFirstName());
                     }
                 });
 
-        lastNameColumn = new TableColumn("Etternavn");
+        lastNameColumn = new TableColumn<Customer, String>("Etternavn");
+        lastNameColumn.setComparator(comparator);
         lastNameColumn.setCellValueFactory(
-                new Callback<CellDataFeatures<Person, String>,
+                new Callback<CellDataFeatures<Customer, String>,
                         ObservableValue<String>>() {
                     @Override
                     public ObservableValue<String> call(
-                            CellDataFeatures<Person, String> p) {
-                        return new SimpleStringProperty(p.getValue().getLastName());
+                            CellDataFeatures<Customer, String> p) {
+                        return new SimpleStringProperty(
+                                p.getValue().getLastName());
                     }
                 });
         
-        adressColumn = new TableColumn("Adresse");
-        adressColumn.setCellValueFactory(
-                new Callback<CellDataFeatures<Person, String>,
+        addressColumn = new TableColumn<Customer, String>("Adresse");
+        addressColumn.setComparator(comparator);
+        addressColumn.setCellValueFactory(
+                new Callback<CellDataFeatures<Customer, String>,
                         ObservableValue<String>>() {
                     @Override
                     public ObservableValue<String> call(
-                            CellDataFeatures<Person, String> p) {
-                        return new SimpleStringProperty(p.getValue().getStreetAddress());
+                            CellDataFeatures<Customer, String> p) {
+                        return new SimpleStringProperty(
+                                p.getValue().getStreetAddress());
                     }
                 });
 
-        tlfNoColumn = new TableColumn("Telefonnummer");
+        tlfNoColumn = new TableColumn<Customer, String>("Telefonnummer");
         tlfNoColumn.setCellValueFactory(
-                new Callback<CellDataFeatures<Person, String>,
+                new Callback<CellDataFeatures<Customer, String>,
                         ObservableValue<String>>() {
                     @Override
                     public ObservableValue<String> call(
-                            CellDataFeatures<Person, String> p) {
-                        return new SimpleStringProperty(p.getValue().getTelephoneNo());
+                            CellDataFeatures<Customer, String> p) {
+                        return new SimpleStringProperty(
+                                p.getValue().getTelephoneNo());
                     }
                 });
 
-        customerTable.getColumns().addAll(
-                birthNoColumn, firstNameColumn, lastNameColumn, adressColumn, tlfNoColumn);
+        ObservableList<TableColumn<Customer, ?>> columns =
+                customerTable.getColumns();
+        columns.add(birthNoColumn);
+        columns.add(firstNameColumn);
+        columns.add(lastNameColumn);
+        columns.add(addressColumn);
+        columns.add(tlfNoColumn);
+        
         customerTable.setColumnResizePolicy(
                 TableView.CONSTRAINED_RESIZE_POLICY);
         customerTable.setEditable(false);
@@ -221,11 +234,11 @@ public abstract class PersonSearchScene extends GeneralScene{
         return birthNumberField.getText();
     }
 
-    public ArrayList getTextFieldArrayList() {
+    public ArrayList<TextField> getTextFieldArrayList() {
         return textFieldArrayList;
     }
 
-    public Iterator getTextFieldIterator() {
+    public Iterator<TextField> getTextFieldIterator() {
         return textFieldsIterator;
     }
 
@@ -233,7 +246,7 @@ public abstract class PersonSearchScene extends GeneralScene{
         textFieldsIterator = textFieldArrayList.iterator();
     }
 
-    public void setTableData(ObservableList observableList) {
+    public void setTableData(ObservableList<Customer> observableList) {
         customerTable.setItems(observableList);
     }
 
