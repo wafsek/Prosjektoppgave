@@ -3,11 +3,13 @@ package baminsurances.data.generation;
 import java.util.ArrayList;
 import java.util.List;
 
+import baminsurances.gui.window.LoadingWindow;
 import com.sun.xml.internal.txw2.IllegalSignatureException;
 
 import baminsurances.data.*;
 
 public class DataBankGenerator {
+    private LoadingWindow loadingWindow = new LoadingWindow();
     // Person generators:
     private PersonGenerator personGen = new PersonGenerator();
     private CustomerGenerator customerGen = new CustomerGenerator();
@@ -46,10 +48,12 @@ public class DataBankGenerator {
      */
     public void fillDataBank(int numCustomers, int numEmployees,
             int numInsurances, int numClaimAdvices) {
+        loadingWindow.display();
         generateCustomerList(numCustomers);
         generateEmployees(numEmployees);
         generateInsurances(numInsurances);
         generateClaimAdvices(numClaimAdvices);
+        loadingWindow.close();
         
         DataBank db = DataBank.getInstance();
         db.getCustomerList().addAll(customerList);
