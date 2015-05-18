@@ -1,6 +1,7 @@
 package baminsurances.data.generation;
 
 import baminsurances.data.Employee;
+import baminsurances.security.Authorization;
 
 /**
  * Provides methods for generating {@link Employee} objects.
@@ -21,6 +22,10 @@ public class EmployeeGenerator {
                 gen.generateEmail(firstName, lastName),
                 gen.generateTelephoneNo(),
                 gen.generateZipCode(),
-                gen.generateStreetAddress());
+                gen.generateStreetAddress(),
+                birthNo, // birth number is used as username
+                lastName, // last name is used as password
+                Authorization.USER
+                );
     }
 }
