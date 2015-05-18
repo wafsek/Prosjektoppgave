@@ -1,6 +1,7 @@
 package baminsurances.api;
 
 import baminsurances.data.*;
+import baminsurances.security.Authorization;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +17,8 @@ public class Commandline extends Thread{
     Scanner scanner = new Scanner(System.in);
     int userInput;
     Employee employee = new Employee("05038437102","Jobbern","Jobbernsen",
-            "55555555","ansatt@online.no","1443","seier veien 9");
+            "55555555","ansatt@online.no","1443","seier veien 9",
+            "05038437102", "Jobbernsen", Authorization.USER);
     Person owner = new Person("05038437102","Arne","Hansen",
             "99999999","eier@online.no","1445","Heer veien 11");
     CustomerServiceManager manager = new CustomerServiceManager();
@@ -98,7 +100,8 @@ public class Commandline extends Thread{
         String  email = scanner.nextLine();
         
         employee = new Employee(birthNo,firstName,
-                lastName,tlf,email,zipCode,address);
+                lastName,tlf,email,zipCode,address, birthNo, lastName,
+                Authorization.USER);
     }
     private void registerCustomer(){
         this.clearScreen();
