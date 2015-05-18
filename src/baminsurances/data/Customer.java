@@ -55,7 +55,7 @@ public class Customer extends Person {
      * @return the current number of active insurances required to be a total
      * customer
      */
-    public int getNumRequiredForTotalCustomer() {
+    public static int getNumRequiredForTotalCustomer() {
         return numRequiredForTotalCustomer;
     }
     
@@ -66,7 +66,7 @@ public class Customer extends Person {
      * @param n the new number of active insurances required to be a total
      * customer 
      */
-    public void setNumRequiredForTotalCustomer(int n) {
+    public static void setNumRequiredForTotalCustomer(int n) {
         numRequiredForTotalCustomer = n;
     }
     
@@ -75,7 +75,7 @@ public class Customer extends Person {
      * 
      * @return the current discount percentage for being a total customer
      */
-    public int getTotalCustomerDiscountPercentage() {
+    public static int getTotalCustomerDiscountPercentage() {
         return totalCustomerDiscountPercentage;
     }
     
@@ -87,7 +87,7 @@ public class Customer extends Person {
      * @throws IllegalArgumentException if the given percentage is less than 0
      * or greater than 100
      */
-    public void setTotalCustomerDiscountPercentage(int n) {
+    public static void setTotalCustomerDiscountPercentage(int n) {
         if (n < 0 || n > 100) {
             throw new IllegalArgumentException("Total customer discount "
                     + "percentage cannot be less than 0 or more than 100. "
