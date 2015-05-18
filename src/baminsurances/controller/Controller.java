@@ -563,8 +563,8 @@ public class Controller {
     }
 
     public String registerHomeInsurance(){
-        if(this.validateHolidayHomeInsuranceData().equals("Success")){
-            return this.validateBoatInsuranceData();
+        if(this.validateHomeInsuranceData().equals("Success")){
+            return this.validateHomeInsuranceData();
         } else {
             manager.registerHomeInsurance(new HomeInsurance(
                             manager.getEmployee(Authenticator.getInstance().getUser().getUsername()),
@@ -586,19 +586,12 @@ public class Controller {
         }
     }
 
-    public String validateHolidayHomeInsuranceData(){
-        if(this.validateInsuranceData().equals("Success")){
-            return this.validateInsuranceData().getDescription();
-        } else if (!Validation.isValidStreetAddress(
-                houseInsuranceScene.getStreetAddressFieldText())){
-            return "";
-        }else {
-            return DataControl.SUCCESS.getDescription();
-        }
-    }
+    
     
     public String registerHolidayHomeInsurance(){
-        
+        if(this.validateHomeInsuranceData().equals("Success")){
+            return this.validateHomeInsuranceData();
+        } else {
             manager.registerHolidayHomeInsurance(new HolidayHomeInsurance(
                             manager.getEmployee(Authenticator.getInstance().getUser().getUsername()),
                             Integer.parseInt(houseInsuranceScene.getAnnualPremiumFieldText()),
@@ -617,15 +610,15 @@ public class Controller {
                     CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
             return "Holiday Home Insurance Registered";
-        
+        }
     }
 
 
     public String registerTravelInsurance() {
-        manager.registerTravelInsurance(Insurance(new HolidayHomeInsurance(
+        manager.registerTravelInsurance(new TravelInsurance(
                         manager.getEmployee(Authenticator.getInstance().getUser().getUsername()),
                         Integer.parseInt(travelInsuranceScene.getAnnualPremiumFieldText()),
-                        Integer.parseInt(travelInsuranceScene.getInsuranceValueFieldText())
+                        Integer.parseInt(travelInsuranceScene.getInsuranceValueFieldText()),
                         PaymentFrequency.ANNUALLY,
                         travelInsuranceScene.getConditionAreaText(),
                         travelInsuranceScene.getRegionDropDown()),

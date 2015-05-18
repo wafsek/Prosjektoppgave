@@ -4,7 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/AddScene.java" line="294" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="Fininshing validation">
+    <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -30,14 +31,14 @@
     <favorites_list name="prosjektoppgave-programutvikling-2015" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7450199">
+    <splitter split-orientation="horizontal" split-proportion="0.6179326">
       <split-first>
         <leaf>
           <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.712313">
-                  <caret line="565" column="50" selection-start-line="565" selection-start-column="50" selection-end-line="565" selection-end-column="50" />
+                  <caret line="627" column="0" selection-start-line="627" selection-start-column="0" selection-end-line="627" selection-end-column="0" />
                   <folding>
                     <element signature="e#4316#4317#0" expanded="true" />
                     <element signature="e#4374#4375#0" expanded="true" />
@@ -881,12 +882,6 @@
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
     </task>
-    <task id="LOCAL-00001" summary="Added the name of the members (really just to test run the git)">
-      <created>1428591756447</created>
-      <option name="number" value="00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1428591756447</updated>
-    </task>
     <task id="LOCAL-00002" summary="Started writing following classes:&#10;1) Customer&#10;2) InsuranceServiceManager&#10;3) InsuranceDataBank">
       <created>1429009934703</created>
       <option name="number" value="00002" />
@@ -1175,7 +1170,13 @@
       <option name="project" value="LOCAL" />
       <updated>1431950788776</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Fininshing validation">
+      <created>1431950814661</created>
+      <option name="number" value="00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1431950814662</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1192,7 +1193,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32815966" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20427808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.028342245" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1643,7 +1644,7 @@
     <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.712313">
-          <caret line="565" column="50" selection-start-line="565" selection-start-column="50" selection-end-line="565" selection-end-column="50" />
+          <caret line="627" column="0" selection-start-line="627" selection-start-column="0" selection-end-line="627" selection-end-column="0" />
           <folding>
             <element signature="e#4316#4317#0" expanded="true" />
             <element signature="e#4374#4375#0" expanded="true" />
