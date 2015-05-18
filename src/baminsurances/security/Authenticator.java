@@ -3,6 +3,7 @@ package baminsurances.security;
 import baminsurances.api.CustomerServiceManager;
 import baminsurances.controller.DataControl;
 import baminsurances.data.DataBank;
+import baminsurances.data.Employee;
 import baminsurances.logging.CustomLogger;
 
 import java.util.List;
@@ -14,8 +15,7 @@ import java.util.logging.Level;
  * @author Baljit Sarai 
  */
 public class Authenticator {
-    private String displayName = "UnKnown";
-    private User currentUser;
+    private static String displayName = "UnKnown";
     DataBank dataBank;
     private boolean loggedIn;
     private CustomLogger logger = CustomLogger.getInstance();
@@ -24,7 +24,6 @@ public class Authenticator {
     private Authenticator() {
         dataBank = DataBank.getInstance();
         this.registerUser("bam","1234",Authorization.ADMIN);
-        
     }
     
     public static Authenticator getInstance() {
@@ -46,22 +45,22 @@ public class Authenticator {
         return loggedIn;
     }
     
-    public User getUserByUserName(String username) {
+    public Employee getUserByUserName(String username) {
         if(username == null) {
             throw new NullPointerException("Username expected String; null given");
         }
-        for(User user: dataBank.getUserList()) {
-            if(user.getUsername().equals(username)) {
+        for(Employee employee: dataBank.getEmployeeList()) {
+            if(employee.getUsername().equals(username)) {
                 logger.log("User Found. Name given: " + username, Level.FINE);
-                return user;
+                return employee;
             }
         }
         logger.log("User NOT Found. Name given: " + username, Level.FINE);
         return null;
     }
     
-    public String getPassword(User user) {
-        return user.getPassword();
+    public String getPassword(Employee employee) {
+        return  employee.getPassword();
     }
     
     public Authorization getAuthorization(User user) {
@@ -77,11 +76,12 @@ public class Authenticator {
     }
 
     public boolean loginUser(String username, String password) {
-        User user = this.getUserByUserName(username);
-        if(user == null ) {
+        Employee employee = this.getUserByUserName(username);
+        if(employee == null ) {
+            //logger.log(this. .getUsername()+"No user with that name", Level.FINE);
             return false;
         }
-        if(this.authenticate(user, password)) {
+        if(this.authenticate(employee, password)) {
             this.setDisplayName(user.getUsername());
             this.setCurrentUser(user);
             logger.log(this.currentUser.getUsername()+": Logged in.", Level.FINE);
@@ -95,8 +95,8 @@ public class Authenticator {
         return false;
     }
     
-    public boolean authenticate(User user, String password) {
-        return this.getPassword(user).equals(password);
+    public boolean authenticate(Employee employee, String password) {
+        return this.getPassword(employee).equals(password);
     }
     
     public void registerUser(String username, String password,

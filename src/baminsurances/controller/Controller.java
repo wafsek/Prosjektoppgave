@@ -11,6 +11,8 @@ import baminsurances.gui.window.*;
 import baminsurances.gui.window.scene.*;
 import baminsurances.logging.CustomLogger;
 import baminsurances.security.Authenticator;
+import baminsurances.security.Authorization;
+import baminsurances.security.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
@@ -73,6 +75,7 @@ public class Controller {
         searcher = new Searcher();
         manager = new CustomerServiceManager();
         authenticator = Authenticator.getInstance();
+        this.setDefaultUser();
     }
 
 
@@ -100,18 +103,25 @@ public class Controller {
         settingScene = new SettingsScene(guiEventHandler);
 
         generatingStage = new GeneratingStage();
-
+        
         launchLoginWindow();
         generatingStage.show();
         System.out.println("Welkommen til " + Config.getApplicationName());
     }
-
+    
+    private void setDefaultUser(){
+        Employee employee = new Employee("12019533547","Martin","Jackson",
+                "41438870","hei@gmail.com","1445","Hulder veien 6");
+        DataBank.getInstance().getEmployeeList().add(employee);
+        User user = new User("12019533547","duemae", Authorization.ADMIN);
+        DataBank.getInstance().getUserList().add(user);
+    }
+    
     private void launchLoginWindow(){
         loginStage.initiate(loginScene.getScene());
     }
 
     private void login() {
-
        boolean loginTest = authenticator.loginUser(loginScene.getUsernameFieldText(),
                 loginScene.getPasswordFieldText());
         if(loginTest){
@@ -120,6 +130,7 @@ public class Controller {
             menuStage.initiate(navigationScene.getScene());
             logger.log("Logged in", Level.INFO); 
         }else {
+            logger.log("Login Failed", Level.INFO);
             this.launchLoginWindow();
         }
     }
@@ -233,7 +244,6 @@ public class Controller {
      * @param control
      */
     public void handleControl(Control control) {
-
         if(control == loginScene.getLoginButton()){
             login();
         } else if (control == navigationScene.getLogOutButton() || control == findPersonScene.getLogOutButton() ||
@@ -625,7 +635,5 @@ public class Controller {
                 CurrentStatus.getCurrentCustomer());
         DataBank.saveDataBank();
         return "Holiday Home Insurance Registered";
-
     }
-    
 }
