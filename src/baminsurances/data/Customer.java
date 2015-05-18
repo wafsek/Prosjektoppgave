@@ -19,8 +19,8 @@ public class Customer extends Person {
     private String billingStreetAddress;
     private List<Insurance> insuranceList = new ArrayList<Insurance>();
     
-    public static final int NUM_REQUIRED_FOR_TOTAL_CUSTOMER = 3;
-    public static final int TOTAL_CUSTOMER_DISCOUNT_PERCENTAGE = 10;
+    private static int numRequiredForTotalCustomer = 3;
+    private static int totalCustomerDiscountPercentage = 10;
     
     /**
      * Creates a new customer with the given values.
@@ -46,6 +46,54 @@ public class Customer extends Person {
         registrationDate = LocalDate.now();
         setBillingZipCode(billingZipCode);
         setBillingStreetAddress(billingStreetAddress);
+    }
+    
+    /**
+     * Returns the current number of active insurances required to be a total
+     * customer.
+     * 
+     * @return the current number of active insurances required to be a total
+     * customer
+     */
+    public int getNumRequiredForTotalCustomer() {
+        return numRequiredForTotalCustomer;
+    }
+    
+    /**
+     * Sets the number of active insurances required to be a total customer to
+     * the given value.
+     * 
+     * @param n the new number of active insurances required to be a total
+     * customer 
+     */
+    public void setNumRequiredForTotalCustomer(int n) {
+        numRequiredForTotalCustomer = n;
+    }
+    
+    /**
+     * Returns the current discount percentage for being a total customer.
+     * 
+     * @return the current discount percentage for being a total customer
+     */
+    public int getTotalCustomerDiscountPercentage() {
+        return totalCustomerDiscountPercentage;
+    }
+    
+    /**
+     * Sets the discount percentage for being a total customer to the given
+     * value.
+     * 
+     * @param n the new discount percentage
+     * @throws IllegalArgumentException if the given percentage is less than 0
+     * or greater than 100
+     */
+    public void setTotalCustomerDiscountPercentage(int n) {
+        if (n < 0 || n > 100) {
+            throw new IllegalArgumentException("Total customer discount "
+                    + "percentage cannot be less than 0 or more than 100. "
+                    + "Found: " + n);
+        }
+        totalCustomerDiscountPercentage = n;
     }
     
     /**
@@ -142,7 +190,7 @@ public class Customer extends Person {
      */
     public void addInsurance(Insurance ins) {
         insuranceList.add(ins);
-        ins.updatePayments(TOTAL_CUSTOMER_DISCOUNT_PERCENTAGE);
+        ins.updatePayments(totalCustomerDiscountPercentage);
     }
     
     /**
@@ -179,7 +227,7 @@ public class Customer extends Person {
                 numDifferentInsuranceTypes++;
             }
         }
-        return numDifferentInsuranceTypes >= NUM_REQUIRED_FOR_TOTAL_CUSTOMER;
+        return numDifferentInsuranceTypes >= numRequiredForTotalCustomer;
     }
     
     /**
@@ -269,16 +317,17 @@ public class Customer extends Person {
      * Updates all active insurances' payments.
      * <p>
      * If the customer currently pays for at least
-     * {@value #NUM_REQUIRED_FOR_TOTAL_CUSTOMER} insurances, all payments
-     * receive a {@value #TOTAL_CUSTOMER_DISCOUNT_PERCENTAGE} % discount.
+     * {@value #numRequiredForTotalCustomer} insurances, all payments
+     * receive a {@value #totalCustomerDiscountPercentage} % discount.
      * 
-     * @see #NUM_REQUIRED_FOR_TOTAL_CUSTOMER
-     * @see #TOTAL_CUSTOMER_DISCOUNT_PERCENTAGE
+     * @see #numRequiredForTotalCustomer
+     * @see #totalCustomerDiscountPercentage
      */
     public void updatePayments() {
         insuranceList.stream()
                      .filter(Insurance::isActive)
                      .forEach(ins -> ins.updatePayments(
-                             TOTAL_CUSTOMER_DISCOUNT_PERCENTAGE));
+                             totalCustomerDiscountPercentage));
+        //TODO
     }
 }
