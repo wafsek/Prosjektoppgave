@@ -2,7 +2,6 @@ package baminsurances.data;
 
 import baminsurances.api.Deserializer;
 import baminsurances.api.Serializer;
-import baminsurances.security.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,8 +20,6 @@ public class DataBank implements Serializable {
     private  static Serializer serializer = new Serializer();
     private List<Customer> customerList = new ArrayList<>();
     private List<Employee> employeeList = new ArrayList<>();
-    private List<User> userList = new ArrayList<>();
-    //private List<User> userList = new ArrayList<>();
     private static DataBank dataBank;
     
     /**
@@ -74,20 +71,6 @@ public class DataBank implements Serializable {
             this.customerList.add(customer);
         }
     }
-    
-    //TODO
-    /**
-     * Removes a CustomerInsurance.
-     * @param customerInsurance - Object of type CustomerInsurance. 
-     */
-    public void removeCustomerInsurance(CustomerInsurance customerInsurance){
-        if (customerInsurance == null) {
-            throw new NullPointerException("CustomerInsurance object " 
-                    + "expected; Null received");
-        } else {
-            this.customerList.remove(customerInsurance);
-        }
-    }
 
     /**
      * Returns the list of CustomerInsurances.
@@ -112,19 +95,6 @@ public class DataBank implements Serializable {
         }
     }
 
-    // TODO
-    /**
-     * This method removes a Employee object (With the same birthNumberField) from the employeeList.
-     * @param employee -Employee object.
-     */
-    public void removeEmployee(Employee employee){
-        if (employee == null){
-            throw new NullPointerException("Employee object expected; null received");
-        } else {
-            this.employeeList.remove(employee);
-        }
-    }
-
     /**
      * Returns the list of employees.
      * 
@@ -133,31 +103,4 @@ public class DataBank implements Serializable {
     public List<Employee> getEmployeeList(){
         return employeeList;
     }
-    
-    public void addUser(User user){
-        userList.add(user);    
-    }
-    
-    public boolean removeUser(String username){
-        for(User user: userList)
-        if(user.getUsername().equals(username)){
-            return userList.remove(user);
-        }
-        return false;
-    }
-    
-    public ArrayList<User> getUserList(){
-        ArrayList<User> result = new ArrayList<User>();
-        result.addAll(userList);
-        return result;
-    }
-    
-    /**
-     * Returns the list of users.
-     * 
-     * @return the list of users
-     */
-    /*public List<User> getUserList() {
-        return userList;
-    }*/
 }
