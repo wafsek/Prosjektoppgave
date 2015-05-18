@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
+import java.time.LocalDate;
+
 /**
  * Created by Adrian PC on 13/05/2015.
  */
@@ -58,7 +60,7 @@ public class HouseInsuranceScene extends InsuranceScene {
         homeTypeDropDown = new ComboBox<>();
         homeTypeDropDown.getItems().setAll(HomeType.values());
 
-        constructionYearDropDown = new ComboBox<>(FXCollections.observableArrayList(years()));
+        constructionYearDropDown = new ComboBox<>(FXCollections.observableArrayList(fillArray(LocalDate.now().getYear(), 1925)));
 
         holydayHomeBox = new CheckBox("Feriebolig?");
         holydayHomeBox.setOnAction(e -> {

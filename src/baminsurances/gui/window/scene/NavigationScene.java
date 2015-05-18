@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -19,11 +20,12 @@ import java.security.Key;
 public class NavigationScene extends GeneralScene{
 
     private Scene scene;
-    private Button statisticsButton, customerInteractionButton, searchButton;
+    private Button statisticsButton, customerInteractionButton, searchButton,
+            settingsButton;
     private GuiEventHandler guiEventHandler;
     private BorderPane borderPane;
     private VBox container;
-    private static final double WIDTH = GuiConfig.PRIMARY_WIDTH*1/4, HEIGHT = GuiConfig.PRIMARY_HEIGHT*1/10;
+    private static final double WIDTH = GuiConfig.PRIMARY_WIDTH*1/2, HEIGHT = GuiConfig.PRIMARY_HEIGHT*1/10;
 
     public NavigationScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler) {
         super(guiEventHandler, keyPressHandler);
@@ -31,13 +33,12 @@ public class NavigationScene extends GeneralScene{
         statisticsButton = new IconButton().IconButtonWithText(
                 HEIGHT, HEIGHT, IconButton.STATISTIC_BUTTON,
                 "Statistikk");
-        statisticsButton.setPrefWidth(WIDTH);
-        statisticsButton.setPrefHeight(HEIGHT);
+        statisticsButton.setPrefWidth(WIDTH * 1 / 2);
         statisticsButton.setOnAction(guiEventHandler);
         customerInteractionButton = new IconButton().IconButtonWithText(
                 HEIGHT, HEIGHT, IconButton.CUSTOMERS_BUTTON,
                 "Kundebehandling");
-        customerInteractionButton.setPrefWidth(WIDTH);
+        customerInteractionButton.setPrefWidth(WIDTH * 1 / 2);
         customerInteractionButton.setPrefHeight(
                 HEIGHT);
         customerInteractionButton.setOnAction(guiEventHandler);
@@ -45,11 +46,20 @@ public class NavigationScene extends GeneralScene{
                 HEIGHT,
                 HEIGHT, IconButton.SEARCH_BUTTON,
                 "Søk");
-        searchButton.setPrefWidth(WIDTH);
+        searchButton.setPrefWidth(WIDTH * 1 / 2);
         searchButton.setPrefHeight(HEIGHT);
         searchButton.setOnAction(guiEventHandler);
-        container = new VBox(10, statisticsButton, customerInteractionButton,
-                searchButton);
+
+        settingsButton = new IconButton().IconButtonWithText(
+                HEIGHT, HEIGHT, IconButton.SEARCH_BUTTON, "Innstillinger");
+        settingsButton.setPrefWidth(WIDTH * 1 / 2);
+        settingsButton.setPrefHeight(HEIGHT);
+        settingsButton.setOnAction(guiEventHandler);
+        container = new VBox(10, statisticsButton, customerInteractionButton ,searchButton, settingsButton);
+        container.setAlignment(Pos.CENTER);
+        container.setPrefWidth(WIDTH);
+        container.setStyle("-fx-padding: 10");
+
         footerLeftSide.setPrefWidth(WIDTH * 1/2);
         footerRightSide.setPrefWidth(WIDTH * 1 / 2);
         footerRightSide.getChildren().remove(backButton);
@@ -73,5 +83,9 @@ public class NavigationScene extends GeneralScene{
 
     public Button getSearchButton() {
         return searchButton;
+    }
+
+    public Button getSettingsButton() {
+        return settingsButton;
     }
 }

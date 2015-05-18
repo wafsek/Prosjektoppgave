@@ -150,9 +150,9 @@ public class InsuranceScene extends GeneralScene {
         return paymentFrequencyDropDown.getValue();
     }
 
-    public static String[] years() {
-        int i = LocalDate.now().getYear();
-        String[] returnValue = new String[LocalDate.now().getYear() - 1924];
+    public static String[] fillArray(int to, int from) {
+        int i = to;
+        String[] returnValue = new String[(to - from)+1];
         for (int j = 0; j < returnValue.length; j++) {
             returnValue[j] = ""+i--;
         }
