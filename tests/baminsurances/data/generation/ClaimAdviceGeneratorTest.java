@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import baminsurances.data.BoatInsurance;
 import baminsurances.data.CarInsurance;
+import baminsurances.data.ClaimAdvice;
 import baminsurances.data.HolidayHomeInsurance;
 import baminsurances.data.HomeInsurance;
 import baminsurances.data.Insurance;
@@ -39,10 +40,11 @@ public class ClaimAdviceGeneratorTest {
         types.add(HolidayHomeInsurance.class);
         types.add(TravelInsurance.class);
         
-        for (int i = 0; i < 100; i++) {
-            generator.generateClaimAdvice(
+        for (int i = 0; i < 1000; i++) {
+            ClaimAdvice ca = generator.generateClaimAdvice(
                     types.get((int) (Math.random() * types.size())),
-                    LocalDate.now());
+                    LocalDate.now()); 
+            ca.getPicturesOfDamage();
         }
     }
 }

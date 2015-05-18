@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
@@ -187,9 +188,14 @@ public class ClaimAdvice implements Comparable<ClaimAdvice>, Serializable {
      * @return a list containing pictures of the damage
      */
     public List<BufferedImage> getPicturesOfDamage() {
-        File dir = new File(
-                ClassLoader.getSystemClassLoader().getResource(".").getPath()
-                + "claimadvices");
+        File dir = new File("data/claimadvice_pictures");
+        
+        if (!dir.exists()) {
+            /* No claim advice picture is added yet,
+             * so an empty list is returned.
+             */
+            return new ArrayList<>();
+        }
         
         // Getting an array of all files in /claimadvices
         // with name matching the pattern 'damageNo_xxx'
@@ -204,17 +210,28 @@ public class ClaimAdvice implements Comparable<ClaimAdvice>, Serializable {
         List<BufferedImage> pictures = new ArrayList<>();
         try {
             for (File img : files) {
-                pictures.add(ImageIO.read(img));
+                BufferedImage readImg = ImageIO.read(img);
+                if (readImg != null) {
+                    pictures.add(readImg);
+                }
             }
             return pictures;
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
+            return pictures;
         }
     }
 
     /**
      * Adds the given picture to the list containing pictures of the damage.
+     * <p>
+     * More specifically, the method saves the given BufferedImage to a folder
+     * with the name "claimadvices", with a file name consisting of the damage
+     * number and the picture number.
+     * <p>
+     * Example: A claim advice has the number 4, and currently has 2 images
+     * registered. If a 3rd image is to be added, it would receive the file
+     * name "4_3.png".
      * 
      * @param picture the picture to add
      */
@@ -222,13 +239,12 @@ public class ClaimAdvice implements Comparable<ClaimAdvice>, Serializable {
         String filename = String.valueOf(damageNo) + "_" +
                 String.valueOf(++numPictures);
         try {
-            File dir = new File(
-                    ClassLoader.getSystemClassLoader().getResource(".").getPath()
-                    + "claimadvices");
+            File dir = new File("data/claimadvice_pictures");
             
             dir.mkdir(); // directory will be made if it does not already exist
             
-            ImageIO.write(picture, "png", new File(dir.getPath() + "/" + filename + ".png"));
+            ImageIO.write(picture, "png",
+                    new File(dir.getPath() + "/" + filename + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
