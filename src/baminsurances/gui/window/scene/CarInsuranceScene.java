@@ -62,7 +62,7 @@ public class CarInsuranceScene extends InsuranceScene{
 
         carTypeDropDown = new ComboBox<>();
         carTypeDropDown.getItems().setAll(CarType.values());
-        productionYearDropDown = new ComboBox<>(FXCollections.observableArrayList(years()));
+        productionYearDropDown = new ComboBox<>(FXCollections.observableArrayList(fillArray(LocalDate.now().getYear(), 1925)));
 
         registrationNumberLabel = new Label("Registreringsnummer:");
         productionYearLabel = new Label("Produksjonsår:");
