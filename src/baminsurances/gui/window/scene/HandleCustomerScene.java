@@ -258,7 +258,7 @@ public class HandleCustomerScene extends GeneralScene {
     }
 
     public Insurance getInsurance() {
-        CurrentStatus.setCurrenInsurance(insuranceTable.getSelectionModel().getSelectedItem());
+        CurrentStatus.setCurrentInsurance(insuranceTable.getSelectionModel().getSelectedItem());
         return insuranceTable.getSelectionModel().getSelectedItem();
     }
 }

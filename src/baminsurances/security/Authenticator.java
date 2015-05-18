@@ -19,7 +19,6 @@ public class Authenticator {
     
     private Authenticator() {
         dataBank = DataBank.getInstance();
-        this.registerUser("bam","1234",Authorization.ADMIN);
     }
     
     public static Authenticator getInstance() {
@@ -85,16 +84,5 @@ public class Authenticator {
     
     public boolean authenticate(Employee employee, String password) {
         return this.getPassword(employee).equals(password);
-    }
-    
-    public void registerUser(String username, String password,
-                                Authorization authorization){
-        System.out.println(dataBank);
-        dataBank.addUser(new User(username,password,authorization));
-    }
-    
-    public boolean removeUser(String username){
-        return currentEmployee.getAuthorization() == Authorization.ADMIN
-                && dataBank.removeUser(username);
     }
 }
