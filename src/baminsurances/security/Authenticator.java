@@ -11,7 +11,7 @@ import java.util.logging.Level;
  * @author Baljit Sarai 
  */
 public class Authenticator {
-    private static String displayName = "UnKnown";
+    private String displayName = "UnKnown";
     DataBank dataBank;
     private Employee currentEmployee;
     private CustomLogger logger = CustomLogger.getInstance();
