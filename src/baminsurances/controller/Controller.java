@@ -314,8 +314,17 @@ public class Controller {
                 control == carInsuranceScene.getBackButton()) {
             launchInsuranceScene();
         } else if (control == carInsuranceScene.getRegisterInsuranceButton()) {
-
-        } else if (control == specificInsuranceScene.getUpdateInfoButton()) {
+                    this.registerCarInsurance();
+        } else if (control == boatInsuranceScene.getRegisterInsuranceButton()) {
+                    this.registerBoatInsurance();
+        }else if (control == houseInsuranceScene.getRegisterInsuranceButton()) {
+                    this.registerHomeInsurance();
+        }else if (control == houseInsuranceScene.getRegisterInsuranceButton()
+                && houseInsuranceScene.getRentableBoxIsSelected()) {
+                    this.registerHomeInsurance();
+        }else if (control == travelInsuranceScene.getRegisterInsuranceButton()) {
+                    this.registerTravelInsurance();
+        }else if (control == specificInsuranceScene.getUpdateInfoButton()) {
             CurrentStatus.setCurrenInsurance(UpdateInfoWindow.updateInsurance
                     (CurrentStatus.getCurrenInsurance()));
             launchSpecificInsuranceScene();
@@ -414,10 +423,48 @@ public class Controller {
         return "All is Well";
     }
 
+    private DataControl validateInsuranceData(){
+        if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getAnnualPremiumFieldText())){
+            return DataControl.INVALID_ANNUAL_PREMIUM;
+        }else if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getInsuranceValueFieldText())){
+            return DataControl.INVALID_AMOUNT;
+        }else {
+            return DataControl.SUCCESS;
+        }
+    }
 
+
+    public String validateCarInsuranceData(){
+        if(this.validateInsuranceData() != DataControl.SUCCESS){
+            return this.validateInsuranceData().getDescription();
+        }else if(!Validation.isValidCarRegistrationNo(
+                carInsuranceScene.getRegistrationNumberFieldText())){
+            return "";
+        }else if(!Validation.consistsOnlyOfLetters(
+                carInsuranceScene.getCarModelFieldText())){
+            return "";
+        }else if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getProductionYearSelectedValue())){
+            return "";
+        }else if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getAnnualMilageFieldText())){
+            return "";
+        }else if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getPricePerKilometerFieldText())){
+            return "";
+        }else if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getBonusPercentageFieldText())){
+            return "";
+        }else {
+            return DataControl.SUCCESS.getDescription();
+        }
+    }
+    
     public String registerCarInsurance(){
-        if(this.validateCarInsuranceData() != DataControl.SUCCESS){
-            return this.validateCarInsuranceData().getDescription();
+        if(!this.validateCarInsuranceData().equals("Success")){
+            return this.validateCarInsuranceData();
         }
         else {
             manager.registerCarInsurance(new CarInsurance(
@@ -437,31 +484,148 @@ public class Controller {
                     Integer.parseInt(carInsuranceScene.getBonusPercentageFieldText()
                     )), CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
-            return "Person Registered";
+            return "Car Insurance Registered";
         }
     }
 
-    private DataControl validateInsuranceData(){
-        if(!Validation.consistsOnlyOfNumbers(
-                carInsuranceScene.getAnnualPremiumFieldText())){
-            return DataControl.INVALID_ANNUAL_PREMIUM;
-        }else if(!Validation.consistsOnlyOfNumbers(
-                carInsuranceScene.getInsuranceValueFieldText())){
-            return DataControl.INVALID_AMOUNT;
-        }else {
-            return DataControl.SUCCESS;
+
+
+    public String validateBoatInsuranceData() {
+        if(!this.validateInsuranceData().equals("Success")) {
+            return this.validateInsuranceData().getDescription();
+        } else if(!Validation.isValidBoatRegistrationNo(
+                boatInsuranceScene.getRegistrationNoFieldText())) {
+            return "";
+        } else if(!Validation.isValidBoatRegistrationNo(
+                boatInsuranceScene.getRegistrationNoFieldText())) {
+            return "";
+        } else if(!Validation.consistsOnlyOfNumbers(
+                boatInsuranceScene.getLengthInFeetFieldText())) {
+            return "";
+        } else if(!Validation.consistsOnlyOfNumbers(
+                boatInsuranceScene.getHorsePowerFieldText())) {
+            return "";
+        }  else {
+            return "Success";
         }
     }
 
-    public DataControl validateCarInsuranceData(){
-        if(this.validateInsuranceData() != DataControl.SUCCESS){
-            return this.validateInsuranceData();
-        }else if(!Validation.isValidCarRegistrationNo(
-                carInsuranceScene.getRegistrationNumberFieldText())){
-            return DataControl.INVALID_CAR_REGISTRATION_NUMBER;
-        }else {
-            return DataControl.SUCCESS;
+    public String registerBoatInsurance(){
+        if(this.validateBoatInsuranceData().equals("Success")){
+            return this.validateBoatInsuranceData();
+        } else {
+            manager.registerBoatInsurance(new BoatInsurance(
+                    manager.getEmployee(Authenticator.getInstance().getUser().getUsername()),
+                    Integer.parseInt(boatInsuranceScene.getAnnualPremiumFieldText()),
+                    Integer.parseInt(boatInsuranceScene.getInsuranceValueFieldText()),
+                    PaymentFrequency.ANNUALLY,
+                    boatInsuranceScene.getConditionAreaText(),
+                    boatInsuranceScene.getPerson(),
+                    boatInsuranceScene.getRegistrationNoFieldText(),
+                    boatInsuranceScene.getTypeDropDown(),
+                    boatInsuranceScene.getBrandFieldText(),
+                    boatInsuranceScene.getModelFieldText(),
+                    Integer.parseInt(boatInsuranceScene.getLengthInFeetFieldText()),
+                    Integer.parseInt(boatInsuranceScene.getProductionYearFieldText()),
+                    boatInsuranceScene.getMotorTypeDropdownSelectedValue(),
+                    Integer.parseInt(boatInsuranceScene.getHorsePowerFieldText())),
+                    CurrentStatus.getCurrentCustomer());
+            DataBank.saveDataBank();
+            return "Boat Insurance Registered";
         }
+    }
+
+
+    public String validateHomeInsuranceData(){
+        if(this.validateInsuranceData().equals("Success")){
+            return this.validateInsuranceData().getDescription();
+        } else if (!Validation.isValidStreetAddress(
+                houseInsuranceScene.getStreetAddressFieldText())){
+            return "";
+        } else if (!Validation.isValidZipCode(
+                houseInsuranceScene.getZipCodeFieldText())){
+            return "";
+        } else if (!Validation.consistsOnlyOfNumbers(
+                houseInsuranceScene.getConstructionYearFieldText())){
+            return "";
+        } else if (!Validation.consistsOnlyOfNumbers(
+                houseInsuranceScene.getSquareMetersFieldText())){
+            return "";
+        } else if (!Validation.consistsOnlyOfNumbers(
+                houseInsuranceScene.getHomeAmountFieldText())){
+            return "";
+        } else if (!Validation.consistsOnlyOfNumbers(
+                houseInsuranceScene.getContentsAmountFieldText())){
+            return "";
+        }else {
+            return DataControl.SUCCESS.getDescription();
+        }
+    }
+
+    public String registerHomeInsurance(){
+        if(this.validateHomeInsuranceData().equals("Success")){
+            return this.validateHomeInsuranceData();
+        } else {
+            manager.registerHomeInsurance(new HomeInsurance(
+                            manager.getEmployee(Authenticator.getInstance().getUser().getUsername()),
+                            Integer.parseInt(houseInsuranceScene.getAnnualPremiumFieldText()),
+                            PaymentFrequency.ANNUALLY,
+                            houseInsuranceScene.getConditionAreaText(),
+                            houseInsuranceScene.getStreetAddressFieldText(),
+                            houseInsuranceScene.getZipCodeFieldText(),
+                            Integer.parseInt(houseInsuranceScene.getConstructionYearFieldText()),
+                            houseInsuranceScene.getHomeTypeDropDownSelectedValue(),
+                            houseInsuranceScene.getBuildingMaterialFieldText(),
+                            houseInsuranceScene.getStandardFieldText(),
+                            Integer.parseInt(houseInsuranceScene.getSquareMetersFieldText()),
+                            Integer.parseInt(houseInsuranceScene.getHomeAmountFieldText()),
+                            Integer.parseInt(houseInsuranceScene.getContentsAmountFieldText())),
+                    CurrentStatus.getCurrentCustomer());
+            DataBank.saveDataBank();
+            return "Home Insurance Registered";
+        }
+    }
+
+    
+    
+    public String registerHolidayHomeInsurance(){
+        if(this.validateHomeInsuranceData().equals("Success")){
+            return this.validateHomeInsuranceData();
+        } else {
+            manager.registerHolidayHomeInsurance(new HolidayHomeInsurance(
+                            manager.getEmployee(Authenticator.getInstance().getUser().getUsername()),
+                            Integer.parseInt(houseInsuranceScene.getAnnualPremiumFieldText()),
+                            PaymentFrequency.ANNUALLY,
+                            houseInsuranceScene.getConditionAreaText(),
+                            houseInsuranceScene.getStreetAddressFieldText(),
+                            houseInsuranceScene.getZipCodeFieldText(),
+                            Integer.parseInt(houseInsuranceScene.getConstructionYearFieldText()),
+                            houseInsuranceScene.getHomeTypeDropDownSelectedValue(),
+                            houseInsuranceScene.getBuildingMaterialFieldText(),
+                            houseInsuranceScene.getStandardFieldText(),
+                            Integer.parseInt(houseInsuranceScene.getSquareMetersFieldText()),
+                            Integer.parseInt(houseInsuranceScene.getHomeAmountFieldText()),
+                            Integer.parseInt(houseInsuranceScene.getContentsAmountFieldText()),
+                            houseInsuranceScene.getRentableBoxIsSelected()),
+                    CurrentStatus.getCurrentCustomer());
+            DataBank.saveDataBank();
+            return "Holiday Home Insurance Registered";
+        }
+    }
+
+
+    public String registerTravelInsurance() {
+        manager.registerTravelInsurance(new TravelInsurance(
+                        manager.getEmployee(Authenticator.getInstance().getUser().getUsername()),
+                        Integer.parseInt(travelInsuranceScene.getAnnualPremiumFieldText()),
+                        Integer.parseInt(travelInsuranceScene.getInsuranceValueFieldText()),
+                        PaymentFrequency.ANNUALLY,
+                        travelInsuranceScene.getConditionAreaText(),
+                        travelInsuranceScene.getRegionDropDown()),
+                CurrentStatus.getCurrentCustomer());
+        DataBank.saveDataBank();
+        return "Holiday Home Insurance Registered";
+
     }
     
 }

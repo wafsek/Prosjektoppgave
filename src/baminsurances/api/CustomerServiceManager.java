@@ -82,20 +82,23 @@ public class CustomerServiceManager {
         customer.addInsurance(carInsurance);
     }
     
-    private void registerBoatInsurance(){
+    public void registerBoatInsurance(BoatInsurance boatInsurance,Customer customer){
+        customer.addInsurance(boatInsurance);
+    }
+
+    public void registerHomeInsurance(HomeInsurance homeInsurance,Customer customer){
+        customer.addInsurance(homeInsurance);
+    }
+
+    public void registerHolidayHomeInsurance(HolidayHomeInsurance holidayHomeInsurance,
+                                              Customer customer){
+        customer.addInsurance(holidayHomeInsurance);
 
     }
 
-    private void registerHomeInsurance(){
-
-    }
-
-    private void registerHolidayHomeInsurance(){
-
-    }
-
-    private void registerTravelInsurance(){
-
+    public void registerTravelInsurance(TravelInsurance travelInsurance,
+                                         Customer customer){
+        customer.addInsurance(travelInsurance);
     } 
     
     /**

@@ -1,5 +1,7 @@
 package baminsurances.controller;
 
+import org.omg.CORBA.INVALID_ACTIVITY;
+
 /**
  * The DataControl enums represent a response that is given to the user, after
  * performing a certain action.
@@ -20,7 +22,8 @@ public enum DataControl {
     INVALID_CAR_REGISTRATION_NUMBER(""),
     INVALID_BOAT_REGISTRATION_NUMBER(""),
     INVALID_ANNUAL_PREMIUM("VVV"),
-    INVALID_AMOUNT("ASDF");
+    INVALID_AMOUNT("ASDF"),
+    INVALID_MODEL("");
     private final String description;
     
     /**
