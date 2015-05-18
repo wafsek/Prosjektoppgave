@@ -1,5 +1,6 @@
 package baminsurances.gui.window;
 
+import baminsurances.data.DataBank;
 import baminsurances.data.generation.DataBankGenerator;
 import baminsurances.gui.Gui;
 import baminsurances.gui.window.scene.GeneralScene;
@@ -8,6 +9,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -27,11 +30,17 @@ public class GeneratingStage {
     private GridPane componentContainer;
     private BorderPane borderPane;
     private ComboBox<String> customerBox, employeeBox, insuranceBox, claimAdviceBox;
+    private DataBankGenerator dataBankGenerator;
 
     public GeneratingStage() {
         stage = new Stage();
+        stage.getIcons().add(new Image(
+                this.getClass().getResourceAsStream("../img/temp_logo.png")));
+        stage.setTitle("Generering");
         stage.setWidth(GuiConfig.PRIMARY_WIDTH * 1 / 3);
         stage.setHeight(GuiConfig.PRIMARY_HEIGHT * 2 / 3);
+
+        dataBankGenerator = new DataBankGenerator();
 
         customerLabel = new Label("Antall kunder");
         employeeLabel = new Label("Antall ansatte:");
@@ -59,7 +68,7 @@ public class GeneratingStage {
 
         generateButton = new Button("Generer");
         generateButton.setOnAction(e -> {
-            new DataBankGenerator().fillDataBank(
+            dataBankGenerator.fillDataBank(
                     Integer.parseInt(customerBox.getValue()),
                     Integer.parseInt(employeeBox.getValue()),
                     Integer.parseInt(insuranceBox.getValue()),

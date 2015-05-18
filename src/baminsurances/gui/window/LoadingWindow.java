@@ -30,7 +30,7 @@ public class LoadingWindow {
         stage.setWidth(200);
         stage.setHeight(200);
         stage.setResizable(false);
-        progressIndicator = new ProgressIndicator(-1.0f);
+        progressIndicator = new ProgressIndicator();
         informationLabel = new Label("Genererer...");
         informationLabel.setStyle("-fx-font: 28px Times;");
         container = new VBox(0, informationLabel, progressIndicator);
@@ -44,6 +44,6 @@ public class LoadingWindow {
     }
 
     public void close() {
-        stage.hide();
+        stage.close();
     }
 }
