@@ -23,6 +23,7 @@ public class Employee extends Person {
      * @param email the employee's email
      * @param zipCode the employee's zip code
      * @param streetAddress the employee's street address
+     * @throws NullPointerException if any argument is null
      */
     public Employee(String birthNo, String firstName, String lastName,
             String telephoneNo, String email, String zipCode,
@@ -30,7 +31,9 @@ public class Employee extends Person {
             Authorization authorization) {
         super(birthNo, firstName, lastName, telephoneNo, email, zipCode,
                 streetAddress);
-        
+        setUsername(username);
+        setPassword(password);
+        setAuthorization(authorization);
     }
 
     /**
