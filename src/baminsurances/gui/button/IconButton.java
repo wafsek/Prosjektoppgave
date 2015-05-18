@@ -1,5 +1,7 @@
 package baminsurances.gui.button;
 
+import baminsurances.gui.window.GuiConfig;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -94,6 +96,9 @@ public class IconButton {
         imageViewToBeUsed = testMagicalInput(magical_constant);
         imageViewToBeUsed.setFitWidth(width);
         imageViewToBeUsed.setFitHeight(height);
-        return new Button(buttonText, imageViewToBeUsed);
+        Button returnButton = new Button(buttonText, imageViewToBeUsed);
+        returnButton.setAlignment(Pos.CENTER_LEFT);
+        returnButton.setGraphicTextGap(GuiConfig.PRIMARY_HEIGHT * 1 / 15);
+        return returnButton;
     }
 }

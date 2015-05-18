@@ -235,7 +235,7 @@ public class Controller {
     }
 
     private void updateCustomerInfo() {
-        CurrentStatus.setCurrentCustomer(UpdateInfoWindow.
+        CurrentStatus.setCurrentCustomer(new UpdateInfoWindow().
                 updateCustomerInfo(CurrentStatus.getCurrentCustomer()));
 
     }
@@ -336,7 +336,7 @@ public class Controller {
         }else if (control == travelInsuranceScene.getRegisterInsuranceButton()) {
                     this.registerTravelInsurance();
         }else if (control == specificInsuranceScene.getUpdateInfoButton()) {
-            CurrentStatus.setCurrentInsurance(UpdateInfoWindow.updateInsurance
+            CurrentStatus.setCurrentInsurance(new UpdateInfoWindow().updateInsurance
                     (CurrentStatus.getCurrentInsurance()));
             launchSpecificInsuranceScene();
         } else if (control == navigationScene.getSearchButton()) {

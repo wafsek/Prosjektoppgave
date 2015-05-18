@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -18,43 +19,52 @@ import java.time.LocalDate;
  */
 public class UpdateInfoWindow {
 
-    private static Stage stage = new Stage();
-    private static Scene scene;
-    private static Button updateInfoButton = new Button("Oppdater informasjon");
+    private Stage stage = new Stage();
+    private Scene scene;
+    private Button updateInfoButton = new Button("Oppdater informasjon");
+    private Image image;
 
-    private static GridPane gridPane;
+    private GridPane gridPane;
 
     public UpdateInfoWindow() {
+        image = new Image(
+                this.getClass().getResourceAsStream("../img/temp_logo.png"));
     }
 
-    public static Customer updateCustomerInfo(Customer customer) {
+    public Customer updateCustomerInfo(Customer customer) {
+        stage.getIcons().add(image);
+        stage.setTitle("Oppdater informasjon");
 
-        Label telephoneNoLabel, emailLabel, addressLabel, paymentAddressLabel;
-        TextField telephoneNoField, emailField, addressField, billingAddressField;
+        Label telephoneNoLabel, emailLabel, addressLabel, paymentAddressLabel,
+                zipCodeLabel, paymentZipCodeLabel;
+        TextField telephoneNoField, emailField, addressField, billingAddressField,
+                zipCodeField, billingZipCodeField;
 
         telephoneNoLabel = new Label("Nytt telefonnummer:");
         emailLabel = new Label("Ny email:");
         addressLabel = new Label("Ny adresse:");
         paymentAddressLabel = new Label("Ny betelingsadresse:");
+        zipCodeLabel = new Label("Postnummer:");
+        paymentZipCodeLabel = new Label("postNr. for betalingsadresse:");
 
-        telephoneNoField = new TextField();
-        emailField = new TextField();
-        addressField = new TextField();
-        billingAddressField = new TextField();
+        telephoneNoField = new TextField(customer.getTelephoneNo());
+        emailField = new TextField(customer.getEmail());
+        addressField = new TextField(customer.getStreetAddress());
+        billingAddressField = new TextField(customer.getBillingStreetAddress());
+        zipCodeField = new TextField(customer.getZipCode());
+        billingZipCodeField = new TextField(customer.getBillingZipCode());
 
         gridPane = new GridPane();
-        gridPane.addColumn(0, telephoneNoLabel, emailLabel, addressLabel, paymentAddressLabel);
-        gridPane.addColumn(1, telephoneNoField, emailField, addressField, billingAddressField, updateInfoButton);
+        gridPane.addColumn(0, telephoneNoLabel, emailLabel, addressLabel, zipCodeLabel,
+                paymentAddressLabel, paymentZipCodeLabel);
+        gridPane.addColumn(1, telephoneNoField, emailField, addressField, zipCodeField,
+                billingAddressField, billingZipCodeField, updateInfoButton);
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(10);
         gridPane.setVgap(20);
-        gridPane.setStyle("fx-border-color: gray");
+        gridPane.setStyle("-fx-border-color: gray;" +
+                "-fx-padding: 10;");
 
-
-        telephoneNoField.setText(customer.getTelephoneNo());
-        emailField.setText(customer.getEmail());
-        addressField.setText(customer.getStreetAddress());
-        billingAddressField.setText(customer.getBillingStreetAddress());
         updateInfoButton.setOnAction(e -> {
             if (!telephoneNoField.getText().trim().isEmpty() &&
                     Validation.isValidTelephoneNo(telephoneNoField.getText())) {
@@ -71,6 +81,12 @@ public class UpdateInfoWindow {
             if (!billingAddressField.getText().trim().isEmpty() &&
                     Validation.isValidStreetAddress(billingAddressField.getText())) {
                 customer.setBillingStreetAddress(billingAddressField.getText());
+            } if (!zipCodeField.getText().trim().isEmpty() &&
+                    Validation.isValidZipCode(zipCodeField.getText())) {
+                customer.setZipCode(zipCodeField.getText());
+            } if (!billingZipCodeField.getText().trim().isEmpty() &&
+                    Validation.isValidZipCode(billingZipCodeField.getText())) {
+                customer.setBillingZipCode(billingZipCodeField.getText());
             }
             stage.close();
         });
@@ -81,7 +97,10 @@ public class UpdateInfoWindow {
         return customer;
     }
 
-    public static Insurance updateInsurance(Insurance insurance) {
+    public Insurance updateInsurance(Insurance insurance) {
+        stage.getIcons().add(image);
+        stage.setTitle("Oppdater informasjon");
+
         Label annualPremuimLabel, amountLabel, termsLabel;
         TextField annualPremuimField, amountField;
         TextArea termsArea;
@@ -127,7 +146,8 @@ public class UpdateInfoWindow {
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(10);
         gridPane.setVgap(20);
-        gridPane.setStyle("fx-border-color: gray");
+        gridPane.setStyle("-fx-border-color: gray;" +
+                "-fx-padding: 10;");
 
         scene = new Scene(gridPane);
         stage.setScene(scene);
