@@ -3,9 +3,6 @@ package baminsurances.gui.window;
 import baminsurances.api.Validation;
 import baminsurances.controller.DataControl;
 import baminsurances.data.Person;
-import baminsurances.gui.eventhandler.GuiEventHandler;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,7 +11,10 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
- * Created by Adrian on 14/05/2015.
+ * A window for use when a vehicle insurance has a different owner than the
+ * buyer of the insurance.
+ * 
+ * @author Adrian Melsom
  */
 public class DifferentVehicleOwnerWindow {
 
@@ -31,12 +31,12 @@ public class DifferentVehicleOwnerWindow {
 
     private Person person;
 
-    private static IntegerProperty returnCode;
-
+    /**
+     * Creates a new window for
+     */
     public DifferentVehicleOwnerWindow() {
         stage = new Stage();
         person = null;
-        returnCode = new SimpleIntegerProperty(-1);
 
         birthNoLabel = new Label("Fødselsnummer:");
         firstNameLabel = new Label("Fornavn:");
@@ -57,15 +57,24 @@ public class DifferentVehicleOwnerWindow {
         registerOwnerButton = new Button("Registrer eier");
 
         container = new GridPane();
-        container.addColumn(0, birthNoLabel, firstNameLabel, lastNameLabel, telephoneNoLabel,
-                emailLabel, zipCodeLabel, streetAddressLabel);
-        container.addColumn(1, birthNoField, firstNameField, lastNameField, telephoneNoField,
-                emailField, zipCodeField, streetAddressField, registerOwnerButton);
+        container.addColumn(0, birthNoLabel, firstNameLabel, lastNameLabel,
+                telephoneNoLabel, emailLabel, zipCodeLabel,
+                streetAddressLabel);
+        container.addColumn(1, birthNoField, firstNameField, lastNameField,
+                telephoneNoField, emailField, zipCodeField, streetAddressField,
+                registerOwnerButton);
         scene = new Scene(container);
 
         stage.setScene(scene);
     }
 
+    /**
+     * Attempts to create a new person with the current values in the input
+     * fields, and returns this person if it was a success.
+     * 
+     * @return a person if the none of the inputs contained illegal values,
+     * <code>null</code> otherwise
+     */
     public Person registerOwner() {
         registerOwnerButton.setOnAction(e -> {
             if (validatePersonData() == DataControl.SUCCESS) {
@@ -76,14 +85,20 @@ public class DifferentVehicleOwnerWindow {
                 String email = emailField.getText();
                 String zipCode = zipCodeField.getText();
                 String streetAddress = streetAddressField.getText();
-                person = new Person(birthNo, firstName, lastName, telephoneNo, email, zipCode, streetAddress);
-                new MessageDialog().showMessageDialog("Registrert", "Du har nå registrert en person ny eier av bilen.",
-                    MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+                person = new Person(birthNo, firstName, lastName, telephoneNo,
+                        email, zipCode, streetAddress);
+                MessageDialog.showMessageDialog("Registrert",
+                        "Du har nå registrert en person ny eier av bilen.",
+                        MessageDialog.INFORMATION_ICON,
+                        MessageDialog.OK_OPTION);
                 stage.close();
             } else {
-                if (new MessageDialog().showMessageDialog("Ugyldig", "Ugyldig informasjon. Ønsker du å gjøre om?",
-                        MessageDialog.INFORMATION_ICON, MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION) {
-
+                if (MessageDialog.showMessageDialog("Ugyldig",
+                        "Ugyldig informasjon. Ønsker du å gjøre om?",
+                        MessageDialog.INFORMATION_ICON,
+                        MessageDialog.YES__NO_OPTION) ==
+                            MessageDialog.YES_OPTION) {
+                    // do nothing after closing dialog
                 } else {
                     stage.close();
                 }
@@ -93,27 +108,33 @@ public class DifferentVehicleOwnerWindow {
         return person;
     }
 
+    /**
+     * Validates the input, and returns a {@link
+     * baminsurances.controller.DataControl} enum representing the result.
+     *  
+     * @return a {@link baminsurancs.controller.DataControl} enum representing
+     * the result
+     */
     private DataControl validatePersonData(){
-
-        if(!Validation.isValidFirstName(firstNameField.getText())){
+        if (!Validation.isValidFirstName(firstNameField.getText())) {
             System.out.println("Fn");
             return DataControl.INVALID_FIRST_NAME;
-        }else if(!Validation.isValidLastName(lastNameField.getText())){
+        } else if (!Validation.isValidLastName(lastNameField.getText())) {
             System.out.println("Ln");
             return DataControl.INVALID_LAST_NAME;
-        }else if(!Validation.isValidBirthNo(birthNoField.getText())){
+        } else if (!Validation.isValidBirthNo(birthNoField.getText())) {
             System.out.println("Bnr");
             return DataControl.INVALID_BIRTHNO;
-        }else if(!Validation.isValidEmail(emailField.getText())){
+        } else if (!Validation.isValidEmail(emailField.getText())) {
             System.out.println("mail");
             return DataControl.INVALID_EMAIL;
-        }else if(!Validation.isValidTelephoneNo(telephoneNoField.getText())){
+        } else if (!Validation.isValidTelephoneNo(telephoneNoField.getText())) {
             System.out.println("rlf");
             return DataControl.INVALID_TLF;
-        }else if(!Validation.isValidStreetAddress(streetAddressField.getText())){
+        } else if (!Validation.isValidStreetAddress(streetAddressField.getText())) {
             System.out.println("strt");
             return DataControl.INVALID_ADDRESS;
-        }else if(!Validation.isValidZipCode(zipCodeField.getText())){
+        } else if (!Validation.isValidZipCode(zipCodeField.getText())) {
             System.out.println("zip");
             return DataControl.INVALID_ZIPCODE;
         } else {

@@ -1,21 +1,18 @@
 package baminsurances.gui.window;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.security.cert.Extension;
-
 /**
- * Created by Adrian on 18/05/2015.
+ * A loading window that is to be shown when data is generated. This is to
+ * signify that the software has not frozen, as the generation may take some
+ * time.
+ * 
+ * @author Adrian Melsom
  */
 public class LoadingWindow {
     private Stage stage;
@@ -24,7 +21,9 @@ public class LoadingWindow {
     private ProgressIndicator progressIndicator;
     private VBox container;
 
-
+    /**
+     * Creates a new loading window.
+     */
     public LoadingWindow() {
         stage = new Stage();
         stage.setWidth(200);
@@ -39,10 +38,16 @@ public class LoadingWindow {
         stage.setScene(scene);
     }
 
+    /**
+     * Displays the loading window.
+     */
     public void display() {
         stage.show();
     }
 
+    /**
+     * Closes the loading window.
+     */
     public void close() {
         stage.close();
     }

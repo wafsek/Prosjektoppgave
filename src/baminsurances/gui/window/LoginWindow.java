@@ -16,6 +16,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
+ * A login window that is to be shown when the software is opened.
+ * 
  * @author Adrian Melsom
  */
 public class LoginWindow {
@@ -26,7 +28,7 @@ public class LoginWindow {
     private Image companyLogo;
     private ImageView companyLogoImageView;
 
-    private Label usernameLabel, passwordLabel, logoLabel;
+    private Label usernameLabel, passwordLabel;
     private TextField usernameField;
     private PasswordField passwordField;
 
@@ -40,9 +42,13 @@ public class LoginWindow {
 
     private static LoginWindow loginWindow = new LoginWindow();
 
+    /**
+     * Creates a new login window.
+     */
     private LoginWindow() {
         companyLogo = new Image(
-                this.getClass().getResourceAsStream("../img/temp_logo.png"));
+                this.getClass().getClassLoader().getResourceAsStream(
+                        "temp_logo.png"));
         stage = new Stage();
         stage.setTitle(Config.getApplicationName());
         stage.getIcons().add(companyLogo);
@@ -53,7 +59,6 @@ public class LoginWindow {
 
         usernameLabel = new Label("Brukernavn:");
         passwordLabel = new Label("Passord:");
-        logoLabel = new Label("", companyLogoImageView);
         usernameField = new TextField();
         passwordField = new PasswordField();
         loginButton = new Button("Logg inn");

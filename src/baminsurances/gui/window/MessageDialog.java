@@ -12,12 +12,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
+ * A custom message dialog used to display different types of messages to the
+ * user.
+ * 
  * @author Adrian Melsom
  */
 public class MessageDialog {
@@ -27,6 +28,7 @@ public class MessageDialog {
     public static final int YES_OPTION = 4;
     public static final int NO_OPTION = 5;
     public static final int CANCEL_OPTION = 3;
+    
     public static final int WARNING_ICON = 10;
     public static final int INFORMATION_ICON = 11;
     public static final int ERROR_ICON = 12;
@@ -36,27 +38,37 @@ public class MessageDialog {
     private static Scene scene;
     private static Button yes, no, ok, cancel;
     private static Image warning, information, error, question, logo;
-    private static ImageView warningImageView, informationImageView, errorImageView, questionImageView;
+    private static ImageView warningImageView, informationImageView,
+        errorImageView, questionImageView;
     private static Label message;
     private static GridPane gridPane;
     private static BorderPane borderPane;
     private static HBox contentHBox, buttonHBox;
 
-    private String path;
-
     private static IntegerProperty returnCode;
 
-    public MessageDialog() {
-        path = "../img/";
-        warning = new Image(this.getClass().getResourceAsStream(path + "add_user.png"));
+    // The static initializer.
+    static {
+        String path = "iconImg/";
+        
+        warning = new Image(MessageDialog.class.getClassLoader().getResourceAsStream(
+                path + "warning_icon.png"));
         warningImageView = new ImageView(warning);
-        information = new Image(this.getClass().getResourceAsStream(path + "add_user.png"));
+        
+        information = new Image(MessageDialog.class.getClassLoader().getResourceAsStream(
+                path + "information_icon.png"));
         informationImageView = new ImageView(information);
-        error = new Image(this.getClass().getResourceAsStream(path + "add_user.png"));
+        
+        error = new Image(MessageDialog.class.getClassLoader().getResourceAsStream(
+                path + "error_icon.png"));
         errorImageView = new ImageView(error);
-        question = new Image(this.getClass().getResourceAsStream(path + "add_user.png"));
+        
+        question = new Image(MessageDialog.class.getClassLoader().getResourceAsStream(
+                path + "question_icon.png"));
         questionImageView = new ImageView(question);
-        logo = new Image(this.getClass().getResourceAsStream(path + "temp_logo.png"));
+        
+        logo = new Image(MessageDialog.class.getClassLoader().getResourceAsStream(
+                "temp_logo.png"));
 
         returnCode = new SimpleIntegerProperty(-1);
 
@@ -66,25 +78,32 @@ public class MessageDialog {
             stage.close();
         });
 
-        yes = new Button("JA");
+        yes = new Button("Ja");
         yes.setOnAction(e -> {
             returnCode.set(YES_OPTION);
             stage.close();
         });
 
-        no = new Button("NEI");
+        no = new Button("Nei");
         no.setOnAction(e -> {
             returnCode.set(NO_OPTION);
             stage.close();
         });
 
-        cancel = new Button("AVBRYT");
+        cancel = new Button("Avbryt");
         cancel.setOnAction(e -> {
             returnCode.set(CANCEL_OPTION);
             stage.close();
         });
     }
 
+    /**
+     * Shows a message dialog with the given values.
+     * 
+     * @param title the title of the dialog
+     * @param object_message the message to display
+     * @return a value indicating the user's response
+     */
     public static int showMessageDialog(String title, String object_message) {
         stage = new Stage();
         stage.setMinHeight(150);
@@ -116,6 +135,15 @@ public class MessageDialog {
         return returnCode.get();
     }
 
+    /**
+     * Shows a message dialog with the given values.
+     * 
+     * @param title the title of the dialog
+     * @param object_message the message to display
+     * @param magical_constant_icon the icon to use
+     * @param magical_constant_buttons the button to use
+     * @return a value indicating the user's response
+     */
     public static int showMessageDialog(String title, String object_message,
             int magical_constant_icon, int magical_constant_buttons) {
         stage = new Stage();
@@ -161,6 +189,14 @@ public class MessageDialog {
         return returnCode.get();
     }
 
+    /**
+     * Shows a message dialog with the given values.
+     * 
+     * @param title the title of the dialog
+     * @param object_message the message to display
+     * @param magical_icon_constant the icon to use
+     * @return a value indicating the user's response
+     */
     public static int showMessageDialog(String title, String object_message,
             int magical_icon_constant) {
         stage = new Stage();
@@ -207,6 +243,13 @@ public class MessageDialog {
         return returnCode.get();
     }
 
+    /**
+     * Takes the given string and attempts to return a new string that will fit
+     * inside a message dialog.
+     * 
+     * @param inputString the string to fit
+     * @return a copy of the given string that fits inside a message dialog
+     */
     private static String fitText(String inputString) {
         String output = "";
         int counter = 0;

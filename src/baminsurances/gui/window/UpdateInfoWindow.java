@@ -1,10 +1,7 @@
 package baminsurances.gui.window;
 
-import baminsurances.api.Config;
 import baminsurances.api.Validation;
 import baminsurances.data.*;
-import baminsurances.gui.window.scene.InsuranceScene;
-import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -15,7 +12,10 @@ import javafx.stage.Stage;
 import java.time.LocalDate;
 
 /**
- * Created by Adrian on 15/05/2015.
+ * A window used for updating the information of a single customer or
+ * insurance.
+ * 
+ * @author Adrian Melsom
  */
 public class UpdateInfoWindow {
 
@@ -26,11 +26,21 @@ public class UpdateInfoWindow {
 
     private GridPane gridPane;
 
+    /**
+     * Creates a new update info window.
+     */
     public UpdateInfoWindow() {
         image = new Image(
-                this.getClass().getResourceAsStream("../img/temp_logo.png"));
+                this.getClass().getClassLoader().getResourceAsStream("temp_logo.png"));
     }
 
+    /**
+     * Validates the input fields, and returns the attemptedly altered
+     * customer.
+     * 
+     * @param customer the customer to alter
+     * @return the attemptedly altered customer
+     */
     public Customer updateCustomerInfo(Customer customer) {
         stage.getIcons().add(image);
         stage.setTitle("Oppdater informasjon");
@@ -55,10 +65,11 @@ public class UpdateInfoWindow {
         billingZipCodeField = new TextField(customer.getBillingZipCode());
 
         gridPane = new GridPane();
-        gridPane.addColumn(0, telephoneNoLabel, emailLabel, addressLabel, zipCodeLabel,
-                paymentAddressLabel, paymentZipCodeLabel);
-        gridPane.addColumn(1, telephoneNoField, emailField, addressField, zipCodeField,
-                billingAddressField, billingZipCodeField, updateInfoButton);
+        gridPane.addColumn(0, telephoneNoLabel, emailLabel, addressLabel,
+                zipCodeLabel, paymentAddressLabel, paymentZipCodeLabel);
+        gridPane.addColumn(1, telephoneNoField, emailField, addressField,
+                zipCodeField, billingAddressField, billingZipCodeField,
+                updateInfoButton);
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(10);
         gridPane.setVgap(20);
@@ -97,6 +108,13 @@ public class UpdateInfoWindow {
         return customer;
     }
 
+    /**
+     * Validates the input fields, and returns the attemptedly
+     * altered insurance.
+     * 
+     * @param insurance the insurance to alter
+     * @return the attemptedly altered insurance
+     */
     public Insurance updateInsurance(Insurance insurance) {
         stage.getIcons().add(image);
         stage.setTitle("Oppdater informasjon");
@@ -120,7 +138,8 @@ public class UpdateInfoWindow {
 
         updateInfoButton.setOnAction(e -> {
             if (!annualPremuimField.getText().trim().isEmpty()) {
-                insurance.setAnnualPremium(Integer.parseInt(annualPremuimField.getText()));
+                insurance.setAnnualPremium(Integer.parseInt(
+                        annualPremuimField.getText()));
             }
             if (!amountField.getText().trim().isEmpty()) {
                 insurance.setAmount(Integer.parseInt(amountField.getText()));

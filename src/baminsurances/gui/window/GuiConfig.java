@@ -1,7 +1,5 @@
 package baminsurances.gui.window;
 
-import javafx.scene.layout.HBox;
-
 /**
  * Created by Adrian on 11/05/2015.
  */
