@@ -479,16 +479,13 @@ public class Searcher {
         
         for (int i = 21; i <= 100; i += 10) {
             String key = String.valueOf(i) + "-" + String.valueOf(i + 9);
-            System.out.println(key);
             for (int j = i; j <= i + 9; j++) {
                 Integer currentNum = result.get(key);
                 if (currentNum == null) {
                     currentNum = 0;
                 }
                 result.put(key, currentNum + temp.get(j));
-                System.out.println("Age " + j + ", found: " + temp.get(j));
             }
-            System.out.println("Key: " + key + ", Value: " + result.get(key));
         }
         return result;
     }
