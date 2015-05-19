@@ -1,34 +1,35 @@
-package baminsurances.gui.window;
+package baminsurances.gui.window.scene;
 
 import baminsurances.api.Searcher;
 import baminsurances.data.DataBank;
 import baminsurances.data.Employee;
 import baminsurances.gui.eventhandler.GuiEventHandler;
+import baminsurances.gui.eventhandler.KeyPressHandler;
+import baminsurances.gui.window.GuiConfig;
 import baminsurances.logging.CustomLogger;
-import javafx.animation.Animation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.chart.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
-import java.util.*;
+import java.util.Map;
 import java.util.logging.Level;
 
-import javafx.stage.Stage;
-import javafx.scene.chart.*;
-
 /**
- * Created by baljit on 17.05.2015.
+ * Created by baljit on 19.05.2015.
  */
-public class StatisticWindow {
-
-    private Stage stage;
-    private Scene scene;
-
+public class StatisticScene extends GeneralScene{
 
     private VBox leftSide,rightSide;
 
@@ -53,33 +54,55 @@ public class StatisticWindow {
     private CustomLogger logger;
     
     
-    private GuiEventHandler handler;
-    
-    
-    public StatisticWindow(){
-        
-        companyLogo = new Image(
-                this.getClass().getResourceAsStream("../img/temp_logo.png"));
-        stage = new Stage();
-        stage.setTitle("Statistic Window");
-        stage.getIcons().add(companyLogo);
+    public StatisticScene(GuiEventHandler guiEventHandler,KeyPressHandler keyPressHandler){
+        super(guiEventHandler,keyPressHandler);
 
-        stage.setScene(scene);
-        stage.setWidth(GuiConfig.PRIMARY_WIDTH);
-        stage.setHeight(GuiConfig.PRIMARY_HEIGHT);
+        logger = CustomLogger.getInstance();
+        //handyData.getChildren().add(pieChart);
+
+
+        Axis xAxis = new NumberAxis();
+        Axis yAxis = new NumberAxis();
+        Axis cAxis = new CategoryAxis();
+
+        XYChart.Series series = new XYChart.Series();
+
+
+        this.setSeries(series);
+
+        lineChart = new LineChart(xAxis,yAxis);
+        lineChart.setPrefWidth(700);
+
+        barChart = new BarChart(cAxis,yAxis);
+        barChart.getData().addAll(series);
+
+        barChart.setPrefWidth(700);
+        barChart.setMaxHeight(400);
+
+
+        this.setComboBox();
+        leftSide = new VBox(10);
+        rightSide = new VBox(10);
+        rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        rightSide.getChildren().add(comboBox);
+
+        footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        footer = new HBox(0, footerLeftSide, footerRightSide);
+        footer.setStyle("-fx-border-color: gray;");
+
+
+        rightSide.setAlignment(Pos.CENTER);
+        borderPane = new BorderPane(leftSide,null,rightSide,footer,null);
+
+        scene = new Scene(borderPane);
+        
     }
-    
-    
-    
-    public void show(){
-        stage.show();
-    }
-    
-    
-    
+
+
     private void setComboBox(){
         comboBox = new ComboBox(FXCollections.observableArrayList(
-               "1",
+                "1",
                 "2",
                 "3",
                 "4",
@@ -107,7 +130,7 @@ public class StatisticWindow {
     private void clearRightSide(){
         rightSide.getChildren().removeAll(pieChart);
     }
-    
+
     private void launchOptionOne(){
         this.clearRightSide();
         logger.log("Option one selected ", Level.FINE);
@@ -117,9 +140,9 @@ public class StatisticWindow {
         pieChart.getLabelsVisible();
         rightSide.getChildren().add(pieChart);
     }
-    
-    
-    
+
+
+
     private void launchOptionTwo(){
         this.clearRightSide();
         logger.log("Option one selected ", Level.FINE);
@@ -145,7 +168,7 @@ public class StatisticWindow {
     private void launchOptionSix(){
         logger.log("Option six selected ", Level.FINE);
     }
-    
+
     public <T> void setPieChartData(Map<T ,Integer> map){
         pieChartData = FXCollections.observableArrayList();
         for(Map.Entry<T,Integer> entrySet : map.entrySet()){
@@ -154,20 +177,20 @@ public class StatisticWindow {
             pieChartData.add(new PieChart.Data(key.toString()+" : "+value,value));
         }
     }
-    
-    
-    
+
+
+
     public void setSeries(XYChart.Series series1){
         for (Employee employee: DataBank.getInstance().getEmployeeList()){
             this.addData(series1,employee.getFirstName(),employee.getAge());
         }
     }
-    
-    
+
+
     public void addData(XYChart.Series series,String s,int i){
-        
+
     }
-    
+
     public <T>void setBarChartData(Map<T,Integer> map){
         XYChart.Series series = new XYChart.Series();
         T key;

@@ -87,6 +87,7 @@ public class DataBank implements Serializable {
             this.customerList.add(customer);
         }
     }
+    
 
     /**
      * Returns the list of CustomerInsurances.
