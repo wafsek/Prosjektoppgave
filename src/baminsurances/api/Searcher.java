@@ -1,7 +1,9 @@
 package baminsurances.api;
 
 import java.time.LocalDate;
+import java.time.Year;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
@@ -302,32 +304,120 @@ public class Searcher {
      ***********************************************/
     
     /**
+     * Returns the current number of customers in the data bank.
+     * 
+     * @return the current number of customers in the data bank
+     */
+    public int getNumCustomers() {
+        return dataBank.getCustomerList().size();
+    }
+    
+    /**
+     * Returns the current number of insurances in the data bank.
+     * 
+     * @return the current number of insurances in the data bank
+     */
+    public int getNumInsurances() {
+        int num = 0;
+        for (Customer cus : dataBank.getCustomerList()) {
+            num += cus.getInsurances().size();
+        }
+        return num;
+    }
+    
+    /**
+     * Returns a sorted map where the keys are years, and the values are the
+     * sum of all payments received that year.
+     * 
+     * @return a sorted map where the keys are years, and the values are the
+     * sum of all payments received that year
+     */
+    public SortedMap<Integer, Integer> getSumPaymentsPerYear() {
+        SortedMap<Integer, Integer> result = new TreeMap<>();
+        
+        for (Customer cus : dataBank.getCustomerList()) {
+            for (Insurance ins : cus.getInsurances()) {
+                for (Map.Entry<LocalDate, Integer> payment :
+                        ins.getPayments().entrySet()) {
+                    int year = payment.getKey().getYear();
+                    Integer current = result.get(year);
+                    if (current == null) {
+                        current = 0;
+                    }
+                    
+                    result.put(year, current + payment.getValue());
+                }
+            }
+        }
+        
+        if (result.isEmpty()) {
+            return result;
+        }
+        
+        /* Initializing all "empty" keys between the min and max value to zero,
+         * so that there are no empty intervals.
+         */
+        for (int year = result.firstKey() + 1; year < result.lastKey(); year++) {
+            if (result.get(year) == null) {
+                result.put(year, 0);
+            }
+        }
+        
+        return result;
+    }
+    
+    public Map<String, Integer> getNumClaimAdvicesPerMonth() {
+        return null;
+    }
+    
+    /**
      * Returns a sorted map where the keys are different ages, and the values
      * are the number of customers per age.
      * 
      * @return a sorted map where the keys are different ages, and the values
      * are the number of customers per age
      */
-    public SortedMap<Integer, Integer> numCustomersPerAge() {
-        SortedMap<Integer, Integer> result = new TreeMap<>();
+    public Map<String, Integer> numCustomersPerAge() {
+        SortedMap<Integer, Integer> temp = new TreeMap<>();
         
         for (Customer cus : dataBank.getCustomerList()) {
             int age = cus.getAge();
-            Integer currentNum = result.get(age);
+            Integer currentNum = temp.get(age);
             if (currentNum == null) {
                 currentNum = 0;
             }
-            result.put(age, currentNum + 1);
+            temp.put(age, currentNum + 1);
         }
         
-        /*
-         * Initializing all "empty" keys between the min and max value to zero,
+        if (temp.isEmpty()) {
+            return new HashMap<>();
+        }
+        
+        /* Initializing all "empty" keys between the min and max value to zero,
          * so that there are no empty intervals.
          */
-        for (int age = result.firstKey() + 1; age < result.lastKey(); age++) {
-            if (result.get(age) == null) {
-                result.put(age, 0);
+        for (int age = temp.firstKey() + 1; age < temp.lastKey(); age++) {
+            if (temp.get(age) == null) {
+                temp.put(age, 0);
             }
+        }
+        
+        /* Finally creating the map that is to be returned. Its keys are
+         * age groups represented by strings.
+         * 
+         * E.g: "18-20", "21-30", "31-40", "41-50", ..., "91-100".
+         */
+        Map<String, Integer> result = new LinkedHashMap<>();
+        result.put("18-20", temp.get(18));
+        result.put("18-20", result.get("18-20") + temp.get(19));
+        result.put("18-20", result.get("18-20") + temp.get(20));
+        
+        for (int i = 21; i <= 100; i += 9) {
+            String key = String.valueOf(i) + "-" + String.valueOf(i + 9);
+            for (int j = i; j <= 9; j++) {
+                result.put(key, temp.get(j));
+            }
+            System.out.println(result.get(key).toString());
         }
         return result;
     }
