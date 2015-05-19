@@ -477,14 +477,18 @@ public class Searcher {
         result.put("18-20", result.get("18-20") + temp.get(19));
         result.put("18-20", result.get("18-20") + temp.get(20));
         
-        for (int i = 21; i <= 100; i += 9) {
+        for (int i = 21; i <= 100; i += 10) {
             String key = String.valueOf(i) + "-" + String.valueOf(i + 9);
             System.out.println(key);
             for (int j = i; j <= i + 9; j++) {
-                result.put(key, temp.get(j));
+                Integer currentNum = result.get(key);
+                if (currentNum == null) {
+                    currentNum = 0;
+                }
+                result.put(key, currentNum + temp.get(j));
                 System.out.println("Age " + j + ", found: " + temp.get(j));
             }
-            System.out.println("Key: " + key + ", value: " + result.get(key).toString());
+            System.out.println("Key: " + key + ", Value: " + result.get(key));
         }
         return result;
     }
