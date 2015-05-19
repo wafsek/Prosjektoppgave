@@ -407,7 +407,8 @@ public class Searcher {
         for (Customer cus : dataBank.getCustomerList()) {
             char gender = cus.getGender();
             result.put(displayNames.get(gender),
-                    result.get(gender) + cus.getInsurances().size());
+                    result.get(displayNames.get(gender)) +
+                    cus.getInsurances().size());
         }
         return result;
     }
@@ -429,6 +430,7 @@ public class Searcher {
         displayNames.put(HomeInsurance.class, "Boligforsikring");
         displayNames.put(HolidayHomeInsurance.class, "Fritidsboligforsikring");
         displayNames.put(TravelInsurance.class, "Reiseforsikring");
+        System.out.println(displayNames.toString());
         
         /* Initializing all keys with a value of 0, so that they are included
          * even if no insurance exists of that type.
@@ -436,13 +438,14 @@ public class Searcher {
         result.put("Bilforsikring", 0);
         result.put("Båtforsikring", 0);
         result.put("Boligforsikring", 0);
-        result.put("Ferieboligforsikring", 0);
+        result.put("Fritidsboligforsikring", 0);
         result.put("Reiseforsikring", 0);
         
         for (Customer cus : dataBank.getCustomerList()) {
             for (Insurance ins : cus.getInsurances()) {
                 Class<? extends Insurance> type = ins.getClass();
-                result.put(displayNames.get(type), result.get(displayNames.get(type)) + 1);
+                result.put(displayNames.get(type),
+                        result.get(displayNames.get(type)) + 1);
             }
         }
         System.out.println(result.size());

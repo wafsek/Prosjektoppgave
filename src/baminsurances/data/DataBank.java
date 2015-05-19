@@ -88,7 +88,6 @@ public class DataBank implements Serializable {
         }
     }
     
-
     /**
      * Returns the list of CustomerInsurances.
      * 
