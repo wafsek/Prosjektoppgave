@@ -480,11 +480,11 @@ public class Searcher {
         for (int i = 21; i <= 100; i += 9) {
             String key = String.valueOf(i) + "-" + String.valueOf(i + 9);
             System.out.println(key);
-            for (int j = 0; j <= 9; j++) {
+            for (int j = i; j <= i + 9; j++) {
                 result.put(key, temp.get(j));
                 System.out.println("Age " + j + ", found: " + temp.get(j));
             }
-            System.out.println(result.get(key).toString());
+            System.out.println("Key: " + key + ", value: " + result.get(key).toString());
         }
         return result;
     }
