@@ -365,8 +365,74 @@ public class Searcher {
         return result;
     }
     
-    public Map<String, Integer> getNumClaimAdvicesPerMonth() {
-        return null;
+    /**
+     * Returns a map where the keys are months, and the values are the number
+     * of claim advices for that month, across all years.
+     * 
+     * @return a map where the keys are months, and the values are the number
+     * of claim advices for that month, across all years
+     */
+    public Map<String, Integer> numClaimAdvicesPerMonth() {
+        Map<Integer, Integer> temp = new HashMap<>();
+        for (int i = 1; i <= 12; i++) {
+            temp.put(i, 0);
+        }
+        
+        for (Customer cus : dataBank.getCustomerList()) {
+            for (Insurance ins : cus.getInsurances()) {
+                for (ClaimAdvice ca : ins.getClaimAdvices()) {
+                    int month = ca.getDateOfDamage().getMonthValue(); 
+                    temp.put(month, temp.get(month) + 1);   
+                }
+            }
+        }
+        
+        Map<String, Integer> result = new LinkedHashMap<>();
+        result.put("Januar",    temp.get(1));
+        result.put("Februar",   temp.get(2));
+        result.put("Mars",      temp.get(3));
+        result.put("April",     temp.get(4));
+        result.put("Mai",       temp.get(5));
+        result.put("Juni",      temp.get(6));
+        result.put("Juli",      temp.get(7));
+        result.put("August",    temp.get(8));
+        result.put("September", temp.get(9));
+        result.put("Oktober",   temp.get(10));
+        result.put("November",  temp.get(11));
+        result.put("Desember",  temp.get(12));
+        return result;
+    }
+    
+    /**
+     * Returns a map where the keys are genders, and the values are the number
+     * of claim advices for that gender.
+     * 
+     * @return a map where the keys are genders, and the values are the number
+     * of claim advices for that gender
+     */
+    public Map<String, Integer> numClaimAdvicesPerGender() {
+        Map<String, Integer> result = new HashMap<>();
+        
+        // Map used to find the right display name based on class.
+        Map<Character, String> displayNames = new HashMap<>();
+        displayNames.put('M', "Menn");
+        displayNames.put('F', "Kvinner");
+        
+        /* Initializing all keys with a value of 0, so that they are included
+         * even if no customer of that gender exists.
+         */
+        result.put("Menn", 0);
+        result.put("Kvinner", 0);
+        
+        for (Customer cus : dataBank.getCustomerList()) {
+            char gender = cus.getGender();
+            for (Insurance ins : cus.getInsurances()) {
+                result.put(displayNames.get(gender),
+                        result.get(displayNames.get(gender)) +
+                        ins.getClaimAdvices().size());
+            }
+        }
+        return result;
     }
     
     /**
@@ -506,6 +572,13 @@ public class Searcher {
         return result;
     }
     
+    /**
+     * Returns a map where the key is a region, and the value is the number of
+     * customers living in that region.
+     * 
+     * @return a map where the key is a region, and the value is the number of
+     * customers living in that region
+     */
     public Map<String, Integer> numCustomersPerRegion() {
         /* Helper map to determine region based on the first two digits
          * of a zip code.
@@ -548,7 +621,7 @@ public class Searcher {
          */
         for (int i = 0; i <= 39; i++) {
             String code = String.valueOf(i);
-            if (i < 9) {
+            if (i < 10) {
                 code = "0" + code;
             }
             zipCodeToRegion.put(code, "Østlandet");
@@ -654,5 +727,54 @@ public class Searcher {
         }
         System.out.println(result.size());
         return result;
+    }
+    
+    /**
+     * Returns a map where the outer key is a region, and the outer value is a
+     * new map. In this new map, the key is a type of insurance, and the value
+     * is the number of insurances of that type.
+     * 
+     * @return a map representing the number of an insuranc type in a region
+     */
+    public Map<String, Map<String, Integer>> getInsuranceTypesPerRegion() {
+        Map<String, TreeMap<String, Integer>> result =
+                new HashMap<String, TreeMap<String, Integer>>();
+        
+        Map<String, String> zipCodeToRegion = getZipCodesToRegion();
+        for (String region : zipCodeToRegion.values()) {
+            result.put(region, new TreeMap<>());
+        }
+        
+        Map<Class<? extends Insurance>, String> insuranceClassToString =
+                getInsuranceClassToString();
+        
+        for (Customer cus : dataBank.getCustomerList()) {
+            String region = zipCodeToRegion.get(cus.getZipCode());
+            for (Insurance ins : cus.getInsurances()) {
+                String type = insuranceClassToString.get(ins.getClass());
+                Map<String, Integer> inner = result.get(region);
+                
+                /*
+                Integer currentNum = result.get(region)
+                
+                inner.put(type, value)
+                
+                result.put(region);*/
+            }
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Helper method that returns a map where the key is a subclass of
+     * Insurance, and the values are a string representation of that
+     * insurance subclass.
+     * 
+     * @return a map where the key is a subclass of Insurance, and the values
+     * are a string representation of that insurance subclass
+     */
+    private Map<Class<? extends Insurance>, String> getInsuranceClassToString() {
+        return null;
     }
 }
