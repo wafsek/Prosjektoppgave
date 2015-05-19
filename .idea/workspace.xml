@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/StatisticOption.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/data/DataBank.java" afterPath="$PROJECT_DIR$/src/baminsurances/data/DataBank.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/api/Searcher.java" afterPath="$PROJECT_DIR$/src/baminsurances/api/Searcher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/StatisticController.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/StatisticController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/StatisticWindow.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/StatisticWindow.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -950,12 +943,6 @@
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
     </task>
-    <task id="LOCAL-00009" summary="Just a few lines of code has been added. Pushing to avoid merge conflict at home.">
-      <created>1429253102247</created>
-      <option name="number" value="00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1429253102247</updated>
-    </task>
     <task id="LOCAL-00010" summary="Added som code for the InsureCarScene. Also added a footer to all the scenes. Give me feedback on that.">
       <created>1429299487457</created>
       <option name="number" value="00010" />
@@ -1244,12 +1231,18 @@
       <option name="project" value="LOCAL" />
       <updated>1431957113237</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Tidying the code">
+      <created>1432034169265</created>
+      <option name="number" value="00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1432034169266</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
