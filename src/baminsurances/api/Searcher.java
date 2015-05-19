@@ -482,6 +482,7 @@ public class Searcher {
             System.out.println(key);
             for (int j = 0; j <= 9; j++) {
                 result.put(key, temp.get(j));
+                System.out.println("Age " + j + ", found: " + temp.get(j));
             }
             System.out.println(result.get(key).toString());
         }
