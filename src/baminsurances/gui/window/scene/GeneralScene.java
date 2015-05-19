@@ -23,6 +23,12 @@ public abstract class GeneralScene {
     protected BorderPane borderPane;
     protected Label informationLabel;
 
+    /**
+     * Created the components used in this class.
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
+     */
     public GeneralScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler){
         this.guiEventHandler = guiEventHandler;
         this.keyPressHandler = keyPressHandler;
@@ -39,6 +45,11 @@ public abstract class GeneralScene {
         footerRightSide.setAlignment(Pos.CENTER_RIGHT);
     }
 
+    /**
+     * Returns the
+     *
+     * @return
+     */
     public Scene getScene() {
         return scene;
     }

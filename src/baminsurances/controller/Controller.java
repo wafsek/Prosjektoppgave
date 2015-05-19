@@ -65,6 +65,8 @@ public class Controller {
     private SpecificInsuranceScene specificInsuranceScene;
     private SearchNavigationScene searchNavigationScene;
     private SettingsScene settingScene;
+    private SpecificClaimAdviceScene specificClaimAdviceScene;
+
     private StatisticScene statisticScene;
     private FileChooser fileChooser;
 
@@ -109,6 +111,7 @@ public class Controller {
         claimAdviceScene = new ClaimAdviceScene(guiEventHandler, keyPressHandler);
         searchNavigationScene = new SearchNavigationScene(guiEventHandler, keyPressHandler);
         settingScene = new SettingsScene(guiEventHandler);
+        specificClaimAdviceScene = new SpecificClaimAdviceScene(guiEventHandler, keyPressHandler);
 
         generatingStage = new GeneratingStage();
         
@@ -171,6 +174,11 @@ public class Controller {
         handleCustomerScene.setCustomerData(CurrentStatus.getCurrentCustomer());
         primaryStage.initiate(handleCustomerScene.getScene());
         handleCustomerScene.setTableData(insurances);
+    }
+
+    private void launchSpecificClaimAdviceScene() {
+        specificClaimAdviceScene.setClaimAdviceData(specificInsuranceScene.getSelectedClaimAdvice());
+        primaryStage.initiate(specificClaimAdviceScene.getScene());
     }
 
     private void launchInsuranceScene() {
@@ -374,6 +382,8 @@ public class Controller {
             launchSpecificInsuranceScene();
         } else if (control == navigationScene.getStatisticsButton()){
             primaryStage.initiate(statisticScene.getScene());
+        } else if (control == specificInsuranceScene.getChooseClaimAdviceButton()) {
+            launchSpecificClaimAdviceScene();
         }
     }
 
@@ -395,7 +405,6 @@ public class Controller {
                 MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION) {
             BufferedImage bufferedImage = null;
             try{
-                System.out.println("Kom hit");
                 bufferedImage = ImageIO.read(fileChooser.showOpenDialog(primaryStage.getStage()));
             }catch (IOException ioe) {
 
@@ -556,7 +565,7 @@ public class Controller {
                     Integer.parseInt(carInsuranceScene.getInsuranceValueFieldText()),
                     PaymentFrequency.ANNUALLY,
                     carInsuranceScene.getConditionAreaText(),
-                    (carInsuranceScene.getPerson()==null)?CurrentStatus.getCurrentCustomer():carInsuranceScene.getPerson(),
+                    (carInsuranceScene.getPerson() == null) ? CurrentStatus.getCurrentCustomer() : carInsuranceScene.getPerson(),
                     carInsuranceScene.getRegistrationNumberFieldText(),
                     carInsuranceScene.getCarTypeDropDownSelectedValue(),
                     carInsuranceScene.getCarBrandDropDownSelectedValue(),

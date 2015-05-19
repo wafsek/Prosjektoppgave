@@ -65,6 +65,7 @@ public class BoatInsuranceScene extends InsuranceScene {
         lengthInFeetField = new TextField();
         productionYearField = new TextField();
         horsePowerField = new TextField();
+        registrationNoField.setPromptText("Eks: ABC123");
 
         ownerBox = new CheckBox("Forskjellig eier?");
         ownerBox.setOnAction(e -> {

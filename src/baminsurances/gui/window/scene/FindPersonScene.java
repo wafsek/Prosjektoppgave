@@ -23,7 +23,7 @@ public class FindPersonScene extends PersonSearchScene {
     private HBox headerContainer;
 
     /**
-     *
+     * Creates the components used in this class.
      *
      * @param guiEventHandler
      * @param keyPressHandler
@@ -51,16 +51,33 @@ public class FindPersonScene extends PersonSearchScene {
         scene = new Scene(borderPane);
     }
 
+    /**
+     * Returns an array of String Objects which which are defined
+     * by what the textfields in this class contains.
+     *
+     * @returnan array of String Objects which which are defined
+     * by what the textfields in this class contains.
+     */
     public String[] getWrittenInfo(){
         return new String[] {firstNameField.getText(), lastNameField.getText(),
                 birthNumberField.getText(), adressField.getText(),
                 zipCodeField.getText()};
     }
 
+    /**
+     * Returns the button which is used to start the registration process.
+     *
+     * @return the button which is used to start the registration process.
+     */
     public Button getRegisterPersonButton() {
         return registerPersonButton;
     }
 
+    /**
+     * Returns the Customer which is selected in the customerTable.
+     *
+     * @return the Customer which is selected in the customerTable.
+     */
     public Customer getSelectedCustomer() {
         return customerTable.getSelectionModel().getSelectedItem();
     }

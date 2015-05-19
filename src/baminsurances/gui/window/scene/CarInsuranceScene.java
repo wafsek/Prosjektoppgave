@@ -79,6 +79,7 @@ public class CarInsuranceScene extends InsuranceScene{
         annualMilageField = new TextField();
         pricePerKilometerField = new TextField();
         bonusPercentageField = new TextField();
+        registrationNumberField.setPromptText("Eks: AB12345");
 
         ownerBox = new CheckBox("Annen eier?");
         ownerBox.setOnAction(e -> {

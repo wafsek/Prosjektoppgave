@@ -383,7 +383,7 @@ public class SpecificInsuranceScene extends GeneralScene {
         claimAdviceTable.setItems(FXCollections.observableArrayList(travelInsurance.getClaimAdvices()));
 
         typeField.setText("Reiseforsikring");
-        insuranceNumberField.setText(travelInsurance.getInsuranceNo()+"");
+        insuranceNumberField.setText(travelInsurance.getInsuranceNo() + "");
         annualPremiumField.setText(travelInsurance.getAnnualPremium()+"");
         insuranceValueField.setText(travelInsurance.getAmount()+"");
         employeeField.setText(travelInsurance.getEmployee().getFirstName() + " " + travelInsurance.getEmployee().getLastName());
@@ -424,5 +424,9 @@ public class SpecificInsuranceScene extends GeneralScene {
     public void setNewClaimAdviceButtonDisabled() {
         newClaimAdviceButton.setDisable(true);
         updateInfoButton.setDisable(true);
+    }
+
+    public ClaimAdvice getSelectedClaimAdvice() {
+        return claimAdviceTable.getSelectionModel().getSelectedItem();
     }
 }
