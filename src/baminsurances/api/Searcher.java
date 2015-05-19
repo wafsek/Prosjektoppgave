@@ -474,6 +474,83 @@ public class Searcher {
     }
     
     /**
+     * Returns a map where they keys are regions, and the values are the
+     * number of insurances for customers living in that region.
+     * 
+     * @return a map where they keys are regions, and the values are the
+     * number of insurances for customers living in that region
+     */
+    public Map<String, Integer> numInsurancesPerRegion() {
+        /* Helper map to determine region based on the first two digits
+         * of a zip code.
+         */
+        Map<String, String> zipCodeToRegion = getZipCodesToRegion();
+        
+        Map<String, Integer> result = new HashMap<>();
+        /* Initializing all regions, so that they are included even if there
+         * are no customers with insurances in that region.
+         */
+        for (String region : zipCodeToRegion.values()) {
+            result.put(region, 0);
+        }
+        
+        for (Customer cus : dataBank.getCustomerList()) {
+            String region =
+                    zipCodeToRegion.get(cus.getZipCode().substring(0, 2));
+            result.put(region, cus.getInsurances().size());
+        }
+        return result;
+    }
+    
+    private Map<String, String> getZipCodesToRegion() {
+        Map<String, String> zipCodeToRegion = new HashMap<>();
+        
+        /* ØSTLANDET:
+         * Oslo, Akershus, Østfold, Buskerud, Hedmark, Oppland, Oslo, Telemark,
+         * Vestfold
+         */
+        for (int i = 0; i <= 39; i++) {
+            String code = String.valueOf(i);
+            if (i < 9) {
+                code = "0" + code;
+            }
+            zipCodeToRegion.put(code, "Østlandet");
+        }
+        
+        /* SØRLANDET
+         * Aust-Agder og Vest-Agder
+         */
+        for (int i = 44; i <= 49; i++) {
+            zipCodeToRegion.put(String.valueOf(i), "Sørlandet");
+        }
+        
+        /* VESTLANDET
+         * Hordaland, Møre og Romsdal, Rogaland og Sogn og Fjordane
+         */
+        for (int i = 40; i <= 43; i++) {
+            zipCodeToRegion.put(String.valueOf(i), "Vestlandet");
+        }
+        for (int i = 50; i <= 69; i++) {
+            zipCodeToRegion.put(String.valueOf(i), "Vestlandet");
+        }
+        
+        /* TRØNDELAG
+         * Nord-Trøndelag og Sør-Trøndelag
+         */
+        for (int i = 70; i <= 79; i++) {
+            zipCodeToRegion.put(String.valueOf(i), "Trøndelag");
+        }
+        
+        /* NORD-NORGE
+         * Finnmark, Nordland og Troms
+         */
+        for (int i = 80; i <= 99; i++){
+            zipCodeToRegion.put(String.valueOf(i), "Nord-Norge");
+        }
+        return zipCodeToRegion;
+    }
+    
+    /**
      * Returns a map where the keys are genders, and the values are the number
      * of insurances per gender.
      * 
