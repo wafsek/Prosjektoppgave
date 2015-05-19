@@ -43,7 +43,6 @@ public abstract class Insurance implements Comparable<Insurance>, Serializable {
         this.paymentFrequency = paymentFrequency;
         creationDate = LocalDate.now();
         this.terms = terms;
-        //TODO: updatePayments(); ?
     }
     
     /**
