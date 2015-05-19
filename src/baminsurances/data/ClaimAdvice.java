@@ -1,5 +1,6 @@
 package baminsurances.data;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -203,7 +204,7 @@ public class ClaimAdvice implements Comparable<ClaimAdvice>, Serializable {
      * 
      * @return a list containing pictures of the damage
      */
-    public List<BufferedImage> getPicturesOfDamage() {
+    public List<Image> getPicturesOfDamage() {
         File dir = new File("data/claimadvice_pictures");
         
         if (!dir.exists()) {
@@ -223,7 +224,7 @@ public class ClaimAdvice implements Comparable<ClaimAdvice>, Serializable {
             }
         });
         
-        List<BufferedImage> pictures = new ArrayList<>();
+        List<Image> pictures = new ArrayList<>();
         try {
             for (File img : files) {
                 BufferedImage readImg = ImageIO.read(img);
