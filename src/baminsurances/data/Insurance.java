@@ -1,5 +1,11 @@
 package baminsurances.data;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -84,22 +90,33 @@ public abstract class Insurance implements Comparable<Insurance>, Serializable {
     }
     
     /**
-     * Returns the next insurance number for the Insurance class.
-     * 
-     * @return the next insurance number for the Insurance class.
+     * Reads the next insurance number from file, and sets it to the read
+     * value. If not file is found, the value is set to 1.
      */
-    public static int getNextInsuranceNo() {
-        return nextInsuranceNo;
+    public static void readNextInsuranceNo() {
+        try (DataInputStream in = new DataInputStream(
+                new FileInputStream("data/next_insurance_no.dta"))) {
+            nextInsuranceNo = in.readInt();
+        } catch (FileNotFoundException e) {
+            nextInsuranceNo = 1;
+        } catch (IOException e) {
+            e.printStackTrace();
+            nextInsuranceNo = 1;
+        }
     }
 
     /**
-     * Sets the next insurance number to be the given value. This method is
-     * to be used in conjunction with reading insurances from a file. 
-     * 
-     * @param nextInsuranceNo the new insurance number
+     * Writes the next insurance number to file.
      */
-    public static void setNextInsuranceNo(int nextInsuranceNo) {
-        Insurance.nextInsuranceNo = nextInsuranceNo;
+    public static void writeNextInsuranceNo() {
+        try (DataOutputStream out = new DataOutputStream(
+                new FileOutputStream("data/next_insurance_no.dta"))) {
+            out.writeInt(nextInsuranceNo);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     /**

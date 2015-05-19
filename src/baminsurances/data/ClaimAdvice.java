@@ -1,7 +1,12 @@
 package baminsurances.data;
 
 import java.awt.image.BufferedImage;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.Serializable;
@@ -92,21 +97,33 @@ public class ClaimAdvice implements Comparable<ClaimAdvice>, Serializable {
     }
 
     /**
-     * Returns the next damage number to be assigned to a claim advice.
-     * 
-     * @return the next damage number to be assigned to a claim advice
+     * Reads the next damage number from file, and sets it to the read value.
+     * If no file is found, the value is set to 1.
      */
-    public static int getNextDamageNo() {
-        return nextDamageNo;
+    public static void readNextDamageNo() {
+        try (DataInputStream in = new DataInputStream(
+                new FileInputStream("data/next_damage_no.dta"))) {
+            nextDamageNo = in.readInt();
+        } catch (FileNotFoundException e) {
+            nextDamageNo = 1;
+        } catch (IOException e) {
+            e.printStackTrace();
+            nextDamageNo = 1;
+        }
     }
 
     /**
-     * Sets the next damage number to be the given number.
-     * 
-     * @param nextDamageNo the new next damage number
+     * Writes the next damage number to file.
      */
-    public static void setNextDamageNo(int nextDamageNo) {
-        ClaimAdvice.nextDamageNo = nextDamageNo;
+    public static void writeNextDamageNo() {
+        try (DataOutputStream out = new DataOutputStream(
+                new FileOutputStream("data/next_damage_no.dta"))) {
+            out.writeInt(nextDamageNo);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
