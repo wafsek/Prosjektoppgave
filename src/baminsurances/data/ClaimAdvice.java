@@ -1,6 +1,6 @@
 package baminsurances.data;
 
-import java.awt.Image;
+import javafx.scene.image.Image;
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -225,18 +225,15 @@ public class ClaimAdvice implements Comparable<ClaimAdvice>, Serializable {
         });
         
         List<Image> pictures = new ArrayList<>();
-        try {
-            for (File img : files) {
-                BufferedImage readImg = ImageIO.read(img);
-                if (readImg != null) {
-                    pictures.add(readImg);
-                }
+        for (File img : files) {
+            //TODO
+            //BufferedImage readImg = ImageIO.read(img);
+            Image readImg = new Image(img.getPath());
+            if (readImg != null) {
+                pictures.add(readImg);
             }
-            return pictures;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return pictures;
         }
+        return pictures;
     }
 
     /**
