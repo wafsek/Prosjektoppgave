@@ -755,13 +755,13 @@ public class Searcher {
          * Initalizing all values to 0, so that they are included even if the
          * region does not have any insurances of that type. 
          */
-        for (String type : insuranceClassToString.values()) {
+        for (String region : zipCodeToRegion.values()) {
             TreeMap<String, Integer> inner = new TreeMap<>();
             
-            for (String region : zipCodeToRegion.values()) {
-                inner.put(region, 0);
+            for (String type : insuranceClassToString.values()) {
+                inner.put(type, 0);
             }
-            result.put(type, inner);
+            result.put(region, inner);
         }
         
         for (Customer cus : dataBank.getCustomerList()) {
@@ -769,15 +769,15 @@ public class Searcher {
                     cus.getZipCode().substring(0, 2));
             for (Insurance ins : cus.getInsurances()) {
 
-                String type = insuranceClassToString.get(ins.getClass());
-                Map<String, Integer> inner = result.get(type);
-                
-                Integer currentNum = inner.get(region);
+                Map<String, Integer> inner = result.get(region);
+
+                String type = insuranceClassToString.get(ins.getClass());                
+                Integer currentNum = inner.get(type);
                 if (currentNum == null) {
                     currentNum = 0;
                 }
                 
-                inner.put(region, currentNum + 1);
+                inner.put(type, currentNum + 1);
             }
         }
         
