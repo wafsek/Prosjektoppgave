@@ -23,7 +23,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 
 /**
@@ -37,7 +37,7 @@ public class StatisticScene extends GeneralScene{
     private Image companyLogo;
     private ImageView companyLogoImageView;
 
-    private Label usernameLabel, passwordLabel, logoLabel;
+    private Label factOne, factTwo, factThree, factFour;
     private TextField usernameField;
     private GridPane gridPane;
     private LineChart lineChart;
@@ -50,9 +50,14 @@ public class StatisticScene extends GeneralScene{
     private Map<Double, Character> memory;
     private ObservableList<Employee> observableList;
     private ObservableList<PieChart.Data> pieChartData;
+    XYChart.Series series;
+    private ArrayList<XYChart.Series> seriesArrayList;
+    private XYChart.Series[] seriesArray;
     private ComboBox comboBox;
     private CustomLogger logger;
-    
+    private Axis xAxis;
+    private Axis yAxis;
+    private Axis cAxis;
     
     public StatisticScene(GuiEventHandler guiEventHandler,KeyPressHandler keyPressHandler){
         super(guiEventHandler,keyPressHandler);
@@ -61,9 +66,9 @@ public class StatisticScene extends GeneralScene{
         //handyData.getChildren().add(pieChart);
 
 
-        Axis xAxis = new NumberAxis();
-        Axis yAxis = new NumberAxis();
-        Axis cAxis = new CategoryAxis();
+        xAxis = new NumberAxis();
+        yAxis = new NumberAxis();
+        cAxis = new CategoryAxis();
 
         XYChart.Series series = new XYChart.Series();
 
@@ -97,6 +102,12 @@ public class StatisticScene extends GeneralScene{
 
         scene = new Scene(borderPane);
         
+        /*Map<String, SortedMap<String, Integer>> testMap =
+                new HashMap<>();
+        SortedMap<String, Integer> inner1 = new TreeMap<>();
+        inner1.put("Båt", )
+        testMap.put("18-20", new TreeMap<>());
+        */
     }
 
 
@@ -117,7 +128,7 @@ public class StatisticScene extends GeneralScene{
             } else if (comboBox.getValue() == "3") {
                 this.launchOptionThree();
             } else if (comboBox.getValue() == "4") {
-                this.launchOptionFour();
+                //this.launchOptionFour();
             } else if (comboBox.getValue() == "5") {
                 this.launchOptionFive();
             } else if (comboBox.getValue() == "6") {
@@ -129,16 +140,36 @@ public class StatisticScene extends GeneralScene{
     }
     private void clearRightSide(){
         rightSide.getChildren().removeAll(pieChart);
+        rightSide.getChildren().removeAll(barChart);
     }
-
-    private void launchOptionOne(){
-        this.clearRightSide();
-        logger.log("Option one selected ", Level.FINE);
-        this.setPieChartData(new Searcher().numInsurancesPerType());
+    
+    
+    private PieChart setPieChart(){
         pieChart = new PieChart(pieChartData);
         pieChart.setVisible(true);
         pieChart.getLabelsVisible();
-        rightSide.getChildren().add(pieChart);
+        return pieChart;
+    }
+    
+    private BarChart setBarchart(){
+        barChart = new BarChart(cAxis,xAxis);
+        barChart.getData().addAll(series);
+        return barChart;
+    }
+
+    private BarChart setBarchartMulti(){
+        barChart = new BarChart(cAxis,xAxis);
+        for(XYChart.Series series : seriesArray){
+            barChart.getData().add(series);  
+        }
+        return barChart;
+    }
+    
+    private void launchOptionOne(){
+        this.clearRightSide();
+        logger.log("Option one selected ", Level.FINE);
+        this.setPieChartData(new Searcher().numInsurancesPerGender());
+        rightSide.getChildren().add(this.setPieChart());
     }
 
 
@@ -146,20 +177,23 @@ public class StatisticScene extends GeneralScene{
     private void launchOptionTwo(){
         this.clearRightSide();
         logger.log("Option one selected ", Level.FINE);
-        this.setPieChartData(new Searcher().numInsurancesPerType());
-        //barChart = new BarChart();
-        pieChart.setVisible(true);
-        pieChart.getLabelsVisible();
-        rightSide.getChildren().add(pieChart);
+        this.setBarChartData(new Searcher().numInsurancesPerType());
+        rightSide.getChildren().add(this.setBarchart());
     }
 
     private void launchOptionThree(){
-        logger.log("Option three selected ", Level.FINE);
+        this.clearRightSide();
+        logger.log("Option one selected ", Level.FINE);
+        this.setBarChartData(new Searcher().numCustomersPerAge());
+        rightSide.getChildren().add(this.setBarchart());
     }
 
-    private void launchOptionFour(){
-        logger.log("Option four selected ", Level.FINE);
-    }
+    /*private void launchOptionFour(){
+        this.clearRightSide();
+        logger.log("Option one selected ", Level.FINE);
+        this.setMultiBarChartData(new Searcher().numCustomersPerAge());
+        rightSide.getChildren().add(this.setBarchartMulti());
+    }*/
 
     private void launchOptionFive(){
         logger.log("Option five selected ", Level.FINE);
@@ -182,7 +216,7 @@ public class StatisticScene extends GeneralScene{
 
     public void setSeries(XYChart.Series series1){
         for (Employee employee: DataBank.getInstance().getEmployeeList()){
-            this.addData(series1,employee.getFirstName(),employee.getAge());
+            this.addData(series1, employee.getFirstName(), employee.getAge());
         }
     }
 
@@ -192,13 +226,55 @@ public class StatisticScene extends GeneralScene{
     }
 
     public <T>void setBarChartData(Map<T,Integer> map){
-        XYChart.Series series = new XYChart.Series();
+        series = new XYChart.Series();
         T key;
         int i;
         for(Map.Entry<T,Integer> entrySet : map.entrySet()){
             key = entrySet.getKey();
             i = entrySet.getValue();
             series.getData().add(new XYChart.Data<>(key,i));
+        }
+    }
+
+    /*public <T>void setMultiBarChartData(Map<T,Map<T,Integer>> map){
+        int numOfSeries = map.values().iterator().next().size();
+        int counter = 0;
+        T key;
+        int i;
+        while(counter > numOfSeries){
+            XYChart.Series series = new XYChart.Series();
+            seriesArrayList.add(series);
+        }
+        
+        for(Map.Entry<T,Integer> entrySet : map.entrySet()){
+            key = entrySet.getKey();
+            i = entrySet.getValue();
+            series.getData().add(new XYChart.Data<>(key,i));
+        }
+    }*/
+    
+
+    public <T>void setMultiBarChartData(Map<T,Map<T,Integer>> map){
+        int numOfSeries = map.values().iterator().next().size();
+        int counter = 0;
+        T key;
+        T innerKey;
+        int i;
+        while(counter > numOfSeries){
+            XYChart.Series series = new XYChart.Series();
+            seriesArray[counter] = series;
+            counter++;
+        }
+        counter = 0;
+        for(Map.Entry<T,Map<T,Integer>> entrySet : map.entrySet()){
+            key = entrySet.getKey();
+            for(Map.Entry<T,Integer> innerEntrySet : entrySet.getValue().entrySet()){
+                innerKey = innerEntrySet.getKey();
+                i = innerEntrySet.getValue();
+                seriesArray[counter].getData().add(new XYChart.Data<>(key,i));
+                counter++;
+            }
+            counter = 0;
         }
     }
 }
