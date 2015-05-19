@@ -1,7 +1,6 @@
 package baminsurances.api;
 
 import java.time.LocalDate;
-import java.time.Year;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -396,7 +395,7 @@ public class Searcher {
         /* Initializing all "empty" keys between the min and max value to zero,
          * so that there are no empty intervals.
          */
-        for (int age = temp.firstKey() + 1; age < temp.lastKey(); age++) {
+        for (int age = 18; age <= 100; age++) {
             if (temp.get(age) == null) {
                 temp.put(age, 0);
             }
@@ -414,7 +413,8 @@ public class Searcher {
         
         for (int i = 21; i <= 100; i += 9) {
             String key = String.valueOf(i) + "-" + String.valueOf(i + 9);
-            for (int j = i; j <= 9; j++) {
+            System.out.println(key);
+            for (int j = 0; j <= 9; j++) {
                 result.put(key, temp.get(j));
             }
             System.out.println(result.get(key).toString());
