@@ -65,7 +65,7 @@ public class Controller {
     private SpecificInsuranceScene specificInsuranceScene;
     private SearchNavigationScene searchNavigationScene;
     private SettingsScene settingScene;
-
+    private StatisticScene statisticScene;
     private FileChooser fileChooser;
 
     private int carInsuranceCheckCounter = 0;
@@ -93,7 +93,8 @@ public class Controller {
         menuStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/4, GuiConfig.PRIMARY_HEIGHT * 2/3);
         primaryStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH, GuiConfig.PRIMARY_HEIGHT);
         settingsStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/5, GuiConfig.PRIMARY_HEIGHT * 2/5);
-
+        
+        statisticScene = new StatisticScene(guiEventHandler,keyPressHandler);
         loginScene = new LoginScene(guiEventHandler, keyPressHandler);
         navigationScene = new NavigationScene(guiEventHandler, keyPressHandler);
         findPersonScene = new FindPersonScene(guiEventHandler, keyPressHandler);
@@ -371,6 +372,8 @@ public class Controller {
                 CurrentStatus.getCurrentInsurance().addClaimAdvice(ca);
             }
             launchSpecificInsuranceScene();
+        } else if (control == navigationScene.getStatisticsButton()){
+            primaryStage.initiate(statisticScene.getScene());
         }
     }
 

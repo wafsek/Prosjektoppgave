@@ -442,9 +442,10 @@ public class Searcher {
         for (Customer cus : dataBank.getCustomerList()) {
             for (Insurance ins : cus.getInsurances()) {
                 Class<? extends Insurance> type = ins.getClass();
-                result.put(displayNames.get(type), result.get(type) + 1);
+                result.put(displayNames.get(type), result.get(displayNames.get(type)) + 1);
             }
         }
+        System.out.println(result.size());
         return result;
     }
 }
