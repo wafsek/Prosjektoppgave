@@ -693,6 +693,19 @@ public class Searcher {
     }
     
     /**
+     * Returns a map where the outer key is a gender, and the outer value is a
+     * new map. In this new map, the key is a type of insurance, and the value
+     * is the number of insurances of that type for a gender.
+     * 
+     * @return a map representing the number of an insurance type to a gender
+     */
+    public Map<String, TreeMap<String, Integer>> numInsuranceTypesPerGender() {
+        
+        
+        return null;
+    }
+    
+    /**
      * Returns a map where the keys are types of insurances, and the values are
      * the number of insurances of that type.
      * 
@@ -742,29 +755,29 @@ public class Searcher {
          * Initalizing all values to 0, so that they are included even if the
          * region does not have any insurances of that type. 
          */
-        for (String region : zipCodeToRegion.values()) {
+        for (String type : insuranceClassToString.values()) {
             TreeMap<String, Integer> inner = new TreeMap<>();
             
-            for (String type : insuranceClassToString.values()) {
-                inner.put(type, 0);
+            for (String region : zipCodeToRegion.values()) {
+                inner.put(region, 0);
             }
-            result.put(region, inner);
+            result.put(type, inner);
         }
         
         for (Customer cus : dataBank.getCustomerList()) {
             String region = zipCodeToRegion.get(
                     cus.getZipCode().substring(0, 2));
             for (Insurance ins : cus.getInsurances()) {
-                
-                Map<String, Integer> inner = result.get(region);
+
                 String type = insuranceClassToString.get(ins.getClass());
+                Map<String, Integer> inner = result.get(type);
                 
-                Integer currentNum = inner.get(type);
+                Integer currentNum = inner.get(region);
                 if (currentNum == null) {
                     currentNum = 0;
                 }
                 
-                inner.put(type, currentNum + 1);
+                inner.put(region, currentNum + 1);
             }
         }
         
