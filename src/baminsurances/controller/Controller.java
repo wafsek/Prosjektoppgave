@@ -342,9 +342,7 @@ public class Controller {
         } else if (control == houseInsuranceScene.getBackButton() || control == boatInsuranceScene.getBackButton() ||
                 control == carInsuranceScene.getBackButton()) {
             launchInsuranceScene();
-        } else if (control == carInsuranceScene.getRegisterInsuranceButton()) {
-
-        } else if (control == specificInsuranceScene.getUpdateInfoButton()) {
+        }  else if (control == specificInsuranceScene.getUpdateInfoButton()) {
             CurrentStatus.setCurrentInsurance(new UpdateInfoWindow().updateInsurance
                     (CurrentStatus.getCurrentInsurance()));
             launchSpecificInsuranceScene();

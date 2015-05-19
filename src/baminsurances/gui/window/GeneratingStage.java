@@ -79,6 +79,7 @@ public class GeneratingStage {
                     Integer.parseInt(insuranceBox.getValue()),
                     Integer.parseInt(claimAdviceBox.getValue()));
             System.out.println(customerBox.selectionModelProperty());
+            stage.close();
         });
 
         headerContainer = new VBox(10, headerLabel, informationLabel);
