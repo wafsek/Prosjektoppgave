@@ -3,15 +3,11 @@ package baminsurances.gui.window.scene;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
-import baminsurances.gui.window.MessageDialog;
-import baminsurances.gui.window.OperationWindow;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 
@@ -34,8 +30,6 @@ public class AddScene extends GeneralScene{
     private Iterator<TextField> textFieldIterator;
     private CheckBox differentAdressCheck;
     private GridPane fieldBox;
-    private TextArea printArea;
-    private ScrollPane scrollPane;
     private Button registerPersonButton;
     private HBox headerContainer;
     private int adressCheckCounter = 0;
@@ -183,21 +177,6 @@ public class AddScene extends GeneralScene{
         emptyFieldsCheck();
     }
 
-    public void requestRegistration() {
-        if (firstNameField.getText().trim().isEmpty() ||
-                lastNameField.getText().trim().isEmpty() ||
-                birthNumberField.getText().trim().isEmpty()) {
-            new MessageDialog().showMessageDialog("Ugyldig informasjon!",
-                    "Feltene markert med stjerne må være utfylt.",
-                    MessageDialog.WARNING_ICON, MessageDialog.OK_OPTION);
-        } else {
-            /*(MethodForRegistrationOfACustomers(birthNumberField.getText(), name.getText(), lastNameField.getText(), telephoneNumberField.getText(), zipCodeField.getText(), adressField.getText()))? MessageDialog.showMessageDialog("Godkjent",
-            name.getText() + "\s" + lastNameField.getText() + " er nå registrert.",
-            MessageDialog.INFORMATION_ICON): MessageDialog.showMessageDialog(
-            "Error", "Noe gikk galt under registreingen.", MessageDialog.ERROR_ICON);*/
-        }
-    }
-
     /**
      * Returns the Button that requests the registration of a person
      * defined by the given values.
@@ -288,16 +267,6 @@ public class AddScene extends GeneralScene{
      */
     public String getBillingAdressFieldText() {
         return billingAdressField.getText();
-    }
-
-    /**
-     * Sets the text of the printArea to what the given String
-     * contains.
-     *
-     * @param text
-     */
-    public void registerPerson(String text) {
-        printArea.setText(text);
     }
 
     /**

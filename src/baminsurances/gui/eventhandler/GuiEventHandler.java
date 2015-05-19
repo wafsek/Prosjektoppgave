@@ -10,21 +10,28 @@ import java.util.logging.Level;
 
 /**
  * Created by Adrian on 14/04/2015.
+ * @author Adrian Melsom
  */
+
 public class GuiEventHandler implements EventHandler<ActionEvent> {
     private CustomLogger logger = CustomLogger.getInstance();
     private Controller controller;
+
+    /**
+     * Keeps control of which class is allowed to control GUI
+     *
+     * @param controller
+     */
     public GuiEventHandler(Controller controller) {
         this.controller = controller;
-        setGuiEventHandler();
     }
 
-    public void setGuiEventHandler()
-    {
-        
-    }
-
-
+    /**
+     * Listens to any Action event that happens in GUI, which is
+     * set to be controlled by this class.
+     *
+     * @param e
+     */
     @Override
     public void handle(ActionEvent e) {
         logger.log("Gui event", Level.FINER);

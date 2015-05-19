@@ -14,19 +14,18 @@ public class IconButton {
     public static final int ADD_BUTTON = 1, STATISTIC_BUTTON = 2, SEARCH_BUTTON = 3,
             INSURE_HOUSE_BUTTON = 4, INSURE_CAR_BUTTON = 5, INSURE_PERSON_BUTTON = 6,
             INSURE_BOAT_BUTTON = 7, BACK_BUTTON = 8, CUSTOMERS_BUTTON = 9;
-
     private Image addImage, statisticImage, searchImage, houseImage, carImage,
             personImage, boatImage, backImage, customersImage;
-
     private ImageView addImageView, statisticImageView, searchImageView,
             houseImageView, carImageView, personImageView, boatImageView,
             backImageView, customersImageView;
-
     private Button button;
     private ImageView imageViewToBeUsed;
-
     private String imagePath = "../img/";
 
+    /**
+     * Declares the components which are general for the different return values.
+     */
     public IconButton() {
         button = new Button();
 
@@ -58,6 +57,13 @@ public class IconButton {
         customersImageView = new ImageView(customersImage);
     }
 
+    /**
+     * returns an ImageView based on the integer given as argument.
+     *
+     * @param magical_constant
+     *
+     * @return ImageView based on the values given as argument.
+     */
     private ImageView testMagicalInput(int magical_constant) {
         if (magical_constant == ADD_BUTTON) {
             return addImageView;
@@ -82,6 +88,15 @@ public class IconButton {
         }
     }
 
+    /**
+     * Returns a Button based on the given arguments.
+     *
+     * @param width
+     * @param height
+     * @param magical_constant
+     *
+     * @return Button based on the given arguments.
+     */
     public Button iconButton(double width, double height, int magical_constant) {
         imageViewToBeUsed = testMagicalInput(magical_constant);
         imageViewToBeUsed.setFitWidth(width);
@@ -91,6 +106,16 @@ public class IconButton {
         return button;
     }
 
+    /**
+     * Returns a Button based on the given arguments.
+     *
+     * @param width
+     * @param height
+     * @param magical_constant
+     * @param buttonText
+     *
+     * @return a Button based on the given arguments.
+     */
     public Button IconButtonWithText(double width, double height,
             int magical_constant, String buttonText) {
         imageViewToBeUsed = testMagicalInput(magical_constant);

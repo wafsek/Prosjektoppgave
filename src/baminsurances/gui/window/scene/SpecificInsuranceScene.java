@@ -21,14 +21,15 @@ import java.text.DecimalFormat;
 
 /**
  * Created by Adrian on 15/05/2015.
+ * @author Adrian Melsom
  */
 public class SpecificInsuranceScene extends GeneralScene {
 
     private TextField typeField, insuranceNumberField, annualPremiumField, insuranceValueField,
-            employeeField, dateOfRegistrationField, cancelledField;
+            employeeField, dateOfRegistrationField, cancelledField, totalPayedField;
     private Label typeLabel, insuranceNumberLabel, annualPremiumLabel, insuranceValueLabel,
             employeeLabel, dateOfRegistrationLabel, cancelledLabel, conditionLabel, leftSideHeaderLabel,
-            claimAdviceLabel, rightSideHeaderLabel;
+            claimAdviceLabel, rightSideHeaderLabel, totalPayedLabel;
     private TextArea conditionTextArea;
     private Button updateInfoButton, newClaimAdviceButton, chooseClaimAdviceButton;
     private TableView<ClaimAdvice> claimAdviceTable;
@@ -56,6 +57,8 @@ public class SpecificInsuranceScene extends GeneralScene {
         dateOfRegistrationField.setEditable(false);
         cancelledField = new TextField();
         cancelledField.setEditable(false);
+        totalPayedField = new TextField();
+        totalPayedField.setEditable(false);
 
         typeLabel = new Label("Type:");
         insuranceNumberLabel = new Label("Nummer:");
@@ -68,8 +71,9 @@ public class SpecificInsuranceScene extends GeneralScene {
         claimAdviceLabel = new Label("Skademeldinger:");
         leftSideHeaderLabel = new Label("Generell informasjon");
         leftSideHeaderLabel.setStyle("-fx-font: 28px Times;");
-        rightSideHeaderLabel = new Label("Spesifik informasjon");
+        rightSideHeaderLabel = new Label("Spesifikk informasjon");
         rightSideHeaderLabel.setStyle("-fx-font: 28px Times;");
+        totalPayedLabel = new Label("Total sum betalt:");
 
 
         updateInfoButton = new Button("Oppdater informasjon");
@@ -132,8 +136,8 @@ public class SpecificInsuranceScene extends GeneralScene {
         topContainer.setAlignment(Pos.CENTER);
 
         middleContainer = new GridPane();
-        middleContainer.addColumn(0, employeeLabel, dateOfRegistrationLabel, cancelledLabel);
-        middleContainer.addColumn(1, employeeField, dateOfRegistrationField, cancelledField);
+        middleContainer.addColumn(0, employeeLabel, dateOfRegistrationLabel, cancelledLabel, totalPayedLabel);
+        middleContainer.addColumn(1, employeeField, dateOfRegistrationField, cancelledField, totalPayedField);
         middleContainer.setVgap(10);
         middleContainer.setHgap(20);
         middleContainer.setAlignment(Pos.CENTER);
@@ -195,6 +199,7 @@ public class SpecificInsuranceScene extends GeneralScene {
         dateOfRegistrationField.setText(carInsurance.getCreationDate() + "");
         cancelledField.setText((carInsurance.getCancellationDate() != null) ? "" + carInsurance.getCancellationDate() : "");
         conditionTextArea.setText(carInsurance.getTerms());
+        totalPayedField.setText(carInsurance.getTotalPaid()+"");
 
         claimAdviceTable.setItems(FXCollections.observableArrayList(carInsurance.getClaimAdvices()));
 
@@ -258,6 +263,7 @@ public class SpecificInsuranceScene extends GeneralScene {
         dateOfRegistrationField.setText(boatInsurance.getCreationDate()+"");
         cancelledField.setText((boatInsurance.getCancellationDate() != null)?""+boatInsurance.getCancellationDate() : "");
         conditionTextArea.setText(boatInsurance.getTerms());
+        totalPayedField.setText(boatInsurance.getTotalPaid()+"");
 
         regstrationNoField.setEditable(false);
         boatTypeField.setEditable(false);
@@ -325,6 +331,7 @@ public class SpecificInsuranceScene extends GeneralScene {
         dateOfRegistrationField.setText(homeInsurance.getCreationDate()+"");
         cancelledField.setText((homeInsurance.getCancellationDate() != null)?""+homeInsurance.getCancellationDate():"");
         conditionTextArea.setText(homeInsurance.getTerms());
+        totalPayedField.setText(homeInsurance.getTotalPaid()+"");
 
         streetAdressField.setEditable(false);
         zipCodeField.setEditable(false);
@@ -383,6 +390,7 @@ public class SpecificInsuranceScene extends GeneralScene {
         dateOfRegistrationField.setText(travelInsurance.getCreationDate() + "");
         cancelledField.setText((travelInsurance.getCancellationDate() != null)?""+travelInsurance.getCancellationDate():"");
         conditionTextArea.setText(travelInsurance.getTerms());
+        totalPayedField.setText(travelInsurance.getTotalPaid()+"");
 
         rightSideContentContainer = new GridPane();
         rightSideContentContainer.addColumn(0, regionLabel, claimAdviceLabel);

@@ -64,6 +64,7 @@ public class InsuranceScene extends GeneralScene {
         conditionArea.setEditable(false);
         registerInsuranceButton = new Button("Registrer");
         registerInsuranceButton.setDisable(true);
+        registerInsuranceButton.setOnAction(guiEventHandler);
 
         discribtionContainer = new HBox(discribtionLabel);
         discribtionContainer.setAlignment(Pos.CENTER);

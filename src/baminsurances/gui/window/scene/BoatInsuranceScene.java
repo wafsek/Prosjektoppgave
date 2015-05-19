@@ -19,6 +19,7 @@ import javafx.scene.layout.GridPane;
 
 /**
  * Created by Adrian on 14/05/2015.
+ * @author Adrian Melsom
  */
 public class BoatInsuranceScene extends InsuranceScene {
     private Label registrationNoLabel, typeLabel, brandLabel, modelLabel,
@@ -32,6 +33,12 @@ public class BoatInsuranceScene extends InsuranceScene {
     private boolean ownerBoxIsSelected;
     private Person person;
 
+    /**
+     * Creates the components used in this class.
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
+     */
     public BoatInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler){
         super(guiEventHandler, keyPressHandler);
         annualPremiumField.setEditable(true);
@@ -96,42 +103,83 @@ public class BoatInsuranceScene extends InsuranceScene {
         scene = new Scene(borderPane);
     }
 
+    /**
+     * Returns a String of what's contained in the TextField lengthInFeetField.
+     *
+     * @return a String of what's contained in the TextField lengthInFeetField.
+     */
     public String getLengthInFeetFieldText() {
         return lengthInFeetField.getText();
     }
 
+    /**
+     * Returns a String of what's contained in the TextField productionYearField.
+     *
+     * @return a String of what's contained in the TextField productionYearField.
+     */
     public String getProductionYearFieldText() {
         return productionYearField.getText();
     }
 
+    /**
+     * Returns a String of what's contained in the TextField horsePowerField.
+     *
+     * @return a String of what's contained in the TextField horsePowerField.
+     */
     public String getHorsePowerFieldText() {
         return horsePowerField.getText();
     }
 
+    /**
+     * returns a String of what's selected in the ComboBox motorTypeDropDown.
+     *
+     * @return a String of what's selected in the ComboBox motorTypeDropDown.
+     */
     public String getMotorTypeDropdownSelectedValue() {
         return motorTypeDropdown.getValue();
     }
 
-    public boolean isOwnerBoxIsSelected() {
-        return ownerBoxIsSelected;
-    }
-
+    /**
+     * Returns an Object Person or null if it's not defined by the user.
+     *
+     * @return an Object Person or null if it's not defined by the user.
+     */
     public Person getPerson() {
         return person;
     }
 
+    /**
+     * Returns a String of what's contained in the Textfield modelField.
+     *
+     * @return a String of what's contained in the Textfield modelField.
+     */
     public String getModelFieldText() {
         return modelField.getText();
     }
 
+    /**
+     * Returns a String of what's contained in the TextField brandField.
+     *
+     * @return a String of what's contained in the TextField brandField.
+     */
     public String getBrandFieldText() {
         return brandField.getText();
     }
 
+    /**
+     * returns a String of what's contained in the TextField registrationNoField.
+     *
+     * @return a String of what's contained in the TextField registrationNoField.
+     */
     public String getRegistrationNoFieldText() {
         return registrationNoField.getText();
     }
 
+    /**
+     * Returns an Enum BoatType, based on what's selected in the Combobox typeDropDown.
+     *
+     * @return an Enum BoatType, based on what's selected in the Combobox typeDropDown.
+     */
     public BoatType getTypeDropDown() {
         return typeDropDown.getValue();
     }

@@ -187,6 +187,7 @@ public class HandleCustomerScene extends GeneralScene {
         tableHeaderContainer.setAlignment(Pos.CENTER);
 
         tableButtons = new HBox(GuiConfig.PRIMARY_WIDTH * 1/4, newInsuranceButton, chooseInsuranceButton);
+        tableButtons.setAlignment(Pos.CENTER);
         tableButtons.setStyle("-fx-padding: 5;" +
                 "-fx-border-color: gray;");
 
@@ -261,6 +262,7 @@ public class HandleCustomerScene extends GeneralScene {
 
     public void setTableData(ObservableList<Insurance> observableList) {
         insuranceTable.setItems(observableList);
+        insuranceTable.getSelectionModel().clearSelection();
     }
 
     public Insurance getInsurance() {

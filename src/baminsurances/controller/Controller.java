@@ -30,7 +30,7 @@ import java.util.logging.Level;
 /**
  * Created by baljit on 30.04.2015.
  * @author Baljit Sarai
- *
+ * @author Adrian Melsom
  */
 public class Controller {
 
@@ -50,12 +50,8 @@ public class Controller {
     private NavigationScene navigationScene;
     private AddScene addScene;
     private TravelInsuranceScene travelInsuranceScene;
-    private StatisticsScene statisticsScene;
-    private SearchScene searchScene;
     private GuiEventHandler guiEventHandler;
     private KeyPressHandler keyPressHandler;
-    private LoginWindow loginWindow;
-    private OperationWindow operationWindow;
     private GeneralStage loginStage, menuStage, primaryStage,
             settingsStage;
     private LoginScene loginScene;
@@ -91,7 +87,7 @@ public class Controller {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("IMAGE files (*.png)", "*.png"),
                 new FileChooser.ExtensionFilter("IMAGE files (*.jpg)", "*.jpg"));
         guiEventHandler = new GuiEventHandler(this);
-        keyPressHandler = new KeyPressHandler(operationWindow,this);
+        keyPressHandler = new KeyPressHandler(this);
 
         loginStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/4, GuiConfig.PRIMARY_HEIGHT * 1/2);
         menuStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/4, GuiConfig.PRIMARY_HEIGHT * 2/3);
@@ -150,14 +146,6 @@ public class Controller {
         settingsStage.initiate(settingScene.getScene());
         settingScene.setInitialValues(Customer.getTotalCustomerDiscountPercentage(),
                 Customer.getNumRequiredForTotalCustomer());
-    }
-
-    private void launchStatistics(){
-        loginStage.close();
-        statisticsScene = new StatisticsScene(operationWindow.getFooter(),
-                keyPressHandler, guiEventHandler);
-        operationWindow.initialize(statisticsScene.getScene());
-        logger.log("Initializing Statistics scene", Level.INFO);
     }
 
     private void launchFindPersonScene(){
@@ -356,14 +344,17 @@ public class Controller {
         } else if (control == claimAdviceScene.getBackButton()) {
                     this.launchSpecificInsuranceScene();
         } else if (control == boatInsuranceScene.getRegisterInsuranceButton()) {
-                    this.registerBoatInsurance();
+            this.registerBoatInsurance();
+            this.launchHandleCustomerScene();
         }else if (control == houseInsuranceScene.getRegisterInsuranceButton()) {
-                    this.registerHomeInsurance();
-        }else if (control == carInsuranceScene.getRegisterInsuranceButton()
-                && houseInsuranceScene.getRentableBoxIsSelected()) {
-                    this.registerCarInsurance();
+            this.registerHomeInsurance();
+            this.launchHandleCustomerScene();
+        }else if (control == carInsuranceScene.getRegisterInsuranceButton()) {
+            this.registerCarInsurance();
+            this.launchHandleCustomerScene();
         }else if (control == travelInsuranceScene.getRegisterInsuranceButton()) {
-                    this.registerTravelInsurance();
+            this.registerTravelInsurance();
+            this.launchHandleCustomerScene();
         }else if (control == specificInsuranceScene.getUpdateInfoButton()) {
             CurrentStatus.setCurrentInsurance(new UpdateInfoWindow().updateInsurance
                     (CurrentStatus.getCurrentInsurance()));
@@ -562,7 +553,7 @@ public class Controller {
                     Integer.parseInt(carInsuranceScene.getInsuranceValueFieldText()),
                     PaymentFrequency.ANNUALLY,
                     carInsuranceScene.getConditionAreaText(),
-                    carInsuranceScene.getPerson(),
+                    (carInsuranceScene.getPerson()==null)?CurrentStatus.getCurrentCustomer():carInsuranceScene.getPerson(),
                     carInsuranceScene.getRegistrationNumberFieldText(),
                     carInsuranceScene.getCarTypeDropDownSelectedValue(),
                     carInsuranceScene.getCarBrandDropDownSelectedValue(),
@@ -609,7 +600,7 @@ public class Controller {
                             Integer.parseInt(boatInsuranceScene.getInsuranceValueFieldText()),
                             PaymentFrequency.ANNUALLY,
                             boatInsuranceScene.getConditionAreaText(),
-                            boatInsuranceScene.getPerson(),
+                            (boatInsuranceScene.getPerson()==null)?CurrentStatus.getCurrentCustomer():boatInsuranceScene.getPerson(),
                             boatInsuranceScene.getRegistrationNoFieldText(),
                             boatInsuranceScene.getTypeDropDown(),
                             boatInsuranceScene.getBrandFieldText(),

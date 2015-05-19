@@ -13,14 +13,21 @@ import javafx.scene.layout.HBox;
 
 /**
  * Created by Adrian on 11/05/2015.
+ * @author Adrian Melsom
  */
 public class FindPersonScene extends PersonSearchScene {
 
     private Button registerPersonButton;
-    private Label infoLabel, headerLabel;
+    private Label headerLabel;
     private BorderPane leftSideContainer;
     private HBox headerContainer;
 
+    /**
+     *
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
+     */
     public FindPersonScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler){
         super(guiEventHandler, keyPressHandler);
         registerPersonButton = new Button("Registrer ny kunde");

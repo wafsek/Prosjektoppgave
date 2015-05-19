@@ -1,35 +1,38 @@
 package baminsurances.gui.eventhandler;
 
 import baminsurances.controller.Controller;
-import baminsurances.gui.window.OperationWindow;
 import baminsurances.gui.window.scene.*;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * Created by Adrian PC on 19/04/2015.
+ * @author Adrian Melsom
  */
 public class KeyPressHandler implements EventHandler<KeyEvent> {
 
-    private OperationWindow operationWindow;
-    private StatisticsScene statisticsScene;
-    private TravelInsuranceScene travelInsuranceScene;
-    private AddScene addScene;
     private FindPersonScene findPersonScene;
-    private SearchScene searchScene;
     private Iterator txtFieldsIterator;
     private Controller controller;
 
-    public KeyPressHandler(OperationWindow operationWindow,Controller controller){
-        this.operationWindow = operationWindow;
+    /**
+     * Sets the class which contains the methods used when when
+     * an action happens.
+     *
+     * @param controller
+     */
+    public KeyPressHandler(Controller controller){
         this.controller = controller;
     }
 
+    /**
+     * Listens to any KeyEvent which it is defined to listen for,
+     * and does an action based on that.
+     *
+     * @param e
+     */
     @Override
     public void handle(KeyEvent e) {
         while (txtFieldsIterator.hasNext()){
@@ -44,41 +47,23 @@ public class KeyPressHandler implements EventHandler<KeyEvent> {
         resetIterators();
     }
 
+    /**
+     * Gets the Iterator from the Arraylist of fields in the given class, so
+     * that the handle method can iterate through them to listen for actions
+     * happening on them.
+     *
+     * @param findPersonScene
+     */
     public void setFindPersonScene(FindPersonScene findPersonScene) {
         this.findPersonScene = findPersonScene;
         txtFieldsIterator = findPersonScene.getTextFieldArrayList().iterator();
     }
 
-    public void setStatisticsScene(StatisticsScene statisticsScene/*, ArrayList<TextField> textfields*/){
-        //this.resetScenes();
-        this.statisticsScene = statisticsScene;
-        txtFieldsIterator = statisticsScene.getTextFieldList().iterator();
-    }
-
-    public void setSearchScene(SearchScene searchScene){
-        //this.resetScenes();
-        this.searchScene = searchScene;
-        txtFieldsIterator = searchScene.getTextFieldArrayList().iterator();
-    }
-
-    /*private void resetScenes(){
-        statisticsScene = null;
-        travelInsuranceScene = null;
-        insureHouseScene = null;
-        insureBoatScene = null;
-        insureCarScene = null;
-        addScene = null;
-        searchScene = null;
-    }*/
-
+    /**
+     * Resets the iterator in the given class(es);
+     */
     private void resetIterators(){
-        if(statisticsScene != null) {
-            statisticsScene.resetIterator();
-        }if(addScene != null){
-            addScene.resetIterator();
-        }if(searchScene != null) {
-            searchScene.resetIterator();
-        }if(findPersonScene != null){
+        if(findPersonScene != null){
             findPersonScene.resetIterator();
         }
     }

@@ -3,7 +3,7 @@ package baminsurances.gui.window.scene;
 import baminsurances.data.Customer;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
-import baminsurances.gui.window.OperationWindow;
+import baminsurances.gui.window.GuiConfig;
 import baminsurances.util.NorwegianComparator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -121,7 +121,7 @@ public abstract class PersonSearchScene extends GeneralScene{
                 TableView.CONSTRAINED_RESIZE_POLICY);
         customerTable.setEditable(false);
         customerTable.setStyle("-fx-border-color: gray;");
-        customerTable.setPrefWidth(OperationWindow.STAGE_WIDTH * 1 / 2);
+        customerTable.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
 
         birthNumberField = new TextField();
         birthNoLabel = new Label("Fødselsnummer:");
