@@ -78,7 +78,9 @@ public class DataBankGenerator {
      */
     private void generateCustomerList(int num) {
         for (int i = 0; i < num; i++) {
-            customerList.add(customerGen.generateCustomer());
+            Customer cus = customerGen.generateCustomer();
+            cus.setRegistrationDate(customerGen.generateRegistrationDate());
+            customerList.add(cus);
         }
     }
     

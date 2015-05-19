@@ -1,9 +1,11 @@
 package baminsurances.data;
 
-import baminsurances.api.Deserializer;
-import baminsurances.api.Serializer;
-import baminsurances.util.SavedDataHandler;
-
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,36 +25,52 @@ public class DataBank implements Serializable {
     
     /**
      * The constructor is private, because there should never exist more than
-     * one data bank at any given time. To get this data bank object, use the
-     * {@link #getInstance() getInstance} method.
+     * one data bank at any given time. To get the single data bank instance,
+     * use the {@link #getInstance() getInstance} method.
      */
     private DataBank() {
     }
     
     /**
      * Returns an instance of the data bank.
+     * <p>
+     * The first time this method is called during a run, the data bank is read
+     * from file. If no file is found, an empty data bank is created and
+     * returned.
      * 
      * @return an instance of the data bank
      */
     public static DataBank getInstance() {
-        SavedDataHandler handler = new SavedDataHandler();
-        if(dataBank == null){
-            dataBank = handler.readDataBank();
-            if(dataBank == null){
+        if (dataBank == null) { // Attempt to read it from file.
+            try (ObjectInputStream in = new ObjectInputStream(
+                    new FileInputStream("data/data_bank.ser"))) {
+                dataBank = (DataBank) in.readObject();
+            } catch (FileNotFoundException e) {
+                dataBank = new DataBank();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                dataBank = new DataBank();
+            } catch (IOException e) {
+                e.printStackTrace();
                 dataBank = new DataBank();
             }
         }
-        System.out.println(dataBank.toString());
         return dataBank;
     }
 
     /**
-     * Saves an instance of the data bank into a file.
-     *
+     * Saves the data bank to file.
      */
     public static void saveDataBank() {
         if (dataBank != null) {
-            new SavedDataHandler().writeDataBank();
+            try (ObjectOutputStream out = new ObjectOutputStream(
+                    new FileOutputStream("data/data_bank.ser"))) {
+                out.writeObject(DataBank.getInstance());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     
