@@ -190,7 +190,11 @@ public class Customer extends Person {
      */
     public void addInsurance(Insurance ins) {
         insuranceList.add(ins);
-        ins.updatePayments(totalCustomerDiscountPercentage);
+        if (isTotalCustomer()) {
+            ins.updatePayments(totalCustomerDiscountPercentage);
+        } else {
+            ins.updatePayments();
+        }
     }
     
     /**
@@ -326,8 +330,13 @@ public class Customer extends Person {
     public void updatePayments() {
         insuranceList.stream()
                      .filter(Insurance::isActive)
-                     .forEach(ins -> ins.updatePayments(
-                             totalCustomerDiscountPercentage));
-        //TODO
+                     .forEach(ins -> {
+                         if (this.isTotalCustomer()) {
+                             ins.updatePayments(
+                                     totalCustomerDiscountPercentage);
+                         } else {
+                             ins.updatePayments();
+                         }
+                     });
     }
 }
