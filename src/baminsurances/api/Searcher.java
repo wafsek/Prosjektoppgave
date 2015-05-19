@@ -734,36 +734,47 @@ public class Searcher {
      * new map. In this new map, the key is a type of insurance, and the value
      * is the number of insurances of that type.
      * 
-     * @return a map representing the number of an insuranc type in a region
+     * @return a map representing the number of an insurance type in a region
      */
-    public Map<String, Map<String, Integer>> getInsuranceTypesPerRegion() {
+    public Map<String, TreeMap<String, Integer>> getInsuranceTypesPerRegion() {
         Map<String, TreeMap<String, Integer>> result =
                 new HashMap<String, TreeMap<String, Integer>>();
         
         Map<String, String> zipCodeToRegion = getZipCodesToRegion();
-        for (String region : zipCodeToRegion.values()) {
-            result.put(region, new TreeMap<>());
-        }
-        
         Map<Class<? extends Insurance>, String> insuranceClassToString =
                 getInsuranceClassToString();
         
+        /**
+         * Initalizing all values to 0, so that they are included even if the
+         * region does not have any insurances of that type. 
+         */
+        for (String region : zipCodeToRegion.values()) {
+            TreeMap<String, Integer> inner = new TreeMap<>();
+            
+            for (String type : insuranceClassToString.values()) {
+                inner.put(type, 0);
+            }
+            result.put(region, inner);
+        }
+        
         for (Customer cus : dataBank.getCustomerList()) {
-            String region = zipCodeToRegion.get(cus.getZipCode());
+            String region = zipCodeToRegion.get(
+                    cus.getZipCode().substring(0, 2));
             for (Insurance ins : cus.getInsurances()) {
-                String type = insuranceClassToString.get(ins.getClass());
+                
                 Map<String, Integer> inner = result.get(region);
+                String type = insuranceClassToString.get(ins.getClass());
                 
-                /*
-                Integer currentNum = result.get(region)
+                Integer currentNum = inner.get(type);
+                if (currentNum == null) {
+                    currentNum = 0;
+                }
                 
-                inner.put(type, value)
-                
-                result.put(region);*/
+                inner.put(type, currentNum + 1);
             }
         }
         
-        return null;
+        return result;
     }
     
     /**
