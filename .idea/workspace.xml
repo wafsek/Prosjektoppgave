@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -28,13 +27,13 @@
     <favorites_list name="prosjektoppgave-programutvikling-2015" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.28523937">
+    <splitter split-orientation="horizontal" split-proportion="0.38763297">
       <split-first>
         <leaf>
           <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="4.0116277">
+                <state vertical-scroll-proportion="6.5625">
                   <caret line="350" column="2" selection-start-line="350" selection-start-column="2" selection-end-line="350" selection-end-column="2" />
                   <folding />
                 </state>
@@ -143,11 +142,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="StatisticScene.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="StatisticScene.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.6462264">
-                  <caret line="103" column="8" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="8" />
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#6201#6202#0" expanded="true" />
@@ -169,12 +168,51 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Searcher.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Searcher.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/baminsurances/api/Searcher.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="258" column="14" selection-start-line="258" selection-start-column="14" selection-end-line="258" selection-end-column="14" />
-                  <folding />
+                <state vertical-scroll-proportion="0.6442786">
+                  <caret line="416" column="8" selection-start-line="416" selection-start-column="8" selection-end-line="416" selection-end-column="8" />
+                  <folding>
+                    <element signature="e#2593#2594#0" expanded="true" />
+                    <element signature="e#2637#2638#0" expanded="true" />
+                    <element signature="e#2710#2711#0" expanded="true" />
+                    <element signature="e#2760#2761#0" expanded="true" />
+                    <element signature="e#2837#2838#0" expanded="true" />
+                    <element signature="e#2888#2889#0" expanded="true" />
+                    <element signature="e#2960#2961#0" expanded="true" />
+                    <element signature="e#3009#3010#0" expanded="true" />
+                    <element signature="e#3083#3084#0" expanded="true" />
+                    <element signature="e#3143#3144#0" expanded="true" />
+                    <element signature="e#3211#3212#0" expanded="true" />
+                    <element signature="e#3257#3258#0" expanded="true" />
+                    <element signature="e#3717#3718#0" expanded="true" />
+                    <element signature="e#3766#3767#0" expanded="true" />
+                    <element signature="e#3834#3835#0" expanded="true" />
+                    <element signature="e#3882#3883#0" expanded="true" />
+                    <element signature="e#5305#5306#0" expanded="true" />
+                    <element signature="e#5359#5360#0" expanded="true" />
+                    <element signature="e#6864#6865#0" expanded="true" />
+                    <element signature="e#6908#6909#0" expanded="true" />
+                    <element signature="e#6983#6984#0" expanded="true" />
+                    <element signature="e#7034#7035#0" expanded="true" />
+                    <element signature="e#7099#7100#0" expanded="true" />
+                    <element signature="e#7161#7162#0" expanded="true" />
+                    <element signature="e#7232#7233#0" expanded="true" />
+                    <element signature="e#7280#7281#0" expanded="true" />
+                    <element signature="e#7672#7673#0" expanded="true" />
+                    <element signature="e#7724#7725#0" expanded="true" />
+                    <element signature="e#7801#7802#0" expanded="true" />
+                    <element signature="e#7857#7858#0" expanded="true" />
+                    <element signature="e#9860#9861#0" expanded="true" />
+                    <element signature="e#9919#9920#0" expanded="true" />
+                    <element signature="e#9999#10000#0" expanded="true" />
+                    <element signature="e#10053#10054#0" expanded="true" />
+                    <element signature="e#10929#10930#0" expanded="true" />
+                    <element signature="e#10985#10986#0" expanded="true" />
+                    <element signature="e#12855#12856#0" expanded="true" />
+                    <element signature="e#12882#12883#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -577,9 +615,6 @@
           <option name="myId" value="UPDATED" />
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/api/Searcher.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/data/ClaimAdvice.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/data/DataBank.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/data/Insurance.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/Gui.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -594,7 +629,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/util/SavedDataHandler.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -879,12 +913,6 @@
       <created>1428591007092</created>
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Redisigned how some of the scenes are built. The way you look a person up is defined in its own, abstract class. Also did minor changes in the rest of the Gui">
-      <created>1429805865173</created>
-      <option name="number" value="00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1429805865173</updated>
     </task>
     <task id="LOCAL-00013" summary="Changed how some scenes work, and also made started on the SearchScene. Did some changes to the Handlers.">
       <created>1430404459121</created>
@@ -1174,7 +1202,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432034199461</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Tidying the code">
+      <created>1432045317412</created>
+      <option name="number" value="00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1432045317412</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1189,10 +1223,10 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32150775" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25831485" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.51773834" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19572192" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.097326204" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1647,7 +1681,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.0116277">
+        <state vertical-scroll-proportion="6.5625">
           <caret line="350" column="2" selection-start-line="350" selection-start-column="2" selection-end-line="350" selection-end-column="2" />
           <folding />
         </state>
@@ -1661,24 +1695,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/api/Searcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="258" column="14" selection-start-line="258" selection-start-column="14" selection-end-line="258" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6462264">
-          <caret line="103" column="8" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#6201#6202#0" expanded="true" />
             <element signature="e#6264#6265#0" expanded="true" />
             <element signature="e#6301#6302#0" expanded="true" />
             <element signature="e#6363#6364#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/api/Searcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6442786">
+          <caret line="416" column="8" selection-start-line="416" selection-start-column="8" selection-end-line="416" selection-end-column="8" />
+          <folding>
+            <element signature="e#2593#2594#0" expanded="true" />
+            <element signature="e#2637#2638#0" expanded="true" />
+            <element signature="e#2710#2711#0" expanded="true" />
+            <element signature="e#2760#2761#0" expanded="true" />
+            <element signature="e#2837#2838#0" expanded="true" />
+            <element signature="e#2888#2889#0" expanded="true" />
+            <element signature="e#2960#2961#0" expanded="true" />
+            <element signature="e#3009#3010#0" expanded="true" />
+            <element signature="e#3083#3084#0" expanded="true" />
+            <element signature="e#3143#3144#0" expanded="true" />
+            <element signature="e#3211#3212#0" expanded="true" />
+            <element signature="e#3257#3258#0" expanded="true" />
+            <element signature="e#3717#3718#0" expanded="true" />
+            <element signature="e#3766#3767#0" expanded="true" />
+            <element signature="e#3834#3835#0" expanded="true" />
+            <element signature="e#3882#3883#0" expanded="true" />
+            <element signature="e#5305#5306#0" expanded="true" />
+            <element signature="e#5359#5360#0" expanded="true" />
+            <element signature="e#6864#6865#0" expanded="true" />
+            <element signature="e#6908#6909#0" expanded="true" />
+            <element signature="e#6983#6984#0" expanded="true" />
+            <element signature="e#7034#7035#0" expanded="true" />
+            <element signature="e#7099#7100#0" expanded="true" />
+            <element signature="e#7161#7162#0" expanded="true" />
+            <element signature="e#7232#7233#0" expanded="true" />
+            <element signature="e#7280#7281#0" expanded="true" />
+            <element signature="e#7672#7673#0" expanded="true" />
+            <element signature="e#7724#7725#0" expanded="true" />
+            <element signature="e#7801#7802#0" expanded="true" />
+            <element signature="e#7857#7858#0" expanded="true" />
+            <element signature="e#9860#9861#0" expanded="true" />
+            <element signature="e#9919#9920#0" expanded="true" />
+            <element signature="e#9999#10000#0" expanded="true" />
+            <element signature="e#10053#10054#0" expanded="true" />
+            <element signature="e#10929#10930#0" expanded="true" />
+            <element signature="e#10985#10986#0" expanded="true" />
+            <element signature="e#12855#12856#0" expanded="true" />
+            <element signature="e#12882#12883#0" expanded="true" />
           </folding>
         </state>
       </provider>
