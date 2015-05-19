@@ -184,7 +184,7 @@ public class StatisticScene extends GeneralScene{
     private void launchOptionThree(){
         this.clearRightSide();
         logger.log("Option one selected ", Level.FINE);
-        this.setBarChartData(new Searcher().numCustomersPerAge());
+        this.setBarChartData(new Searcher().numInsurancesPerAge());
         rightSide.getChildren().add(this.setBarchart());
     }
 
@@ -232,7 +232,7 @@ public class StatisticScene extends GeneralScene{
         for(Map.Entry<T,Integer> entrySet : map.entrySet()){
             key = entrySet.getKey();
             i = entrySet.getValue();
-            series.getData().add(new XYChart.Data<>(key,i));
+            series.getData().add(new XYChart.Data<>(key.toString(),i));
         }
     }
 
