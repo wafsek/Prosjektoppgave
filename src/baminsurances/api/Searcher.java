@@ -376,7 +376,7 @@ public class Searcher {
      * @return a sorted map where the keys are different ages, and the values
      * are the number of customers per age
      */
-    public Map<String, Integer> numCustomersPerAge() {
+    public Map<String, Integer> numCustomersPerAgeGroup() {
         SortedMap<Integer, Integer> temp = new TreeMap<>();
         
         for (Customer cus : dataBank.getCustomerList()) {
@@ -497,11 +497,48 @@ public class Searcher {
         for (Customer cus : dataBank.getCustomerList()) {
             String region =
                     zipCodeToRegion.get(cus.getZipCode().substring(0, 2));
-            result.put(region, cus.getInsurances().size());
+            Integer currentNum = result.get(region);
+            if (currentNum == null) {
+                currentNum = 0;
+            }
+            result.put(region, currentNum + cus.getInsurances().size());
         }
         return result;
     }
     
+    public Map<String, Integer> numCustomersPerRegion() {
+        /* Helper map to determine region based on the first two digits
+         * of a zip code.
+         */
+        Map<String, String> zipCodeToRegion = getZipCodesToRegion();
+        
+        Map<String, Integer> result = new HashMap<>();
+        /* Initializing all regions, so that they are included even if there
+         * are no customers with insurances in that region.
+         */
+        for (String region : zipCodeToRegion.values()) {
+            result.put(region, 0);
+        }
+        
+        for (Customer cus : dataBank.getCustomerList()) {
+            String region =
+                    zipCodeToRegion.get(cus.getZipCode().substring(0, 2));
+            Integer currentNum = result.get(region);
+            if (currentNum == null) {
+                currentNum = 0;
+            }
+            result.put(region, currentNum + cus.getInsurances().size());
+        }
+        return result;
+    }
+    
+    /**
+     * A helper method that returns a map where the keys arethe first two
+     * digits of a zip code, and the values are the related regions.
+     * 
+     * @return a map where the keys arethe first two digits of a zip code, and
+     * the values are the related regions
+     */
     private Map<String, String> getZipCodesToRegion() {
         Map<String, String> zipCodeToRegion = new HashMap<>();
         

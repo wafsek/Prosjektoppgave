@@ -67,6 +67,7 @@ public class DataBankGenerator {
         generateEmployees(numEmployees);
         generateInsurances(numInsurances);
         generateClaimAdvices(numClaimAdvices);
+        customerList.stream().forEach(Customer::updatePayments);
         loadingWindow.close();
     }
     
