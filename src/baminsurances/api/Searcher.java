@@ -701,22 +701,15 @@ public class Searcher {
         Map<String, Integer> result = new HashMap<>();
         
         // Map used to find the right display name based on class.
-        Map<Class<? extends Insurance>, String> displayNames = new HashMap<>();
-        displayNames.put(CarInsurance.class, "Bilforsikring");
-        displayNames.put(BoatInsurance.class, "Båtforsikring");
-        displayNames.put(HomeInsurance.class, "Boligforsikring");
-        displayNames.put(HolidayHomeInsurance.class, "Fritidsboligforsikring");
-        displayNames.put(TravelInsurance.class, "Reiseforsikring");
-        System.out.println(displayNames.toString());
+        Map<Class<? extends Insurance>, String> displayNames =
+                getInsuranceClassToString();
         
         /* Initializing all keys with a value of 0, so that they are included
          * even if no insurance exists of that type.
          */
-        result.put("Bilforsikring", 0);
-        result.put("Båtforsikring", 0);
-        result.put("Boligforsikring", 0);
-        result.put("Fritidsboligforsikring", 0);
-        result.put("Reiseforsikring", 0);
+        for (String type : displayNames.values()) {
+            result.put(type, 0);
+        }
         
         for (Customer cus : dataBank.getCustomerList()) {
             for (Insurance ins : cus.getInsurances()) {
@@ -725,7 +718,6 @@ public class Searcher {
                         result.get(displayNames.get(type)) + 1);
             }
         }
-        System.out.println(result.size());
         return result;
     }
     
@@ -786,6 +778,13 @@ public class Searcher {
      * are a string representation of that insurance subclass
      */
     private Map<Class<? extends Insurance>, String> getInsuranceClassToString() {
-        return null;
+        Map<Class<? extends Insurance>, String> insuranceClassToString =
+                new HashMap<>();
+        insuranceClassToString.put(CarInsurance.class, "Bilforsikring");
+        insuranceClassToString.put(BoatInsurance.class, "Båtforsikring");
+        insuranceClassToString.put(HomeInsurance.class, "Boligforsikring");
+        insuranceClassToString.put(HolidayHomeInsurance.class, "Fritidsboligforsikring");
+        insuranceClassToString.put(TravelInsurance.class, "Reiseforsikring");
+        return insuranceClassToString;
     }
 }
