@@ -207,6 +207,10 @@ public class SpecificInsuranceScene extends GeneralScene {
         pricePerKilometerField.setEditable(false);
         bonusPercentageField.setEditable(false);
 
+        if (!cancelledField.getText().trim().isEmpty()) {
+            setNewClaimAdviceButtonDisabled();
+        }
+
         rightSideContentContainer = new GridPane();
         rightSideContentContainer.addColumn(0, registrationNumberLabel, carTypeLabel,
                 carBrandLabel, carModelLabel, productionYearLabel, annualMilageLabel,
@@ -263,6 +267,10 @@ public class SpecificInsuranceScene extends GeneralScene {
         productionYearField.setEditable(false);
         motorTypeField.setEditable(false);
         horsePowerField.setEditable(false);
+
+        if (!cancelledField.getText().trim().isEmpty()) {
+            setNewClaimAdviceButtonDisabled();
+        }
 
         claimAdviceTable.setItems(FXCollections.observableArrayList(boatInsurance.getClaimAdvices()));
 
@@ -328,6 +336,10 @@ public class SpecificInsuranceScene extends GeneralScene {
         homeAmountField.setEditable(false);
         contentsAmountField.setEditable(false);
 
+        if (!cancelledField.getText().trim().isEmpty()) {
+            setNewClaimAdviceButtonDisabled();
+        }
+
         claimAdviceTable.setItems(FXCollections.observableArrayList(homeInsurance.getClaimAdvices()));
 
         rightSideContentContainer = new GridPane();
@@ -356,6 +368,10 @@ public class SpecificInsuranceScene extends GeneralScene {
         Label regionLabel = new Label("Region:");
         TextField regionField = new TextField(travelInsurance.getRegion().toString());
         regionField.setEditable(false);
+
+        if (!cancelledField.getText().trim().isEmpty()) {
+            setNewClaimAdviceButtonDisabled();
+        }
 
         claimAdviceTable.setItems(FXCollections.observableArrayList(travelInsurance.getClaimAdvices()));
 
@@ -395,5 +411,10 @@ public class SpecificInsuranceScene extends GeneralScene {
 
     public Button getUpdateInfoButton() {
         return updateInfoButton;
+    }
+
+    public void setNewClaimAdviceButtonDisabled() {
+        newClaimAdviceButton.setDisable(true);
+        updateInfoButton.setDisable(true);
     }
 }

@@ -175,10 +175,13 @@ public class Controller {
     }
 
     private void launchHandleCustomerScene(){
-        handleCustomerScene.setTableData(FXCollections.observableArrayList(CurrentStatus.getCurrentCustomer().getInsurances()));
+        List<Insurance> list = CurrentStatus.getCurrentCustomer().getInsurances();
+        ObservableList<Insurance> insurances = FXCollections.observableArrayList();
+        insurances.addAll(list);
         handleCustomerScene.setDisplayName(getDisplayName());
         handleCustomerScene.setCustomerData(CurrentStatus.getCurrentCustomer());
         primaryStage.initiate(handleCustomerScene.getScene());
+        handleCustomerScene.setTableData(insurances);
     }
 
     private void launchInsuranceScene() {
@@ -374,6 +377,7 @@ public class Controller {
             ClaimAdvice ca = this.registerClaimAdvice();
             if(ca != null) {
                 this.addImagesToClaimAdvice(ca);
+                CurrentStatus.getCurrentInsurance().addClaimAdvice(ca);
             }
             launchSpecificInsuranceScene();
         }
@@ -382,6 +386,14 @@ public class Controller {
    /* private String findPerson(){
         return manager.getCustomerInsurancesWithFirstName(searchScene.);
     }*/
+
+    private void addWitness() {
+        if (new MessageDialog().showMessageDialog("Bilder", "Øsnker " +
+                        "du å laste opp bilder?", MessageDialog.QUESTION_ICON,
+                MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION) {
+
+        }
+    }
 
     private void addImagesToClaimAdvice(ClaimAdvice claimAdvice) {
         if(new MessageDialog().showMessageDialog("Bilder", "Øsnker " +
