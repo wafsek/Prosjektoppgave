@@ -12,7 +12,8 @@ public enum StatisticOption {
     OPTION_FIVE("Antall forsikeringer per"),
     OPTION_SIX("Sum innbetalinger per år"),
     OPTION_SEVEN("Antall kunder per Alders gruppe"),
-    OPTION_EIGHT("Antall forsikeringer per landsdel");
+    OPTION_EIGHT("Antall forsikeringer per landsdel"),
+    OPTION_NINE("Sum inn betaling per År");
     private final String description;
 
     /**

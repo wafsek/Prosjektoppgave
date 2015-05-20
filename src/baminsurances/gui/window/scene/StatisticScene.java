@@ -67,10 +67,10 @@ public class StatisticScene extends GeneralScene{
         this.setComboBox();
         leftSide = new VBox(10);
         rightSide = new VBox(10);
-        rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 3 / 5);
+        rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1);
         rightSide.getChildren().add(comboBox);
-        footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 3 / 5);
-        footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 3 / 5);
+        footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1);
+        footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1);
         footer = new HBox(0, footerLeftSide, footerRightSide);
         footer.setStyle("-fx-border-color: gray;");
         rightSide.setAlignment(Pos.CENTER);
@@ -90,7 +90,8 @@ public class StatisticScene extends GeneralScene{
                 StatisticOption.OPTION_FIVE.getDescription(),
                 StatisticOption.OPTION_SIX.getDescription(),
                 StatisticOption.OPTION_SEVEN.getDescription(),
-                StatisticOption.OPTION_EIGHT.getDescription())
+                StatisticOption.OPTION_EIGHT.getDescription(),
+                StatisticOption.OPTION_NINE.getDescription())
                 
         );
         comboBox.setOnAction(e -> {
@@ -110,6 +111,8 @@ public class StatisticScene extends GeneralScene{
                 this.launchOptionSeven(StatisticOption.OPTION_SEVEN);
             }  else if (comboBox.getValue() == StatisticOption.OPTION_EIGHT.getDescription()) {
                 this.launchOptionEight(StatisticOption.OPTION_EIGHT);
+            }  else if (comboBox.getValue() == StatisticOption.OPTION_NINE.getDescription()) {
+                this.launchOptionNine(StatisticOption.OPTION_NINE);
             }  else {
                 System.out.println("dafaq");
             }
@@ -129,6 +132,7 @@ public class StatisticScene extends GeneralScene{
         pieChart = new PieChart(pieChartData);
         pieChart.setVisible(true);
         pieChart.getLabelsVisible();
+        pieChart.setAnimated(true);
         return pieChart;
     }
     
@@ -271,7 +275,7 @@ public class StatisticScene extends GeneralScene{
         this.clearRightSide();
         xAxis = new NumberAxis(1997, LocalDate.now().getYear()-1, 1);
         logger.log("Option one selected ", Level.FINE);
-        this.setMultiLineChartData(new Searcher().getSumPaymentsPerYear(), "Sum innbetalinger");
+        this.setMultiLineChartData(new Searcher().getPaymentsPerInsuranceTypePerYear(), "Sum innbetalinger");
         xAxis.setLabel("Betalinger");
         yAxis.setLabel("Sum per År");
         lineChart = this.setMultiLineChart();
@@ -375,12 +379,12 @@ public class StatisticScene extends GeneralScene{
     }
 
 
-    public <T>void setMultiLineChartData(Map<T,TreeMap<T,Integer>> map,String ChartName){
+    public <T,U>void setMultiLineChartData(Map<T,TreeMap<U,Integer>> map,String ChartName){
         int numOfSeries = map.values().iterator().next().size();
         seriesArray = new XYChart.Series[numOfSeries];
         int counter = 0;
         T key;
-        T innerKey;
+        U innerKey;
         int i;
         while(counter < numOfSeries){
             XYChart.Series series = new XYChart.Series();
@@ -388,18 +392,18 @@ public class StatisticScene extends GeneralScene{
             counter++;
         }
         counter = 0;
-        for (TreeMap<T, Integer> t : map.values()) {
-            for (T x : t.keySet()) {
+        for (TreeMap<U, Integer> t : map.values()) {
+            for (U x : t.keySet()) {
                 seriesArray[counter].setName(x.toString());
                 counter++;
             }
             break;
         }
         counter = 0;
-        for(Map.Entry<T,TreeMap<T,Integer>> entrySet : map.entrySet()){
+        for(Map.Entry<T,TreeMap<U,Integer>> entrySet : map.entrySet()){
             key = entrySet.getKey();
 
-            for(Map.Entry<T,Integer> innerEntrySet : entrySet.getValue().entrySet()){
+            for(Map.Entry<U,Integer> innerEntrySet : entrySet.getValue().entrySet()){
                 innerKey = innerEntrySet.getKey();
                 i = innerEntrySet.getValue();
                 System.out.println(seriesArray[counter].getData());
