@@ -572,8 +572,7 @@ public class Controller {
         String result = "";
         boolean failed = false;
         if(!Validation.consistsOnlyOfNumbers(
-                insuranceScene.getAnnualPremiumFieldText())){
-            System.out.println("annual prem feilet");
+                insuranceScene.getAnnualPremiumFieldText())) {
             System.out.println(insuranceScene.getAnnualPremiumFieldText());
             result += DataControl.INVALID_ANNUAL_PREMIUM.getDescription() + "\n";
             failed = true;
@@ -666,8 +665,6 @@ public class Controller {
         }
     }
 
-
-
     public String validateBoatInsuranceData() {
         String feil = "Feil:\n";
         boolean failed = false;
@@ -703,7 +700,6 @@ public class Controller {
 
     public String registerBoatInsurance() {
         if (!this.validateBoatInsuranceData().equals("Success")) {
-            System.out.println("Båt feilet");
             return this.validateBoatInsuranceData();
         } else {
             manager.registerBoatInsurance(new BoatInsurance(
@@ -737,7 +733,7 @@ public class Controller {
 
 
     public String validateHomeInsuranceData() {
-        String feil = "Følgende felt har feil:\n";
+        String feil = "Feil:\n";
         boolean failed = false;
         if (!this.validateInsuranceData(houseInsuranceScene).equals("Success")) {
             return this.validateInsuranceData(houseInsuranceScene);
@@ -846,19 +842,19 @@ public class Controller {
 
 
     public String validateTravelInsuranceData(){
-        String feil = "Følgende felt har feil:\n";
+        String feil = "Feil:\n";
         boolean failed = false;
         if (!this.validateInsuranceData(travelInsuranceScene).equals("Success")) {
             return this.validateInsuranceData(travelInsuranceScene);
         }
         if (!Validation.consistsOnlyOfNumbers(
                 travelInsuranceScene.getAnnualPremiumFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig premie\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 travelInsuranceScene.getInsuranceValueFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig forsikringsbeløp\n";
             failed = true;
         }
         if (!failed) {
