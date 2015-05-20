@@ -36,6 +36,7 @@ public class StatisticScene extends GeneralScene{
     private XYChart.Series series;
     private XYChart.Series[] seriesArray;
     private ComboBox comboBox;
+    private ComboBox animationComboBox;
     private CustomLogger logger;
     private Axis xAxis;
     private Axis yAxis;
@@ -50,6 +51,8 @@ public class StatisticScene extends GeneralScene{
         cAxis = new CategoryAxis();
         this.setComboBox();
         comboBox.setValue(StatisticOption.OPTION_ONE.getDescription());
+        this.setAnimationComboBox();
+        animationComboBox.setValue("Animasjon PÅ");
         leftSide = new VBox(10);
         rightSide = new VBox(10);
         topBar = new VBox(10);
@@ -59,6 +62,7 @@ public class StatisticScene extends GeneralScene{
         rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 9 / 10);
         topBar.getChildren().add(topLabel);
         topBar.getChildren().add(comboBox);
+        topBar.getChildren().add(animationComboBox);
         footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1);
         footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1);
         footer = new HBox(0, footerLeftSide, footerRightSide);
@@ -73,7 +77,25 @@ public class StatisticScene extends GeneralScene{
         this.launchOptionOne(StatisticOption.OPTION_ONE);
     }
 
+    private void setAnimationComboBox(){
+        animationComboBox = new ComboBox(FXCollections.observableArrayList(
+                "Animasjon PÅ",
+                "Animasjon AV"
+        ));
 
+        animationComboBox.setOnAction(e -> {
+            if (animationComboBox.getValue() == "Animasjon PÅ") {
+                barChart.setAnimated(true);
+                pieChart.setAnimated(true);
+                lineChart.setAnimated(true);
+            } else if (animationComboBox.getValue() == "Animasjon AV") {
+                barChart.setAnimated(false);
+                pieChart.setAnimated(false);
+                lineChart.setAnimated(false);
+            } 
+        });
+    }
+    
     private void setComboBox(){
         comboBox = new ComboBox(FXCollections.observableArrayList(
                 StatisticOption.OPTION_ONE.getDescription(),
@@ -101,8 +123,8 @@ public class StatisticScene extends GeneralScene{
         });
     }
     private void clearRightSide(){
-        
         xAxis.setAutoRanging(true);
+        rightSide = new VBox(10);
         rightSide.getChildren().removeAll(pieChart);
         rightSide.getChildren().removeAll(barChart);
         rightSide.getChildren().removeAll(lineChart);
