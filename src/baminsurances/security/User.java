@@ -7,8 +7,8 @@ import java.io.Serializable;
  * 
  * @author Baljit Sarai 
  */
-public class User implements Serializable{
-    
+public class User implements Serializable {
+    private static final long serialVersionUID = -1090789050090850309L;
     private String username;
     private String password;
     protected Authorization authorization;
