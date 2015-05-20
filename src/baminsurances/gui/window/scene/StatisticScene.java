@@ -139,7 +139,7 @@ public class StatisticScene extends GeneralScene{
     private BarChart setBarchart(){
         barChart = new BarChart(cAxis,xAxis);
         barChart.getData().addAll(series);
-        barChart.setAnimated(false);
+        //barChart.setAnimated(false);
         return barChart;
     }
     
@@ -328,7 +328,6 @@ public class StatisticScene extends GeneralScene{
         for(Map.Entry<T,Integer> entrySet : map.entrySet()){
             key = entrySet.getKey();
             i = entrySet.getValue();
-            System.out.println(key+" : "+i);
             series.getData().add(new XYChart.Data<>(key.toString(), i));
         }
     }
