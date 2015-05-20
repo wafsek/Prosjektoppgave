@@ -744,35 +744,35 @@ public class Controller {
         } 
         if (!Validation.isValidStreetAddress(
                 houseInsuranceScene.getStreetAddressFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig gateadresse\n";
             failed = true;
         }
         if (!Validation.isValidZipCode(
                 houseInsuranceScene.getZipCodeFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig postnummer\n";
             failed = true;
             
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getConstructionYearFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig konstruksjonsår\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getSquareMetersFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig kvadratmeter\n";
             failed = true;
             
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getHomeAmountFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig forsikringsverdi hus\n";
             failed = true;
             
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getContentsAmountFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig forsikringsverdi innbo\n";
             failed = true;
             
         }
