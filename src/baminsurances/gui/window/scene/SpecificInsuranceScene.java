@@ -223,7 +223,7 @@ public class SpecificInsuranceScene extends GeneralScene {
         pricePerKilometerField.setEditable(false);
         bonusPercentageField.setEditable(false);
 
-        if (!cancelledField.getText().trim().isEmpty()) {
+        if (!cancelledField.getText().equals("")) {
             setNewClaimAdviceButtonDisabled();
         }
 
@@ -292,7 +292,7 @@ public class SpecificInsuranceScene extends GeneralScene {
         motorTypeField.setEditable(false);
         horsePowerField.setEditable(false);
 
-        if (!cancelledField.getText().trim().isEmpty()) {
+        if (!cancelledField.getText().equals("")) {
             setNewClaimAdviceButtonDisabled();
         }
 
@@ -367,7 +367,7 @@ public class SpecificInsuranceScene extends GeneralScene {
         homeAmountField.setEditable(false);
         contentsAmountField.setEditable(false);
 
-        if (!cancelledField.getText().trim().isEmpty()) {
+        if (!cancelledField.getText().equals("")) {
             setNewClaimAdviceButtonDisabled();
         }
 

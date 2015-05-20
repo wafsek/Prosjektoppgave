@@ -229,7 +229,7 @@ public class Controller {
     }
 
     private void launchSpecificInsuranceScene() {
-        Insurance insurance = handleCustomerScene.getInsurance();
+        Insurance insurance = CurrentStatus.getCurrentInsurance();
         if (insurance instanceof HomeInsurance) {
             primaryStage.initiate(specificInsuranceScene.getHouseInsuranceInfoScene(
                     (HomeInsurance) insurance));
@@ -316,6 +316,9 @@ public class Controller {
                 control == addScene.getBackButton()) {
             launchFindPersonScene();
         } else if (control == handleCustomerScene.getChooseInsuranceButton()) {
+            if (handleCustomerScene.getInsurance() != null) {
+                CurrentStatus.setCurrentInsurance(handleCustomerScene.getInsurance());
+            }
             launchSpecificInsuranceScene();
         } else if (control == handleCustomerScene.getNewInsuranceButton()) {
             launchInsuranceScene();
@@ -426,14 +429,6 @@ public class Controller {
             launchSpecificClaimAdviceScene();
         } else if (control == specificClaimAdviceScene.getBackButton()) {
             launchSpecificInsuranceScene();
-        }
-    }
-
-    private void addWitness() {
-        if (MessageDialog.showMessageDialog("Bilder", "Ønsker " +
-                        "du å laste opp bilder?", MessageDialog.QUESTION_ICON,
-                MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION) {
-            
         }
     }
 
