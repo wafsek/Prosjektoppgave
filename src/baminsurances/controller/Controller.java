@@ -519,9 +519,12 @@ public class Controller {
     private DataControl validateInsuranceData(){
         if(!Validation.consistsOnlyOfNumbers(
                 carInsuranceScene.getAnnualPremiumFieldText())){
+            System.out.println("annual prem feilet");
+            System.out.println(carInsuranceScene.getAnnualPremiumFieldText());
             return DataControl.INVALID_ANNUAL_PREMIUM;
         }else if(!Validation.consistsOnlyOfNumbers(
                 carInsuranceScene.getInsuranceValueFieldText())){
+            System.out.println("forsikringsbeløp feilet");
             return DataControl.INVALID_AMOUNT;
         }else {
             return DataControl.SUCCESS;
@@ -604,7 +607,7 @@ public class Controller {
     }
 
     public String registerBoatInsurance(){
-        if(this.validateBoatInsuranceData().equals("Success")){
+        if(!this.validateBoatInsuranceData().equals("Success")){
             System.out.println("Båt feilet");
             return this.validateBoatInsuranceData();
         } else {
@@ -636,21 +639,27 @@ public class Controller {
             return this.validateInsuranceData().getDescription();
         } else if (!Validation.isValidStreetAddress(
                 houseInsuranceScene.getStreetAddressFieldText())){
+            System.out.println("gateadresse feilet");
             return "";
         } else if (!Validation.isValidZipCode(
                 houseInsuranceScene.getZipCodeFieldText())){
+            System.out.println("postnr feilet");
             return "";
         } else if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getConstructionYearFieldText())){
+            System.out.println("konstruksjonsår feilet");
             return "";
         } else if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getSquareMetersFieldText())){
+            System.out.println("kvadratmeter feilet");
             return "";
         } else if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getHomeAmountFieldText())){
+            System.out.println("home amount feilet");
             return "";
         } else if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getContentsAmountFieldText())){
+            System.out.println("contents amount feilet");
             return "";
         }else {
             return DataControl.SUCCESS.getDescription();
@@ -658,7 +667,7 @@ public class Controller {
     }
 
     public String registerHomeInsurance(){
-        if(this.validateHomeInsuranceData().equals("Success")){
+        if(!this.validateHomeInsuranceData().equals("Success")){
             System.out.println("Hus feilet");
             return this.validateHomeInsuranceData();
         } else {
@@ -683,10 +692,8 @@ public class Controller {
         }
     }
 
-    
-    
     public String registerHolidayHomeInsurance(){
-        if(this.validateHomeInsuranceData().equals("Success")){
+        if(!this.validateHomeInsuranceData().equals("Success")){
             System.out.println("Feriehus feilet");
             return this.validateHomeInsuranceData();
         } else {
