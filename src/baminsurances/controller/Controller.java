@@ -606,7 +606,7 @@ public class Controller {
             feil += "\n";
             failed = true;
         }
-        if (!Validation.consistsOnlyOfLetters(
+        if (!Validation.isValidModel(
                 carInsuranceScene.getCarModelFieldText())) {
             feil += "\n";
             failed = true;
@@ -679,6 +679,11 @@ public class Controller {
         }
         if (!Validation.isValidBoatRegistrationNo(
                 boatInsuranceScene.getRegistrationNoFieldText())) {
+            feil += "\n";
+            failed = true;
+        }
+        if (!Validation.isValidModel(
+                boatInsuranceScene.getModelFieldText())) {
             feil += "\n";
             failed = true;
         }

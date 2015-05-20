@@ -34,8 +34,8 @@
           <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.78826237">
-                  <caret line="881" column="70" selection-start-line="881" selection-start-column="70" selection-end-line="881" selection-end-column="70" />
+                <state vertical-scroll-proportion="0.3383199">
+                  <caret line="684" column="37" selection-start-line="684" selection-start-column="37" selection-end-line="684" selection-end-column="37" />
                   <folding>
                     <element signature="e#5469#5470#0" expanded="true" />
                     <element signature="e#5527#5528#0" expanded="true" />
@@ -714,12 +714,6 @@
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
     </task>
-    <task id="LOCAL-00039" summary="Insurance scene is fixed. Does no longer import NameDisplayable">
-      <created>1431686764435</created>
-      <option name="number" value="00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1431686764435</updated>
-    </task>
     <task id="LOCAL-00040" summary="Controller still needs fixing...">
       <created>1431691053257</created>
       <option name="number" value="00040" />
@@ -1008,7 +1002,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432109839007</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="Paymentfrequency fixed .... you are welcome martin..and please dont stress. be happy ...smile please">
+      <created>1432110402826</created>
+      <option name="number" value="00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1432110402826</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1053,7 +1053,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="All the scenes now has an updating username label." />
     <MESSAGE value="Changed how the table reads it's values based on Martins finds" />
     <MESSAGE value="Minor changes. Some textfields displayed wrong info, which is now fixed" />
     <MESSAGE value="Another minor display bug fix" />
@@ -1078,7 +1077,8 @@
     <MESSAGE value="Person insurance fixed" />
     <MESSAGE value="The statistic window is Ready to present." />
     <MESSAGE value="The statistic window is Ready to present.(final)" />
-    <option name="LAST_COMMIT_MESSAGE" value="The statistic window is Ready to present.(final)" />
+    <MESSAGE value="Paymentfrequency fixed .... you are welcome martin..and please dont stress. be happy ...smile please" />
+    <option name="LAST_COMMIT_MESSAGE" value="Paymentfrequency fixed .... you are welcome martin..and please dont stress. be happy ...smile please" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1468,8 +1468,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78826237">
-          <caret line="881" column="70" selection-start-line="881" selection-start-column="70" selection-end-line="881" selection-end-column="70" />
+        <state vertical-scroll-proportion="0.3383199">
+          <caret line="684" column="37" selection-start-line="684" selection-start-column="37" selection-end-line="684" selection-end-column="37" />
           <folding>
             <element signature="e#5469#5470#0" expanded="true" />
             <element signature="e#5527#5528#0" expanded="true" />
