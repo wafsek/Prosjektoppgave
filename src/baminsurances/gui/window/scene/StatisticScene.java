@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import java.time.LocalDate;
@@ -20,11 +21,13 @@ import java.util.logging.Level;
 
 /**
  * Created by baljit on 19.05.2015.
+ * @author baljit 
  */
 public class StatisticScene extends GeneralScene{
 
     private VBox leftSide,rightSide;
-    
+    private VBox topBar;
+    private Label topLabel;
     private LineChart lineChart;
     private PieChart pieChart;
     private BarChart barChart;
@@ -48,20 +51,25 @@ public class StatisticScene extends GeneralScene{
         this.setComboBox();
         leftSide = new VBox(10);
         rightSide = new VBox(10);
-        rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1);
-        rightSide.getChildren().add(comboBox);
+        topBar = new VBox(10);
+        topLabel = new Label("Statistikk");
+        topLabel.setStyle("-fx-font:50px times;");
+        topBar.setAlignment(Pos.CENTER);
+        rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 9 / 10);
+        topBar.getChildren().add(topLabel);
+        topBar.getChildren().add(comboBox);
         footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1);
         footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1);
         footer = new HBox(0, footerLeftSide, footerRightSide);
         footer.setStyle("-fx-border-color: gray;");
         rightSide.setAlignment(Pos.CENTER);
-        borderPane = new BorderPane(leftSide,null,rightSide,footer,null);
+        borderPane = new BorderPane(leftSide,topBar,rightSide,footer,null);
         borderPane.backgroundProperty().setValue(
                 new Background(new BackgroundFill(Color.web("D7EBE6"),
                         CornerRadii.EMPTY, Insets.EMPTY)));
         
         scene = new Scene(borderPane);
-        
+        this.launchOptionOne(StatisticOption.OPTION_ONE);
     }
 
 
@@ -94,6 +102,7 @@ public class StatisticScene extends GeneralScene{
         });
     }
     private void clearRightSide(){
+        
         xAxis.setAutoRanging(true);
         rightSide.getChildren().removeAll(pieChart);
         rightSide.getChildren().removeAll(barChart);
@@ -111,11 +120,13 @@ public class StatisticScene extends GeneralScene{
     }
     
     private BarChart setBarchart(){
+        
         barChart = new BarChart(cAxis,xAxis);
         barChart.getData().addAll(series);
-        barChart.setAnimated(false);
+        //barChart.setAnimated(false);
         barChart.applyCss();
         barChart.setCategoryGap(30);
+        cAxis = new CategoryAxis();
         return barChart;
     }
     
@@ -218,7 +229,7 @@ public class StatisticScene extends GeneralScene{
         this.setLineChartData(new Searcher().getSumPaymentsPerYear(), "Sum innbetalinger");
         xAxis.setLabel("Betalinger");
         yAxis.setLabel("Sum per År");
-        rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1);
+        rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 9/10);
         lineChart = this.setLineChart();
         lineChart.setTitle("Sum innbetalling per År");
         rightSide.getChildren().add(lineChart);
@@ -247,7 +258,7 @@ public class StatisticScene extends GeneralScene{
         this.setMultiLineChartData(new Searcher().getPaymentsPerInsuranceTypePerYear(), "Sum innbetalinger");
         xAxis.setLabel("Betalinger");
         yAxis.setLabel("Sum per År");
-        rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1);
+        rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 9/10);
         lineChart = this.setMultiLineChart();
         lineChart.setTitle("Sum innbetalling per År fordelt på type");
         rightSide.getChildren().add(lineChart);
