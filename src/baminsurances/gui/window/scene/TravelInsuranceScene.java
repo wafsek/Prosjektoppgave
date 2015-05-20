@@ -14,7 +14,7 @@ import javafx.scene.layout.BorderPane;
  * Created by Adrian on 15/05/2015.
  * @author Adrian Melsom
  */
-public class TravelInsuranceScene extends InsuranceScene{
+public class    TravelInsuranceScene extends InsuranceScene{
 
     private Label regionLabel;
     private ComboBox<TravelRegion> regionDropDown;

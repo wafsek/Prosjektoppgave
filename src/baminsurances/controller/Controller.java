@@ -736,7 +736,7 @@ public class Controller {
                     CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
             System.out.println("Båt registrert");
-            return "Båtforsikring registrert";
+            return "Baatforsikring registrert";
         }
     }
 

@@ -210,7 +210,7 @@ public class SpecificInsuranceScene extends GeneralScene {
         dateOfRegistrationField.setText(carInsurance.getCreationDate() + "");
         cancelledField.setText((carInsurance.getCancellationDate() != null) ? "" + carInsurance.getCancellationDate() : "");
         conditionTextArea.setText(carInsurance.getTerms());
-        totalPayedField.setText(carInsurance.getTotalPaid()+"");
+        totalPayedField.setText(carInsurance.getTotalPaid() + "");
 
         claimAdviceTable.setItems(FXCollections.observableArrayList(carInsurance.getClaimAdvices()));
 
@@ -223,8 +223,12 @@ public class SpecificInsuranceScene extends GeneralScene {
         pricePerKilometerField.setEditable(false);
         bonusPercentageField.setEditable(false);
 
-        if (!cancelledField.getText().equals("")) {
+        System.out.println(cancelledField.getText().trim().isEmpty());
+        if (!cancelledField.getText().trim().isEmpty()) {
             setNewClaimAdviceButtonDisabled();
+        } else {
+            newClaimAdviceButton.setDisable(false);
+            updateInfoButton.setDisable(false);
         }
 
         rightSideContentContainer = new GridPane();
@@ -281,7 +285,7 @@ public class SpecificInsuranceScene extends GeneralScene {
         dateOfRegistrationField.setText(boatInsurance.getCreationDate()+"");
         cancelledField.setText((boatInsurance.getCancellationDate() != null)?""+boatInsurance.getCancellationDate() : "");
         conditionTextArea.setText(boatInsurance.getTerms());
-        totalPayedField.setText(boatInsurance.getTotalPaid()+"");
+        totalPayedField.setText(boatInsurance.getTotalPaid() + "");
 
         regstrationNoField.setEditable(false);
         boatTypeField.setEditable(false);
@@ -292,8 +296,13 @@ public class SpecificInsuranceScene extends GeneralScene {
         motorTypeField.setEditable(false);
         horsePowerField.setEditable(false);
 
-        if (!cancelledField.getText().equals("")) {
+
+        System.out.println(cancelledField.getText().trim().isEmpty());
+        if (!cancelledField.getText().trim().isEmpty()) {
             setNewClaimAdviceButtonDisabled();
+        } else {
+            newClaimAdviceButton.setDisable(false);
+            updateInfoButton.setDisable(false);
         }
 
         claimAdviceTable.setItems(FXCollections.observableArrayList(boatInsurance.getClaimAdvices()));
@@ -345,7 +354,7 @@ public class SpecificInsuranceScene extends GeneralScene {
                 standardField = new TextField(homeInsurance.getStandard()),
                 squareMetersField = new TextField(homeInsurance.getSquareMetres()+""),
                 homeAmountField = new TextField(homeInsurance.getHomeAmount()+""),
-                contentsAmountField = new TextField(homeInsurance.getContentsAmount()+"");
+                contentsAmountField = new TextField(homeInsurance.getContentsAmount()+ "");
 
         typeField.setText("Boligforsikring");
         insuranceNumberField.setText(homeInsurance.getInsuranceNo()+"");
@@ -353,9 +362,9 @@ public class SpecificInsuranceScene extends GeneralScene {
         insuranceValueField.setText(homeInsurance.getAmount()+"");
         employeeField.setText(homeInsurance.getEmployee().getFirstName() + " " + homeInsurance.getEmployee().getLastName());
         dateOfRegistrationField.setText(homeInsurance.getCreationDate()+"");
-        cancelledField.setText((homeInsurance.getCancellationDate() != null)?""+homeInsurance.getCancellationDate():"");
+        cancelledField.setText((homeInsurance.getCancellationDate() != null)?""+homeInsurance.getCancellationDate() : "");
         conditionTextArea.setText(homeInsurance.getTerms());
-        totalPayedField.setText(homeInsurance.getTotalPaid()+"");
+        totalPayedField.setText(homeInsurance.getTotalPaid() + "");
 
         streetAdressField.setEditable(false);
         zipCodeField.setEditable(false);
@@ -367,8 +376,12 @@ public class SpecificInsuranceScene extends GeneralScene {
         homeAmountField.setEditable(false);
         contentsAmountField.setEditable(false);
 
-        if (!cancelledField.getText().equals("")) {
+        System.out.println(cancelledField.getText().trim().isEmpty());
+        if (!cancelledField.getText().trim().isEmpty()) {
             setNewClaimAdviceButtonDisabled();
+        } else {
+            newClaimAdviceButton.setDisable(false);
+            updateInfoButton.setDisable(false);
         }
 
         claimAdviceTable.setItems(FXCollections.observableArrayList(homeInsurance.getClaimAdvices()));
@@ -404,13 +417,6 @@ public class SpecificInsuranceScene extends GeneralScene {
     public Scene getTravelInsuranceInfoScene(TravelInsurance travelInsurance) {
         Label regionLabel = new Label("Region:");
         TextField regionField = new TextField(travelInsurance.getRegion().toString());
-        regionField.setEditable(false);
-
-        if (!cancelledField.getText().equals("")) {
-            setNewClaimAdviceButtonDisabled();
-        }
-
-        claimAdviceTable.setItems(FXCollections.observableArrayList(travelInsurance.getClaimAdvices()));
 
         typeField.setText("Reiseforsikring");
         insuranceNumberField.setText(travelInsurance.getInsuranceNo() + "");
@@ -421,6 +427,17 @@ public class SpecificInsuranceScene extends GeneralScene {
         cancelledField.setText((travelInsurance.getCancellationDate() != null)?""+travelInsurance.getCancellationDate():"");
         conditionTextArea.setText(travelInsurance.getTerms());
         totalPayedField.setText(travelInsurance.getTotalPaid()+"");
+
+        regionField.setEditable(false);
+
+        claimAdviceTable.setItems(FXCollections.observableArrayList(travelInsurance.getClaimAdvices()));
+
+        if (!cancelledField.getText().trim().isEmpty()) {
+            setNewClaimAdviceButtonDisabled();
+        } else {
+            newClaimAdviceButton.setDisable(false);
+            updateInfoButton.setDisable(false);
+        }
 
         rightSideContentContainer = new GridPane();
         rightSideContentContainer.addColumn(0, regionLabel, claimAdviceLabel);
