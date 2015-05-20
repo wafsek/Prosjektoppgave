@@ -516,46 +516,70 @@ public class Controller {
         return "All is Well";
     }
 
-    private DataControl validateInsuranceData(){
+    private String validateInsuranceData(){
+        String result = "";
+        boolean failed = false;
         if(!Validation.consistsOnlyOfNumbers(
                 carInsuranceScene.getAnnualPremiumFieldText())){
             System.out.println("annual prem feilet");
             System.out.println(carInsuranceScene.getAnnualPremiumFieldText());
-            return DataControl.INVALID_ANNUAL_PREMIUM;
-        }else if(!Validation.consistsOnlyOfNumbers(
+            result += DataControl.INVALID_ANNUAL_PREMIUM.getDescription()+"\n";
+            failed = true;
+        }
+        if(!Validation.consistsOnlyOfNumbers(
                 carInsuranceScene.getInsuranceValueFieldText())){
             System.out.println("forsikringsbelÃ¸p feilet");
-            return DataControl.INVALID_AMOUNT;
-        }else {
-            return DataControl.SUCCESS;
+            result += DataControl.INVALID_AMOUNT.getDescription()+"\n";
+            failed = true;
+        } 
+        if(!failed) {
+            result = DataControl.SUCCESS.getDescription();
         }
+        return result;
     }
 
 
     public String validateCarInsuranceData(){
-        if(this.validateInsuranceData() != DataControl.SUCCESS){
-            return this.validateInsuranceData().getDescription();
-        }else if(!Validation.isValidCarRegistrationNo(
-                carInsuranceScene.getRegistrationNumberFieldText())){
-            return "";
-        }else if(!Validation.consistsOnlyOfLetters(
-                carInsuranceScene.getCarModelFieldText())){
-            return "";
-        }else if(!Validation.consistsOnlyOfNumbers(
-                carInsuranceScene.getProductionYearSelectedValue())){
-            return "";
-        }else if(!Validation.consistsOnlyOfNumbers(
-                carInsuranceScene.getAnnualMilageFieldText())){
-            return "";
-        }else if(!Validation.consistsOnlyOfNumbers(
-                carInsuranceScene.getPricePerKilometerFieldText())){
-            return "";
-        }else if(!Validation.consistsOnlyOfNumbers(
-                carInsuranceScene.getBonusPercentageFieldText())){
-            return "";
-        }else {
-            return DataControl.SUCCESS.getDescription();
+        String feil = "følgende felt feil: \n";
+        boolean failed = false;
+        if(!this.validateInsuranceData().equals("Success")){
+            feil += this.validateInsuranceData()+"\n";
+            failed = true;
         }
+        if(!Validation.isValidCarRegistrationNo(
+                carInsuranceScene.getRegistrationNumberFieldText())){
+            feil += "\n";
+            failed = true;
+        }
+        if(!Validation.consistsOnlyOfLetters(
+                carInsuranceScene.getCarModelFieldText())){
+            feil += "\n";
+            failed = true;
+        }
+        if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getProductionYearSelectedValue())){
+            feil += "\n";
+            failed = true;
+        }
+        if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getAnnualMilageFieldText())){
+            feil += "\n";
+            failed = true;
+        }
+        if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getPricePerKilometerFieldText())){
+            feil += "\n";
+            failed = true;
+        }
+        if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getBonusPercentageFieldText())){
+            feil += "\n";
+            failed = true;
+        }
+        if(!failed){
+            feil = "Success";
+        }
+        return feil;
     }
     
     public String registerCarInsurance(){
@@ -580,6 +604,7 @@ public class Controller {
                     Integer.parseInt(carInsuranceScene.getBonusPercentageFieldText()
                     )), CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
+            System.out.println("not registered");
             return "Car Insurance Registered";
         }
     }
@@ -588,7 +613,7 @@ public class Controller {
 
     public String validateBoatInsuranceData() {
         if(!this.validateInsuranceData().equals("Success")) {
-            return this.validateInsuranceData().getDescription();
+            return this.validateInsuranceData();
         } else if(!Validation.isValidBoatRegistrationNo(
                 boatInsuranceScene.getRegistrationNoFieldText())) {
             return "";
@@ -636,7 +661,7 @@ public class Controller {
 
     public String validateHomeInsuranceData(){
         if(this.validateInsuranceData().equals("Success")){
-            return this.validateInsuranceData().getDescription();
+            return this.validateInsuranceData();
         } else if (!Validation.isValidStreetAddress(
                 houseInsuranceScene.getStreetAddressFieldText())){
             System.out.println("gateadresse feilet");

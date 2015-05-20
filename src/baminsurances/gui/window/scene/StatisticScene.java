@@ -374,7 +374,6 @@ public class StatisticScene extends GeneralScene{
             counter = 0;
         }
     }
-
-
+    
     /**#######################    END of Setting charts with multiple series   ######################################*/
 }
