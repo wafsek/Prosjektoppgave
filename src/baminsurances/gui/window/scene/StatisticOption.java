@@ -8,7 +8,7 @@ public enum StatisticOption {
     OPTION_ONE("Antall forsikeringer per kjønn"),
     OPTION_TWO("Antall forsikeringer per Type"),
     OPTION_THREE("Antall forsikeringer per aldersgruppe"),
-    OPTION_FOUR("Antall forsikeringer per landsdel1"),
+    OPTION_FOUR("Antall forsikeringer per landsdel"),
     OPTION_FIVE("Antall forsikeringer per"),
     OPTION_SIX("Sum innbetalinger per år"),
     OPTION_SEVEN("Antall kunder per Alders gruppe"),
