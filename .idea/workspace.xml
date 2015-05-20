@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -53,8 +52,8 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.136939">
-              <caret line="739" column="48" selection-start-line="739" selection-start-column="48" selection-end-line="739" selection-end-column="48" />
+            <state vertical-scroll-proportion="-0.40966627">
+              <caret line="788" column="36" selection-start-line="788" selection-start-column="36" selection-end-line="788" selection-end-column="36" />
               <folding>
                 <element signature="e#5353#5354#0" expanded="true" />
                 <element signature="e#5411#5412#0" expanded="true" />
@@ -479,12 +478,6 @@
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
     </task>
-    <task id="LOCAL-00032" summary="The scenes for boat insurance and house insurance is finished. They just need functionality added to them.">
-      <created>1431608932203</created>
-      <option name="number" value="00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1431608932203</updated>
-    </task>
     <task id="LOCAL-00033" summary="New scenes are added with more functionality added to most of them.">
       <created>1431617931423</created>
       <option name="number" value="00033" />
@@ -773,7 +766,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432095411051</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="all insurance fixed ....for now.(part four i swear to god this is the last time)">
+      <created>1432095729308</created>
+      <option name="number" value="00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1432095729308</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -782,6 +781,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32815966" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -795,7 +795,6 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32815966" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -818,7 +817,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Insurance scene is fixed. Does no longer import NameDisplayable" />
     <MESSAGE value="Controller still needs fixing..." />
     <MESSAGE value="You can now choose a specific customer, which will be displayed on the handler scene. You can not proceed from the search, before you have a customer chosen" />
     <MESSAGE value="started work on the specific insurances scene" />
@@ -843,7 +841,8 @@
     <MESSAGE value="all insurance fixed ....for now." />
     <MESSAGE value="all insurance fixed ....for now.(part two)" />
     <MESSAGE value="all insurance fixed ....for now.(part three)" />
-    <option name="LAST_COMMIT_MESSAGE" value="all insurance fixed ....for now.(part three)" />
+    <MESSAGE value="all insurance fixed ....for now.(part four i swear to god this is the last time)" />
+    <option name="LAST_COMMIT_MESSAGE" value="all insurance fixed ....for now.(part four i swear to god this is the last time)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1262,8 +1261,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.136939">
-          <caret line="739" column="48" selection-start-line="739" selection-start-column="48" selection-end-line="739" selection-end-column="48" />
+        <state vertical-scroll-proportion="-0.40966627">
+          <caret line="788" column="36" selection-start-line="788" selection-start-column="36" selection-end-line="788" selection-end-column="36" />
           <folding>
             <element signature="e#5353#5354#0" expanded="true" />
             <element signature="e#5411#5412#0" expanded="true" />

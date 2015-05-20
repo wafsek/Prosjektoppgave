@@ -787,7 +787,6 @@ public class Controller {
                             houseInsuranceScene.getRentableBoxIsSelected()),
                     CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
-            System.out.println("Bil registrert");
             return "Holiday Home Insurance Registered";
         }
     }
@@ -817,16 +816,6 @@ public class Controller {
     }
     
     public String registerTravelInsurance() {
-        manager.registerTravelInsurance(new TravelInsurance(
-                        Authenticator.getInstance().getCurrentEmployee(),
-                        Integer.parseInt(travelInsuranceScene.getAnnualPremiumFieldText()),
-                        Integer.parseInt(travelInsuranceScene.getInsuranceValueFieldText()),
-                        PaymentFrequency.ANNUALLY,
-                        travelInsuranceScene.getConditionAreaText(),
-                        travelInsuranceScene.getRegionDropDown()),
-                CurrentStatus.getCurrentCustomer());
-        DataBank.saveDataBank();
-        return "Reiseforsikring registrert";
         if(!this.validateTravelInsuranceData().equals("Success")){
             return this.validateTravelInsuranceData();
         } else {
@@ -839,7 +828,7 @@ public class Controller {
                             travelInsuranceScene.getRegionDropDown()),
                     CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
-            return "Holiday Home Insurance Registered";
+            return "Reiseforsikring registrert";
         }
     }
 }
