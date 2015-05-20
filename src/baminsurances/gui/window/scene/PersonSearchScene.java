@@ -125,6 +125,7 @@ public abstract class PersonSearchScene extends GeneralScene{
         customerTable.setEditable(false);
         customerTable.setStyle("-fx-border-color: gray;");
         customerTable.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        customerTable.setPlaceholder(new Label("Ingen resultater."));
 
         birthNumberField = new TextField();
         birthNoLabel = new Label("Fødselsnummer:");

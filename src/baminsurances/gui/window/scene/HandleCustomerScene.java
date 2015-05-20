@@ -112,7 +112,11 @@ public class HandleCustomerScene extends GeneralScene {
                     @Override
                     public ObservableValue<String> call(
                             TableColumn.CellDataFeatures<Insurance, String> i) {
-                        return new SimpleStringProperty((i.getValue().isActive())?"Aktiv":"Inaktiv");
+                        if (i.getValue().isActive()) {
+                            return new SimpleStringProperty("Aktiv");
+                        } else {
+                            return new SimpleStringProperty("Inaktiv");
+                        }
                     }
                 });
 
@@ -142,7 +146,7 @@ public class HandleCustomerScene extends GeneralScene {
         insuranceTable.setColumnResizePolicy(
                 TableView.CONSTRAINED_RESIZE_POLICY);
         insuranceTable.setStyle("-fx-border-color: gray;");
-
+        insuranceTable.setPlaceholder(new Label("Ingen forsikringer."));
         topContainer = new GridPane();
         topContainer.addColumn(0, birthNoLabel, nameLabel);
         topContainer.addColumn(1, birthNoField, nameField);

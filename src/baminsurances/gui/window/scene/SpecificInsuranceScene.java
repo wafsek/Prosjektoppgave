@@ -132,7 +132,7 @@ public class SpecificInsuranceScene extends GeneralScene {
                 TableView.CONSTRAINED_RESIZE_POLICY);
         claimAdviceTable.setStyle("-fx-border-color: gray;");
         claimAdviceTable.setPrefHeight(GuiConfig.PRIMARY_HEIGHT * 1 / 3);
-
+        claimAdviceTable.setPlaceholder(new Label("Ingen skademeldinger."));
         topContainer = new GridPane();
         topContainer.addColumn(0, typeLabel, insuranceNumberLabel, annualPremiumLabel, insuranceValueLabel);
         topContainer.addColumn(1, typeField, insuranceNumberField, annualPremiumField, insuranceValueField);
