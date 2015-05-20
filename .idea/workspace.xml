@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/DataControl.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/DataControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -475,12 +472,6 @@
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
     </task>
-    <task id="LOCAL-00025" summary="I have started to work on the new Gui. Please do not touch anything yet, and let Controller be for a little while. I will just do the most basic stuff there. You can do the more advanced stuff later, Sarai.">
-      <created>1431374418824</created>
-      <option name="number" value="00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1431374418824</updated>
-    </task>
     <task id="LOCAL-00026" summary="Just made a few minor changes. Pushing so I can work on my home pc">
       <created>1431422330088</created>
       <option name="number" value="00026" />
@@ -769,7 +760,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432091876228</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="all insurance fixed ....for now.">
+      <created>1432092876547</created>
+      <option name="number" value="00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1432092876547</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -814,7 +811,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Car insurance scene now returns enums for car type. Also it generates production years based on what year we are in" />
     <MESSAGE value="Home insurance is ready" />
     <MESSAGE value="The scene for boat insurance is now ready as well." />
     <MESSAGE value="Insurance scene is fixed. Does no longer import NameDisplayable" />
@@ -839,7 +835,8 @@
     <MESSAGE value="Statistic Scene completed !" />
     <MESSAGE value="Statistic Scene refactoring underway" />
     <MESSAGE value="car insurance fixing" />
-    <option name="LAST_COMMIT_MESSAGE" value="car insurance fixing" />
+    <MESSAGE value="all insurance fixed ....for now." />
+    <option name="LAST_COMMIT_MESSAGE" value="all insurance fixed ....for now." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
