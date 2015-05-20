@@ -64,7 +64,7 @@ public class FindPersonScene extends PersonSearchScene {
      */
     public String[] getWrittenInfo(){
         return new String[] {firstNameField.getText(), lastNameField.getText(),
-                birthNumberField.getText(), adressField.getText(),
+                birthNumberField.getText(), addressField.getText(),
                 zipCodeField.getText()};
     }
 

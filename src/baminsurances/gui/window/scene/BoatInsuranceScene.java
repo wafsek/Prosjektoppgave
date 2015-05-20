@@ -108,10 +108,24 @@ public class BoatInsuranceScene extends InsuranceScene {
         scene = new Scene(borderPane);
     }
 
-    public void clearScene() {
+    @Override
+    public Scene getScene() {
+        this.clearInfo();
+        return scene;
+    }
+
+    public void clearInfo() {
         super.clearInfo();
-        /*registrationNoField, modelField, brandField,
-                lengthInFeetField, productionYearField, horsePowerField, motorTypeDropdown*/
+        registrationNoField.setText("");
+        modelField.setText("");
+        brandField.setText("");
+        lengthInFeetField.setText("");
+        productionYearField.setText("");
+        horsePowerField.setText("");
+        motorTypeDropdown.setValue("");
+        ownerBox.setSelected(false);
+        person = null;
+        ownerBoxIsSelected = false;
     }
 
     /**
@@ -193,11 +207,5 @@ public class BoatInsuranceScene extends InsuranceScene {
      */
     public BoatType getTypeDropDown() {
         return typeDropDown.getValue();
-    }
-
-    @Override
-    public Scene getScene() {
-        clearInfo();
-        return scene;
     }
 } // End of File

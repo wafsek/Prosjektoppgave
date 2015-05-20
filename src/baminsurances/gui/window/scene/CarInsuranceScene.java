@@ -215,6 +215,7 @@ public class CarInsuranceScene extends InsuranceScene{
         productionYearDropDown.setValue("");
         ownerBox.setSelected(false);
         person = null;
+        ownerBoxIsSelected = false;
     }
 
     @Override

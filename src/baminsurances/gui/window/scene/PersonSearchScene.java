@@ -25,7 +25,7 @@ import java.util.Iterator;
  */
 public abstract class PersonSearchScene extends GeneralScene{
 
-    protected TextField firstNameField, lastNameField, adressField,
+    protected TextField firstNameField, lastNameField, addressField,
         zipCodeField, birthNumberField;
     protected Label firstNameLabel, lastNameLabel, adressLabel, zipCodeLabel,
         birthNoLabel, discribtionLabel;
@@ -132,7 +132,7 @@ public abstract class PersonSearchScene extends GeneralScene{
         firstNameLabel = new Label("Fornavn:");
         lastNameField = new TextField();
         lastNameLabel = new Label("Etternavn:");
-        adressField = new TextField();
+        addressField = new TextField();
         adressLabel = new Label("Adresse:");
         zipCodeField = new TextField();
         zipCodeLabel = new Label("Postnummer:");
@@ -143,21 +143,21 @@ public abstract class PersonSearchScene extends GeneralScene{
         textFieldArrayList.add(birthNumberField);
         textFieldArrayList.add(firstNameField);
         textFieldArrayList.add(lastNameField);
-        textFieldArrayList.add(adressField);
+        textFieldArrayList.add(addressField);
         textFieldArrayList.add(zipCodeField);
         textFieldsIterator = textFieldArrayList.iterator();
 
         firstNameField.setOnKeyReleased(keyPressHandler);
         lastNameField.setOnKeyReleased(keyPressHandler);
         birthNumberField.setOnKeyReleased(keyPressHandler);
-        adressField.setOnKeyReleased(keyPressHandler);
+        addressField.setOnKeyReleased(keyPressHandler);
         zipCodeField.setOnKeyReleased(keyPressHandler);
 
         textFieldArrayList = new ArrayList<TextField>();
         textFieldArrayList.add(firstNameField);
         textFieldArrayList.add(lastNameField);
         textFieldArrayList.add(birthNumberField);
-        textFieldArrayList.add(adressField);
+        textFieldArrayList.add(addressField);
         textFieldArrayList.add(zipCodeField);
 
         choosePersonButton = new Button("Velg Person");
@@ -171,7 +171,7 @@ public abstract class PersonSearchScene extends GeneralScene{
         itemContainer.addColumn(0, discribtionLabel, firstNameLabel, lastNameLabel, birthNoLabel,
                 adressLabel, zipCodeLabel);
         itemContainer.addColumn(1, new Label(""), firstNameField, lastNameField, birthNumberField,
-                adressField, zipCodeField, choosePersonButton);
+                addressField, zipCodeField, choosePersonButton);
         itemContainer.setAlignment(Pos.CENTER);
         itemContainer.setVgap(30);
         itemContainer.setHgap(20);
@@ -180,7 +180,7 @@ public abstract class PersonSearchScene extends GeneralScene{
 
     public void setChoosePersonClickable() {
         if (birthNumberField.getText().trim().isEmpty() &&
-                adressField.getText().trim().isEmpty() &&
+                addressField.getText().trim().isEmpty() &&
                 firstNameField.getText().trim().isEmpty() &&
                 lastNameField.getText().trim().isEmpty() &&
                 zipCodeField.getText().trim().isEmpty()){
@@ -199,7 +199,7 @@ public abstract class PersonSearchScene extends GeneralScene{
 
     public void clearFields() {
         birthNumberField.setText("");
-        adressField.setText("");
+        addressField.setText("");
         firstNameField.setText("");
         lastNameField.setText("");
         zipCodeField.setText("");
@@ -217,30 +217,65 @@ public abstract class PersonSearchScene extends GeneralScene{
         return choosePersonButton;
     }
 
+    /**
+     * Returns a String of the value in firstNameField.
+     *
+     * @return a String of the value in firstNameField.
+     */
     public String getFirstName() {
         return firstNameField.getText();
     }
 
+    /**
+     * Returns a String of the value in lastNameField.
+     *
+     * @return a String of the value in lastNameField.
+     */
     public String getLastName() {
         return lastNameField.getText();
     }
 
+    /**
+     * Returns a String of the value in addressField.
+     *
+     * @return a String of the value in addressField.
+     */
     public String getAdress() {
-        return adressField.getText();
+        return addressField.getText();
     }
 
+    /**
+     * Returns a String of the value in zipCodeField.
+     *
+     * @return a String of the value in zipCodeField.
+     */
     public String getZipCode() {
         return zipCodeField.getText();
     }
 
+    /**
+     * Returns a String of the value in birthNumberField.
+     *
+     * @return a String of the value in birthNumberField.
+     */
     public String getBirthNumber() {
         return birthNumberField.getText();
     }
 
+    /**
+     * Returns an ArrayList of TextFields.
+     *
+     * @return an ArrayList of TextFields.
+     */
     public ArrayList<TextField> getTextFieldArrayList() {
         return textFieldArrayList;
     }
 
+    /**
+     * Returns an Iterator of TextField.
+     *
+     * @return an Iterator of TextField.
+     */
     public Iterator<TextField> getTextFieldIterator() {
         return textFieldsIterator;
     }
@@ -256,4 +291,4 @@ public abstract class PersonSearchScene extends GeneralScene{
     public Customer getCustomer() {
         return customerTable.getSelectionModel().getSelectedItem();
     }
-}
+} // End of File

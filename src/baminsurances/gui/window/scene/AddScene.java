@@ -238,7 +238,7 @@ public class AddScene extends GeneralScene{
     }
 
     /**
-     * Returns a String of what is written in adressField.
+     * Returns a String of what is written in addressField.
      *
      * @return String of what is written in adresField.
      */
