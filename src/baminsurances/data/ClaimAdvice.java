@@ -222,7 +222,7 @@ public class ClaimAdvice implements Comparable<ClaimAdvice>, Serializable {
             @Override
             public boolean accept(File dir, String name) {
                 return name.matches(
-                        String.valueOf(damageNo) + "_[0-9]+");
+                        String.valueOf(damageNo) + "_[0-9]+\\.png");
             }
         });
         
