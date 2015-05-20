@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -734,12 +733,6 @@
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
     </task>
-    <task id="LOCAL-00043" summary="All the specific insurance scenes are done. I will link them up to controller tomorrow, and make the method which open the window that will allow you to change the values of the given insurance.">
-      <created>1431729362131</created>
-      <option name="number" value="00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1431729362131</updated>
-    </task>
     <task id="LOCAL-00044" summary="All the scenes now has an updating username label.">
       <created>1431777315934</created>
       <option name="number" value="00044" />
@@ -1028,7 +1021,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432112492368</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="null pointer exception in statistic fixed. To be sure of that i have initionlized all the things that can be initilized (global variables that are reset every time they are use ).">
+      <created>1432114217308</created>
+      <option name="number" value="00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1432114217308</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1073,7 +1072,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Minor changes. Some textfields displayed wrong info, which is now fixed" />
     <MESSAGE value="Another minor display bug fix" />
     <MESSAGE value="Fininshing validation" />
     <MESSAGE value="Finishing the insurance creating" />
@@ -1098,7 +1096,8 @@
     <MESSAGE value="The statistic window is Ready to present.(final)" />
     <MESSAGE value="Paymentfrequency fixed .... you are welcome martin..and please dont stress. be happy ...smile please" />
     <MESSAGE value="model validation fixed!" />
-    <option name="LAST_COMMIT_MESSAGE" value="model validation fixed!" />
+    <MESSAGE value="null pointer exception in statistic fixed. To be sure of that i have initionlized all the things that can be initilized (global variables that are reset every time they are use )." />
+    <option name="LAST_COMMIT_MESSAGE" value="null pointer exception in statistic fixed. To be sure of that i have initionlized all the things that can be initilized (global variables that are reset every time they are use )." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
