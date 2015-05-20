@@ -13,12 +13,12 @@ public class IconButton {
 
     public static final int ADD_BUTTON = 1, STATISTIC_BUTTON = 2, SEARCH_BUTTON = 3,
             INSURE_HOUSE_BUTTON = 4, INSURE_CAR_BUTTON = 5, INSURE_PERSON_BUTTON = 6,
-            INSURE_BOAT_BUTTON = 7, BACK_BUTTON = 8, CUSTOMERS_BUTTON = 9;
+            INSURE_BOAT_BUTTON = 7, BACK_BUTTON = 8, CUSTOMERS_BUTTON = 9, SETTINGS_BUTTON = 10;
     private Image addImage, statisticImage, searchImage, houseImage, carImage,
-            personImage, boatImage, backImage, customersImage;
+            personImage, boatImage, backImage, customersImage, settingsImage;
     private ImageView addImageView, statisticImageView, searchImageView,
             houseImageView, carImageView, personImageView, boatImageView,
-            backImageView, customersImageView;
+            backImageView, customersImageView, settingsImageView;
     private Button button;
     private ImageView imageViewToBeUsed;
 
@@ -63,6 +63,11 @@ public class IconButton {
         customersImage = new Image(this.getClass().getClassLoader().getResourceAsStream(
                 "multiplecustomers.png"));
         customersImageView = new ImageView(customersImage);
+
+        settingsImage = new Image(this.getClass().getClassLoader().getResourceAsStream(
+                "settings.png"));
+
+        settingsImageView = new ImageView(settingsImage);
     }
 
     /**
@@ -91,9 +96,9 @@ public class IconButton {
             return backImageView;
         } else if (magical_constant == CUSTOMERS_BUTTON) {
             return customersImageView;
-        } else {
-            return null;
-        }
+        } else if (magical_constant == SETTINGS_BUTTON) {
+            return settingsImageView;
+        } else return null;
     }
 
     /**

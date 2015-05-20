@@ -55,7 +55,7 @@ public class NavigationScene extends GeneralScene{
         searchButton.setOnAction(guiEventHandler);
 
         settingsButton = new IconButton().IconButtonWithText(
-                HEIGHT, HEIGHT, IconButton.SEARCH_BUTTON, "Innstillinger");
+                HEIGHT, HEIGHT, IconButton.SETTINGS_BUTTON, "Innstillinger");
         settingsButton.setPrefWidth(WIDTH * 1 / 2);
         settingsButton.setPrefHeight(HEIGHT);
         settingsButton.setOnAction(guiEventHandler);

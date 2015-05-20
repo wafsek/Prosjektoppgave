@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -17,6 +18,7 @@ import javafx.scene.paint.Color;
  */
 public class SearchNavigationScene extends GeneralScene {
 
+    private Label informationLabel;
     private Button customerSearchButton, insuranceSearchButton, claimAdviceButton;
     private static final double WIDTH = GuiConfig.PRIMARY_WIDTH*1/2, HEIGHT = GuiConfig.PRIMARY_HEIGHT*1/10;;
     private VBox container;
@@ -29,6 +31,7 @@ public class SearchNavigationScene extends GeneralScene {
      */
     public SearchNavigationScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler) {
         super(guiEventHandler, keyPressHandler);
+        informationLabel = new Label("Dette vinduet er under utvikling.\nIngen funksjoner er knyttet enda.");
         customerSearchButton = new IconButton().IconButtonWithText(HEIGHT,
                 HEIGHT, IconButton.CUSTOMERS_BUTTON, "Kundesøk");
         customerSearchButton.setPrefWidth(WIDTH * 2 / 3);
@@ -38,7 +41,7 @@ public class SearchNavigationScene extends GeneralScene {
         claimAdviceButton = new IconButton().IconButtonWithText(HEIGHT,
                 HEIGHT, IconButton.CUSTOMERS_BUTTON, "Skademeldingssøk");
         claimAdviceButton.setPrefWidth(WIDTH * 2/3);
-        container = new VBox(10, customerSearchButton, insuranceSearchButton, claimAdviceButton);
+        container = new VBox(10, informationLabel, customerSearchButton, insuranceSearchButton, claimAdviceButton);
         container.setAlignment(Pos.CENTER);
         container.setStyle("-fx-padding: 10");
 

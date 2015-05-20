@@ -36,7 +36,7 @@ public class Controller {
 
     private CustomerServiceManager manager;
     private Searcher searcher;
-    
+
     // GUI fields
     private ClaimAdviceScene claimAdviceScene;
     private NavigationScene navigationScene;
@@ -67,14 +67,14 @@ public class Controller {
     private CustomLogger logger = CustomLogger.getInstance();
     private Authenticator authenticator;
 
-    public Controller(){
+    public Controller() {
         searcher = new Searcher();
         manager = new CustomerServiceManager();
         authenticator = Authenticator.getInstance();
         this.setDefaultUser();
     }
 
-    public void start(){
+    public void start() {
         fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("IMAGE files (*.png)", "*.png"),
@@ -82,15 +82,15 @@ public class Controller {
         guiEventHandler = new GuiEventHandler(this);
         keyPressHandler = new KeyPressHandler(this);
 
-        loginStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/4,
-                GuiConfig.PRIMARY_HEIGHT * 1/2);
-        menuStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/4,
-                GuiConfig.PRIMARY_HEIGHT * 2/3);
+        loginStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1 / 4,
+                GuiConfig.PRIMARY_HEIGHT * 1 / 2);
+        menuStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1 / 4,
+                GuiConfig.PRIMARY_HEIGHT * 2 / 3);
         primaryStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH,
                 GuiConfig.PRIMARY_HEIGHT);
-        settingsStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/5,
-                GuiConfig.PRIMARY_HEIGHT * 2/5);
-        
+        settingsStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1 / 5,
+                GuiConfig.PRIMARY_HEIGHT * 2 / 5);
+
         statisticScene = new StatisticScene(guiEventHandler, keyPressHandler);
         loginScene = new LoginScene(guiEventHandler, keyPressHandler);
         navigationScene = new NavigationScene(guiEventHandler,
@@ -120,32 +120,32 @@ public class Controller {
                 keyPressHandler);
 
         generatingStage = new GeneratingStage();
-        
+
         launchLoginWindow();
         generatingStage.show();
         System.out.println("Welkommen til " + Config.getApplicationName());
     }
-    
+
     private void setDefaultUser() {
-        Employee employee = new Employee("12019533547","Ola","Nordmann",
-                "41438870","hei@gmail.com","1445","Hulder veien 6",
-                "brukernavn","passord",Authorization.ADMIN);
+        Employee employee = new Employee("12019533547", "Ola", "Nordmann",
+                "41438870", "hei@gmail.com", "1445", "Hulder veien 6",
+                "brukernavn", "passord", Authorization.ADMIN);
         DataBank.getInstance().getEmployeeList().add(employee);
     }
-    
+
     private void launchLoginWindow() {
         loginStage.initiate(loginScene.getScene());
     }
 
     private void login() {
-       boolean loginTest = authenticator.loginUser(
-               loginScene.getUsernameFieldText(),
-               loginScene.getPasswordFieldText());
+        boolean loginTest = authenticator.loginUser(
+                loginScene.getUsernameFieldText(),
+                loginScene.getPasswordFieldText());
         if (loginTest) {
             navigationScene.setDisplayName(getDisplayName());
             loginStage.close();
             menuStage.initiate(navigationScene.getScene());
-            logger.log("Logged in", Level.INFO); 
+            logger.log("Logged in", Level.INFO);
         } else {
             logger.log("Login Failed", Level.INFO);
             this.launchLoginWindow();
@@ -187,7 +187,7 @@ public class Controller {
 
     private void launchSpecificClaimAdviceScene() {
         ClaimAdvice ca = specificInsuranceScene.getSelectedClaimAdvice();
-        if(ca != null) {
+        if (ca != null) {
             specificClaimAdviceScene.setClaimAdviceData(ca);
             primaryStage.initiate(specificClaimAdviceScene.getScene());
         }
@@ -251,8 +251,8 @@ public class Controller {
         logger.log("Closing main Stage, reopening navigation stage.",
                 Level.INFO);
     }
-    
-    public String getDisplayName(){
+
+    public String getDisplayName() {
         return "Brukernavn: " + authenticator.getDisplayName();
     }
 
@@ -263,10 +263,11 @@ public class Controller {
 
     /**
      * This method takes a Control object
+     *
      * @param control
      */
     public void handleControl(Control control) {
-        if(control == loginScene.getLoginButton()) {
+        if (control == loginScene.getLoginButton()) {
             login();
         } else if (control == navigationScene.getLogOutButton() ||
                 control == findPersonScene.getLogOutButton() ||
@@ -380,12 +381,12 @@ public class Controller {
         } else if (control == specificInsuranceScene.getNewClaimAdviceButton()) {
             launchClaimAdviceScene();
         } else if (control == claimAdviceScene.getBackButton()) {
-                    this.launchSpecificInsuranceScene();
+            this.launchSpecificInsuranceScene();
         } else if (control == boatInsuranceScene.getRegisterInsuranceButton()) {
             String message = this.registerBoatInsurance();
             MessageDialog.showMessageDialog("Informasjon", message,
                     MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
-            if(message.equals("Baatforsikring registrert")) {
+            if (message.equals("Baatforsikring registrert")) {
                 launchHandleCustomerScene();
             }
         } else if (control == houseInsuranceScene.getRegisterInsuranceButton()) {
@@ -400,14 +401,14 @@ public class Controller {
             String message = this.registerCarInsurance();
             MessageDialog.showMessageDialog("Informasjon", message,
                     MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
-            if(message.equals("Bilforsikring registrert")) {
+            if (message.equals("Bilforsikring registrert")) {
                 launchHandleCustomerScene();
             }
-        }  else if (control == travelInsuranceScene.getRegisterInsuranceButton()) {
+        } else if (control == travelInsuranceScene.getRegisterInsuranceButton()) {
             String message = this.registerTravelInsurance();
             MessageDialog.showMessageDialog("Informasjon", message,
                     MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
-            if(message.equals("Reiseforsikring registrert")) {
+            if (message.equals("Reiseforsikring registrert")) {
                 launchHandleCustomerScene();
             }
         } else if (control == specificInsuranceScene.getUpdateInfoButton()) {
@@ -421,7 +422,7 @@ public class Controller {
             launchSettingsWindow();
         } else if (control == claimAdviceScene.getRegisterClaimAdviceButton()) {
             ClaimAdvice ca = this.registerClaimAdvice();
-            if(ca != null) {
+            if (ca != null) {
                 this.addImagesToClaimAdvice(ca);
                 CurrentStatus.getCurrentInsurance().addClaimAdvice(ca);
                 launchSpecificInsuranceScene();
@@ -447,7 +448,7 @@ public class Controller {
             } catch (IOException ioe) {
 
             }
-            if(bufferedImage != null) {
+            if (bufferedImage != null) {
                 claimAdvice.addPictureOfDamage(bufferedImage);
                 this.addImagesToClaimAdvice(claimAdvice);
             }
@@ -461,7 +462,7 @@ public class Controller {
         String damageDescribtion = claimAdviceScene.getDamageDescribtionAreaText();
         String damageType = claimAdviceScene.getDamageTypeFieldText();
 
-        if(localDate != null && Validation.consistsOnlyOfNumbers(assessment) &&
+        if (localDate != null && Validation.consistsOnlyOfNumbers(assessment) &&
                 Validation.consistsOnlyOfNumbers(compensation) &&
                 !damageDescribtion.trim().isEmpty() && !damageType.trim().isEmpty()) {
             return new ClaimAdvice(localDate, damageType, damageDescribtion,
@@ -511,7 +512,7 @@ public class Controller {
     }
 
     private String registerPerson() {
-        if(!this.validatePersonData().equals(DataControl.SUCCESS.getDescription())) {
+        if (!this.validatePersonData().equals(DataControl.SUCCESS.getDescription())) {
             return this.validatePersonData();
         } else {
             Customer customer = new Customer(addScene.getBirthNumberFieldText(),
@@ -542,10 +543,10 @@ public class Controller {
             failed = true;
         }
         if (!Validation.isValidEmail(addScene.getEmailFieldText())) {
-            feil +=  DataControl.INVALID_EMAIL.getDescription() + "\n\n";
+            feil += DataControl.INVALID_EMAIL.getDescription() + "\n\n";
             failed = true;
         }
-        if (!Validation.isValidTelephoneNo(addScene.getTelephoneNumberFieldText())){
+        if (!Validation.isValidTelephoneNo(addScene.getTelephoneNumberFieldText())) {
             feil += DataControl.INVALID_TLF.getDescription() + "\n\n";
             failed = true;
         }
@@ -562,20 +563,20 @@ public class Controller {
             failed = true;
         }
         if (!Validation.isValidZipCode(addScene.getBillingZipCodeFieldText())) {
-            feil +=  DataControl.INVALID_BILLING_ZIPCODE.getDescription() + "\n\n";
+            feil += DataControl.INVALID_BILLING_ZIPCODE.getDescription() + "\n\n";
             failed = true;
         }
         if (!failed) {
             return DataControl.SUCCESS.getDescription();
         } else {
-            return feil;   
+            return feil;
         }
     }
 
     private String validateInsuranceData(InsuranceScene insuranceScene) {
         String result = "";
         boolean failed = false;
-        if(!Validation.consistsOnlyOfNumbers(
+        if (!Validation.consistsOnlyOfNumbers(
                 insuranceScene.getAnnualPremiumFieldText())) {
             System.out.println(insuranceScene.getAnnualPremiumFieldText());
             result += DataControl.INVALID_ANNUAL_PREMIUM.getDescription() + "\n\n";
@@ -586,7 +587,7 @@ public class Controller {
             System.out.println("forsikringsbeløp feilet");
             result += DataControl.INVALID_AMOUNT.getDescription() + "\n\n";
             failed = true;
-        } 
+        }
         if (!failed) {
             result = DataControl.SUCCESS.getDescription();
         }
@@ -598,7 +599,7 @@ public class Controller {
         String feil = "Feil:\n\n";
         boolean failed = false;
         if (!this.validateInsuranceData(carInsuranceScene).equals("Success")) {
-            feil += this.validateInsuranceData(carInsuranceScene)+"\n\n";
+            feil += this.validateInsuranceData(carInsuranceScene) + "\n\n";
             failed = true;
         }
         if (!Validation.isValidCarRegistrationNo(
@@ -631,13 +632,13 @@ public class Controller {
             feil += "Ugyldig bonusprosent\n\n";
             failed = true;
         }
-        if(!failed) {
+        if (!failed) {
             return "Success";
         } else {
             return feil;
         }
     }
-    
+
     public String registerCarInsurance() {
         if (!this.validateCarInsuranceData().equals("Success")) {
             return this.validateCarInsuranceData();
@@ -650,7 +651,7 @@ public class Controller {
                     carInsuranceScene.getConditionAreaText(),
                     (carInsuranceScene.getPerson() == null) ?
                             CurrentStatus.getCurrentCustomer() :
-                                carInsuranceScene.getPerson(),
+                            carInsuranceScene.getPerson(),
                     carInsuranceScene.getRegistrationNumberFieldText(),
                     carInsuranceScene.getCarTypeDropDownSelectedValue(),
                     carInsuranceScene.getCarBrandDropDownSelectedValue(),
@@ -672,7 +673,7 @@ public class Controller {
     public String validateBoatInsuranceData() {
         String feil = "Feil:\n\n";
         boolean failed = false;
-        if(!this.validateInsuranceData(boatInsuranceScene).equals("Success")) {
+        if (!this.validateInsuranceData(boatInsuranceScene).equals("Success")) {
             return this.validateInsuranceData(boatInsuranceScene);
         }
         if (!Validation.isValidBoatRegistrationNo(
@@ -694,9 +695,9 @@ public class Controller {
                 boatInsuranceScene.getHorsePowerFieldText())) {
             feil += "Ugyldig hestekrefter\n\n";
             failed = true;
-        } 
+        }
         if (!failed) {
-             return "Success";
+            return "Success";
         } else {
             return feil;
         }
@@ -716,7 +717,7 @@ public class Controller {
                             boatInsuranceScene.getConditionAreaText(),
                             boatInsuranceScene.getPerson() == null ?
                                     CurrentStatus.getCurrentCustomer() :
-                                        boatInsuranceScene.getPerson(),
+                                    boatInsuranceScene.getPerson(),
                             boatInsuranceScene.getRegistrationNoFieldText(),
                             boatInsuranceScene.getTypeDropDown(),
                             boatInsuranceScene.getBrandFieldText(),
@@ -741,7 +742,7 @@ public class Controller {
         boolean failed = false;
         if (!this.validateInsuranceData(houseInsuranceScene).equals("Success")) {
             return this.validateInsuranceData(houseInsuranceScene);
-        } 
+        }
         if (!Validation.isValidStreetAddress(
                 houseInsuranceScene.getStreetAddressFieldText())) {
             feil += "Ugyldig gateadresse\n\n";
@@ -751,7 +752,7 @@ public class Controller {
                 houseInsuranceScene.getZipCodeFieldText())) {
             feil += "Ugyldig postnummer\n";
             failed = true;
-            
+
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getConstructionYearFieldText())) {
@@ -762,29 +763,29 @@ public class Controller {
                 houseInsuranceScene.getSquareMetersFieldText())) {
             feil += "Ugyldig kvadratmeter\n\n";
             failed = true;
-            
+
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getHomeAmountFieldText())) {
             feil += "Ugyldig forsikringsverdi hus\n\n";
             failed = true;
-            
+
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getContentsAmountFieldText())) {
             feil += "Ugyldig forsikringsverdi innbo\n\n";
             failed = true;
-            
+
         }
         if (!failed) {
             return DataControl.SUCCESS.getDescription();
         } else {
-            return feil;   
+            return feil;
         }
     }
 
     public String registerHomeInsurance() {
-        if(houseInsuranceScene.isHolidayHome()){
+        if (houseInsuranceScene.isHolidayHome()) {
             if (!this.validateHomeInsuranceData().equals("Success")) {
                 System.out.println("Hus feilet");
                 return this.validateHomeInsuranceData();
@@ -845,7 +846,7 @@ public class Controller {
     }
 
 
-    public String validateTravelInsuranceData(){
+    public String validateTravelInsuranceData() {
         String feil = "Følgende felt har feil:\n";
         boolean failed = false;
         if (!this.validateInsuranceData(travelInsuranceScene).equals("Success")) {
@@ -864,10 +865,10 @@ public class Controller {
         if (!failed) {
             return DataControl.SUCCESS.getDescription();
         } else {
-            return feil;   
+            return feil;
         }
     }
-    
+
     public String registerTravelInsurance() {
         if (!this.validateTravelInsuranceData().equals("Success")) {
             return this.validateTravelInsuranceData();
