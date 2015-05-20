@@ -54,21 +54,21 @@ public class GeneratingStage {
         headerLabel = new Label("Generering");
         headerLabel.setStyle("-fx-font: 28px Times");
 
-        customerBox = new ComboBox<>(FXCollections.observableArrayList("0",
-                "1", "10", "100", "1000", "10000", "100000"));
-        customerBox.setValue("0");
+        customerBox = new ComboBox<>(FXCollections.observableArrayList(
+                "1", "10", "100", "1000", "10000"));
+        customerBox.setValue("1");
         customerBox.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1/12);
-        employeeBox = new ComboBox<>(FXCollections.observableArrayList("0",
+        employeeBox = new ComboBox<>(FXCollections.observableArrayList(
                 "1", "10", "100"));
-        employeeBox.setValue("0");
+        employeeBox.setValue("1");
         employeeBox.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1/12);
-        insuranceBox = new ComboBox<>(FXCollections.observableArrayList("0",
-                "1", "10", "100", "1000", "10000", "100000"));
-        insuranceBox.setValue("0");
+        insuranceBox = new ComboBox<>(FXCollections.observableArrayList(
+                "1", "10", "100", "1000", "10000", "50000"));
+        insuranceBox.setValue("1");
         insuranceBox.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1/12);
-        claimAdviceBox = new ComboBox<>(FXCollections.observableArrayList("0",
-                "1", "10", "100", "1000", "100000"));
-        claimAdviceBox.setValue("0");
+        claimAdviceBox = new ComboBox<>(FXCollections.observableArrayList(
+                "1", "10", "100", "1000"));
+        claimAdviceBox.setValue("1");
         claimAdviceBox.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1/12);
 
         generateButton = new Button("Generer");
@@ -79,7 +79,6 @@ public class GeneratingStage {
                     Integer.parseInt(insuranceBox.getValue()),
                     Integer.parseInt(claimAdviceBox.getValue()));
             System.out.println(customerBox.selectionModelProperty());
-            stage.close();
         });
 
         headerContainer = new VBox(10, headerLabel, informationLabel);

@@ -3,7 +3,9 @@ package baminsurances.gui.window.scene;
 import baminsurances.data.ClaimAdvice;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
+import baminsurances.gui.window.GuiConfig;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -33,11 +36,13 @@ public class SpecificClaimAdviceScene extends GeneralScene {
             assessmentAmountField, compensationAmountField;
     private TextArea damageDescriptionArea;
     private Label damageNoLabel, dateOfDamageLabel, damageTypeLabel,
-            assessmentAmountLabel, compensationAmountLabel;
+            assessmentAmountLabel, compensationAmountLabel, damageDescriptionLabel;
     private Button nextImageButton;
     private List<Image> images;
     private ImageView imageView;
     private Iterator<Image> iterator;
+
+    private GridPane leftSideContainer;
 
     public SpecificClaimAdviceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler) {
         super(guiEventHandler, keyPressHandler);
@@ -53,14 +58,24 @@ public class SpecificClaimAdviceScene extends GeneralScene {
         damageNoLabel = new Label("Nummer:");
         dateOfDamageLabel = new Label("Dato for skaden:");
         damageTypeLabel = new Label("Type skade:");
-        assessmentAmountLabel = new Label("Vurdert beløp");
-        compensationAmountLabel = new Label("Kompansasjon");
+        assessmentAmountLabel = new Label("Vurdert beløp:");
+        compensationAmountLabel = new Label("Kompansasjon:");
+        damageDescriptionLabel = new Label("Skadebeskrivelse:");
 
         nextImageButton = new Button("Neste bilde");
 
         imageView = new ImageView();
+        imageView.setFitWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
 
-        borderPane = new BorderPane(imageView, null, null, null, null);
+        leftSideContainer = new GridPane();
+        leftSideContainer.addColumn(0, damageNoLabel, dateOfDamageLabel, damageTypeLabel, assessmentAmountLabel, compensationAmountLabel, damageDescriptionLabel);
+        leftSideContainer.addColumn(1, damageNoField, dateOfDamageField, damageTypeField, assessmentAmountField, compensationAmountField);
+        leftSideContainer.add(damageDescriptionArea, 0, 6, 2, 2);
+        leftSideContainer.setAlignment(Pos.CENTER);
+        leftSideContainer.setHgap(20);
+        leftSideContainer.setVgap(20);
+
+        borderPane = new BorderPane(leftSideContainer, null, imageView, null, null);
         scene = new Scene(borderPane);
 
     }
@@ -76,7 +91,6 @@ public class SpecificClaimAdviceScene extends GeneralScene {
 
         images = ca.getPicturesOfDamage();
         iterator = images.iterator();
-        System.out.println(images);
         imageView.setImage(images.get(0));
 
         nextImageButton.setOnAction(e -> {

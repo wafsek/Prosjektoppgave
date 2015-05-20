@@ -123,10 +123,6 @@ public class InsuranceScene extends GeneralScene {
         return insuranceDropDown;
     }
 
-    public String getInsuranceDropDownSelectedValue() {
-        return insuranceDropDown.getValue();
-    }
-
     public String getAnnualPremiumFieldText() {
         return annualPremiumField.getText();
     }
@@ -141,6 +137,12 @@ public class InsuranceScene extends GeneralScene {
 
     public Button getRegisterInsuranceButton() {
         return registerInsuranceButton;
+    }
+
+    public void clearInfo() {
+        annualPremiumField.setText("");
+        insuranceValueField.setText("");
+        conditionArea.setText("");
     }
 
     public void setInsuranceDropDownEmpty() {

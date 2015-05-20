@@ -269,7 +269,8 @@ public class Controller {
                 control == insuranceScene.getLogOutButton() || control == houseInsuranceScene.getLogOutButton() ||
                 control == boatInsuranceScene.getLogOutButton() || control == carInsuranceScene.getLogOutButton() ||
                 control == specificInsuranceScene.getLogOutButton() || control == claimAdviceScene.getLogOutButton() ||
-                control == specificInsuranceScene.getLogOutButton() || control == searchNavigationScene.getLogOutButton()) {
+                control == specificInsuranceScene.getLogOutButton() || control == searchNavigationScene.getLogOutButton() ||
+                control == statisticScene.getLogOutButton()) {
             if(new MessageDialog().showMessageDialog("Sikker?", "Logge ut?", MessageDialog.QUESTION_ICON,
                     MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION){
                 menuStage.close();
@@ -280,7 +281,8 @@ public class Controller {
             launchFindPersonScene();
         } else if (control == findPersonScene.getRegisterPersonButton()) {
             launchRegistration();
-        } else if (control == findPersonScene.getBackButton() || control == searchNavigationScene.getBackButton()) {
+        } else if (control == findPersonScene.getBackButton() || control == searchNavigationScene.getBackButton()
+                || control == statisticScene.getBackButton()) {
             backToNavigation();
         } else if (control == findPersonScene.getChoosePersonButton()) {
             if (findPersonScene.getSelectedCustomer() != null) {
@@ -376,9 +378,10 @@ public class Controller {
             if(ca != null) {
                 this.addImagesToClaimAdvice(ca);
                 CurrentStatus.getCurrentInsurance().addClaimAdvice(ca);
+                launchSpecificInsuranceScene();
             }
-            launchSpecificInsuranceScene();
         } else if (control == navigationScene.getStatisticsButton()){
+            menuStage.close();
             primaryStage.initiate(statisticScene.getScene());
         } else if (control == specificInsuranceScene.getChooseClaimAdviceButton()) {
             launchSpecificClaimAdviceScene();
