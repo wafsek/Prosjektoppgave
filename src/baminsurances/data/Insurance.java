@@ -2,14 +2,17 @@ package baminsurances.data;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -114,6 +117,23 @@ public abstract class Insurance implements Comparable<Insurance>, Serializable {
             out.writeInt(nextInsuranceNo);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Resets the next insurance number.
+     * <p>
+     * This method is to be used when testing the software, and you want to
+     * reset the program. 
+     */
+    public static void resetNextInsuranceNo() {
+        try {
+            Files.delete(new File("data/next_insurance_no.dta").toPath());
+            nextInsuranceNo = 0;
+        } catch (NoSuchElementException e) {
+            nextInsuranceNo = 0;
         } catch (IOException e) {
             e.printStackTrace();
         }

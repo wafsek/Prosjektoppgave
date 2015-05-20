@@ -13,9 +13,11 @@ import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import javax.imageio.ImageIO;
 
@@ -128,6 +130,41 @@ public class ClaimAdvice implements Comparable<ClaimAdvice>, Serializable {
             e.printStackTrace();
         }
     }
+    
+    /**
+     * Resets the next damage number.
+     * <p>
+     * This method is to be used when testing the software, and you want to
+     * reset the program. 
+     */
+    public static void resetNextDamageNo() {
+        try {
+            Files.delete(new File("data/next_damage_no.dta").toPath());
+            nextDamageNo = 0;
+        } catch (NoSuchElementException e) {
+            nextDamageNo = 0;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Deletes all pictures associated with a claim advice.
+     * <p>
+     * This method is to be used when testing the software, and you want to
+     * reset the program. 
+     */
+    public static void deleteAllPictures() {
+        File dir = new File("data/claimadvice_pictures");
+        if (!dir.exists()) {
+            return;
+        }
+        for (File f : dir.listFiles()) {
+            if (f.exists() &&  f.isFile()) {
+                f.delete();
+            }
+        }
+    }
 
     /**
      * Returns the damage number.
@@ -228,17 +265,13 @@ public class ClaimAdvice implements Comparable<ClaimAdvice>, Serializable {
         
         List<Image> pictures = new ArrayList<>();
         for (File img : files) {
-            //TODO
             BufferedImage readImg;
             try {
                 readImg = ImageIO.read(img);
-                //Image readImg = new Image(img.getPath());
-                
                 if (readImg != null) {
                     pictures.add(SwingFXUtils.toFXImage(readImg, null));
                 }
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

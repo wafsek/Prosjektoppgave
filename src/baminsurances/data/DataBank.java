@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * Contains collections with all data that is to be stored between sessions.
@@ -77,15 +78,23 @@ public class DataBank implements Serializable {
     }
     
     /**
-     * Wipes the data bank.
+     * Wipes all saved data.
+     * <p>
+     * This is to be used when testing the software, and you want to reset
+     * the program entirely.
      */
     public static void delete() {
         try {
             Files.delete(new File("data/data_bank.ser").toPath());
             dataBank = null;
+        } catch (NoSuchElementException e) {
+            dataBank = null;
         } catch (IOException e) {
-            // the file does not exist
+            e.printStackTrace();
         }
+        Insurance.resetNextInsuranceNo();
+        ClaimAdvice.resetNextDamageNo();
+        ClaimAdvice.deleteAllPictures();
     }
     
     /**
