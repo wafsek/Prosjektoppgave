@@ -9,9 +9,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
  * Contains collections with all data that is to be stored between sessions.
@@ -85,9 +85,12 @@ public class DataBank implements Serializable {
      */
     public static void delete() {
         try {
-            Files.delete(new File("data/data_bank.ser").toPath());
+            File f = new File("data/data_bank.ser");
+            if (f.exists()) {
+                Files.delete(f.toPath());   
+            }
             dataBank = null;
-        } catch (NoSuchElementException e) {
+        } catch (NoSuchFileException e) {
             dataBank = null;
         } catch (IOException e) {
             e.printStackTrace();
