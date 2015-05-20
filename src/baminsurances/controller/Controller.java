@@ -306,12 +306,16 @@ public class Controller {
             }
         } else if (control == addScene.getRegisterPersonButton()) {
             CurrentStatus.setCurrentCustomer(null);
-            this.registerPerson();
-            handleCustomerScene.setCustomerData(
-                    CurrentStatus.getCurrentCustomer());
-            if (CurrentStatus.getCurrentCustomer() != null) {
-                launchHandleCustomerScene();
+            String message = this.registerPerson();
+            if (message.equals("Person Registered")) {
+                handleCustomerScene.setCustomerData(
+                        CurrentStatus.getCurrentCustomer());
+                if (CurrentStatus.getCurrentCustomer() != null) {
+                    launchHandleCustomerScene();
+                }
             }
+            MessageDialog.showMessageDialog("Informasjon", message, MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+
         } else if (control == handleCustomerScene.getBackButton() ||
                 control == addScene.getBackButton()) {
             launchFindPersonScene();
@@ -523,42 +527,42 @@ public class Controller {
     }
 
     private String validatePersonData() {
-        String feil = "Følgende felt har feil:\n";
+        String feil = "Feil:\n\n";
         boolean failed = false;
         if (!Validation.isValidFirstName(addScene.getFirstNameFieldText())) {
-            feil += DataControl.INVALID_FIRST_NAME.getDescription() + "\n";
+            feil += DataControl.INVALID_FIRST_NAME.getDescription() + "\n\n";
             failed = true;
         }
         if (!Validation.isValidFirstName(addScene.getLastNameFieldText())) {
-            feil += DataControl.INVALID_LAST_NAME.getDescription() + "\n";
+            feil += DataControl.INVALID_LAST_NAME.getDescription() + "\n\n";
             failed = true;
         }
         if (!Validation.isValidBirthNo(addScene.getBirthNumberFieldText())) {
-            feil += DataControl.INVALID_BIRTHNO.getDescription() + "\n";
+            feil += DataControl.INVALID_BIRTHNO.getDescription() + "\n\n";
             failed = true;
         }
         if (!Validation.isValidEmail(addScene.getEmailFieldText())) {
-            feil +=  DataControl.INVALID_EMAIL.getDescription() + "\n";
+            feil +=  DataControl.INVALID_EMAIL.getDescription() + "\n\n";
             failed = true;
         }
         if (!Validation.isValidTelephoneNo(addScene.getTelephoneNumberFieldText())){
-            feil += DataControl.INVALID_TLF.getDescription() + "\n";
+            feil += DataControl.INVALID_TLF.getDescription() + "\n\n";
             failed = true;
         }
         if (!Validation.isValidStreetAddress(addScene.getAdressFieldText())) {
-            feil += DataControl.INVALID_ADDRESS.getDescription() + "\n";
+            feil += DataControl.INVALID_ADDRESS.getDescription() + "\n\n";
             failed = true;
         }
         if (!Validation.isValidZipCode(addScene.getZipCodeFieldText())) {
-            feil += DataControl.INVALID_ZIPCODE.getDescription() + "\n";
+            feil += DataControl.INVALID_ZIPCODE.getDescription() + "\n\n";
             failed = true;
         }
         if (!Validation.isValidStreetAddress(addScene.getBillingAdressFieldText())) {
-            feil += DataControl.INVALID_BILLING_ADRESSE.getDescription() + "\n";
+            feil += DataControl.INVALID_BILLING_ADRESSE.getDescription() + "\n\n";
             failed = true;
         }
         if (!Validation.isValidZipCode(addScene.getBillingZipCodeFieldText())) {
-            feil +=  DataControl.INVALID_BILLING_ZIPCODE.getDescription() + "\n";
+            feil +=  DataControl.INVALID_BILLING_ZIPCODE.getDescription() + "\n\n";
             failed = true;
         }
         if (!failed) {
@@ -574,13 +578,13 @@ public class Controller {
         if(!Validation.consistsOnlyOfNumbers(
                 insuranceScene.getAnnualPremiumFieldText())) {
             System.out.println(insuranceScene.getAnnualPremiumFieldText());
-            result += DataControl.INVALID_ANNUAL_PREMIUM.getDescription() + "\n";
+            result += DataControl.INVALID_ANNUAL_PREMIUM.getDescription() + "\n\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 insuranceScene.getInsuranceValueFieldText())) {
             System.out.println("forsikringsbeløp feilet");
-            result += DataControl.INVALID_AMOUNT.getDescription() + "\n";
+            result += DataControl.INVALID_AMOUNT.getDescription() + "\n\n";
             failed = true;
         } 
         if (!failed) {
@@ -591,40 +595,40 @@ public class Controller {
 
 
     public String validateCarInsuranceData() {
-        String feil = "Feil:\n";
+        String feil = "Feil:\n\n";
         boolean failed = false;
         if (!this.validateInsuranceData(carInsuranceScene).equals("Success")) {
-            feil += this.validateInsuranceData(carInsuranceScene)+"\n";
+            feil += this.validateInsuranceData(carInsuranceScene)+"\n\n";
             failed = true;
         }
         if (!Validation.isValidCarRegistrationNo(
                 carInsuranceScene.getRegistrationNumberFieldText())) {
-            feil += "Ugyldig registreringsnummer\n";
+            feil += "Ugyldig registreringsnummer\n\n";
             failed = true;
         }
         if (!Validation.isValidModel(
                 carInsuranceScene.getCarModelFieldText())) {
-            feil += "Ugyldig modell\n";
+            feil += "Ugyldig modell\n\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 carInsuranceScene.getProductionYearSelectedValue())) {
-            feil += "Ugyldig produksjonsår\n";
+            feil += "Ugyldig produksjonsår\n\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 carInsuranceScene.getAnnualMilageFieldText())) {
-            feil += "Ugyldig kilometerstand\n";
+            feil += "Ugyldig kilometerstand\n\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 carInsuranceScene.getPricePerKilometerFieldText())) {
-            feil += "Ugyldig pris per kilometer\n";
+            feil += "Ugyldig pris per kilometer\n\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 carInsuranceScene.getBonusPercentageFieldText())) {
-            feil += "Ugyldig bonusprosent\n";
+            feil += "Ugyldig bonusprosent\n\n";
             failed = true;
         }
         if(!failed) {
@@ -666,29 +670,29 @@ public class Controller {
     }
 
     public String validateBoatInsuranceData() {
-        String feil = "Feil:\n";
+        String feil = "Feil:\n\n";
         boolean failed = false;
         if(!this.validateInsuranceData(boatInsuranceScene).equals("Success")) {
             return this.validateInsuranceData(boatInsuranceScene);
         }
         if (!Validation.isValidBoatRegistrationNo(
                 boatInsuranceScene.getRegistrationNoFieldText())) {
-            feil += "Ugyldig registreringsnummer\n";
+            feil += "Ugyldig registreringsnummer\n\n";
             failed = true;
         }
         if (!Validation.isValidModel(
                 boatInsuranceScene.getModelFieldText())) {
-            feil += "Ugyldig modell\n";
+            feil += "Ugyldig modell\n\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 boatInsuranceScene.getLengthInFeetFieldText())) {
-            feil += "Ugyldig lengde i fot\n";
+            feil += "Ugyldig lengde i fot\n\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 boatInsuranceScene.getHorsePowerFieldText())) {
-            feil += "Ugyldig hestekrefter\n";
+            feil += "Ugyldig hestekrefter\n\n";
             failed = true;
         } 
         if (!failed) {
@@ -733,14 +737,14 @@ public class Controller {
 
 
     public String validateHomeInsuranceData() {
-        String feil = "Feil:\n";
+        String feil = "Følgende felt har feil:\n\n";
         boolean failed = false;
         if (!this.validateInsuranceData(houseInsuranceScene).equals("Success")) {
             return this.validateInsuranceData(houseInsuranceScene);
         } 
         if (!Validation.isValidStreetAddress(
                 houseInsuranceScene.getStreetAddressFieldText())) {
-            feil += "Ugyldig gateadresse\n";
+            feil += "Ugyldig gateadresse\n\n";
             failed = true;
         }
         if (!Validation.isValidZipCode(
@@ -751,24 +755,24 @@ public class Controller {
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getConstructionYearFieldText())) {
-            feil += "Ugyldig konstruksjonsår\n";
+            feil += "Ugyldig konstruksjonsår\n\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getSquareMetersFieldText())) {
-            feil += "Ugyldig kvadratmeter\n";
+            feil += "Ugyldig kvadratmeter\n\n";
             failed = true;
             
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getHomeAmountFieldText())) {
-            feil += "Ugyldig forsikringsverdi hus\n";
+            feil += "Ugyldig forsikringsverdi hus\n\n";
             failed = true;
             
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getContentsAmountFieldText())) {
-            feil += "Ugyldig forsikringsverdi innbo\n";
+            feil += "Ugyldig forsikringsverdi innbo\n\n";
             failed = true;
             
         }
@@ -842,7 +846,7 @@ public class Controller {
 
 
     public String validateTravelInsuranceData(){
-        String feil = "Feil:\n";
+        String feil = "Følgende felt har feil:\n";
         boolean failed = false;
         if (!this.validateInsuranceData(travelInsuranceScene).equals("Success")) {
             return this.validateInsuranceData(travelInsuranceScene);
