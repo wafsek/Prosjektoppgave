@@ -44,7 +44,8 @@ public class LoginScene {
      */
     public LoginScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler) {
         companyLogo = new Image(
-                this.getClass().getResourceAsStream("../../img/temp_logo.png"));
+                this.getClass().getClassLoader().getResourceAsStream(
+                        "temp_logo.png"));
 
         companyLogoImageView = new ImageView(companyLogo);
         companyLogoImageView.setFitHeight(120);

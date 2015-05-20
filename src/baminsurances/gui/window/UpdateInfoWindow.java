@@ -82,29 +82,50 @@ public class UpdateInfoWindow {
                 "-fx-padding: 10;");
 
         updateInfoButton.setOnAction(e -> {
+            String message = "";
             if (!telephoneNoField.getText().trim().isEmpty() &&
                     Validation.isValidTelephoneNo(telephoneNoField.getText())) {
                 customer.setTelephoneNo(telephoneNoField.getText());
+            } else {
+                message += "Ugyldig info i telefonfeltet.\n\n";
             }
             if (!emailField.getText().trim().isEmpty() &&
                     Validation.isValidEmail(emailField.getText())) {
                 customer.setEmail(emailField.getText());
+            } else {
+                message += "Ugyldig info i emailfeltet.\n\n";
             }
             if (!addressField.getText().trim().isEmpty() &&
                     Validation.isValidStreetAddress(addressField.getText())) {
                 customer.setStreetAddress(addressField.getText());
+            } else {
+                message += "Ugyldig info i adressefeltet.\n\n";
             }
             if (!billingAddressField.getText().trim().isEmpty() &&
                     Validation.isValidStreetAddress(billingAddressField.getText())) {
                 customer.setBillingStreetAddress(billingAddressField.getText());
-            } if (!zipCodeField.getText().trim().isEmpty() &&
+            } else {
+                message += "Ugyldig info i betalingsadressefeltet.\n\n";
+            }
+            if (!zipCodeField.getText().trim().isEmpty() &&
                     Validation.isValidZipCode(zipCodeField.getText())) {
                 customer.setZipCode(zipCodeField.getText());
-            } if (!billingZipCodeField.getText().trim().isEmpty() &&
+            } else {
+                message += "Ugyldig info i postnummerfeltet.\n\n";
+            }
+            if (!billingZipCodeField.getText().trim().isEmpty() &&
                     Validation.isValidZipCode(billingZipCodeField.getText())) {
                 customer.setBillingZipCode(billingZipCodeField.getText());
+            } else {
+                message += "Ugyldig info i betalingspostnummer-feltet.";
+            } if (message.trim().isEmpty()) {
+                MessageDialog.showMessageDialog("Informasjon", "Kundeinformasjon er oppdatert!",
+                        MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+                stage.close();
+            } else {
+                MessageDialog.showMessageDialog("Informasjon", message,
+                        MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
             }
-            stage.close();
         });
 
         scene = new Scene(gridPane);
@@ -147,24 +168,24 @@ public class UpdateInfoWindow {
                 insurance.setAnnualPremium(Integer.parseInt(
                         annualPremuimField.getText()));
             } else {
-                message += "Ugylig info for premium\n";
+                message += "Ugylig info i premiumfeltet.\n\n";
             }
             if (!amountField.getText().trim().isEmpty() && Validation.consistsOnlyOfNumbers(amountField.getText())) {
                 insurance.setAmount(Integer.parseInt(amountField.getText()));
             } else {
-                message += "Ugyldig info for Forsikringsbeløp\n";
+                message += "Ugyldig info i Forsikringsbeløpfeltet.\n\n";
             }
             if (!termsArea.getText().trim().isEmpty()) {
-                insurance.setTerms(termsArea.getText());;
+                insurance.setTerms(termsArea.getText());
             } else {
-                message += "Ugyldig info for vilkår";
+                message += "Ugyldig info i vilkårfeltet.";
             }
             if (cancelBox.isSelected()) {
                 insurance.setCancellationDate(LocalDate.now());
             }
 
             if(message.equals("")) {
-                MessageDialog.showMessageDialog("Informasjon", "Forsikringen er oppdatert!", MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+                MessageDialog.showMessageDialog("Informasjon", "Forsikringsinformasjonen er oppdatert!", MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
                 stage.close();
             } else {
                 MessageDialog.showMessageDialog("Informasjon", message, MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
