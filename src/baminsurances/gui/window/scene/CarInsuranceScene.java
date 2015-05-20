@@ -140,16 +140,23 @@ public class CarInsuranceScene extends InsuranceScene{
     public String getProductionYearSelectedValue() {
         return productionYearDropDown.getValue();
     }
+
     public String getCarBrandDropDownSelectedValue() {
         return carBrandDropDown.getValue();
     }
 
-    public ComboBox<CarType> getCarTypeDropDown() {
-        return carTypeDropDown;
-    }
-
-    public ComboBox<String> getCarBrandDropDown() {
-        return carBrandDropDown;
+    public void clearInfo() {
+        super.clearInfo();
+        registrationNumberField.setText("");
+        carModelField.setText("");
+        productionYearField.setText("");
+        annualMilageField.setText("");
+        pricePerKilometerField.setText("");
+        bonusPercentageField.setText("");
+        carBrandDropDown.setValue("");
+        productionYearDropDown.setValue("");
+        ownerBox.setSelected(false);
+        person = null;
     }
 
     public Person getPerson() {

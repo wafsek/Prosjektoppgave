@@ -130,8 +130,18 @@ public class HouseInsuranceScene extends InsuranceScene {
         return homeTypeDropDown.getValue();
     }
 
-    public boolean getHolydayHomeBoxIsSelected() {
-        return holydayHomeBox.isSelected();
+    public void clearInfo() {
+        super.clearInfo();
+        streetAddressField.setText("");
+        zipCodeField.setText("");
+        constructionYearDropDown.setValue("");
+        buildingMaterialField.setText("");
+        standardField.setText("");
+        squareMetersField.setText("");
+        homeAmountField.setText("");
+        contentsAmountField.setText("");
+        rentableBox.setSelected(false);
+        holydayHomeBox.setSelected(false);
     }
 
     public boolean getRentableBoxIsSelected() {
