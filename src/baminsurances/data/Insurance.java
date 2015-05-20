@@ -393,7 +393,7 @@ public abstract class Insurance implements Comparable<Insurance>, Serializable {
             return; // the insurance is cancelled, and has no next payment date
         }
         
-        while (getNextPaymentDate().isBefore(LocalDate.now())) {
+        while (getNextPaymentDate().isBefore(LocalDate.now().plusDays(1))) {
             payments.put(getNextPaymentDate(),
                     getAmountPerPayment() * (1 - discountPercentage / 100));
         }
