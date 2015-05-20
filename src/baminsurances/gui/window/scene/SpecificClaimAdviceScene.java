@@ -45,6 +45,12 @@ public class SpecificClaimAdviceScene extends GeneralScene {
     private GridPane leftSideContainer;
     private VBox rightSideContainer;
 
+    /**
+     * Creates the components used in this class.
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
+     */
     public SpecificClaimAdviceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler) {
         super(guiEventHandler, keyPressHandler);
 
@@ -92,9 +98,13 @@ public class SpecificClaimAdviceScene extends GeneralScene {
                         CornerRadii.EMPTY, Insets.EMPTY)));
 
         scene = new Scene(borderPane);
-
     }
 
+    /**
+     * Sets the fields values to the values found in the given ClaimAdvice.
+     *
+     * @param ca
+     */
     public void setClaimAdviceData(ClaimAdvice ca) {
         damageNoField.setText(ca.getDamageNo()+"");
         dateOfDamageField.setText(ca.getDateOfDamage()+"");
@@ -122,4 +132,4 @@ public class SpecificClaimAdviceScene extends GeneralScene {
             }
         }
     }
-}
+} // End of File

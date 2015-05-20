@@ -28,6 +28,11 @@ public class SettingsScene {
     private Label percentageLabel, activeInsuranceRequiredLabel, headerLabel;
     private VBox container;
 
+    /**
+     * Creates the components used in this class.
+     *
+     * @param guiEventHandler
+     */
     public SettingsScene(GuiEventHandler guiEventHandler) {
         saveButton = new Button("Lagre");
         percentageDropDown = new ComboBox<String>(FXCollections.observableArrayList(
@@ -46,10 +51,21 @@ public class SettingsScene {
         scene = new Scene(container);
     }
 
+    /**
+     * Returns a Scene.
+     *
+     * @return a Scene.
+     */
     public Scene getScene() {
         return scene;
     }
 
+    /**
+     * Sets the values to what's the current values.
+     *
+     * @param percentage
+     * @param numberOfInsurances
+     */
     public void setInitialValues(int percentage, int numberOfInsurances) {
         percentageDropDown.setValue(""+percentage);
         activeInsuranceRequiredDropDown.setValue(""+numberOfInsurances);

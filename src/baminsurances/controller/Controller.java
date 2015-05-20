@@ -12,6 +12,7 @@ import baminsurances.gui.window.scene.*;
 import baminsurances.logging.CustomLogger;
 import baminsurances.security.Authenticator;
 import baminsurances.security.Authorization;
+import baminsurances.security.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
@@ -27,16 +28,24 @@ import java.util.logging.Level;
 
 
 /**
- * The class that handles input validation, registration of data, and in
- * general all communication between front end and back end.
- * 
+ * Created by baljit on 30.04.2015.
  * @author Baljit Sarai
  * @author Adrian Melsom
  */
 public class Controller {
 
+
+    /**
+     * The fields
+     *
+     */
+    //private Authenticator authenticator = Authenticator.getAuthenticator();
     private CustomerServiceManager manager;
     private Searcher searcher;
+
+    /**
+     * The Gui type fields
+     */
     
     // GUI fields
     private ClaimAdviceScene claimAdviceScene;
@@ -63,60 +72,48 @@ public class Controller {
     private StatisticScene statisticScene;
     private FileChooser fileChooser;
 
+    private int carInsuranceCheckCounter = 0;
+
     private CustomLogger logger = CustomLogger.getInstance();
     private Authenticator authenticator;
 
-    public Controller() {
+    public Controller(){
         searcher = new Searcher();
         manager = new CustomerServiceManager();
         authenticator = Authenticator.getInstance();
         this.setDefaultUser();
     }
 
-    public void start() {
+
+    public void start(){
+
         fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter(
-                        "IMAGE files (*.png)", "*.png"),
-                new FileChooser.ExtensionFilter(
-                        "IMAGE files (*.jpg)", "*.jpg"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("IMAGE files (*.png)", "*.png"),
+                new FileChooser.ExtensionFilter("IMAGE files (*.jpg)", "*.jpg"));
         guiEventHandler = new GuiEventHandler(this);
         keyPressHandler = new KeyPressHandler(this);
 
-        loginStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/4,
-                GuiConfig.PRIMARY_HEIGHT * 1/2);
-        menuStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/4,
-                GuiConfig.PRIMARY_HEIGHT * 2/3);
-        primaryStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH,
-                GuiConfig.PRIMARY_HEIGHT);
-        settingsStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/5,
-                GuiConfig.PRIMARY_HEIGHT * 2/5);
+        loginStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/4, GuiConfig.PRIMARY_HEIGHT * 1/2);
+        menuStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/4, GuiConfig.PRIMARY_HEIGHT * 2/3);
+        primaryStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH, GuiConfig.PRIMARY_HEIGHT);
+        settingsStage = new GeneralStage(GuiConfig.PRIMARY_WIDTH * 1/5, GuiConfig.PRIMARY_HEIGHT * 2/5);
         
         statisticScene = new StatisticScene(guiEventHandler,keyPressHandler);
         loginScene = new LoginScene(guiEventHandler, keyPressHandler);
         navigationScene = new NavigationScene(guiEventHandler, keyPressHandler);
         findPersonScene = new FindPersonScene(guiEventHandler, keyPressHandler);
         addScene = new AddScene(guiEventHandler, keyPressHandler);
-        handleCustomerScene = new HandleCustomerScene(guiEventHandler,
-                keyPressHandler);
+        handleCustomerScene = new HandleCustomerScene(guiEventHandler, keyPressHandler);
         insuranceScene = new InsuranceScene(guiEventHandler, keyPressHandler);
-        houseInsuranceScene = new HouseInsuranceScene(guiEventHandler,
-                keyPressHandler);
-        boatInsuranceScene = new BoatInsuranceScene(guiEventHandler,
-                keyPressHandler);
-        carInsuranceScene = new CarInsuranceScene(guiEventHandler,
-                keyPressHandler);
-        travelInsuranceScene = new TravelInsuranceScene(guiEventHandler,
-                keyPressHandler);
-        specificInsuranceScene = new SpecificInsuranceScene(guiEventHandler,
-                keyPressHandler);
-        claimAdviceScene = new ClaimAdviceScene(guiEventHandler,
-                keyPressHandler);
-        searchNavigationScene = new SearchNavigationScene(guiEventHandler,
-                keyPressHandler);
+        houseInsuranceScene = new HouseInsuranceScene(guiEventHandler, keyPressHandler);
+        boatInsuranceScene = new BoatInsuranceScene(guiEventHandler, keyPressHandler);
+        carInsuranceScene = new CarInsuranceScene(guiEventHandler, keyPressHandler);
+        travelInsuranceScene = new TravelInsuranceScene(guiEventHandler, keyPressHandler);
+        specificInsuranceScene = new SpecificInsuranceScene(guiEventHandler, keyPressHandler);
+        claimAdviceScene = new ClaimAdviceScene(guiEventHandler, keyPressHandler);
+        searchNavigationScene = new SearchNavigationScene(guiEventHandler, keyPressHandler);
         settingScene = new SettingsScene(guiEventHandler);
-        specificClaimAdviceScene = new SpecificClaimAdviceScene(
-                guiEventHandler, keyPressHandler);
+        specificClaimAdviceScene = new SpecificClaimAdviceScene(guiEventHandler, keyPressHandler);
 
         generatingStage = new GeneratingStage();
         
@@ -130,6 +127,7 @@ public class Controller {
                 "41438870","hei@gmail.com","1445","Hulder veien 6",
                 "brukernavn","passord",Authorization.ADMIN);
         DataBank.getInstance().getEmployeeList().add(employee);
+        
     }
     
     private void launchLoginWindow(){
@@ -137,9 +135,8 @@ public class Controller {
     }
 
     private void login() {
-       boolean loginTest = authenticator.loginUser(
-               loginScene.getUsernameFieldText(),
-               loginScene.getPasswordFieldText());
+       boolean loginTest = authenticator.loginUser(loginScene.getUsernameFieldText(),
+                loginScene.getPasswordFieldText());
         if(loginTest){
             navigationScene.setDisplayName(getDisplayName());
             loginStage.close();
@@ -153,12 +150,11 @@ public class Controller {
 
     private void launchSettingsWindow() {
         settingsStage.initiate(settingScene.getScene());
-        settingScene.setInitialValues(
-                Customer.getTotalCustomerDiscountPercentage(),
+        settingScene.setInitialValues(Customer.getTotalCustomerDiscountPercentage(),
                 Customer.getNumRequiredForTotalCustomer());
     }
 
-    private void launchFindPersonScene() {
+    private void launchFindPersonScene(){
         menuStage.close();
         findPersonScene.setDisplayName(getDisplayName());
         findPersonScene.clearFields();
@@ -166,17 +162,15 @@ public class Controller {
         keyPressHandler.setFindPersonScene(findPersonScene);
     }
 
-    private void launchRegistration() {
+    private void launchRegistration(){
         addScene.setDisplayName(getDisplayName());
         primaryStage.initiate(addScene.getScene());
         addScene.insertText(findPersonScene.getWrittenInfo());
     }
 
-    private void launchHandleCustomerScene() {
-        List<Insurance> list =
-                CurrentStatus.getCurrentCustomer().getInsurances();
-        ObservableList<Insurance> insurances =
-                FXCollections.observableArrayList();
+    private void launchHandleCustomerScene(){
+        List<Insurance> list = CurrentStatus.getCurrentCustomer().getInsurances();
+        ObservableList<Insurance> insurances = FXCollections.observableArrayList();
         insurances.addAll(list);
         handleCustomerScene.setDisplayName(getDisplayName());
         handleCustomerScene.setCustomerData(CurrentStatus.getCurrentCustomer());
@@ -185,15 +179,16 @@ public class Controller {
     }
 
     private void launchSpecificClaimAdviceScene() {
-        specificClaimAdviceScene.setClaimAdviceData(
-                specificInsuranceScene.getSelectedClaimAdvice());
-        primaryStage.initiate(specificClaimAdviceScene.getScene());
+        specificClaimAdviceScene.setClaimAdviceData(specificInsuranceScene.getSelectedClaimAdvice());
+        primaryStage.initiate(specificClaimAdviceScene.getScene()
+        );
     }
 
     private void launchInsuranceScene() {
         insuranceScene.setDisplayName(getDisplayName());
         insuranceScene.setInsuranceDropDownEmpty();
         primaryStage.initiate(insuranceScene.getScene());
+
     }
 
     private void launchHouseInsuranceScene() {
@@ -227,39 +222,42 @@ public class Controller {
 
     private void launchSpecificInsuranceScene() {
         Insurance insurance = handleCustomerScene.getInsurance();
-        if (insurance instanceof HomeInsurance) {
-            primaryStage.initiate(
-                    specificInsuranceScene.getHouseInsuranceInfoScene(
-                            (HomeInsurance) insurance));
+        if(insurance instanceof HomeInsurance) {
+            primaryStage.initiate(specificInsuranceScene.getHouseInsuranceInfoScene((HomeInsurance) insurance));
         } else if (insurance instanceof TravelInsurance) {
-            primaryStage.initiate(
-                    specificInsuranceScene.getTravelInsuranceInfoScene(
-                            (TravelInsurance) insurance));
+            primaryStage.initiate(specificInsuranceScene.getTravelInsuranceInfoScene((TravelInsurance) insurance));
         } else if (insurance instanceof BoatInsurance) {
-            primaryStage.initiate(
-                    specificInsuranceScene.getBoatInsuranceInfoScene(
-                            (BoatInsurance) insurance));
+            primaryStage.initiate(specificInsuranceScene.getBoatInsuranceInfoScene((BoatInsurance) insurance));
         } else if (insurance instanceof CarInsurance) {
-            primaryStage.initiate(
-                    specificInsuranceScene.getCarInsuranceInfoScene(
-                            (CarInsurance) insurance));
+            primaryStage.initiate(specificInsuranceScene.getCarInsuranceInfoScene((CarInsurance) insurance));
         }
     }
 
-    private void backToNavigation() {
+    private void backToNavigation(){
         primaryStage.close();
         menuStage.initiate(navigationScene.getScene());
-        logger.log("Closing main Stage, reopening navigation stage.",
-                Level.INFO);
+        logger.log("Closing main Stage, reopening navigation stage.", Level.INFO);
     }
 
-    public String getDisplayName() {
-        return "Brukernavn: " + authenticator.getDisplayName();
+    private void setDifferentCarOwner() {
+        if (carInsuranceCheckCounter == 0) {
+
+            carInsuranceCheckCounter++;
+        } else {
+
+            carInsuranceCheckCounter--;
+        }
+    }
+
+
+    public String getDisplayName(){
+        return "Brukernavn: ";//+authenticator.getDisplayName();
     }
 
     private void updateCustomerInfo() {
         CurrentStatus.setCurrentCustomer(new UpdateInfoWindow().
                 updateCustomerInfo(CurrentStatus.getCurrentCustomer()));
+
     }
 
     /**
@@ -267,26 +265,18 @@ public class Controller {
      * @param control
      */
     public void handleControl(Control control) {
-        if (control == loginScene.getLoginButton()) {
+        if(control == loginScene.getLoginButton()){
             login();
-        } else if (control == navigationScene.getLogOutButton() ||
-                control == findPersonScene.getLogOutButton() ||
-                control == handleCustomerScene.getLogOutButton() ||
-                control == addScene.getLogOutButton() ||
-                control == insuranceScene.getLogOutButton() ||
-                control == houseInsuranceScene.getLogOutButton() ||
-                control == boatInsuranceScene.getLogOutButton() ||
-                control == carInsuranceScene.getLogOutButton() ||
-                control == specificInsuranceScene.getLogOutButton() ||
-                control == claimAdviceScene.getLogOutButton() ||
-                control == specificInsuranceScene.getLogOutButton() ||
-                control == searchNavigationScene.getLogOutButton() ||
-                control == statisticScene.getLogOutButton() ||
-                control == specificClaimAdviceScene.getLogOutButton() ||
+        } else if (control == navigationScene.getLogOutButton() || control == findPersonScene.getLogOutButton() ||
+                control == handleCustomerScene.getLogOutButton() || control == addScene.getLogOutButton() ||
+                control == insuranceScene.getLogOutButton() || control == houseInsuranceScene.getLogOutButton() ||
+                control == boatInsuranceScene.getLogOutButton() || control == carInsuranceScene.getLogOutButton() ||
+                control == specificInsuranceScene.getLogOutButton() || control == claimAdviceScene.getLogOutButton() ||
+                control == specificInsuranceScene.getLogOutButton() || control == searchNavigationScene.getLogOutButton() ||
+                control == statisticScene.getLogOutButton() || control == specificClaimAdviceScene.getLogOutButton() ||
                 control == travelInsuranceScene.getLogOutButton()) {
-            if (MessageDialog.showMessageDialog("Sikker?", "Logge ut?",
-                    MessageDialog.QUESTION_ICON,
-                    MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION) {
+            if(new MessageDialog().showMessageDialog("Sikker?", "Logge ut?", MessageDialog.QUESTION_ICON,
+                    MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION){
                 menuStage.close();
                 primaryStage.close();
                 launchLoginWindow();
@@ -295,26 +285,23 @@ public class Controller {
             launchFindPersonScene();
         } else if (control == findPersonScene.getRegisterPersonButton()) {
             launchRegistration();
-        } else if (control == findPersonScene.getBackButton() ||
-                control == searchNavigationScene.getBackButton() ||
-                control == statisticScene.getBackButton()) {
+        } else if (control == findPersonScene.getBackButton() || control == searchNavigationScene.getBackButton()
+                || control == statisticScene.getBackButton()) {
             backToNavigation();
         } else if (control == findPersonScene.getChoosePersonButton()) {
             if (findPersonScene.getSelectedCustomer() != null) {
-                CurrentStatus.setCurrentCustomer(
-                        findPersonScene.getSelectedCustomer());
+                CurrentStatus.setCurrentCustomer(findPersonScene.getSelectedCustomer());
                 launchHandleCustomerScene();
             }
+            //this.setCurrentCustomerInsurance(//Method for getting the chosen customer);
         } else if (control == addScene.getRegisterPersonButton()) {
             CurrentStatus.setCurrentCustomer(null);
             this.registerPerson();
-            handleCustomerScene.setCustomerData(
-                    CurrentStatus.getCurrentCustomer());
-            if (CurrentStatus.getCurrentCustomer() != null) {
+            handleCustomerScene.setCustomerData(CurrentStatus.getCurrentCustomer());
+            if(CurrentStatus.getCurrentCustomer() != null) {
                 launchHandleCustomerScene();
             }
-        } else if (control == handleCustomerScene.getBackButton() ||
-                control == addScene.getBackButton()) {
+        } else if (control == handleCustomerScene.getBackButton() || control == addScene.getBackButton()) {
             launchFindPersonScene();
         } else if (control == handleCustomerScene.getChooseInsuranceButton()) {
             launchSpecificInsuranceScene();
@@ -359,57 +346,46 @@ public class Controller {
                 || control == carInsuranceScene.getInsuranceDropDown() &&
                 carInsuranceScene.getInsuranceDropDown().getValue().equals("Reiseforsikring")) {
             launchTravelInsuranceScene();
-        } else if (control == insuranceScene.getBackButton() ||
-                control == specificInsuranceScene.getBackButton()) {
+        } else if (control == insuranceScene.getBackButton() || control == specificInsuranceScene.getBackButton()) {
             launchHandleCustomerScene();
-        } else if (control == houseInsuranceScene.getBackButton() ||
-                control == boatInsuranceScene.getBackButton() ||
-                control == carInsuranceScene.getBackButton() ||
-                control == travelInsuranceScene.getBackButton()) {
+        } else if (control == houseInsuranceScene.getBackButton() || control == boatInsuranceScene.getBackButton() ||
+                control == carInsuranceScene.getBackButton() || control == travelInsuranceScene.getBackButton()) {
             launchInsuranceScene();
         }  else if (control == specificInsuranceScene.getUpdateInfoButton()) {
-            CurrentStatus.setCurrentInsurance(
-                    new UpdateInfoWindow().updateInsurance(
-                            CurrentStatus.getCurrentInsurance()));
+            CurrentStatus.setCurrentInsurance(new UpdateInfoWindow().updateInsurance
+                    (CurrentStatus.getCurrentInsurance()));
             launchSpecificInsuranceScene();
         } else if (control == specificInsuranceScene.getNewClaimAdviceButton()) {
             launchClaimAdviceScene();
         } else if (control == claimAdviceScene.getBackButton()) {
-            this.launchSpecificInsuranceScene();
+                    this.launchSpecificInsuranceScene();
         } else if (control == boatInsuranceScene.getRegisterInsuranceButton()) {
             String message = this.registerBoatInsurance();
-            MessageDialog.showMessageDialog("Informasjon", message,
-                    MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
-            if (message.equals("Baatforsikring registrert")) {
+            new MessageDialog().showMessageDialog("Informasjon", message, MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+            if(message.equals("Baatforsikring registrert")) {
                 launchHandleCustomerScene();
             }
-            this.launchHandleCustomerScene();
-        } else if (control == houseInsuranceScene.getRegisterInsuranceButton()) {
+        }else if (control == houseInsuranceScene.getRegisterInsuranceButton()) {
             String message = this.registerHomeInsurance();
-            MessageDialog.showMessageDialog("Informasjon", message,
-                    MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
-            if (message.equals("Husforsikring registrert") ||
-                    message.equals("Feriehusforsikring registrert")) {
+            new MessageDialog().showMessageDialog("Informasjon", message, MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+            if(message.equals("Husforsikring registrert") || message.equals("Feriehusforsikring registrert")) {
                 launchHandleCustomerScene();
             }
-        } else if (control == carInsuranceScene.getRegisterInsuranceButton()) {
+        }else if (control == carInsuranceScene.getRegisterInsuranceButton()) {
             String message = this.registerCarInsurance();
-            MessageDialog.showMessageDialog("Informasjon", message,
-                    MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
-            if (message.equals("Bilforsikring registrert")) {
+            new MessageDialog().showMessageDialog("Informasjon", message, MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+            if(message.equals("Bilforsikring registrert")) {
                 launchHandleCustomerScene();
             }
-        } else if (control == travelInsuranceScene.getRegisterInsuranceButton()) {
+        }else if (control == travelInsuranceScene.getRegisterInsuranceButton()) {
             String message = this.registerTravelInsurance();
-            MessageDialog.showMessageDialog("Informasjon", message,
-                    MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
-            if (message.equals("Reiseforsikring registrert")) {
+            new MessageDialog().showMessageDialog("Informasjon", message, MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+            if(message.equals("Reiseforsikring registrert")) {
                 launchHandleCustomerScene();
             }
-        } else if (control == specificInsuranceScene.getUpdateInfoButton()) {
-            CurrentStatus.setCurrentInsurance(
-                    new UpdateInfoWindow().updateInsurance(
-                            CurrentStatus.getCurrentInsurance()));
+        }else if (control == specificInsuranceScene.getUpdateInfoButton()) {
+            CurrentStatus.setCurrentInsurance(new UpdateInfoWindow().updateInsurance
+                    (CurrentStatus.getCurrentInsurance()));
             launchSpecificInsuranceScene();
         } else if (control == navigationScene.getSearchButton()) {
             searchNavigationScene.setDisplayName(getDisplayName());
@@ -423,7 +399,7 @@ public class Controller {
                 CurrentStatus.getCurrentInsurance().addClaimAdvice(ca);
                 launchSpecificInsuranceScene();
             }
-        } else if (control == navigationScene.getStatisticsButton()) {
+        } else if (control == navigationScene.getStatisticsButton()){
             menuStage.close();
             primaryStage.initiate(statisticScene.getScene());
         } else if (control == specificInsuranceScene.getChooseClaimAdviceButton()) {
@@ -433,23 +409,26 @@ public class Controller {
         }
     }
 
+   /* private String findPerson(){
+        return manager.getCustomerInsurancesWithFirstName(searchScene.);
+    }*/
+
     private void addWitness() {
-        if (MessageDialog.showMessageDialog("Bilder", "Ønsker " +
-                        "du å laste opp bilder?", MessageDialog.QUESTION_ICON,
+        if (new MessageDialog().showMessageDialog("Bilder", "�snker " +
+                        "du � laste opp bilder?", MessageDialog.QUESTION_ICON,
                 MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION) {
 
         }
     }
 
     private void addImagesToClaimAdvice(ClaimAdvice claimAdvice) {
-        if(MessageDialog.showMessageDialog("Bilder", "Ønsker " +
-                "du å laste opp bilder?", MessageDialog.QUESTION_ICON,
+        if(new MessageDialog().showMessageDialog("Bilder", "�snker " +
+                        "du � laste opp bilder?", MessageDialog.QUESTION_ICON,
                 MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION) {
             BufferedImage bufferedImage = null;
-            try {
-                bufferedImage = ImageIO.read(
-                        fileChooser.showOpenDialog(primaryStage.getStage()));
-            } catch (IOException ioe) {
+            try{
+                bufferedImage = ImageIO.read(fileChooser.showOpenDialog(primaryStage.getStage()));
+            }catch (IOException ioe) {
 
             }
             if(bufferedImage != null) {
@@ -469,19 +448,16 @@ public class Controller {
         if(localDate != null && Validation.consistsOnlyOfNumbers(assessment) &&
                 Validation.consistsOnlyOfNumbers(compensation) &&
                 !damageDescribtion.trim().isEmpty() && !damageType.trim().isEmpty()) {
-            return new ClaimAdvice(localDate, damageType, damageDescribtion,
-                    Long.parseLong(assessment), Long.parseLong(compensation));
+            return new ClaimAdvice(localDate, damageType, damageDescribtion, Long.parseLong(assessment), Long.parseLong(compensation));
         }
-        MessageDialog.showMessageDialog("Feil informasjon", "Feltene er feil",
-                MessageDialog.ERROR_ICON, MessageDialog.OK_OPTION);
+        new MessageDialog().showMessageDialog("Feil informasjon", "Feltene er feil", MessageDialog.ERROR_ICON, MessageDialog.OK_OPTION);
         return null;
     }
 
     public ObservableList<Customer> findPeople(){
         logger.log("findPeople method called", Level.FINER);
 
-        ObservableList<Customer> personObservableList =
-                FXCollections.observableArrayList();
+        ObservableList<Customer> personObservableList = FXCollections.observableArrayList();
         List<Customer> customerList;
         List<Predicate<Customer>> predicates = new ArrayList<>();
         String firstName = findPersonScene.getFirstName().trim();
@@ -490,22 +466,23 @@ public class Controller {
         String streetAddress = findPersonScene.getAdress().trim();
         String zipCode = findPersonScene.getZipCode().trim();
 
-        if (!firstName.isEmpty()) {
+        if(!firstName.isEmpty()){
             predicates.add(Searcher.firstNameStartsWith(firstName));
         }
-        if (!lastName.isEmpty()) {
+        if(!lastName.isEmpty()){
             predicates.add(Searcher.lastNameStartsWith(lastName));
         }
-        if (!birthNo.isEmpty()) {
+        if(!birthNo.isEmpty()){
             predicates.add(Searcher.birthNoStartsWith(birthNo));
         }
-        if (!streetAddress.isEmpty()) {
+        if(!streetAddress.isEmpty()){
             predicates.add(Searcher.streetAddressStartsWith(streetAddress));
         }
-        if (!zipCode.isEmpty()) {
+        if(!zipCode.isEmpty()){
             predicates.add(Searcher.zipCodeStartsWith(zipCode));
         }
-        if (predicates.isEmpty()) {
+
+        if(predicates.isEmpty()){
             return personObservableList;
         }
 
@@ -518,16 +495,11 @@ public class Controller {
         if(!this.validatePersonData().equals(DataControl.SUCCESS.getDescription())){
             return this.validatePersonData();
         } else {
-            Customer customer = new Customer(
-                    addScene.getBirthNumberFieldText(),
-                    addScene.getFirstNameFieldText(),
-                    addScene.getLastNameFieldText(),
-                    addScene.getTelephoneNumberFieldText(),
-                    addScene.getEmailFieldText(),
-                    addScene.getZipCodeFieldText(),
-                    addScene.getAdressFieldText(),
-                    addScene.getBillingZipCodeFieldText(),
-                    addScene.getBillingAdressFieldText());
+            Customer customer = new Customer(addScene.getBirthNumberFieldText(),
+                    addScene.getFirstNameFieldText(), addScene.getLastNameFieldText(),
+                    addScene.getTelephoneNumberFieldText(), addScene.getEmailFieldText(),
+                    addScene.getZipCodeFieldText(), addScene.getAdressFieldText(),
+                    addScene.getBillingZipCodeFieldText(), addScene.getBillingAdressFieldText());
             CurrentStatus.setCurrentCustomer(customer);
             manager.registerCustomer(customer);
             DataBank.saveDataBank();
@@ -536,359 +508,345 @@ public class Controller {
     }
 
     private String validatePersonData(){
-        String error = "Følgende felt har feil:\n";
+        String feil = "f�lgende felt feil: \n";
         boolean failed = false;
-        if (!Validation.isValidFirstName(addScene.getFirstNameFieldText())) {
-            error += DataControl.INVALID_FIRST_NAME.getDescription() + "\n";
+        if(!Validation.isValidFirstName(addScene.getFirstNameFieldText())){
+            feil += DataControl.INVALID_FIRST_NAME.getDescription()+"\n";
             failed = true;
         }
-        if (!Validation.isValidFirstName(addScene.getLastNameFieldText())) {
-            error += DataControl.INVALID_LAST_NAME.getDescription() + "\n";
+        if(!Validation.isValidFirstName(addScene.getLastNameFieldText())){
+            feil += DataControl.INVALID_LAST_NAME.getDescription()+"\n";
             failed = true;
         }
-        if (!Validation.isValidBirthNo(addScene.getBirthNumberFieldText())) {
-            error += DataControl.INVALID_BIRTHNO.getDescription() + "\n";
+        if(!Validation.isValidBirthNo(addScene.getBirthNumberFieldText())){
+            feil += DataControl.INVALID_BIRTHNO.getDescription()+"\n";
             failed = true;
         }
-        if (!Validation.isValidEmail(addScene.getEmailFieldText())) {
-            error +=  DataControl.INVALID_EMAIL.getDescription() + "\n";
+        if(!Validation.isValidEmail(addScene.getEmailFieldText())){
+            feil +=  DataControl.INVALID_EMAIL.getDescription()+"\n";
             failed = true;
         }
-        if (!Validation.isValidTelephoneNo(addScene.getTelephoneNumberFieldText())) {
-            error += DataControl.INVALID_TLF.getDescription() + "\n";
+        if(!Validation.isValidTelephoneNo(addScene.getTelephoneNumberFieldText())){
+            feil += DataControl.INVALID_TLF.getDescription()+"\n";
             failed = true;
         }
-        if (!Validation.isValidStreetAddress(addScene.getAdressFieldText())) {
-            error += DataControl.INVALID_ADDRESS.getDescription() + "\n";
+        if(!Validation.isValidStreetAddress(addScene.getAdressFieldText())){
+            feil += DataControl.INVALID_ADDRESS.getDescription()+"\n";
             failed = true;
         }
-        if (!Validation.isValidZipCode(addScene.getZipCodeFieldText())) {
-            error += DataControl.INVALID_ZIPCODE.getDescription() + "\n";
+        if(!Validation.isValidZipCode(addScene.getZipCodeFieldText())){
+            feil += DataControl.INVALID_ZIPCODE.getDescription()+"\n";
             failed = true;
         }
-        if (!Validation.isValidStreetAddress(addScene.getBillingAdressFieldText())) {
-            error += DataControl.INVALID_BILLING_ADRESSE.getDescription() + "\n";
+        if(!Validation.isValidStreetAddress(addScene.getBillingAdressFieldText())){
+            feil += DataControl.INVALID_BILLING_ADRESSE.getDescription()+"\n";
             failed = true;
         }
-        if (!Validation.isValidZipCode(addScene.getBillingZipCodeFieldText())) {
-            error +=  DataControl.INVALID_BILLING_ZIPCODE.getDescription() + "\n";
+        if(!Validation.isValidZipCode(addScene.getBillingZipCodeFieldText())){
+            feil +=  DataControl.INVALID_BILLING_ZIPCODE.getDescription()+"\n";
             failed = true;
         }
-        if (!failed) {
-            error = DataControl.SUCCESS.getDescription();
+        if(!failed){
+            feil = DataControl.SUCCESS.getDescription();
         }
-        return error;
+        return feil;
     }
 
-    private String validateInsuranceData(InsuranceScene insuranceScene) {
+    public String registerInsurance(){
+        //check if the drop down menu has been selected
+
+        return "All is Well";
+    }
+
+    private String validateInsuranceData(InsuranceScene insuranceScene){
         String result = "";
         boolean failed = false;
-        if (!Validation.consistsOnlyOfNumbers(
-                insuranceScene.getAnnualPremiumFieldText())) {
+        if(!Validation.consistsOnlyOfNumbers(
+                insuranceScene.getAnnualPremiumFieldText())){
             System.out.println("annual prem feilet");
             System.out.println(insuranceScene.getAnnualPremiumFieldText());
-            result += DataControl.INVALID_ANNUAL_PREMIUM.getDescription() + "\n";
+            result += DataControl.INVALID_ANNUAL_PREMIUM.getDescription()+"\n";
             failed = true;
         }
-        if (!Validation.consistsOnlyOfNumbers(
-                insuranceScene.getInsuranceValueFieldText())) {
+        if(!Validation.consistsOnlyOfNumbers(
+                insuranceScene.getInsuranceValueFieldText())){
             System.out.println("forsikringsbeløp feilet");
-            result += DataControl.INVALID_AMOUNT.getDescription() + "\n";
+            result += DataControl.INVALID_AMOUNT.getDescription()+"\n";
             failed = true;
         } 
-        if (!failed) {
+        if(!failed) {
             result = DataControl.SUCCESS.getDescription();
         }
         return result;
     }
 
 
-    public String validateCarInsuranceData() {
-        String feil = "Følgende felt har feil:\n";
+    public String validateCarInsuranceData(){
+        String feil = "f�lgende felt feil: \n";
         boolean failed = false;
-        if (!this.validateInsuranceData(carInsuranceScene).equals("Success")) {
-            feil += this.validateInsuranceData(carInsuranceScene) + "\n";
+        if(!this.validateInsuranceData(carInsuranceScene).equals("Success")){
+            feil += this.validateInsuranceData(carInsuranceScene)+"\n";
             failed = true;
         }
-        if (!Validation.isValidCarRegistrationNo(
-                carInsuranceScene.getRegistrationNumberFieldText())) {
+        if(!Validation.isValidCarRegistrationNo(
+                carInsuranceScene.getRegistrationNumberFieldText())){
             feil += "\n";
             failed = true;
         }
-        if (!Validation.consistsOnlyOfLetters(
-                carInsuranceScene.getCarModelFieldText())) {
+        if(!Validation.consistsOnlyOfLetters(
+                carInsuranceScene.getCarModelFieldText())){
             feil += "\n";
             failed = true;
         }
-        if (!Validation.consistsOnlyOfNumbers(
-                carInsuranceScene.getProductionYearSelectedValue())) {
+        if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getProductionYearSelectedValue())){
             feil += "\n";
             failed = true;
         }
-        if (!Validation.consistsOnlyOfNumbers(
-                carInsuranceScene.getAnnualMilageFieldText())) {
+        if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getAnnualMilageFieldText())){
             feil += "\n";
             failed = true;
         }
-        if (!Validation.consistsOnlyOfNumbers(
-                carInsuranceScene.getPricePerKilometerFieldText())) {
+        if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getPricePerKilometerFieldText())){
             feil += "\n";
             failed = true;
         }
-        if (!Validation.consistsOnlyOfNumbers(
-                carInsuranceScene.getBonusPercentageFieldText())) {
+        if(!Validation.consistsOnlyOfNumbers(
+                carInsuranceScene.getBonusPercentageFieldText())){
             feil += "\n";
             failed = true;
         }
-        if (!failed) {
-            return "Success";
-        } else {
-            return feil;
+        if(!failed){
+            feil = "Success";
         }
+        return feil;
     }
     
-    public String registerCarInsurance() {
-        if (!this.validateCarInsuranceData().equals("Success")) {
+    public String registerCarInsurance(){
+        if(!this.validateCarInsuranceData().equals("Success")){
             return this.validateCarInsuranceData();
-        } else {
+        }
+        else {
             manager.registerCarInsurance(new CarInsurance(
                     Authenticator.getInstance().getCurrentEmployee(),
                     Integer.parseInt(carInsuranceScene.getAnnualPremiumFieldText()),
                     Integer.parseInt(carInsuranceScene.getInsuranceValueFieldText()),
                     PaymentFrequency.ANNUALLY,
                     carInsuranceScene.getConditionAreaText(),
-                    (carInsuranceScene.getPerson() == null) ?
-                            CurrentStatus.getCurrentCustomer() :
-                                carInsuranceScene.getPerson(),
+                    (carInsuranceScene.getPerson() == null) ? CurrentStatus.getCurrentCustomer() : carInsuranceScene.getPerson(),
                     carInsuranceScene.getRegistrationNumberFieldText(),
                     carInsuranceScene.getCarTypeDropDownSelectedValue(),
                     carInsuranceScene.getCarBrandDropDownSelectedValue(),
                     carInsuranceScene.getCarModelFieldText(),
-                    Integer.parseInt(
-                            carInsuranceScene.getProductionYearSelectedValue()),
-                    Integer.parseInt(
-                            carInsuranceScene.getAnnualMilageFieldText()),
-                    Double.parseDouble(
-                            carInsuranceScene.getPricePerKilometerFieldText()),
-                    Integer.parseInt(
-                            carInsuranceScene.getBonusPercentageFieldText()
+                    Integer.parseInt(carInsuranceScene.getProductionYearSelectedValue()),
+                    Integer.parseInt(carInsuranceScene.getAnnualMilageFieldText()),
+                    Double.parseDouble(carInsuranceScene.getPricePerKilometerFieldText()),
+                    Integer.parseInt(carInsuranceScene.getBonusPercentageFieldText()
                     )), CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
-            return "Bilforsikring registrert.";
+            return "Bilforsikring registrert";
         }
     }
 
+
+
     public String validateBoatInsuranceData() {
-        String feil = "Følgende felt har feil:\n";
+        String feil = "f�lgende felt feil: \n";
         boolean failed = false;
-        if (!this.validateInsuranceData(boatInsuranceScene).equals("Success")) {
+        if(!this.validateInsuranceData(boatInsuranceScene).equals("Success")) {
             return this.validateInsuranceData(boatInsuranceScene);
         }
-        if (!Validation.isValidBoatRegistrationNo(
+        if(!Validation.isValidBoatRegistrationNo(
                 boatInsuranceScene.getRegistrationNoFieldText())) {
             feil += "\n";
             failed = true;
         }
-        if (!Validation.isValidBoatRegistrationNo(
+        if(!Validation.isValidBoatRegistrationNo(
                 boatInsuranceScene.getRegistrationNoFieldText())) {
             feil += "\n";
             failed = true;
         }
-        if (!Validation.consistsOnlyOfNumbers(
+        if(!Validation.consistsOnlyOfNumbers(
                 boatInsuranceScene.getLengthInFeetFieldText())) {
             feil += "\n";
             failed = true;
         }
-        if (!Validation.consistsOnlyOfNumbers(
+        if(!Validation.consistsOnlyOfNumbers(
                 boatInsuranceScene.getHorsePowerFieldText())) {
             feil += "\n";
             failed = true;
         } 
-        if (failed) {
-            return "Success";
-        } else {
-            return feil;   
+        if (failed){
+             feil = "Success";
         }
+        return feil;
     }
 
-    public String registerBoatInsurance() {
-        if (!this.validateBoatInsuranceData().equals("Success")) {
+    public String registerBoatInsurance(){
+        
+        if(!this.validateBoatInsuranceData().equals("Success")){
+            System.out.println("Båt feilet");
             return this.validateBoatInsuranceData();
         } else {
             manager.registerBoatInsurance(new BoatInsurance(
                             Authenticator.getInstance().getCurrentEmployee(),
-                            Integer.parseInt(
-                                    boatInsuranceScene.getAnnualPremiumFieldText()),
-                            Integer.parseInt(
-                                    boatInsuranceScene.getInsuranceValueFieldText()),
+                            Integer.parseInt(boatInsuranceScene.getAnnualPremiumFieldText()),
+                            Integer.parseInt(boatInsuranceScene.getInsuranceValueFieldText()),
                             PaymentFrequency.ANNUALLY,
                             boatInsuranceScene.getConditionAreaText(),
-                            boatInsuranceScene.getPerson() == null ?
-                                    CurrentStatus.getCurrentCustomer() :
-                                        boatInsuranceScene.getPerson(),
+                            (boatInsuranceScene.getPerson()==null)?CurrentStatus.getCurrentCustomer():boatInsuranceScene.getPerson(),
                             boatInsuranceScene.getRegistrationNoFieldText(),
                             boatInsuranceScene.getTypeDropDown(),
                             boatInsuranceScene.getBrandFieldText(),
                             boatInsuranceScene.getModelFieldText(),
-                            Integer.parseInt(
-                                    boatInsuranceScene.getLengthInFeetFieldText()),
-                            Integer.parseInt(
-                                    boatInsuranceScene.getProductionYearFieldText()),
+                            Integer.parseInt(boatInsuranceScene.getLengthInFeetFieldText()),
+                            Integer.parseInt(boatInsuranceScene.getProductionYearFieldText()),
                             boatInsuranceScene.getMotorTypeDropdownSelectedValue(),
-                            Integer.parseInt(
-                                    boatInsuranceScene.getHorsePowerFieldText())),
-                            CurrentStatus.getCurrentCustomer());
+                            Integer.parseInt(boatInsuranceScene.getHorsePowerFieldText())),
+                    CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
-            System.out.println("Båt registrert");
-            return "Båtforsikring registrert";
+            System.out.println("Baat registrert");
+            return "Baatforsikring registrert";
         }
     }
 
 
-    public String validateHomeInsuranceData() {
-        String feil = "Følgende felt har feil: \n";
+    public String validateHomeInsuranceData(){
+        String feil = "f�lgende felt feil: \n";
         boolean failed = false;
-        if (!this.validateInsuranceData(houseInsuranceScene).equals("Success")) {
+        if(!this.validateInsuranceData(houseInsuranceScene).equals("Success")){
             return this.validateInsuranceData(houseInsuranceScene);
         } 
         if (!Validation.isValidStreetAddress(
-                houseInsuranceScene.getStreetAddressFieldText())) {
+                houseInsuranceScene.getStreetAddressFieldText())){
             feil += "\n";
             failed = true;
         }
         if (!Validation.isValidZipCode(
-                houseInsuranceScene.getZipCodeFieldText())) {
-            feil += "\n";
-            failed = true;
-        }
-        if (!Validation.consistsOnlyOfNumbers(
-                houseInsuranceScene.getConstructionYearFieldText())) {
-            feil += "\n";
-            failed = true;
-        }
-        if (!Validation.consistsOnlyOfNumbers(
-                houseInsuranceScene.getSquareMetersFieldText())) {
+                houseInsuranceScene.getZipCodeFieldText())){
             feil += "\n";
             failed = true;
             
         }
         if (!Validation.consistsOnlyOfNumbers(
-                houseInsuranceScene.getHomeAmountFieldText())) {
+                houseInsuranceScene.getConstructionYearFieldText())){
             feil += "\n";
             failed = true;
             
         }
         if (!Validation.consistsOnlyOfNumbers(
-                houseInsuranceScene.getContentsAmountFieldText())) {
+                houseInsuranceScene.getSquareMetersFieldText())){
             feil += "\n";
             failed = true;
+            
         }
-        if (!failed) {
-            return DataControl.SUCCESS.getDescription();
-        } else {
-            return feil;
+        if (!Validation.consistsOnlyOfNumbers(
+                houseInsuranceScene.getHomeAmountFieldText())){
+            feil += "\n";
+            failed = true;
+            
         }
+        if (!Validation.consistsOnlyOfNumbers(
+                houseInsuranceScene.getContentsAmountFieldText())){
+            feil += "\n";
+            failed = true;
+            
+        }
+        if(!failed){
+            feil=  DataControl.SUCCESS.getDescription();
+        }
+        return feil;
     }
 
     public String registerHomeInsurance() {
-        if (houseInsuranceScene.isHolidayHome()) {
-            if (!this.validateHomeInsuranceData().equals("Success")) {
-                return this.validateHomeInsuranceData();
+        if(houseInsuranceScene.isHolidayHome()){
+                if (!this.validateHomeInsuranceData().equals("Success")) {
+                    System.out.println("Hus feilet");
+                    return this.validateHomeInsuranceData();
+                } else {
+                    manager.registerHomeInsurance(new HomeInsurance(
+                                    Authenticator.getInstance().getCurrentEmployee(),
+                                    Integer.parseInt(houseInsuranceScene.getAnnualPremiumFieldText()),
+                                    PaymentFrequency.ANNUALLY,
+                                    houseInsuranceScene.getConditionAreaText(),
+                                    houseInsuranceScene.getStreetAddressFieldText(),
+                                    houseInsuranceScene.getZipCodeFieldText(),
+                                    Integer.parseInt(houseInsuranceScene.getConstructionYearFieldText()),
+                                    houseInsuranceScene.getHomeTypeDropDownSelectedValue(),
+                                    houseInsuranceScene.getBuildingMaterialFieldText(),
+                                    houseInsuranceScene.getStandardFieldText(),
+                                    Integer.parseInt(houseInsuranceScene.getSquareMetersFieldText()),
+                                    Integer.parseInt(houseInsuranceScene.getHomeAmountFieldText()),
+                                    Integer.parseInt(houseInsuranceScene.getContentsAmountFieldText())),
+                            CurrentStatus.getCurrentCustomer());
+                    DataBank.saveDataBank();
+                    System.out.println("Hus registrert");
+                    return "Husforsikring registrert";}
             } else {
-                manager.registerHomeInsurance(new HomeInsurance(
-                                Authenticator.getInstance().getCurrentEmployee(),
-                                Integer.parseInt(
-                                        houseInsuranceScene.getAnnualPremiumFieldText()),
-                                PaymentFrequency.ANNUALLY,
-                                houseInsuranceScene.getConditionAreaText(),
-                                houseInsuranceScene.getStreetAddressFieldText(),
-                                houseInsuranceScene.getZipCodeFieldText(),
-                                Integer.parseInt(
-                                        houseInsuranceScene.getConstructionYearFieldText()),
-                                houseInsuranceScene.getHomeTypeDropDownSelectedValue(),
-                                houseInsuranceScene.getBuildingMaterialFieldText(),
-                                houseInsuranceScene.getStandardFieldText(),
-                                Integer.parseInt(
-                                        houseInsuranceScene.getSquareMetersFieldText()),
-                                Integer.parseInt(
-                                        houseInsuranceScene.getHomeAmountFieldText()),
-                                Integer.parseInt(
-                                        houseInsuranceScene.getContentsAmountFieldText())),
-                        CurrentStatus.getCurrentCustomer());
-                DataBank.saveDataBank();
-                System.out.println("Hus registrert");
-                return "Boligforsikring registrert";
-            }
-        } else {
-            return this.registerHolidayHomeInsurance();
+                return this.registerHolidayHomeInsurance();
         }
     }
 
-    public String registerHolidayHomeInsurance() {
-        if (!this.validateHomeInsuranceData().equals("Success")) {
+    public String registerHolidayHomeInsurance(){
+        if(!this.validateHomeInsuranceData().equals("Success")){
             System.out.println("Feriehus feilet");
             return this.validateHomeInsuranceData();
         } else {
             manager.registerHolidayHomeInsurance(new HolidayHomeInsurance(
                             Authenticator.getInstance().getCurrentEmployee(),
-                            Integer.parseInt(
-                                    houseInsuranceScene.getAnnualPremiumFieldText()),
+                            Integer.parseInt(houseInsuranceScene.getAnnualPremiumFieldText()),
                             PaymentFrequency.ANNUALLY,
                             houseInsuranceScene.getConditionAreaText(),
                             houseInsuranceScene.getStreetAddressFieldText(),
                             houseInsuranceScene.getZipCodeFieldText(),
-                            Integer.parseInt(
-                                    houseInsuranceScene.getConstructionYearFieldText()),
+                            Integer.parseInt(houseInsuranceScene.getConstructionYearFieldText()),
                             houseInsuranceScene.getHomeTypeDropDownSelectedValue(),
                             houseInsuranceScene.getBuildingMaterialFieldText(),
                             houseInsuranceScene.getStandardFieldText(),
-                            Integer.parseInt(
-                                    houseInsuranceScene.getSquareMetersFieldText()),
-                            Integer.parseInt(
-                                    houseInsuranceScene.getHomeAmountFieldText()),
-                            Integer.parseInt(
-                                    houseInsuranceScene.getContentsAmountFieldText()),
+                            Integer.parseInt(houseInsuranceScene.getSquareMetersFieldText()),
+                            Integer.parseInt(houseInsuranceScene.getHomeAmountFieldText()),
+                            Integer.parseInt(houseInsuranceScene.getContentsAmountFieldText()),
                             houseInsuranceScene.getRentableBoxIsSelected()),
                     CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
-            return "Ferieboligforsikring registrert";
+            return "Feriehusforsikring registrert";
         }
     }
 
-    public String validateTravelInsuranceData() {
-        String feil = "Følgende felt har feil: \n";
+
+    public String validateTravelInsuranceData(){
+        String feil = "f�lgende felt feil: \n";
         boolean failed = false;
-        if (!this.validateInsuranceData(travelInsuranceScene).equals("Success")) {
+        if(!this.validateInsuranceData(travelInsuranceScene).equals("Success")){
             return this.validateInsuranceData(travelInsuranceScene);
         }
         if (!Validation.consistsOnlyOfNumbers(
-                travelInsuranceScene.getAnnualPremiumFieldText())) {
+                travelInsuranceScene.getAnnualPremiumFieldText())){
             feil += "\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
-                travelInsuranceScene.getInsuranceValueFieldText())) {
+                travelInsuranceScene.getInsuranceValueFieldText())){
             feil += "\n";
             failed = true;
 
         }
-        if (!failed) {
-            return DataControl.SUCCESS.getDescription();
-        } else {
-            return feil;   
+        if(!failed){
+            feil=  DataControl.SUCCESS.getDescription();
         }
+        return feil;
     }
     
     public String registerTravelInsurance() {
-        if (!this.validateTravelInsuranceData().equals("Success")) {
+        if(!this.validateTravelInsuranceData().equals("Success")){
             return this.validateTravelInsuranceData();
         } else {
             manager.registerTravelInsurance(new TravelInsurance(
                             Authenticator.getInstance().getCurrentEmployee(),
-                            Integer.parseInt(
-                                    travelInsuranceScene.getAnnualPremiumFieldText()),
-                            Integer.parseInt(
-                                    travelInsuranceScene.getInsuranceValueFieldText()),
+                            Integer.parseInt(travelInsuranceScene.getAnnualPremiumFieldText()),
+                            Integer.parseInt(travelInsuranceScene.getInsuranceValueFieldText()),
                             PaymentFrequency.ANNUALLY,
                             travelInsuranceScene.getConditionAreaText(),
                             travelInsuranceScene.getRegionDropDown()),

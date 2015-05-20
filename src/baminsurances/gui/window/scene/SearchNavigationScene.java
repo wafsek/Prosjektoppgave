@@ -21,6 +21,12 @@ public class SearchNavigationScene extends GeneralScene {
     private static final double WIDTH = GuiConfig.PRIMARY_WIDTH*1/2, HEIGHT = GuiConfig.PRIMARY_HEIGHT*1/10;;
     private VBox container;
 
+    /**
+     * Creates the components which are used in this class.
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
+     */
     public SearchNavigationScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler) {
         super(guiEventHandler, keyPressHandler);
         customerSearchButton = new IconButton().IconButtonWithText(HEIGHT,
@@ -50,8 +56,4 @@ public class SearchNavigationScene extends GeneralScene {
 
         scene = new Scene(borderPane);
     }
-
-    public Scene getScene() {
-        return scene;
-    }
-}
+} // End of File

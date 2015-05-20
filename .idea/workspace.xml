@@ -2,6 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/AddScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/AddScene.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/DifferentVehicleOwnerWindow.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/DifferentVehicleOwnerWindow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/GeneratingStage.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/GeneratingStage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SearchNavigationScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SearchNavigationScene.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SettingsScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SettingsScene.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificClaimAdviceScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificClaimAdviceScene.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificInsuranceScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificInsuranceScene.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/TravelInsuranceScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/TravelInsuranceScene.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -28,49 +37,77 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GeneralStage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/GeneralStage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="34" column="7" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GeneratingStage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/GeneratingStage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="92" column="68" selection-start-line="92" selection-start-column="68" selection-end-line="92" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GuiConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/GuiConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="51" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoadingWindow.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/LoadingWindow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageDialog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/MessageDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="221" column="9" selection-start-line="221" selection-start-column="9" selection-end-line="221" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="598" column="69" selection-start-line="598" selection-start-column="69" selection-end-line="598" selection-end-column="69" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StatisticScene.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.08635578">
-              <caret line="71" column="55" selection-start-line="71" selection-start-column="55" selection-end-line="71" selection-end-column="55" />
+            <state vertical-scroll-proportion="1.9974227">
+              <caret line="626" column="41" selection-start-line="626" selection-start-column="41" selection-end-line="626" selection-end-column="41" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#5376#5377#0" expanded="true" />
+                <element signature="e#5434#5435#0" expanded="true" />
+                <element signature="e#10066#10067#0" expanded="true" />
+                <element signature="e#10137#10138#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataBank.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/baminsurances/data/DataBank.java">
+      <file leaf-file-name="UpdateInfoWindow.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/UpdateInfoWindow.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+              <caret line="168" column="36" selection-start-line="168" selection-start-column="36" selection-end-line="168" selection-end-column="36" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataControl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/DataControl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-              <folding>
-                <element signature="e#997#998#0" expanded="false" />
-                <element signature="e#1043#1044#0" expanded="false" />
-                <element signature="e#1209#1210#0" expanded="false" />
-                <element signature="e#1248#1249#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -81,7 +118,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -96,7 +132,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/button/IconButton.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/eventhandler/Controller.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/LoginWindow.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/InsurePersonScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/data/generation/CustomerGenerator.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/api/CustomerServiceManager.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SearchMenuScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/OperationWindow.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/NavigationWindow.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/PrimaryStage.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/MainStage.java" />
@@ -110,54 +152,55 @@
         <option value="$PROJECT_DIR$/src/baminsurances/data/HomeInsurance.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/data/generation/CarInsuranceGenerator.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/InsureCarScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/GeneralStage.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/MessageDialog.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/DifferentVehicleOwnerWindow.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/eventhandler/KeyPressHandler.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/TravelInsuranceScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/BoatInsuranceScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/FindPersonScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/NavigationScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/AddScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SearchScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/GeneralScene.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/data/Insurance.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/PersonSearchScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/GeneratingStage.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/CarInsuranceScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/InsuranceScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/HouseInsuranceScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificInsuranceScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/UpdateInfoWindow.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/ClaimAdviceScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/StatisticController.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/api/CustomerServiceManager.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/security/User.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/controller/CurrentStatus.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/security/Authenticator.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/api/Serializer.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/HouseInsuranceScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/NavigationScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/GeneralStage.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/LoadingWindow.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/data/generation/DataBankGenerator.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/UpdateInfoWindow.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/InsuranceScene.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/HandleCustomerScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/controller/StatisticController.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/button/IconButton.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/eventhandler/GuiEventHandler.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/data/DataBank.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/StatisticOption.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/api/Searcher.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/StatisticWindow.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticOption.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/controller/DataControl.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/eventhandler/KeyPressHandler.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/ClaimAdviceScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticsScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/PersonSearchScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SearchScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/FindPersonScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/GeneralScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/CarInsuranceScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/BoatInsuranceScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/GeneratingStage.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/AddScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SearchNavigationScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SettingsScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificClaimAdviceScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificInsuranceScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/TravelInsuranceScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/DifferentVehicleOwnerWindow.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" />
       </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
     </option>
   </component>
   <component name="NamedScopeManager">
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1932" />
-    <option name="height" value="1050" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="784" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -183,6 +226,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -316,13 +360,48 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="prosjektoppgave-programutvikling-2015" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="prosjektoppgave-programutvikling-2015" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="baminsurances" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="prosjektoppgave-programutvikling-2015" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="prosjektoppgave-programutvikling-2015" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="generator_resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -345,11 +424,7 @@
     <property name="OverrideImplement.overriding.sorted" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\workspace\git-projects\prosjektoppgave-programutvikling-2015\src\baminsurances\gui\window" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\workspace\git-projects\prosjektoppgave-programutvikling-2015\src\baminsurances\gui\window" />
       <recent name="C:\GitProjects\prosjektoppgave-programutvikling-2015\src\baminsurances\gui\img" />
     </key>
   </component>
@@ -367,9 +442,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/data/ClaimAdvice.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/data/DataBank.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/data/Insurance.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/controller/Controller.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -633,18 +706,6 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="executeSpecs" factoryName="Gauge Execution">
-      <setting name="environment" value="" />
-      <setting name="specsToExecute" value="" />
-      <setting name="tags" value="" />
-      <setting name="parallelNodes" value="" />
-      <setting name="execInParallel" value="false" />
-      <setting name="programParameters" value="" />
-      <setting name="workingDirectory" value="" />
-      <envMap />
-      <setting name="rowsRange" value="" />
-      <method />
-    </configuration>
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="Application.Gui" />
     </list>
@@ -668,6 +729,192 @@
       <created>1428591007092</created>
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
+    </task>
+    <task id="LOCAL-00005" summary="adden methods to the data bank">
+      <created>1429035435045</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1429035435045</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fixed the gui bug where the scene would go black. (KEY WORDS: Minor differences in windowsize, and components not being allowed to scale by default) Also added functionality to AddScene, InsurePersonScene and GuiEventHandler">
+      <created>1429127231861</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1429127231861</updated>
+    </task>
+    <task id="LOCAL-00007" summary="forgot to add the icons to the push by misstake. Corrected with this.">
+      <created>1429190199989</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1429190199989</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Just a few lines of code has been added. Pushing to avoid merge conflict at home.">
+      <created>1429253049796</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1429253049796</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Just a few lines of code has been added. Pushing to avoid merge conflict at home.">
+      <created>1429253102247</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1429253102247</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added som code for the InsureCarScene. Also added a footer to all the scenes. Give me feedback on that.">
+      <created>1429299487457</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1429299487459</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added a couple of scenes. Also fixed some potential nullpointers and reduced the code to avoid them">
+      <created>1429556310383</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1429556310383</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Redisigned how some of the scenes are built. The way you look a person up is defined in its own, abstract class. Also did minor changes in the rest of the Gui">
+      <created>1429805865173</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1429805865173</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Changed how some scenes work, and also made started on the SearchScene. Did some changes to the Handlers.">
+      <created>1430404459121</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1430404459121</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Finished the base look of SearchScene">
+      <created>1430408430766</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1430408430766</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Minor changes">
+      <created>1430415798989</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1430415798989</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Minor changes">
+      <created>1430415833097</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1430415833097</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Changed the names of many datafields and I have started to work on a more interactive GUI">
+      <created>1430826224428</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1430826224428</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Changed the names of many datafields and I have started to work on a more interactive GUI">
+      <created>1430826253820</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1430826253820</updated>
+    </task>
+    <task id="LOCAL-00019" summary="The scene where you register people is now more interactive, and easy to use for the user.">
+      <created>1430827898376</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1430827898376</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Fixed a minor bug in controller where you register a person, so that I can run Gui again">
+      <created>1430900449385</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1430900449385</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Every scene that has to do with search now has a listener">
+      <created>1430920603768</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1430920603768</updated>
+    </task>
+    <task id="LOCAL-00022" summary="The TravelInsuranceScene now displays possible people. Still a few bugs we need to look at. &#10;- It show all customers when all textfields are empty.&#10;- Got a nullpointer in Person, line 56.&#10;- Not sure how the TableView will react under stress. Need to test that.">
+      <created>1430925791253</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1430925791253</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Added comments to AddScene">
+      <created>1431097649876</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1431097649876</updated>
+    </task>
+    <task id="LOCAL-00024" summary="A basic scene for claim advice is added.">
+      <created>1431354779650</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1431354779650</updated>
+    </task>
+    <task id="LOCAL-00025" summary="I have started to work on the new Gui. Please do not touch anything yet, and let Controller be for a little while. I will just do the most basic stuff there. You can do the more advanced stuff later, Sarai.">
+      <created>1431374418824</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1431374418824</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Just made a few minor changes. Pushing so I can work on my home pc">
+      <created>1431422330088</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1431422330088</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Fixed a minor bug in AddScene, where the TextFields did not work how they should. &#10;&#10;Controller now has access to all the button which are in the program at this point">
+      <created>1431513567872</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1431513567872</updated>
+    </task>
+    <task id="LOCAL-00028" summary="TableView problem might be fixed. Try it">
+      <created>1431517727700</created>
+      <option name="number" value="00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1431517727700</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Bug with TableView is now fixed.">
+      <created>1431521906198</created>
+      <option name="number" value="00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1431521906198</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Generating stage is somewhat complete">
+      <created>1431527109195</created>
+      <option name="number" value="00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1431527109195</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Generating stage is somewhat complete">
+      <created>1431540516021</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1431540516021</updated>
+    </task>
+    <task id="LOCAL-00032" summary="The scenes for boat insurance and house insurance is finished. They just need functionality added to them.">
+      <created>1431608932203</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1431608932203</updated>
+    </task>
+    <task id="LOCAL-00033" summary="New scenes are added with more functionality added to most of them.">
+      <created>1431617931423</created>
+      <option name="number" value="00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1431617931423</updated>
+    </task>
+    <task id="LOCAL-00034" summary="The scene for car insurance is now finished. It handles all the generation of the car owner, if it's desired to have a different one than the current customer.">
+      <created>1431627553187</created>
+      <option name="number" value="00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1431627553187</updated>
+    </task>
+    <task id="LOCAL-00035" summary="The insurance scenes are now almost done">
+      <created>1431634621765</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1431634621765</updated>
     </task>
     <task id="LOCAL-00036" summary="Car insurance scene now returns enums for car type. Also it generates production years based on what year we are in">
       <created>1431686031329</created>
@@ -741,247 +988,61 @@
       <option name="project" value="LOCAL" />
       <updated>1431784764872</updated>
     </task>
-    <task id="LOCAL-00048" summary="Another minor display bug fix">
-      <created>1431940301432</created>
+    <task id="LOCAL-00048" summary="search navigation is finished. Settings scene is also added and finished">
+      <created>1431948106499</created>
       <option name="number" value="00048" />
       <option name="project" value="LOCAL" />
-      <updated>1431940301432</updated>
+      <updated>1431948106499</updated>
     </task>
-    <task id="LOCAL-00049" summary="Fininshing validation">
-      <created>1431950788776</created>
+    <task id="LOCAL-00049" summary="Loading window is complete for the generation. Also fixed the explanation for the generation window.">
+      <created>1431965553042</created>
       <option name="number" value="00049" />
       <option name="project" value="LOCAL" />
-      <updated>1431950788776</updated>
+      <updated>1431965553042</updated>
     </task>
-    <task id="LOCAL-00050" summary="Fininshing validation">
-      <created>1431950814661</created>
+    <task id="LOCAL-00050" summary="Made a few visual updates.">
+      <created>1431972621469</created>
       <option name="number" value="00050" />
       <option name="project" value="LOCAL" />
-      <updated>1431950814662</updated>
+      <updated>1431972621498</updated>
     </task>
-    <task id="LOCAL-00051" summary="Finishing the insurance creating">
-      <created>1431951076928</created>
+    <task id="LOCAL-00051" summary="Added a few comments to the Gui classes">
+      <created>1432029325531</created>
       <option name="number" value="00051" />
       <option name="project" value="LOCAL" />
-      <updated>1431951076928</updated>
+      <updated>1432029325536</updated>
     </task>
-    <task id="LOCAL-00052" summary="employee login fixing">
-      <created>1431954686767</created>
+    <task id="LOCAL-00052" summary="Added a few comments to the Gui classes and deleted alot of old Gui classes">
+      <created>1432030540621</created>
       <option name="number" value="00052" />
       <option name="project" value="LOCAL" />
-      <updated>1431954686768</updated>
+      <updated>1432030540621</updated>
     </task>
-    <task id="LOCAL-00053" summary="employee login fixing">
-      <created>1431954734195</created>
+    <task id="LOCAL-00053" summary="Added a few visual updates and started the work on specific claim advice scene">
+      <created>1432052385046</created>
       <option name="number" value="00053" />
       <option name="project" value="LOCAL" />
-      <updated>1431954734195</updated>
+      <updated>1432052385047</updated>
     </task>
-    <task id="LOCAL-00054" summary="employee login fixed ...For now">
-      <created>1431955933131</created>
-      <option name="number" value="00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1431955933131</updated>
-    </task>
-    <task id="LOCAL-00055" summary="employee login fixed ...For now">
-      <created>1431955954750</created>
-      <option name="number" value="00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1431955954750</updated>
-    </task>
-    <task id="LOCAL-00056" summary="Tidying the code">
-      <created>1431957096831</created>
-      <option name="number" value="00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1431957096831</updated>
-    </task>
-    <task id="LOCAL-00057" summary="Tidying the code">
-      <created>1431957113237</created>
-      <option name="number" value="00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1431957113237</updated>
-    </task>
-    <task id="LOCAL-00058" summary="Tidying the code">
-      <created>1432034169265</created>
-      <option name="number" value="00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1432034169266</updated>
-    </task>
-    <task id="LOCAL-00059" summary="Tidying the code">
-      <created>1432034176340</created>
-      <option name="number" value="00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1432034176340</updated>
-    </task>
-    <task id="LOCAL-00060" summary="Tidying the code">
-      <created>1432034199461</created>
-      <option name="number" value="00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1432034199461</updated>
-    </task>
-    <task id="LOCAL-00061" summary="Tidying the code">
-      <created>1432045317412</created>
-      <option name="number" value="00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1432045317412</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Statistic getting fancy">
-      <created>1432045910330</created>
-      <option name="number" value="00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1432045910330</updated>
-    </task>
-    <task id="LOCAL-00063" summary="toString()">
-      <created>1432046228052</created>
-      <option name="number" value="00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1432046228052</updated>
-    </task>
-    <task id="LOCAL-00064" summary="Statistic xAxis">
-      <created>1432077426936</created>
-      <option name="number" value="00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1432077426936</updated>
-    </task>
-    <task id="LOCAL-00065" summary="More options on statistic">
-      <created>1432080106314</created>
-      <option name="number" value="00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1432080106315</updated>
-    </task>
-    <task id="LOCAL-00066" summary="More options on statistic">
-      <created>1432082527159</created>
-      <option name="number" value="00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1432082527159</updated>
-    </task>
-    <task id="LOCAL-00067" summary="much animation ,such fancy ,wow">
-      <created>1432083068109</created>
-      <option name="number" value="00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1432083068109</updated>
-    </task>
-    <task id="LOCAL-00068" summary="Statistic Scene completed !">
-      <created>1432089184284</created>
-      <option name="number" value="00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1432089184284</updated>
-    </task>
-    <task id="LOCAL-00069" summary="Statistic Scene completed !">
-      <created>1432089209078</created>
-      <option name="number" value="00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1432089209078</updated>
-    </task>
-    <task id="LOCAL-00070" summary="Statistic Scene refactoring underway">
-      <created>1432089430665</created>
-      <option name="number" value="00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1432089430666</updated>
-    </task>
-    <task id="LOCAL-00071" summary="Statistic Scene refactoring underway">
-      <created>1432089455171</created>
-      <option name="number" value="00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1432089455171</updated>
-    </task>
-    <task id="LOCAL-00072" summary="Statistic Scene refactoring underway">
-      <created>1432089487703</created>
-      <option name="number" value="00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1432089487703</updated>
-    </task>
-    <task id="LOCAL-00073" summary="car insurance fixing">
-      <created>1432091876228</created>
-      <option name="number" value="00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1432091876228</updated>
-    </task>
-    <task id="LOCAL-00074" summary="all insurance fixed ....for now.">
-      <created>1432092876547</created>
-      <option name="number" value="00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1432092876547</updated>
-    </task>
-    <task id="LOCAL-00075" summary="all insurance fixed ....for now.">
-      <created>1432092884725</created>
-      <option name="number" value="00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1432092884725</updated>
-    </task>
-    <task id="LOCAL-00076" summary="all insurance fixed ....for now.(part two)">
-      <created>1432093820081</created>
-      <option name="number" value="00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1432093820081</updated>
-    </task>
-    <task id="LOCAL-00077" summary="all insurance fixed ....for now.(part two)">
-      <created>1432093828311</created>
-      <option name="number" value="00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1432093828311</updated>
-    </task>
-    <task id="LOCAL-00078" summary="all insurance fixed ....for now.(part three)">
-      <created>1432094861116</created>
-      <option name="number" value="00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1432094861116</updated>
-    </task>
-    <task id="LOCAL-00079" summary="all insurance fixed ....for now.(part three)">
-      <created>1432094958590</created>
-      <option name="number" value="00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1432094958590</updated>
-    </task>
-    <task id="LOCAL-00080" summary="all insurance fixed ....for now.(part three)">
-      <created>1432095411051</created>
-      <option name="number" value="00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1432095411051</updated>
-    </task>
-    <task id="LOCAL-00081" summary="all insurance fixed ....for now.(part four i swear to god this is the last time)">
-      <created>1432095729308</created>
-      <option name="number" value="00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1432095729308</updated>
-    </task>
-    <task id="LOCAL-00082" summary="all insurance fixed ....for now.(part five i leied about last time thing )">
-      <created>1432095885173</created>
-      <option name="number" value="00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1432095885173</updated>
-    </task>
-    <task id="LOCAL-00083" summary="Person insurance fixed">
-      <created>1432100010725</created>
-      <option name="number" value="00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1432100010726</updated>
-    </task>
-    <task id="LOCAL-00084" summary="The statistic window is Ready to present.">
-      <created>1432104352006</created>
-      <option name="number" value="00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1432104352006</updated>
-    </task>
-    <option name="localTasksCounter" value="85" />
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1932" height="1050" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32815966" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32740742" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32150775" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.2549889" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="321" y="546" width="710" height="390" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32740742" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3837037" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33583692" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17423134" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1008,37 +1069,35 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="TableView problem might be fixed. Try it" />
+    <MESSAGE value="Bug with TableView is now fixed." />
+    <MESSAGE value="Generating stage is somewhat complete" />
+    <MESSAGE value="The scenes for boat insurance and house insurance is finished. They just need functionality added to them." />
+    <MESSAGE value="New scenes are added with more functionality added to most of them." />
+    <MESSAGE value="The scene for car insurance is now finished. It handles all the generation of the car owner, if it's desired to have a different one than the current customer." />
+    <MESSAGE value="The insurance scenes are now almost done" />
+    <MESSAGE value="Car insurance scene now returns enums for car type. Also it generates production years based on what year we are in" />
+    <MESSAGE value="Home insurance is ready" />
+    <MESSAGE value="The scene for boat insurance is now ready as well." />
+    <MESSAGE value="Insurance scene is fixed. Does no longer import NameDisplayable" />
+    <MESSAGE value="Controller still needs fixing..." />
+    <MESSAGE value="You can now choose a specific customer, which will be displayed on the handler scene. You can not proceed from the search, before you have a customer chosen" />
+    <MESSAGE value="started work on the specific insurances scene" />
     <MESSAGE value="All the specific insurance scenes are done. I will link them up to controller tomorrow, and make the method which open the window that will allow you to change the values of the given insurance." />
     <MESSAGE value="All the scenes now has an updating username label." />
     <MESSAGE value="Changed how the table reads it's values based on Martins finds" />
     <MESSAGE value="Minor changes. Some textfields displayed wrong info, which is now fixed" />
     <MESSAGE value="Another minor display bug fix" />
-    <MESSAGE value="Fininshing validation" />
-    <MESSAGE value="Finishing the insurance creating" />
-    <MESSAGE value="employee login fixing" />
-    <MESSAGE value="employee login fixed ...For now" />
-    <MESSAGE value="Tidying the code" />
-    <MESSAGE value="Statistic getting fancy" />
-    <MESSAGE value="toString()" />
-    <MESSAGE value="Statistic xAxis" />
-    <MESSAGE value="More options on statistic" />
-    <MESSAGE value="much animation ,such fancy ,wow" />
-    <MESSAGE value="Statistic Scene completed !" />
-    <MESSAGE value="Statistic Scene refactoring underway" />
-    <MESSAGE value="car insurance fixing" />
-    <MESSAGE value="all insurance fixed ....for now." />
-    <MESSAGE value="all insurance fixed ....for now.(part two)" />
-    <MESSAGE value="all insurance fixed ....for now.(part three)" />
-    <MESSAGE value="all insurance fixed ....for now.(part four i swear to god this is the last time)" />
-    <MESSAGE value="all insurance fixed ....for now.(part five i leied about last time thing )" />
-    <MESSAGE value="Person insurance fixed" />
-    <MESSAGE value="The statistic window is Ready to present." />
-    <option name="LAST_COMMIT_MESSAGE" value="The statistic window is Ready to present." />
+    <MESSAGE value="search navigation is finished. Settings scene is also added and finished" />
+    <MESSAGE value="Loading window is complete for the generation. Also fixed the explanation for the generation window." />
+    <MESSAGE value="Made a few visual updates." />
+    <MESSAGE value="Added a few comments to the Gui classes" />
+    <MESSAGE value="Added a few comments to the Gui classes and deleted alot of old Gui classes" />
+    <MESSAGE value="Added a few visual updates and started the work on specific claim advice scene" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a few visual updates and started the work on specific claim advice scene" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="1" />
-    </breakpoint-manager>
+    <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1046,45 +1105,80 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/DataControl.java">
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/Gui.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding>
-            <element signature="e#997#998#0" expanded="false" />
-            <element signature="e#1043#1044#0" expanded="false" />
-            <element signature="e#1209#1210#0" expanded="false" />
-            <element signature="e#1248#1249#0" expanded="false" />
-          </folding>
+          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/HolidayHomeInsurance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.30749354">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/NavigationScene.java">
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/BoatType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.30749354">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/GeneralScene.java">
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/generation/ClaimAdviceGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="224" column="0" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/PersonSearchScene.java">
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/generation/CarInsuranceGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.70284235">
+          <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/TravelRegion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30749354">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/BoatInsurance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.12">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/api/Deserializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/CarInsurance.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/TravelInsurance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.087855294">
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20552677">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1095,338 +1189,316 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/GeneratingStage.java">
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/CurrentStatus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="47" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/CarInsuranceScene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="92" selection-start-line="64" selection-start-column="92" selection-end-line="64" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/Insurance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/HouseInsuranceScene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="104" column="5" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificInsuranceScene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="395" column="41" selection-start-line="395" selection-start-column="41" selection-end-line="395" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/UpdateInfoWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="66" selection-start-line="29" selection-start-column="66" selection-end-line="29" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/prosjektoppgave-programutvikling-2015/src/baminsurances/controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6075949">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/ClaimAdviceScene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="51" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/data/HomeInsurance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54315305">
-          <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.5517774">
+          <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/HolidayHomeInsurance.java">
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/HomeType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="54" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/Employee.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_11/javafx-src.zip!/com/sun/glass/ui/win/WinApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.21907216">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/security/User.java">
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/generation/DataBankGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/security/Authenticator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+          <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/HandleCustomerScene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0">
-          <caret line="218" column="0" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/eventhandler/GuiEventHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/VehicleInsurance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-          <folding />
+        <state vertical-scroll-proportion="0.039906103">
+          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/button/IconButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.6713614">
+          <caret line="96" column="7" selection-start-line="96" selection-start-column="7" selection-end-line="96" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/CarType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19953051">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/eventhandler/KeyPressHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="59" selection-start-line="39" selection-start-column="59" selection-end-line="39" selection-end-column="59" />
-          <folding />
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/Gui.java">
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/eventhandler/GuiEventHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9976526">
+          <caret line="31" column="6" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/Insurance.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
+          <caret line="274" column="20" selection-start-line="274" selection-start-column="20" selection-end-line="274" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/api/config.properties">
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/FindPersonScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7206573">
+          <caret line="78" column="67" selection-start-line="78" selection-start-column="67" selection-end-line="78" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/ClaimAdviceScene.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+          <caret line="128" column="55" selection-start-line="128" selection-start-column="55" selection-end-line="128" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/api/Commandline.java">
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/GeneralScene.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/api/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/api/Deserializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/api/Serializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/api/Validation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/CurrentStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/TravelInsurance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31408775">
-          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_40/javafx-src.zip!/javafx/scene/chart/LineChart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="209" column="0" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_40/javafx-src.zip!/javafx/scene/layout/Pane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70247936">
-          <caret line="140" column="42" selection-start-line="140" selection-start-column="42" selection-end-line="140" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_40/javafx-src.zip!/javafx/scene/chart/ValueAxis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33264464">
-          <caret line="444" column="0" selection-start-line="444" selection-start-column="0" selection-end-line="444" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/InsuranceScene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="108" column="8" selection-start-line="108" selection-start-column="8" selection-end-line="108" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/PaymentFrequency.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20031299">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="11" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/VehicleType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20031299">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/StatisticController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52425665">
-          <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/BoatType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17527387">
-          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/CarInsurance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/BoatInsurance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_40/javafx-src.zip!/javafx/collections/ObservableListBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="244" column="0" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/GuiConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/api/CustomerServiceManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1833#1834#0" expanded="false" />
+            <element signature="e#1861#1862#0" expanded="false" />
+            <element signature="e#2085#2086#0" expanded="false" />
+            <element signature="e#2120#2121#0" expanded="false" />
+            <element signature="e#2343#2344#0" expanded="false" />
+            <element signature="e#2376#2377#0" expanded="false" />
+            <element signature="e#2557#2558#0" expanded="false" />
+            <element signature="e#2610#2611#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/data/ClaimAdvice.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="265" column="4" selection-start-line="265" selection-start-column="4" selection-end-line="265" selection-end-column="4" />
+          <caret line="233" column="13" selection-start-line="233" selection-start-column="13" selection-end-line="233" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/InsuranceScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.484536">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/LoginScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.25">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/NavigationScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3221649">
+          <caret line="60" column="46" selection-start-line="60" selection-start-column="46" selection-end-line="60" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/PersonSearchScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.703608">
+          <caret line="123" column="53" selection-start-line="123" selection-start-column="53" selection-end-line="123" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/AddScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.693299">
+          <caret line="336" column="39" selection-start-line="336" selection-start-column="39" selection-end-line="336" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/SearchNavigationScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.701031">
+          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/CarInsuranceScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.9510307">
+          <caret line="81" column="47" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/BoatInsuranceScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.043814432">
+          <caret line="67" column="42" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/HouseInsuranceScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0025773">
+          <caret line="60" column="62" selection-start-line="60" selection-start-column="62" selection-end-line="60" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/SettingsScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29896906">
+          <caret line="63" column="52" selection-start-line="63" selection-start-column="52" selection-end-line="63" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificClaimAdviceScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.693299">
+          <caret line="134" column="16" selection-start-line="134" selection-start-column="16" selection-end-line="134" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/DifferentVehicleOwnerWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.693299">
+          <caret line="151" column="17" selection-start-line="151" selection-start-column="17" selection-end-line="151" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/TravelInsuranceScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.693299">
+          <caret line="58" column="44" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
+          <folding>
+            <element signature="e#2040#2041#0" expanded="false" />
+            <element signature="e#2088#2089#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33247423">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticOption.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.21907216">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/DataControl.java">
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificInsuranceScene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding>
-            <element signature="e#997#998#0" expanded="false" />
-            <element signature="e#1043#1044#0" expanded="false" />
-            <element signature="e#1209#1210#0" expanded="false" />
-            <element signature="e#1248#1249#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.5618557">
+          <caret line="483" column="65" selection-start-line="483" selection-start-column="65" selection-end-line="483" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/api/Searcher.java">
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/GeneralStage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="730" column="0" selection-start-line="730" selection-start-column="0" selection-end-line="730" selection-end-column="0" />
+          <caret line="34" column="7" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/GeneratingStage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="92" column="68" selection-start-line="92" selection-start-column="68" selection-end-line="92" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/GuiConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="51" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/LoadingWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/UpdateInfoWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="168" column="36" selection-start-line="168" selection-start-column="36" selection-end-line="168" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/MessageDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="221" column="9" selection-start-line="221" selection-start-column="9" selection-end-line="221" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="598" column="69" selection-start-line="598" selection-start-column="69" selection-end-line="598" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/DataBank.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08635578">
-          <caret line="71" column="55" selection-start-line="71" selection-start-column="55" selection-end-line="71" selection-end-column="55" />
+        <state vertical-scroll-proportion="1.9974227">
+          <caret line="626" column="41" selection-start-line="626" selection-start-column="41" selection-end-line="626" selection-end-column="41" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#5376#5377#0" expanded="true" />
+            <element signature="e#5434#5435#0" expanded="true" />
+            <element signature="e#10066#10067#0" expanded="true" />
+            <element signature="e#10137#10138#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1500,7 +1572,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

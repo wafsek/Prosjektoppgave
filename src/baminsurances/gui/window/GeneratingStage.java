@@ -1,5 +1,6 @@
 package baminsurances.gui.window;
 
+import baminsurances.data.DataBank;
 import baminsurances.data.generation.DataBankGenerator;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
@@ -20,7 +21,7 @@ import javafx.stage.Stage;
 public class GeneratingStage {
     private Stage stage;
     private Scene scene;
-    private Button generateButton;
+    private Button generateButton, wipeDataBaseButton;
     private Label customerLabel, employeeLabel, insuranceLabel, headerLabel,
             claimAdviceLabel, informationLabel;
     private VBox headerContainer;
@@ -57,19 +58,19 @@ public class GeneratingStage {
         customerBox = new ComboBox<>(FXCollections.observableArrayList(
                 "1", "10", "100", "1000", "10000"));
         customerBox.setValue("1");
-        customerBox.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1/12);
+        customerBox.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 12);
         employeeBox = new ComboBox<>(FXCollections.observableArrayList(
                 "1", "10", "100"));
         employeeBox.setValue("1");
-        employeeBox.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1/12);
+        employeeBox.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 12);
         insuranceBox = new ComboBox<>(FXCollections.observableArrayList(
                 "1", "10", "100", "1000", "10000", "50000"));
         insuranceBox.setValue("1");
-        insuranceBox.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1/12);
+        insuranceBox.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 12);
         claimAdviceBox = new ComboBox<>(FXCollections.observableArrayList(
                 "1", "10", "100", "1000"));
         claimAdviceBox.setValue("1");
-        claimAdviceBox.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1/12);
+        claimAdviceBox.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 12);
 
         generateButton = new Button("Generer");
         generateButton.setOnAction(e -> {
@@ -81,12 +82,15 @@ public class GeneratingStage {
             System.out.println(customerBox.selectionModelProperty());
         });
 
+        wipeDataBaseButton = new Button("Slett database");
+        //wipeDataBaseButton.setOnAction(e -> DataBank.delete());
+
         headerContainer = new VBox(10, headerLabel, informationLabel);
         headerContainer.setAlignment(Pos.CENTER);
 
         componentContainer = new GridPane();
         componentContainer.addColumn(0, customerLabel, employeeLabel,
-                insuranceLabel, claimAdviceLabel);
+                insuranceLabel, claimAdviceLabel, wipeDataBaseButton);
         componentContainer.addColumn(1, customerBox, employeeBox, insuranceBox,
                 claimAdviceBox, generateButton);
         componentContainer.setAlignment(Pos.CENTER);
