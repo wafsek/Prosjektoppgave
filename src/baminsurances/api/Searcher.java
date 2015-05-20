@@ -737,11 +737,12 @@ public class Searcher {
     }
     
     /**
-     * Returns a map where the outer key is a region, and the outer value is a
-     * new map. In this new map, the key is a type of insurance, and the value
-     * is the number of insurances of that type.
+     * Returns a map of a map, where the outer key is a region, and the outer
+     * value is a new map. In this new map, the key is a type of insurance, and
+     * the value is the number of insurances of that type.
      * 
-     * @return a map representing the number of an insurance type in a region
+     * @return a map of a map, representing the number of an insurance type in
+     * a region
      */
     public Map<String, TreeMap<String, Integer>> getInsuranceTypesPerRegion() {
         Map<String, TreeMap<String, Integer>> result =
@@ -781,6 +782,54 @@ public class Searcher {
             }
         }
         
+        return result;
+    }
+    
+    /**
+     * Returns a map of a map, where the outer key is a year, and the outer
+     * value is a new map. In this new map, the key is a type of insurance, and
+     * the value is the sum of payments for that insurance for a year.
+     * 
+     * @return a map of a map, representing the sum of payments for insurance
+     * type during a year
+     */
+    public Map<Integer, TreeMap<String, Integer>> getPaymentsPerInsuranceTypePerYear() {
+        Map<Integer, TreeMap<String, Integer>> result = new HashMap<>();
+        
+        Map<Class<? extends Insurance>, String> insuranceClassToString =
+                getInsuranceClassToString();
+        
+        /**
+         * Initalizing all values to 0, so that they are included even if the
+         * region does not have any insurances of that type. 
+         */
+        for (int i = 1997; i < LocalDate.now().getYear() - 1; i++) {
+            TreeMap<String, Integer> inner = new TreeMap<>();
+            
+            for (String type : insuranceClassToString.values()) {
+                inner.put(type, 0);
+            }
+            result.put(i, inner);
+        }
+        
+        for (Customer cus : dataBank.getCustomerList()) {
+            for (Insurance ins : cus.getInsurances()) {
+                String type = insuranceClassToString.get(ins.getClass());
+                
+                for (Map.Entry<LocalDate, Integer> payments :
+                        ins.getPayments().entrySet()) {
+                    int year = payments.getKey().getYear();
+                    Map<String, Integer> inner = result.get(year);
+                    
+                    Integer currentNum = inner.get(type);
+                    if (currentNum == null) {
+                        currentNum = 0;
+                    }
+                    
+                    inner.put(type, currentNum + payments.getValue());
+                }
+            }
+        }
         return result;
     }
     
