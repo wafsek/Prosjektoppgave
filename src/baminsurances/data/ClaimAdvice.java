@@ -139,7 +139,10 @@ public class ClaimAdvice implements Comparable<ClaimAdvice>, Serializable {
      */
     public static void resetNextDamageNo() {
         try {
-            Files.delete(new File("data/next_damage_no.dta").toPath());
+            File f = new File("data/next_damage_no.dta");
+            if (f.exists()) {
+                Files.delete(f.toPath());   
+            }
             nextDamageNo = 0;
         } catch (NoSuchElementException e) {
             nextDamageNo = 0;

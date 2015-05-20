@@ -35,10 +35,16 @@ public class SpecificInsuranceScene extends GeneralScene {
     private TableColumn<ClaimAdvice, String> damageTypeColumn, dateOfDamageColumn, damageNoColumn;
     private BorderPane leftSideContainer, rightSideContainer;
     private GridPane topContainer, middleContainer,
-            rightSideContentContainer, bottomContainer, fieldButtonContainer;
+            rightSideContentContainer, bottomContainer;
     private HBox headerContainer, tableButtons, rightHeaderContainer;
     private VBox fieldContainer, rightSideItemContainer;
 
+    /**
+     * Creates the components used by this class.
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
+     */
     public SpecificInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler) {
         super(guiEventHandler, keyPressHandler);
 
@@ -173,6 +179,12 @@ public class SpecificInsuranceScene extends GeneralScene {
         rightHeaderContainer.setAlignment(Pos.CENTER);
     }
 
+    /**
+     * Creates an entire new Scene and returns it.
+     *
+     * @param carInsurance
+     * @return Scene.
+     */
     public Scene getCarInsuranceInfoScene(CarInsurance carInsurance) {
         TextField registrationNumberField = new TextField(carInsurance.getRegistrationNo()),
                 carTypeField = new TextField(carInsurance.getType().toString()),
@@ -236,6 +248,13 @@ public class SpecificInsuranceScene extends GeneralScene {
         return new Scene(borderPane);
     }
 
+
+    /**
+     * Creates an entire new Scene and returns it.
+     *
+     * @param boatInsurance
+     * @return Scene.
+     */
     public Scene getBoatInsuranceInfoScene(BoatInsurance boatInsurance) {
         TextField regstrationNoField = new TextField(boatInsurance.getRegistrationNo()),
                 boatTypeField = new TextField(boatInsurance.getType().toString()),
@@ -300,6 +319,12 @@ public class SpecificInsuranceScene extends GeneralScene {
         return new Scene(borderPane);
     }
 
+    /**
+     * Creates an entire new Scene and returns it.
+     *
+     * @param homeInsurance
+     * @return Scene.
+     */
     public Scene getHouseInsuranceInfoScene(HomeInsurance homeInsurance) {
 
         Label streetAddressLabel = new Label("Adresse:"),
@@ -370,6 +395,12 @@ public class SpecificInsuranceScene extends GeneralScene {
         return new Scene(borderPane);
     }
 
+    /**
+     * Creates an entire new Scene and returns it.
+     *
+     * @param travelInsurance
+     * @return Scene.
+     */
     public Scene getTravelInsuranceInfoScene(TravelInsurance travelInsurance) {
         Label regionLabel = new Label("Region:");
         TextField regionField = new TextField(travelInsurance.getRegion().toString());
@@ -412,24 +443,47 @@ public class SpecificInsuranceScene extends GeneralScene {
         return new Scene(borderPane);
     }
 
+    /**
+     * Returns the Button newClaimAdviceButton.
+     *
+     * @return the Button newClaimAdviceButton.
+     */
     public Button getNewClaimAdviceButton() {
         return newClaimAdviceButton;
     }
 
+    /**
+     * Returns the Button chooseClaimAdviceButton.
+     *
+     * @return the Button chooseClaimAdviceButton.
+     */
     public Button getChooseClaimAdviceButton() {
         return chooseClaimAdviceButton;
     }
 
+    /**
+     * Returns the Button updateInfoButton.
+     *
+     * @return the Button updateInfoButton.
+     */
     public Button getUpdateInfoButton() {
         return updateInfoButton;
     }
 
+    /**
+     * Disables newClaimAdviceButton and updateInfoButton.
+     */
     public void setNewClaimAdviceButtonDisabled() {
         newClaimAdviceButton.setDisable(true);
         updateInfoButton.setDisable(true);
     }
 
+    /**
+     * Returns the ClaimAdvice object selected in the TableView.
+     *
+     * @return the ClaimAdvice object selected in the TableView.
+     */
     public ClaimAdvice getSelectedClaimAdvice() {
         return claimAdviceTable.getSelectionModel().getSelectedItem();
     }
-}
+} // End of Class

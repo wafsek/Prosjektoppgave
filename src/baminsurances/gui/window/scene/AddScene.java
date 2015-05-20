@@ -331,5 +331,9 @@ public class AddScene extends GeneralScene{
             fieldCheck(textFieldsArray[i]);
         }
         fillAdressAndZipFields();
+        emailField.setText("");
+        telephoneNumberField.setText("");
+        fieldCheck(emailField);
+        fieldCheck(telephoneNumberField);
     }
 } // End of File

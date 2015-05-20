@@ -130,7 +130,10 @@ public abstract class Insurance implements Comparable<Insurance>, Serializable {
      */
     public static void resetNextInsuranceNo() {
         try {
-            Files.delete(new File("data/next_insurance_no.dta").toPath());
+            File f = new File("data/next_insurance_no.dta");
+            if (f.exists()) {
+                Files.delete(f.toPath());   
+            }
             nextInsuranceNo = 0;
         } catch (NoSuchElementException e) {
             nextInsuranceNo = 0;

@@ -3,18 +3,20 @@ package baminsurances.gui.eventhandler;
 import baminsurances.controller.Controller;
 import baminsurances.gui.window.scene.*;
 import javafx.event.EventHandler;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
 import java.util.Iterator;
 
 /**
- * Created by Adrian PC on 19/04/2015.
+ * The class that handles keys pressed by the user.
+ * 
  * @author Adrian Melsom
  */
 public class KeyPressHandler implements EventHandler<KeyEvent> {
 
     private FindPersonScene findPersonScene;
-    private Iterator txtFieldsIterator;
+    private Iterator<TextField> txtFieldsIterator;
     private Controller controller;
 
     /**

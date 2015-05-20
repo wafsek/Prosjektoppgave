@@ -37,7 +37,7 @@ public class DifferentVehicleOwnerWindow {
     private Person person;
 
     /**
-     * Creates a new window for
+     * Creates a new window with the components.
      */
     public DifferentVehicleOwnerWindow() {
         stage = new Stage();
@@ -149,4 +149,4 @@ public class DifferentVehicleOwnerWindow {
             return DataControl.SUCCESS;
         }
     }
-}
+} // End of Class

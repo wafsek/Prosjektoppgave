@@ -12,12 +12,19 @@ import javafx.scene.layout.BorderPane;
 
 /**
  * Created by Adrian on 15/05/2015.
+ * @author Adrian Melsom
  */
 public class TravelInsuranceScene extends InsuranceScene{
 
     private Label regionLabel;
     private ComboBox<TravelRegion> regionDropDown;
 
+    /**
+     * Creates the components used in this class.
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
+     */
     public TravelInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler) {
         super(guiEventHandler, keyPressHandler);
         annualPremiumField.setEditable(true);
@@ -46,6 +53,11 @@ public class TravelInsuranceScene extends InsuranceScene{
         return scene;
     }
 
+    /**
+     * Returnes an enum of type TravelRegion.
+     *
+     * @return an enum of type TravelRegion.
+     */
     public TravelRegion getRegionDropDown() {
         return regionDropDown.getValue();
     }
