@@ -699,7 +699,7 @@ public class Controller {
             feil += "\n";
             failed = true;
         } 
-        if (failed) {
+        if (!failed) {
              return "Success";
         } else {
             return feil;
