@@ -254,7 +254,6 @@ public class Controller {
     private void updateCustomerInfo() {
         CurrentStatus.setCurrentCustomer(new UpdateInfoWindow().
                 updateCustomerInfo(CurrentStatus.getCurrentCustomer()));
-
     }
 
     /**
@@ -490,8 +489,8 @@ public class Controller {
     }
 
     private String registerPerson(){
-        if(this.validatePersonData() != DataControl.SUCCESS){
-            return this.validatePersonData().getDescription();
+        if(!this.validatePersonData().equals(DataControl.SUCCESS.getDescription())){
+            return this.validatePersonData();
         } else {
             Customer customer = new Customer(addScene.getBirthNumberFieldText(),
                     addScene.getFirstNameFieldText(), addScene.getLastNameFieldText(),
@@ -505,28 +504,49 @@ public class Controller {
         }
     }
 
-    private DataControl validatePersonData(){
+    private String validatePersonData(){
+        String feil = "følgende felt feil: \n";
+        boolean failed = false;
         if(!Validation.isValidFirstName(addScene.getFirstNameFieldText())){
-            return DataControl.INVALID_FIRST_NAME;
-        }else if(!Validation.isValidFirstName(addScene.getLastNameFieldText())){
-            return DataControl.INVALID_LAST_NAME;
-        }else if(!Validation.isValidBirthNo(addScene.getBirthNumberFieldText())){
-            return DataControl.INVALID_BIRTHNO;
-        }else if(!Validation.isValidEmail(addScene.getEmailFieldText())){
-            return DataControl.INVALID_EMAIL;
-        }else if(!Validation.isValidTelephoneNo(addScene.getTelephoneNumberFieldText())){
-            return DataControl.INVALID_TLF;
-        }else if(!Validation.isValidStreetAddress(addScene.getAdressFieldText())){
-            return DataControl.INVALID_ADDRESS;
-        }else if(!Validation.isValidZipCode(addScene.getZipCodeFieldText())){
-            return DataControl.INVALID_ZIPCODE;
-        }else if(!Validation.isValidStreetAddress(addScene.getBillingAdressFieldText())){
-            return DataControl.INVALID_BILLING_ADRESSE;
-        }else if(!Validation.isValidZipCode(addScene.getBillingZipCodeFieldText())){
-            return DataControl.INVALID_BILLING_ZIPCODE;
-        } else {
-            return DataControl.SUCCESS;
+            feil += DataControl.INVALID_FIRST_NAME.getDescription()+"\n";
+            failed = true;
         }
+        if(!Validation.isValidFirstName(addScene.getLastNameFieldText())){
+            feil += DataControl.INVALID_LAST_NAME.getDescription()+"\n";
+            failed = true;
+        }
+        if(!Validation.isValidBirthNo(addScene.getBirthNumberFieldText())){
+            feil += DataControl.INVALID_BIRTHNO.getDescription()+"\n";
+            failed = true;
+        }
+        if(!Validation.isValidEmail(addScene.getEmailFieldText())){
+            feil +=  DataControl.INVALID_EMAIL.getDescription()+"\n";
+            failed = true;
+        }
+        if(!Validation.isValidTelephoneNo(addScene.getTelephoneNumberFieldText())){
+            feil += DataControl.INVALID_TLF.getDescription()+"\n";
+            failed = true;
+        }
+        if(!Validation.isValidStreetAddress(addScene.getAdressFieldText())){
+            feil += DataControl.INVALID_ADDRESS.getDescription()+"\n";
+            failed = true;
+        }
+        if(!Validation.isValidZipCode(addScene.getZipCodeFieldText())){
+            feil += DataControl.INVALID_ZIPCODE.getDescription()+"\n";
+            failed = true;
+        }
+        if(!Validation.isValidStreetAddress(addScene.getBillingAdressFieldText())){
+            feil += DataControl.INVALID_BILLING_ADRESSE.getDescription()+"\n";
+            failed = true;
+        }
+        if(!Validation.isValidZipCode(addScene.getBillingZipCodeFieldText())){
+            feil +=  DataControl.INVALID_BILLING_ZIPCODE.getDescription()+"\n";
+            failed = true;
+        }
+        if(!failed){
+            feil = DataControl.SUCCESS.getDescription();
+        }
+        return feil;
     }
 
     public String registerInsurance(){
