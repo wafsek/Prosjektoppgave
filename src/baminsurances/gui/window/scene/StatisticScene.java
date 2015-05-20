@@ -1,7 +1,6 @@
 package baminsurances.gui.window.scene;
 
 import baminsurances.api.Searcher;
-import baminsurances.data.Employee;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
@@ -13,14 +12,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Level;
