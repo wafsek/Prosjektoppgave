@@ -36,6 +36,12 @@ public class LoginScene {
     private HBox logo, login;
     private VBox itemContainer;
 
+    /**
+     * Creates the components used in this class.
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
+     */
     public LoginScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler) {
         companyLogo = new Image(
                 this.getClass().getResourceAsStream("../../img/temp_logo.png"));

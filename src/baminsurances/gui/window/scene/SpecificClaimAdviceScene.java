@@ -42,8 +42,8 @@ public class SpecificClaimAdviceScene extends GeneralScene {
     private List<Image> images;
     private ImageView imageView;
     private Iterator<Image> iterator;
-
     private GridPane leftSideContainer;
+    private VBox rightSideContainer;
 
     public SpecificClaimAdviceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler) {
         super(guiEventHandler, keyPressHandler);
@@ -67,6 +67,7 @@ public class SpecificClaimAdviceScene extends GeneralScene {
 
         imageView = new ImageView();
         imageView.setFitWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        imageView.setFitHeight(GuiConfig.PRIMARY_HEIGHT * 1 / 2);
 
         leftSideContainer = new GridPane();
         leftSideContainer.addColumn(0, damageNoLabel, dateOfDamageLabel, damageTypeLabel, assessmentAmountLabel, compensationAmountLabel, damageDescriptionLabel);
@@ -76,7 +77,16 @@ public class SpecificClaimAdviceScene extends GeneralScene {
         leftSideContainer.setHgap(20);
         leftSideContainer.setVgap(20);
 
-        borderPane = new BorderPane(leftSideContainer, null, imageView, null, null);
+        footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
+        footer = new HBox(0, footerLeftSide, footerRightSide);
+        footer.setStyle("-fx-border-color: gray;");
+        footer.setAlignment(Pos.CENTER_RIGHT);
+
+        rightSideContainer = new VBox(20, imageView, nextImageButton);
+        rightSideContainer.setAlignment(Pos.CENTER);
+
+        borderPane = new BorderPane(leftSideContainer, null, rightSideContainer, footer, null);
         borderPane.backgroundProperty().setValue(
                 new Background(new BackgroundFill(Color.web("D7EBE6"),
                         CornerRadii.EMPTY, Insets.EMPTY)));
@@ -96,18 +106,20 @@ public class SpecificClaimAdviceScene extends GeneralScene {
 
         images = ca.getPicturesOfDamage();
         iterator = images.iterator();
-        System.out.println(images);
 
-        nextImageButton.setOnAction(e -> {
+        if(iterator.hasNext()) {
+            imageView.setImage(images.get(0));
             if(iterator.hasNext()) {
-                imageView.setImage(iterator.next());
-            } else {
-                iterator = images.iterator();
-                imageView.setImage(iterator.next());
+                nextImageButton.setOnAction(e -> {
+                    if(iterator.hasNext()) {
+                        imageView.setImage(iterator.next());
+                    } else {
+                        iterator = images.iterator();
+                        imageView.setImage(iterator.next());
+                    }
+
+                });
             }
-
-        });
-
+        }
     }
-
 }

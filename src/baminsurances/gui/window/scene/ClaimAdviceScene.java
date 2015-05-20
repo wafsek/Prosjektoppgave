@@ -80,6 +80,14 @@ public class ClaimAdviceScene extends GeneralScene {
         scene = new Scene(borderPane);
     }
 
+    public void clearInfo() {
+        damageTypeField.setText("");
+        assessmentField.setText("");
+        compensationField.setText("");
+        damageDescriptionArea.setText("");
+        dateOfDamagePicker.setValue(LocalDate.now());
+    }
+
     /**
      * Returns a String of what's contained in the TextField assessmentField.
      *

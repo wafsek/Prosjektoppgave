@@ -109,6 +109,10 @@ public class HouseInsuranceScene extends InsuranceScene {
         scene = new Scene(borderPane);
     }
 
+    public boolean isHolidayHome() {
+        return holydayHomeBox.isSelected();
+    }
+
     /**
      * Returns a String based on the value in streetAdressField.
      *
