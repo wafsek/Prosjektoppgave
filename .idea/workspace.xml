@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\workspace\git-projects\prosjektoppgave-programutvikling-2015\src\baminsurances\gui\window\StatisticOption.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\workspace\git-projects\prosjektoppgave-programutvikling-2015\src\baminsurances\gui\window\StatisticWindow.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticOption.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticOption.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -59,7 +54,7 @@
         <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="718" column="1" selection-start-line="718" selection-start-column="1" selection-end-line="718" selection-end-column="1" />
+              <caret line="724" column="1" selection-start-line="724" selection-start-column="1" selection-end-line="724" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -560,27 +555,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/api/Searcher.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/DifferentVehicleOwnerWindow.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/LoadingWindow.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/MessageDialog.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/UpdateInfoWindow.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/AddScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/BoatInsuranceScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/CarInsuranceScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/ClaimAdviceScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/FindPersonScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/HandleCustomerScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/HouseInsuranceScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/InsuranceScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/LoginScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/NavigationScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/SearchNavigationScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/SettingsScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificClaimAdviceScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificInsuranceScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/TravelInsuranceScene.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/controller/Controller.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -595,8 +570,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/LoginWindow.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/SearchMenuScene.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -881,12 +854,6 @@
       <created>1428591007092</created>
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
-    </task>
-    <task id="LOCAL-00019" summary="The scene where you register people is now more interactive, and easy to use for the user.">
-      <created>1430827898376</created>
-      <option name="number" value="00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1430827898376</updated>
     </task>
     <task id="LOCAL-00020" summary="Fixed a minor bug in controller where you register a person, so that I can run Gui again">
       <created>1430900449385</created>
@@ -1176,7 +1143,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432083068109</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Statistic Scene completed !">
+      <created>1432089184284</created>
+      <option name="number" value="00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1432089184284</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1221,7 +1194,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="New scenes are added with more functionality added to most of them." />
     <MESSAGE value="The scene for car insurance is now finished. It handles all the generation of the car owner, if it's desired to have a different one than the current customer." />
     <MESSAGE value="The insurance scenes are now almost done" />
     <MESSAGE value="Car insurance scene now returns enums for car type. Also it generates production years based on what year we are in" />
@@ -1246,7 +1218,8 @@
     <MESSAGE value="Statistic xAxis" />
     <MESSAGE value="More options on statistic" />
     <MESSAGE value="much animation ,such fancy ,wow" />
-    <option name="LAST_COMMIT_MESSAGE" value="much animation ,such fancy ,wow" />
+    <MESSAGE value="Statistic Scene completed !" />
+    <option name="LAST_COMMIT_MESSAGE" value="Statistic Scene completed !" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1607,7 +1580,7 @@
     <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="718" column="1" selection-start-line="718" selection-start-column="1" selection-end-line="718" selection-end-column="1" />
+          <caret line="724" column="1" selection-start-line="724" selection-start-column="1" selection-end-line="724" selection-end-column="1" />
           <folding />
         </state>
       </provider>
