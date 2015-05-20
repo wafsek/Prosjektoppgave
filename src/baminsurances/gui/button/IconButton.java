@@ -21,7 +21,6 @@ public class IconButton {
             backImageView, customersImageView;
     private Button button;
     private ImageView imageViewToBeUsed;
-    private String imagePath = "../img/";
 
     /**
      * Declares the components which are general for the different return values.
@@ -29,31 +28,40 @@ public class IconButton {
     public IconButton() {
         button = new Button();
 
-        addImage = new Image(this.getClass().getResourceAsStream(imagePath + "add_user.png"));
+        addImage = new Image(this.getClass().getClassLoader().getResourceAsStream(
+                "add_user.png"));
         addImageView = new ImageView(addImage);
 
-        statisticImage = new Image(this.getClass().getResourceAsStream(imagePath + "statistics.png"));
+        statisticImage = new Image(this.getClass().getClassLoader().getResourceAsStream(
+                "statistics.png"));
         statisticImageView = new ImageView(statisticImage);
 
-        searchImage = new Image(this.getClass().getResourceAsStream(imagePath + "search.png"));
+        searchImage = new Image(this.getClass().getClassLoader().getResourceAsStream(
+                "search.png"));
         searchImageView = new ImageView(searchImage);
 
-        houseImage = new Image(this.getClass().getResourceAsStream(imagePath + "house.png"));
+        houseImage = new Image(this.getClass().getClassLoader().getResourceAsStream(
+                "house.png"));
         houseImageView = new ImageView(houseImage);
 
-        carImage = new Image(this.getClass().getResourceAsStream(imagePath + "car.png"));
+        carImage = new Image(this.getClass().getClassLoader().getResourceAsStream(
+                "car.png"));
         carImageView = new ImageView(carImage);
 
-        personImage = new Image(this.getClass().getResourceAsStream(imagePath + "airplane.png"));
+        personImage = new Image(this.getClass().getClassLoader().getResourceAsStream(
+                "airplane.png"));
         personImageView = new ImageView(personImage);
 
-        boatImage = new Image(this.getClass().getResourceAsStream(imagePath + "boat.png"));
+        boatImage = new Image(this.getClass().getClassLoader().getResourceAsStream(
+                "boat.png"));
         boatImageView = new ImageView(boatImage);
 
-        backImage = new Image(this.getClass().getResourceAsStream(imagePath + "back.png"));
+        backImage = new Image(this.getClass().getClassLoader().getResourceAsStream(
+                "back.png"));
         backImageView = new ImageView(backImage);
 
-        customersImage = new Image(this.getClass().getResourceAsStream(imagePath + "multiplecustomers.png"));
+        customersImage = new Image(this.getClass().getClassLoader().getResourceAsStream(
+                "multiplecustomers.png"));
         customersImageView = new ImageView(customersImage);
     }
 
