@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -31,11 +30,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.66303164">
       <split-first>
         <leaf>
-          <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.3383199">
-                  <caret line="684" column="37" selection-start-line="684" selection-start-column="37" selection-end-line="684" selection-end-column="37" />
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="699" column="46" selection-start-line="699" selection-start-column="46" selection-end-line="699" selection-end-column="46" />
                   <folding>
                     <element signature="e#5469#5470#0" expanded="true" />
                     <element signature="e#5527#5528#0" expanded="true" />
@@ -78,17 +77,12 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="DataControl.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="DataControl.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/DataControl.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
+                <state vertical-scroll-proportion="0.71806675">
                   <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#997#998#0" expanded="false" />
-                    <element signature="e#1043#1044#0" expanded="false" />
-                    <element signature="e#1209#1210#0" expanded="false" />
-                    <element signature="e#1248#1249#0" expanded="false" />
-                  </folding>
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -714,12 +708,6 @@
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
     </task>
-    <task id="LOCAL-00040" summary="Controller still needs fixing...">
-      <created>1431691053257</created>
-      <option name="number" value="00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1431691053257</updated>
-    </task>
     <task id="LOCAL-00041" summary="You can now choose a specific customer, which will be displayed on the handler scene. You can not proceed from the search, before you have a customer chosen">
       <created>1431701627384</created>
       <option name="number" value="00041" />
@@ -1008,7 +996,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432110402826</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="model validation fixed!">
+      <created>1432110719873</created>
+      <option name="number" value="00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1432110719873</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1023,7 +1017,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32150775" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.2549889" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="766" y="233" width="710" height="390" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.2549889" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="766" y="233" width="710" height="390" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17918456" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1053,7 +1047,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed how the table reads it's values based on Martins finds" />
     <MESSAGE value="Minor changes. Some textfields displayed wrong info, which is now fixed" />
     <MESSAGE value="Another minor display bug fix" />
     <MESSAGE value="Fininshing validation" />
@@ -1078,7 +1071,8 @@
     <MESSAGE value="The statistic window is Ready to present." />
     <MESSAGE value="The statistic window is Ready to present.(final)" />
     <MESSAGE value="Paymentfrequency fixed .... you are welcome martin..and please dont stress. be happy ...smile please" />
-    <option name="LAST_COMMIT_MESSAGE" value="Paymentfrequency fixed .... you are welcome martin..and please dont stress. be happy ...smile please" />
+    <MESSAGE value="model validation fixed!" />
+    <option name="LAST_COMMIT_MESSAGE" value="model validation fixed!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1095,12 +1089,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding>
-            <element signature="e#997#998#0" expanded="false" />
-            <element signature="e#1043#1044#0" expanded="false" />
-            <element signature="e#1209#1210#0" expanded="false" />
-            <element signature="e#1248#1249#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1419,19 +1408,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/DataControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding>
-            <element signature="e#997#998#0" expanded="false" />
-            <element signature="e#1043#1044#0" expanded="false" />
-            <element signature="e#1209#1210#0" expanded="false" />
-            <element signature="e#1248#1249#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/api/Searcher.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1468,14 +1444,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3383199">
-          <caret line="684" column="37" selection-start-line="684" selection-start-column="37" selection-end-line="684" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="699" column="46" selection-start-line="699" selection-start-column="46" selection-end-line="699" selection-end-column="46" />
           <folding>
             <element signature="e#5469#5470#0" expanded="true" />
             <element signature="e#5527#5528#0" expanded="true" />
             <element signature="e#10138#10139#0" expanded="true" />
             <element signature="e#10208#10209#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/DataControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.71806675">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
