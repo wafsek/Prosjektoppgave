@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -32,7 +31,7 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.81407">
+            <state vertical-scroll-proportion="-7.2325583">
               <caret line="672" column="32" selection-start-line="672" selection-start-column="32" selection-end-line="672" selection-end-column="32" />
               <folding>
                 <element signature="e#5469#5470#0" expanded="true" />
@@ -439,7 +438,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/controller/Controller.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -454,6 +452,24 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/add_user.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/airplane.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/back.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/boat.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/car.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/customer.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/house.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/iconImg/error_icon.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/iconImg/information_icon.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/iconImg/question_icon.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/iconImg/warning_icon.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/logout.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/menu.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/multiplecustomers.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/search.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/settings.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/statistics.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/img/temp_logo.png</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -726,12 +742,6 @@
       <created>1428591007092</created>
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
-    </task>
-    <task id="LOCAL-00049" summary="Fininshing validation">
-      <created>1431950788776</created>
-      <option name="number" value="00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1431950788776</updated>
     </task>
     <task id="LOCAL-00050" summary="Fininshing validation">
       <created>1431950814661</created>
@@ -1021,7 +1031,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432120961564</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Fixed a few bugs">
+      <created>1432121362804</created>
+      <option name="number" value="00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1432121362805</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1035,8 +1051,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3214815" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36888888" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="603" y="270" width="160" height="227" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3214815" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36888888" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="603" y="270" width="160" height="227" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17789166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1505,7 +1521,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.81407">
+        <state vertical-scroll-proportion="-7.2325583">
           <caret line="672" column="32" selection-start-line="672" selection-start-column="32" selection-end-line="672" selection-end-column="32" />
           <folding>
             <element signature="e#5469#5470#0" expanded="true" />
