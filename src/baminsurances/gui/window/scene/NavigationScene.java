@@ -18,7 +18,6 @@ import java.security.Key;
  */
 public class NavigationScene extends GeneralScene{
 
-    private Scene scene;
     private Button statisticsButton, customerInteractionButton, searchButton,
             settingsButton;
     private GuiEventHandler guiEventHandler;
@@ -26,6 +25,12 @@ public class NavigationScene extends GeneralScene{
     private VBox container;
     private static final double WIDTH = GuiConfig.PRIMARY_WIDTH*1/2, HEIGHT = GuiConfig.PRIMARY_HEIGHT*1/10;
 
+    /**
+     * Creates the components which are used in this class.
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
+     */
     public NavigationScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler) {
         super(guiEventHandler, keyPressHandler);
         this.guiEventHandler = guiEventHandler;
@@ -72,23 +77,39 @@ public class NavigationScene extends GeneralScene{
         scene = new Scene(borderPane);
     }
 
-    public Scene getScene() {
-        return scene;
-    }
-
+    /**
+     * Returns the Button statisticsButton.
+     *
+     * @return the Button statisticsButton.
+     */
     public Button getStatisticsButton() {
         return statisticsButton;
     }
 
+    /**
+     * Returns the Button customerInteractionButton.
+     *
+     * @return the Button customerInteractionButton.
+     */
     public Button getCustomerInteractionButton() {
         return customerInteractionButton;
     }
 
+    /**
+     * Returns the Button searchButton.
+     *
+     * @return the Button searchButton.
+     */
     public Button getSearchButton() {
         return searchButton;
     }
 
+    /**
+     * Returns the Button settingsButton.
+     *
+     * @return the Button settingsButton.
+     */
     public Button getSettingsButton() {
         return settingsButton;
     }
-}
+} // End of Class

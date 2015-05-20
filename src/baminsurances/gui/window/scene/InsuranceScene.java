@@ -16,6 +16,7 @@ import java.time.LocalDate;
 
 /**
  * Created by Adrian on 13/05/2015.
+ * @author Adrian Melsom
  */
 public class InsuranceScene extends GeneralScene {
 
@@ -33,7 +34,12 @@ public class InsuranceScene extends GeneralScene {
     protected BorderPane leftSideBorderPane, rightSideBorderPane;
     protected VBox leftSideContentContainer;
 
-
+    /**
+     * Creates the components used in this class.
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
+     */
     public InsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler){
         super(guiEventHandler, keyPressHandler);
         insuranceDropDown = new ComboBox<>(FXCollections.observableArrayList(
@@ -116,46 +122,95 @@ public class InsuranceScene extends GeneralScene {
         scene = new Scene(borderPane);
     }
 
+    /**
+     * Sets the value of insuranceDropDown.
+     *
+     * @param text
+     */
     public void setDropDownValue(String text) {
         insuranceDropDown.setOnAction(null);
         insuranceDropDown.setValue(text);
         insuranceDropDown.setOnAction(guiEventHandler);
     }
 
+    /**
+     * Returns the ComboBox insuranceDropDown.
+     *
+     * @return the ComboBox insuranceDropDown.
+     */
     public ComboBox<String> getInsuranceDropDown() {
         return insuranceDropDown;
     }
 
+    /**
+     * Returns a String based on the value in annualPremiumField.
+     *
+     * @return a String based on the value in annualPremiumField.
+     */
     public String getAnnualPremiumFieldText() {
         return annualPremiumField.getText();
     }
 
+    /**
+     * Returns a String based on the value in insuranceValueField.
+     *
+     * @return a String based on the value in insuranceValueField.
+     */
     public String getInsuranceValueFieldText() {
         return insuranceValueField.getText();
     }
 
+    /**
+     * Returns a String based on the value in conditionArea.
+     *
+     * @return a String based on the value in conditionArea.
+     */
     public String getConditionAreaText() {
         return conditionArea.getText();
     }
 
+    /**
+     * Returns the Button registerInsuranceButton.
+     *
+     * @return the Button registerInsuranceButton.
+     */
     public Button getRegisterInsuranceButton() {
         return registerInsuranceButton;
     }
 
+    /**
+     * Clears the information in the given components.
+     */
     public void clearInfo() {
         annualPremiumField.setText("");
         insuranceValueField.setText("");
         conditionArea.setText("");
     }
 
+    /**
+     * Sets the value of the insuranceDropDown to be empty.
+     */
     public void setInsuranceDropDownEmpty() {
         insuranceDropDown.setValue("");
     }
 
+    /**
+     * Returns an enum of type PaymentFrequency.
+     *
+     * @return an enum of type PaymentFrequency.
+     */
     public PaymentFrequency getPaymentFrequency() {
         return paymentFrequencyDropDown.getValue();
     }
 
+    /**
+     * Returns a String[] with numbers based on the numbers given as
+     * arguments.
+     *
+     * @param to
+     * @param from
+     * @return
+     */
     public static String[] fillArray(int to, int from) {
         int i = to;
         String[] returnValue = new String[(to - from)+1];
@@ -164,4 +219,4 @@ public class InsuranceScene extends GeneralScene {
         }
         return returnValue;
     }
-}
+} // End of File

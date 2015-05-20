@@ -21,6 +21,7 @@ import java.time.LocalDate;
 
 /**
  * Created by Adrian PC on 13/05/2015.
+ * @author Adrian Melsom
  */
 public class HouseInsuranceScene extends InsuranceScene {
 
@@ -35,6 +36,12 @@ public class HouseInsuranceScene extends InsuranceScene {
     private CheckBox holydayHomeBox, rentableBox;
     private int checkBoxCounter = 0;
 
+    /**
+     * Creates the components used in this class.
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
+     */
     public HouseInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler){
         super(guiEventHandler, keyPressHandler);
         annualPremiumField.setEditable(true);
@@ -102,42 +109,90 @@ public class HouseInsuranceScene extends InsuranceScene {
         scene = new Scene(borderPane);
     }
 
+    /**
+     * Returns a String based on the value in streetAdressField.
+     *
+     * @return a String based on the value in streetAdressField.
+     */
     public String getStreetAddressFieldText() {
         return streetAddressField.getText();
     }
 
+    /**
+     * Returns a String based on the value in zipCodeField.
+     *
+     * @return a String based on the value in zipCodeField.
+     */
     public String getZipCodeFieldText() {
         return zipCodeField.getText();
     }
 
+    /**
+     * Returns a String based on the value selected in constructionYearDropDown.
+     *
+     * @return a String based on the value selected in constructionYearDropDown.
+     */
     public String getConstructionYearFieldText() {
         return constructionYearDropDown.getValue();
     }
 
+    /**
+     * Returns a String based on the value in buildingMaterialField.
+     *
+     * @return a String based on the value in buildingMaterialField.
+     */
     public String getBuildingMaterialFieldText() {
         return buildingMaterialField.getText();
     }
 
+    /**
+     * Returns a String based on the value in standardField.
+     *
+     * @return a String based on the value in standardField.
+     */
     public String getStandardFieldText() {
         return standardField.getText();
     }
 
+    /**
+     * Returns a String based on the value in squareMetersField.
+     *
+     * @return a String based on the value in squareMetersField.
+     */
     public String getSquareMetersFieldText() {
         return squareMetersField.getText();
     }
 
+    /**
+     * Returns a String based on the value in homeAmountField.
+     *
+     * @return a String based on the value in homeAmountField.
+     */
     public String getHomeAmountFieldText() {
         return homeAmountField.getText();
     }
 
+    /**
+     * Returns a String based on the value in contentsAmountField.
+     *
+     * @return a String based on the value in contentsAmountField.
+     */
     public String getContentsAmountFieldText() {
         return contentsAmountField.getText();
     }
 
+    /**
+     * Returns an enum of type HomeType.
+     *
+     * @return an enum of type HomeType.
+     */
     public HomeType getHomeTypeDropDownSelectedValue() {
         return homeTypeDropDown.getValue();
     }
 
+    /**
+     * Clears the information in the given components.
+     */
     public void clearInfo() {
         super.clearInfo();
         streetAddressField.setText("");
@@ -158,7 +213,12 @@ public class HouseInsuranceScene extends InsuranceScene {
         return scene;
     }
 
+    /**
+     * Returns a boolean value, based on if retableBox is selected.
+     *
+     * @return a boolean value, based on if retableBox is selected.
+     */
     public boolean getRentableBoxIsSelected() {
         return rentableBox.isSelected();
     }
-}
+} // End of File

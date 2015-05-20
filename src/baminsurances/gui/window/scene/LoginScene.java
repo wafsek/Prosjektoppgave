@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 /**
  * Created by Adrian on 11/05/2015.
+ * @author Adrian Melsom
  */
 public class LoginScene {
 
@@ -111,4 +112,4 @@ public class LoginScene {
     public String getPasswordFieldText() {
         return passwordField.getText();
     }
-}
+} // End of File

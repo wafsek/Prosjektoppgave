@@ -278,13 +278,7 @@ public class AddScene extends GeneralScene{
      *
      * @return Iterator of the TextFields in this class.
      */
-    public Iterator getTextFieldIterator() {
-        return textFieldIterator;
-    }
 
-    /**
-     * Refreshes the Iterator of the TextFields in this class.
-     */
     public void resetIterator() {
         textFieldIterator = textFieldArrayList.iterator();
     }
@@ -306,6 +300,12 @@ public class AddScene extends GeneralScene{
         registerPersonButton.setDisable(false);
     }
 
+    /**
+     * Places a shadow on the fields which are empty.
+     * Removes the shadow if they are not empty.
+     *
+     * @param textField
+     */
     private void fieldCheck(TextField textField){
         if (textField.getText().trim().isEmpty()) {
             textField.setStyle("-fx-effect: dropshadow"
@@ -317,6 +317,11 @@ public class AddScene extends GeneralScene{
         }
     }
 
+    /**
+     * Inserts the text from the given array to the TextFields in this class.
+     *
+     * @param infoArray
+     */
     public void insertText(String[] infoArray){
         TextField[] textFieldsArray = new TextField[] {firstNameField, lastNameField,
                 birthNumberField, adressField,
@@ -327,4 +332,4 @@ public class AddScene extends GeneralScene{
         }
         fillAdressAndZipFields();
     }
-}
+} // End of File

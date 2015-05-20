@@ -96,7 +96,7 @@ public class SpecificClaimAdviceScene extends GeneralScene {
 
         images = ca.getPicturesOfDamage();
         iterator = images.iterator();
-        imageView.setImage(images.get(0));
+        System.out.println(images);
 
         nextImageButton.setOnAction(e -> {
             if(iterator.hasNext()) {
