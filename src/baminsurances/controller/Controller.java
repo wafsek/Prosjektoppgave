@@ -529,18 +529,18 @@ public class Controller {
         return "All is Well";
     }
 
-    private String validateInsuranceData(){
+    private String validateInsuranceData(InsuranceScene insuranceScene){
         String result = "";
         boolean failed = false;
         if(!Validation.consistsOnlyOfNumbers(
-                carInsuranceScene.getAnnualPremiumFieldText())){
+                insuranceScene.getAnnualPremiumFieldText())){
             System.out.println("annual prem feilet");
-            System.out.println(carInsuranceScene.getAnnualPremiumFieldText());
+            System.out.println(insuranceScene.getAnnualPremiumFieldText());
             result += DataControl.INVALID_ANNUAL_PREMIUM.getDescription()+"\n";
             failed = true;
         }
         if(!Validation.consistsOnlyOfNumbers(
-                carInsuranceScene.getInsuranceValueFieldText())){
+                insuranceScene.getInsuranceValueFieldText())){
             System.out.println("forsikringsbelÃ¸p feilet");
             result += DataControl.INVALID_AMOUNT.getDescription()+"\n";
             failed = true;
@@ -555,8 +555,8 @@ public class Controller {
     public String validateCarInsuranceData(){
         String feil = "følgende felt feil: \n";
         boolean failed = false;
-        if(!this.validateInsuranceData().equals("Success")){
-            feil += this.validateInsuranceData()+"\n";
+        if(!this.validateInsuranceData(carInsuranceScene).equals("Success")){
+            feil += this.validateInsuranceData(carInsuranceScene)+"\n";
             failed = true;
         }
         if(!Validation.isValidCarRegistrationNo(
@@ -627,8 +627,8 @@ public class Controller {
     public String validateBoatInsuranceData() {
         String feil = "følgende felt feil: \n";
         boolean failed = false;
-        if(!this.validateInsuranceData().equals("Success")) {
-            return this.validateInsuranceData();
+        if(!this.validateInsuranceData(boatInsuranceScene).equals("Success")) {
+            return this.validateInsuranceData(boatInsuranceScene);
         }
         if(!Validation.isValidBoatRegistrationNo(
                 boatInsuranceScene.getRegistrationNoFieldText())) {
@@ -688,8 +688,8 @@ public class Controller {
     public String validateHomeInsuranceData(){
         String feil = "følgende felt feil: \n";
         boolean failed = false;
-        if(!this.validateInsuranceData().equals("Success")){
-            return this.validateInsuranceData();
+        if(!this.validateInsuranceData(houseInsuranceScene).equals("Success")){
+            return this.validateInsuranceData(houseInsuranceScene);
         } 
         if (!Validation.isValidStreetAddress(
                 houseInsuranceScene.getStreetAddressFieldText())){
@@ -789,8 +789,8 @@ public class Controller {
     public String validateTravelInsuranceData(){
         String feil = "følgende felt feil: \n";
         boolean failed = false;
-        if(!this.validateInsuranceData().equals("Success")){
-            return this.validateInsuranceData();
+        if(!this.validateInsuranceData(travelInsuranceScene).equals("Success")){
+            return this.validateInsuranceData(travelInsuranceScene);
         }
         if (!Validation.consistsOnlyOfNumbers(
                 travelInsuranceScene.getAnnualPremiumFieldText())){
