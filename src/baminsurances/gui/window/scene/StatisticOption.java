@@ -1,7 +1,9 @@
 package baminsurances.gui.window.scene;
 
 /**
- * Created by baljit on 19.05.2015.
+ * Represents a statistic option for statistic scene.
+ * 
+ * @author Baljit Sarai
  */
 public enum StatisticOption {
 

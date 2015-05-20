@@ -1,6 +1,5 @@
 package baminsurances.logging;
 
-import java.util.Date;
 import java.util.logging.LogRecord;
 
 /**
