@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -473,12 +472,6 @@
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
     </task>
-    <task id="LOCAL-00027" summary="Fixed a minor bug in AddScene, where the TextFields did not work how they should. &#10;&#10;Controller now has access to all the button which are in the program at this point">
-      <created>1431513567872</created>
-      <option name="number" value="00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1431513567872</updated>
-    </task>
     <task id="LOCAL-00028" summary="TableView problem might be fixed. Try it">
       <created>1431517727700</created>
       <option name="number" value="00028" />
@@ -767,7 +760,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432092884725</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="all insurance fixed ....for now.(part two)">
+      <created>1432093820081</created>
+      <option name="number" value="00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1432093820081</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -812,7 +811,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Home insurance is ready" />
     <MESSAGE value="The scene for boat insurance is now ready as well." />
     <MESSAGE value="Insurance scene is fixed. Does no longer import NameDisplayable" />
     <MESSAGE value="Controller still needs fixing..." />
@@ -837,7 +835,8 @@
     <MESSAGE value="Statistic Scene refactoring underway" />
     <MESSAGE value="car insurance fixing" />
     <MESSAGE value="all insurance fixed ....for now." />
-    <option name="LAST_COMMIT_MESSAGE" value="all insurance fixed ....for now." />
+    <MESSAGE value="all insurance fixed ....for now.(part two)" />
+    <option name="LAST_COMMIT_MESSAGE" value="all insurance fixed ....for now.(part two)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
