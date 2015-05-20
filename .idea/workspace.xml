@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticOption.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -57,8 +56,8 @@
       <file leaf-file-name="StatisticScene.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.6973533">
-              <caret line="251" column="43" selection-start-line="251" selection-start-column="43" selection-end-line="251" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.70886075">
+              <caret line="409" column="9" selection-start-line="409" selection-start-column="9" selection-end-line="409" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -859,12 +858,6 @@
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
     </task>
-    <task id="LOCAL-00015" summary="Minor changes">
-      <created>1430415798989</created>
-      <option name="number" value="00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1430415798989</updated>
-    </task>
     <task id="LOCAL-00016" summary="Minor changes">
       <created>1430415833097</created>
       <option name="number" value="00016" />
@@ -1153,7 +1146,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432046228052</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Statistic xAxis">
+      <created>1432077426936</created>
+      <option name="number" value="00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1432077426936</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1198,7 +1197,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Bug with TableView is now fixed." />
     <MESSAGE value="Generating stage is somewhat complete" />
     <MESSAGE value="The scenes for boat insurance and house insurance is finished. They just need functionality added to them." />
     <MESSAGE value="New scenes are added with more functionality added to most of them." />
@@ -1223,7 +1221,8 @@
     <MESSAGE value="Tidying the code" />
     <MESSAGE value="Statistic getting fancy" />
     <MESSAGE value="toString()" />
-    <option name="LAST_COMMIT_MESSAGE" value="toString()" />
+    <MESSAGE value="Statistic xAxis" />
+    <option name="LAST_COMMIT_MESSAGE" value="Statistic xAxis" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1397,6 +1396,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="e#458#459#0" expanded="false" />
+            <element signature="e#504#505#0" expanded="false" />
+            <element signature="e#665#666#0" expanded="false" />
+            <element signature="e#704#705#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1655,8 +1660,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6973533">
-          <caret line="251" column="43" selection-start-line="251" selection-start-column="43" selection-end-line="251" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.70886075">
+          <caret line="409" column="9" selection-start-line="409" selection-start-column="9" selection-end-line="409" selection-end-column="9" />
           <folding />
         </state>
       </provider>

@@ -21,6 +21,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Level;
 
@@ -134,7 +135,7 @@ public class StatisticScene extends GeneralScene{
     private BarChart setBarchart(){
         barChart = new BarChart(cAxis,xAxis);
         barChart.getData().addAll(series);
-        barChart.setAnimated(!ifContaintsBarChart);
+        barChart.setAnimated(false);
         return barChart;
     }
     
@@ -148,12 +149,20 @@ public class StatisticScene extends GeneralScene{
         return lineChart;
     }
     
-    private BarChart setBarchartMulti(){
+    private BarChart setMultiBarChart(){
         barChart = new BarChart(cAxis,xAxis);
         for(XYChart.Series series : seriesArray){
             barChart.getData().add(series);  
         }
         return barChart;
+    }
+
+    private LineChart setMultiLineChart(){
+        lineChart = new LineChart<>(xAxis,yAxis);
+        for(XYChart.Series series : seriesArray){
+            lineChart.getData().add(series);
+        }
+        return lineChart;
     }
 
 
@@ -224,13 +233,15 @@ public class StatisticScene extends GeneralScene{
 
     private void launchOptionSix(StatisticOption statisticOption ){
         this.clearRightSide();
-        xAxis = new NumberAxis(1997, 2016, 1);
+        xAxis = new NumberAxis(1997, LocalDate.now().getYear()-1, 1);
         logger.log("Option one selected ", Level.FINE);
         this.setLineChartData(new Searcher().getSumPaymentsPerYear(), "Sum innbetalinger");
-        rightSide.getChildren().add(this.setLineChart());
-        
+        xAxis.setLabel("Betalinger");
+        yAxis.setLabel("Sum per År");
+        lineChart = this.setLineChart();
+        rightSide.getChildren().add(lineChart);
     }
-
+    
     private void launchOptionSeven(StatisticOption statisticOption ){
         this.clearRightSide();
         logger.log("Option Seven selected ", Level.FINE);
@@ -250,17 +261,40 @@ public class StatisticScene extends GeneralScene{
         this.setMultiBarChartData(new Searcher().getInsuranceTypesPerRegion(), "Antall forsikeringer");
         cAxis.setLabel("Forsikeringer");
         xAxis.setLabel("Antall per landsdel");
-        barChart =  this.setBarchartMulti();
+        barChart =  this.setMultiBarChart();
         barChart.setTitle(statisticOption.getDescription());
         rightSide.getChildren().add(barChart);
     }
-    
-    
 
+
+    private void launchOptionNine(StatisticOption statisticOption ){
+        this.clearRightSide();
+        xAxis = new NumberAxis(1997, LocalDate.now().getYear()-1, 1);
+        logger.log("Option one selected ", Level.FINE);
+        this.setMultiLineChartData(new Searcher().getSumPaymentsPerYear(), "Sum innbetalinger");
+        xAxis.setLabel("Betalinger");
+        yAxis.setLabel("Sum per År");
+        lineChart = this.setMultiLineChart();
+        rightSide.getChildren().add(lineChart);
+    }
+    
+    /**#######################        END OF OPTIONS           ######################################*/
+
+    
     public void addData(XYChart.Series series,String s,int i){
 
     }
 
+
+
+
+    /****************************************************************************
+     *                                                                           *
+     *                     Setting charts with single series                     *
+     *                                                                           *
+     ****************************************************************************/
+    
+    
     public <T>void setLineChartData(Map<T,Integer> map,String seriesNavn){
         series = new XYChart.Series();
         series.setName(seriesNavn);
@@ -291,12 +325,20 @@ public class StatisticScene extends GeneralScene{
             key = entrySet.getKey();
             i = entrySet.getValue();
             System.out.println(key+" : "+i);
-            series.getData().add(new XYChart.Data<>(key.toString(),i));
+            series.getData().add(new XYChart.Data<>(key.toString(), i));
         }
     }
 
-    
+    /**#######################    END of Setting charts with single series   ######################################*/
 
+
+
+    /****************************************************************************
+     *                                                                           *
+     *                     Setting charts with multiple series                   *
+     *                                                                           *
+     ****************************************************************************/
+    
     public <T>void setMultiBarChartData(Map<T,TreeMap<T,Integer>> map,String ChartName){
         int numOfSeries = map.values().iterator().next().size();
         seriesArray = new XYChart.Series[numOfSeries];
@@ -331,4 +373,43 @@ public class StatisticScene extends GeneralScene{
             counter = 0;
         }
     }
+
+
+    public <T>void setMultiLineChartData(Map<T,TreeMap<T,Integer>> map,String ChartName){
+        int numOfSeries = map.values().iterator().next().size();
+        seriesArray = new XYChart.Series[numOfSeries];
+        int counter = 0;
+        T key;
+        T innerKey;
+        int i;
+        while(counter < numOfSeries){
+            XYChart.Series series = new XYChart.Series();
+            seriesArray[counter] = series;
+            counter++;
+        }
+        counter = 0;
+        for (TreeMap<T, Integer> t : map.values()) {
+            for (T x : t.keySet()) {
+                seriesArray[counter].setName(x.toString());
+                counter++;
+            }
+            break;
+        }
+        counter = 0;
+        for(Map.Entry<T,TreeMap<T,Integer>> entrySet : map.entrySet()){
+            key = entrySet.getKey();
+
+            for(Map.Entry<T,Integer> innerEntrySet : entrySet.getValue().entrySet()){
+                innerKey = innerEntrySet.getKey();
+                i = innerEntrySet.getValue();
+                System.out.println(seriesArray[counter].getData());
+                seriesArray[counter].getData().add(new XYChart.Data<>(key,i));
+                counter++;
+            }
+            counter = 0;
+        }
+    }
+
+
+    /**#######################    END of Setting charts with multiple series   ######################################*/
 }
