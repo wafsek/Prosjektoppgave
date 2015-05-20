@@ -270,7 +270,8 @@ public class Controller {
                 control == boatInsuranceScene.getLogOutButton() || control == carInsuranceScene.getLogOutButton() ||
                 control == specificInsuranceScene.getLogOutButton() || control == claimAdviceScene.getLogOutButton() ||
                 control == specificInsuranceScene.getLogOutButton() || control == searchNavigationScene.getLogOutButton() ||
-                control == statisticScene.getLogOutButton() || control == specificClaimAdviceScene.getLogOutButton()) {
+                control == statisticScene.getLogOutButton() || control == specificClaimAdviceScene.getLogOutButton() ||
+                control == travelInsuranceScene.getLogOutButton()) {
             if(new MessageDialog().showMessageDialog("Sikker?", "Logge ut?", MessageDialog.QUESTION_ICON,
                     MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION){
                 menuStage.close();
@@ -345,7 +346,7 @@ public class Controller {
         } else if (control == insuranceScene.getBackButton() || control == specificInsuranceScene.getBackButton()) {
             launchHandleCustomerScene();
         } else if (control == houseInsuranceScene.getBackButton() || control == boatInsuranceScene.getBackButton() ||
-                control == carInsuranceScene.getBackButton()) {
+                control == carInsuranceScene.getBackButton() || control == travelInsuranceScene.getBackButton()) {
             launchInsuranceScene();
         }  else if (control == specificInsuranceScene.getUpdateInfoButton()) {
             CurrentStatus.setCurrentInsurance(new UpdateInfoWindow().updateInsurance
@@ -365,7 +366,7 @@ public class Controller {
         }else if (control == houseInsuranceScene.getRegisterInsuranceButton()) {
             String message = this.registerHomeInsurance();
             new MessageDialog().showMessageDialog("Informasjon", message, MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
-            if(message.equals("Husforsikring registrert")) {
+            if(message.equals("Husforsikring registrert") || message.equals("Feriehusforsikring registrert")) {
                 launchHandleCustomerScene();
             }
         }else if (control == carInsuranceScene.getRegisterInsuranceButton()) {
@@ -787,7 +788,7 @@ public class Controller {
                             houseInsuranceScene.getRentableBoxIsSelected()),
                     CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
-            return "Holiday Home Insurance Registered";
+            return "Feriehusforsikring registrert";
         }
     }
 
