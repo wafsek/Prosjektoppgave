@@ -83,7 +83,11 @@ public class GeneratingStage {
         });
 
         wipeDataBaseButton = new Button("Slett database");
-        //wipeDataBaseButton.setOnAction(e -> DataBank.delete());
+        wipeDataBaseButton.setOnAction(e -> {
+            DataBank.delete();
+            MessageDialog.showMessageDialog("Informasjon", "All data er nå slettet.",
+                    MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+        });
 
         headerContainer = new VBox(10, headerLabel, informationLabel);
         headerContainer.setAlignment(Pos.CENTER);

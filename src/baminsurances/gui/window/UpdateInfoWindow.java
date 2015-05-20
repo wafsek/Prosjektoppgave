@@ -87,31 +87,31 @@ public class UpdateInfoWindow {
                     Validation.isValidTelephoneNo(telephoneNoField.getText())) {
                 customer.setTelephoneNo(telephoneNoField.getText());
             } else {
-                message += "Ugyldig info i telefonfeltet.\n";
+                message += "Ugyldig info i telefonfeltet.\n\n";
             }
             if (!emailField.getText().trim().isEmpty() &&
                     Validation.isValidEmail(emailField.getText())) {
                 customer.setEmail(emailField.getText());
             } else {
-                message += "Ugyldig info i emailfeltet.\n";
+                message += "Ugyldig info i emailfeltet.\n\n";
             }
             if (!addressField.getText().trim().isEmpty() &&
                     Validation.isValidStreetAddress(addressField.getText())) {
                 customer.setStreetAddress(addressField.getText());
             } else {
-                message += "Ugyldig info i adressefeltet.\n";
+                message += "Ugyldig info i adressefeltet.\n\n";
             }
             if (!billingAddressField.getText().trim().isEmpty() &&
                     Validation.isValidStreetAddress(billingAddressField.getText())) {
                 customer.setBillingStreetAddress(billingAddressField.getText());
             } else {
-                message += "Ugyldig info i betalingsadressefeltet.\n";
+                message += "Ugyldig info i betalingsadressefeltet.\n\n";
             }
             if (!zipCodeField.getText().trim().isEmpty() &&
                     Validation.isValidZipCode(zipCodeField.getText())) {
                 customer.setZipCode(zipCodeField.getText());
             } else {
-                message += "Ugyldig info i postnummerfeltet.\n";
+                message += "Ugyldig info i postnummerfeltet.\n\n";
             }
             if (!billingZipCodeField.getText().trim().isEmpty() &&
                     Validation.isValidZipCode(billingZipCodeField.getText())) {
@@ -168,12 +168,12 @@ public class UpdateInfoWindow {
                 insurance.setAnnualPremium(Integer.parseInt(
                         annualPremuimField.getText()));
             } else {
-                message += "Ugylig info i premiumfeltet.\n";
+                message += "Ugylig info i premiumfeltet.\n\n";
             }
             if (!amountField.getText().trim().isEmpty() && Validation.consistsOnlyOfNumbers(amountField.getText())) {
                 insurance.setAmount(Integer.parseInt(amountField.getText()));
             } else {
-                message += "Ugyldig info i Forsikringsbeløpfeltet.\n";
+                message += "Ugyldig info i Forsikringsbeløpfeltet.\n\n";
             }
             if (!termsArea.getText().trim().isEmpty()) {
                 insurance.setTerms(termsArea.getText());
