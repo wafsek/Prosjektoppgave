@@ -8,6 +8,7 @@ import baminsurances.gui.window.GuiConfig;
 import baminsurances.logging.CustomLogger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
@@ -16,10 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -75,6 +74,9 @@ public class StatisticScene extends GeneralScene{
         footer.setStyle("-fx-border-color: gray;");
         rightSide.setAlignment(Pos.CENTER);
         borderPane = new BorderPane(leftSide,null,rightSide,footer,null);
+        borderPane.backgroundProperty().setValue(
+                new Background(new BackgroundFill(Color.web("D7EBE6"),
+                        CornerRadii.EMPTY, Insets.EMPTY)));
         
         scene = new Scene(borderPane);
         

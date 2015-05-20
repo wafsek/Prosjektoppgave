@@ -3,13 +3,12 @@ package baminsurances.gui.window.scene;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.time.LocalDate;
 
@@ -75,6 +74,9 @@ public class ClaimAdviceScene extends GeneralScene {
         leftSideFieldContainer.setStyle("-fx-border-color: gray;");
 
         borderPane = new BorderPane(leftSideFieldContainer, headerContainer, null, footer, null);
+        borderPane.backgroundProperty().setValue(
+                new Background(new BackgroundFill(Color.web("D7EBE6"),
+                        CornerRadii.EMPTY, Insets.EMPTY)));
         scene = new Scene(borderPane);
     }
 

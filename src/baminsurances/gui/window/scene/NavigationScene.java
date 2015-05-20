@@ -4,13 +4,12 @@ import baminsurances.gui.button.IconButton;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.security.Key;
 
@@ -60,12 +59,16 @@ public class NavigationScene extends GeneralScene{
         container.setPrefWidth(WIDTH);
         container.setStyle("-fx-padding: 10");
 
-        footerLeftSide.setPrefWidth(WIDTH * 1/2);
+        footerLeftSide.setPrefWidth(WIDTH * 1 / 2);
         footerRightSide.setPrefWidth(WIDTH * 1 / 2);
         footerRightSide.getChildren().remove(backButton);
         footer = new HBox(0, footerLeftSide, footerRightSide);
         footer.setStyle("-fx-border-color: gray;");
         borderPane = new BorderPane(container, null, null, footer, null);
+        borderPane.backgroundProperty().setValue(
+                new Background(new BackgroundFill(Color.web("D7EBE6"),
+                        CornerRadii.EMPTY, Insets.EMPTY)));
+
         scene = new Scene(borderPane);
     }
 

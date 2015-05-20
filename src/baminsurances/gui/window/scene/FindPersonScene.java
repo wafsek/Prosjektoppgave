@@ -4,12 +4,13 @@ import baminsurances.data.Customer;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 /**
  * Created by Adrian on 11/05/2015.
@@ -48,6 +49,9 @@ public class FindPersonScene extends PersonSearchScene {
         leftSideContainer = new BorderPane(itemContainer, headerContainer, null, null, null);
 
         borderPane = new BorderPane(leftSideContainer, null, customerTable, footer, null);
+        borderPane.backgroundProperty().setValue(
+                new Background(new BackgroundFill(Color.web("D7EBE6"),
+                        CornerRadii.EMPTY, Insets.EMPTY) ));
         scene = new Scene(borderPane);
     }
 

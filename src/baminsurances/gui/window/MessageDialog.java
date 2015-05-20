@@ -9,9 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -181,6 +180,9 @@ public class MessageDialog {
         buttonHBox.setPadding(new Insets(15, 0, 10, 0));
         buttonHBox.setAlignment(Pos.CENTER);
         borderPane = new BorderPane(buttonHBox, contentHBox, null, null, null);
+        borderPane.backgroundProperty().setValue(
+                new Background(new BackgroundFill(Color.web("D7EBE6"),
+                        CornerRadii.EMPTY, Insets.EMPTY)));
 
         scene = new Scene(borderPane);
         stage.setScene(scene);

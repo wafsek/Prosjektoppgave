@@ -8,14 +8,15 @@ import baminsurances.gui.window.DifferentVehicleOwnerWindow;
 import baminsurances.gui.window.GuiConfig;
 import baminsurances.gui.window.MessageDialog;
 import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 /**
  * Created by Adrian on 14/05/2015.
@@ -69,7 +70,7 @@ public class BoatInsuranceScene extends InsuranceScene {
 
         ownerBox = new CheckBox("Forskjellig eier?");
         ownerBox.setOnAction(e -> {
-            if(!ownerBoxIsSelected){
+            if (!ownerBoxIsSelected) {
                 person = new DifferentVehicleOwnerWindow().registerOwner();
                 if (person == null) {
                     ownerBox.setSelected(false);
@@ -101,7 +102,16 @@ public class BoatInsuranceScene extends InsuranceScene {
         rightSideBorderPane.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
 
         borderPane = new BorderPane(leftSideBorderPane, null, rightSideBorderPane, footer, null);
+        borderPane.backgroundProperty().setValue(
+                new Background(new BackgroundFill(Color.web("D7EBE6"),
+                        CornerRadii.EMPTY, Insets.EMPTY)));
         scene = new Scene(borderPane);
+    }
+
+    public void clearScene() {
+        super.clearInfo();
+        /*registrationNoField, modelField, brandField,
+                lengthInFeetField, productionYearField, horsePowerField, motorTypeDropdown*/
     }
 
     /**
@@ -183,5 +193,11 @@ public class BoatInsuranceScene extends InsuranceScene {
      */
     public BoatType getTypeDropDown() {
         return typeDropDown.getValue();
+    }
+
+    @Override
+    public Scene getScene() {
+        clearInfo();
+        return scene;
     }
 }

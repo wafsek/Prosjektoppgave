@@ -2,11 +2,16 @@ package baminsurances.gui.window;
 
 import baminsurances.api.Validation;
 import baminsurances.data.*;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -167,6 +172,9 @@ public class UpdateInfoWindow {
         gridPane.setVgap(20);
         gridPane.setStyle("-fx-border-color: gray;" +
                 "-fx-padding: 10;");
+        gridPane.backgroundProperty().setValue(
+                new Background(new BackgroundFill(Color.web("D7EBE6"),
+                        CornerRadii.EMPTY, Insets.EMPTY)));
 
         scene = new Scene(gridPane);
         stage.setScene(scene);

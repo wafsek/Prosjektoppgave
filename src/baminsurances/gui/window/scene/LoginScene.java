@@ -75,7 +75,7 @@ public class LoginScene {
 
         itemContainer.getChildren().addAll(logo, fieldContainer, login);
         itemContainer.backgroundProperty().setValue(
-                new Background(new BackgroundFill(Color.LIGHTBLUE,
+                new Background(new BackgroundFill(Color.web("D7EBE6"),
                         CornerRadii.EMPTY, Insets.EMPTY) ));
 
         scene = new Scene(itemContainer);
