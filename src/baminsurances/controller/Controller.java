@@ -38,8 +38,7 @@ public class Controller {
     private CustomerServiceManager manager;
     private Searcher searcher;
     
-    /* GUI fields
-     */
+    // GUI fields
     private ClaimAdviceScene claimAdviceScene;
     private NavigationScene navigationScene;
     private AddScene addScene;
