@@ -676,27 +676,22 @@ public class Controller {
         }
         if (!Validation.isValidBoatRegistrationNo(
                 boatInsuranceScene.getRegistrationNoFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig registreringsnummer\n";
             failed = true;
         }
         if (!Validation.isValidModel(
                 boatInsuranceScene.getModelFieldText())) {
-            feil += "\n";
-            failed = true;
-        }
-        if (!Validation.isValidBoatRegistrationNo(
-                boatInsuranceScene.getRegistrationNoFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig modell\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 boatInsuranceScene.getLengthInFeetFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig lengde i fot\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 boatInsuranceScene.getHorsePowerFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig hestekrefter\n";
             failed = true;
         } 
         if (!failed) {
