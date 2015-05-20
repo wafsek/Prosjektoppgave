@@ -24,6 +24,7 @@ import java.time.LocalDate;
 
 /**
  * Created by Adrian on 14/05/2015.
+ * @author Adrian Melsom
  */
 public class CarInsuranceScene extends InsuranceScene{
 
@@ -38,6 +39,12 @@ public class CarInsuranceScene extends InsuranceScene{
     private Person person;
     private boolean ownerBoxIsSelected;
 
+    /**
+     * Creates the components used in this class.
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
+     */
     public CarInsuranceScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler){
         super(guiEventHandler, keyPressHandler);
         annualPremiumField.setEditable(true);
@@ -121,38 +128,81 @@ public class CarInsuranceScene extends InsuranceScene{
         scene = new Scene(borderPane);
     }
 
+    /**
+     * Returns a String of the value from registrationNumberField.
+     *
+     * @return a String of the value from registrationNumberField.
+     */
     public String getRegistrationNumberFieldText() {
         return registrationNumberField.getText();
     }
 
+    /**
+     * Returns a String of the value from carModelField.
+     *
+     * @return a String of the value from carModelField.
+     */
     public String getCarModelFieldText() {
         return carModelField.getText();
     }
 
+    /**
+     * Returns a String of the value from annualMilageField.
+     *
+     * @return a String of the value from annualMilageField.
+     */
     public String getAnnualMilageFieldText() {
         return annualMilageField.getText();
     }
 
+    /**
+     * Returns a String of the value from pricePerKilometerField.
+     *
+     * @return a String of the value from pricePerKilometerField.
+     */
     public String getPricePerKilometerFieldText() {
         return pricePerKilometerField.getText();
     }
 
+    /**
+     * Returns a String of the value from bonusPercentageField.
+     *
+     * @return a String of the value from bonusPercentageField.
+     */
     public String getBonusPercentageFieldText() {
         return bonusPercentageField.getText();
     }
 
+    /**
+     * Returns an enum of type CarType.
+     *
+     * @return an enum of type CarType.
+     */
     public CarType getCarTypeDropDownSelectedValue() {
         return carTypeDropDown.getValue();
     }
 
+    /**
+     * Returns a String of the value from productionYearField.
+     *
+     * @return a String of the value from productionYearField.
+     */
     public String getProductionYearSelectedValue() {
         return productionYearDropDown.getValue();
     }
 
+    /**
+     * Returns a String of the value from carBrandDropDown.
+     *
+     * @return a String of the value from carBrandDropDown.
+     */
     public String getCarBrandDropDownSelectedValue() {
         return carBrandDropDown.getValue();
     }
 
+    /**
+     * Clears the information in the given components.
+     */
     public void clearInfo() {
         super.clearInfo();
         registrationNumberField.setText("");
@@ -173,7 +223,12 @@ public class CarInsuranceScene extends InsuranceScene{
         return scene;
     }
 
+    /**
+     * Returns a person Object or null.
+     *
+     * @return a person Object or null.
+     */
     public Person getPerson() {
         return person;
     }
-}
+} // End of File

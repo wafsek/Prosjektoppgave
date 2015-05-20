@@ -22,6 +22,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Adrian PC on 12/05/2015.
+ * @author Adrian Melsom
  */
 public class HandleCustomerScene extends GeneralScene {
 
@@ -40,6 +41,12 @@ public class HandleCustomerScene extends GeneralScene {
     private HBox headerContainer, tableButtons, tableHeaderContainer;
     private VBox fieldContainer;
 
+    /**
+     * Creates the components used in this class.
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
+     */
     public HandleCustomerScene(GuiEventHandler guiEventHandler, KeyPressHandler keyPressHandler){
         super(guiEventHandler, keyPressHandler);
 
@@ -207,6 +214,11 @@ public class HandleCustomerScene extends GeneralScene {
         scene = new Scene(borderPane);
     }
 
+    /**
+     * Sets the values of the fields, with the values stores in the Customer object.
+     *
+     * @param customer
+     */
     public void setCustomerData(Customer customer) {
         birthNoField.setText(customer.getBirthNo());
         nameField.setText(customer.getFirstName() + " " + customer.getLastName());
@@ -222,53 +234,54 @@ public class HandleCustomerScene extends GeneralScene {
         return scene;
     }
 
-    public TextField getBirthNoField() {
-        return birthNoField;
-    }
-
-    public TextField getNameField() {
-        return nameField;
-    }
-
-    public TextField getTelephoneNoField() {
-        return telephoneNoField;
-    }
-
-    public TextField getEmailField() {
-        return emailField;
-    }
-
-    public TextField getAdressField() {
-        return adressField;
-    }
-
-    public TextField getBillingadressField() {
-        return billingadressField;
-    }
-
-    public TextField getDateOfRegistrationField() {
-        return dateOfRegistrationField;
-    }
-
+    /**
+     * Returns the Button which initiates the information update.
+     *
+     * @return the Button which initiates the information update.
+     */
     public Button getUpdateInfoButton() {
         return updateInfoButton;
     }
 
+    /**
+     * Return the Button which initiates the Scene which allows
+     * for insurance registration.
+     *
+     * @return the Button which initiates the Scene which allows
+     * for insurance registration.
+     */
     public Button getNewInsuranceButton() {
         return newInsuranceButton;
     }
 
+    /**
+     * Returns the Button which controls the initiation of the Scene which
+     * displays a given Insurance.
+     *
+     * @return the Button which controls the initiation of the Scene which
+     * displays a given Insurance.
+     */
     public Button getChooseInsuranceButton() {
         return chooseInsuranceButton;
     }
 
+    /**
+     * Sets the items in the insuranceTable and clears its selected item.
+     *
+     * @param observableList
+     */
     public void setTableData(ObservableList<Insurance> observableList) {
         insuranceTable.setItems(observableList);
         insuranceTable.getSelectionModel().clearSelection();
     }
 
+    /**
+     * Returns the selected Insurance from the TableView.
+     *
+     * @return the selected Insurance from the TableView.
+     */
     public Insurance getInsurance() {
         CurrentStatus.setCurrentInsurance(insuranceTable.getSelectionModel().getSelectedItem());
         return insuranceTable.getSelectionModel().getSelectedItem();
     }
-}
+} // End of File.

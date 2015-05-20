@@ -1,6 +1,8 @@
 package baminsurances.data;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -220,17 +222,24 @@ public class ClaimAdvice implements Comparable<ClaimAdvice>, Serializable {
             @Override
             public boolean accept(File dir, String name) {
                 return name.matches(
-                        String.valueOf(damageNo) + "_[0-9]+");
+                        String.valueOf(damageNo) + "_[0-9]+\\.png");
             }
         });
         
         List<Image> pictures = new ArrayList<>();
         for (File img : files) {
             //TODO
-            //BufferedImage readImg = ImageIO.read(img);
-            Image readImg = new Image(img.getPath());
-            if (readImg != null) {
-                pictures.add(readImg);
+            BufferedImage readImg;
+            try {
+                readImg = ImageIO.read(img);
+                //Image readImg = new Image(img.getPath());
+                
+                if (readImg != null) {
+                    pictures.add(SwingFXUtils.toFXImage(readImg, null));
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         }
         return pictures;

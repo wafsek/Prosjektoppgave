@@ -85,4 +85,4 @@ public class FindPersonScene extends PersonSearchScene {
     public Customer getSelectedCustomer() {
         return customerTable.getSelectionModel().getSelectedItem();
     }
-}
+} // End of File

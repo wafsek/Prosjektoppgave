@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 
 /**
  * Created by Adrian on 11/05/2015.
+ * @author Adrian Melsom
  */
 public abstract class GeneralScene {
 
@@ -46,23 +47,38 @@ public abstract class GeneralScene {
     }
 
     /**
-     * Returns the
+     * Returns the scene object of this class.
      *
-     * @return
+     * @return the scene object of this class.
      */
     public Scene getScene() {
         return scene;
     }
 
+    /**
+     * Returns the Button which controls the the switching to the log out scene.
+     *
+     * @return the Button which controls the the switching to the log out scene.
+     */
     public Button getLogOutButton() {
         return logOutButton;
     }
 
+    /**
+     * Returns the Button which controls the the switching to the previous scene.
+     *
+     * @return the Button which controls the the switching to the previous scene.
+     */
     public Button getBackButton(){
         return backButton;
     }
 
+    /**
+     * Sets the value of informationLabel to display the String displayName.
+     *
+     * @param displayName
+     */
     public void setDisplayName (String displayName) {
         informationLabel.setText(displayName);
     }
-}
+} // End of File

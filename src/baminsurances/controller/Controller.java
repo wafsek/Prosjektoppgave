@@ -353,17 +353,30 @@ public class Controller {
         } else if (control == claimAdviceScene.getBackButton()) {
                     this.launchSpecificInsuranceScene();
         } else if (control == boatInsuranceScene.getRegisterInsuranceButton()) {
-            this.registerBoatInsurance();
+            String message = this.registerBoatInsurance();
+            new MessageDialog().showMessageDialog("Informasjon", message, MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+            if(message.equals("Baat registrert")) {
+                launchHandleCustomerScene();
+            }
             this.launchHandleCustomerScene();
         }else if (control == houseInsuranceScene.getRegisterInsuranceButton()) {
-            this.registerHomeInsurance();
-            this.launchHandleCustomerScene();
+            String message = this.registerHomeInsurance();
+            new MessageDialog().showMessageDialog("Informasjon", message, MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+            if(message.equals("Baat registrert")) {
+                launchHandleCustomerScene();
+            }
         }else if (control == carInsuranceScene.getRegisterInsuranceButton()) {
-            this.registerCarInsurance();
-            this.launchHandleCustomerScene();
+            String message = this.registerCarInsurance();
+            new MessageDialog().showMessageDialog("Informasjon", message, MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+            if(message.equals("Baat registrert")) {
+                launchHandleCustomerScene();
+            }
         }else if (control == travelInsuranceScene.getRegisterInsuranceButton()) {
-            this.registerTravelInsurance();
-            this.launchHandleCustomerScene();
+            String message = this.registerTravelInsurance();
+            new MessageDialog().showMessageDialog("Informasjon", message, MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+            if(message.equals("Baat registrert")) {
+                launchHandleCustomerScene();
+            }
         }else if (control == specificInsuranceScene.getUpdateInfoButton()) {
             CurrentStatus.setCurrentInsurance(new UpdateInfoWindow().updateInsurance
                     (CurrentStatus.getCurrentInsurance()));
@@ -653,7 +666,7 @@ public class Controller {
                             Integer.parseInt(boatInsuranceScene.getHorsePowerFieldText())),
                     CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
-            System.out.println("Båt registrert");
+            System.out.println("Baat registrert");
             return "Boat Insurance Registered";
         }
     }

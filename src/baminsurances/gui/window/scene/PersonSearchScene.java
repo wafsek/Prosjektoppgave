@@ -33,14 +33,17 @@ public abstract class PersonSearchScene extends GeneralScene{
     protected TableColumn<Customer, String> birthNoColumn,
     firstNameColumn, lastNameColumn, addressColumn, tlfNoColumn;
     private Comparator<String> comparator = new NorwegianComparator();
-
     protected ArrayList<TextField> textFieldArrayList;
     protected Iterator<TextField> textFieldsIterator;
-
     protected Button choosePersonButton;
-
     protected GridPane itemContainer;
 
+    /**
+     * Creates the Components which are used
+     *
+     * @param guiEventHandler
+     * @param keyPressHandler
+     */
     public PersonSearchScene(GuiEventHandler guiEventHandler,
             KeyPressHandler keyPressHandler) {
         super(guiEventHandler, keyPressHandler);

@@ -133,4 +133,4 @@ public class ClaimAdviceScene extends GeneralScene {
     public Button getRegisterClaimAdviceButton() {
         return registerClaimAdviceButton;
     }
-}
+} // End of File
