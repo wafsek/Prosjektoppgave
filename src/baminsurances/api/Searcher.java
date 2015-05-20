@@ -700,9 +700,44 @@ public class Searcher {
      * @return a map representing the number of an insurance type to a gender
      */
     public Map<String, TreeMap<String, Integer>> numInsuranceTypesPerGender() {
+        Map<String, TreeMap<String, Integer>> result = new HashMap<>();
         
+        Map<Class<? extends Insurance>, String> insuranceClassToString =
+                getInsuranceClassToString();
         
-        return null;
+        // Map used to find the right display name based on class.
+        Map<Character, String> displayNames = new HashMap<>();
+        displayNames.put('M', "Menn");
+        displayNames.put('F', "Kvinner");
+        
+        /* Initializing all keys with a value of 0, so that they are included
+         * even if no customer of that gender exists.
+         */
+        for (String gender : displayNames.values()) {
+            TreeMap<String, Integer> inner = new TreeMap<>();
+            for (String type : insuranceClassToString.values()) {
+                inner.put(type, 0);
+            }
+            result.put(gender, inner);
+        }
+        
+        for (Customer cus : dataBank.getCustomerList()) {
+            char gender = cus.getGender();
+            Map<String, Integer> inner = result.get(gender);
+            
+            for (Insurance ins : cus.getInsurances()) {
+
+                String type = insuranceClassToString.get(ins.getClass());                
+                Integer currentNum = inner.get(type);
+                if (currentNum == null) {
+                    currentNum = 0;
+                }
+                
+                inner.put(type, currentNum + 1);
+            }
+        }
+        
+        return result;
     }
     
     /**
