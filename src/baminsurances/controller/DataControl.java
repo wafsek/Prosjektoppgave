@@ -8,20 +8,20 @@ package baminsurances.controller;
  */
 public enum DataControl {
     SUCCESS("Success"),
-    INVALID_FIRST_NAME("ugyldig fornavn"),
-    INVALID_LAST_NAME("ugyldig etternavn"),
-    INVALID_BIRTHNO("ugyldig fødselsnummer"),
-    INVALID_EMAIL("ugyldig e-postadresse"),
-    INVALID_TLF("ugyldig telefonnummer"),
-    INVALID_ADDRESS("ugyldig afdresse"),
-    INVALID_ZIPCODE("ugyldig postnummer"),
-    INVALID_BILLING_ADRESSE("ugyldig addresse"),
-    INVALID_BILLING_ZIPCODE("ugyldig addresse"),
-    INVALID_CAR_REGISTRATION_NUMBER(""),
-    INVALID_BOAT_REGISTRATION_NUMBER(""),
-    INVALID_ANNUAL_PREMIUM("ugyldig premie"),
-    INVALID_AMOUNT("ugyldig value"),
-    INVALID_MODEL("ugyldig model");
+    INVALID_FIRST_NAME("Ugyldig fornavn"),
+    INVALID_LAST_NAME("Ugyldig etternavn"),
+    INVALID_BIRTHNO("Ugyldig fødselsnummer"),
+    INVALID_EMAIL("Ugyldig e-postadresse"),
+    INVALID_TLF("Ugyldig telefonnummer"),
+    INVALID_ADDRESS("Ugyldig adresse"),
+    INVALID_ZIPCODE("Ugyldig postnummer"),
+    INVALID_BILLING_ADRESSE("Ugyldig adresse"),
+    INVALID_BILLING_ZIPCODE("Ugyldig adresse"),
+    INVALID_CAR_REGISTRATION_NUMBER("Ugyldig registreringsnummer"),
+    INVALID_BOAT_REGISTRATION_NUMBER("Ugyldig registreringsnummer"),
+    INVALID_ANNUAL_PREMIUM("Ugyldig premie"),
+    INVALID_AMOUNT("Ugyldig forsikringsbeløp"),
+    INVALID_MODEL("Ugyldig modell");
     private final String description;
     
     /**
