@@ -625,26 +625,39 @@ public class Controller {
 
 
     public String validateBoatInsuranceData() {
+        String feil = "følgende felt feil: \n";
+        boolean failed = false;
         if(!this.validateInsuranceData().equals("Success")) {
             return this.validateInsuranceData();
-        } else if(!Validation.isValidBoatRegistrationNo(
-                boatInsuranceScene.getRegistrationNoFieldText())) {
-            return "";
-        } else if(!Validation.isValidBoatRegistrationNo(
-                boatInsuranceScene.getRegistrationNoFieldText())) {
-            return "";
-        } else if(!Validation.consistsOnlyOfNumbers(
-                boatInsuranceScene.getLengthInFeetFieldText())) {
-            return "";
-        } else if(!Validation.consistsOnlyOfNumbers(
-                boatInsuranceScene.getHorsePowerFieldText())) {
-            return "";
-        }  else {
-            return "Success";
         }
+        if(!Validation.isValidBoatRegistrationNo(
+                boatInsuranceScene.getRegistrationNoFieldText())) {
+            feil += "\n";
+            failed = true;
+        }
+        if(!Validation.isValidBoatRegistrationNo(
+                boatInsuranceScene.getRegistrationNoFieldText())) {
+            feil += "\n";
+            failed = true;
+        }
+        if(!Validation.consistsOnlyOfNumbers(
+                boatInsuranceScene.getLengthInFeetFieldText())) {
+            feil += "\n";
+            failed = true;
+        }
+        if(!Validation.consistsOnlyOfNumbers(
+                boatInsuranceScene.getHorsePowerFieldText())) {
+            feil += "\n";
+            failed = true;
+        } 
+        if (failed){
+             feil = "Success";
+        }
+        return feil;
     }
 
     public String registerBoatInsurance(){
+        
         if(!this.validateBoatInsuranceData().equals("Success")){
             System.out.println("BÃ¥t feilet");
             return this.validateBoatInsuranceData();
@@ -673,35 +686,50 @@ public class Controller {
 
 
     public String validateHomeInsuranceData(){
-        if(this.validateInsuranceData().equals("Success")){
+        String feil = "følgende felt feil: \n";
+        boolean failed = false;
+        if(!this.validateInsuranceData().equals("Success")){
             return this.validateInsuranceData();
-        } else if (!Validation.isValidStreetAddress(
+        } 
+        if (!Validation.isValidStreetAddress(
                 houseInsuranceScene.getStreetAddressFieldText())){
-            System.out.println("gateadresse feilet");
-            return "";
-        } else if (!Validation.isValidZipCode(
-                houseInsuranceScene.getZipCodeFieldText())){
-            System.out.println("postnr feilet");
-            return "";
-        } else if (!Validation.consistsOnlyOfNumbers(
-                houseInsuranceScene.getConstructionYearFieldText())){
-            System.out.println("konstruksjonsÃ¥r feilet");
-            return "";
-        } else if (!Validation.consistsOnlyOfNumbers(
-                houseInsuranceScene.getSquareMetersFieldText())){
-            System.out.println("kvadratmeter feilet");
-            return "";
-        } else if (!Validation.consistsOnlyOfNumbers(
-                houseInsuranceScene.getHomeAmountFieldText())){
-            System.out.println("home amount feilet");
-            return "";
-        } else if (!Validation.consistsOnlyOfNumbers(
-                houseInsuranceScene.getContentsAmountFieldText())){
-            System.out.println("contents amount feilet");
-            return "";
-        }else {
-            return DataControl.SUCCESS.getDescription();
+            feil += "\n";
+            failed = true;
         }
+        if (!Validation.isValidZipCode(
+                houseInsuranceScene.getZipCodeFieldText())){
+            feil += "\n";
+            failed = true;
+            
+        }
+        if (!Validation.consistsOnlyOfNumbers(
+                houseInsuranceScene.getConstructionYearFieldText())){
+            feil += "\n";
+            failed = true;
+            
+        }
+        if (!Validation.consistsOnlyOfNumbers(
+                houseInsuranceScene.getSquareMetersFieldText())){
+            feil += "\n";
+            failed = true;
+            
+        }
+        if (!Validation.consistsOnlyOfNumbers(
+                houseInsuranceScene.getHomeAmountFieldText())){
+            feil += "\n";
+            failed = true;
+            
+        }
+        if (!Validation.consistsOnlyOfNumbers(
+                houseInsuranceScene.getContentsAmountFieldText())){
+            feil += "\n";
+            failed = true;
+            
+        }
+        if(!failed){
+            feil=  DataControl.SUCCESS.getDescription();
+        }
+        return feil;
     }
 
     public String registerHomeInsurance(){
@@ -758,6 +786,29 @@ public class Controller {
     }
 
 
+    public String validateTravelInsuranceData(){
+        String feil = "følgende felt feil: \n";
+        boolean failed = false;
+        if(!this.validateInsuranceData().equals("Success")){
+            return this.validateInsuranceData();
+        }
+        if (!Validation.consistsOnlyOfNumbers(
+                travelInsuranceScene.getAnnualPremiumFieldText())){
+            feil += "\n";
+            failed = true;
+        }
+        if (!Validation.consistsOnlyOfNumbers(
+                travelInsuranceScene.getInsuranceValueFieldText())){
+            feil += "\n";
+            failed = true;
+
+        }
+        if(!failed){
+            feil=  DataControl.SUCCESS.getDescription();
+        }
+        return feil;
+    }
+    
     public String registerTravelInsurance() {
         manager.registerTravelInsurance(new TravelInsurance(
                         Authenticator.getInstance().getCurrentEmployee(),
