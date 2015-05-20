@@ -48,9 +48,9 @@ public class GeneratingStage {
         employeeLabel = new Label("Antall ansatte:");
         insuranceLabel = new Label("Antall forsikringer:");
         claimAdviceLabel = new Label("Antall skademeldinger:");
-        informationLabel = new Label("Dette vinduet er ikke ment som en del av\n " +
-                "programmet. Det er kun for generering\n av data, som gjør programmet" +
-                "mulig\n å teste.");
+        informationLabel = new Label("Dette vinduet er ikke ment som en del av\n" +
+                "programmet. Det er kun for generering\nav data, som gjør programmet " +
+                "mulig\nå teste.");
 
         headerLabel = new Label("Generering");
         headerLabel.setStyle("-fx-font: 28px Times");
