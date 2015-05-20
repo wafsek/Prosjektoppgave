@@ -21,7 +21,7 @@ import java.util.logging.Level;
 
 /**
  * Created by baljit on 19.05.2015.
- * @author baljit 
+ * @author baljit
  */
 public class StatisticScene extends GeneralScene{
 
@@ -41,11 +41,11 @@ public class StatisticScene extends GeneralScene{
     private Axis xAxis;
     private Axis yAxis;
     private Axis cAxis;
-    
+
     public StatisticScene(GuiEventHandler guiEventHandler,KeyPressHandler keyPressHandler){
         super(guiEventHandler,keyPressHandler);
         logger = CustomLogger.getInstance();
-        
+
         xAxis = new NumberAxis();
         yAxis = new NumberAxis();
         cAxis = new CategoryAxis();
@@ -78,7 +78,7 @@ public class StatisticScene extends GeneralScene{
         borderPane.backgroundProperty().setValue(
                 new Background(new BackgroundFill(Color.web("D7EBE6"),
                         CornerRadii.EMPTY, Insets.EMPTY)));
-        
+
         scene = new Scene(borderPane);
         this.launchOptionOne(StatisticOption.OPTION_ONE);
     }
@@ -101,10 +101,10 @@ public class StatisticScene extends GeneralScene{
                 barChart.setAnimated(false);
                 pieChart.setAnimated(false);
                 lineChart.setAnimated(false);
-            } 
+            }
         });
     }
-    
+
     private void setComboBox(){
         comboBox = new ComboBox(FXCollections.observableArrayList(
                 StatisticOption.OPTION_ONE.getDescription(),
@@ -113,7 +113,7 @@ public class StatisticScene extends GeneralScene{
                 StatisticOption.OPTION_FOUR.getDescription(),
                 StatisticOption.OPTION_FIVE.getDescription(),
                 StatisticOption.OPTION_SIX.getDescription())
-                
+
         );
         comboBox.setOnAction(e -> {
             if (comboBox.getValue() == StatisticOption.OPTION_ONE.getDescription()) {
@@ -128,7 +128,7 @@ public class StatisticScene extends GeneralScene{
                 this.launchOptionFive(StatisticOption.OPTION_FIVE);
             }  else if (comboBox.getValue() == StatisticOption.OPTION_SIX.getDescription()) {
                 this.launchOptionSix(StatisticOption.OPTION_SIX);
-            }  
+            }
         });
     }
     private void clearRightSide(){
@@ -138,17 +138,17 @@ public class StatisticScene extends GeneralScene{
         rightSide.getChildren().removeAll(lineChart);
         leftSide.getChildren().removeAll(pieChart);
     }
-    
-    
+
+
     private PieChart setPieChart(){
         pieChart = new PieChart(pieChartData);
         pieChart.setVisible(true);
         pieChart.getLabelsVisible();
         return pieChart;
     }
-    
+
     private BarChart setBarchart(){
-        
+
         barChart = new BarChart(cAxis,yAxis);
         barChart.getData().addAll(series);
         barChart.applyCss();
@@ -156,17 +156,17 @@ public class StatisticScene extends GeneralScene{
         cAxis = new CategoryAxis();
         return barChart;
     }
-    
+
     private LineChart setLineChart(){
         lineChart = new LineChart(xAxis,yAxis);
         lineChart.getData().addAll(series);
         return lineChart;
     }
-    
+
     private BarChart setMultiBarChart(){
         barChart = new BarChart(cAxis,yAxis);
         for(XYChart.Series series : seriesArray){
-            barChart.getData().add(series);  
+            barChart.getData().add(series);
         }
         barChart.setCategoryGap(50);
         return barChart;
@@ -188,9 +188,9 @@ public class StatisticScene extends GeneralScene{
      *                        Methods representing options                       *
      *                                                                           *
      ****************************************************************************/
-    
-    
-    
+
+
+
     private void launchOptionOne(StatisticOption statisticOption ){
         this.clearRightSide();
         logger.log("Option one selected ", Level.FINE);
@@ -206,7 +206,7 @@ public class StatisticScene extends GeneralScene{
         pieChart.setTitle("Totalt antall forsikringer per kjønn");
         leftSide.setAlignment(Pos.CENTER);
         leftSide.getChildren().add(pieChart);
-        
+
     }
 
 
@@ -227,9 +227,9 @@ public class StatisticScene extends GeneralScene{
         pieChart.setTitle("Antall forsikringer per type");
         leftSide.setAlignment(Pos.CENTER);
         leftSide.getChildren().add(pieChart);
-        
+
     }
-    
+
 
     private void launchOptionThree(StatisticOption statisticOption){
         this.clearRightSide();
@@ -247,8 +247,8 @@ public class StatisticScene extends GeneralScene{
         leftSide.getChildren().add(pieChart);
     }
 
-    
-    
+
+
     private void launchOptionFour(StatisticOption statisticOption){
         this.clearRightSide();
         xAxis = new NumberAxis(1997, LocalDate.now().getYear()-1, 1);
@@ -261,7 +261,7 @@ public class StatisticScene extends GeneralScene{
         lineChart.setTitle(statisticOption.getDescription());
         rightSide.getChildren().add(lineChart);
     }
-    
+
     private void launchOptionFive(StatisticOption statisticOption){
         this.clearRightSide();
         logger.log("Option Seven selected ", Level.FINE);
@@ -277,7 +277,7 @@ public class StatisticScene extends GeneralScene{
         pieChart.setTitle(statisticOption.getDescription());
         leftSide.getChildren().add(pieChart);
     }
-    
+
     private void launchOptionSix(StatisticOption statisticOption){
         this.clearRightSide();
         xAxis = new NumberAxis(1997, LocalDate.now().getYear()-1, 1);
@@ -291,7 +291,7 @@ public class StatisticScene extends GeneralScene{
         lineChart.setTitle(statisticOption.getDescription());
         rightSide.getChildren().add(lineChart);
     }
-    
+
     /**#######################        END OF OPTIONS           ######################################*/
 
 
@@ -300,8 +300,8 @@ public class StatisticScene extends GeneralScene{
      *                     Setting charts with single series                     *
      *                                                                           *
      ****************************************************************************/
-    
-    
+
+
     public <T>void setLineChartData(Map<T,Integer> map,String seriesNavn){
         series = new XYChart.Series();
         series.setName(seriesNavn);
@@ -313,7 +313,7 @@ public class StatisticScene extends GeneralScene{
             series.getData().add(new XYChart.Data<>(key,i));
         }
     }
-    
+
     public <T> void setPieChartData(Map<T ,Integer> map){
         pieChartData = FXCollections.observableArrayList();
         for(Map.Entry<T,Integer> entrySet : map.entrySet()){
@@ -322,7 +322,7 @@ public class StatisticScene extends GeneralScene{
             pieChartData.add(new PieChart.Data(key.toString() + " : " + value, value));
         }
     }
-    
+
     public <T>void setBarChartData(Map<T,Integer> map,String seriesName){
         series = new XYChart.Series();
         series.setName(seriesName);
@@ -344,7 +344,7 @@ public class StatisticScene extends GeneralScene{
      *                     Setting charts with multiple series                   *
      *                                                                           *
      ****************************************************************************/
-    
+
     public <T>void setMultiBarChartData(Map<T,TreeMap<T,Integer>> map,String ChartName){
         int numOfSeries = map.values().iterator().next().size();
         seriesArray = new XYChart.Series[numOfSeries];
@@ -360,15 +360,15 @@ public class StatisticScene extends GeneralScene{
         counter = 0;
         for (TreeMap<T, Integer> t : map.values()) {
             for (T x : t.keySet()) {
-               seriesArray[counter].setName(x.toString()); 
-               counter++; 
+               seriesArray[counter].setName(x.toString());
+               counter++;
             }
             break;
         }
         counter = 0;
         for(Map.Entry<T,TreeMap<T,Integer>> entrySet : map.entrySet()){
             key = entrySet.getKey();
-            
+
             for(Map.Entry<T,Integer> innerEntrySet : entrySet.getValue().entrySet()){
                 innerKey = innerEntrySet.getKey();
                 i = innerEntrySet.getValue();
@@ -413,6 +413,6 @@ public class StatisticScene extends GeneralScene{
             counter = 0;
         }
     }
-    
+
     /**#######################    END of Setting charts with multiple series   ######################################*/
 }

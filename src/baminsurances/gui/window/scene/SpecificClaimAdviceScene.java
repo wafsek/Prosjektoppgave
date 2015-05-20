@@ -130,6 +130,8 @@ public class SpecificClaimAdviceScene extends GeneralScene {
 
                 });
             }
+        } else {
+            imageView.setImage(null);
         }
     }
 } // End of File
