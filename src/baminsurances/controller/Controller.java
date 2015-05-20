@@ -527,7 +527,7 @@ public class Controller {
     }
 
     private String validatePersonData() {
-        String feil = "Følgende felt har feil:\n";
+        String feil = "Feil:\n\n";
         boolean failed = false;
         if (!Validation.isValidFirstName(addScene.getFirstNameFieldText())) {
             feil += DataControl.INVALID_FIRST_NAME.getDescription() + "\n\n";
@@ -595,7 +595,7 @@ public class Controller {
 
 
     public String validateCarInsuranceData() {
-        String feil = "Feil:\n";
+        String feil = "Feil:\n\n";
         boolean failed = false;
         if (!this.validateInsuranceData(carInsuranceScene).equals("Success")) {
             feil += this.validateInsuranceData(carInsuranceScene)+"\n\n";
@@ -670,7 +670,7 @@ public class Controller {
     }
 
     public String validateBoatInsuranceData() {
-        String feil = "Feil:\n";
+        String feil = "Feil:\n\n";
         boolean failed = false;
         if(!this.validateInsuranceData(boatInsuranceScene).equals("Success")) {
             return this.validateInsuranceData(boatInsuranceScene);
