@@ -1,5 +1,6 @@
 package baminsurances.data;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,6 +73,18 @@ public class DataBank implements Serializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+    
+    /**
+     * Wipes the data bank.
+     */
+    public static void delete() {
+        try {
+            Files.delete(new File("data/data_bank.ser").toPath());
+            dataBank = null;
+        } catch (IOException e) {
+            // the file does not exist
         }
     }
     
