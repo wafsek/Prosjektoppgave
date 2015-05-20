@@ -20,11 +20,12 @@ import java.util.*;
 import java.util.logging.Level;
 
 /**
- * Created by baljit on 19.05.2015.
- * @author baljit
+ * The scene that shows statistics of the data.
+ * 
+ * @author Baljit Sarai
  */
-public class StatisticScene extends GeneralScene{
-
+@SuppressWarnings({"unchecked", "rawtypes"})
+public class StatisticScene extends GeneralScene {
     private VBox leftSide,rightSide;
     private VBox topBar;
     private Label topLabel;
@@ -41,8 +42,15 @@ public class StatisticScene extends GeneralScene{
     private Axis xAxis;
     private Axis yAxis;
     private Axis cAxis;
-
-    public StatisticScene(GuiEventHandler guiEventHandler,KeyPressHandler keyPressHandler){
+    
+    /**
+     * Creates a new statistics scene.
+     * 
+     * @param guiEventHandler the GUI event handler
+     * @param keyPressHandler the key press handler
+     */
+    public StatisticScene(GuiEventHandler guiEventHandler,
+            KeyPressHandler keyPressHandler) {
         super(guiEventHandler,keyPressHandler);
         logger = CustomLogger.getInstance();
 
@@ -60,7 +68,7 @@ public class StatisticScene extends GeneralScene{
         this.setComboBox();
         comboBox.setValue(StatisticOption.OPTION_ONE.getDescription());
         this.setAnimationComboBox();
-        animationComboBox.setValue("Animasjon PÅ");
+        animationComboBox.setValue("Animasjon PÃ…");
         
         topLabel = new Label("Statistikk");
         topLabel.setStyle("-fx-font:50px times;");
@@ -83,14 +91,17 @@ public class StatisticScene extends GeneralScene{
         this.launchOptionOne(StatisticOption.OPTION_ONE);
     }
 
-    private void setAnimationComboBox(){
+    /**
+     * Sets the animation combo box.
+     */
+    private void setAnimationComboBox() {
         animationComboBox = new ComboBox(FXCollections.observableArrayList(
-                "Animasjon PÅ",
+                "Animasjon PÃ…",
                 "Animasjon AV"
         ));
 
         animationComboBox.setOnAction(e -> {
-            if (animationComboBox.getValue() == "Animasjon PÅ") {
+            if (animationComboBox.getValue() == "Animasjon PÃ…") {
                 xAxis = new NumberAxis();
                 yAxis = new NumberAxis();
                 cAxis = new CategoryAxis();
@@ -104,8 +115,11 @@ public class StatisticScene extends GeneralScene{
             }
         });
     }
-
-    private void setComboBox(){
+    
+    /**
+     * Sets the combo box with statistics options.
+     */
+    private void setComboBox() {
         comboBox = new ComboBox(FXCollections.observableArrayList(
                 StatisticOption.OPTION_ONE.getDescription(),
                 StatisticOption.OPTION_TWO.getDescription(),
@@ -131,24 +145,36 @@ public class StatisticScene extends GeneralScene{
             }
         });
     }
-    private void clearRightSide(){
+    
+    /**
+     * Clears the right side of the scene.
+     */
+    private void clearRightSide() {
         xAxis.setAutoRanging(true);
         rightSide.getChildren().removeAll(pieChart);
         rightSide.getChildren().removeAll(barChart);
         rightSide.getChildren().removeAll(lineChart);
         leftSide.getChildren().removeAll(pieChart);
     }
-
-
-    private PieChart setPieChart(){
+    
+    /**
+     * Sets the pie chart, and returns it.
+     * 
+     * @return the set pie chart
+     */
+    private PieChart setPieChart() {
         pieChart = new PieChart(pieChartData);
         pieChart.setVisible(true);
         pieChart.getLabelsVisible();
         return pieChart;
     }
-
-    private BarChart setBarchart(){
-
+    
+    /**
+     * Sets the bar chart, and returns it.
+     * 
+     * @return the set bar chart
+     */
+    private BarChart setBarchart() {
         barChart = new BarChart(cAxis,yAxis);
         barChart.getData().addAll(series);
         barChart.applyCss();
@@ -156,13 +182,23 @@ public class StatisticScene extends GeneralScene{
         cAxis = new CategoryAxis();
         return barChart;
     }
-
-    private LineChart setLineChart(){
-        lineChart = new LineChart(xAxis,yAxis);
+    
+    /**
+     * Sets the line chart, and returns it.
+     * 
+     * @return the set line chart
+     */
+    private LineChart setLineChart() {
+        lineChart = new LineChart(xAxis, yAxis);
         lineChart.getData().addAll(series);
         return lineChart;
     }
-
+    
+    /**
+     * Sets the multi bar chart, and returns it.
+     * 
+     * @return the set multi bar chart
+     */
     private BarChart setMultiBarChart(){
         barChart = new BarChart(cAxis,yAxis);
         for(XYChart.Series series : seriesArray){
@@ -172,6 +208,11 @@ public class StatisticScene extends GeneralScene{
         return barChart;
     }
 
+    /**
+     * Sets the multiline chart, and returns it.
+     * 
+     * @return the set multiline chart
+     */
     private LineChart setMultiLineChart(){
         lineChart = new LineChart<>(xAxis,yAxis);
         for(XYChart.Series series : seriesArray){
@@ -188,35 +229,43 @@ public class StatisticScene extends GeneralScene{
      *                        Methods representing options                       *
      *                                                                           *
      ****************************************************************************/
-
-
-
-    private void launchOptionOne(StatisticOption statisticOption ){
+    
+    /**
+     * Shows statistic option one.
+     * 
+     * @param statisticOption the statistic option
+     */
+    private void launchOptionOne(StatisticOption statisticOption ) {
         this.clearRightSide();
         logger.log("Option one selected ", Level.FINE);
-        this.setMultiBarChartData(new Searcher().numInsuranceTypesPerGender(), "Antall forsikringer");
-        cAxis.setLabel("Kjønn");
+        this.setMultiBarChartData(new Searcher().numInsuranceTypesPerGender(),
+                "Antall forsikringer");
+        cAxis.setLabel("KjÃ¸nn");
         yAxis.setLabel("Antall forsikringer");
         rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 2 / 3);
         barChart = this.setMultiBarChart();
-        barChart.setTitle("Antall forsikringer per kjønn fordelt på forsikringstype");
+        barChart.setTitle("Antall forsikringer per kjÃ¸nn fordelt pÃ¥ forsikringstype");
         rightSide.getChildren().add(barChart);
         this.setPieChartData(new Searcher().numInsurancesPerGender());
         pieChart = this.setPieChart();
-        pieChart.setTitle("Totalt antall forsikringer per kjønn");
+        pieChart.setTitle("Totalt antall forsikringer per kjÃ¸nn");
         leftSide.setAlignment(Pos.CENTER);
         leftSide.getChildren().add(pieChart);
 
     }
 
-
-
-    private void launchOptionTwo(StatisticOption statisticOption ){
+    /**
+     * Shows statistic option two.
+     * 
+     * @param statisticOption the statistic option
+     */
+    private void launchOptionTwo(StatisticOption statisticOption ) {
         this.clearRightSide();
         logger.log("Option one selected ", Level.FINE);
-        this.setBarChartData(new Searcher().numInsurancesPerType(), "Antall forsikringer");
+        this.setBarChartData(new Searcher().numInsurancesPerType(),
+                "Antall forsikringer");
         cAxis.setLabel("Forsikringstyper");
-        yAxis.setLabel("Antall per år");
+        yAxis.setLabel("Antall per Ã¥r");
         rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
         barChart = this.setBarchart();
         barChart.setTitle("Totalt antall forsikringer per type");
@@ -227,41 +276,54 @@ public class StatisticScene extends GeneralScene{
         pieChart.setTitle("Antall forsikringer per type");
         leftSide.setAlignment(Pos.CENTER);
         leftSide.getChildren().add(pieChart);
-
     }
 
-
-    private void launchOptionThree(StatisticOption statisticOption){
+    /**
+     * Shows statistic option three.
+     * 
+     * @param statisticOption the statistic option
+     */
+    private void launchOptionThree(StatisticOption statisticOption) {
         this.clearRightSide();
         logger.log("Option one selected ", Level.FINE);
-        this.setMultiBarChartData(new Searcher().getInsuranceTypesPerRegion(), "Antall forsikringer");
+        this.setMultiBarChartData(new Searcher().getInsuranceTypesPerRegion(),
+                "Antall forsikringer");
         cAxis.setLabel("Landsdel");
         yAxis.setLabel("Antall forsikringer");
         rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 5 / 8);
         barChart =  this.setMultiBarChart();
-        barChart.setTitle(statisticOption.getDescription()+" fordelt på forsikringstype");
+        barChart.setTitle(statisticOption.getDescription()+" fordelt pÃ¥ forsikringstype");
         rightSide.getChildren().add(barChart);
         this.setPieChartData(new Searcher().numInsurancesPerRegion());
         pieChart = this.setPieChart();
         pieChart.setTitle("Total antall forsikringer per type");
         leftSide.getChildren().add(pieChart);
     }
-
-
-
-    private void launchOptionFour(StatisticOption statisticOption){
+    
+    /**
+     * Shows statistic option four.
+     * 
+     * @param statisticOption the statistic option
+     */
+    private void launchOptionFour(StatisticOption statisticOption) {
         this.clearRightSide();
         xAxis = new NumberAxis(1997, LocalDate.now().getYear()-1, 1);
         logger.log("Option one selected ", Level.FINE);
-        this.setLineChartData(new Searcher().getSumPaymentsPerYear(), "Sum innbetalinger");
-        xAxis.setLabel("År");
+        this.setLineChartData(new Searcher().getSumPaymentsPerYear(),
+                "Sum innbetalinger");
+        xAxis.setLabel("Ã…r");
         yAxis.setLabel("Sum innbetalinger");
         rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 9/10);
         lineChart = this.setLineChart();
         lineChart.setTitle(statisticOption.getDescription());
         rightSide.getChildren().add(lineChart);
     }
-
+    
+    /**
+     * Shows statistic option five.
+     * 
+     * @param statisticOption the statistic option
+     */
     private void launchOptionFive(StatisticOption statisticOption){
         this.clearRightSide();
         logger.log("Option Seven selected ", Level.FINE);
@@ -277,14 +339,19 @@ public class StatisticScene extends GeneralScene{
         pieChart.setTitle(statisticOption.getDescription());
         leftSide.getChildren().add(pieChart);
     }
-
+    
+    /**
+     * Shows statistic option six.
+     * 
+     * @param statisticOption the statistic option
+     */
     private void launchOptionSix(StatisticOption statisticOption){
         this.clearRightSide();
         xAxis = new NumberAxis(1997, LocalDate.now().getYear()-1, 1);
         logger.log("Option one selected ", Level.FINE);
         this.setMultiLineChartData(new Searcher().getPaymentsPerInsuranceTypePerYear(),
                 "Sum innbetalinger");
-        xAxis.setLabel("År");
+        xAxis.setLabel("Ã…r");
         yAxis.setLabel("Sum innbetalinger");
         rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 9/10);
         lineChart = this.setMultiLineChart();
@@ -300,20 +367,31 @@ public class StatisticScene extends GeneralScene{
      *                     Setting charts with single series                     *
      *                                                                           *
      ****************************************************************************/
-
-
-    public <T>void setLineChartData(Map<T,Integer> map,String seriesNavn){
+    
+    /**
+     * Sets the line chart data with the given map.
+     * 
+     * @param map the map to represent as a line chart
+     * @param seriesName the name of the series 
+     */
+    public <T>void setLineChartData(Map<T,Integer> map,
+            String seriesName){
         series = new XYChart.Series();
-        series.setName(seriesNavn);
+        series.setName(seriesName);
         T key;
         int i;
-        for(Map.Entry<T,Integer> entrySet : map.entrySet()){
+        for(Map.Entry<T,Integer> entrySet : map.entrySet()) {
             key = entrySet.getKey();
             i = entrySet.getValue();
             series.getData().add(new XYChart.Data<>(key,i));
         }
     }
-
+    
+    /**
+     * Sets the pie chart data with the given map.
+     * 
+     * @param map the map to represent as a pie chart
+     */
     public <T> void setPieChartData(Map<T ,Integer> map){
         pieChartData = FXCollections.observableArrayList();
         for(Map.Entry<T,Integer> entrySet : map.entrySet()){
@@ -322,7 +400,13 @@ public class StatisticScene extends GeneralScene{
             pieChartData.add(new PieChart.Data(key.toString() + " : " + value, value));
         }
     }
-
+    
+    /**
+     * Sets the bar chart with the given map.
+     * 
+     * @param map the map to represent as a bar chart
+     * @param seriesName the name of the series
+     */
     public <T>void setBarChartData(Map<T,Integer> map,String seriesName){
         series = new XYChart.Series();
         series.setName(seriesName);
@@ -344,15 +428,19 @@ public class StatisticScene extends GeneralScene{
      *                     Setting charts with multiple series                   *
      *                                                                           *
      ****************************************************************************/
-
-    public <T>void setMultiBarChartData(Map<T,TreeMap<T,Integer>> map,String ChartName){
+    
+    /**
+     * Sets a multi bar chart with the given double map.
+     * 
+     * @param map the double map
+     * @param chartName the name of the chart
+     */
+    public <T>void setMultiBarChartData(Map<T, TreeMap<T, Integer>> map,
+            String chartName) {
         int numOfSeries = map.values().iterator().next().size();
         seriesArray = new XYChart.Series[numOfSeries];
         int counter = 0;
-        T key;
-        T innerKey;
-        int i;
-        while(counter < numOfSeries){
+        while (counter < numOfSeries) {
             XYChart.Series series = new XYChart.Series();
             seriesArray[counter] = series;
             counter++;
@@ -366,12 +454,13 @@ public class StatisticScene extends GeneralScene{
             break;
         }
         counter = 0;
-        for(Map.Entry<T,TreeMap<T,Integer>> entrySet : map.entrySet()){
-            key = entrySet.getKey();
+        for (Map.Entry<T,TreeMap<T,Integer>> entrySet : map.entrySet()) {
+            T key = entrySet.getKey();
+            
+            for (Map.Entry<T,Integer> innerEntrySet :
+                    entrySet.getValue().entrySet()) {
+                int i = innerEntrySet.getValue();
 
-            for(Map.Entry<T,Integer> innerEntrySet : entrySet.getValue().entrySet()){
-                innerKey = innerEntrySet.getKey();
-                i = innerEntrySet.getValue();
                 seriesArray[counter].getData().add(new XYChart.Data<>(key,i));
                 counter++;
             }
@@ -379,14 +468,16 @@ public class StatisticScene extends GeneralScene{
         }
     }
 
-
-    public <T,U>void setMultiLineChartData(Map<T,TreeMap<U,Integer>> map,String ChartName){
+    /**
+     * Sets the multi line chart with the given double map.
+     * 
+     * @param map the double map
+     * @param chartName the name of the chart
+     */
+    public <T,U>void setMultiLineChartData(Map<T,TreeMap<U,Integer>> map,String chartName) {
         int numOfSeries = map.values().iterator().next().size();
         seriesArray = new XYChart.Series[numOfSeries];
         int counter = 0;
-        T key;
-        U innerKey;
-        int i;
         while(counter < numOfSeries){
             XYChart.Series series = new XYChart.Series();
             seriesArray[counter] = series;
@@ -401,12 +492,11 @@ public class StatisticScene extends GeneralScene{
             break;
         }
         counter = 0;
-        for(Map.Entry<T,TreeMap<U,Integer>> entrySet : map.entrySet()){
-            key = entrySet.getKey();
+        for (Map.Entry<T,TreeMap<U,Integer>> entrySet : map.entrySet()) {
+            T key = entrySet.getKey();
 
-            for(Map.Entry<U,Integer> innerEntrySet : entrySet.getValue().entrySet()){
-                innerKey = innerEntrySet.getKey();
-                i = innerEntrySet.getValue();
+            for(Map.Entry<U,Integer> innerEntrySet : entrySet.getValue().entrySet()) {
+                int i = innerEntrySet.getValue();
                 seriesArray[counter].getData().add(new XYChart.Data<>(key,i));
                 counter++;
             }

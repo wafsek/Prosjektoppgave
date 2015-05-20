@@ -1,16 +1,18 @@
 package baminsurances.gui.window.scene;
 
 /**
- * Created by baljit on 19.05.2015.
+ * Represents a statistic option for statistic scene.
+ * 
+ * @author Baljit Sarai
  */
 public enum StatisticOption {
 
-    OPTION_ONE("Antall forsikringer per kjønn"),
+    OPTION_ONE("Antall forsikringer per kjÃ¸nn"),
     OPTION_TWO("Antall forsikringer per type"),
     OPTION_THREE("Antall forsikringer per landsdel"),
-    OPTION_FOUR("Sum innbetalinger per år"),
+    OPTION_FOUR("Sum innbetalinger per Ã¥r"),
     OPTION_FIVE("Antall kunder per aldersgruppe"),
-    OPTION_SIX("Sum innbetalinger per år fordelt på forsikringstype");
+    OPTION_SIX("Sum innbetalinger per Ã¥r fordelt pÃ¥ forsikringstype");
     private final String description;
 
     /**
