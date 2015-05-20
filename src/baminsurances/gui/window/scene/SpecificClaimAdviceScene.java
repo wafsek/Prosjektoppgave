@@ -5,6 +5,7 @@ import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,8 +16,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -76,6 +77,10 @@ public class SpecificClaimAdviceScene extends GeneralScene {
         leftSideContainer.setVgap(20);
 
         borderPane = new BorderPane(leftSideContainer, null, imageView, null, null);
+        borderPane.backgroundProperty().setValue(
+                new Background(new BackgroundFill(Color.web("D7EBE6"),
+                        CornerRadii.EMPTY, Insets.EMPTY)));
+
         scene = new Scene(borderPane);
 
     }

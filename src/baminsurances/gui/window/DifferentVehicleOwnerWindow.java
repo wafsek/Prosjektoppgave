@@ -3,11 +3,16 @@ package baminsurances.gui.window;
 import baminsurances.api.Validation;
 import baminsurances.controller.DataControl;
 import baminsurances.data.Person;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -63,6 +68,9 @@ public class DifferentVehicleOwnerWindow {
         container.addColumn(1, birthNoField, firstNameField, lastNameField,
                 telephoneNoField, emailField, zipCodeField, streetAddressField,
                 registerOwnerButton);
+        container.backgroundProperty().setValue(
+                new Background(new BackgroundFill(Color.web("D7EBE6"),
+                        CornerRadii.EMPTY, Insets.EMPTY)));
         scene = new Scene(container);
 
         stage.setScene(scene);

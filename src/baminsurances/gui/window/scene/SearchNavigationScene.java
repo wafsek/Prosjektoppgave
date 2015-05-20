@@ -5,13 +5,12 @@ import baminsurances.gui.button.IconButton;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 /**
  * Created by Adrian on 18/05/2015.
@@ -26,7 +25,7 @@ public class SearchNavigationScene extends GeneralScene {
         super(guiEventHandler, keyPressHandler);
         customerSearchButton = new IconButton().IconButtonWithText(HEIGHT,
                 HEIGHT, IconButton.CUSTOMERS_BUTTON, "Kundesøk");
-        customerSearchButton.setPrefWidth(WIDTH * 2/3);
+        customerSearchButton.setPrefWidth(WIDTH * 2 / 3);
         insuranceSearchButton = new IconButton().IconButtonWithText(HEIGHT,
                 HEIGHT, IconButton.SEARCH_BUTTON, "Forsikringssøk");
         insuranceSearchButton.setPrefWidth(WIDTH * 2/3);
@@ -45,6 +44,9 @@ public class SearchNavigationScene extends GeneralScene {
         borderPane = new BorderPane(container, null, null, footer, null);
         borderPane.setPrefWidth(WIDTH);
         borderPane.setPrefHeight(HEIGHT);
+        borderPane.backgroundProperty().setValue(
+                new Background(new BackgroundFill(Color.web("D7EBE6"),
+                        CornerRadii.EMPTY, Insets.EMPTY)));
 
         scene = new Scene(borderPane);
     }

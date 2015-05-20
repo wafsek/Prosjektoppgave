@@ -1,10 +1,15 @@
 package baminsurances.gui.window;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -34,6 +39,9 @@ public class LoadingWindow {
         informationLabel.setStyle("-fx-font: 28px Times;");
         container = new VBox(0, informationLabel, progressIndicator);
         container.setAlignment(Pos.CENTER);
+        container.backgroundProperty().setValue(
+                new Background(new BackgroundFill(Color.web("D7EBE6"),
+                        CornerRadii.EMPTY, Insets.EMPTY) ));
         scene = new Scene(container);
         stage.setScene(scene);
     }

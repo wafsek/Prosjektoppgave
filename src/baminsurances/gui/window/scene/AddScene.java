@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -131,6 +132,9 @@ public class AddScene extends GeneralScene{
         footer.setStyle("-fx-border-color: gray;");
         footer.setAlignment(Pos.CENTER_RIGHT);
         borderPane = new BorderPane(fieldBox, headerContainer, null, footer, null);
+        borderPane.backgroundProperty().setValue(
+                new Background(new BackgroundFill(Color.web("D7EBE6"),
+                        CornerRadii.EMPTY, Insets.EMPTY) ));
         scene = new Scene(borderPane);
     }
 

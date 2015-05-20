@@ -9,14 +9,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 import java.time.format.DateTimeFormatter;
@@ -86,7 +85,7 @@ public class HandleCustomerScene extends GeneralScene {
                     @Override
                     public ObservableValue<String> call(
                             TableColumn.CellDataFeatures<Insurance, String> i) {
-                        return new SimpleStringProperty(""+i.getValue().getInsuranceNo());
+                        return new SimpleStringProperty("" + i.getValue().getInsuranceNo());
                     }
                 });
         dateOfRegistrationColumn = new TableColumn<>("Registrert (Dato)");
@@ -192,7 +191,7 @@ public class HandleCustomerScene extends GeneralScene {
                 "-fx-border-color: gray;");
 
         rightSideContainer = new BorderPane(insuranceTable, tableHeaderContainer, null, tableButtons, null);
-        rightSideContainer.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 2/3);
+        rightSideContainer.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 2 / 3);
 
         footerRightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
         footerLeftSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
@@ -201,6 +200,9 @@ public class HandleCustomerScene extends GeneralScene {
 
 
         borderPane = new BorderPane(leftSideContainer, null, rightSideContainer, footer, null);
+        borderPane.backgroundProperty().setValue(
+                new Background(new BackgroundFill(Color.web("D7EBE6"),
+                        CornerRadii.EMPTY, Insets.EMPTY)));
 
         scene = new Scene(borderPane);
     }

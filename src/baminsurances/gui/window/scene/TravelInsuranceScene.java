@@ -40,12 +40,9 @@ public class TravelInsuranceScene extends InsuranceScene{
         scene = new Scene(borderPane);
     }
 
-    public void clearInfo() {
-        super.clearInfo();
-
-    }
-
+    @Override
     public Scene getScene() {
+        clearInfo();
         return scene;
     }
 
