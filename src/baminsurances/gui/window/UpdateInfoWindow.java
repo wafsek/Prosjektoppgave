@@ -142,21 +142,34 @@ public class UpdateInfoWindow {
         cancelBox = new CheckBox("Gjør innaktiv?");
 
         updateInfoButton.setOnAction(e -> {
-            if (!annualPremuimField.getText().trim().isEmpty()) {
+            String message = "";
+            if (!annualPremuimField.getText().trim().isEmpty() && Validation.consistsOnlyOfNumbers(annualPremuimField.getText())) {
                 insurance.setAnnualPremium(Integer.parseInt(
                         annualPremuimField.getText()));
+            } else {
+                message += "Ugylig info for premium\n";
             }
-            if (!amountField.getText().trim().isEmpty()) {
+            if (!amountField.getText().trim().isEmpty() && Validation.consistsOnlyOfNumbers(amountField.getText())) {
                 insurance.setAmount(Integer.parseInt(amountField.getText()));
+            } else {
+                message += "Ugyldig info for Forsikringsbeløp\n";
             }
             if (!termsArea.getText().trim().isEmpty()) {
-                insurance.setTerms(termsArea.getText());
+                insurance.setTerms(termsArea.getText());;
+            } else {
+                message += "Ugyldig info for vilkår";
             }
             if (cancelBox.isSelected()) {
                 insurance.setCancellationDate(LocalDate.now());
             }
 
-            stage.close();
+            if(message.equals("")) {
+                MessageDialog.showMessageDialog("Informasjon", "Forsikringen er oppdatert!", MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+                stage.close();
+            } else {
+                MessageDialog.showMessageDialog("Informasjon", message, MessageDialog.INFORMATION_ICON, MessageDialog.OK_OPTION);
+            }
+
         });
 
         gridPane = new GridPane();
