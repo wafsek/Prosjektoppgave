@@ -49,6 +49,7 @@ public class StatisticScene extends GeneralScene{
         yAxis = new NumberAxis();
         cAxis = new CategoryAxis();
         this.setComboBox();
+        comboBox.setValue(StatisticOption.OPTION_ONE.getDescription());
         leftSide = new VBox(10);
         rightSide = new VBox(10);
         topBar = new VBox(10);
@@ -77,10 +78,10 @@ public class StatisticScene extends GeneralScene{
         comboBox = new ComboBox(FXCollections.observableArrayList(
                 StatisticOption.OPTION_ONE.getDescription(),
                 StatisticOption.OPTION_TWO.getDescription(),
+                StatisticOption.OPTION_THREE.getDescription(),
                 StatisticOption.OPTION_FOUR.getDescription(),
-                StatisticOption.OPTION_SIX.getDescription(),
-                StatisticOption.OPTION_SEVEN.getDescription(),
-                StatisticOption.OPTION_NINE.getDescription())
+                StatisticOption.OPTION_FIVE.getDescription(),
+                StatisticOption.OPTION_SIX.getDescription())
                 
         );
         comboBox.setOnAction(e -> {
@@ -88,17 +89,15 @@ public class StatisticScene extends GeneralScene{
                 this.launchOptionOne(StatisticOption.OPTION_ONE);
             } else if (comboBox.getValue() == StatisticOption.OPTION_TWO.getDescription()) {
                 this.launchOptionTwo(StatisticOption.OPTION_TWO);
+            } else if (comboBox.getValue() == StatisticOption.OPTION_THREE.getDescription()) {
+                this.launchOptionThree(StatisticOption.OPTION_THREE);
             } else if (comboBox.getValue() == StatisticOption.OPTION_FOUR.getDescription()) {
                 this.launchOptionFour(StatisticOption.OPTION_FOUR);
-            } else if (comboBox.getValue() == StatisticOption.OPTION_SIX.getDescription()) {
+            } else if (comboBox.getValue() == StatisticOption.OPTION_FIVE.getDescription()) {
+                this.launchOptionFive(StatisticOption.OPTION_FIVE);
+            }  else if (comboBox.getValue() == StatisticOption.OPTION_SIX.getDescription()) {
                 this.launchOptionSix(StatisticOption.OPTION_SIX);
-            } else if (comboBox.getValue() == StatisticOption.OPTION_SEVEN.getDescription()) {
-                this.launchOptionSeven(StatisticOption.OPTION_SEVEN);
-            }  else if (comboBox.getValue() == StatisticOption.OPTION_NINE.getDescription()) {
-                this.launchOptionNine(StatisticOption.OPTION_NINE);
-            }  else {
-                System.out.println("dafaq");
-            }
+            }  
         });
     }
     private void clearRightSide(){
@@ -121,7 +120,7 @@ public class StatisticScene extends GeneralScene{
     
     private BarChart setBarchart(){
         
-        barChart = new BarChart(cAxis,xAxis);
+        barChart = new BarChart(cAxis,yAxis);
         barChart.getData().addAll(series);
         //barChart.setAnimated(false);
         barChart.applyCss();
@@ -137,7 +136,7 @@ public class StatisticScene extends GeneralScene{
     }
     
     private BarChart setMultiBarChart(){
-        barChart = new BarChart(cAxis,xAxis);
+        barChart = new BarChart(cAxis,yAxis);
         for(XYChart.Series series : seriesArray){
             barChart.getData().add(series);  
         }
@@ -167,16 +166,16 @@ public class StatisticScene extends GeneralScene{
     private void launchOptionOne(StatisticOption statisticOption ){
         this.clearRightSide();
         logger.log("Option one selected ", Level.FINE);
-        this.setMultiBarChartData(new Searcher().numInsuranceTypesPerGender(), "Antall Forsikeringer");
+        this.setMultiBarChartData(new Searcher().numInsuranceTypesPerGender(), "Antall forsikringer");
         cAxis.setLabel("Kjønn");
-        xAxis.setLabel("Antall forsikeringer");
+        yAxis.setLabel("Antall forsikringer");
         rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 2 / 3);
         barChart = this.setMultiBarChart();
-        barChart.setTitle("Antall forsikering per kjønn fordelt på forsikerings type");
+        barChart.setTitle("Antall forsikringer per kjønn fordelt på forsikringstype");
         rightSide.getChildren().add(barChart);
         this.setPieChartData(new Searcher().numInsurancesPerGender());
         pieChart = this.setPieChart();
-        pieChart.setTitle("Antall Total forsikeringer per kjønn");
+        pieChart.setTitle("Totalt antall forsikringer per kjønn");
         leftSide.setAlignment(Pos.CENTER);
         leftSide.getChildren().add(pieChart);
         
@@ -187,80 +186,81 @@ public class StatisticScene extends GeneralScene{
     private void launchOptionTwo(StatisticOption statisticOption ){
         this.clearRightSide();
         logger.log("Option one selected ", Level.FINE);
-        this.setBarChartData(new Searcher().numInsurancesPerType(), "Antall forsikeringer");
-        cAxis.setLabel("Forsikeringer");
-        xAxis.setLabel("Antall per År");
+        this.setBarChartData(new Searcher().numInsurancesPerType(), "Antall forsikringer");
+        cAxis.setLabel("Forsikringstyper");
+        yAxis.setLabel("Antall per år");
         rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 1 / 2);
-        barChart =  this.setBarchart();
-        barChart.setTitle("Antall Total forsikeringer per Type");
+        barChart = this.setBarchart();
+        barChart.setTitle("Totalt antall forsikringer per type");
         barChart.setTitle(statisticOption.getDescription());
         rightSide.getChildren().add(barChart);
         this.setPieChartData(new Searcher().numInsurancesPerType());
         pieChart = this.setPieChart();
-        pieChart.setTitle("Antall Total forsikeringer per Type");
+        pieChart.setTitle("Antall forsikringer per type");
         leftSide.setAlignment(Pos.CENTER);
         leftSide.getChildren().add(pieChart);
         
     }
     
 
-    private void launchOptionFour(StatisticOption statisticOption ){
+    private void launchOptionThree(StatisticOption statisticOption){
         this.clearRightSide();
         logger.log("Option one selected ", Level.FINE);
-        this.setMultiBarChartData(new Searcher().getInsuranceTypesPerRegion(), "Antall forsikeringer");
-        cAxis.setLabel("Forsikeringer");
-        xAxis.setLabel("Antall per landsdel");
+        this.setMultiBarChartData(new Searcher().getInsuranceTypesPerRegion(), "Antall forsikringer");
+        cAxis.setLabel("Landsdel");
+        yAxis.setLabel("Antall forsikringer");
         rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 5 / 8);
         barChart =  this.setMultiBarChart();
-        barChart.setTitle(statisticOption.getDescription()+" fordelt på forsikerings type");
+        barChart.setTitle(statisticOption.getDescription()+" fordelt på forsikringstype");
         rightSide.getChildren().add(barChart);
         this.setPieChartData(new Searcher().numInsurancesPerRegion());
         pieChart = this.setPieChart();
-        pieChart.setTitle("Total antall forsikeringer per type");
+        pieChart.setTitle("Total antall forsikringer per type");
         leftSide.getChildren().add(pieChart);
     }
 
     
     
-    private void launchOptionSix(StatisticOption statisticOption ){
+    private void launchOptionFour(StatisticOption statisticOption){
         this.clearRightSide();
         xAxis = new NumberAxis(1997, LocalDate.now().getYear()-1, 1);
         logger.log("Option one selected ", Level.FINE);
         this.setLineChartData(new Searcher().getSumPaymentsPerYear(), "Sum innbetalinger");
-        xAxis.setLabel("Betalinger");
-        yAxis.setLabel("Sum per År");
+        xAxis.setLabel("År");
+        yAxis.setLabel("Sum innbetalinger");
         rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 9/10);
         lineChart = this.setLineChart();
-        lineChart.setTitle("Sum innbetalling per År");
+        lineChart.setTitle(statisticOption.getDescription());
         rightSide.getChildren().add(lineChart);
     }
     
-    private void launchOptionSeven(StatisticOption statisticOption ){
+    private void launchOptionFive(StatisticOption statisticOption){
         this.clearRightSide();
         logger.log("Option Seven selected ", Level.FINE);
         this.setBarChartData(new Searcher().numCustomersPerAgeGroup(), "Antall kunder");
-        cAxis.setLabel("Kunder");
-        xAxis.setLabel("Antall per alders gruppe");
+        cAxis.setLabel("Aldersgupper");
+        yAxis.setLabel("Antall kunder");
         rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 5 / 8);
         barChart =  this.setBarchart();
         barChart.setTitle(statisticOption.getDescription());
         rightSide.getChildren().add(barChart);
         this.setPieChartData(new Searcher().numInsurancesPerRegion());
         pieChart = this.setPieChart();
-        pieChart.setTitle("Antall kunder per anlders gruppe");
+        pieChart.setTitle(statisticOption.getDescription());
         leftSide.getChildren().add(pieChart);
     }
     
-    private void launchOptionNine(StatisticOption statisticOption ){
+    private void launchOptionSix(StatisticOption statisticOption){
         this.clearRightSide();
         xAxis = new NumberAxis(1997, LocalDate.now().getYear()-1, 1);
         logger.log("Option one selected ", Level.FINE);
-        this.setMultiLineChartData(new Searcher().getPaymentsPerInsuranceTypePerYear(), "Sum innbetalinger");
-        xAxis.setLabel("Betalinger");
-        yAxis.setLabel("Sum per År");
+        this.setMultiLineChartData(new Searcher().getPaymentsPerInsuranceTypePerYear(),
+                "Sum innbetalinger");
+        xAxis.setLabel("År");
+        yAxis.setLabel("Sum innbetalinger");
         rightSide.setPrefWidth(GuiConfig.PRIMARY_WIDTH * 9/10);
         lineChart = this.setMultiLineChart();
-        lineChart.setTitle("Sum innbetalling per År fordelt på type");
+        lineChart.setTitle(statisticOption.getDescription());
         rightSide.getChildren().add(lineChart);
     }
     

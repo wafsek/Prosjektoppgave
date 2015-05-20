@@ -5,15 +5,12 @@ package baminsurances.gui.window.scene;
  */
 public enum StatisticOption {
 
-    OPTION_ONE("Antall forsikeringer per kjønn"),
-    OPTION_TWO("Antall forsikeringer per Type"),
-    OPTION_THREE("Antall forsikeringer per aldersgruppe"),
-    OPTION_FOUR("Antall forsikeringer per landsdel"),
-    OPTION_FIVE("Antall forsikeringer per"),
-    OPTION_SIX("Sum innbetalinger per år"),
-    OPTION_SEVEN("Antall kunder per Alders gruppe"),
-    OPTION_EIGHT("Antall forsikeringer per landsdel"),
-    OPTION_NINE("Sum inn betaling per År");
+    OPTION_ONE("Antall forsikringer per kjønn"),
+    OPTION_TWO("Antall forsikringer per type"),
+    OPTION_THREE("Antall forsikringer per landsdel"),
+    OPTION_FOUR("Sum innbetalinger per år"),
+    OPTION_FIVE("Antall kunder per aldersgruppe"),
+    OPTION_SIX("Sum innbetalinger per år fordelt på forsikringstype");
     private final String description;
 
     /**
