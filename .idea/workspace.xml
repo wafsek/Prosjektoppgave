@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificInsuranceScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificInsuranceScene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/TravelInsuranceScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/TravelInsuranceScene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/UpdateInfoWindow.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/UpdateInfoWindow.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -36,7 +33,7 @@
         <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="408" column="45" selection-start-line="408" selection-start-column="45" selection-end-line="408" selection-end-column="45" />
+              <caret line="409" column="45" selection-start-line="409" selection-start-column="45" selection-end-line="409" selection-end-column="45" />
               <folding>
                 <element signature="e#5469#5470#0" expanded="true" />
                 <element signature="e#5527#5528#0" expanded="true" />
@@ -70,21 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SpecificInsuranceScene.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificInsuranceScene.java">
+      <file leaf-file-name="UpdateInfoWindow.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/UpdateInfoWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4874372">
-              <caret line="429" column="8" selection-start-line="429" selection-start-column="8" selection-end-line="429" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TravelInsuranceScene.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/TravelInsuranceScene.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.31407034">
+              <caret line="125" column="62" selection-start-line="125" selection-start-column="62" selection-end-line="125" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -185,10 +172,10 @@
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticOption.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificClaimAdviceScene.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/UpdateInfoWindow.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/TravelInsuranceScene.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificInsuranceScene.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/UpdateInfoWindow.java" />
       </list>
     </option>
   </component>
@@ -437,10 +424,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/api/config.properties</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticOption.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/logging/ConsoleFormatter.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/controller/Controller.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/security/User.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -727,12 +712,6 @@
       <created>1428591007092</created>
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
-    </task>
-    <task id="LOCAL-00046" summary="Minor changes. Some textfields displayed wrong info, which is now fixed">
-      <created>1431783717443</created>
-      <option name="number" value="00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1431783717443</updated>
     </task>
     <task id="LOCAL-00047" summary="Another minor display bug fix">
       <created>1431784764872</created>
@@ -1022,7 +1001,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432117318722</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Fixed a few bugs">
+      <created>1432119210771</created>
+      <option name="number" value="00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1432119210771</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1458,14 +1443,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/UpdateInfoWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="145" column="66" selection-start-line="145" selection-start-column="66" selection-end-line="145" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1481,14 +1458,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/ClaimAdvice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="300" column="37" selection-start-line="300" selection-start-column="37" selection-end-line="300" selection-end-column="58" />
           <folding />
         </state>
       </provider>
@@ -1512,7 +1481,7 @@
     <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="408" column="45" selection-start-line="408" selection-start-column="45" selection-end-line="408" selection-end-column="45" />
+          <caret line="409" column="45" selection-start-line="409" selection-start-column="45" selection-end-line="409" selection-end-column="45" />
           <folding>
             <element signature="e#5469#5470#0" expanded="true" />
             <element signature="e#5527#5528#0" expanded="true" />
@@ -1524,8 +1493,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificInsuranceScene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4874372">
-          <caret line="429" column="8" selection-start-line="429" selection-start-column="8" selection-end-line="429" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.4511628">
+          <caret line="429" column="0" selection-start-line="429" selection-start-column="0" selection-end-line="429" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/data/ClaimAdvice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="300" column="37" selection-start-line="300" selection-start-column="37" selection-end-line="300" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/UpdateInfoWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31407034">
+          <caret line="125" column="62" selection-start-line="125" selection-start-column="62" selection-end-line="125" selection-end-column="62" />
           <folding />
         </state>
       </provider>
