@@ -803,7 +803,7 @@ public class Searcher {
          * Initalizing all values to 0, so that they are included even if the
          * region does not have any insurances of that type. 
          */
-        for (int i = 1997; i < LocalDate.now().getYear() - 1; i++) {
+        for (int i = 1997; i < LocalDate.now().getYear(); i++) {
             TreeMap<String, Integer> inner = new TreeMap<>();
             
             for (String type : insuranceClassToString.values()) {
