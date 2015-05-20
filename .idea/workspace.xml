@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" afterPath="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -52,8 +51,8 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.5684695">
-              <caret line="798" column="9" selection-start-line="798" selection-start-column="9" selection-end-line="798" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.3118527">
+              <caret line="756" column="40" selection-start-line="756" selection-start-column="40" selection-end-line="756" selection-end-column="40" />
               <folding>
                 <element signature="e#5353#5354#0" expanded="true" />
                 <element signature="e#5411#5412#0" expanded="true" />
@@ -478,12 +477,6 @@
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
     </task>
-    <task id="LOCAL-00029" summary="Bug with TableView is now fixed.">
-      <created>1431521906198</created>
-      <option name="number" value="00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1431521906198</updated>
-    </task>
     <task id="LOCAL-00030" summary="Generating stage is somewhat complete">
       <created>1431527109195</created>
       <option name="number" value="00030" />
@@ -772,7 +765,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432093828311</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="all insurance fixed ....for now.(part three)">
+      <created>1432094861116</created>
+      <option name="number" value="00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1432094861116</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -817,7 +816,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="The scene for boat insurance is now ready as well." />
     <MESSAGE value="Insurance scene is fixed. Does no longer import NameDisplayable" />
     <MESSAGE value="Controller still needs fixing..." />
     <MESSAGE value="You can now choose a specific customer, which will be displayed on the handler scene. You can not proceed from the search, before you have a customer chosen" />
@@ -842,7 +840,8 @@
     <MESSAGE value="car insurance fixing" />
     <MESSAGE value="all insurance fixed ....for now." />
     <MESSAGE value="all insurance fixed ....for now.(part two)" />
-    <option name="LAST_COMMIT_MESSAGE" value="all insurance fixed ....for now.(part two)" />
+    <MESSAGE value="all insurance fixed ....for now.(part three)" />
+    <option name="LAST_COMMIT_MESSAGE" value="all insurance fixed ....for now.(part three)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1253,8 +1252,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5684695">
-          <caret line="798" column="9" selection-start-line="798" selection-start-column="9" selection-end-line="798" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.3118527">
+          <caret line="756" column="40" selection-start-line="756" selection-start-column="40" selection-end-line="756" selection-end-column="40" />
           <folding>
             <element signature="e#5353#5354#0" expanded="true" />
             <element signature="e#5411#5412#0" expanded="true" />
