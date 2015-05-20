@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -54,20 +55,18 @@
         <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="724" column="1" selection-start-line="724" selection-start-column="1" selection-end-line="724" selection-end-column="1" />
+              <caret line="731" column="1" selection-start-line="731" selection-start-column="1" selection-end-line="731" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StatisticScene.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StatisticScene.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="92" column="62" selection-start-line="92" selection-start-column="62" selection-end-line="92" selection-end-column="62" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-5.0563865">
+              <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -131,11 +130,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StatisticOption.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StatisticOption.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticOption.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18411967">
-              <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -146,7 +145,12 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
-              <folding />
+              <folding>
+                <element signature="e#964#965#0" expanded="false" />
+                <element signature="e#1010#1011#0" expanded="false" />
+                <element signature="e#1176#1177#0" expanded="false" />
+                <element signature="e#1215#1216#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -241,8 +245,8 @@
         <option value="$PROJECT_DIR$/src/baminsurances/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/api/Searcher.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/StatisticWindow.java" />
-        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" />
         <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticOption.java" />
+        <option value="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" />
       </list>
     </option>
   </component>
@@ -556,6 +560,7 @@
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/controller/Controller.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/data/Insurance.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -855,24 +860,6 @@
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
     </task>
-    <task id="LOCAL-00020" summary="Fixed a minor bug in controller where you register a person, so that I can run Gui again">
-      <created>1430900449385</created>
-      <option name="number" value="00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1430900449385</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Every scene that has to do with search now has a listener">
-      <created>1430920603768</created>
-      <option name="number" value="00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1430920603768</updated>
-    </task>
-    <task id="LOCAL-00022" summary="The TravelInsuranceScene now displays possible people. Still a few bugs we need to look at. &#10;- It show all customers when all textfields are empty.&#10;- Got a nullpointer in Person, line 56.&#10;- Not sure how the TableView will react under stress. Need to test that.">
-      <created>1430925791253</created>
-      <option name="number" value="00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1430925791253</updated>
-    </task>
     <task id="LOCAL-00023" summary="Added comments to AddScene">
       <created>1431097649876</created>
       <option name="number" value="00023" />
@@ -1149,7 +1136,25 @@
       <option name="project" value="LOCAL" />
       <updated>1432089184284</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Statistic Scene completed !">
+      <created>1432089209078</created>
+      <option name="number" value="00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1432089209078</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Statistic Scene refactoring underway">
+      <created>1432089430665</created>
+      <option name="number" value="00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1432089430666</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Statistic Scene refactoring underway">
+      <created>1432089455171</created>
+      <option name="number" value="00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1432089455171</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1194,7 +1199,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="The scene for car insurance is now finished. It handles all the generation of the car owner, if it's desired to have a different one than the current customer." />
     <MESSAGE value="The insurance scenes are now almost done" />
     <MESSAGE value="Car insurance scene now returns enums for car type. Also it generates production years based on what year we are in" />
     <MESSAGE value="Home insurance is ready" />
@@ -1219,7 +1223,8 @@
     <MESSAGE value="More options on statistic" />
     <MESSAGE value="much animation ,such fancy ,wow" />
     <MESSAGE value="Statistic Scene completed !" />
-    <option name="LAST_COMMIT_MESSAGE" value="Statistic Scene completed !" />
+    <MESSAGE value="Statistic Scene refactoring underway" />
+    <option name="LAST_COMMIT_MESSAGE" value="Statistic Scene refactoring underway" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1491,7 +1496,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
-          <folding />
+          <folding>
+            <element signature="e#964#965#0" expanded="false" />
+            <element signature="e#1010#1011#0" expanded="false" />
+            <element signature="e#1176#1177#0" expanded="false" />
+            <element signature="e#1215#1216#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1580,7 +1590,7 @@
     <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="724" column="1" selection-start-line="724" selection-start-column="1" selection-end-line="724" selection-end-column="1" />
+          <caret line="731" column="1" selection-start-line="731" selection-start-column="1" selection-end-line="731" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1589,6 +1599,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="265" column="4" selection-start-line="265" selection-start-column="4" selection-end-line="265" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1605,18 +1623,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="62" selection-start-line="92" selection-start-column="62" selection-end-line="92" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticOption.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18411967">
-          <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
+        <state vertical-scroll-proportion="-5.0563865">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
           <folding />
         </state>
       </provider>

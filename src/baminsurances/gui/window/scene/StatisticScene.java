@@ -1,7 +1,6 @@
 package baminsurances.gui.window.scene;
 
 import baminsurances.api.Searcher;
-import baminsurances.data.Employee;
 import baminsurances.gui.eventhandler.GuiEventHandler;
 import baminsurances.gui.eventhandler.KeyPressHandler;
 import baminsurances.gui.window.GuiConfig;
@@ -13,14 +12,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Level;
@@ -31,29 +24,19 @@ import java.util.logging.Level;
 public class StatisticScene extends GeneralScene{
 
     private VBox leftSide,rightSide;
-
-    private VBox filters;
-    private Image companyLogo;
-    private ImageView companyLogoImageView;
-
-    private Label factOne, factTwo, factThree, factFour;
-    private TextField textField;
-    private GridPane gridPane;
+    
     private LineChart lineChart;
     private PieChart pieChart;
     private BarChart barChart;
     private BorderPane borderPane;
-    private ObservableList<Employee> observableList;
     private ObservableList<PieChart.Data> pieChartData;
     private XYChart.Series series;
-    private ArrayList<XYChart.Series> seriesArrayList;
     private XYChart.Series[] seriesArray;
     private ComboBox comboBox;
     private CustomLogger logger;
     private Axis xAxis;
     private Axis yAxis;
     private Axis cAxis;
-    private boolean ifContaintsBarChart;
     
     public StatisticScene(GuiEventHandler guiEventHandler,KeyPressHandler keyPressHandler){
         super(guiEventHandler,keyPressHandler);
@@ -62,8 +45,6 @@ public class StatisticScene extends GeneralScene{
         xAxis = new NumberAxis();
         yAxis = new NumberAxis();
         cAxis = new CategoryAxis();
-        /*XYChart.Series series = new XYChart.Series();
-        this.setSeries(series);*/
         this.setComboBox();
         leftSide = new VBox(10);
         rightSide = new VBox(10);
@@ -113,11 +94,9 @@ public class StatisticScene extends GeneralScene{
         });
     }
     private void clearRightSide(){
-
         xAxis.setAutoRanging(true);
         rightSide.getChildren().removeAll(pieChart);
-        ifContaintsBarChart =  rightSide.getChildren().removeAll(barChart);
-        
+        rightSide.getChildren().removeAll(barChart);
         rightSide.getChildren().removeAll(lineChart);
         leftSide.getChildren().removeAll(pieChart);
     }
@@ -141,12 +120,8 @@ public class StatisticScene extends GeneralScene{
     }
     
     private LineChart setLineChart(){
-        System.out.println("came in here");
         lineChart = new LineChart(xAxis,yAxis);
-        System.out.println("new line chart made");
         lineChart.getData().addAll(series);
-        System.out.println("series added");
-        System.out.println("returning");
         return lineChart;
     }
     
@@ -279,13 +254,6 @@ public class StatisticScene extends GeneralScene{
     }
     
     /**#######################        END OF OPTIONS           ######################################*/
-
-    
-    public void addData(XYChart.Series series,String s,int i){
-
-    }
-
-
 
 
     /****************************************************************************
