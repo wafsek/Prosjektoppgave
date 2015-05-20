@@ -592,7 +592,7 @@ public class Controller {
 
 
     public String validateCarInsuranceData() {
-        String feil = "Følgende felt har feil:\n";
+        String feil = "Feil:\n";
         boolean failed = false;
         if (!this.validateInsuranceData(carInsuranceScene).equals("Success")) {
             feil += this.validateInsuranceData(carInsuranceScene)+"\n";
@@ -600,32 +600,32 @@ public class Controller {
         }
         if (!Validation.isValidCarRegistrationNo(
                 carInsuranceScene.getRegistrationNumberFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig registreringsnummer\n";
             failed = true;
         }
         if (!Validation.isValidModel(
                 carInsuranceScene.getCarModelFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig modell\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 carInsuranceScene.getProductionYearSelectedValue())) {
-            feil += "\n";
+            feil += "Ugyldig produksjonsår\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 carInsuranceScene.getAnnualMilageFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig kilometerstand\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 carInsuranceScene.getPricePerKilometerFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig pris per kilometer\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 carInsuranceScene.getBonusPercentageFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig bonusprosent\n";
             failed = true;
         }
         if(!failed) {
@@ -669,34 +669,29 @@ public class Controller {
 
 
     public String validateBoatInsuranceData() {
-        String feil = "Følgende felt har feil:\n";
+        String feil = "Feil:\n";
         boolean failed = false;
         if(!this.validateInsuranceData(boatInsuranceScene).equals("Success")) {
             return this.validateInsuranceData(boatInsuranceScene);
         }
         if (!Validation.isValidBoatRegistrationNo(
                 boatInsuranceScene.getRegistrationNoFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig registreringsnummer\n";
             failed = true;
         }
         if (!Validation.isValidModel(
                 boatInsuranceScene.getModelFieldText())) {
-            feil += "\n";
-            failed = true;
-        }
-        if (!Validation.isValidBoatRegistrationNo(
-                boatInsuranceScene.getRegistrationNoFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig modell\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 boatInsuranceScene.getLengthInFeetFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig lengde i fot\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 boatInsuranceScene.getHorsePowerFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig hestekrefter\n";
             failed = true;
         } 
         if (!failed) {
@@ -749,35 +744,35 @@ public class Controller {
         } 
         if (!Validation.isValidStreetAddress(
                 houseInsuranceScene.getStreetAddressFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig gateadresse\n";
             failed = true;
         }
         if (!Validation.isValidZipCode(
                 houseInsuranceScene.getZipCodeFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig postnummer\n";
             failed = true;
             
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getConstructionYearFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig konstruksjonsår\n";
             failed = true;
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getSquareMetersFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig kvadratmeter\n";
             failed = true;
             
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getHomeAmountFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig forsikringsverdi hus\n";
             failed = true;
             
         }
         if (!Validation.consistsOnlyOfNumbers(
                 houseInsuranceScene.getContentsAmountFieldText())) {
-            feil += "\n";
+            feil += "Ugyldig forsikringsverdi innbo\n";
             failed = true;
             
         }
