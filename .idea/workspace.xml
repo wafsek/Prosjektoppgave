@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19cf16ba-46ea-4971-b1d2-b0b3efe64f9d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticOption.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticOption.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" afterPath="$PROJECT_DIR$/src/baminsurances/gui/window/scene/StatisticScene.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prosjektoppgave-programutvikling-2015.iws" />
@@ -36,7 +34,7 @@
             <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="598" column="69" selection-start-line="598" selection-start-column="69" selection-end-line="598" selection-end-column="69" />
+                  <caret line="614" column="69" selection-start-line="614" selection-start-column="69" selection-end-line="614" selection-end-column="69" />
                   <folding />
                 </state>
               </provider>
@@ -396,9 +394,20 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/controller/Controller.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/controller/CurrentStatus.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/data/ClaimAdvice.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/data/DataBank.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/data/Insurance.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/eventhandler/KeyPressHandler.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/DifferentVehicleOwnerWindow.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/GeneratingStage.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/AddScene.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/SearchNavigationScene.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/SettingsScene.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificClaimAdviceScene.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/SpecificInsuranceScene.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/gui/window/scene/TravelInsuranceScene.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -413,6 +422,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/baminsurances/api/Commandline.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -697,12 +707,6 @@
       <created>1428591007092</created>
       <option name="number" value="Default" />
       <updated>1428591007092</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Home insurance is ready">
-      <created>1431686186596</created>
-      <option name="number" value="00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1431686186596</updated>
     </task>
     <task id="LOCAL-00038" summary="The scene for boat insurance is now ready as well.">
       <created>1431686599077</created>
@@ -992,7 +996,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432104380345</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="The statistic window is Ready to present.(final)">
+      <created>1432109819488</created>
+      <option name="number" value="00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1432109819488</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1037,7 +1047,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="All the specific insurance scenes are done. I will link them up to controller tomorrow, and make the method which open the window that will allow you to change the values of the given insurance." />
     <MESSAGE value="All the scenes now has an updating username label." />
     <MESSAGE value="Changed how the table reads it's values based on Martins finds" />
     <MESSAGE value="Minor changes. Some textfields displayed wrong info, which is now fixed" />
@@ -1062,7 +1071,8 @@
     <MESSAGE value="all insurance fixed ....for now.(part five i leied about last time thing )" />
     <MESSAGE value="Person insurance fixed" />
     <MESSAGE value="The statistic window is Ready to present." />
-    <option name="LAST_COMMIT_MESSAGE" value="The statistic window is Ready to present." />
+    <MESSAGE value="The statistic window is Ready to present.(final)" />
+    <option name="LAST_COMMIT_MESSAGE" value="The statistic window is Ready to present.(final)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1253,14 +1263,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baminsurances/api/Commandline.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/baminsurances/api/Config.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1430,7 +1432,7 @@
     <entry file="file://$PROJECT_DIR$/src/baminsurances/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="598" column="69" selection-start-line="598" selection-start-column="69" selection-end-line="598" selection-end-column="69" />
+          <caret line="614" column="69" selection-start-line="614" selection-start-column="69" selection-end-line="614" selection-end-column="69" />
           <folding />
         </state>
       </provider>
