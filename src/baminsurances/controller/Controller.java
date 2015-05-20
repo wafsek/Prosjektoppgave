@@ -733,28 +733,33 @@ public class Controller {
     }
 
     public String registerHomeInsurance(){
-        if(!this.validateHomeInsuranceData().equals("Success")){
-            System.out.println("Hus feilet");
-            return this.validateHomeInsuranceData();
-        } else {
-            manager.registerHomeInsurance(new HomeInsurance(
-                            Authenticator.getInstance().getCurrentEmployee(),
-                            Integer.parseInt(houseInsuranceScene.getAnnualPremiumFieldText()),
-                            PaymentFrequency.ANNUALLY,
-                            houseInsuranceScene.getConditionAreaText(),
-                            houseInsuranceScene.getStreetAddressFieldText(),
-                            houseInsuranceScene.getZipCodeFieldText(),
-                            Integer.parseInt(houseInsuranceScene.getConstructionYearFieldText()),
-                            houseInsuranceScene.getHomeTypeDropDownSelectedValue(),
-                            houseInsuranceScene.getBuildingMaterialFieldText(),
-                            houseInsuranceScene.getStandardFieldText(),
-                            Integer.parseInt(houseInsuranceScene.getSquareMetersFieldText()),
-                            Integer.parseInt(houseInsuranceScene.getHomeAmountFieldText()),
-                            Integer.parseInt(houseInsuranceScene.getContentsAmountFieldText())),
-                    CurrentStatus.getCurrentCustomer());
-            DataBank.saveDataBank();
-            System.out.println("Hus registrert");
-            return "Home Insurance Registered";
+        if(!houseInsuranceScene.isHolidayHome()) {
+
+            if (!this.validateHomeInsuranceData().equals("Success")) {
+                System.out.println("Hus feilet");
+                return this.validateHomeInsuranceData();
+            } else {
+                manager.registerHomeInsurance(new HomeInsurance(
+                                Authenticator.getInstance().getCurrentEmployee(),
+                                Integer.parseInt(houseInsuranceScene.getAnnualPremiumFieldText()),
+                                PaymentFrequency.ANNUALLY,
+                                houseInsuranceScene.getConditionAreaText(),
+                                houseInsuranceScene.getStreetAddressFieldText(),
+                                houseInsuranceScene.getZipCodeFieldText(),
+                                Integer.parseInt(houseInsuranceScene.getConstructionYearFieldText()),
+                                houseInsuranceScene.getHomeTypeDropDownSelectedValue(),
+                                houseInsuranceScene.getBuildingMaterialFieldText(),
+                                houseInsuranceScene.getStandardFieldText(),
+                                Integer.parseInt(houseInsuranceScene.getSquareMetersFieldText()),
+                                Integer.parseInt(houseInsuranceScene.getHomeAmountFieldText()),
+                                Integer.parseInt(houseInsuranceScene.getContentsAmountFieldText())),
+                        CurrentStatus.getCurrentCustomer());
+                DataBank.saveDataBank();
+                System.out.println("Hus registrert");
+                return "Home Insurance Registered";
+            }
+        }else{
+            return this.registerHolidayHomeInsurance();
         }
     }
 
@@ -810,15 +815,19 @@ public class Controller {
     }
     
     public String registerTravelInsurance() {
-        manager.registerTravelInsurance(new TravelInsurance(
-                        Authenticator.getInstance().getCurrentEmployee(),
-                        Integer.parseInt(travelInsuranceScene.getAnnualPremiumFieldText()),
-                        Integer.parseInt(travelInsuranceScene.getInsuranceValueFieldText()),
-                        PaymentFrequency.ANNUALLY,
-                        travelInsuranceScene.getConditionAreaText(),
-                        travelInsuranceScene.getRegionDropDown()),
-                CurrentStatus.getCurrentCustomer());
-        DataBank.saveDataBank();
-        return "Holiday Home Insurance Registered";
+        if(!this.validateTravelInsuranceData().equals("Success")){
+            return this.validateTravelInsuranceData();
+        } else {
+            manager.registerTravelInsurance(new TravelInsurance(
+                            Authenticator.getInstance().getCurrentEmployee(),
+                            Integer.parseInt(travelInsuranceScene.getAnnualPremiumFieldText()),
+                            Integer.parseInt(travelInsuranceScene.getInsuranceValueFieldText()),
+                            PaymentFrequency.ANNUALLY,
+                            travelInsuranceScene.getConditionAreaText(),
+                            travelInsuranceScene.getRegionDropDown()),
+                    CurrentStatus.getCurrentCustomer());
+            DataBank.saveDataBank();
+            return "Holiday Home Insurance Registered";
+        }
     }
 }
