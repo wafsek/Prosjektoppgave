@@ -186,9 +186,11 @@ public class Controller {
     }
 
     private void launchSpecificClaimAdviceScene() {
-        specificClaimAdviceScene.setClaimAdviceData(
-                specificInsuranceScene.getSelectedClaimAdvice());
-        primaryStage.initiate(specificClaimAdviceScene.getScene());
+        ClaimAdvice ca = specificInsuranceScene.getSelectedClaimAdvice();
+        if(ca != null) {
+            specificClaimAdviceScene.setClaimAdviceData(ca);
+            primaryStage.initiate(specificClaimAdviceScene.getScene());
+        }
     }
 
     private void launchInsuranceScene() {

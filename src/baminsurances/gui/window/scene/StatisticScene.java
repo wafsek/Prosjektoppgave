@@ -53,7 +53,7 @@ public class StatisticScene extends GeneralScene {
             KeyPressHandler keyPressHandler) {
         super(guiEventHandler,keyPressHandler);
         logger = CustomLogger.getInstance();
-        
+
         xAxis = new NumberAxis();
         yAxis = new NumberAxis();
         cAxis = new CategoryAxis();
@@ -86,7 +86,7 @@ public class StatisticScene extends GeneralScene {
         borderPane.backgroundProperty().setValue(
                 new Background(new BackgroundFill(Color.web("D7EBE6"),
                         CornerRadii.EMPTY, Insets.EMPTY)));
-        
+
         scene = new Scene(borderPane);
         this.launchOptionOne(StatisticOption.OPTION_ONE);
     }
@@ -112,7 +112,7 @@ public class StatisticScene extends GeneralScene {
                 barChart.setAnimated(false);
                 pieChart.setAnimated(false);
                 lineChart.setAnimated(false);
-            } 
+            }
         });
     }
     
@@ -127,7 +127,7 @@ public class StatisticScene extends GeneralScene {
                 StatisticOption.OPTION_FOUR.getDescription(),
                 StatisticOption.OPTION_FIVE.getDescription(),
                 StatisticOption.OPTION_SIX.getDescription())
-                
+
         );
         comboBox.setOnAction(e -> {
             if (comboBox.getValue() == StatisticOption.OPTION_ONE.getDescription()) {
@@ -142,7 +142,7 @@ public class StatisticScene extends GeneralScene {
                 this.launchOptionFive(StatisticOption.OPTION_FIVE);
             }  else if (comboBox.getValue() == StatisticOption.OPTION_SIX.getDescription()) {
                 this.launchOptionSix(StatisticOption.OPTION_SIX);
-            }  
+            }
         });
     }
     
@@ -202,7 +202,7 @@ public class StatisticScene extends GeneralScene {
     private BarChart setMultiBarChart(){
         barChart = new BarChart(cAxis,yAxis);
         for(XYChart.Series series : seriesArray){
-            barChart.getData().add(series);  
+            barChart.getData().add(series);
         }
         barChart.setCategoryGap(50);
         return barChart;
@@ -230,7 +230,6 @@ public class StatisticScene extends GeneralScene {
      *                                                                           *
      ****************************************************************************/
     
-    
     /**
      * Shows statistic option one.
      * 
@@ -252,7 +251,7 @@ public class StatisticScene extends GeneralScene {
         pieChart.setTitle("Totalt antall forsikringer per kjønn");
         leftSide.setAlignment(Pos.CENTER);
         leftSide.getChildren().add(pieChart);
-        
+
     }
 
     /**
@@ -359,7 +358,7 @@ public class StatisticScene extends GeneralScene {
         lineChart.setTitle(statisticOption.getDescription());
         rightSide.getChildren().add(lineChart);
     }
-    
+
     /**#######################        END OF OPTIONS           ######################################*/
 
 
@@ -449,8 +448,8 @@ public class StatisticScene extends GeneralScene {
         counter = 0;
         for (TreeMap<T, Integer> t : map.values()) {
             for (T x : t.keySet()) {
-               seriesArray[counter].setName(x.toString()); 
-               counter++; 
+               seriesArray[counter].setName(x.toString());
+               counter++;
             }
             break;
         }
@@ -461,6 +460,7 @@ public class StatisticScene extends GeneralScene {
             for (Map.Entry<T,Integer> innerEntrySet :
                     entrySet.getValue().entrySet()) {
                 int i = innerEntrySet.getValue();
+
                 seriesArray[counter].getData().add(new XYChart.Data<>(key,i));
                 counter++;
             }
@@ -503,6 +503,6 @@ public class StatisticScene extends GeneralScene {
             counter = 0;
         }
     }
-    
+
     /**#######################    END of Setting charts with multiple series   ######################################*/
 }

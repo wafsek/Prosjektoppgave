@@ -406,7 +406,7 @@ public class SpecificInsuranceScene extends GeneralScene {
         TextField regionField = new TextField(travelInsurance.getRegion().toString());
         regionField.setEditable(false);
 
-        if (!cancelledField.getText().trim().isEmpty()) {
+        if (!cancelledField.getText().equals("")) {
             setNewClaimAdviceButtonDisabled();
         }
 
