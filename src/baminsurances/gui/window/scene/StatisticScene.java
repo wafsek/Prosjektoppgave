@@ -49,13 +49,19 @@ public class StatisticScene extends GeneralScene{
         xAxis = new NumberAxis();
         yAxis = new NumberAxis();
         cAxis = new CategoryAxis();
+        leftSide = new VBox(10);
+        rightSide = new VBox(10);
+        topBar = new VBox(10);
+        lineChart = new LineChart(xAxis,yAxis);
+        barChart = new BarChart(cAxis,yAxis);
+        pieChartData = FXCollections.observableArrayList();
+        pieChart = new PieChart(pieChartData);
+        
         this.setComboBox();
         comboBox.setValue(StatisticOption.OPTION_ONE.getDescription());
         this.setAnimationComboBox();
         animationComboBox.setValue("Animasjon PÅ");
-        leftSide = new VBox(10);
-        rightSide = new VBox(10);
-        topBar = new VBox(10);
+        
         topLabel = new Label("Statistikk");
         topLabel.setStyle("-fx-font:50px times;");
         topBar.setAlignment(Pos.CENTER);
@@ -85,6 +91,9 @@ public class StatisticScene extends GeneralScene{
 
         animationComboBox.setOnAction(e -> {
             if (animationComboBox.getValue() == "Animasjon PÅ") {
+                xAxis = new NumberAxis();
+                yAxis = new NumberAxis();
+                cAxis = new CategoryAxis();
                 barChart.setAnimated(true);
                 pieChart.setAnimated(true);
                 lineChart.setAnimated(true);
@@ -124,7 +133,6 @@ public class StatisticScene extends GeneralScene{
     }
     private void clearRightSide(){
         xAxis.setAutoRanging(true);
-        rightSide = new VBox(10);
         rightSide.getChildren().removeAll(pieChart);
         rightSide.getChildren().removeAll(barChart);
         rightSide.getChildren().removeAll(lineChart);
@@ -136,7 +144,6 @@ public class StatisticScene extends GeneralScene{
         pieChart = new PieChart(pieChartData);
         pieChart.setVisible(true);
         pieChart.getLabelsVisible();
-        pieChart.setAnimated(true);
         return pieChart;
     }
     
@@ -144,7 +151,6 @@ public class StatisticScene extends GeneralScene{
         
         barChart = new BarChart(cAxis,yAxis);
         barChart.getData().addAll(series);
-        //barChart.setAnimated(false);
         barChart.applyCss();
         barChart.setCategoryGap(30);
         cAxis = new CategoryAxis();
