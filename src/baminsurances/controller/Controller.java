@@ -393,16 +393,16 @@ public class Controller {
     }*/
 
     private void addWitness() {
-        if (new MessageDialog().showMessageDialog("Bilder", "Øsnker " +
-                        "du å laste opp bilder?", MessageDialog.QUESTION_ICON,
+        if (new MessageDialog().showMessageDialog("Bilder", "ï¿½snker " +
+                        "du ï¿½ laste opp bilder?", MessageDialog.QUESTION_ICON,
                 MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION) {
 
         }
     }
 
     private void addImagesToClaimAdvice(ClaimAdvice claimAdvice) {
-        if(new MessageDialog().showMessageDialog("Bilder", "Øsnker " +
-                        "du å laste opp bilder?", MessageDialog.QUESTION_ICON,
+        if(new MessageDialog().showMessageDialog("Bilder", "ï¿½snker " +
+                        "du ï¿½ laste opp bilder?", MessageDialog.QUESTION_ICON,
                 MessageDialog.YES__NO_OPTION) == MessageDialog.YES_OPTION) {
             BufferedImage bufferedImage = null;
             try{
@@ -605,6 +605,7 @@ public class Controller {
 
     public String registerBoatInsurance(){
         if(this.validateBoatInsuranceData().equals("Success")){
+            System.out.println("BÃ¥t feilet");
             return this.validateBoatInsuranceData();
         } else {
             manager.registerBoatInsurance(new BoatInsurance(
@@ -624,6 +625,7 @@ public class Controller {
                             Integer.parseInt(boatInsuranceScene.getHorsePowerFieldText())),
                     CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
+            System.out.println("BÃ¥t registrert");
             return "Boat Insurance Registered";
         }
     }
@@ -657,6 +659,7 @@ public class Controller {
 
     public String registerHomeInsurance(){
         if(this.validateHomeInsuranceData().equals("Success")){
+            System.out.println("Hus feilet");
             return this.validateHomeInsuranceData();
         } else {
             manager.registerHomeInsurance(new HomeInsurance(
@@ -675,6 +678,7 @@ public class Controller {
                             Integer.parseInt(houseInsuranceScene.getContentsAmountFieldText())),
                     CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
+            System.out.println("Hus registrert");
             return "Home Insurance Registered";
         }
     }
@@ -683,6 +687,7 @@ public class Controller {
     
     public String registerHolidayHomeInsurance(){
         if(this.validateHomeInsuranceData().equals("Success")){
+            System.out.println("Feriehus feilet");
             return this.validateHomeInsuranceData();
         } else {
             manager.registerHolidayHomeInsurance(new HolidayHomeInsurance(
@@ -702,6 +707,7 @@ public class Controller {
                             houseInsuranceScene.getRentableBoxIsSelected()),
                     CurrentStatus.getCurrentCustomer());
             DataBank.saveDataBank();
+            System.out.println("Bil registrert");
             return "Holiday Home Insurance Registered";
         }
     }
