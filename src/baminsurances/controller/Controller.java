@@ -646,7 +646,7 @@ public class Controller {
                     Authenticator.getInstance().getCurrentEmployee(),
                     Integer.parseInt(carInsuranceScene.getAnnualPremiumFieldText()),
                     Integer.parseInt(carInsuranceScene.getInsuranceValueFieldText()),
-                    PaymentFrequency.ANNUALLY,
+                    carInsuranceScene.getPaymentFrequency(),
                     carInsuranceScene.getConditionAreaText(),
                     (carInsuranceScene.getPerson() == null) ?
                             CurrentStatus.getCurrentCustomer() :
@@ -715,7 +715,7 @@ public class Controller {
                                     boatInsuranceScene.getAnnualPremiumFieldText()),
                             Integer.parseInt(
                                     boatInsuranceScene.getInsuranceValueFieldText()),
-                            PaymentFrequency.ANNUALLY,
+                            boatInsuranceScene.getPaymentFrequency(),
                             boatInsuranceScene.getConditionAreaText(),
                             boatInsuranceScene.getPerson() == null ?
                                     CurrentStatus.getCurrentCustomer() :
@@ -795,7 +795,7 @@ public class Controller {
                 manager.registerHomeInsurance(new HomeInsurance(
                                 Authenticator.getInstance().getCurrentEmployee(),
                                 Integer.parseInt(houseInsuranceScene.getAnnualPremiumFieldText()),
-                                PaymentFrequency.ANNUALLY,
+                                houseInsuranceScene.getPaymentFrequency(),
                                 houseInsuranceScene.getConditionAreaText(),
                                 houseInsuranceScene.getStreetAddressFieldText(),
                                 houseInsuranceScene.getZipCodeFieldText(),
@@ -825,7 +825,7 @@ public class Controller {
                             Authenticator.getInstance().getCurrentEmployee(),
                             Integer.parseInt(
                                     houseInsuranceScene.getAnnualPremiumFieldText()),
-                            PaymentFrequency.ANNUALLY,
+                            houseInsuranceScene.getPaymentFrequency(),
                             houseInsuranceScene.getConditionAreaText(),
                             houseInsuranceScene.getStreetAddressFieldText(),
                             houseInsuranceScene.getZipCodeFieldText(),
@@ -879,7 +879,7 @@ public class Controller {
                             Authenticator.getInstance().getCurrentEmployee(),
                             Integer.parseInt(travelInsuranceScene.getAnnualPremiumFieldText()),
                             Integer.parseInt(travelInsuranceScene.getInsuranceValueFieldText()),
-                            PaymentFrequency.ANNUALLY,
+                            travelInsuranceScene.getPaymentFrequency(),
                             travelInsuranceScene.getConditionAreaText(),
                             travelInsuranceScene.getRegionDropDown()),
                     CurrentStatus.getCurrentCustomer());
