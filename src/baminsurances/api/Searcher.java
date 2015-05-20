@@ -723,7 +723,7 @@ public class Searcher {
         
         for (Customer cus : dataBank.getCustomerList()) {
             char gender = cus.getGender();
-            Map<String, Integer> inner = result.get(gender);
+            Map<String, Integer> inner = result.get(displayNames.get(gender));
             
             for (Insurance ins : cus.getInsurances()) {
 
