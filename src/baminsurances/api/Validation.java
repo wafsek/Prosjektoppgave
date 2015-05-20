@@ -272,6 +272,6 @@ public class Validation {
      * @return <code>true</code> if the given string is a valid model
      */
     public static boolean isValidModel(String model) {
-        return model.matches("[A-ZÆØÅa-zæøå0-9 -]");
+        return model.matches("[A-ZÆØÅa-zæøå0-9 -]+");
     }
 }
